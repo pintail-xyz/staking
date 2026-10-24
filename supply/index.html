@@ -1,0 +1,494 @@
+<!doctype html>
+<html lang="en" data-site="static">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Ethereum staking ratio</title>
+<script src="https://cdn.plot.ly/plotly-3.4.0.min.js" charset="utf-8"></script>
+<style>
+  /* colours, type and layout as on the stake treemap page (viz/src/style.css), so the two pages match */
+  :root {
+    color-scheme: light;
+    --surface-0: #f4f3f0; --surface-1: #fcfcfb; --border: #d9d8d3; --grid: #e6e5e0;
+    --text-primary: #0b0b0b; --text-secondary: #52514e; --text-muted: #77766f; --accent: #2a78d6; --danger: #c0392b;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:where(:not([data-theme="light"])) {
+      color-scheme: dark;
+      --surface-0: #121211; --surface-1: #1a1a19; --border: #3a3a37; --grid: #2a2a28;
+      --text-primary: #f0efec; --text-secondary: #c3c2b7; --text-muted: #96958c; --accent: #3987e5; --danger: #e5675a;
+    }
+  }
+  :root[data-theme="dark"] {
+    color-scheme: dark;
+    --surface-0: #121211; --surface-1: #1a1a19; --border: #3a3a37; --grid: #2a2a28;
+    --text-primary: #f0efec; --text-secondary: #c3c2b7; --text-muted: #96958c; --accent: #3987e5; --danger: #e5675a;
+  }
+  * { box-sizing: border-box; }
+  body { margin: 0; background: var(--surface-0); color: var(--text-primary);
+         font: 14px/1.4 system-ui, -apple-system, "Segoe UI", sans-serif; }
+  main { max-width: 1400px; margin: 0 auto; padding-block: 16px 32px;
+         padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px)); }
+  a { color: var(--accent); }
+  header.top .title { display: flex; flex-wrap: wrap; align-items: baseline; justify-content: space-between; gap: 8px 16px; }
+  header.top h1 { font-size: 20px; margin: 0 0 8px; font-weight: 600; }
+  .sites { display: flex; gap: 14px; margin-right: auto; font-size: 13px; }
+  .sites a { text-decoration: none; }
+  .sites a:hover { text-decoration: underline; }
+  #stakechart { width: 100%; height: 700px; }
+  #pinbar { font-size: 13px; color: var(--text-secondary); text-align: center; margin-top: 6px; min-height: 1.5em; }
+  #pinbar button { font: inherit; color: var(--accent); background: none; border: 0; padding: 0; cursor: pointer;
+                   text-decoration: underline; }
+  figcaption { font-size: 13px; color: var(--text-secondary); text-align: center; margin-top: 10px; line-height: 1.5; }
+  .box { position: absolute; background: var(--surface-1); border: 1px solid var(--border); border-radius: 6px;
+         color: var(--text-primary); pointer-events: none; z-index: 10; }
+  /* the band above the chart: a hint when idle, an event's note on hover */
+  #infobox { height: 108px; padding: 10px 13px; font-size: 13px; line-height: 1.5; overflow: hidden; top: 4px; }
+  #infobox.idle { background: none; border-color: transparent; color: var(--text-muted); }
+  #databox:empty { display: none; }
+  #databox { width: 200px; padding: 8px 10px; font-size: 12px; line-height: 1.6; }
+  .ib-head { font-weight: 600; color: var(--text-secondary); margin-bottom: 5px; }
+  .row { display: flex; align-items: center; justify-content: space-between; gap: 4px; }
+  .row span { display: flex; align-items: center; color: var(--text-secondary); }
+  .row svg { margin-right: 6px; flex-shrink: 0; }
+  #events { margin-top: 28px; font-size: 13px; }
+  /* the static site (data/site/, for GitHub Pages) has no server: no explorer, no event editing */
+  html[data-site="static"] :is(#explorer-link, #ev-add, #ev-list button, .live-only) { display: none; }
+  #events h2 { font-size: 15px; font-weight: 600; margin: 0 0 4px; }
+  #events .hint { color: var(--text-muted); margin: 0 0 12px; font-size: 12px; }
+  #ev-list { list-style: none; margin: 0; padding: 0; border-top: 1px solid var(--border); }
+  #ev-list li { display: grid; grid-template-columns: 92px 1fr auto; gap: 2px 12px; padding: 9px 0;
+                border-bottom: 1px solid var(--border); }
+  #ev-list .date { color: var(--text-muted); font-variant-numeric: tabular-nums; }
+  #ev-list .label { font-weight: 600; }
+  #ev-list .desc { grid-column: 2 / 3; color: var(--text-secondary); line-height: 1.5; }
+  #ev-list .future { color: var(--text-muted); font-weight: normal; font-size: 12px; }
+  #ev-list button, #ev-add button { font: inherit; font-size: 12px; padding: 3px 10px; border: 1px solid var(--border);
+                                    border-radius: 4px; background: var(--surface-1); color: var(--text-secondary);
+                                    cursor: pointer; }
+  #ev-list button:hover { border-color: var(--danger); color: var(--danger); }
+  #ev-add { display: grid; grid-template-columns: 150px 1fr; gap: 8px 12px; margin-top: 18px; align-items: start; }
+  #ev-add h3 { grid-column: 1 / -1; font-size: 13px; font-weight: 600; margin: 0; }
+  #ev-add label { color: var(--text-secondary); padding-top: 5px; }
+  #ev-add input, #ev-add textarea { font: inherit; font-size: 13px; padding: 4px 6px; border: 1px solid var(--border);
+                                    border-radius: 4px; color: var(--text-primary); background: var(--surface-1); width: 100%; }
+  #ev-add textarea { min-height: 70px; resize: vertical; }
+  #ev-add .actions { grid-column: 2 / 3; display: flex; align-items: center; gap: 12px; }
+  #ev-add button { background: var(--text-primary); border-color: var(--text-primary); color: var(--surface-0); padding: 5px 14px; }
+  #ev-msg { font-size: 12px; color: var(--text-secondary); }
+  #ev-msg.err { color: var(--danger); }
+  @media (max-width: 640px) {
+    #ev-list li { grid-template-columns: 1fr auto; }
+    #ev-list .date { grid-column: 1 / -1; }
+    #ev-list .desc { grid-column: 1 / -1; }
+    #ev-add { grid-template-columns: 1fr; }
+    #ev-add label { padding-top: 0; }
+    #ev-add .actions { grid-column: 1 / -1; }
+    #stakechart { height: 620px; }
+    #infobox { font-size: 12px; }
+  }
+  @media (hover: none) { #stakechart .hoverlayer { display: none !important; } }
+</style>
+</head>
+<body>
+<main>
+  <header class="top">
+    <div class="title">
+      <h1>Ethereum staking ratio</h1>
+      <nav class="sites" aria-label="Related charts">
+        <a id="treemap-link" href="../treemap/">Stake treemap</a>
+        <a id="liquidity-link" href="../liquidity/" hidden>Forms of ETH</a>
+        <a id="explorer-link" href="/explore">Explorer</a>
+      </nav>
+    </div>
+  </header>
+  <figure style="margin:0">
+    <div id="wrap" style="position:relative">
+      <div id="stakechart"></div><div id="infobox" class="box idle"></div><div id="databox" class="box"></div>
+    </div>
+    <figcaption id="caption">Staking ratio over time.</figcaption>
+  </figure>
+  <p id="pinbar" role="status"></p>
+  <section id="events" aria-labelledby="events-h">
+    <h2 id="events-h">Events</h2>
+    <p class="hint">The notes shown on the staking chart.<span class="live-only"> Changes are saved to <code>web/events.json</code> on the server.</span></p>
+    <ul id="ev-list"></ul>
+    <form id="ev-add">
+      <h3>Add an event</h3>
+      <label for="ev-date">Date (UTC)</label><input id="ev-date" type="date" required>
+      <label for="ev-label">Label</label><input id="ev-label" type="text" maxlength="80" required placeholder="Shown beside the line on the chart">
+      <label for="ev-desc">Description</label><textarea id="ev-desc" maxlength="2000" placeholder="Shown in the note box on hover"></textarea>
+      <div class="actions"><button type="submit">Add event</button><span id="ev-msg" role="status"></span></div>
+    </form>
+  </section>
+</main>
+
+<script>
+// stakalytics treemap: in the static site its sibling folder; served live, the same host on its own port
+// (whichever name or address this page was opened by)
+const TREEMAP = document.documentElement.dataset.site === "static" ? new URL("../treemap/", location.href).href
+  : `${location.protocol}//${location.hostname}:8352/`;
+document.getElementById("treemap-link").href = TREEMAP;
+// Forms of ETH: in the static site its sibling folder, shown once it is there (it may not be published yet); served
+// live, its preview on the same host, port 8354
+const liquidity = document.getElementById("liquidity-link");
+if (document.documentElement.dataset.site === "static") {
+  liquidity.href = new URL("../liquidity/", location.href).href;
+  fetch(liquidity.href, { method: "HEAD" }).then((r) => { liquidity.hidden = !r.ok; }).catch(() => {});
+} else {
+  liquidity.href = `${location.protocol}//${location.hostname}:8354/liquidity/`;
+  liquidity.hidden = false;
+}
+</script>
+<script>
+(function () {
+  const el = document.getElementById('stakechart');
+  const box = document.getElementById('infobox');
+  const dataBox = document.getElementById('databox');
+
+  // series colours are fixed; the rest follows the page's light or dark theme (the CSS tokens)
+  function palette() {
+    const v = name => getComputedStyle(document.documentElement).getPropertyValue(name).trim();
+    return {
+      active: '#2170C4', activeFill: 'rgba(33,112,196,0.25)', incl: '#6B7FA8',
+      clAprFill: 'rgba(33,112,196,0.40)', elApr: '#D9822B', elAprFill: 'rgba(217,130,43,0.35)',
+      entry: '#2A8A3E', entryFill: 'rgba(42,138,62,0.35)', exit: '#C0392B', exitFill: 'rgba(192,57,43,0.35)',
+      event: '#8877AA', eventHi: v('--text-primary'), grid: v('--grid'), line: v('--border'), text: v('--text-primary'),
+      plotBg: v('--surface-1'), paperBg: v('--surface-0'), labelBg: v('--surface-1'),
+    };
+  }
+  let C = palette();
+  const FONT = 'system-ui, -apple-system, "Segoe UI", sans-serif';
+  // pane proportions as in the pintail.xyz chart
+  const PANE1 = [0.3867, 1.0], PANE2 = [0.1933, 0.3467], PANE3 = [0.0, 0.1533];
+  const SUBTITLE_COUNT = 6;
+
+  let D = null;            // data from server / export
+  let S = null;            // derived series
+  let baseShapes = [], baseAnnotations = [], events = [];
+  let lastNearestIdx = -1, isHighlighting = false;
+
+  // A pinned date (?date=YYYY-MM-DD, or a click on either chart) is marked on
+  // the charts, shown in the data box when not hovering, and carried by the
+  // link to the stake treemap.
+  const DATE_RE = /^\d{4}-\d{2}-\d{2}$/;
+  const urlDate = new URLSearchParams(location.search).get('date');
+  let pin = DATE_RE.test(urlDate || '') ? urlDate : null;
+  const pinShapes = () => pin ? [{ type: 'line', xref: 'x', yref: 'paper', x0: pin, x1: pin, y0: 0, y1: 1,
+    line: { color: C.text, width: 1.2 } }] : [];
+
+  // ---------------------------------------------------------------- data
+  function derive(d) {
+    const s = { x: d.dates.slice() };
+    for (const f of ['active_pct', 'incl_pct', 'entry_pct', 'exit_pct', 'entry_eth', 'exit_eth', 'entry_wait_days', 'exit_wait_days', 'cl_apr', 'el_apr'])
+      s[f] = d[f].slice();
+    s.ms = s.x.map(x => new Date(x).getTime());
+    return s;
+  }
+
+  function niceStep(v) {
+    const p = Math.pow(10, Math.floor(Math.log10(v))), m = v / p;
+    return (m <= 1 ? 1 : m <= 2 ? 2 : m <= 2.5 ? 2.5 : m <= 5 ? 5 : 10) * p;
+  }
+  function valueAt(arr, ms) { return arr[nearestIdx(ms)]; }
+  function nearestIdx(xMs) {
+    let lo = 0, hi = S.ms.length - 1;
+    while (lo < hi) { const m = (lo + hi) >> 1; if (S.ms[m] < xMs) lo = m + 1; else hi = m; }
+    if (lo > 0 && Math.abs(S.ms[lo - 1] - xMs) < Math.abs(S.ms[lo] - xMs)) lo--;
+    return lo;
+  }
+  const fmtEth = v => v >= 1e6 ? (v / 1e6).toFixed(2) + 'M' : v >= 1e3 ? (v / 1e3).toFixed(0) + 'k' : v.toFixed(0);
+
+  // ---------------------------------------------------------------- figure
+  function spec() {
+    const x = S.x, n = x.length;
+    const qmax = Math.max(0.01, ...S.entry_pct, ...S.exit_pct);
+    const step = niceStep(qmax / 2), qlim = Math.ceil(qmax / step) * step + step * 0.25;
+    const ticks = []; for (let t = -Math.floor(qlim / step) * step; t <= qlim + 1e-9; t += step) ticks.push(+t.toFixed(6));
+    const qcustom = (pct, ethv, wait) => pct.map((p, i) => [p, fmtEth(ethv[i]), wait[i]]);
+
+    const data = [
+      { type: 'scatter', x, y: S.active_pct, name: 'Active stake', fill: 'tozeroy', fillcolor: C.activeFill,
+        line: { color: C.active, width: 1.5 }, hoverinfo: 'none', xaxis: 'x', yaxis: 'y' },
+      { type: 'scatter', x, y: S.incl_pct, name: 'Active + queues', line: { color: C.incl, dash: 'dot', width: 1.2 },
+        hoverinfo: 'none', xaxis: 'x', yaxis: 'y' },
+      { type: 'scatter', x, y: S.entry_pct, name: 'Entry queue', fill: 'tozeroy', fillcolor: C.entryFill,
+        line: { color: C.entry, width: 1.2 }, xaxis: 'x2', yaxis: 'y2',
+        customdata: qcustom(S.entry_pct, S.entry_eth, S.entry_wait_days),
+        hovertemplate: 'Entry queue: %{customdata[0]:.2f}% (%{customdata[1]} ETH, ~%{customdata[2]:.1f} d)<extra></extra>' },
+      { type: 'scatter', x, y: S.exit_pct.map(v => -v), name: 'Exit queue', fill: 'tozeroy', fillcolor: C.exitFill,
+        line: { color: C.exit, width: 1.2 }, xaxis: 'x2', yaxis: 'y2',
+        customdata: qcustom(S.exit_pct, S.exit_eth, S.exit_wait_days),
+        hovertemplate: 'Exit queue: %{customdata[0]:.2f}% (%{customdata[1]} ETH, %{customdata[2]:.1f} d)<extra></extra>' },
+      // CL APR, with proposer EL APR stacked on top (EL income lags by about a day, so the newest day may be CL only)
+      { type: 'scatter', x, y: S.cl_apr, name: 'CL APR', fill: 'tozeroy', fillcolor: C.clAprFill,
+        line: { color: C.active, width: 1.2 }, xaxis: 'x3', yaxis: 'y3',
+        hovertemplate: 'CL APR: %{y:.2f}%<extra></extra>' },
+      { type: 'scatter', x, y: S.cl_apr.map((c, i) => c == null || S.el_apr[i] == null ? null : c + S.el_apr[i]),
+        name: 'EL APR', fill: 'tonexty', fillcolor: C.elAprFill, line: { color: C.elApr, width: 1 },
+        xaxis: 'x3', yaxis: 'y3', customdata: S.el_apr,
+        hovertemplate: 'EL APR: %{customdata:.2f}% (total %{y:.2f}%)<extra></extra>' },
+    ];
+
+    const xCommon = {
+      showgrid: true, gridcolor: C.grid, tickformat: '%Y', dtick: 'M12', showline: true, linecolor: C.line,
+      mirror: false, hoverformat: '%Y-%m-%d', showspikes: false,
+      range: [D.events.reduce((m, e) => e.date < m ? e.date : m, x[0]), x[n - 1]],
+    };
+    const yCommon = { showgrid: true, gridcolor: C.grid, showline: true, linecolor: C.line, mirror: false, fixedrange: true };
+    const subtitle = (text, y) => ({ text, x: 0, y, xref: 'paper', yref: 'paper', xanchor: 'left', yanchor: 'bottom',
+      showarrow: false, font: { color: C.text, size: 11 } });
+    const ytitle = (text, y) => ({ text, x: 0, y, xref: 'paper', yref: 'paper', xanchor: 'center', yanchor: 'middle',
+      xshift: -30, textangle: -90, showarrow: false, font: { color: C.text, size: 11 } });
+
+    // event lines + hidden vertical labels (revealed on highlight), placed just above the dashed line
+    events = D.events.map(e => ({ ...e, ms: new Date(e.date + 'T00:00:00Z').getTime() }))
+      .filter(e => e.ms <= S.ms[n - 1]);
+    baseShapes = events.map(e => ({ type: 'line', xref: 'x', yref: 'paper', x0: e.date, x1: e.date, y0: 0, y1: 1,
+      line: { color: C.event, dash: 'dash', width: 0.8 }, opacity: 0.55 })).concat(pinShapes());
+    const evAnn = events.map(e => ({ text: '  ' + e.label + '  ', x: e.date, xref: 'x', y: valueAt(S.incl_pct, e.ms) + 2,
+      yref: 'y', xanchor: 'center', yanchor: 'bottom', textangle: -90, showarrow: false, borderpad: 3,
+      font: { color: 'rgba(0,0,0,0)', size: 10 }, bgcolor: 'rgba(0,0,0,0)', bordercolor: 'rgba(0,0,0,0)' }));
+    baseAnnotations = [
+      subtitle('Staking Ratio', PANE1[1]), subtitle('Entry / Exit Queues', PANE2[1]), subtitle('Validator APR', PANE3[1]),
+      ytitle('% of ETH supply', (PANE1[0] + PANE1[1]) / 2), ytitle('%', (PANE2[0] + PANE2[1]) / 2),
+      ytitle('APR', (PANE3[0] + PANE3[1]) / 2),
+    ].concat(evAnn);
+
+    const ymax = Math.max(...S.incl_pct);
+    const layout = {
+      xaxis: { ...xCommon, anchor: 'y', domain: [0, 1], matches: 'x3', showticklabels: false },
+      yaxis: { ...yCommon, anchor: 'x', domain: PANE1, rangemode: 'tozero', range: [0, Math.max(ymax + 9, ymax * 1.3)] },
+      xaxis2: { ...xCommon, anchor: 'y2', domain: [0, 1], matches: 'x3', showticklabels: false },
+      xaxis3: { ...xCommon, anchor: 'y3', domain: [0, 1] },
+      yaxis3: { ...yCommon, anchor: 'x3', domain: PANE3, rangemode: 'tozero' },
+      yaxis2: { ...yCommon, anchor: 'x2', domain: PANE2, range: [-qlim, qlim], tickvals: ticks,
+                ticktext: ticks.map(t => String(+Math.abs(t).toFixed(2))), zeroline: true, zerolinecolor: C.line },
+      shapes: baseShapes, annotations: baseAnnotations,
+      font: { family: FONT, size: 11, color: C.text },
+      showlegend: false, margin: { t: 130, b: 40, l: 44, r: 10 },
+      paper_bgcolor: C.paperBg, plot_bgcolor: C.plotBg, hovermode: 'x unified', dragmode: false,
+    };
+    return { data, layout };
+  }
+
+  // ---------------------------------------------------------------- boxes
+  function showDefault() {
+    box.classList.add('idle');
+    box.style.display = 'flex'; box.style.justifyContent = 'center'; box.style.alignItems = 'center';
+    box.style.textAlign = 'center';
+    box.textContent = matchMedia('(hover: none)').matches ? 'Touch the chart for notes on key events; tap to pin a date.'
+      : 'Hover over the chart for notes on key events; click to pin a date.';
+  }
+  function showEventNote(ev) {
+    box.classList.remove('idle');
+    box.style.display = 'block'; box.style.textAlign = 'left';
+    box.innerHTML = '<div class="ib-head"></div><div></div>';
+    box.children[0].textContent = '\u{1F4C5} ' + ev.date + ' — ' + ev.label;
+    box.children[1].textContent = ev.desc;
+  }
+  function positionBoxes() {
+    const fl = el._fullLayout; if (!fl) return;
+    const w = Math.min(640, el.offsetWidth - 16);
+    box.style.width = w + 'px';
+    box.style.left = Math.round((el.offsetWidth - w) / 2) + 'px';
+    const plotH = fl.height - fl.margin.t - fl.margin.b;
+    const pane1Bot = fl.margin.t + (1 - PANE1[0]) * plotH;
+    dataBox.style.top = (pane1Bot - dataBox.offsetHeight - 8) + 'px';
+    dataBox.style.right = (fl.margin.r + 8) + 'px';
+  }
+  const lineIcon = (color, dash) => '<svg width="24" height="12"><line x1="0" y1="6" x2="24" y2="6" stroke="' + color +
+    '" stroke-width="2"' + (dash ? ' stroke-dasharray="2,3"' : '') + '/></svg>';
+  const row = (icon, label, val) => '<div class="row"><span>' + icon + label + '</span><b>' + val + '</b></div>';
+  function renderDataBox(i, pinned) {
+    const when = (pinned ? '📌 ' : '') + S.x[i];
+    dataBox.innerHTML = '<div class="ib-head">' + when + '</div>' +
+      row(lineIcon(C.active, false), 'Active stake', S.active_pct[i].toFixed(1) + '%') +
+      row(lineIcon(C.incl, true), 'Incl. queues', S.incl_pct[i].toFixed(1) + '%');
+    positionBoxes();
+  }
+  const showDataBoxAt = xMs => renderDataBox(nearestIdx(xMs));
+  const showLatest = () => pin
+    ? renderDataBox(nearestIdx(new Date(pin + 'T00:00:00Z').getTime()), true)
+    : renderDataBox(S.x.length - 1);
+
+  // ---------------------------------------------------------------- event highlighting
+  function highlightEvent(idx) {
+    const shapes = JSON.parse(JSON.stringify(baseShapes));
+    const s = shapes[idx];
+    if (s) {
+      s.line.color = C.eventHi; s.line.width = 2.0; s.line.dash = 'solid'; s.opacity = 1.0;
+      shapes.splice(idx, 1); shapes.push(s);
+    }
+    const annotations = JSON.parse(JSON.stringify(baseAnnotations));
+    const ann = annotations[SUBTITLE_COUNT + idx];
+    if (ann) {
+      ann.font.color = C.event; ann.bgcolor = C.labelBg; ann.bordercolor = C.line;
+      annotations.splice(SUBTITLE_COUNT + idx, 1); annotations.push(ann);
+    }
+    isHighlighting = true;
+    Plotly.relayout(el, { shapes, annotations }).then(() => { isHighlighting = false; });
+  }
+  function restoreBase() {
+    isHighlighting = true;
+    Plotly.relayout(el, { shapes: baseShapes, annotations: baseAnnotations }).then(() => { isHighlighting = false; });
+  }
+  function nearestEvent(xMs) {
+    let best = 0, bd = Infinity;
+    events.forEach((ev, i) => { const d = Math.abs(xMs - ev.ms); if (d < bd) { bd = d; best = i; } });
+    return best;
+  }
+  function onPointer(xMs) {
+    if (events.length) {
+      const idx = nearestEvent(xMs);
+      if (idx !== lastNearestIdx) { lastNearestIdx = idx; highlightEvent(idx); }
+      showEventNote(events[idx]);
+    }
+    showDataBoxAt(xMs);
+  }
+  function onLeave() {
+    showLatest(); showDefault();
+    if (lastNearestIdx !== -1) { lastNearestIdx = -1; restoreBase(); }
+  }
+
+  // ---------------------------------------------------------------- wiring
+  let wired = false;
+  function wire() {
+    el.on('plotly_hover', d => { if (d.points && d.points.length) onPointer(new Date(d.points[0].x).getTime()); });
+    el.on('plotly_unhover', () => { if (!isHighlighting) onLeave(); });
+    el.on('plotly_relayout', positionBoxes);
+    el.on('plotly_click', d => { if (d.points && d.points.length) setPin(d.points[0].x); });
+    // touch: drag to read, tap to pin
+    let tap = null;
+    const touch = e => {
+      e.preventDefault();
+      const fl = el._fullLayout; if (!fl) return;
+      const rect = el.getBoundingClientRect();
+      const t = e.touches[0];
+      const frac = Math.max(0, Math.min(1, (t.clientX - rect.left - fl.margin.l) / (fl.width - fl.margin.l - fl.margin.r)));
+      const r = fl.xaxis.range.map(v => typeof v === 'number' ? v : new Date(v).getTime());
+      const ms = r[0] + frac * (r[1] - r[0]);
+      if (e.type === 'touchstart') tap = { x: t.clientX, at: Date.now(), ms };
+      else if (tap && Math.abs(t.clientX - tap.x) > 10) tap = null;
+      onPointer(ms);
+    };
+    el.addEventListener('touchstart', touch, { passive: false });
+    el.addEventListener('touchmove', touch, { passive: false });
+    el.addEventListener('touchend', () => {
+      if (tap && Date.now() - tap.at < 400) setPin(S.x[nearestIdx(tap.ms)]);
+      tap = null;
+      onLeave();
+    });
+    window.addEventListener('resize', positionBoxes);
+  }
+
+  // ---------------------------------------------------------------- pinned date
+  function treemapHref() {
+    const q = new URLSearchParams();
+    if (pin) q.set('date', pin);
+    return TREEMAP + (q.size ? '?' + q : '');
+  }
+  function renderPin() {
+    const bar = document.getElementById('pinbar');
+    document.getElementById('treemap-link').href = treemapHref();
+    if (!pin) { bar.textContent = 'Click the chart to pin a date; the stake treemap link opens at it.'; return; }
+    const a = document.createElement('a'); a.href = treemapHref();
+    // the treemap starts at beacon chain genesis
+    a.textContent = pin < '2020-12-01' ? 'stake treemap (from 1 Dec 2020) →' : 'stake treemap at this date →';
+    const clear = document.createElement('button'); clear.type = 'button'; clear.textContent = 'clear';
+    clear.onclick = () => setPin(null);
+    bar.replaceChildren('📌 ' + pin + ' · ', a, ' · ', clear);
+  }
+  function setPin(x) {
+    const d = x ? String(x).slice(0, 10) : null;
+    pin = d && DATE_RE.test(d) ? d : null;
+    const q = new URLSearchParams(location.search);
+    if (pin) q.set('date', pin); else q.delete('date');
+    history.replaceState(null, '', location.pathname + (q.size ? '?' + q : '') + location.hash);
+    renderPin();
+    if (!D) return;
+    // redraw the marker without disturbing an event highlight
+    baseShapes = baseShapes.filter(s => s.line.dash === 'dash').concat(pinShapes());
+    if (lastNearestIdx !== -1) highlightEvent(lastNearestIdx); else restoreBase();
+    if (lastNearestIdx === -1) showLatest();
+  }
+
+  renderPin();
+
+  function setCaption() {
+    const cap = document.getElementById('caption');
+    cap.textContent = 'Staking ratio over time. Computed from the local Lighthouse + reth archive node; daily, through ' +
+      D.dates[D.dates.length - 1] + ' (updated once a day).';
+  }
+
+  function load(d) {
+    D = d; S = derive(d);
+    const { data, layout } = spec();
+    lastNearestIdx = -1;
+    Plotly.react(el, data, layout, { displayModeBar: false, responsive: true }).then(() => {
+      if (!wired) { wire(); wired = true; showDefault(); }
+      showLatest(); positionBoxes(); setCaption();
+    });
+  }
+  // follow the system's light/dark switch: Plotly takes colours, not CSS variables, so redraw
+  matchMedia('(prefers-color-scheme: dark)').addEventListener('change', () => { C = palette(); if (D) load(D); });
+
+  // ---------------------------------------------------------------- events list + editor
+  const evList = document.getElementById('ev-list'), evForm = document.getElementById('ev-add');
+  const evMsg = document.getElementById('ev-msg');
+  let EV = [];   // all events, as in events.json
+  function say(text, err) { evMsg.textContent = text; evMsg.className = err ? 'err' : ''; }
+  function renderEvents() {
+    const last = S ? S.ms[S.ms.length - 1] : Infinity;
+    evList.replaceChildren(...EV.map(ev => {
+      const li = document.createElement('li');
+      const date = document.createElement('span'); date.className = 'date'; date.textContent = ev.date;
+      const label = document.createElement('span'); label.className = 'label'; label.textContent = ev.label;
+      if (new Date(ev.date + 'T00:00:00Z').getTime() > last) {
+        const f = document.createElement('span'); f.className = 'future'; f.textContent = ' (after the latest data; not drawn yet)';
+        label.append(f);
+      }
+      const rm = document.createElement('button'); rm.type = 'button'; rm.textContent = 'Remove';
+      rm.setAttribute('aria-label', 'Remove ' + ev.label);
+      rm.onclick = () => {
+        if (!confirm('Remove "' + ev.label + '" (' + ev.date + ')?')) return;
+        post('events/remove', { date: ev.date, label: ev.label }).then(evs => { setEvents(evs); say('Removed "' + ev.label + '".'); })
+          .catch(err => say(err.message, true));
+      };
+      const desc = document.createElement('span'); desc.className = 'desc'; desc.textContent = ev.desc;
+      li.append(date, label, rm, desc);
+      return li;
+    }));
+  }
+  function post(path, body) {
+    return fetch(path, { method: 'POST', headers: { 'content-type': 'application/json' }, body: JSON.stringify(body) })
+      .then(r => r.json().catch(() => ({ error: r.status + ' ' + r.statusText }))
+        .then(j => { if (!r.ok) throw new Error(j.error || r.statusText); return j; }));
+  }
+  function setEvents(evs) {
+    EV = evs;
+    if (D) { D.events = EV; load(D); }
+    renderEvents();
+  }
+  evForm.onsubmit = e => {
+    e.preventDefault();
+    const ev = { date: evForm.querySelector('#ev-date').value, label: evForm.querySelector('#ev-label').value.trim(),
+                 desc: evForm.querySelector('#ev-desc').value.trim() };
+    post('events/add', ev).then(evs => { setEvents(evs); evForm.reset(); say('Added "' + ev.label + '".'); })
+      .catch(err => say(err.message, true));
+  };
+
+  window.srtChart = { point: onPointer, leave: onLeave };   // for debugging / scripted screenshots
+  const getJson = path => fetch(path, { cache: 'no-store' }).then(r => { if (!r.ok) throw new Error(r.status + ' ' + path); return r.json(); });
+  const poll = () => Promise.all([getJson('data.json'), getJson('events.json')])
+    .then(([d, evs]) => {
+      EV = evs; d.events = evs;
+      if (lastNearestIdx === -1) load(d);   // don't disturb an active hover
+      renderEvents();
+    })
+    .catch(err => { document.getElementById('caption').textContent = 'Update failed: ' + err.message; });
+  poll(); setInterval(poll, 3600e3);   // the data changes once a day
+})();
+</script>
+</body>
+</html>
