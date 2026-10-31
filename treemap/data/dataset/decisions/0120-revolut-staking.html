@@ -1,0 +1,77 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>0120-revolut-staking: Validators deposited by an account funded only by a wallet that handled Revolut&#x27;s EURR stablecoin from before its launch, and wi</title>
+<style>
+:root { color-scheme: light; --surface-0: #f4f3f0; --surface-1: #fcfcfb; --border: #d9d8d3; --text-primary: #0b0b0b;
+        --text-secondary: #52514e; --text-muted: #77766f; --accent: #2a78d6; --chip: #ebe9e4; }
+@media (prefers-color-scheme: dark) {
+  :root:where(:not([data-theme="light"])) { color-scheme: dark; --surface-0: #121211; --surface-1: #1a1a19;
+    --border: #3a3a37; --text-primary: #f0efec; --text-secondary: #c3c2b7; --text-muted: #96958c; --accent: #3987e5;
+    --chip: #2a2a28; }
+}
+:root[data-theme="dark"] { color-scheme: dark; --surface-0: #121211; --surface-1: #1a1a19; --border: #3a3a37;
+  --text-primary: #f0efec; --text-secondary: #c3c2b7; --text-muted: #96958c; --accent: #3987e5; --chip: #2a2a28; }
+* { box-sizing: border-box; }
+body { margin: 0; background: var(--surface-0); color: var(--text-primary);
+       font: 15px/1.55 system-ui, -apple-system, "Segoe UI", sans-serif; }
+main { max-width: 860px; margin: 0 auto; padding: 32px 16px 64px; }
+a { color: var(--accent); }
+h1 { font-size: 22px; line-height: 1.3; font-weight: 600; margin: 4px 0 12px; }
+h2 { font-size: 15px; font-weight: 600; margin: 28px 0 8px; color: var(--text-secondary);
+     text-transform: uppercase; letter-spacing: 0.04em; }
+p { margin: 0 0 12px; }
+.crumbs { font-size: 13px; color: var(--text-muted); }
+.lede { font-size: 17px; }
+.muted { color: var(--text-muted); }
+.chip { display: inline-block; padding: 1px 8px; border-radius: 10px; background: var(--chip); font-size: 12px;
+        color: var(--text-secondary); margin-right: 4px; white-space: nowrap; }
+.card { background: var(--surface-1); border: 1px solid var(--border); border-radius: 6px; padding: 14px 16px;
+        margin: 0 0 12px; }
+.stats { display: flex; flex-wrap: wrap; gap: 12px; margin: 16px 0; }
+.stat { background: var(--surface-1); border: 1px solid var(--border); border-radius: 6px; padding: 10px 14px;
+        min-width: 140px; }
+.stat b { display: block; font-size: 20px; font-variant-numeric: tabular-nums; }
+.stat span { font-size: 12px; color: var(--text-muted); }
+ul.grounds { list-style: none; padding: 0; margin: 0; }
+ul.grounds li { padding: 6px 0; border-bottom: 1px solid var(--border); }
+ul.grounds li:last-child { border-bottom: 0; }
+table { width: 100%; border-collapse: collapse; background: var(--surface-1); font-size: 14px; }
+th, td { text-align: left; padding: 7px 8px; border-bottom: 1px solid var(--border); vertical-align: top; }
+th { font-weight: 600; color: var(--text-secondary); cursor: pointer; white-space: nowrap; user-select: none; }
+td.num, th.num { text-align: right; font-variant-numeric: tabular-nums; white-space: nowrap; }
+code, .mono { font: 12.5px ui-monospace, SFMono-Regular, Menlo, monospace; word-break: break-all; }
+details summary { cursor: pointer; color: var(--accent); }
+.excerpt { border-left: 3px solid var(--border); padding: 2px 0 2px 10px; color: var(--text-secondary);
+           font-size: 14px; white-space: pre-wrap; }
+input[type=search] { width: 100%; padding: 8px 10px; font: inherit; border: 1px solid var(--border);
+                     border-radius: 6px; background: var(--surface-1); color: var(--text-primary); margin: 8px 0 12px; }
+.table-wrap { overflow-x: auto; }
+@media (max-width: 640px) { .hide-sm { display: none; } }
+</style>
+<script data-goatcounter="https://pintail.goatcounter.com/count" async src="https://gc.zgo.at/count.js"></script>
+</head>
+<body>
+<main>
+<p class="crumbs"><a href="../">Dataset</a> › <a href="./">Decisions</a> › 0120-revolut-staking</p>
+<h1>Validators deposited by an account funded only by a wallet that handled Revolut&#x27;s EURR stablecoin from before its launch, and withdrawing back to that account, are Revolut&#x27;s staking.</h1>
+<p><span class="chip">Attribution</span><span class="chip">Allocator</span> <a href="../entities/revolut.html">Revolut staking</a> <span class="muted">· decided 2026-10-20</span></p>
+<p class="lede">Validators withdrawing to this address are Revolut&#x27;s staking.</p>
+<div class="stats"><div class="stat"><b>3,616</b><span>validators resting on it now</span></div><div class="stat"><b>115,712</b><span>ETH now</span></div><div class="stat"><b>115,712</b><span>ETH at its peak</span></div></div>
+<h2>Grounds</h2><div class="card"><ul class="grounds"><li><span class="chip">Third party</span>The issuer of the Revolut Euro (EURR) stablecoin names Revolut its sole distributor</li><li><span class="chip">On chain</span>The wallet that supplied all the depositing account&#x27;s ETH held EURR before launch and received EURR from the issuance wallet</li><li><span class="chip">On chain</span>That account made every deposit, and the validators&#x27; withdrawals all return to it</li></ul></div>
+<h2>Explanation</h2><p>Validators withdrawing to 0x2b78…7470 are Revolut&#x27;s staking, with Revolut as allocator; the stake is its customers&#x27;. 8,834 validators were deposited between September 2022 and September 2026; about 3,585 were active in October 2026 with some 0.11M ETH.</p>
+<p><strong>The deposits.</strong> One account, 0xc44b…11c3, made every deposit to the address, and no one else has deposited to it. The account is used only for staking (its other transactions are delegations and bridging on other networks), and its ETH comes from only two places: 0x9b0c…8d46, a high-volume exchange hot wallet, and the withdrawal address itself, which sends it every withdrawal to be restaked or returned. The withdrawal address is its validators&#x27; own fee recipient, and their graffiti shows client versions only.</p>
+<p><strong>The link to Revolut through EURR.</strong> Revolut publishes no Ethereum addresses, and its annual reports give no staking figures. The link runs through EURR, the euro stablecoin Bridge issues for Revolut: <a href="https://reserves.bridge.xyz/">Bridge&#x27;s transparency page</a> lists the Revolut Euro token, and <a href="https://reserves.bridge.xyz/white-papers/bridge-mica-white-paper-eurr-july-2026.pdf">its white paper under MiCA</a> names Revolut&#x27;s European digital-asset company as the sole distributor, offering it through the Revolut app and Revolut X. The token launched publicly in late August 2026. The hot wallet 0x9b0c…8d46 received EURR test tokens in March 2026, months before launch, when only the issuer and its distributor would hold them; from August 2026 it received EURR from the wallet that received almost all of the supply minted, and it passes EURR to a wallet that pays many end users.</p>
+<p>So the stake is funded by, and returns to, a wallet that handled a stablecoin only Revolut distributes, from before its launch. A wallet of the exchange depositing for itself makes Revolut the allocator.</p>
+<p><strong>Limits.</strong> No Revolut document names a wallet. The wallet that received most of the EURR minted may be Bridge&#x27;s or Revolut&#x27;s; the argument holds either way. Explorer labels and community label sets naming the accounts as Revolut&#x27;s are recorded as leads. The decision would change with a Revolut statement contradicting it, or evidence that the validators are run for a client or chosen by a staking provider.</p>
+<h2>What would change it</h2><p>A Revolut statement contradicting it, or evidence that the validators are run for a client or chosen by a staking provider.</p>
+<h2>Evidence</h2><p class="muted">Transactions and contract calls anyone can repeat on their own node.</p><div class="card"><ul class="grounds"><li><a class="mono" href="https://etherscan.io/tx/0x5d5cd992cacde7ff2c9aee6de84eb855618e70298a88dad37a6f123328812547">0x5d5cd992…28812547</a> — First deposit, from 0xc44b</li><li><a class="mono" href="https://etherscan.io/tx/0xa9d0198ea1a8378df24d96aacdb15c53329d0b9a9c91ef5f30955b1e5b77e594">0xa9d0198e…5b77e594</a> — 0x2b78 sends 3,490 ETH to 0xc44b, first return of withdrawals</li><li><a class="mono" href="https://etherscan.io/tx/0x622dd24d084767098af513fcec3b22d4a24e9b54b055129717bc0c5bd9851613">0x622dd24d…d9851613</a> — 0x9b0c…8d46 sends 986 ETH to 0xc44b; it supplied all 239,153 ETH 0xc44b received apart from withdrawals</li><li><a class="mono" href="https://etherscan.io/tx/0x1947d782531317c88e56af01522421896449fae1e5c684d3112f8fc8a4cf8924">0x1947d782…a4cf8924</a> — 0x9b0c receives 5 EURR from the test mint&#x27;s recipient on 3 March 2026, before EURR&#x27;s launch</li><li><a class="mono" href="https://etherscan.io/tx/0x54ee3ca6fe854d2ed3f37a3fdb27343224b9ddce3af93f7f2adebdc3d36f7b8c">0x54ee3ca6…d36f7b8c</a> — 0x9b0c receives EURR from 0x762b…12cf, which got 99.9% of all EURR minted (first of 16 transfers)</li><li><a class="mono" href="https://etherscan.io/tx/0x21e2d84a26b512306b2bd8394de272748a4741dc9c635ee6c794cc9bb119a5a6">0x21e2d84a…b119a5a6</a> — 0x9b0c sends EURR to 0xb233…c460, which pays it out to end users</li></ul></div>
+<h2>Sources</h2><div class="card"><a href="https://reserves.bridge.xyz/">Open Issuance Transparency: Revolut Euro (EURR)</a><div class="muted" style="font-size:13px">Bridge · third party · retrieved 2026-10-21</div><p class="excerpt">Revolut Euro (EURR) is designed to make euro-denominated money work on-chain. Issued by Bridge Building S.A. and integrated with Revolut, EURR gives eligible customers a simpler way to move between euros, crypto, external wallets and supported blockchain networks</p><div class="muted mono">sha256 cf9c63acb75d2399842bd8c13d9bbcbb6d7ad95abd9076cdc439c023662eadf2</div></div><div class="card"><a href="https://reserves.bridge.xyz/white-papers/bridge-mica-white-paper-eurr-july-2026.pdf">Crypto-asset white paper for Revolut Euro (EURR), e-money token under MiCA (notified 23 July 2026)</a><div class="muted" style="font-size:13px">Bridge Building S.A. · third party · retrieved 2026-10-21</div><p class="excerpt">RDAEL will offer EURR to the public through the Revolut app and Revolut X platform in order to increase usage of EURR by Revolut customers. RDAEL may seek admission of EURR to trading the EU, as it is the sole distributor of EURR.</p><div class="muted mono">sha256 5e2895669055ac9f2bc256dd14b31ce1e66a4acf21ff1d7956007cad8555545b</div></div>
+<h2>Leads</h2><p class="muted">Third-party pages, such as explorer labels, that pointed the research but are not relied on.</p><ul><li><a href="https://metadata.services.blockscout.com/api/v1/metadata?chainId=1&amp;addresses=0x2b78035514401ed1592eb691b8673a93edf97470,0xc44b7316936e2f004e688fd53a95e060df1811c3,0x9b0c45d46d386cedd98873168c36efd0dcba8d46">Blockscout address page</a></li><li><a href="https://etherscan.io/address/0xc44b7316936e2f004e688fd53a95e060df1811c3">Etherscan address page</a></li><li><a href="https://github.com/duneanalytics/spellbook/blob/e5b41162a270135790f5f39491f9677360a6adb0/dbt_subprojects/hourly_spellbook/models/_sector/staking/ethereum/entities/staking_ethereum_entities_depositor_addresses.sql">staking_ethereum_entities_depositor_addresses.sql</a></li></ul>
+<h2>Treemap boxes resting on it</h2><div class="table-wrap"><table><thead><tr><th>Box</th><th class="num">ETH now</th><th class="num">Peak ETH</th></tr></thead><tbody><tr><td>Revolut › Revolut staking › Withdraws to 0x2b78…7470</td><td class="num">115,712</td><td class="num">115,712</td></tr></tbody></table></div>
+<h2>Targets (1)</h2><details open><summary>The addresses or validators this decision covers</summary><ul style="list-style:none;padding:0"><li><span class="chip">withdrawal address</span><a class="mono" href="https://etherscan.io/address/0x2b78035514401ed1592eb691b8673a93edf97470">0x2b78035514401ed1592eb691b8673a93edf97470</a></li></ul></details>
+</main>
+</body>
+</html>

@@ -1,0 +1,98 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Upbit: roles in the validator set</title>
+<style>
+:root { color-scheme: light; --surface-0: #f4f3f0; --surface-1: #fcfcfb; --border: #d9d8d3; --text-primary: #0b0b0b;
+        --text-secondary: #52514e; --text-muted: #77766f; --accent: #2a78d6; --chip: #ebe9e4; }
+@media (prefers-color-scheme: dark) {
+  :root:where(:not([data-theme="light"])) { color-scheme: dark; --surface-0: #121211; --surface-1: #1a1a19;
+    --border: #3a3a37; --text-primary: #f0efec; --text-secondary: #c3c2b7; --text-muted: #96958c; --accent: #3987e5;
+    --chip: #2a2a28; }
+}
+:root[data-theme="dark"] { color-scheme: dark; --surface-0: #121211; --surface-1: #1a1a19; --border: #3a3a37;
+  --text-primary: #f0efec; --text-secondary: #c3c2b7; --text-muted: #96958c; --accent: #3987e5; --chip: #2a2a28; }
+* { box-sizing: border-box; }
+body { margin: 0; background: var(--surface-0); color: var(--text-primary);
+       font: 15px/1.55 system-ui, -apple-system, "Segoe UI", sans-serif; }
+main { max-width: 860px; margin: 0 auto; padding: 32px 16px 64px; }
+a { color: var(--accent); }
+h1 { font-size: 22px; line-height: 1.3; font-weight: 600; margin: 4px 0 12px; }
+h2 { font-size: 15px; font-weight: 600; margin: 28px 0 8px; color: var(--text-secondary);
+     text-transform: uppercase; letter-spacing: 0.04em; }
+p { margin: 0 0 12px; }
+.crumbs { font-size: 13px; color: var(--text-muted); }
+.lede { font-size: 17px; }
+.muted { color: var(--text-muted); }
+.chip { display: inline-block; padding: 1px 8px; border-radius: 10px; background: var(--chip); font-size: 12px;
+        color: var(--text-secondary); margin-right: 4px; white-space: nowrap; }
+.card { background: var(--surface-1); border: 1px solid var(--border); border-radius: 6px; padding: 14px 16px;
+        margin: 0 0 12px; }
+.stats { display: flex; flex-wrap: wrap; gap: 12px; margin: 16px 0; }
+.stat { background: var(--surface-1); border: 1px solid var(--border); border-radius: 6px; padding: 10px 14px;
+        min-width: 140px; }
+.stat b { display: block; font-size: 20px; font-variant-numeric: tabular-nums; }
+.stat span { font-size: 12px; color: var(--text-muted); }
+ul.grounds { list-style: none; padding: 0; margin: 0; }
+ul.grounds li { padding: 6px 0; border-bottom: 1px solid var(--border); }
+ul.grounds li:last-child { border-bottom: 0; }
+table { width: 100%; border-collapse: collapse; background: var(--surface-1); font-size: 14px; }
+th, td { text-align: left; padding: 7px 8px; border-bottom: 1px solid var(--border); vertical-align: top; }
+th { font-weight: 600; color: var(--text-secondary); cursor: pointer; white-space: nowrap; user-select: none; }
+td.num, th.num { text-align: right; font-variant-numeric: tabular-nums; white-space: nowrap; }
+code, .mono { font: 12.5px ui-monospace, SFMono-Regular, Menlo, monospace; word-break: break-all; }
+details summary { cursor: pointer; color: var(--accent); }
+.excerpt { border-left: 3px solid var(--border); padding: 2px 0 2px 10px; color: var(--text-secondary);
+           font-size: 14px; white-space: pre-wrap; }
+input[type=search] { width: 100%; padding: 8px 10px; font: inherit; border: 1px solid var(--border);
+                     border-radius: 6px; background: var(--surface-1); color: var(--text-primary); margin: 8px 0 12px; }
+.table-wrap { overflow-x: auto; }
+@media (max-width: 640px) { .hide-sm { display: none; } }
+</style>
+<script data-goatcounter="https://pintail.goatcounter.com/count" async src="https://gc.zgo.at/count.js"></script>
+</head>
+<body>
+<main>
+<style>
+.chart { width: 100%; height: auto; background: var(--surface-1); border: 1px solid var(--border); border-radius: 6px; }
+.chart text { fill: var(--text-muted); font: 11px system-ui, sans-serif; }
+.chart .grid { stroke: var(--border); stroke-width: 1; }
+.legend { display: flex; flex-wrap: wrap; gap: 14px; font-size: 13px; color: var(--text-secondary); margin: 6px 0 14px; }
+.legend i { display: inline-block; width: 16px; height: 3px; vertical-align: middle; margin-right: 5px; background: var(--c); }
+.legend i.dashed { background: repeating-linear-gradient(90deg, var(--c) 0 6px, transparent 6px 9px); }
+.chart .event { stroke: var(--text-muted); stroke-width: 1; stroke-dasharray: 3 3; }
+.chart .event-n { fill: var(--text-secondary); font-weight: 600; }
+ol.events { padding-left: 0; list-style: none; }
+ol.events li { margin: 4px 0; }
+ol.events .n { display: inline-block; min-width: 1.6em; font-weight: 600; color: var(--text-secondary); }
+</style><p class="crumbs"><a href="../">Dataset</a> › <a href="./">Entities</a></p>
+<h1>Upbit</h1>
+<p><span class="chip">exchange</span> <span class="mono muted">upbit</span></p>
+<p><strong>How much ETH Upbit has had in each role recorded in this dataset, week by week, from
+the start of the beacon chain (1 December 2020) to 30 October 2026.</strong> Stake is the effective balance
+of active validators.</p>
+<ul><li><strong>Allocator</strong>: chose where the stake went. Counts the stake in the treemap boxes under Upbit. <span class="muted">Recorded for 89% of active stake.</span></li><li><strong>Operator</strong>: ran the validators. <span class="muted">Recorded for 49% of active stake.</span></li><li><strong>Custodian</strong>: held the stake on behalf of a client. <span class="muted">Recorded for 5.5% of active stake.</span></li><li><strong>Principal</strong>: owned the staked ETH. <span class="muted">Recorded for 5.4% of active stake.</span></li></ul>
+<p class="muted">Allocators are recorded for most stake. Operators, custodians and principals are recorded only where
+specific evidence names them, so their figures here (dashed on the charts) are lower bounds: no figure does not mean
+no role.</p>
+<h2>Its own roles</h2><svg class="chart" viewBox="0 0 760 240" role="img" aria-label="ETH by role over time"><line class="grid" x1="52" x2="752" y1="218.0" y2="218.0"/><text x="46" y="222.0" text-anchor="end">0</text><line class="grid" x1="52" x2="752" y1="114.0" y2="114.0"/><text x="46" y="118.0" text-anchor="end">322k</text><line class="grid" x1="52" x2="752" y1="10.0" y2="10.0"/><text x="46" y="14.0" text-anchor="end">644k</text><text x="52.0" y="234" text-anchor="middle">2020</text><text x="181.1" y="234" text-anchor="middle">2022</text><text x="298.9" y="234" text-anchor="middle">2023</text><text x="416.7" y="234" text-anchor="middle">2024</text><text x="536.8" y="234" text-anchor="middle">2025</text><text x="654.6" y="234" text-anchor="middle">2026</text><polyline fill="none" stroke="#2a78d6" stroke-width="2" points="52.0,218.0 54.3,218.0 56.5,218.0 58.8,218.0 61.1,218.0 63.3,218.0 65.6,218.0 67.9,218.0 70.1,218.0 72.4,218.0 74.7,218.0 76.9,218.0 79.2,218.0 81.4,218.0 83.7,218.0 86.0,218.0 88.2,218.0 90.5,218.0 92.8,218.0 95.0,218.0 97.3,218.0 99.6,218.0 101.8,218.0 104.1,218.0 106.4,218.0 108.6,218.0 110.9,218.0 113.2,218.0 115.4,218.0 117.7,218.0 120.0,218.0 122.2,218.0 124.5,218.0 126.8,218.0 129.0,218.0 131.3,218.0 133.6,218.0 135.8,218.0 138.1,218.0 140.3,218.0 142.6,218.0 144.9,218.0 147.1,218.0 149.4,218.0 151.7,218.0 153.9,218.0 156.2,218.0 158.5,218.0 160.7,218.0 163.0,218.0 165.3,218.0 167.5,218.0 169.8,218.0 172.1,218.0 174.3,218.0 176.6,218.0 178.9,218.0 181.1,218.0 183.4,218.0 185.7,217.3 187.9,217.3 190.2,215.7 192.5,215.7 194.7,214.9 197.0,213.2 199.2,212.8 201.5,212.0 203.8,211.1 206.0,211.1 208.3,210.3 210.6,209.5 212.8,208.5 215.1,207.8 217.4,207.0 219.6,206.5 221.9,206.2 224.2,205.8 226.4,205.6 228.7,204.2 231.0,204.2 233.2,203.7 235.5,203.3 237.8,203.0 240.0,203.0 242.3,202.6 244.6,202.4 246.8,202.2 249.1,202.1 251.4,201.8 253.6,201.6 255.9,201.3 258.1,201.3 260.4,201.1 262.7,200.9 264.9,200.9 267.2,200.1 269.5,199.7 271.7,199.3 274.0,199.2 276.3,198.8 278.5,198.6 280.8,198.4 283.1,197.6 285.3,196.8 287.6,196.4 289.9,196.2 292.1,195.9 294.4,195.8 296.7,195.1 298.9,194.8 301.2,194.7 303.5,194.3 305.7,193.4 308.0,191.8 310.3,191.0 312.5,190.2 314.8,189.7 317.0,189.6 319.3,189.3 321.6,186.3 323.8,184.6 326.1,182.3 328.4,180.9 330.6,179.6 332.9,176.0 335.2,174.6 337.4,173.7 339.7,170.5 342.0,169.2 344.2,167.8 346.5,165.5 348.8,164.5 351.0,162.6 353.3,161.1 355.6,159.6 357.8,158.6 360.1,157.4 362.4,153.7 364.6,152.5 366.9,149.9 369.2,148.5 371.4,147.0 373.7,145.1 375.9,143.7 378.2,141.4 380.5,135.5 382.7,133.4 385.0,131.9 387.3,128.5 389.5,126.7 391.8,124.8 394.1,124.0 396.3,122.9 398.6,121.2 400.9,120.7 403.1,114.8 405.4,112.2 407.7,110.9 409.9,109.4 412.2,107.6 414.5,105.5 416.7,103.5 419.0,102.1 421.3,101.7 423.5,98.9 425.8,95.9 428.1,95.1 430.3,94.5 432.6,93.8 434.8,92.6 437.1,97.4 439.4,97.5 441.6,98.3 443.9,98.2 446.2,98.0 448.4,97.6 450.7,97.1 453.0,96.9 455.2,96.1 457.5,95.2 459.8,92.6 462.0,92.6 464.3,92.9 466.6,91.6 468.8,90.1 471.1,88.3 473.4,87.3 475.6,84.6 477.9,85.9 480.2,84.4 482.4,83.6 484.7,81.7 487.0,81.4 489.2,79.9 491.5,75.3 493.7,74.7 496.0,73.5 498.3,72.7 500.5,70.5 502.8,70.0 505.1,70.0 507.3,69.2 509.6,68.9 511.9,68.9 514.1,70.6 516.4,71.0 518.7,79.9 520.9,82.7 523.2,86.9 525.5,89.0 527.7,94.2 530.0,94.2 532.3,94.0 534.5,93.6 536.8,92.7 539.1,92.4 541.3,95.3 543.6,94.6 545.9,93.2 548.1,90.0 550.4,86.6 552.6,85.0 554.9,81.4 557.2,78.7 559.4,70.5 561.7,69.4 564.0,67.0 566.2,62.3 568.5,58.5 570.8,55.6 573.0,53.7 575.3,53.4 577.6,58.2 579.8,64.9 582.1,66.4 584.4,66.0 586.6,65.5 588.9,65.0 591.2,64.8 593.4,62.1 595.7,58.9 598.0,62.2 600.2,70.0 602.5,74.0 604.8,74.5 607.0,76.8 609.3,82.6 611.5,89.3 613.8,92.0 616.1,95.1 618.3,95.0 620.6,94.7 622.9,94.1 625.1,93.8 627.4,93.7 629.7,94.9 631.9,96.3 634.2,104.6 636.5,105.8 638.7,107.4 641.0,109.9 643.3,110.0 645.5,106.2 647.8,101.2 650.1,99.2 652.3,95.8 654.6,92.7 656.9,91.1 659.1,88.7 661.4,87.6 663.7,86.2 665.9,84.5 668.2,83.4 670.4,82.4 672.7,81.3 675.0,79.4 677.2,78.6 679.5,77.4 681.8,76.6 684.0,76.4 686.3,73.1 688.6,62.7 690.8,54.3 693.1,47.6 695.4,43.3 697.6,40.9 699.9,39.2 702.2,37.8 704.4,34.2 706.7,33.8 709.0,33.3 711.2,33.1 713.5,32.2 715.8,30.5 718.0,29.1 720.3,25.1 722.6,20.8 724.8,17.9 727.1,16.6 729.3,16.4 731.6,15.4 733.9,14.2 736.1,13.8 738.4,13.2 740.7,12.2 742.9,11.6 745.2,10.4 747.5,10.7 749.7,10.6 752.0,10.0"><title>Allocator</title></polyline></svg><div class="legend"><span><i class="" style="--c:#2a78d6"></i>Allocator</span></div><div class="table-wrap"><table><thead><tr><th>Role</th><th class="num">ETH now</th>
+<th class="num hide-sm">Validators now</th><th class="num">Peak ETH</th><th class="num hide-sm">Peak</th>
+<th class="num hide-sm">First seen</th><th class="num hide-sm">Last seen</th></tr></thead><tbody><tr><td>Allocator</td><td class="num">643,552</td>
+<td class="num hide-sm">20,111</td><td class="num">643,552</td>
+<td class="num hide-sm">2026-10-30</td><td class="num hide-sm">2022-01-04</td>
+<td class="num hide-sm">now</td></tr></tbody></table></div>
+<h2>Clients</h2><p class="muted">Blocks proposed in the last 90 days by the validators it
+allocates or operates now, and the execution and consensus clients their graffiti names (clients add a short code by
+default; operators can turn it off, so these are shares of the blocks that carry one).</p>
+<div class="table-wrap"><table><thead><tr><th>Role</th><th class="num">Blocks</th><th class="num">With codes</th>
+<th>Execution clients</th><th>Consensus clients</th></tr></thead><tbody><tr><td>Allocator</td><td class="num">9,019</td>
+<td class="num">100%</td><td>Geth 100%</td><td>Lighthouse 100%</td></tr></tbody></table></div>
+<h2>Treemap boxes</h2><div class="table-wrap"><table><thead><tr><th>Box</th>
+<th class="num">ETH now</th><th class="num hide-sm">Peak ETH</th></tr></thead><tbody><tr><td>Upbit › Upbit staking › Withdraws to 0x7e2a…2d05</td><td class="num">643,552</td><td class="num hide-sm">643,552</td></tr></tbody></table></div>
+<h2>Identified addresses</h2><div class="table-wrap"><table><thead><tr><th>Address</th><th>Role</th>
+<th class="hide-sm">Basis</th></tr></thead><tbody><tr><td><a class="mono" href="https://etherscan.io/address/0x44894aeee56c2dd589c1d5c8cb04b87576967f97">0x44894aeee56c2dd589c1d5c8cb04b87576967f97</a></td><td>anchor</td><td class="hide-sm">asserted</td></tr></tbody></table></div>
+</main>
+</body>
+</html>

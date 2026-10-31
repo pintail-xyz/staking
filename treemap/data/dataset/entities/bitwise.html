@@ -1,0 +1,92 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Bitwise: roles in the validator set</title>
+<style>
+:root { color-scheme: light; --surface-0: #f4f3f0; --surface-1: #fcfcfb; --border: #d9d8d3; --text-primary: #0b0b0b;
+        --text-secondary: #52514e; --text-muted: #77766f; --accent: #2a78d6; --chip: #ebe9e4; }
+@media (prefers-color-scheme: dark) {
+  :root:where(:not([data-theme="light"])) { color-scheme: dark; --surface-0: #121211; --surface-1: #1a1a19;
+    --border: #3a3a37; --text-primary: #f0efec; --text-secondary: #c3c2b7; --text-muted: #96958c; --accent: #3987e5;
+    --chip: #2a2a28; }
+}
+:root[data-theme="dark"] { color-scheme: dark; --surface-0: #121211; --surface-1: #1a1a19; --border: #3a3a37;
+  --text-primary: #f0efec; --text-secondary: #c3c2b7; --text-muted: #96958c; --accent: #3987e5; --chip: #2a2a28; }
+* { box-sizing: border-box; }
+body { margin: 0; background: var(--surface-0); color: var(--text-primary);
+       font: 15px/1.55 system-ui, -apple-system, "Segoe UI", sans-serif; }
+main { max-width: 860px; margin: 0 auto; padding: 32px 16px 64px; }
+a { color: var(--accent); }
+h1 { font-size: 22px; line-height: 1.3; font-weight: 600; margin: 4px 0 12px; }
+h2 { font-size: 15px; font-weight: 600; margin: 28px 0 8px; color: var(--text-secondary);
+     text-transform: uppercase; letter-spacing: 0.04em; }
+p { margin: 0 0 12px; }
+.crumbs { font-size: 13px; color: var(--text-muted); }
+.lede { font-size: 17px; }
+.muted { color: var(--text-muted); }
+.chip { display: inline-block; padding: 1px 8px; border-radius: 10px; background: var(--chip); font-size: 12px;
+        color: var(--text-secondary); margin-right: 4px; white-space: nowrap; }
+.card { background: var(--surface-1); border: 1px solid var(--border); border-radius: 6px; padding: 14px 16px;
+        margin: 0 0 12px; }
+.stats { display: flex; flex-wrap: wrap; gap: 12px; margin: 16px 0; }
+.stat { background: var(--surface-1); border: 1px solid var(--border); border-radius: 6px; padding: 10px 14px;
+        min-width: 140px; }
+.stat b { display: block; font-size: 20px; font-variant-numeric: tabular-nums; }
+.stat span { font-size: 12px; color: var(--text-muted); }
+ul.grounds { list-style: none; padding: 0; margin: 0; }
+ul.grounds li { padding: 6px 0; border-bottom: 1px solid var(--border); }
+ul.grounds li:last-child { border-bottom: 0; }
+table { width: 100%; border-collapse: collapse; background: var(--surface-1); font-size: 14px; }
+th, td { text-align: left; padding: 7px 8px; border-bottom: 1px solid var(--border); vertical-align: top; }
+th { font-weight: 600; color: var(--text-secondary); cursor: pointer; white-space: nowrap; user-select: none; }
+td.num, th.num { text-align: right; font-variant-numeric: tabular-nums; white-space: nowrap; }
+code, .mono { font: 12.5px ui-monospace, SFMono-Regular, Menlo, monospace; word-break: break-all; }
+details summary { cursor: pointer; color: var(--accent); }
+.excerpt { border-left: 3px solid var(--border); padding: 2px 0 2px 10px; color: var(--text-secondary);
+           font-size: 14px; white-space: pre-wrap; }
+input[type=search] { width: 100%; padding: 8px 10px; font: inherit; border: 1px solid var(--border);
+                     border-radius: 6px; background: var(--surface-1); color: var(--text-primary); margin: 8px 0 12px; }
+.table-wrap { overflow-x: auto; }
+@media (max-width: 640px) { .hide-sm { display: none; } }
+</style>
+<script data-goatcounter="https://pintail.goatcounter.com/count" async src="https://gc.zgo.at/count.js"></script>
+</head>
+<body>
+<main>
+<style>
+.chart { width: 100%; height: auto; background: var(--surface-1); border: 1px solid var(--border); border-radius: 6px; }
+.chart text { fill: var(--text-muted); font: 11px system-ui, sans-serif; }
+.chart .grid { stroke: var(--border); stroke-width: 1; }
+.legend { display: flex; flex-wrap: wrap; gap: 14px; font-size: 13px; color: var(--text-secondary); margin: 6px 0 14px; }
+.legend i { display: inline-block; width: 16px; height: 3px; vertical-align: middle; margin-right: 5px; background: var(--c); }
+.legend i.dashed { background: repeating-linear-gradient(90deg, var(--c) 0 6px, transparent 6px 9px); }
+.chart .event { stroke: var(--text-muted); stroke-width: 1; stroke-dasharray: 3 3; }
+.chart .event-n { fill: var(--text-secondary); font-weight: 600; }
+ol.events { padding-left: 0; list-style: none; }
+ol.events li { margin: 4px 0; }
+ol.events .n { display: inline-block; min-width: 1.6em; font-weight: 600; color: var(--text-secondary); }
+</style><p class="crumbs"><a href="../">Dataset</a> › <a href="./">Entities</a></p>
+<h1>Bitwise</h1>
+<p><span class="chip">asset manager</span> <span class="mono muted">bitwise</span></p>
+<p>Owns:</p><ul><li><a href="attestant.html">Attestant</a> since 2024-11-13 (<a href="../decisions/0259-attestant-owned-by-bitwise.html">decision</a>)</li><li><a href="chorus-one.html">Chorus One</a> since 2026-02-24 (<a href="../decisions/0260-chorus-one-owned-by-bitwise.html">decision</a>)</li></ul>
+<p><strong>How much ETH Bitwise has had in each role recorded in this dataset, week by week, from
+the start of the beacon chain (1 December 2020) to 30 October 2026.</strong> Stake is the effective balance
+of active validators.</p>
+<ul><li><strong>Allocator</strong>: chose where the stake went. Counts the stake in the treemap boxes under Bitwise. <span class="muted">Recorded for 89% of active stake.</span></li><li><strong>Operator</strong>: ran the validators. <span class="muted">Recorded for 49% of active stake.</span></li><li><strong>Custodian</strong>: held the stake on behalf of a client. <span class="muted">Recorded for 5.5% of active stake.</span></li><li><strong>Principal</strong>: owned the staked ETH. <span class="muted">Recorded for 5.4% of active stake.</span></li></ul>
+<p class="muted">Allocators are recorded for most stake. Operators, custodians and principals are recorded only where
+specific evidence names them, so their figures here (dashed on the charts) are lower bounds: no figure does not mean
+no role.</p>
+<h2>Its own roles</h2><p class="muted">No stake in any role.</p>
+<h2>With its subsidiaries</h2><p class="muted">The same roles, adding each subsidiary's stake from the date its ownership is recorded.</p><svg class="chart" viewBox="0 0 760 240" role="img" aria-label="ETH by role over time"><line class="grid" x1="52" x2="752" y1="218.0" y2="218.0"/><text x="46" y="222.0" text-anchor="end">0</text><line class="grid" x1="52" x2="752" y1="114.0" y2="114.0"/><text x="46" y="118.0" text-anchor="end">235k</text><line class="grid" x1="52" x2="752" y1="10.0" y2="10.0"/><text x="46" y="14.0" text-anchor="end">469k</text><text x="52.0" y="234" text-anchor="middle">2020</text><text x="181.1" y="234" text-anchor="middle">2022</text><text x="298.9" y="234" text-anchor="middle">2023</text><text x="416.7" y="234" text-anchor="middle">2024</text><text x="536.8" y="234" text-anchor="middle">2025</text><text x="654.6" y="234" text-anchor="middle">2026</text><line class="event" x1="520.9" x2="520.9" y1="10" y2="218"/><text class="event-n" x="523.9" y="20">1</text><line class="event" x1="670.4" x2="670.4" y1="10" y2="218"/><text class="event-n" x="673.4" y="20">2</text><polyline fill="none" stroke="#e0742a" stroke-width="2" stroke-dasharray="6 3" points="52.0,218.0 54.3,218.0 56.5,218.0 58.8,218.0 61.1,218.0 63.3,218.0 65.6,218.0 67.9,218.0 70.1,218.0 72.4,218.0 74.7,218.0 76.9,218.0 79.2,218.0 81.4,218.0 83.7,218.0 86.0,218.0 88.2,218.0 90.5,218.0 92.8,218.0 95.0,218.0 97.3,218.0 99.6,218.0 101.8,218.0 104.1,218.0 106.4,218.0 108.6,218.0 110.9,218.0 113.2,218.0 115.4,218.0 117.7,218.0 120.0,218.0 122.2,218.0 124.5,218.0 126.8,218.0 129.0,218.0 131.3,218.0 133.6,218.0 135.8,218.0 138.1,218.0 140.3,218.0 142.6,218.0 144.9,218.0 147.1,218.0 149.4,218.0 151.7,218.0 153.9,218.0 156.2,218.0 158.5,218.0 160.7,218.0 163.0,218.0 165.3,218.0 167.5,218.0 169.8,218.0 172.1,218.0 174.3,218.0 176.6,218.0 178.9,218.0 181.1,218.0 183.4,218.0 185.7,218.0 187.9,218.0 190.2,218.0 192.5,218.0 194.7,218.0 197.0,218.0 199.2,218.0 201.5,218.0 203.8,218.0 206.0,218.0 208.3,218.0 210.6,218.0 212.8,218.0 215.1,218.0 217.4,218.0 219.6,218.0 221.9,218.0 224.2,218.0 226.4,218.0 228.7,218.0 231.0,218.0 233.2,218.0 235.5,218.0 237.8,218.0 240.0,218.0 242.3,218.0 244.6,218.0 246.8,218.0 249.1,218.0 251.4,218.0 253.6,218.0 255.9,218.0 258.1,218.0 260.4,218.0 262.7,218.0 264.9,218.0 267.2,218.0 269.5,218.0 271.7,218.0 274.0,218.0 276.3,218.0 278.5,218.0 280.8,218.0 283.1,218.0 285.3,218.0 287.6,218.0 289.9,218.0 292.1,218.0 294.4,218.0 296.7,218.0 298.9,218.0 301.2,218.0 303.5,218.0 305.7,218.0 308.0,218.0 310.3,218.0 312.5,218.0 314.8,218.0 317.0,218.0 319.3,218.0 321.6,218.0 323.8,218.0 326.1,218.0 328.4,218.0 330.6,218.0 332.9,218.0 335.2,218.0 337.4,218.0 339.7,218.0 342.0,218.0 344.2,218.0 346.5,218.0 348.8,218.0 351.0,218.0 353.3,218.0 355.6,218.0 357.8,218.0 360.1,218.0 362.4,218.0 364.6,218.0 366.9,218.0 369.2,218.0 371.4,218.0 373.7,218.0 375.9,218.0 378.2,218.0 380.5,218.0 382.7,218.0 385.0,218.0 387.3,218.0 389.5,218.0 391.8,218.0 394.1,218.0 396.3,218.0 398.6,218.0 400.9,218.0 403.1,218.0 405.4,218.0 407.7,218.0 409.9,218.0 412.2,218.0 414.5,218.0 416.7,218.0 419.0,218.0 421.3,218.0 423.5,218.0 425.8,218.0 428.1,218.0 430.3,218.0 432.6,218.0 434.8,218.0 437.1,218.0 439.4,218.0 441.6,218.0 443.9,218.0 446.2,218.0 448.4,218.0 450.7,218.0 453.0,218.0 455.2,218.0 457.5,218.0 459.8,218.0 462.0,218.0 464.3,218.0 466.6,218.0 468.8,218.0 471.1,218.0 473.4,218.0 475.6,218.0 477.9,218.0 480.2,218.0 482.4,218.0 484.7,218.0 487.0,218.0 489.2,218.0 491.5,218.0 493.7,218.0 496.0,218.0 498.3,218.0 500.5,218.0 502.8,218.0 505.1,218.0 507.3,218.0 509.6,218.0 511.9,218.0 514.1,218.0 516.4,218.0 518.7,218.0 520.9,100.0 523.2,100.0 525.5,99.7 527.7,99.9 530.0,101.4 532.3,102.1 534.5,102.5 536.8,102.7 539.1,102.9 541.3,103.6 543.6,104.3 545.9,104.8 548.1,105.8 550.4,105.9 552.6,106.3 554.9,106.8 557.2,107.0 559.4,107.6 561.7,107.6 564.0,107.6 566.2,108.1 568.5,108.8 570.8,109.2 573.0,109.8 575.3,110.5 577.6,110.8 579.8,112.1 582.1,112.4 584.4,112.7 586.6,112.7 588.9,113.0 591.2,113.2 593.4,112.5 595.7,112.7 598.0,113.0 600.2,114.3 602.5,115.6 604.8,115.8 607.0,116.2 609.3,117.2 611.5,117.8 613.8,118.4 616.1,119.0 618.3,119.5 620.6,120.0 622.9,120.0 625.1,120.0 627.4,120.0 629.7,120.0 631.9,120.0 634.2,120.0 636.5,120.0 638.7,120.0 641.0,120.0 643.3,120.0 645.5,120.0 647.8,120.0 650.1,119.8 652.3,119.7 654.6,119.5 656.9,119.3 659.1,118.8 661.4,118.6 663.7,117.9 665.9,118.6 668.2,118.6 670.4,20.3 672.7,23.0 675.0,18.6 677.2,15.4 679.5,12.9 681.8,11.3 684.0,10.0 686.3,10.6 688.6,46.2 690.8,115.5 693.1,119.5 695.4,119.8 697.6,120.0 699.9,118.3 702.2,115.8 704.4,118.1 706.7,118.1 709.0,118.1 711.2,118.1 713.5,118.3 715.8,118.3 718.0,117.5 720.3,117.0 722.6,115.5 724.8,115.2 727.1,114.2 729.3,113.0 731.6,111.8 733.9,110.1 736.1,109.2 738.4,108.9 740.7,107.0 742.9,105.7 745.2,105.6 747.5,103.3 749.7,103.2 752.0,103.2"><title>Operator</title></polyline></svg><div class="legend"><span><i class="dashed" style="--c:#e0742a"></i>Operator (recorded only in part)</span></div><div class="table-wrap"><table><thead><tr><th>Role</th><th class="num">ETH now</th>
+<th class="num hide-sm">Validators now</th><th class="num">Peak ETH</th><th class="num hide-sm">Peak</th>
+<th class="num hide-sm">First seen</th><th class="num hide-sm">Last seen</th></tr></thead><tbody><tr><td>Operator</td><td class="num">258,885</td>
+<td class="num hide-sm">–</td><td class="num">469,216</td>
+<td class="num hide-sm">2026-04-07</td><td class="num hide-sm">2024-11-19</td>
+<td class="num hide-sm">now</td></tr></tbody></table></div>
+<h2>Events</h2><p class="muted">Numbered as marked on the charts.</p><ol class="events"><li><span class="n">1</span> 13 November 2024: Owns <a href="attestant.html">Attestant</a> from this date (<a href="../decisions/0259-attestant-owned-by-bitwise.html">decision</a>)</li><li><span class="n">2</span> 24 February 2026: Owns <a href="chorus-one.html">Chorus One</a> from this date (<a href="../decisions/0260-chorus-one-owned-by-bitwise.html">decision</a>)</li></ol>
+<h2>Decisions naming it</h2><ul><li><a href="../decisions/0252-bitwise.html">0252</a> Defines Bitwise (asset manager)</li><li><a href="../decisions/0259-attestant-owned-by-bitwise.html">0259</a> Bitwise owns Attestant from 13 November 2024.</li><li><a href="../decisions/0260-chorus-one-owned-by-bitwise.html">0260</a> Bitwise owns Chorus One from 24 February 2026.</li></ul>
+</main>
+</body>
+</html>

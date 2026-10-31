@@ -1,0 +1,77 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>0123-coinspot-staking: Validators withdrawing to an address that pays only the wallets refilling CoinSpot&#x27;s customer-withdrawal wallet, deposited with</title>
+<style>
+:root { color-scheme: light; --surface-0: #f4f3f0; --surface-1: #fcfcfb; --border: #d9d8d3; --text-primary: #0b0b0b;
+        --text-secondary: #52514e; --text-muted: #77766f; --accent: #2a78d6; --chip: #ebe9e4; }
+@media (prefers-color-scheme: dark) {
+  :root:where(:not([data-theme="light"])) { color-scheme: dark; --surface-0: #121211; --surface-1: #1a1a19;
+    --border: #3a3a37; --text-primary: #f0efec; --text-secondary: #c3c2b7; --text-muted: #96958c; --accent: #3987e5;
+    --chip: #2a2a28; }
+}
+:root[data-theme="dark"] { color-scheme: dark; --surface-0: #121211; --surface-1: #1a1a19; --border: #3a3a37;
+  --text-primary: #f0efec; --text-secondary: #c3c2b7; --text-muted: #96958c; --accent: #3987e5; --chip: #2a2a28; }
+* { box-sizing: border-box; }
+body { margin: 0; background: var(--surface-0); color: var(--text-primary);
+       font: 15px/1.55 system-ui, -apple-system, "Segoe UI", sans-serif; }
+main { max-width: 860px; margin: 0 auto; padding: 32px 16px 64px; }
+a { color: var(--accent); }
+h1 { font-size: 22px; line-height: 1.3; font-weight: 600; margin: 4px 0 12px; }
+h2 { font-size: 15px; font-weight: 600; margin: 28px 0 8px; color: var(--text-secondary);
+     text-transform: uppercase; letter-spacing: 0.04em; }
+p { margin: 0 0 12px; }
+.crumbs { font-size: 13px; color: var(--text-muted); }
+.lede { font-size: 17px; }
+.muted { color: var(--text-muted); }
+.chip { display: inline-block; padding: 1px 8px; border-radius: 10px; background: var(--chip); font-size: 12px;
+        color: var(--text-secondary); margin-right: 4px; white-space: nowrap; }
+.card { background: var(--surface-1); border: 1px solid var(--border); border-radius: 6px; padding: 14px 16px;
+        margin: 0 0 12px; }
+.stats { display: flex; flex-wrap: wrap; gap: 12px; margin: 16px 0; }
+.stat { background: var(--surface-1); border: 1px solid var(--border); border-radius: 6px; padding: 10px 14px;
+        min-width: 140px; }
+.stat b { display: block; font-size: 20px; font-variant-numeric: tabular-nums; }
+.stat span { font-size: 12px; color: var(--text-muted); }
+ul.grounds { list-style: none; padding: 0; margin: 0; }
+ul.grounds li { padding: 6px 0; border-bottom: 1px solid var(--border); }
+ul.grounds li:last-child { border-bottom: 0; }
+table { width: 100%; border-collapse: collapse; background: var(--surface-1); font-size: 14px; }
+th, td { text-align: left; padding: 7px 8px; border-bottom: 1px solid var(--border); vertical-align: top; }
+th { font-weight: 600; color: var(--text-secondary); cursor: pointer; white-space: nowrap; user-select: none; }
+td.num, th.num { text-align: right; font-variant-numeric: tabular-nums; white-space: nowrap; }
+code, .mono { font: 12.5px ui-monospace, SFMono-Regular, Menlo, monospace; word-break: break-all; }
+details summary { cursor: pointer; color: var(--accent); }
+.excerpt { border-left: 3px solid var(--border); padding: 2px 0 2px 10px; color: var(--text-secondary);
+           font-size: 14px; white-space: pre-wrap; }
+input[type=search] { width: 100%; padding: 8px 10px; font: inherit; border: 1px solid var(--border);
+                     border-radius: 6px; background: var(--surface-1); color: var(--text-primary); margin: 8px 0 12px; }
+.table-wrap { overflow-x: auto; }
+@media (max-width: 640px) { .hide-sm { display: none; } }
+</style>
+<script data-goatcounter="https://pintail.goatcounter.com/count" async src="https://gc.zgo.at/count.js"></script>
+</head>
+<body>
+<main>
+<p class="crumbs"><a href="../">Dataset</a> › <a href="./">Decisions</a> › 0123-coinspot-staking</p>
+<h1>Validators withdrawing to an address that pays only the wallets refilling CoinSpot&#x27;s customer-withdrawal wallet, deposited with ETH from the same wallets, are CoinSpot&#x27;s staking.</h1>
+<p><span class="chip">Attribution</span><span class="chip">Allocator</span> <a href="../entities/coinspot.html">CoinSpot staking</a> <span class="muted">· decided 2026-10-20</span></p>
+<p class="lede">Validators withdrawing to this address are CoinSpot&#x27;s staking.</p>
+<div class="stats"><div class="stat"><b>4,303</b><span>validators resting on it now</span></div><div class="stat"><b>137,696</b><span>ETH now</span></div><div class="stat"><b>137,696</b><span>ETH at its peak</span></div></div>
+<h2>Grounds</h2><div class="card"><ul class="grounds"><li><span class="chip">First party</span>A CoinSpot help-centre screenshot of an ETH withdrawal identifies the wallet CoinSpot pays its customers from</li><li><span class="chip">On chain</span>The deposit accounts got their ETH from the wallets that refill it and from a wallet that pays almost only them</li><li><span class="chip">On chain</span>The validators&#x27; withdrawals go only to those wallets, and the address is its validators&#x27; own fee recipient</li></ul></div>
+<h2>Explanation</h2><p>Validators withdrawing to 0xe887…a7f7 are CoinSpot&#x27;s staking, with the Australian exchange as allocator. 4,303 validators withdraw there, 4,302 of them active in October 2026 with about 138k ETH. Most were deposited in 2022 with BLS credentials and changed to this address later; the change was signed by the same holder of their keys, so they count as CoinSpot&#x27;s throughout.</p>
+<p><strong>CoinSpot&#x27;s customer-withdrawal wallet.</strong> CoinSpot&#x27;s <a href="https://coinspot.zendesk.com/hc/en-us/articles/5458334081039-Locating-coin-deposit-withdrawals-transaction-history">help-centre guide to transaction history</a> shows a real ETH withdrawal of 28 October 2024. Exactly one transaction on chain matches it, sent by 0xa9bd…6e29, which has made over 228,000 transfers out since 2021: CoinSpot&#x27;s wallet for paying customers.</p>
+<p><strong>The wallets around it.</strong> Two wallets in turn refill that withdrawal wallet, supplying 86% of what it has received, and a third refills both and holds the long-term balance. The validators were deposited from four accounts, funded by those same wallets and by one more that sent almost all of its ETH to them, after receiving much of it from large exchanges&#x27; hot wallets, as an exchange moving its own ETH between venues would. All deposits went directly to the deposit contract.</p>
+<p><strong>Where the ETH goes.</strong> 0xe887…a7f7 has sent all its ETH to the refilling wallets and nowhere else, and it is its validators&#x27; own fee recipient. Their graffiti shows client versions only. The stake is therefore funded by, and returns to, the wallets that keep CoinSpot&#x27;s customer-withdrawal wallet supplied, which makes CoinSpot the allocator. Whether a provider runs the validators is not known.</p>
+<p><strong>Limits.</strong> CoinSpot names no wallet; the link is its own screenshot of one withdrawal, plus chain data. Explorer labels and community label sets on these wallets are recorded as leads; one of them conflicted, and the flows resolve it. The decision would change with a CoinSpot statement contradicting it, or evidence that the validators are run for a client or chosen by a staking provider.</p>
+<h2>What would change it</h2><p>A CoinSpot statement contradicting it, or evidence that the validators are run for a client or chosen by a staking provider.</p>
+<h2>Evidence</h2><p class="muted">Transactions and contract calls anyone can repeat on their own node.</p><div class="card"><ul class="grounds"><li><a class="mono" href="https://etherscan.io/tx/0xdac8e2f91293f9aa06f15dd71d150939966b267362fcca27e735f551338f40f3">0xdac8e2f9…338f40f3</a> — The ETH send in CoinSpot&#x27;s help-centre screenshot, from its customer-withdrawal wallet 0xa9bd…6e29</li><li><a class="mono" href="https://etherscan.io/tx/0x775bfe55cdf9fe56fa0ba9de2f13509e7a589af20602cc458baf807ca17fbfec">0x775bfe55…a17fbfec</a> — 0xe4b3…1939 refills 0xa9bd (first of 528 transfers)</li><li><a class="mono" href="https://etherscan.io/tx/0x31456b33ed7a2258c35a8be636555672f0f54c15245e52379e5e39695a6ea224">0x31456b33…5a6ea224</a> — 0x33a6…fa89 refills 0xa9bd (first of 614 transfers)</li><li><a class="mono" href="https://etherscan.io/tx/0x817d8ba023f244339f3e5e6aa1a7cee8797bfd86aacabe27fc7fb7ad98ac7458">0x817d8ba0…98ac7458</a> — First deposit, from 0x5803 (funded by 0xe4b3)</li><li><a class="mono" href="https://etherscan.io/tx/0x8d3530ab020c1758521208b10803134daf1572b263b69567141e18fd1eb0c53d">0x8d3530ab…1eb0c53d</a> — 0x1918 funds depositor 0x02ce (64,000 ETH in two transfers)</li><li><a class="mono" href="https://etherscan.io/tx/0x3c82ee2b298c6cf6e1c1fe83f079ce3bbbc26a6dea718710989a51e06c1b0dee">0x3c82ee2b…6c1b0dee</a> — 0xe4b3 funds depositor 0x2031 (first of 142 transfers)</li><li><a class="mono" href="https://etherscan.io/tx/0x630ca0eb90c693be986698d765d0887f8b9199678911a214043cbcabfab3c80b">0x630ca0eb…fab3c80b</a> — This address sends withdrawals to 0xf35a…83d1</li><li><a class="mono" href="https://etherscan.io/tx/0x2842b96f180e0e5043fca67e827ce7fed0df9e749e3e45eaf6792abd3696e9f6">0x2842b96f…3696e9f6</a> — This address sends withdrawals to 0x33a6, which refills 0xa9bd</li></ul></div>
+<h2>Sources</h2><div class="card"><a href="https://coinspot.zendesk.com/hc/en-us/articles/5458334081039-Locating-coin-deposit-withdrawals-transaction-history">Locating coin deposit &amp; withdrawals transaction history (figure: an ETH send of 28 October 2024)</a><div class="muted" style="font-size:13px">CoinSpot (help centre) · the entity&#x27;s own · retrieved 2026-10-22</div><p class="excerpt">Transaction Details [...] Date: 28/10/2024 01:57 PM Type: Send Coin: ETH Fee: 0.0017 Amount: -0.02170000 Address: 0x2135F42F7C393125XXXXXXXXXXX Status: Complete Txid: 0xdac8e2fXXXXXXXXXXXXXXXXX...</p><div class="muted mono">sha256 c51a912cdd0fe589da373735bba06477c6282c1108870befa54763a7ef5557fe</div></div>
+<h2>Leads</h2><p class="muted">Third-party pages, such as explorer labels, that pointed the research but are not relied on.</p><ul><li><a href="https://metadata.services.blockscout.com/api/v1/metadata?chainId=1&amp;addresses=0xe887312c0595a10ac88e32ebb8e9f660ad9ab7f7,0xe4b3dd9839ed1780351dc5412925cf05f07a1939,0xf35a6bd6e0459a4b53a27862c51a2a7292b383d1,0x33a64dcdfa041befebc9161a3e0c6180cd94fa89,0x20312e96b1a0568ac31c6630844a962383cc66c2,0x19184ab45c40c2920b0e0e31413b9434abd243ed">Blockscout address page</a></li><li><a href="https://etherscan.io/address/0x20312e96b1a0568ac31c6630844a962383cc66c2">Etherscan address page</a></li><li><a href="https://etherscan.io/address/0x19184ab45c40c2920b0e0e31413b9434abd243ed">Etherscan address page</a></li><li><a href="https://github.com/duneanalytics/spellbook/blob/e5b41162a270135790f5f39491f9677360a6adb0/dbt_subprojects/hourly_spellbook/models/_sector/staking/ethereum/entities/staking_ethereum_entities_depositor_addresses.sql">staking_ethereum_entities_depositor_addresses.sql</a></li></ul>
+<h2>Treemap boxes resting on it</h2><div class="table-wrap"><table><thead><tr><th>Box</th><th class="num">ETH now</th><th class="num">Peak ETH</th></tr></thead><tbody><tr><td>CoinSpot › CoinSpot staking › Withdraws to 0xe887…b7f7</td><td class="num">137,696</td><td class="num">137,696</td></tr></tbody></table></div>
+<h2>Targets (1)</h2><details open><summary>The addresses or validators this decision covers</summary><ul style="list-style:none;padding:0"><li><span class="chip">withdrawal address</span><a class="mono" href="https://etherscan.io/address/0xe887312c0595a10ac88e32ebb8e9f660ad9ab7f7">0xe887312c0595a10ac88e32ebb8e9f660ad9ab7f7</a></li></ul></details>
+</main>
+</body>
+</html>

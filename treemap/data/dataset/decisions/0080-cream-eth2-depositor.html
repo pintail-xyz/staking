@@ -1,0 +1,75 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>0080-cream-eth2-depositor: CREAM&#x27;s docs list every transaction it deposited to the beacon chain with; this account sent most of them, and all the vali</title>
+<style>
+:root { color-scheme: light; --surface-0: #f4f3f0; --surface-1: #fcfcfb; --border: #d9d8d3; --text-primary: #0b0b0b;
+        --text-secondary: #52514e; --text-muted: #77766f; --accent: #2a78d6; --chip: #ebe9e4; }
+@media (prefers-color-scheme: dark) {
+  :root:where(:not([data-theme="light"])) { color-scheme: dark; --surface-0: #121211; --surface-1: #1a1a19;
+    --border: #3a3a37; --text-primary: #f0efec; --text-secondary: #c3c2b7; --text-muted: #96958c; --accent: #3987e5;
+    --chip: #2a2a28; }
+}
+:root[data-theme="dark"] { color-scheme: dark; --surface-0: #121211; --surface-1: #1a1a19; --border: #3a3a37;
+  --text-primary: #f0efec; --text-secondary: #c3c2b7; --text-muted: #96958c; --accent: #3987e5; --chip: #2a2a28; }
+* { box-sizing: border-box; }
+body { margin: 0; background: var(--surface-0); color: var(--text-primary);
+       font: 15px/1.55 system-ui, -apple-system, "Segoe UI", sans-serif; }
+main { max-width: 860px; margin: 0 auto; padding: 32px 16px 64px; }
+a { color: var(--accent); }
+h1 { font-size: 22px; line-height: 1.3; font-weight: 600; margin: 4px 0 12px; }
+h2 { font-size: 15px; font-weight: 600; margin: 28px 0 8px; color: var(--text-secondary);
+     text-transform: uppercase; letter-spacing: 0.04em; }
+p { margin: 0 0 12px; }
+.crumbs { font-size: 13px; color: var(--text-muted); }
+.lede { font-size: 17px; }
+.muted { color: var(--text-muted); }
+.chip { display: inline-block; padding: 1px 8px; border-radius: 10px; background: var(--chip); font-size: 12px;
+        color: var(--text-secondary); margin-right: 4px; white-space: nowrap; }
+.card { background: var(--surface-1); border: 1px solid var(--border); border-radius: 6px; padding: 14px 16px;
+        margin: 0 0 12px; }
+.stats { display: flex; flex-wrap: wrap; gap: 12px; margin: 16px 0; }
+.stat { background: var(--surface-1); border: 1px solid var(--border); border-radius: 6px; padding: 10px 14px;
+        min-width: 140px; }
+.stat b { display: block; font-size: 20px; font-variant-numeric: tabular-nums; }
+.stat span { font-size: 12px; color: var(--text-muted); }
+ul.grounds { list-style: none; padding: 0; margin: 0; }
+ul.grounds li { padding: 6px 0; border-bottom: 1px solid var(--border); }
+ul.grounds li:last-child { border-bottom: 0; }
+table { width: 100%; border-collapse: collapse; background: var(--surface-1); font-size: 14px; }
+th, td { text-align: left; padding: 7px 8px; border-bottom: 1px solid var(--border); vertical-align: top; }
+th { font-weight: 600; color: var(--text-secondary); cursor: pointer; white-space: nowrap; user-select: none; }
+td.num, th.num { text-align: right; font-variant-numeric: tabular-nums; white-space: nowrap; }
+code, .mono { font: 12.5px ui-monospace, SFMono-Regular, Menlo, monospace; word-break: break-all; }
+details summary { cursor: pointer; color: var(--accent); }
+.excerpt { border-left: 3px solid var(--border); padding: 2px 0 2px 10px; color: var(--text-secondary);
+           font-size: 14px; white-space: pre-wrap; }
+input[type=search] { width: 100%; padding: 8px 10px; font: inherit; border: 1px solid var(--border);
+                     border-radius: 6px; background: var(--surface-1); color: var(--text-primary); margin: 8px 0 12px; }
+.table-wrap { overflow-x: auto; }
+@media (max-width: 640px) { .hide-sm { display: none; } }
+</style>
+<script data-goatcounter="https://pintail.goatcounter.com/count" async src="https://gc.zgo.at/count.js"></script>
+</head>
+<body>
+<main>
+<p class="crumbs"><a href="../">Dataset</a> › <a href="./">Decisions</a> › 0080-cream-eth2-depositor</p>
+<h1>CREAM&#x27;s docs list every transaction it deposited to the beacon chain with; this account sent most of them, and all the validators moved to one address. They were CREAM&#x27;s crETH2 staking.</h1>
+<p><span class="chip">Anchor</span> <span class="muted">· decided 2026-10-17</span></p>
+<p class="lede">This account made the deposits for CREAM Finance&#x27;s crETH2 staking; validators withdrawing to the address they moved to were CREAM&#x27;s.</p>
+<div class="stats"><div class="stat"><b>0</b><span>validators resting on it now</span></div><div class="stat"><b>0</b><span>ETH now</span></div><div class="stat"><b>25,152</b><span>ETH at its peak</span></div></div>
+<h2>Grounds</h2><div class="card"><ul class="grounds"><li><span class="chip">First party</span>CREAM&#x27;s docs list the 17 transactions that deposited its 787 crETH2 validators; this account sent 13 of them</li><li><span class="chip">On chain</span>786 of those validators moved to one withdrawal address, which no other validator uses</li><li><span class="chip">First party</span>CREAM ran the validators for crETH2 holders as a custodial service, with an 8% fee</li></ul></div>
+<h2>Explanation</h2><p>The account 0xb2c4…2fdb made the deposits for the crETH2 staking of CREAM Finance, a lending protocol: validators withdrawing to the address they moved to are attributed to CREAM as allocator. 786 validators withdrew there; they made up 2.1% of all stake at the beacon chain&#x27;s launch, and all exited in April and May 2023.</p>
+<p><strong>What CREAM published.</strong> CREAM&#x27;s documentation <a href="https://github.com/CreamFi/cream-docs/blob/049f43ad1103626776d9e1bc4a28097704df4e7e/eth2/migration-schedule.md">lists every deposit transaction of its migration to Ethereum 2.0</a>, seventeen transactions covering validators 0 to 786, and <a href="https://github.com/CreamFi/cream-docs/blob/049f43ad1103626776d9e1bc4a28097704df4e7e/eth2/ethereum-2.0-contract-address.md">names its crETH2 contract</a>. CREAM ran the validators for crETH2 holders as a custodial service, for 8% of the rewards.</p>
+<p><strong>On chain.</strong> The seventeen listed transactions deposited 787 validators between November 2020 and June 2021, all with BLS credentials; this account sent thirteen of them. 786 of the validators were later changed to 0x1cd9…62ed, and they are every validator that address has ever had.</p>
+<p>CREAM chose and ran the validators for its token holders, so it is the allocator. No operator is recorded. Explorer labels and community label sets are recorded as leads. The decision would change with evidence that the account deposited for others, or a CREAM statement contradicting it.</p>
+<h2>What would change it</h2><p>Evidence the account deposited for others, or a CREAM statement contradicting it.</p>
+<h2>Evidence</h2><p class="muted">Transactions and contract calls anyone can repeat on their own node.</p><div class="card"><ul class="grounds"><li><a class="mono" href="https://etherscan.io/tx/0x60c51dd40578a71981da88674894e5330c5bcf0fc825d2e0692030414e375dc6">0x60c51dd4…4e375dc6</a> — Its first deposit</li></ul></div>
+<h2>Sources</h2><div class="card"><a href="https://github.com/CreamFi/cream-docs/blob/049f43ad1103626776d9e1bc4a28097704df4e7e/eth2/migration-schedule.md">Migration Schedule: C.R.E.A.M. to Ethereum 2.0 deposit transactions</a><div class="muted" style="font-size:13px">C.R.E.A.M. Finance (documentation repository) · the entity&#x27;s own · retrieved 2026-10-22</div><p class="excerpt">| 0 | 32 | 0xee65019cfd98cd7c70d1fafb7ddf16692d8d5d4b9a6d308c55d4109d3671cf32 | [...] | 785 ~ 786 | 64 | 0xa0a492a7bce3e00c8924d7ed22e245c7ed460fb4a56dc2d73d910da470541be9 |</p><div class="muted mono">sha256 f1c488443434e976c7c1fb0f672afd46b68f601c66c01e5796cf4f077f154d3d</div></div><div class="card"><a href="https://github.com/CreamFi/cream-docs/blob/049f43ad1103626776d9e1bc4a28097704df4e7e/eth2/ethereum-2.0-contract-address.md">CRETH2 Contract Address</a><div class="muted" style="font-size:13px">C.R.E.A.M. Finance (documentation repository) · the entity&#x27;s own · retrieved 2026-10-22</div><p class="excerpt">CRETH2 Deposit Contract ~~0xcbc1065255cbc3ab41a6868c22d1f1c573ab89fd~~ (exploited) 0x49D72e3973900A195A155a46441F0C08179FdB64</p><div class="muted mono">sha256 7b4d58c26649e198a45531b76c56d017558938ea3462559fe96c48c92812b7bd</div></div>
+<h2>Leads</h2><p class="muted">Third-party pages, such as explorer labels, that pointed the research but are not relied on.</p><ul><li><a href="https://etherscan.io/address/0xb2c43455ee556dea95c0599b0d3f7d0abbf32fdb">Etherscan address page</a></li><li><a href="https://metadata.services.blockscout.com/api/v1/metadata?chainId=1&amp;addresses=0xb2c43455ee556dea95c0599b0d3f7d0abbf32fdb">Blockscout address page</a></li><li><a href="https://etherscan.io/address/0xcbc1065255cbc3ab41a6868c22d1f1c573ab89fd">Etherscan address page</a></li><li><a href="https://metadata.services.blockscout.com/api/v1/metadata?chainId=1&amp;addresses=0xcbc1065255cbc3ab41a6868c22d1f1c573ab89fd">Blockscout address page</a></li><li><a href="https://etherscan.io/address/0x6d5a7597896a703fe8c85775b23395a48f971305">Etherscan address page</a></li><li><a href="https://metadata.services.blockscout.com/api/v1/metadata?chainId=1&amp;addresses=0x6d5a7597896a703fe8c85775b23395a48f971305">Blockscout address page</a></li><li><a href="https://github.com/duneanalytics/spellbook/blob/e5b41162a270135790f5f39491f9677360a6adb0/dbt_subprojects/hourly_spellbook/models/_sector/staking/ethereum/entities/staking_ethereum_entities_depositor_addresses.sql">staking_ethereum_entities_depositor_addresses.sql</a></li></ul>
+<h2>Treemap boxes resting on it</h2><div class="table-wrap"><table><thead><tr><th>Box</th><th class="num">ETH now</th><th class="num">Peak ETH</th></tr></thead><tbody><tr><td>CREAM Finance › CREAM ETH2 (crETH2) › Withdraws to 0x1cd9…62ed</td><td class="num">0</td><td class="num">25,152</td></tr></tbody></table></div>
+</main>
+</body>
+</html>

@@ -1,0 +1,73 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>0160-nodedao-liquid-staking: NodeDAO&#x27;s own list of its contracts names this its LiquidStaking contract; validators deposited through it are NodeDAO nE</title>
+<style>
+:root { color-scheme: light; --surface-0: #f4f3f0; --surface-1: #fcfcfb; --border: #d9d8d3; --text-primary: #0b0b0b;
+        --text-secondary: #52514e; --text-muted: #77766f; --accent: #2a78d6; --chip: #ebe9e4; }
+@media (prefers-color-scheme: dark) {
+  :root:where(:not([data-theme="light"])) { color-scheme: dark; --surface-0: #121211; --surface-1: #1a1a19;
+    --border: #3a3a37; --text-primary: #f0efec; --text-secondary: #c3c2b7; --text-muted: #96958c; --accent: #3987e5;
+    --chip: #2a2a28; }
+}
+:root[data-theme="dark"] { color-scheme: dark; --surface-0: #121211; --surface-1: #1a1a19; --border: #3a3a37;
+  --text-primary: #f0efec; --text-secondary: #c3c2b7; --text-muted: #96958c; --accent: #3987e5; --chip: #2a2a28; }
+* { box-sizing: border-box; }
+body { margin: 0; background: var(--surface-0); color: var(--text-primary);
+       font: 15px/1.55 system-ui, -apple-system, "Segoe UI", sans-serif; }
+main { max-width: 860px; margin: 0 auto; padding: 32px 16px 64px; }
+a { color: var(--accent); }
+h1 { font-size: 22px; line-height: 1.3; font-weight: 600; margin: 4px 0 12px; }
+h2 { font-size: 15px; font-weight: 600; margin: 28px 0 8px; color: var(--text-secondary);
+     text-transform: uppercase; letter-spacing: 0.04em; }
+p { margin: 0 0 12px; }
+.crumbs { font-size: 13px; color: var(--text-muted); }
+.lede { font-size: 17px; }
+.muted { color: var(--text-muted); }
+.chip { display: inline-block; padding: 1px 8px; border-radius: 10px; background: var(--chip); font-size: 12px;
+        color: var(--text-secondary); margin-right: 4px; white-space: nowrap; }
+.card { background: var(--surface-1); border: 1px solid var(--border); border-radius: 6px; padding: 14px 16px;
+        margin: 0 0 12px; }
+.stats { display: flex; flex-wrap: wrap; gap: 12px; margin: 16px 0; }
+.stat { background: var(--surface-1); border: 1px solid var(--border); border-radius: 6px; padding: 10px 14px;
+        min-width: 140px; }
+.stat b { display: block; font-size: 20px; font-variant-numeric: tabular-nums; }
+.stat span { font-size: 12px; color: var(--text-muted); }
+ul.grounds { list-style: none; padding: 0; margin: 0; }
+ul.grounds li { padding: 6px 0; border-bottom: 1px solid var(--border); }
+ul.grounds li:last-child { border-bottom: 0; }
+table { width: 100%; border-collapse: collapse; background: var(--surface-1); font-size: 14px; }
+th, td { text-align: left; padding: 7px 8px; border-bottom: 1px solid var(--border); vertical-align: top; }
+th { font-weight: 600; color: var(--text-secondary); cursor: pointer; white-space: nowrap; user-select: none; }
+td.num, th.num { text-align: right; font-variant-numeric: tabular-nums; white-space: nowrap; }
+code, .mono { font: 12.5px ui-monospace, SFMono-Regular, Menlo, monospace; word-break: break-all; }
+details summary { cursor: pointer; color: var(--accent); }
+.excerpt { border-left: 3px solid var(--border); padding: 2px 0 2px 10px; color: var(--text-secondary);
+           font-size: 14px; white-space: pre-wrap; }
+input[type=search] { width: 100%; padding: 8px 10px; font: inherit; border: 1px solid var(--border);
+                     border-radius: 6px; background: var(--surface-1); color: var(--text-primary); margin: 8px 0 12px; }
+.table-wrap { overflow-x: auto; }
+@media (max-width: 640px) { .hide-sm { display: none; } }
+</style>
+<script data-goatcounter="https://pintail.goatcounter.com/count" async src="https://gc.zgo.at/count.js"></script>
+</head>
+<body>
+<main>
+<p class="crumbs"><a href="../">Dataset</a> › <a href="./">Decisions</a> › 0160-nodedao-liquid-staking</p>
+<h1>NodeDAO&#x27;s own list of its contracts names this its LiquidStaking contract; validators deposited through it are NodeDAO nETH&#x27;s.</h1>
+<p><span class="chip">Anchor</span> <span class="muted">· decided 2026-10-23</span></p>
+<p class="lede">Validators whose first deposit NodeDAO&#x27;s LiquidStaking contract sent, and those withdrawing to the addresses those deposits name, are NodeDAO nETH&#x27;s.</p>
+<div class="stats"><div class="stat"><b>0</b><span>validators resting on it now</span></div><div class="stat"><b>0</b><span>ETH now</span></div><div class="stat"><b>15,200</b><span>ETH at its peak</span></div></div>
+<h2>Grounds</h2><div class="card"><ul class="grounds"><li><span class="chip">First party</span>NodeDAO&#x27;s published list of its Ethereum contracts names this its LiquidStaking proxy</li><li><span class="chip">On chain</span>It sent the deposits of 508 validators from March 2023 to March 2024; 506 withdraw to NodeDAO&#x27;s ConsensusVault</li><li><span class="chip">On chain</span>None of these validators is active now</li></ul></div>
+<h2>Explanation</h2><p>The contract 0x8103…3096 is the LiquidStaking contract of NodeDAO&#x27;s liquid staking token nETH. Validators whose first deposit it sent, and those withdrawing to the addresses those deposits name, are attributed to NodeDAO nETH as allocator. It sent 508 deposits between March 2023 and March 2024, holding as much as 15k ETH; none is active now.</p>
+<p><strong>Identification.</strong> <a href="https://github.com/NodeDAO/NodeDAO-Protocol/blob/aad124c73ff66eb1bc1a7c05f9a963d48a4eaec7/README.md">NodeDAO&#x27;s repository</a> lists its Ethereum contracts: a timelock controller, this LiquidStaking proxy and a ConsensusVault proxy. On chain, the timelock owns both proxies. 506 of the 508 deposits name the ConsensusVault as withdrawal address; the other two each name an ordinary account, for reasons not established, but NodeDAO&#x27;s contract sent them.</p>
+<p>NodeDAO chooses the operators of its pool, so it is the allocator. No operator is recorded. The decision would change with a NodeDAO statement contradicting it, or evidence that the listed contracts are not NodeDAO&#x27;s.</p>
+<h2>What would change it</h2><p>A NodeDAO statement contradicting it, or evidence that the listed contracts are not NodeDAO&#x27;s.</p>
+<h2>Evidence</h2><p class="muted">Transactions and contract calls anyone can repeat on their own node.</p><div class="card"><ul class="grounds"><li><a class="mono" href="https://etherscan.io/tx/0x83d6bc8ab169dc78dfa55b7e297418ba53d921b4ced1fcc7607427d3500e2c95">0x83d6bc8a…500e2c95</a> — The first deposit sent through NodeDAO&#x27;s LiquidStaking contract, 3 March 2023</li></ul></div>
+<h2>Sources</h2><div class="card"><a href="https://github.com/NodeDAO/NodeDAO-Protocol/blob/aad124c73ff66eb1bc1a7c05f9a963d48a4eaec7/README.md">NodeDAO Protocol README, contract addresses (commit of 24 January 2024)</a><div class="muted" style="font-size:13px">NodeDAO (NodeDAO/NodeDAO-Protocol on GitHub) · the entity&#x27;s own · retrieved 2026-10-23</div><p class="excerpt">TimelockController: 0x16F692525f3b8c8a96F8c945D365Da958Fb5735B ... LiquidStaking Proxy: 0x8103151E2377e78C04a3d2564e20542680ed3096</p><div class="muted mono">sha256 a6033773ee1b85a42ced689fe5423d946948645331f9caf55471183c6880521e</div></div>
+<h2>Treemap boxes resting on it</h2><div class="table-wrap"><table><thead><tr><th>Box</th><th class="num">ETH now</th><th class="num">Peak ETH</th></tr></thead><tbody><tr><td>NodeDAO › NodeDAO nETH › Withdraws to 0x4b8d…80ae</td><td class="num">0</td><td class="num">15,200</td></tr></tbody></table></div>
+</main>
+</body>
+</html>

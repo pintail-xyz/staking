@@ -1,0 +1,60 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Attributed validator set</title>
+<style>
+  :root { color-scheme: light dark; --surface-0: #f4f3f0; --surface-1: #fcfcfb; --border: #d9d8d3;
+          --text-primary: #0b0b0b; --text-secondary: #52514e; --accent: #2a78d6; }
+  @media (prefers-color-scheme: dark) {
+    :root { --surface-0: #121211; --surface-1: #1a1a19; --border: #3a3a37; --text-primary: #f0efec;
+            --text-secondary: #c3c2b7; --accent: #3987e5; }
+  }
+  body { margin: 0; background: var(--surface-0); color: var(--text-primary);
+         font: 14px/1.5 system-ui, -apple-system, "Segoe UI", sans-serif; }
+  main { max-width: 760px; margin: 0 auto; padding: 40px 16px; }
+  h1 { font-size: 20px; font-weight: 600; margin: 0 0 8px; }
+  p { color: var(--text-secondary); }
+  a { color: var(--accent); }
+  table { width: 100%; border-collapse: collapse; margin: 16px 0; background: var(--surface-1); }
+  th, td { text-align: left; padding: 8px 10px; border-bottom: 1px solid var(--border); vertical-align: top; }
+  td.num { text-align: right; white-space: nowrap; font-variant-numeric: tabular-nums; }
+  code { font-size: 12px; word-break: break-all; }
+  pre { overflow-x: auto; background: var(--surface-1); border: 1px solid var(--border); padding: 10px; }
+</style>
+<script data-goatcounter="https://pintail.goatcounter.com/count" async src="https://gc.zgo.at/count.js"></script>
+</head>
+<body>
+<main>
+  <h1>Ethereum staking: attributed validator set</h1>
+  <p>Who stands behind every active validator (organisation, allocator, operator, and where known principal and
+    custodian), the execution-layer addresses identified, and the decisions, sources and methods behind each
+    attribution, with every validator's place in the <a href="../../">treemap</a> since genesis. Data through epoch 485,775 (2026-10-30T12:00:23Z), generated 2026-10-31T04:45:18Z.
+    <a href="README.md">README</a> has the columns and a query that rebuilds the treemap from these files.</p>
+  <table>
+    <thead><tr><th>File</th><th>What it holds</th><th class="num">Size</th></tr></thead>
+    <tbody>
+      <tr><td><a href="validators.csv.gz">validators.csv.gz</a></td><td>Active validators with their organisation, allocator, operator, principal and custodian</td><td class="num">4.6 MB</td></tr>
+      <tr><td><a href="addresses.csv">addresses.csv</a></td><td>Execution-layer addresses with an identified role and entity</td><td class="num">3.8 MB</td></tr>
+      <tr><td><a href="entities.csv">entities.csv</a></td><td>The entities named in the files: name, kind, parent and organisation</td><td class="num">0.1 MB</td></tr>
+      <tr><td><a href="boxes.csv">boxes.csv</a></td><td>The treemap's boxes: what each rests on, and its stake now and at its peak</td><td class="num">0.2 MB</td></tr>
+      <tr><td><a href="decisions.json">decisions.json</a></td><td>Every decision: statement, explanation, targets, evidence, sources and the stake resting on it</td><td class="num">1.7 MB</td></tr>
+      <tr><td><a href="sources.json">sources.json</a></td><td>The sources cited: link, publisher, the passage relied on, and the hash of the copy kept</td><td class="num">0.3 MB</td></tr>
+      <tr><td><a href="methods.json">methods.json</a></td><td>How claims are derived: each method's premises, heuristic and limits, and the anchors it uses</td><td class="num">0.2 MB</td></tr>
+      <tr><td><a href="attributions.parquet">attributions.parquet</a></td><td>Each validator's treemap box over time, with its withdrawal credentials and clusters</td><td class="num">12.6 MB</td></tr>
+      <tr><td><a href="stake.parquet">stake.parquet</a></td><td>Each validator's effective balance over time, while active</td><td class="num">5.4 MB</td></tr>
+      <tr><td><a href="nodes.parquet">nodes.parquet</a></td><td>The treemap's boxes: path, kind, entity, basis, method, the decisions each rests on</td><td class="num">0.1 MB</td></tr>
+      <tr><td><a href="treemap.parquet">treemap.parquet</a></td><td>Each box's stake and validators at each frame, as the treemap shows them</td><td class="num">0.3 MB</td></tr>
+    </tbody>
+  </table>
+  <p>All files, from a shell:</p>
+  <pre>for f in validators.csv.gz addresses.csv entities.csv boxes.csv decisions.json sources.json methods.json attributions.parquet stake.parquet nodes.parquet treemap.parquet README.md manifest.json; do curl -fO "https://pintail.xyz/staking/treemap/data/dataset/$f"; done</pre>
+  <p>The sha256 of each file is in <a href="manifest.json">manifest.json</a>. <a href="decisions/">The decisions</a>
+    behind the attributions each have a page with their evidence, sources and what would change them, and
+    <a href="entities/">every organisation</a> has a page with the roles it has played since the beacon chain's genesis.</p>
+  <p>Licensed under <a href="https://creativecommons.org/licenses/by/4.0/">CC BY 4.0</a>: use freely, crediting
+    Stakalytics (pintail.xyz/staking). Quoted source passages remain their publishers'.</p>
+</main>
+</body>
+</html>

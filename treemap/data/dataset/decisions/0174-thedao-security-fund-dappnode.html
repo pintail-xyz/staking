@@ -1,0 +1,75 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>0174-thedao-security-fund-dappnode: TheDAO Security Fund&#x27;s staked endowment: Dappnode runs it, and the validators say so in their blocks.</title>
+<style>
+:root { color-scheme: light; --surface-0: #f4f3f0; --surface-1: #fcfcfb; --border: #d9d8d3; --text-primary: #0b0b0b;
+        --text-secondary: #52514e; --text-muted: #77766f; --accent: #2a78d6; --chip: #ebe9e4; }
+@media (prefers-color-scheme: dark) {
+  :root:where(:not([data-theme="light"])) { color-scheme: dark; --surface-0: #121211; --surface-1: #1a1a19;
+    --border: #3a3a37; --text-primary: #f0efec; --text-secondary: #c3c2b7; --text-muted: #96958c; --accent: #3987e5;
+    --chip: #2a2a28; }
+}
+:root[data-theme="dark"] { color-scheme: dark; --surface-0: #121211; --surface-1: #1a1a19; --border: #3a3a37;
+  --text-primary: #f0efec; --text-secondary: #c3c2b7; --text-muted: #96958c; --accent: #3987e5; --chip: #2a2a28; }
+* { box-sizing: border-box; }
+body { margin: 0; background: var(--surface-0); color: var(--text-primary);
+       font: 15px/1.55 system-ui, -apple-system, "Segoe UI", sans-serif; }
+main { max-width: 860px; margin: 0 auto; padding: 32px 16px 64px; }
+a { color: var(--accent); }
+h1 { font-size: 22px; line-height: 1.3; font-weight: 600; margin: 4px 0 12px; }
+h2 { font-size: 15px; font-weight: 600; margin: 28px 0 8px; color: var(--text-secondary);
+     text-transform: uppercase; letter-spacing: 0.04em; }
+p { margin: 0 0 12px; }
+.crumbs { font-size: 13px; color: var(--text-muted); }
+.lede { font-size: 17px; }
+.muted { color: var(--text-muted); }
+.chip { display: inline-block; padding: 1px 8px; border-radius: 10px; background: var(--chip); font-size: 12px;
+        color: var(--text-secondary); margin-right: 4px; white-space: nowrap; }
+.card { background: var(--surface-1); border: 1px solid var(--border); border-radius: 6px; padding: 14px 16px;
+        margin: 0 0 12px; }
+.stats { display: flex; flex-wrap: wrap; gap: 12px; margin: 16px 0; }
+.stat { background: var(--surface-1); border: 1px solid var(--border); border-radius: 6px; padding: 10px 14px;
+        min-width: 140px; }
+.stat b { display: block; font-size: 20px; font-variant-numeric: tabular-nums; }
+.stat span { font-size: 12px; color: var(--text-muted); }
+ul.grounds { list-style: none; padding: 0; margin: 0; }
+ul.grounds li { padding: 6px 0; border-bottom: 1px solid var(--border); }
+ul.grounds li:last-child { border-bottom: 0; }
+table { width: 100%; border-collapse: collapse; background: var(--surface-1); font-size: 14px; }
+th, td { text-align: left; padding: 7px 8px; border-bottom: 1px solid var(--border); vertical-align: top; }
+th { font-weight: 600; color: var(--text-secondary); cursor: pointer; white-space: nowrap; user-select: none; }
+td.num, th.num { text-align: right; font-variant-numeric: tabular-nums; white-space: nowrap; }
+code, .mono { font: 12.5px ui-monospace, SFMono-Regular, Menlo, monospace; word-break: break-all; }
+details summary { cursor: pointer; color: var(--accent); }
+.excerpt { border-left: 3px solid var(--border); padding: 2px 0 2px 10px; color: var(--text-secondary);
+           font-size: 14px; white-space: pre-wrap; }
+input[type=search] { width: 100%; padding: 8px 10px; font: inherit; border: 1px solid var(--border);
+                     border-radius: 6px; background: var(--surface-1); color: var(--text-primary); margin: 8px 0 12px; }
+.table-wrap { overflow-x: auto; }
+@media (max-width: 640px) { .hide-sm { display: none; } }
+</style>
+<script data-goatcounter="https://pintail.goatcounter.com/count" async src="https://gc.zgo.at/count.js"></script>
+</head>
+<body>
+<main>
+<p class="crumbs"><a href="../">Dataset</a> › <a href="./">Decisions</a> › 0174-thedao-security-fund-dappnode</p>
+<h1>TheDAO Security Fund&#x27;s staked endowment: Dappnode runs it, and the validators say so in their blocks.</h1>
+<p><span class="chip">Attribution</span><span class="chip">Allocator</span> <a href="../entities/dappnode.html">Dappnode-run staking</a> <span class="muted">· decided 2026-10-23</span></p>
+<p class="lede">Dappnode is the allocator of the validators withdrawing to 0x5201…b756, TheDAO Security Fund&#x27;s staked endowment.</p>
+<div class="stats"><div class="stat"><b>34</b><span>validators resting on it now</span></div><div class="stat"><b>69,021</b><span>ETH now</span></div><div class="stat"><b>69,426</b><span>ETH at its peak</span></div></div>
+<h2>Grounds</h2><div class="card"><ul class="grounds"><li><span class="chip">First party</span>The fund says roughly 69,000 ETH of its endowment is staked on infrastructure run by Dappnode</li><li><span class="chip">On chain</span>Most of their blocks are signed validating_from_dappnode_TDSF</li><li><span class="chip">On chain</span>The address deposited 69,420 ETH in February 2026, the amount the fund said it would stake</li><li><span class="chip">On chain</span>Its owner, thedaofund.eth, is a 4-of-7 Safe, as the fund describes its curators&#x27; multisig</li></ul></div>
+<h2>Explanation</h2><p>Dappnode is the allocator of the validators withdrawing to the Safe multisig 0x5201…b756, the staked endowment of TheDAO Security Fund. There are 34 compounding validators, holding about 69k ETH in October 2026. The fund itself is recorded as principal (decision 0175).</p>
+<p><strong>What the fund and the press say.</strong> <a href="https://thedao.fund/">The fund&#x27;s site</a> says roughly 69,000 ETH of its endowment is staked on decentralised infrastructure run by Dappnode, and that its seven curators sign a 4-of-7 multisig. <a href="https://decrypt.co/356404/ethereum-crisis-reborn-220-million-security-fund">Decrypt reported at the fund&#x27;s launch</a>, on 29 January 2026, that about 69,420 ETH would be staked.</p>
+<p><strong>On chain.</strong> The Safe&#x27;s owners are another Safe with seven owners and a threshold of four, whose verified ENS name is thedaofund.eth, and a second Safe sharing an owner with it. The Safe made all its deposits itself on 1 and 2 February 2026: 69,420 ETH to the 34 validators. Of the validators&#x27; blocks, 2,060 of 2,389 are signed &quot;validating_from_dappnode_TDSF&quot;, the rest blank.</p>
+<p>The fund hired Dappnode to run the stake, so Dappnode is the allocator and operator; the fund is the principal. The decision would change with the fund naming another operator, or blocks of these validators signed by another one.</p>
+<h2>What would change it</h2><p>The fund naming another operator, or blocks of these validators signed by another one.</p>
+<h2>Evidence</h2><p class="muted">Transactions and contract calls anyone can repeat on their own node.</p><div class="card"><ul class="grounds"><li><a class="mono" href="https://etherscan.io/tx/0x907d4a24da9f91a24f3d612fa79a00f124b204e546761854985cf2c261c68a71">0x907d4a24…61c68a71</a> — 0x5201 deposits 34 x 1 ETH, block 24,363,816</li><li><a class="mono" href="https://etherscan.io/tx/0x590f0d1dc2ea20c56365d9af61bb9cf9f8ca0ef24a4d9a3c4efbc4f944ec8848">0x590f0d1d…44ec8848</a> — 0x5201 tops the 34 validators up with 69,386 ETH, block 24,365,072</li></ul></div>
+<h2>Sources</h2><div class="card"><a href="https://thedao.fund/">TheDAO Security Fund | TheDAO is Back (FAQ)</a><div class="muted" style="font-size:13px">TheDAO Security Fund · the entity&#x27;s own · retrieved 2026-10-23</div><p class="excerpt">Roughly 69,000 ETH is staked on decentralized infrastructure run by Dappnode, with validators spread across clients and 4 continents. [...] The 7 Curators act like a board: they set each round&#x27;s budget, approve the distribution mechanism, and sign the multisig transactions (4-of-7) for funding execution.</p><div class="muted mono">sha256 237943a1c2fcb039cd9fd51386fe8dedc8eb298f7afc159a3f862a8a36425c91</div></div><div class="card"><a href="https://decrypt.co/356404/ethereum-crisis-reborn-220-million-security-fund">Ethereum&#x27;s Oldest Crisis Reborn as a $220 Million Security Fund (29 January 2026)</a><div class="muted" style="font-size:13px">Decrypt · third party · retrieved 2026-10-23</div><p class="excerpt">Green said the fund will source about 70,500 ETH from the DAO&#x27;s ExtraBalance contract and roughly 4,600 ETH from the curator multisignature wallet. Most of the Ethereum, about 69,420, will be staked to form a long-term endowment</p><div class="muted mono">sha256 9051cfc7360a8e01a1c5cbe4b71bf91e12a47b33fd156506fd4da66c5017fc70</div></div>
+<h2>Treemap boxes resting on it</h2><div class="table-wrap"><table><thead><tr><th>Box</th><th class="num">ETH now</th><th class="num">Peak ETH</th></tr></thead><tbody><tr><td>Dappnode › Dappnode-run staking › Withdraws to 0x5201…b756</td><td class="num">69,021</td><td class="num">69,426</td></tr></tbody></table></div>
+<h2>Targets (1)</h2><details open><summary>The addresses or validators this decision covers</summary><ul style="list-style:none;padding:0"><li><span class="chip">withdrawal address</span><a class="mono" href="https://etherscan.io/address/0x52016a661a6cd35d88d30297e8840998ac3db756">0x52016a661a6cd35d88d30297e8840998ac3db756</a></li></ul></details>
+</main>
+</body>
+</html>

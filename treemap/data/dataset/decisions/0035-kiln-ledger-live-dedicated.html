@@ -1,0 +1,74 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>0035-kiln-ledger-live-dedicated: Kiln&#x27;s documentation names this as the contract behind Ledger Live&#x27;s dedicated staking; validators deposited through </title>
+<style>
+:root { color-scheme: light; --surface-0: #f4f3f0; --surface-1: #fcfcfb; --border: #d9d8d3; --text-primary: #0b0b0b;
+        --text-secondary: #52514e; --text-muted: #77766f; --accent: #2a78d6; --chip: #ebe9e4; }
+@media (prefers-color-scheme: dark) {
+  :root:where(:not([data-theme="light"])) { color-scheme: dark; --surface-0: #121211; --surface-1: #1a1a19;
+    --border: #3a3a37; --text-primary: #f0efec; --text-secondary: #c3c2b7; --text-muted: #96958c; --accent: #3987e5;
+    --chip: #2a2a28; }
+}
+:root[data-theme="dark"] { color-scheme: dark; --surface-0: #121211; --surface-1: #1a1a19; --border: #3a3a37;
+  --text-primary: #f0efec; --text-secondary: #c3c2b7; --text-muted: #96958c; --accent: #3987e5; --chip: #2a2a28; }
+* { box-sizing: border-box; }
+body { margin: 0; background: var(--surface-0); color: var(--text-primary);
+       font: 15px/1.55 system-ui, -apple-system, "Segoe UI", sans-serif; }
+main { max-width: 860px; margin: 0 auto; padding: 32px 16px 64px; }
+a { color: var(--accent); }
+h1 { font-size: 22px; line-height: 1.3; font-weight: 600; margin: 4px 0 12px; }
+h2 { font-size: 15px; font-weight: 600; margin: 28px 0 8px; color: var(--text-secondary);
+     text-transform: uppercase; letter-spacing: 0.04em; }
+p { margin: 0 0 12px; }
+.crumbs { font-size: 13px; color: var(--text-muted); }
+.lede { font-size: 17px; }
+.muted { color: var(--text-muted); }
+.chip { display: inline-block; padding: 1px 8px; border-radius: 10px; background: var(--chip); font-size: 12px;
+        color: var(--text-secondary); margin-right: 4px; white-space: nowrap; }
+.card { background: var(--surface-1); border: 1px solid var(--border); border-radius: 6px; padding: 14px 16px;
+        margin: 0 0 12px; }
+.stats { display: flex; flex-wrap: wrap; gap: 12px; margin: 16px 0; }
+.stat { background: var(--surface-1); border: 1px solid var(--border); border-radius: 6px; padding: 10px 14px;
+        min-width: 140px; }
+.stat b { display: block; font-size: 20px; font-variant-numeric: tabular-nums; }
+.stat span { font-size: 12px; color: var(--text-muted); }
+ul.grounds { list-style: none; padding: 0; margin: 0; }
+ul.grounds li { padding: 6px 0; border-bottom: 1px solid var(--border); }
+ul.grounds li:last-child { border-bottom: 0; }
+table { width: 100%; border-collapse: collapse; background: var(--surface-1); font-size: 14px; }
+th, td { text-align: left; padding: 7px 8px; border-bottom: 1px solid var(--border); vertical-align: top; }
+th { font-weight: 600; color: var(--text-secondary); cursor: pointer; white-space: nowrap; user-select: none; }
+td.num, th.num { text-align: right; font-variant-numeric: tabular-nums; white-space: nowrap; }
+code, .mono { font: 12.5px ui-monospace, SFMono-Regular, Menlo, monospace; word-break: break-all; }
+details summary { cursor: pointer; color: var(--accent); }
+.excerpt { border-left: 3px solid var(--border); padding: 2px 0 2px 10px; color: var(--text-secondary);
+           font-size: 14px; white-space: pre-wrap; }
+input[type=search] { width: 100%; padding: 8px 10px; font: inherit; border: 1px solid var(--border);
+                     border-radius: 6px; background: var(--surface-1); color: var(--text-primary); margin: 8px 0 12px; }
+.table-wrap { overflow-x: auto; }
+@media (max-width: 640px) { .hide-sm { display: none; } }
+</style>
+<script data-goatcounter="https://pintail.goatcounter.com/count" async src="https://gc.zgo.at/count.js"></script>
+</head>
+<body>
+<main>
+<p class="crumbs"><a href="../">Dataset</a> › <a href="./">Decisions</a> › 0035-kiln-ledger-live-dedicated</p>
+<h1>Kiln&#x27;s documentation names this as the contract behind Ledger Live&#x27;s dedicated staking; validators deposited through it were run by Kiln.</h1>
+<p><span class="chip">Anchor</span> <span class="muted">· decided 2026-10-17</span></p>
+<p class="lede">This contract is Kiln&#x27;s dedicated-staking contract used from Ledger Live; validators deposited through it were run and allocated by Kiln.</p>
+<div class="stats"><div class="stat"><b>0</b><span>validators resting on it now</span></div><div class="stat"><b>0</b><span>ETH now</span></div><div class="stat"><b>459,584</b><span>ETH at its peak</span></div></div>
+<h2>Grounds</h2><div class="card"><ul class="grounds"><li><span class="chip">First party</span>Kiln&#x27;s documentation names this contract as the one behind dedicated staking from Ledger Live</li><li><span class="chip">On chain</span>Each of its 25,900 validators had its own withdrawal address, one per staker</li><li><span class="chip">On chain</span>All had exited by November 2025, after the Ledger Live staking app was retired</li></ul></div>
+<h2>Explanation</h2><p>The contract 0x1e68…0270 is Kiln&#x27;s dedicated-staking contract, through which users of the Ledger Live wallet staked ETH. Validators first deposited through it are attributed to Kiln as allocator and operator, while each staker kept their own withdrawal address. 25,909 validators were deposited through it between November 2022 and September 2025, from 6,333 sending accounts, each validator with its own withdrawal address; they held as much as 460k ETH. All had exited by November 2025, after the Ledger Live staking application was retired.</p>
+<p><strong>Identification.</strong> <a href="https://docs.kiln.fi/v1/integrations/wallets/stake-from-ledger-live/using-kiln-dapp/dedicated-validators">Kiln&#x27;s documentation</a> names this contract as the one behind dedicated staking from Ledger Live.</p>
+<p><strong>Why Kiln is the allocator.</strong> A staker depositing through a provider&#x27;s contract has chosen that provider, who generates the keys and runs the validators; the staker keeps the withdrawal address. This is the rule applied to all providers&#x27; depositor contracts (decision 0005), and it holds where the staker reaches the provider through a wallet integration such as Ledger Live.</p>
+<p>The decision would change with a Kiln statement contradicting it, or evidence that some depositors used the contract with keys Kiln did not run.</p>
+<h2>What would change it</h2><p>A Kiln statement contradicting it, or evidence some depositors use it with keys Kiln does not run.</p>
+<h2>Evidence</h2><p class="muted">Transactions and contract calls anyone can repeat on their own node.</p><div class="card"><ul class="grounds"><li><a class="mono" href="https://etherscan.io/tx/0x732d7cbb449a9d7e17f56aef93a531d21d55bbadf59cd1f39b74138e51e3705d">0x732d7cbb…51e3705d</a> — Creation of the contract</li><li><a class="mono" href="https://etherscan.io/tx/0x19b7e14d4cef69f627a3cec85d03171adfaefb95d697e029699dd35aacc2ae09">0x19b7e14d…acc2ae09</a> — First deposit through it</li></ul></div>
+<h2>Sources</h2><div class="card"><a href="https://docs.kiln.fi/v1/integrations/wallets/stake-from-ledger-live/using-kiln-dapp/dedicated-validators">Dedicated Validators (Stake from Ledger Live, Kiln dApp, deprecated)</a><div class="muted" style="font-size:13px">Kiln · the entity&#x27;s own · retrieved 2026-10-17</div><p class="excerpt">Kiln Dedicated staking mainnet smart contract address in Ledger Live is: 0x1e68238cE926DEC62b3FBC99AB06eB1D85CE0270</p><div class="muted mono">sha256 70df5036c6893ae52389d00fc45cefb5cd2e21e4946758e4ec598e946c2ead1a</div></div>
+<h2>Treemap boxes resting on it</h2><div class="table-wrap"><table><thead><tr><th>Box</th><th class="num">ETH now</th><th class="num">Peak ETH</th></tr></thead><tbody><tr><td>Kiln › Kiln direct staking › Deposited via 0x1e68…0270</td><td class="num">0</td><td class="num">459,584</td></tr></tbody></table></div>
+</main>
+</body>
+</html>

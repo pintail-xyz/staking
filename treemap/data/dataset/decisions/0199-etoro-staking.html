@@ -1,0 +1,77 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>0199-etoro-staking: Validators withdrawing to an address whose staking took off in the days eToro relaunched ETH staking, and whose rewards are swept </title>
+<style>
+:root { color-scheme: light; --surface-0: #f4f3f0; --surface-1: #fcfcfb; --border: #d9d8d3; --text-primary: #0b0b0b;
+        --text-secondary: #52514e; --text-muted: #77766f; --accent: #2a78d6; --chip: #ebe9e4; }
+@media (prefers-color-scheme: dark) {
+  :root:where(:not([data-theme="light"])) { color-scheme: dark; --surface-0: #121211; --surface-1: #1a1a19;
+    --border: #3a3a37; --text-primary: #f0efec; --text-secondary: #c3c2b7; --text-muted: #96958c; --accent: #3987e5;
+    --chip: #2a2a28; }
+}
+:root[data-theme="dark"] { color-scheme: dark; --surface-0: #121211; --surface-1: #1a1a19; --border: #3a3a37;
+  --text-primary: #f0efec; --text-secondary: #c3c2b7; --text-muted: #96958c; --accent: #3987e5; --chip: #2a2a28; }
+* { box-sizing: border-box; }
+body { margin: 0; background: var(--surface-0); color: var(--text-primary);
+       font: 15px/1.55 system-ui, -apple-system, "Segoe UI", sans-serif; }
+main { max-width: 860px; margin: 0 auto; padding: 32px 16px 64px; }
+a { color: var(--accent); }
+h1 { font-size: 22px; line-height: 1.3; font-weight: 600; margin: 4px 0 12px; }
+h2 { font-size: 15px; font-weight: 600; margin: 28px 0 8px; color: var(--text-secondary);
+     text-transform: uppercase; letter-spacing: 0.04em; }
+p { margin: 0 0 12px; }
+.crumbs { font-size: 13px; color: var(--text-muted); }
+.lede { font-size: 17px; }
+.muted { color: var(--text-muted); }
+.chip { display: inline-block; padding: 1px 8px; border-radius: 10px; background: var(--chip); font-size: 12px;
+        color: var(--text-secondary); margin-right: 4px; white-space: nowrap; }
+.card { background: var(--surface-1); border: 1px solid var(--border); border-radius: 6px; padding: 14px 16px;
+        margin: 0 0 12px; }
+.stats { display: flex; flex-wrap: wrap; gap: 12px; margin: 16px 0; }
+.stat { background: var(--surface-1); border: 1px solid var(--border); border-radius: 6px; padding: 10px 14px;
+        min-width: 140px; }
+.stat b { display: block; font-size: 20px; font-variant-numeric: tabular-nums; }
+.stat span { font-size: 12px; color: var(--text-muted); }
+ul.grounds { list-style: none; padding: 0; margin: 0; }
+ul.grounds li { padding: 6px 0; border-bottom: 1px solid var(--border); }
+ul.grounds li:last-child { border-bottom: 0; }
+table { width: 100%; border-collapse: collapse; background: var(--surface-1); font-size: 14px; }
+th, td { text-align: left; padding: 7px 8px; border-bottom: 1px solid var(--border); vertical-align: top; }
+th { font-weight: 600; color: var(--text-secondary); cursor: pointer; white-space: nowrap; user-select: none; }
+td.num, th.num { text-align: right; font-variant-numeric: tabular-nums; white-space: nowrap; }
+code, .mono { font: 12.5px ui-monospace, SFMono-Regular, Menlo, monospace; word-break: break-all; }
+details summary { cursor: pointer; color: var(--accent); }
+.excerpt { border-left: 3px solid var(--border); padding: 2px 0 2px 10px; color: var(--text-secondary);
+           font-size: 14px; white-space: pre-wrap; }
+input[type=search] { width: 100%; padding: 8px 10px; font: inherit; border: 1px solid var(--border);
+                     border-radius: 6px; background: var(--surface-1); color: var(--text-primary); margin: 8px 0 12px; }
+.table-wrap { overflow-x: auto; }
+@media (max-width: 640px) { .hide-sm { display: none; } }
+</style>
+<script data-goatcounter="https://pintail.goatcounter.com/count" async src="https://gc.zgo.at/count.js"></script>
+</head>
+<body>
+<main>
+<p class="crumbs"><a href="../">Dataset</a> › <a href="./">Decisions</a> › 0199-etoro-staking</p>
+<h1>Validators withdrawing to an address whose staking took off in the days eToro relaunched ETH staking, and whose rewards are swept out monthly, are attributed to eToro&#x27;s staking; the evidence is suggestive but not conclusive, as eToro names no address.</h1>
+<p><span class="chip">Attribution</span><span class="chip">Allocator</span> <a href="../entities/etoro.html">eToro staking</a> <span class="muted">· decided 2026-10-24</span></p>
+<p class="lede">Validators withdrawing to this address are attributed to eToro&#x27;s staking (suggestive, not conclusive).</p>
+<div class="stats"><div class="stat"><b>2,323</b><span>validators resting on it now</span></div><div class="stat"><b>74,336</b><span>ETH now</span></div><div class="stat"><b>74,336</b><span>ETH at its peak</span></div></div>
+<h2>Grounds</h2><div class="card"><ul class="grounds"><li><span class="chip">Third party</span>eToro launched ETH staking on 31 July 2024; 298 of these validators were deposited on 29-31 July, their first large deposits</li><li><span class="chip">First party</span>eToro says it runs its own validators and passes users part of the rewards; these validators&#x27; rewards are swept out monthly</li><li><span class="chip">On chain</span>One account made every deposit since July 2024, funded only by two wallets that a third wallet supplied</li></ul></div>
+<h2>Explanation</h2><p>Validators withdrawing to 0x1135…de29 are attributed to the ETH staking of eToro, the trading platform, with eToro as allocator. The evidence is suggestive but not conclusive: eToro names no address, and there is no check of the stake&#x27;s size against eToro&#x27;s accounts. 2,482 validators were deposited from July 2024; 2,322 were active in October 2026 with about 74k ETH.</p>
+<p><strong>What eToro says.</strong> eToro&#x27;s <a href="https://www.sec.gov/Archives/edgar/data/1493318/000121390026022034/ea0278371-20f_etoro.htm">annual report on Form 20-F for 2025</a> says it stakes ETH using staking validators that it controls, keeping a portion of the rewards and passing the rest to users. Press reports of eToro&#x27;s announcement of 31 July 2024 (<a href="https://fxnewsgroup.com/forex-news/cryptocurrency/etoro-launches-staking-for-solana-and-ethereum/">FX News Group</a>, <a href="https://www.financemagnates.com/fintech/etoro-launches-staking-for-solana-and-ethereum-intro-days-and-eligibility/">Finance Magnates</a>) date the launch of ETH staking to that day, say it requires users to opt in, and describe monthly reward updates.</p>
+<p><strong>The timing.</strong> One account made every deposit since July 2024, all directly to the deposit contract. After four isolated deposits earlier in July, 46 validators were deposited on 29 July 2024, 135 on 30 July and 117 on 31 July, the day of the launch. Later bursts match no announcement found; since staking is opt-in they may be waves of users opting in.</p>
+<p><strong>The pattern.</strong> The depositing account&#x27;s ETH came only from two wallets in turn, both supplied by a third. About once a month, nearly always between the 2nd and the 13th, the withdrawal address sends most of the month&#x27;s rewards back to the current funding wallet, consistent with monthly reward updates. Graffiti is blank or carries client versions, and fee recipients are block builders, so no operator identifies itself; eToro&#x27;s report says it controls the validators.</p>
+<p>Searches of court records, SEC filings and eToro&#x27;s own former token contracts found no eToro address that would anchor the attribution more firmly. Explorer labels naming the funding wallets as eToro&#x27;s are recorded as leads. The decision would change with a statement or address list from eToro that includes or excludes this address, or evidence that the wallets funding it belong to someone else.</p>
+<h2>What would change it</h2><p>A statement or address list from eToro that includes or excludes this address, or evidence that the wallets funding it belong to someone else.</p>
+<h2>Evidence</h2><p class="muted">Transactions and contract calls anyone can repeat on their own node.</p><div class="card"><ul class="grounds"><li><a class="mono" href="https://etherscan.io/tx/0xd5a847c15fd550c611dabae9bf8dc4a5b340dd5a765e559ea8ef167c4447ef47">0xd5a847c1…4447ef47</a> — 0x1435&#x27;s first deposit, 3 July 2024</li><li><a class="mono" href="https://etherscan.io/tx/0x28c7813041478f7661b0b823e7a38e1d38c680bc4233e35c5977332af8cc15be">0x28c78130…f8cc15be</a> — First of 298 deposits on 29-31 July 2024, around eToro&#x27;s relaunch of ETH staking on 31 July</li><li><a class="mono" href="https://etherscan.io/tx/0xa4f622377bec132a7a8727327cb8e89d508d1b2a8a4bfeeda58440e57bc401a9">0xa4f62237…7bc401a9</a> — 0x3f08 funds 0x1435 for the first time (0.1 ETH test), 3 July 2024</li><li><a class="mono" href="https://etherscan.io/tx/0xc71adb4eb7a483b7654f7f7a298605ad6a509806c073c2e2aa43440e36d00cc8">0xc71adb4e…36d00cc8</a> — A monthly sweep: 0x1135 sends 90 ETH of rewards to 0x3f08, 4 February 2025</li></ul></div>
+<h2>Sources</h2><div class="card"><a href="https://www.sec.gov/Archives/edgar/data/1493318/000121390026022034/ea0278371-20f_etoro.htm">Form 20-F annual report for the year ended 31 December 2025 (filed 2 March 2026)</a><div class="muted" style="font-size:13px">eToro Group Ltd (SEC EDGAR, CIK 1493318) · the entity&#x27;s own · retrieved 2026-10-24</div><p class="excerpt">The Company generates revenue from staking rewards in which the Company participates in networks with proof-of-stake consensus algorithms through creating or validating blocks on the network using the staking validators that it controls. [...] Once staking rewards are received, the Company retains a certain portion of the rewards and transfers the remaining amount to the relevant users.</p><div class="muted mono">sha256 f304fef40c741708c53694134f1d287e6cbac0d8fedd395816da8db600be8eee</div></div><div class="card"><a href="https://fxnewsgroup.com/forex-news/cryptocurrency/etoro-launches-staking-for-solana-and-ethereum/">eToro launches staking for Solana and Ethereum (31 July 2024)</a><div class="muted" style="font-size:13px">FX News Group · third party · retrieved 2026-10-24</div><p class="excerpt">Online broker eToro announces today that it has launched staking on Solana (SOL) and Ethereum (ETH) [...] to stake ETH users need to actively opt into the programme.</p><div class="muted mono">sha256 0ae4cfc63ff88e4ad0cac986e9ebe63713bf6bfd4090959da4054aca70d8a041</div></div><div class="card"><a href="https://www.financemagnates.com/fintech/etoro-launches-staking-for-solana-and-ethereum-intro-days-and-eligibility/">eToro Launches Staking for Solana and Ethereum: Intro Days and Eligibility (31 July 2024, 09:23 GMT)</a><div class="muted" style="font-size:13px">Finance Magnates · third party · retrieved 2026-10-24</div><p class="excerpt">To stake Ethereum, users must actively opt into the program. [...] eToro will provide monthly email updates to eligible users detailing their staking rewards and the calculation method.</p><div class="muted mono">sha256 1d41698063fdada626c068ec031966d9666cd091ca924edea9ad760d53406e18</div></div>
+<h2>Leads</h2><p class="muted">Third-party pages, such as explorer labels, that pointed the research but are not relied on.</p><ul><li><a href="https://metadata.services.blockscout.com/api/v1/metadata?chainId=1&amp;addresses=0x3f08f17973ab4124c73200135e2b675ab2d263d9,0x77fb357f55bef5a70d30663955f8c9f35794df0e,0x434587332cc35d33db75b93f4f27cc496c67a4db,0x1435fbc64c0a026300313ff8ad73e384c801739f,0x1135fa96848f34bff9d003f4c1699ae97418de29">Blockscout address page</a></li></ul>
+<h2>Treemap boxes resting on it</h2><div class="table-wrap"><table><thead><tr><th>Box</th><th class="num">ETH now</th><th class="num">Peak ETH</th></tr></thead><tbody><tr><td>eToro › eToro staking › Withdraws to 0x1135…de29</td><td class="num">74,336</td><td class="num">74,336</td></tr></tbody></table></div>
+<h2>Targets (1)</h2><details open><summary>The addresses or validators this decision covers</summary><ul style="list-style:none;padding:0"><li><span class="chip">withdrawal address</span><a class="mono" href="https://etherscan.io/address/0x1135fa96848f34bff9d003f4c1699ae97418de29">0x1135fa96848f34bff9d003f4c1699ae97418de29</a></li></ul></details>
+</main>
+</body>
+</html>

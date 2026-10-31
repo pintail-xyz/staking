@@ -1,0 +1,74 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>0207-paralinker-batch-deposit: Paralinker&#x27;s deployment of Staked&#x27;s batch deposit contract, which its own repository names and its staking guide links;</title>
+<style>
+:root { color-scheme: light; --surface-0: #f4f3f0; --surface-1: #fcfcfb; --border: #d9d8d3; --text-primary: #0b0b0b;
+        --text-secondary: #52514e; --text-muted: #77766f; --accent: #2a78d6; --chip: #ebe9e4; }
+@media (prefers-color-scheme: dark) {
+  :root:where(:not([data-theme="light"])) { color-scheme: dark; --surface-0: #121211; --surface-1: #1a1a19;
+    --border: #3a3a37; --text-primary: #f0efec; --text-secondary: #c3c2b7; --text-muted: #96958c; --accent: #3987e5;
+    --chip: #2a2a28; }
+}
+:root[data-theme="dark"] { color-scheme: dark; --surface-0: #121211; --surface-1: #1a1a19; --border: #3a3a37;
+  --text-primary: #f0efec; --text-secondary: #c3c2b7; --text-muted: #96958c; --accent: #3987e5; --chip: #2a2a28; }
+* { box-sizing: border-box; }
+body { margin: 0; background: var(--surface-0); color: var(--text-primary);
+       font: 15px/1.55 system-ui, -apple-system, "Segoe UI", sans-serif; }
+main { max-width: 860px; margin: 0 auto; padding: 32px 16px 64px; }
+a { color: var(--accent); }
+h1 { font-size: 22px; line-height: 1.3; font-weight: 600; margin: 4px 0 12px; }
+h2 { font-size: 15px; font-weight: 600; margin: 28px 0 8px; color: var(--text-secondary);
+     text-transform: uppercase; letter-spacing: 0.04em; }
+p { margin: 0 0 12px; }
+.crumbs { font-size: 13px; color: var(--text-muted); }
+.lede { font-size: 17px; }
+.muted { color: var(--text-muted); }
+.chip { display: inline-block; padding: 1px 8px; border-radius: 10px; background: var(--chip); font-size: 12px;
+        color: var(--text-secondary); margin-right: 4px; white-space: nowrap; }
+.card { background: var(--surface-1); border: 1px solid var(--border); border-radius: 6px; padding: 14px 16px;
+        margin: 0 0 12px; }
+.stats { display: flex; flex-wrap: wrap; gap: 12px; margin: 16px 0; }
+.stat { background: var(--surface-1); border: 1px solid var(--border); border-radius: 6px; padding: 10px 14px;
+        min-width: 140px; }
+.stat b { display: block; font-size: 20px; font-variant-numeric: tabular-nums; }
+.stat span { font-size: 12px; color: var(--text-muted); }
+ul.grounds { list-style: none; padding: 0; margin: 0; }
+ul.grounds li { padding: 6px 0; border-bottom: 1px solid var(--border); }
+ul.grounds li:last-child { border-bottom: 0; }
+table { width: 100%; border-collapse: collapse; background: var(--surface-1); font-size: 14px; }
+th, td { text-align: left; padding: 7px 8px; border-bottom: 1px solid var(--border); vertical-align: top; }
+th { font-weight: 600; color: var(--text-secondary); cursor: pointer; white-space: nowrap; user-select: none; }
+td.num, th.num { text-align: right; font-variant-numeric: tabular-nums; white-space: nowrap; }
+code, .mono { font: 12.5px ui-monospace, SFMono-Regular, Menlo, monospace; word-break: break-all; }
+details summary { cursor: pointer; color: var(--accent); }
+.excerpt { border-left: 3px solid var(--border); padding: 2px 0 2px 10px; color: var(--text-secondary);
+           font-size: 14px; white-space: pre-wrap; }
+input[type=search] { width: 100%; padding: 8px 10px; font: inherit; border: 1px solid var(--border);
+                     border-radius: 6px; background: var(--surface-1); color: var(--text-primary); margin: 8px 0 12px; }
+.table-wrap { overflow-x: auto; }
+@media (max-width: 640px) { .hide-sm { display: none; } }
+</style>
+<script data-goatcounter="https://pintail.goatcounter.com/count" async src="https://gc.zgo.at/count.js"></script>
+</head>
+<body>
+<main>
+<p class="crumbs"><a href="../">Dataset</a> › <a href="./">Decisions</a> › 0207-paralinker-batch-deposit</p>
+<h1>Paralinker&#x27;s deployment of Staked&#x27;s batch deposit contract, which its own repository names and its staking guide links; its validators sign &#x27;Staking via Paralinker&#x27;.</h1>
+<p><span class="chip">Anchor</span> <span class="muted">· decided 2026-10-25</span></p>
+<p class="lede">This contract is Paralinker&#x27;s batch deposit contract; validators deposited through it are run and allocated by Paralinker.</p>
+<div class="stats"><div class="stat"><b>112</b><span>validators resting on it now</span></div><div class="stat"><b>3,584</b><span>ETH now</span></div><div class="stat"><b>29,984</b><span>ETH at its peak</span></div></div>
+<h2>Grounds</h2><div class="card"><ul class="grounds"><li><span class="chip">First party</span>Paralinker&#x27;s eth2-batch-contract repository gives this address as its mainnet deployment</li><li><span class="chip">First party</span>Paralinker&#x27;s staking guide says it uses batch mode for staking deposits and links that repository</li><li><span class="chip">On chain</span>1,069 of the 1,069 blocks its validators proposed carry the graffiti &#x27;Staking via Paralinker&#x27;</li></ul></div>
+<h2>Explanation</h2><p>The contract 0xfc3e…c81f is Paralinker&#x27;s batch deposit contract: validators first deposited through it are attributed to Paralinker as allocator and operator, while each client keeps its own withdrawal address. It deposited 1,073 validators between December 2022 and July 2025, for seventeen sending accounts, holding as much as 30k ETH in February 2024; 112 were active in October 2026, all previously unattributed.</p>
+<p><strong>Identification.</strong> <a href="https://github.com/paralinker/eth2-batch-contract/blob/224ca2161cf929d8f88369fd9ca516120762f965/README.md">Paralinker&#x27;s repository</a>, a copy of Staked&#x27;s open batch deposit contract, gives this address as its mainnet deployment. <a href="https://paralinker.gitbook.io/paralinker-docs/stake/ethereum/how-to">Paralinker&#x27;s staking guide</a> says it uses batch mode for staking deposits and links that repository; Paralinker&#x27;s staking is non-custodial, with stakers keeping their withdrawal addresses.</p>
+<p><strong>The graffiti.</strong> Every one of the 1,069 blocks its validators have proposed is signed &quot;Staking via Paralinker&quot;, and nearly all paid the same fee recipient. The contract has no owner and is open to anyone, but the uniform graffiti shows that Paralinker ran all of its validators.</p>
+<p>A client depositing through a provider&#x27;s contract has chosen that provider (decision 0005). The decision would change with a Paralinker statement naming another contract, or evidence that keys Paralinker does not run are deposited through it.</p>
+<h2>What would change it</h2><p>A Paralinker statement naming another contract, or evidence that keys Paralinker does not run are deposited through it.</p>
+<h2>Evidence</h2><p class="muted">Transactions and contract calls anyone can repeat on their own node.</p><div class="card"><ul class="grounds"><li><a class="mono" href="https://etherscan.io/tx/0xd958a57e56baab9a849beda3640a2e2c7fadad97348338e384e6317594cb1288">0xd958a57e…94cb1288</a> — 0x2a43 creates Paralinker&#x27;s batch deposit contract</li><li><a class="mono" href="https://etherscan.io/tx/0x94955963ee30c92a6a3ed2730b2a62d653d260510793164d2627abcab8158722">0x94955963…b8158722</a> — The first deposit through it, 30 December 2022</li></ul></div>
+<h2>Sources</h2><div class="card"><a href="https://github.com/paralinker/eth2-batch-contract/blob/224ca2161cf929d8f88369fd9ca516120762f965/README.md">ETH2 Deposit Batching Smart Contract README (commit of 15 February 2023)</a><div class="muted" style="font-size:13px">Paralinker (paralinker/eth2-batch-contract on GitHub) · the entity&#x27;s own · retrieved 2026-10-25</div><p class="excerpt">The Staked ETH2 Deposit Batching smart contract is deployed and verified here: https://etherscan.io/address/0xfC3e2b3003859E28F6eFD8321615731F9b02c81F</p><div class="muted mono">sha256 df4640da016e8b07073ce57fce0e5481e7c2d3eb9f9a9bc2e17ce1a669e41406</div></div><div class="card"><a href="https://paralinker.gitbook.io/paralinker-docs/stake/ethereum/how-to">Ethereum 2.0 Stake Steps Guide (Paralinker documentation)</a><div class="muted" style="font-size:13px">Paralinker (docs.paralinker.com) · the entity&#x27;s own · retrieved 2026-10-25</div><p class="excerpt">you can provide the ETH1 address, we help you create the key ... We use batch mode to complete staking contract transactions. https://github.com/paralinker/eth2-batch-contract</p><div class="muted mono">sha256 1399eed8f159ac6d35abec4422906f29dcfa202bc4d6cdf4a4b7d4506f4e3038</div></div>
+<h2>Treemap boxes resting on it</h2><div class="table-wrap"><table><thead><tr><th>Box</th><th class="num">ETH now</th><th class="num">Peak ETH</th></tr></thead><tbody><tr><td>Paralinker › Paralinker direct staking › Deposited via 0xfc3e…c81f</td><td class="num">3,584</td><td class="num">29,984</td></tr></tbody></table></div>
+</main>
+</body>
+</html>

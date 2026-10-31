@@ -1,0 +1,77 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>0135-consensys-metamask-validator-staking: MetaMask&#x27;s validator staking contract, though deployed by Kiln, is administered by Consensys, whose Safes a</title>
+<style>
+:root { color-scheme: light; --surface-0: #f4f3f0; --surface-1: #fcfcfb; --border: #d9d8d3; --text-primary: #0b0b0b;
+        --text-secondary: #52514e; --text-muted: #77766f; --accent: #2a78d6; --chip: #ebe9e4; }
+@media (prefers-color-scheme: dark) {
+  :root:where(:not([data-theme="light"])) { color-scheme: dark; --surface-0: #121211; --surface-1: #1a1a19;
+    --border: #3a3a37; --text-primary: #f0efec; --text-secondary: #c3c2b7; --text-muted: #96958c; --accent: #3987e5;
+    --chip: #2a2a28; }
+}
+:root[data-theme="dark"] { color-scheme: dark; --surface-0: #121211; --surface-1: #1a1a19; --border: #3a3a37;
+  --text-primary: #f0efec; --text-secondary: #c3c2b7; --text-muted: #96958c; --accent: #3987e5; --chip: #2a2a28; }
+* { box-sizing: border-box; }
+body { margin: 0; background: var(--surface-0); color: var(--text-primary);
+       font: 15px/1.55 system-ui, -apple-system, "Segoe UI", sans-serif; }
+main { max-width: 860px; margin: 0 auto; padding: 32px 16px 64px; }
+a { color: var(--accent); }
+h1 { font-size: 22px; line-height: 1.3; font-weight: 600; margin: 4px 0 12px; }
+h2 { font-size: 15px; font-weight: 600; margin: 28px 0 8px; color: var(--text-secondary);
+     text-transform: uppercase; letter-spacing: 0.04em; }
+p { margin: 0 0 12px; }
+.crumbs { font-size: 13px; color: var(--text-muted); }
+.lede { font-size: 17px; }
+.muted { color: var(--text-muted); }
+.chip { display: inline-block; padding: 1px 8px; border-radius: 10px; background: var(--chip); font-size: 12px;
+        color: var(--text-secondary); margin-right: 4px; white-space: nowrap; }
+.card { background: var(--surface-1); border: 1px solid var(--border); border-radius: 6px; padding: 14px 16px;
+        margin: 0 0 12px; }
+.stats { display: flex; flex-wrap: wrap; gap: 12px; margin: 16px 0; }
+.stat { background: var(--surface-1); border: 1px solid var(--border); border-radius: 6px; padding: 10px 14px;
+        min-width: 140px; }
+.stat b { display: block; font-size: 20px; font-variant-numeric: tabular-nums; }
+.stat span { font-size: 12px; color: var(--text-muted); }
+ul.grounds { list-style: none; padding: 0; margin: 0; }
+ul.grounds li { padding: 6px 0; border-bottom: 1px solid var(--border); }
+ul.grounds li:last-child { border-bottom: 0; }
+table { width: 100%; border-collapse: collapse; background: var(--surface-1); font-size: 14px; }
+th, td { text-align: left; padding: 7px 8px; border-bottom: 1px solid var(--border); vertical-align: top; }
+th { font-weight: 600; color: var(--text-secondary); cursor: pointer; white-space: nowrap; user-select: none; }
+td.num, th.num { text-align: right; font-variant-numeric: tabular-nums; white-space: nowrap; }
+code, .mono { font: 12.5px ui-monospace, SFMono-Regular, Menlo, monospace; word-break: break-all; }
+details summary { cursor: pointer; color: var(--accent); }
+.excerpt { border-left: 3px solid var(--border); padding: 2px 0 2px 10px; color: var(--text-secondary);
+           font-size: 14px; white-space: pre-wrap; }
+input[type=search] { width: 100%; padding: 8px 10px; font: inherit; border: 1px solid var(--border);
+                     border-radius: 6px; background: var(--surface-1); color: var(--text-primary); margin: 8px 0 12px; }
+.table-wrap { overflow-x: auto; }
+@media (max-width: 640px) { .hide-sm { display: none; } }
+</style>
+<script data-goatcounter="https://pintail.goatcounter.com/count" async src="https://gc.zgo.at/count.js"></script>
+</head>
+<body>
+<main>
+<p class="crumbs"><a href="../">Dataset</a> › <a href="./">Decisions</a> › 0135-consensys-metamask-validator-staking</p>
+<h1>MetaMask&#x27;s validator staking contract, though deployed by Kiln, is administered by Consensys, whose Safes are its only operator&#x27;s fee recipient and its treasury; validators deposited through it are allocated by Consensys, not Kiln.</h1>
+<p><span class="chip">Anchor</span> <span class="muted">· decided 2026-10-20</span></p>
+<p class="muted">Replaces <a href="0036-kiln-metamask-validator-staking.html">0036-kiln-metamask-validator-staking</a>.</p>
+<p class="lede">This contract, behind MetaMask&#x27;s validator staking, is Consensys&#x27;s; validators deposited through it are allocated by Consensys.</p>
+<div class="stats"><div class="stat"><b>1,085</b><span>validators resting on it now</span></div><div class="stat"><b>34,720</b><span>ETH now</span></div><div class="stat"><b>122,368</b><span>ETH at its peak</span></div></div>
+<h2>Grounds</h2><div class="card"><ul class="grounds"><li><span class="chip">On chain</span>Its admin, which adds operators and sets fees, is the withdrawal address Consensys&#x27;s Rocket Pool Oracle DAO node registered</li><li><span class="chip">On chain</span>Its only operator&#x27;s fee recipient and its treasury were first funded by the account that also funded that Consensys Safe</li><li><span class="chip">Third party</span>MetaMask&#x27;s launch coverage names Consensys Staking as the one running the validators</li></ul></div>
+<h2>Explanation</h2><p>The contract 0xdc71…bebd runs MetaMask&#x27;s validator staking. Although Kiln&#x27;s deployment account created it, Consensys administers it, and validators first deposited through it are attributed to Consensys as allocator and operator, while each MetaMask user keeps their own withdrawal address. 8,016 validators were deposited through it between January 2024 and September 2026; about 1,090 were active in October 2026 with some 35k ETH.</p>
+<p><strong>What the contract records.</strong> It is Kiln&#x27;s staking contract code, but reading it on chain shows who holds its roles. Its administrator, which adds operators and sets fees, is a Safe multisig. Only one operator has ever been registered, itself a Safe, whose fee recipient is another Safe. The contract takes a 10% commission, of which 90% goes to the operator&#x27;s fee recipient and the rest to a treasury account. Nothing on chain gives Kiln any role or fee since the contract was created.</p>
+<p><strong>Why Consensys.</strong> The administrator Safe is the withdrawal address registered by Consensys&#x27;s node in Rocket Pool&#x27;s Oracle DAO, a node whose member ID (&quot;consensyscodefi&quot;) and URL Consensys set itself, admitted by the other members&#x27; vote, as read from Rocket Pool&#x27;s registry (decision 0071). The treasury and the operator&#x27;s fee recipient were both first funded by an account that also sent ETH to that Consensys Safe, and the Safe&#x27;s creator first funded three of the fee recipient&#x27;s owners. So the commission goes to Consensys. Coverage of MetaMask&#x27;s launch in January 2024 (<a href="https://www.theblock.co/post/273656/metamask-introduces-ethereum-validator-staking-feature-powered-by-consensys">The Block</a>, <a href="https://forklog.com/en/news/metamask-introduces-ethereum-validator-staking-feature">ForkLog</a>) says MetaMask partnered with Consensys Staking to run the validators, and does not mention Kiln. <a href="https://hackenproof.com/programs/metamask-validator-staking-smart-contracts">MetaMask&#x27;s bug bounty</a> describes the contract as Kiln&#x27;s on-chain staking code.</p>
+<p><strong>Who runs the nodes.</strong> The validators&#x27; client builds follow the fleet that runs Coinbase&#x27;s own retail validators, release by release. Coinbase Cloud <a href="https://www.kiln.fi/post/coinbase-cloud-joins-the-kiln-on-chain-platform-to-offer-staking-for-coinbase-wallet-and-other-self-custodial-wallets">joined Kiln&#x27;s on-chain platform in 2023</a> as an operator for self-custodial wallets, so Consensys may run these validators on Coinbase&#x27;s infrastructure. No source names Coinbase for MetaMask, so Consensys remains the operator of record.</p>
+<p>The decision would change with a Consensys or Kiln statement that Kiln chooses the operator, or an operator added that Consensys does not control.</p>
+<h2>What would change it</h2><p>A Consensys or Kiln statement that Kiln chooses the operator, or an operator added that Consensys does not control.</p>
+<h2>Evidence</h2><p class="muted">Transactions and contract calls anyone can repeat on their own node.</p><div class="card"><ul class="grounds"><li><span class="mono">Rocket Pool: RocketStorage 0x1d8f…fa46 getAddress(&quot;contract.address&quot;+&quot;rocketDAONodeTrusted&quot;) = 0xb8e7…2cc9; its member 0xdf590a63b91e8278a9102bee9aafd444f8a4b780 has getMemberID() &quot;consensyscodefi&quot; and getMemberUrl() &quot;https://consensys.net/codefi&quot;; RocketStorage getNodeWithdrawalAddress(0xdf59…b780) = 0x5bc5ec5130f66f13d5c21ac6811a7e624ed3c7c6</span> — Read at the latest block, 2026-10-21</li><li><span class="mono">eth_call 0xdc71affc862fceb6ad32be58e098423a7727bebd getAdmin() = 0x5bc5ec5130f66f13d5c21ac6811a7e624ed3c7c6</span></li><li><span class="mono">eth_call 0xdc71affc862fceb6ad32be58e098423a7727bebd getOperator(0) = (0xf2f7c2cef6da4efe800746762132dcff2c56a2bc, fee recipient 0x9dd3c44ff63293322b96c27f0c0c5ff158a4bd6c, 8,025 funded); getOperator(1) returns no operator</span></li><li><span class="mono">eth_call 0xdc71affc862fceb6ad32be58e098423a7727bebd getTreasury() = 0xb631db8b5d95947025b77bfb44de32efa8bc15da, getGlobalFee() = 1000, getOperatorFee() = 9000</span></li><li><a class="mono" href="https://etherscan.io/tx/0x80d21e7c1fc6afe1d071611aecaf2205242b7938be442a83c0b939bfdefbad6b">0x80d21e7c…defbad6b</a> — 0x24fc… creates the Consensys Safe 0x5bc5…, block 13,629,065</li><li><a class="mono" href="https://etherscan.io/tx/0xe870285a3d4e39d0b3f75e902aef4bff521866a9ea5c061b43b5f6ac49c63dca">0xe870285a…49c63dca</a> — 0xc241… first funds the treasury 0xb631…, block 18,941,544</li><li><a class="mono" href="https://etherscan.io/tx/0xb2b7adc0e0b94e0b8af97258fcd147bd5f445473ee8d1a12b192d74c2400c509">0xb2b7adc0…2400c509</a> — 0xc241… first funds the fee recipient 0x9dd3…, block 20,865,135</li><li><a class="mono" href="https://etherscan.io/tx/0x71b46c2eaceab8fe6581f97292d55e475c9bb42a23639a94e947d0b2b10220c0">0x71b46c2e…b10220c0</a> — 0x24fc… first funds fee-recipient owner 0x7f07…, block 19,327,891</li><li><a class="mono" href="https://etherscan.io/tx/0x8696738d403b27c56fb40f8c47d93fda1d60bd6a0c142eea246ba8605d22c0a2">0x8696738d…5d22c0a2</a> — Owner 0xa6d5… creates the operator Safe 0xf2f7…, block 18,533,205</li></ul></div>
+<h2>Sources</h2><div class="card"><a href="https://www.theblock.co/post/273656/metamask-introduces-ethereum-validator-staking-feature-powered-by-consensys">MetaMask introduces Ethereum validator staking feature, powered by Consensys (January 2024)</a><div class="muted" style="font-size:13px">The Block · third party · retrieved 2026-10-20</div><p class="excerpt">partnered with Consensys Staking to run Ethereum validator nodes on behalf of users willing to stake at least 32 eth</p><div class="muted mono">sha256 2437572bdec8ac280ad776f15490a8997db7abc9bdf1f28b76578d7a6578a6a0</div></div><div class="card"><a href="https://forklog.com/en/news/metamask-introduces-ethereum-validator-staking-feature">MetaMask introduces Ethereum validator staking feature (January 2024)</a><div class="muted" style="font-size:13px">ForkLog · third party · retrieved 2026-10-20</div><p class="excerpt">Consensys Staking provides both software and hardware support. According to the statement, the service manages over 33,000 validators with 99.99% uptime, accounting for 4% of the total staked ether.</p><div class="muted mono">sha256 18d06b61339b2163e359ef4229e3d070d7729c0e09cfa572e336f951a0d7626a</div></div><div class="card"><a href="https://www.kiln.fi/post/coinbase-cloud-joins-the-kiln-on-chain-platform-to-offer-staking-for-coinbase-wallet-and-other-self-custodial-wallets">Coinbase Cloud joins the Kiln On-chain platform to offer staking for Coinbase Wallet and other self-custodial wallets (2023-09-11)</a><div class="muted" style="font-size:13px">Kiln · the entity&#x27;s own · retrieved 2026-10-20</div><p class="excerpt">We are thrilled to join the Kiln On-chain platform as their first node operator.</p><div class="muted mono">sha256 e892e457f329cd16896effd03e938046031840d91d690ff350676bf3b131f603</div></div><div class="card"><a href="https://hackenproof.com/programs/metamask-validator-staking-smart-contracts">MetaMask Validator Staking Smart Contracts bug bounty</a><div class="muted" style="font-size:13px">HackenProof (MetaMask&#x27;s program) · third party · retrieved 2026-10-17</div><p class="excerpt">executed by/via the Kiln On-Chain (v1) smart contracts [...] 0xdc71affc862fceb6ad32be58e098423a7727bebd</p><div class="muted mono">sha256 352bb9964787746435d1612eca30114c0f527ebd1bf5888669aa93d44298d488</div></div>
+<h2>Leads</h2><p class="muted">Third-party pages, such as explorer labels, that pointed the research but are not relied on.</p><ul><li><a href="https://etherscan.io/address/0x5bc5ec5130f66f13d5c21ac6811a7e624ed3c7c6">Etherscan address page</a></li><li><a href="https://metadata.services.blockscout.com/api/v1/metadata?chainId=1&amp;addresses=0x5bc5ec5130f66f13d5c21ac6811a7e624ed3c7c6">Blockscout address page</a></li><li><a href="https://etherscan.io/address/0xdc71affc862fceb6ad32be58e098423a7727bebd">Etherscan address page</a></li><li><a href="https://metadata.services.blockscout.com/api/v1/metadata?chainId=1&amp;addresses=0xdc71affc862fceb6ad32be58e098423a7727bebd">Blockscout address page</a></li><li><a href="https://etherscan.io/address/0x6c74fda18ea90e1c61e800dd9b4508ac782e0dc8">Etherscan address page</a></li><li><a href="https://metadata.services.blockscout.com/api/v1/metadata?chainId=1&amp;addresses=0x6c74fda18ea90e1c61e800dd9b4508ac782e0dc8">Blockscout address page</a></li></ul>
+<h2>Treemap boxes resting on it</h2><div class="table-wrap"><table><thead><tr><th>Box</th><th class="num">ETH now</th><th class="num">Peak ETH</th></tr></thead><tbody><tr><td>Consensys › Consensys Staking › Deposited via 0xdc71…bebd</td><td class="num">34,720</td><td class="num">122,368</td></tr></tbody></table></div>
+</main>
+</body>
+</html>

@@ -1,0 +1,74 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>0159-swell-rsweth-eigenlayer-manager: rswETH&#x27;s Deposit Manager names this contract its EigenLayerManager; validators it deposited, withdrawing to the </title>
+<style>
+:root { color-scheme: light; --surface-0: #f4f3f0; --surface-1: #fcfcfb; --border: #d9d8d3; --text-primary: #0b0b0b;
+        --text-secondary: #52514e; --text-muted: #77766f; --accent: #2a78d6; --chip: #ebe9e4; }
+@media (prefers-color-scheme: dark) {
+  :root:where(:not([data-theme="light"])) { color-scheme: dark; --surface-0: #121211; --surface-1: #1a1a19;
+    --border: #3a3a37; --text-primary: #f0efec; --text-secondary: #c3c2b7; --text-muted: #96958c; --accent: #3987e5;
+    --chip: #2a2a28; }
+}
+:root[data-theme="dark"] { color-scheme: dark; --surface-0: #121211; --surface-1: #1a1a19; --border: #3a3a37;
+  --text-primary: #f0efec; --text-secondary: #c3c2b7; --text-muted: #96958c; --accent: #3987e5; --chip: #2a2a28; }
+* { box-sizing: border-box; }
+body { margin: 0; background: var(--surface-0); color: var(--text-primary);
+       font: 15px/1.55 system-ui, -apple-system, "Segoe UI", sans-serif; }
+main { max-width: 860px; margin: 0 auto; padding: 32px 16px 64px; }
+a { color: var(--accent); }
+h1 { font-size: 22px; line-height: 1.3; font-weight: 600; margin: 4px 0 12px; }
+h2 { font-size: 15px; font-weight: 600; margin: 28px 0 8px; color: var(--text-secondary);
+     text-transform: uppercase; letter-spacing: 0.04em; }
+p { margin: 0 0 12px; }
+.crumbs { font-size: 13px; color: var(--text-muted); }
+.lede { font-size: 17px; }
+.muted { color: var(--text-muted); }
+.chip { display: inline-block; padding: 1px 8px; border-radius: 10px; background: var(--chip); font-size: 12px;
+        color: var(--text-secondary); margin-right: 4px; white-space: nowrap; }
+.card { background: var(--surface-1); border: 1px solid var(--border); border-radius: 6px; padding: 14px 16px;
+        margin: 0 0 12px; }
+.stats { display: flex; flex-wrap: wrap; gap: 12px; margin: 16px 0; }
+.stat { background: var(--surface-1); border: 1px solid var(--border); border-radius: 6px; padding: 10px 14px;
+        min-width: 140px; }
+.stat b { display: block; font-size: 20px; font-variant-numeric: tabular-nums; }
+.stat span { font-size: 12px; color: var(--text-muted); }
+ul.grounds { list-style: none; padding: 0; margin: 0; }
+ul.grounds li { padding: 6px 0; border-bottom: 1px solid var(--border); }
+ul.grounds li:last-child { border-bottom: 0; }
+table { width: 100%; border-collapse: collapse; background: var(--surface-1); font-size: 14px; }
+th, td { text-align: left; padding: 7px 8px; border-bottom: 1px solid var(--border); vertical-align: top; }
+th { font-weight: 600; color: var(--text-secondary); cursor: pointer; white-space: nowrap; user-select: none; }
+td.num, th.num { text-align: right; font-variant-numeric: tabular-nums; white-space: nowrap; }
+code, .mono { font: 12.5px ui-monospace, SFMono-Regular, Menlo, monospace; word-break: break-all; }
+details summary { cursor: pointer; color: var(--accent); }
+.excerpt { border-left: 3px solid var(--border); padding: 2px 0 2px 10px; color: var(--text-secondary);
+           font-size: 14px; white-space: pre-wrap; }
+input[type=search] { width: 100%; padding: 8px 10px; font: inherit; border: 1px solid var(--border);
+                     border-radius: 6px; background: var(--surface-1); color: var(--text-primary); margin: 8px 0 12px; }
+.table-wrap { overflow-x: auto; }
+@media (max-width: 640px) { .hide-sm { display: none; } }
+</style>
+<script data-goatcounter="https://pintail.goatcounter.com/count" async src="https://gc.zgo.at/count.js"></script>
+</head>
+<body>
+<main>
+<p class="crumbs"><a href="../">Dataset</a> › <a href="./">Decisions</a> › 0159-swell-rsweth-eigenlayer-manager</p>
+<h1>rswETH&#x27;s Deposit Manager names this contract its EigenLayerManager; validators it deposited, withdrawing to the EigenPods of its staker proxies, are Swell rswETH&#x27;s.</h1>
+<p><span class="chip">Anchor</span> <span class="muted">· decided 2026-10-22</span></p>
+<p class="lede">Validators whose first deposit Swell&#x27;s rswETH EigenLayerManager sent, and those withdrawing to the EigenPods those deposits name, are Swell rswETH&#x27;s.</p>
+<div class="stats"><div class="stat"><b>0</b><span>validators resting on it now</span></div><div class="stat"><b>0</b><span>ETH now</span></div><div class="stat"><b>25,600</b><span>ETH at its peak</span></div></div>
+<h2>Grounds</h2><div class="card"><ul class="grounds"><li><span class="chip">On chain</span>rswETH&#x27;s Deposit Manager names this contract its EigenLayerManager, which shares the rswETH token&#x27;s AccessControlManager</li><li><span class="chip">First party</span>Swell&#x27;s published code has it stake validators through staker proxies, each with its own EigenPod</li><li><span class="chip">On chain</span>It sent the deposits of 3,856 validators from August 2024, all withdrawing to its proxies&#x27; pods; 168 are active now</li></ul></div>
+<h2>Explanation</h2><p>The contract 0xc94c…0936 is the EigenLayer manager of Swell&#x27;s restaking token rswETH. Validators whose first deposit it sent, and those withdrawing to the EigenLayer pods of its staker proxies, are attributed to Swell rswETH as allocator. It deposited 3,856 validators from August 2024, holding as much as 26k ETH.</p>
+<p><strong>Identification on chain.</strong> rswETH&#x27;s Deposit Manager (decision 0158) names this contract as its EigenLayer manager, and the manager shares the rswETH token&#x27;s access-control manager. <a href="https://github.com/SwellNetwork/v3-core-public/blob/5827c4f1294b00f2939e582b1d3ac448f87fa218/contracts/lrt/contracts/implementations/EigenLayerManager.sol">Swell&#x27;s published code</a> has the manager stake validators through staker proxies, each with its own EigenLayer pod; on chain it has 40 such proxies, each owning a pod, and each proxy names the Deposit Manager as its own. Every validator it deposited withdraws to one of those pods.</p>
+<p><strong>Consistency with public information.</strong> <a href="https://github.com/DefiLlama/DefiLlama-Adapters/blob/9791503c846c7970bd4c6900a933d18aa5f85c17/projects/swell-restaking/index.js">DefiLlama has measured Swell&#x27;s restaking value</a> from the rswETH contract since the day after its first deposit. rswETH&#x27;s supply exceeds the ETH staked by these validators; rswETH also accepts other liquid staking tokens, restaked in EigenLayer directly, which would account for the difference.</p>
+<p>The decision would change with a Swell statement contradicting it, or evidence that the rswETH contracts are not Swell&#x27;s.</p>
+<h2>What would change it</h2><p>A Swell statement contradicting it, or evidence that the rswETH contracts are not Swell&#x27;s.</p>
+<h2>Evidence</h2><p class="muted">Transactions and contract calls anyone can repeat on their own node.</p><div class="card"><ul class="grounds"><li><a class="mono" href="https://etherscan.io/tx/0x4c85642069f4e9b74f850f64a4452c063faf73ff5baa198aae83ee428e39edf2">0x4c856420…8e39edf2</a> — The first deposit sent through Swell&#x27;s rswETH EigenLayerManager, 26 August 2024</li></ul></div>
+<h2>Sources</h2><div class="card"><a href="https://github.com/SwellNetwork/v3-core-public/blob/5827c4f1294b00f2939e582b1d3ac448f87fa218/contracts/lrt/contracts/implementations/EigenLayerManager.sol">EigenLayerManager.sol, rswETH contracts (commit of 8 July 2026)</a><div class="muted" style="font-size:13px">Swell Network (SwellNetwork/v3-core-public on GitHub) · the entity&#x27;s own · retrieved 2026-10-22</div><p class="excerpt">This contract facilitates interaction with EigenLayer via StakerProxies. StakerProxies manage an EigenPod and are the accounts which ultimately stake funds in EigenLayer.</p><div class="muted mono">sha256 3bd0ddd3035a68a0f51a39af08a28e48d029f0f78cc9d378f029c1773c7a5604</div></div><div class="card"><a href="https://github.com/DefiLlama/DefiLlama-Adapters/blob/9791503c846c7970bd4c6900a933d18aa5f85c17/projects/swell-restaking/index.js">Swell restaking TVL adapter, projects/swell-restaking/index.js (last changed 12 August 2024)</a><div class="muted" style="font-size:13px">DefiLlama (DefiLlama/DefiLlama-Adapters on GitHub) · third party · retrieved 2026-10-22</div><p class="excerpt">const totalSupply = await api.call({ target: &#x27;0xFAe103DC9cf190eD75350761e95403b7b8aFa6c0&#x27;, abi: &#x27;uint256:totalSupply&#x27;});</p><div class="muted mono">sha256 a9d766cead11cad8f47b4593ee14f09a41f8d212fd9951cee4343164adca90a7</div></div>
+<h2>Treemap boxes resting on it</h2><div class="table-wrap"><table><thead><tr><th>Box</th><th class="num">ETH now</th><th class="num">Peak ETH</th></tr></thead><tbody><tr><td>Swell › Swell rswETH › Withdraws to 0x5178…7eea</td><td class="num">0</td><td class="num">6,400</td></tr><tr><td>Swell › Swell rswETH › Withdraws to 0x82e2…c3d6</td><td class="num">0</td><td class="num">6,400</td></tr><tr><td>Swell › Swell rswETH › Withdraws to 0x8bd5…25db</td><td class="num">0</td><td class="num">6,400</td></tr><tr><td>Swell › Swell rswETH › Withdraws to 0xfc47…93b3</td><td class="num">0</td><td class="num">6,400</td></tr></tbody></table></div>
+</main>
+</body>
+</html>

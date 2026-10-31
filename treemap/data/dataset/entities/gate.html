@@ -1,0 +1,99 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Gate: roles in the validator set</title>
+<style>
+:root { color-scheme: light; --surface-0: #f4f3f0; --surface-1: #fcfcfb; --border: #d9d8d3; --text-primary: #0b0b0b;
+        --text-secondary: #52514e; --text-muted: #77766f; --accent: #2a78d6; --chip: #ebe9e4; }
+@media (prefers-color-scheme: dark) {
+  :root:where(:not([data-theme="light"])) { color-scheme: dark; --surface-0: #121211; --surface-1: #1a1a19;
+    --border: #3a3a37; --text-primary: #f0efec; --text-secondary: #c3c2b7; --text-muted: #96958c; --accent: #3987e5;
+    --chip: #2a2a28; }
+}
+:root[data-theme="dark"] { color-scheme: dark; --surface-0: #121211; --surface-1: #1a1a19; --border: #3a3a37;
+  --text-primary: #f0efec; --text-secondary: #c3c2b7; --text-muted: #96958c; --accent: #3987e5; --chip: #2a2a28; }
+* { box-sizing: border-box; }
+body { margin: 0; background: var(--surface-0); color: var(--text-primary);
+       font: 15px/1.55 system-ui, -apple-system, "Segoe UI", sans-serif; }
+main { max-width: 860px; margin: 0 auto; padding: 32px 16px 64px; }
+a { color: var(--accent); }
+h1 { font-size: 22px; line-height: 1.3; font-weight: 600; margin: 4px 0 12px; }
+h2 { font-size: 15px; font-weight: 600; margin: 28px 0 8px; color: var(--text-secondary);
+     text-transform: uppercase; letter-spacing: 0.04em; }
+p { margin: 0 0 12px; }
+.crumbs { font-size: 13px; color: var(--text-muted); }
+.lede { font-size: 17px; }
+.muted { color: var(--text-muted); }
+.chip { display: inline-block; padding: 1px 8px; border-radius: 10px; background: var(--chip); font-size: 12px;
+        color: var(--text-secondary); margin-right: 4px; white-space: nowrap; }
+.card { background: var(--surface-1); border: 1px solid var(--border); border-radius: 6px; padding: 14px 16px;
+        margin: 0 0 12px; }
+.stats { display: flex; flex-wrap: wrap; gap: 12px; margin: 16px 0; }
+.stat { background: var(--surface-1); border: 1px solid var(--border); border-radius: 6px; padding: 10px 14px;
+        min-width: 140px; }
+.stat b { display: block; font-size: 20px; font-variant-numeric: tabular-nums; }
+.stat span { font-size: 12px; color: var(--text-muted); }
+ul.grounds { list-style: none; padding: 0; margin: 0; }
+ul.grounds li { padding: 6px 0; border-bottom: 1px solid var(--border); }
+ul.grounds li:last-child { border-bottom: 0; }
+table { width: 100%; border-collapse: collapse; background: var(--surface-1); font-size: 14px; }
+th, td { text-align: left; padding: 7px 8px; border-bottom: 1px solid var(--border); vertical-align: top; }
+th { font-weight: 600; color: var(--text-secondary); cursor: pointer; white-space: nowrap; user-select: none; }
+td.num, th.num { text-align: right; font-variant-numeric: tabular-nums; white-space: nowrap; }
+code, .mono { font: 12.5px ui-monospace, SFMono-Regular, Menlo, monospace; word-break: break-all; }
+details summary { cursor: pointer; color: var(--accent); }
+.excerpt { border-left: 3px solid var(--border); padding: 2px 0 2px 10px; color: var(--text-secondary);
+           font-size: 14px; white-space: pre-wrap; }
+input[type=search] { width: 100%; padding: 8px 10px; font: inherit; border: 1px solid var(--border);
+                     border-radius: 6px; background: var(--surface-1); color: var(--text-primary); margin: 8px 0 12px; }
+.table-wrap { overflow-x: auto; }
+@media (max-width: 640px) { .hide-sm { display: none; } }
+</style>
+<script data-goatcounter="https://pintail.goatcounter.com/count" async src="https://gc.zgo.at/count.js"></script>
+</head>
+<body>
+<main>
+<style>
+.chart { width: 100%; height: auto; background: var(--surface-1); border: 1px solid var(--border); border-radius: 6px; }
+.chart text { fill: var(--text-muted); font: 11px system-ui, sans-serif; }
+.chart .grid { stroke: var(--border); stroke-width: 1; }
+.legend { display: flex; flex-wrap: wrap; gap: 14px; font-size: 13px; color: var(--text-secondary); margin: 6px 0 14px; }
+.legend i { display: inline-block; width: 16px; height: 3px; vertical-align: middle; margin-right: 5px; background: var(--c); }
+.legend i.dashed { background: repeating-linear-gradient(90deg, var(--c) 0 6px, transparent 6px 9px); }
+.chart .event { stroke: var(--text-muted); stroke-width: 1; stroke-dasharray: 3 3; }
+.chart .event-n { fill: var(--text-secondary); font-weight: 600; }
+ol.events { padding-left: 0; list-style: none; }
+ol.events li { margin: 4px 0; }
+ol.events .n { display: inline-block; min-width: 1.6em; font-weight: 600; color: var(--text-secondary); }
+</style><p class="crumbs"><a href="../">Dataset</a> › <a href="./">Entities</a></p>
+<h1>Gate</h1>
+<p><span class="chip">exchange</span> <span class="mono muted">gate</span></p>
+<p><strong>How much ETH Gate has had in each role recorded in this dataset, week by week, from
+the start of the beacon chain (1 December 2020) to 30 October 2026.</strong> Stake is the effective balance
+of active validators.</p>
+<ul><li><strong>Allocator</strong>: chose where the stake went. Counts the stake in the treemap boxes under Gate. <span class="muted">Recorded for 89% of active stake.</span></li><li><strong>Operator</strong>: ran the validators. <span class="muted">Recorded for 49% of active stake.</span></li><li><strong>Custodian</strong>: held the stake on behalf of a client. <span class="muted">Recorded for 5.5% of active stake.</span></li><li><strong>Principal</strong>: owned the staked ETH. <span class="muted">Recorded for 5.4% of active stake.</span></li></ul>
+<p class="muted">Allocators are recorded for most stake. Operators, custodians and principals are recorded only where
+specific evidence names them, so their figures here (dashed on the charts) are lower bounds: no figure does not mean
+no role.</p>
+<h2>Its own roles</h2><svg class="chart" viewBox="0 0 760 240" role="img" aria-label="ETH by role over time"><line class="grid" x1="52" x2="752" y1="218.0" y2="218.0"/><text x="46" y="222.0" text-anchor="end">0</text><line class="grid" x1="52" x2="752" y1="114.0" y2="114.0"/><text x="46" y="118.0" text-anchor="end">91k</text><line class="grid" x1="52" x2="752" y1="10.0" y2="10.0"/><text x="46" y="14.0" text-anchor="end">183k</text><text x="52.0" y="234" text-anchor="middle">2020</text><text x="181.1" y="234" text-anchor="middle">2022</text><text x="298.9" y="234" text-anchor="middle">2023</text><text x="416.7" y="234" text-anchor="middle">2024</text><text x="536.8" y="234" text-anchor="middle">2025</text><text x="654.6" y="234" text-anchor="middle">2026</text><polyline fill="none" stroke="#2a78d6" stroke-width="2" points="52.0,218.0 54.3,181.5 56.5,181.5 58.8,181.5 61.1,181.5 63.3,181.5 65.6,181.5 67.9,181.5 70.1,181.5 72.4,181.5 74.7,181.5 76.9,181.5 79.2,181.5 81.4,181.5 83.7,181.5 86.0,181.5 88.2,181.5 90.5,181.5 92.8,181.5 95.0,181.5 97.3,181.5 99.6,181.5 101.8,181.5 104.1,181.5 106.4,181.5 108.6,181.5 110.9,181.5 113.2,181.5 115.4,181.5 117.7,181.5 120.0,181.5 122.2,181.5 124.5,181.5 126.8,181.5 129.0,181.5 131.3,181.5 133.6,181.5 135.8,181.5 138.1,181.5 140.3,181.5 142.6,181.5 144.9,181.5 147.1,181.5 149.4,181.5 151.7,181.5 153.9,181.5 156.2,181.5 158.5,181.5 160.7,181.5 163.0,181.5 165.3,181.5 167.5,181.5 169.8,181.5 172.1,181.5 174.3,181.5 176.6,181.5 178.9,181.5 181.1,181.5 183.4,181.5 185.7,181.5 187.9,181.5 190.2,181.5 192.5,181.5 194.7,181.5 197.0,181.5 199.2,181.5 201.5,181.5 203.8,181.5 206.0,181.5 208.3,181.5 210.6,181.5 212.8,181.5 215.1,181.5 217.4,181.5 219.6,181.5 221.9,181.5 224.2,181.5 226.4,181.5 228.7,181.5 231.0,181.5 233.2,181.5 235.5,181.5 237.8,181.5 240.0,181.5 242.3,181.5 244.6,181.5 246.8,181.5 249.1,181.5 251.4,181.5 253.6,181.5 255.9,181.5 258.1,181.5 260.4,181.5 262.7,181.5 264.9,181.5 267.2,181.5 269.5,181.5 271.7,181.5 274.0,181.5 276.3,181.5 278.5,181.5 280.8,181.5 283.1,181.5 285.3,181.5 287.6,181.5 289.9,181.5 292.1,181.5 294.4,181.5 296.7,181.5 298.9,181.5 301.2,181.5 303.5,181.5 305.7,181.5 308.0,181.5 310.3,181.5 312.5,181.5 314.8,181.5 317.0,181.5 319.3,181.5 321.6,181.5 323.8,181.5 326.1,181.5 328.4,181.5 330.6,181.5 332.9,181.5 335.2,181.4 337.4,217.9 339.7,218.0 342.0,218.0 344.2,205.9 346.5,205.9 348.8,205.9 351.0,205.9 353.3,205.9 355.6,205.9 357.8,168.0 360.1,168.0 362.4,168.0 364.6,163.7 366.9,158.6 369.2,128.5 371.4,128.5 373.7,128.5 375.9,128.5 378.2,128.5 380.5,128.5 382.7,128.5 385.0,128.5 387.3,128.5 389.5,128.5 391.8,128.5 394.1,101.7 396.3,75.3 398.6,73.4 400.9,73.4 403.1,73.4 405.4,73.4 407.7,73.4 409.9,73.4 412.2,73.1 414.5,67.4 416.7,63.6 419.0,63.2 421.3,63.2 423.5,57.9 425.8,57.9 428.1,57.9 430.3,57.9 432.6,57.9 434.8,57.9 437.1,57.9 439.4,57.9 441.6,57.9 443.9,57.9 446.2,57.9 448.4,54.9 450.7,54.9 453.0,54.9 455.2,54.9 457.5,54.9 459.8,54.9 462.0,54.9 464.3,54.9 466.6,54.9 468.8,54.9 471.1,54.9 473.4,54.9 475.6,43.5 477.9,43.5 480.2,43.5 482.4,43.5 484.7,43.5 487.0,43.5 489.2,43.5 491.5,43.5 493.7,43.5 496.0,43.5 498.3,43.5 500.5,43.5 502.8,43.5 505.1,43.5 507.3,43.5 509.6,43.5 511.9,43.5 514.1,43.5 516.4,43.5 518.7,43.5 520.9,43.5 523.2,43.5 525.5,45.8 527.7,40.4 530.0,40.4 532.3,29.1 534.5,29.1 536.8,14.0 539.1,14.0 541.3,14.0 543.6,14.0 545.9,14.0 548.1,14.0 550.4,14.0 552.6,14.0 554.9,14.0 557.2,14.0 559.4,14.0 561.7,14.0 564.0,14.0 566.2,14.0 568.5,14.0 570.8,14.0 573.0,14.0 575.3,14.0 577.6,14.0 579.8,14.0 582.1,14.0 584.4,14.0 586.6,14.0 588.9,14.0 591.2,14.0 593.4,14.0 595.7,14.0 598.0,14.0 600.2,14.0 602.5,14.0 604.8,10.0 607.0,10.0 609.3,10.0 611.5,10.0 613.8,10.0 616.1,10.0 618.3,10.0 620.6,10.0 622.9,10.0 625.1,10.0 627.4,10.0 629.7,10.0 631.9,10.0 634.2,10.0 636.5,10.0 638.7,10.0 641.0,10.0 643.3,10.0 645.5,10.0 647.8,10.0 650.1,10.0 652.3,10.0 654.6,10.0 656.9,10.0 659.1,10.0 661.4,10.0 663.7,10.0 665.9,10.0 668.2,10.0 670.4,10.0 672.7,10.0 675.0,10.0 677.2,10.0 679.5,10.0 681.8,10.0 684.0,10.0 686.3,10.0 688.6,10.0 690.8,10.0 693.1,10.0 695.4,10.0 697.6,10.0 699.9,10.0 702.2,10.0 704.4,10.0 706.7,10.0 709.0,10.0 711.2,10.0 713.5,10.0 715.8,10.0 718.0,10.0 720.3,10.0 722.6,10.0 724.8,10.0 727.1,10.0 729.3,10.0 731.6,10.0 733.9,10.0 736.1,10.0 738.4,10.0 740.7,10.0 742.9,10.0 745.2,10.0 747.5,10.0 749.7,10.0 752.0,10.0"><title>Allocator</title></polyline></svg><div class="legend"><span><i class="" style="--c:#2a78d6"></i>Allocator</span></div><div class="table-wrap"><table><thead><tr><th>Role</th><th class="num">ETH now</th>
+<th class="num hide-sm">Validators now</th><th class="num">Peak ETH</th><th class="num hide-sm">Peak</th>
+<th class="num hide-sm">First seen</th><th class="num hide-sm">Last seen</th></tr></thead><tbody><tr><td>Allocator</td><td class="num">182,912</td>
+<td class="num hide-sm">5,716</td><td class="num">182,912</td>
+<td class="num hide-sm">2025-08-05</td><td class="num hide-sm">2020-12-08</td>
+<td class="num hide-sm">now</td></tr></tbody></table></div>
+<h2>Clients</h2><p class="muted">Blocks proposed in the last 90 days by the validators it
+allocates or operates now, and the execution and consensus clients their graffiti names (clients add a short code by
+default; operators can turn it off, so these are shares of the blocks that carry one).</p>
+<div class="table-wrap"><table><thead><tr><th>Role</th><th class="num">Blocks</th><th class="num">With codes</th>
+<th>Execution clients</th><th>Consensus clients</th></tr></thead><tbody><tr><td>Allocator</td><td class="num">2,734</td>
+<td class="num">100%</td><td>Geth 100%</td><td>Prysm 100%</td></tr></tbody></table></div>
+<h2>Treemap boxes</h2><div class="table-wrap"><table><thead><tr><th>Box</th>
+<th class="num">ETH now</th><th class="num hide-sm">Peak ETH</th></tr></thead><tbody><tr><td>Gate › Gate staking › 8 named keys (from Dec 2020)</td><td class="num">182,912</td><td class="num hide-sm">182,912</td></tr></tbody></table></div>
+<h2>Decisions naming it</h2><ul><li><a href="../decisions/0168-gate.html">0168</a> Defines Gate (exchange)</li><li><a href="../decisions/0169-gate-staking-name.html">0169</a> Defines Gate staking (custodial staking)</li><li><a href="../decisions/0170-gate-staking.html">0170</a> A self-run fleet, compounding its own rewards, whose deposits Gate&#x27;s hot wallet funded; Gate named the cold wallet behind it as its own.</li></ul>
+<h2>Identified addresses</h2><div class="table-wrap"><table><thead><tr><th>Address</th><th>Role</th>
+<th class="hide-sm">Basis</th></tr></thead><tbody><tr><td><a class="mono" href="https://etherscan.io/address/0x287a66c7d9cba7504e90fa638911d74c4dc6a147">0x287a66c7d9cba7504e90fa638911d74c4dc6a147</a></td><td>withdrawal address</td><td class="hide-sm">asserted</td></tr><tr><td><a class="mono" href="https://etherscan.io/address/0x794c60af4541a30e6c7e9684c96331b1d55e282f">0x794c60af4541a30e6c7e9684c96331b1d55e282f</a></td><td>withdrawal address</td><td class="hide-sm">asserted</td></tr><tr><td><a class="mono" href="https://etherscan.io/address/0x7a3f9b7120386249528c93e5eb373b78e54d5ba9">0x7a3f9b7120386249528c93e5eb373b78e54d5ba9</a></td><td>withdrawal address</td><td class="hide-sm">asserted</td></tr><tr><td><a class="mono" href="https://etherscan.io/address/0xb04b2b81f65bacc8f29f411a1344f78bff7a36a2">0xb04b2b81f65bacc8f29f411a1344f78bff7a36a2</a></td><td>withdrawal address</td><td class="hide-sm">asserted</td></tr><tr><td><a class="mono" href="https://etherscan.io/address/0xbcf03ce48091e6b820a7c33e166e5d0109d8e712">0xbcf03ce48091e6b820a7c33e166e5d0109d8e712</a></td><td>withdrawal address</td><td class="hide-sm">asserted</td></tr><tr><td><a class="mono" href="https://etherscan.io/address/0xcda9d71bdfae59b89cee131ed3079f8ac4c77062">0xcda9d71bdfae59b89cee131ed3079f8ac4c77062</a></td><td>fee recipient</td><td class="hide-sm">asserted</td></tr><tr><td><a class="mono" href="https://etherscan.io/address/0xd6a8047940a1f71df5f809919c10d9ba0a88786e">0xd6a8047940a1f71df5f809919c10d9ba0a88786e</a></td><td>withdrawal address</td><td class="hide-sm">asserted</td></tr><tr><td><a class="mono" href="https://etherscan.io/address/0xf604d331d9109253ff63a00ea93de5c0264314ef">0xf604d331d9109253ff63a00ea93de5c0264314ef</a></td><td>withdrawal address</td><td class="hide-sm">asserted</td></tr></tbody></table></div>
+</main>
+</body>
+</html>

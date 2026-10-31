@@ -1,0 +1,74 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>0077-everstake-eth2-depositor: This account made Everstake&#x27;s first staking deposits: its validators moved to a multisig whose owners deposited 12,000 </title>
+<style>
+:root { color-scheme: light; --surface-0: #f4f3f0; --surface-1: #fcfcfb; --border: #d9d8d3; --text-primary: #0b0b0b;
+        --text-secondary: #52514e; --text-muted: #77766f; --accent: #2a78d6; --chip: #ebe9e4; }
+@media (prefers-color-scheme: dark) {
+  :root:where(:not([data-theme="light"])) { color-scheme: dark; --surface-0: #121211; --surface-1: #1a1a19;
+    --border: #3a3a37; --text-primary: #f0efec; --text-secondary: #c3c2b7; --text-muted: #96958c; --accent: #3987e5;
+    --chip: #2a2a28; }
+}
+:root[data-theme="dark"] { color-scheme: dark; --surface-0: #121211; --surface-1: #1a1a19; --border: #3a3a37;
+  --text-primary: #f0efec; --text-secondary: #c3c2b7; --text-muted: #96958c; --accent: #3987e5; --chip: #2a2a28; }
+* { box-sizing: border-box; }
+body { margin: 0; background: var(--surface-0); color: var(--text-primary);
+       font: 15px/1.55 system-ui, -apple-system, "Segoe UI", sans-serif; }
+main { max-width: 860px; margin: 0 auto; padding: 32px 16px 64px; }
+a { color: var(--accent); }
+h1 { font-size: 22px; line-height: 1.3; font-weight: 600; margin: 4px 0 12px; }
+h2 { font-size: 15px; font-weight: 600; margin: 28px 0 8px; color: var(--text-secondary);
+     text-transform: uppercase; letter-spacing: 0.04em; }
+p { margin: 0 0 12px; }
+.crumbs { font-size: 13px; color: var(--text-muted); }
+.lede { font-size: 17px; }
+.muted { color: var(--text-muted); }
+.chip { display: inline-block; padding: 1px 8px; border-radius: 10px; background: var(--chip); font-size: 12px;
+        color: var(--text-secondary); margin-right: 4px; white-space: nowrap; }
+.card { background: var(--surface-1); border: 1px solid var(--border); border-radius: 6px; padding: 14px 16px;
+        margin: 0 0 12px; }
+.stats { display: flex; flex-wrap: wrap; gap: 12px; margin: 16px 0; }
+.stat { background: var(--surface-1); border: 1px solid var(--border); border-radius: 6px; padding: 10px 14px;
+        min-width: 140px; }
+.stat b { display: block; font-size: 20px; font-variant-numeric: tabular-nums; }
+.stat span { font-size: 12px; color: var(--text-muted); }
+ul.grounds { list-style: none; padding: 0; margin: 0; }
+ul.grounds li { padding: 6px 0; border-bottom: 1px solid var(--border); }
+ul.grounds li:last-child { border-bottom: 0; }
+table { width: 100%; border-collapse: collapse; background: var(--surface-1); font-size: 14px; }
+th, td { text-align: left; padding: 7px 8px; border-bottom: 1px solid var(--border); vertical-align: top; }
+th { font-weight: 600; color: var(--text-secondary); cursor: pointer; white-space: nowrap; user-select: none; }
+td.num, th.num { text-align: right; font-variant-numeric: tabular-nums; white-space: nowrap; }
+code, .mono { font: 12.5px ui-monospace, SFMono-Regular, Menlo, monospace; word-break: break-all; }
+details summary { cursor: pointer; color: var(--accent); }
+.excerpt { border-left: 3px solid var(--border); padding: 2px 0 2px 10px; color: var(--text-secondary);
+           font-size: 14px; white-space: pre-wrap; }
+input[type=search] { width: 100%; padding: 8px 10px; font: inherit; border: 1px solid var(--border);
+                     border-radius: 6px; background: var(--surface-1); color: var(--text-primary); margin: 8px 0 12px; }
+.table-wrap { overflow-x: auto; }
+@media (max-width: 640px) { .hide-sm { display: none; } }
+</style>
+<script data-goatcounter="https://pintail.goatcounter.com/count" async src="https://gc.zgo.at/count.js"></script>
+</head>
+<body>
+<main>
+<p class="crumbs"><a href="../">Dataset</a> › <a href="./">Decisions</a> › 0077-everstake-eth2-depositor</p>
+<h1>This account made Everstake&#x27;s first staking deposits: its validators moved to a multisig whose owners deposited 12,000 more, and nearly all of them sign Everstake&#x27;s graffiti.</h1>
+<p><span class="chip">Anchor</span> <span class="muted">· decided 2026-10-17</span></p>
+<p class="lede">This account made deposits for Everstake; validators withdrawing to the address its validators moved to are allocated by Everstake.</p>
+<div class="stats"><div class="stat"><b>9,407</b><span>validators resting on it now</span></div><div class="stat"><b>301,024</b><span>ETH now</span></div><div class="stat"><b>401,984</b><span>ETH at its peak</span></div></div>
+<h2>Grounds</h2><div class="card"><ul class="grounds"><li><span class="chip">On chain</span>All its 200 validators later moved to one multisig wallet, which only their key holder could do</li><li><span class="chip">On chain</span>Owners of that wallet deposited 12,000 more validators to it in 2024</li><li><span class="chip">On chain</span>Of the 12,499 validators withdrawing there that have proposed, 12,486 sign &quot;Everstake / Pro&quot; graffiti</li></ul></div>
+<h2>Explanation</h2><p>The account 0xf79c…00b9 made Everstake&#x27;s first staking deposits, and validators withdrawing to the address its validators moved to, the multisig wallet 0x2bf9…4087, are attributed to Everstake as allocator. 12,567 validators have withdrawn to that wallet; about 9,400 were active in October 2026 with some 0.30M ETH.</p>
+<p><strong>The chain of control.</strong> The account deposited 200 validators in November 2020, all with BLS credentials. By June 2023 all 200 had been changed to 0x2bf9…4087, a 2-of-4 Safe multisig created that month; only the holder of their keys could make the change. Two of the Safe&#x27;s owners then deposited 12,345 more validators to it in 2024, through a batch contract, and a third owner created the Safe.</p>
+<p><strong>The graffiti.</strong> Of the 12,499 validators withdrawing to the Safe that have proposed a block, 12,486 have signed graffiti beginning &quot;Everstake / Pro&quot;; twelve only left blocks blank and one signed only a client version string. A fleet of this size signing Everstake&#x27;s name on nearly every block is taken to be Everstake&#x27;s.</p>
+<p><strong>Limits.</strong> Graffiti is chosen by whoever runs a validator, and anyone could type a name; the identification rests on that, and on the chain of control from the first deposits. It also suggests Everstake runs the validators, though no operator is recorded. Whether the ETH is Everstake&#x27;s own or its clients&#x27; is not established. Explorer labels and community label sets naming the accounts are recorded as leads. The decision would change with evidence that the Safe belongs to a client of Everstake rather than to Everstake.</p>
+<h2>What would change it</h2><p>Evidence that address belongs to an Everstake client rather than Everstake.</p>
+<h2>Evidence</h2><p class="muted">Transactions and contract calls anyone can repeat on their own node.</p><div class="card"><ul class="grounds"><li><a class="mono" href="https://etherscan.io/tx/0x0eec171b096cde31ea10de7063db786fa969449514c16c180c1e819ab40e70f4">0x0eec171b…b40e70f4</a> — Its first deposit (0x00)</li><li><a class="mono" href="https://etherscan.io/tx/0xd12fc5b2b0587bb783ed61ac98d41a4e333e18b6049fd7f8d8d6e5e4b0651307">0xd12fc5b2…b0651307</a> — The Safe 0x2bf9 created</li><li><a class="mono" href="https://etherscan.io/tx/0xec1b6f53e223b558a280b26a04f4ed6c8de4e047bf91895f67e223b9d101a3af">0xec1b6f53…d101a3af</a> — First deposit through 0x9ac8 to the Safe</li></ul></div>
+<h2>Leads</h2><p class="muted">Third-party pages, such as explorer labels, that pointed the research but are not relied on.</p><ul><li><a href="https://etherscan.io/address/0xf79caa45612fb183c4e258ed449bfa632d7400b9">Etherscan address page</a></li><li><a href="https://github.com/duneanalytics/spellbook/blob/e5b41162a270135790f5f39491f9677360a6adb0/dbt_subprojects/hourly_spellbook/models/_sector/staking/ethereum/entities/staking_ethereum_entities_depositor_addresses.sql">staking_ethereum_entities_depositor_addresses.sql</a></li></ul>
+<h2>Treemap boxes resting on it</h2><div class="table-wrap"><table><thead><tr><th>Box</th><th class="num">ETH now</th><th class="num">Peak ETH</th></tr></thead><tbody><tr><td>Everstake › Everstake custodial staking › Withdraws to 0x2bf9…4087</td><td class="num">301,024</td><td class="num">401,984</td></tr></tbody></table></div>
+</main>
+</body>
+</html>

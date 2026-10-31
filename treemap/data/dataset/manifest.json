@@ -1,0 +1,94 @@
+{
+ "format": "stakalytics-treemap-dataset/2",
+ "licence": "CC-BY-4.0",
+ "generated_at": "2026-10-31T04:45:18Z",
+ "through_epoch": 485775,
+ "through_time": "2026-10-30T12:00:23Z",
+ "treemap_format": "stakalytics-treemap/1",
+ "lens": "allocator",
+ "provenance": {
+  "commit": "489aba03956eaa11f0c04c0cf422ff76758f32a8",
+  "uncommitted_changes": false,
+  "registry_sha256": "eae080d9a897ca19f6c9f6dc80e05f55b56279b500ca9c3194b6c324c8c50505"
+ },
+ "measure": "effective_balance_eth",
+ "files": [
+  {
+   "name": "validators.csv.gz",
+   "bytes": 4557318,
+   "sha256": "e4f0410c2a9a54d169cd5b04696cc89fb35faac7f5ef1d9c3ecfb1e1ea294683",
+   "rows": 815146,
+   "description": "Active validators with their organisation, allocator, operator, principal and custodian"
+  },
+  {
+   "name": "addresses.csv",
+   "bytes": 3760604,
+   "sha256": "dce76a3fd7093f26bbf6cd3d2bbb3c75782d0438a09575d5dadd2f1670ed3c6f",
+   "rows": 27657,
+   "description": "Execution-layer addresses with an identified role and entity"
+  },
+  {
+   "name": "entities.csv",
+   "bytes": 90735,
+   "sha256": "f1082fb5e74dca78d21af69fa2ec617a2133090d72980feca2d8f8c27bd8e01d",
+   "rows": 978,
+   "description": "The entities named in the files: name, kind, parent and organisation"
+  },
+  {
+   "name": "boxes.csv",
+   "bytes": 247119,
+   "sha256": "d19b6cc4ef8a78fed46d0ba9d6ce6fa4c807ea26f71e6d6bb9a0d8e2e680c29b",
+   "rows": 1254,
+   "description": "The treemap's boxes: what each rests on, and its stake now and at its peak"
+  },
+  {
+   "name": "decisions.json",
+   "bytes": 1669067,
+   "sha256": "b94caba29abf460863458220904cc4f790f41bf287480f6d80a369f4b6c8b383",
+   "rows": 324,
+   "description": "Every decision: statement, explanation, targets, evidence, sources and the stake resting on it"
+  },
+  {
+   "name": "sources.json",
+   "bytes": 294420,
+   "sha256": "9109c06f4341f9d6e9503bd550b3529ab7fbbca06fb3a5ea8e54afe5af043cac",
+   "rows": 589,
+   "description": "The sources cited: link, publisher, the passage relied on, and the hash of the copy kept"
+  },
+  {
+   "name": "methods.json",
+   "bytes": 156708,
+   "sha256": "eb92afbd451609b384e9f8b3fa8c8de0c0d1109ee9c90c1b0570cc6f7ed4e4a9",
+   "rows": 60,
+   "description": "How claims are derived: each method's premises, heuristic and limits, and the anchors it uses"
+  },
+  {
+   "name": "attributions.parquet",
+   "bytes": 12620525,
+   "sha256": "744d9e1513892bb28646a01167ac27a37390189748d1b6d622661202c1894576",
+   "rows": 2968135,
+   "description": "Each validator's treemap box over time, with its withdrawal credentials and clusters"
+  },
+  {
+   "name": "stake.parquet",
+   "bytes": 5393410,
+   "sha256": "01b27b6aed216f3078c585e77543484aba38e89768b185bf27bc97151a5b64de",
+   "rows": 2651030,
+   "description": "Each validator's effective balance over time, while active"
+  },
+  {
+   "name": "nodes.parquet",
+   "bytes": 83232,
+   "sha256": "a961b4765667c0591488d7ed8a9f901e2e4a70676ddc56a7e9114d2617436ced",
+   "rows": 1566,
+   "description": "The treemap's boxes: path, kind, entity, basis, method, the decisions each rests on"
+  },
+  {
+   "name": "treemap.parquet",
+   "bytes": 329507,
+   "sha256": "99e53f2e15d84f6af59c437b31f70bad49aaedde78be9ccb75fc83c11036bf10",
+   "rows": 114579,
+   "description": "Each box's stake and validators at each frame, as the treemap shows them"
+  }
+ ]
+}

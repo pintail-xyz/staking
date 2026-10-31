@@ -1,0 +1,75 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>0228-xhash-fee-recipient: The fee recipient of validators deposited through XHash&#x27;s own batch contract and of validators signing XHash.com; otherwise </title>
+<style>
+:root { color-scheme: light; --surface-0: #f4f3f0; --surface-1: #fcfcfb; --border: #d9d8d3; --text-primary: #0b0b0b;
+        --text-secondary: #52514e; --text-muted: #77766f; --accent: #2a78d6; --chip: #ebe9e4; }
+@media (prefers-color-scheme: dark) {
+  :root:where(:not([data-theme="light"])) { color-scheme: dark; --surface-0: #121211; --surface-1: #1a1a19;
+    --border: #3a3a37; --text-primary: #f0efec; --text-secondary: #c3c2b7; --text-muted: #96958c; --accent: #3987e5;
+    --chip: #2a2a28; }
+}
+:root[data-theme="dark"] { color-scheme: dark; --surface-0: #121211; --surface-1: #1a1a19; --border: #3a3a37;
+  --text-primary: #f0efec; --text-secondary: #c3c2b7; --text-muted: #96958c; --accent: #3987e5; --chip: #2a2a28; }
+* { box-sizing: border-box; }
+body { margin: 0; background: var(--surface-0); color: var(--text-primary);
+       font: 15px/1.55 system-ui, -apple-system, "Segoe UI", sans-serif; }
+main { max-width: 860px; margin: 0 auto; padding: 32px 16px 64px; }
+a { color: var(--accent); }
+h1 { font-size: 22px; line-height: 1.3; font-weight: 600; margin: 4px 0 12px; }
+h2 { font-size: 15px; font-weight: 600; margin: 28px 0 8px; color: var(--text-secondary);
+     text-transform: uppercase; letter-spacing: 0.04em; }
+p { margin: 0 0 12px; }
+.crumbs { font-size: 13px; color: var(--text-muted); }
+.lede { font-size: 17px; }
+.muted { color: var(--text-muted); }
+.chip { display: inline-block; padding: 1px 8px; border-radius: 10px; background: var(--chip); font-size: 12px;
+        color: var(--text-secondary); margin-right: 4px; white-space: nowrap; }
+.card { background: var(--surface-1); border: 1px solid var(--border); border-radius: 6px; padding: 14px 16px;
+        margin: 0 0 12px; }
+.stats { display: flex; flex-wrap: wrap; gap: 12px; margin: 16px 0; }
+.stat { background: var(--surface-1); border: 1px solid var(--border); border-radius: 6px; padding: 10px 14px;
+        min-width: 140px; }
+.stat b { display: block; font-size: 20px; font-variant-numeric: tabular-nums; }
+.stat span { font-size: 12px; color: var(--text-muted); }
+ul.grounds { list-style: none; padding: 0; margin: 0; }
+ul.grounds li { padding: 6px 0; border-bottom: 1px solid var(--border); }
+ul.grounds li:last-child { border-bottom: 0; }
+table { width: 100%; border-collapse: collapse; background: var(--surface-1); font-size: 14px; }
+th, td { text-align: left; padding: 7px 8px; border-bottom: 1px solid var(--border); vertical-align: top; }
+th { font-weight: 600; color: var(--text-secondary); cursor: pointer; white-space: nowrap; user-select: none; }
+td.num, th.num { text-align: right; font-variant-numeric: tabular-nums; white-space: nowrap; }
+code, .mono { font: 12.5px ui-monospace, SFMono-Regular, Menlo, monospace; word-break: break-all; }
+details summary { cursor: pointer; color: var(--accent); }
+.excerpt { border-left: 3px solid var(--border); padding: 2px 0 2px 10px; color: var(--text-secondary);
+           font-size: 14px; white-space: pre-wrap; }
+input[type=search] { width: 100%; padding: 8px 10px; font: inherit; border: 1px solid var(--border);
+                     border-radius: 6px; background: var(--surface-1); color: var(--text-primary); margin: 8px 0 12px; }
+.table-wrap { overflow-x: auto; }
+@media (max-width: 640px) { .hide-sm { display: none; } }
+</style>
+<script data-goatcounter="https://pintail.goatcounter.com/count" async src="https://gc.zgo.at/count.js"></script>
+</head>
+<body>
+<main>
+<p class="crumbs"><a href="../">Dataset</a> › <a href="./">Decisions</a> › 0228-xhash-fee-recipient</p>
+<h1>The fee recipient of validators deposited through XHash&#x27;s own batch contract and of validators signing XHash.com; otherwise unattributed validators paying it are taken to be run by XHash.</h1>
+<p><span class="chip">Anchor</span> <span class="muted">· decided 2026-10-26</span></p>
+<p class="lede">This address is XHash&#x27;s fee recipient; otherwise unattributed validators paying their fees to it are run and allocated by XHash.</p>
+<div class="stats"><div class="stat"><b>89</b><span>validators resting on it now</span></div><div class="stat"><b>3,218</b><span>ETH now</span></div><div class="stat"><b>44,928</b><span>ETH at its peak</span></div></div>
+<h2>Grounds</h2><div class="card"><ul class="grounds"><li><span class="chip">On chain</span>845 validators deposited through XHash&#x27;s batch contract, which XHash&#x27;s docs name, pay it</li><li><span class="chip">On chain</span>Of the 3,216 validators that ever paid it, all but 3 blocks signed XHash.com or SSV&#x27;s default graffiti</li><li><span class="chip">On chain</span>Validators of several unrelated stakers pay it (HTX, Puffer, XHash&#x27;s own clients), so it is the operator&#x27;s, not a client&#x27;s</li></ul></div>
+<h2>Explanation</h2><p>The address 0xaecd…0983 is XHash&#x27;s fee recipient: validators XHash runs pay their transaction fees and MEV to it. Validators otherwise unattributed whose blocks paid it are attributed to XHash as allocator for as long as they did. They held as much as 45k ETH, mostly in 2023 and 2024; 89 were active in October 2026.</p>
+<p><strong>Who pays it.</strong> 3,216 validators have paid it since September 2022. 845 of them were deposited through XHash&#x27;s own batch deposit contract, which <a href="https://docs.xhash.com/staking/non-custodial-staking/no-mnemonic-staking">XHash&#x27;s documentation names</a> (decision 0206). 848 belong to HTX&#x27;s staking, for which XHash is among the operators, and 36 to Puffer; those keep their own allocators, since a fee recipient claim yields to every other allocator claim. The remaining 1,432 were unattributed. Validators of several unrelated stakers pay it, so it is the operator&#x27;s address, not a client&#x27;s. The address itself also deposited 45 validators in 2022.</p>
+<p><strong>The graffiti.</strong> Of the 13,301 blocks paying it, 7,715 were signed &quot;XHash.com&quot; and 5,751 carry SSV&#x27;s default graffiti; only seven carry anything else.</p>
+<p><strong>Why these validators needed this decision.</strong> XHash&#x27;s &quot;Quick Mode&quot; deposits go directly to the beacon deposit contract, so its batch contract does not cover them. Their &quot;XHash.com&quot; graffiti was not enough on its own, because the same validators, or their withdrawal addresses, also propose blocks with SSV&#x27;s default graffiti, and a name in one block of a distributed validator identifies only the member that proposed it.</p>
+<p>No document names the address, and its outgoing payments go mostly to two accounts not identified. The decision would change with evidence that validators XHash does not run also pay this address, or that it belongs to one of XHash&#x27;s clients.</p>
+<h2>What would change it</h2><p>Evidence that validators XHash does not run also pay this address, or that it belongs to one of XHash&#x27;s clients.</p>
+<h2>Evidence</h2><p class="muted">Transactions and contract calls anyone can repeat on their own node.</p><div class="card"><ul class="grounds"><li><a href="0206-xhash-batch-deposit.html">0206-xhash-batch-deposit</a></li><li><span class="mono">13,301 blocks paying 0xaecd…0983, slots 4,736,601 to 15,482,327</span> — 7,715 signed XHash.com and 5,751 SSV&#x27;s default graffiti; 7 signed anything else</li></ul></div>
+<h2>Sources</h2><div class="card"><a href="https://docs.xhash.com/staking/non-custodial-staking/no-mnemonic-staking">No Mnemonic Staking (XHash documentation)</a><div class="muted" style="font-size:13px">XHash (docs.xhash.com) · the entity&#x27;s own · retrieved 2026-10-25</div><p class="excerpt">The address of the sending transaction contract is XHash batch deposit contract：0xa86341E5C278443c8648be44110167E1bbD9Cba6</p><div class="muted mono">sha256 8499dd849c136f6ea605f7c550dba2b798b1066bedc2fed20fe0042320149489</div></div>
+<h2>Treemap boxes resting on it</h2><div class="table-wrap"><table><thead><tr><th>Box</th><th class="num">ETH now</th><th class="num">Peak ETH</th></tr></thead><tbody><tr><td>XHash › XHash-run validators (by XHash fee recipient) › Fee recipient 0xaecd…0983</td><td class="num">3,218</td><td class="num">44,928</td></tr></tbody></table></div>
+</main>
+</body>
+</html>

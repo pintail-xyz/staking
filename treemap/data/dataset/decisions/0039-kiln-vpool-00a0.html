@@ -1,0 +1,74 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>0039-kiln-vpool-00a0: This contract is one of Kiln&#x27;s vPools, created by the same factory as Kiln&#x27;s tagged vPool implementation; validators it deposits</title>
+<style>
+:root { color-scheme: light; --surface-0: #f4f3f0; --surface-1: #fcfcfb; --border: #d9d8d3; --text-primary: #0b0b0b;
+        --text-secondary: #52514e; --text-muted: #77766f; --accent: #2a78d6; --chip: #ebe9e4; }
+@media (prefers-color-scheme: dark) {
+  :root:where(:not([data-theme="light"])) { color-scheme: dark; --surface-0: #121211; --surface-1: #1a1a19;
+    --border: #3a3a37; --text-primary: #f0efec; --text-secondary: #c3c2b7; --text-muted: #96958c; --accent: #3987e5;
+    --chip: #2a2a28; }
+}
+:root[data-theme="dark"] { color-scheme: dark; --surface-0: #121211; --surface-1: #1a1a19; --border: #3a3a37;
+  --text-primary: #f0efec; --text-secondary: #c3c2b7; --text-muted: #96958c; --accent: #3987e5; --chip: #2a2a28; }
+* { box-sizing: border-box; }
+body { margin: 0; background: var(--surface-0); color: var(--text-primary);
+       font: 15px/1.55 system-ui, -apple-system, "Segoe UI", sans-serif; }
+main { max-width: 860px; margin: 0 auto; padding: 32px 16px 64px; }
+a { color: var(--accent); }
+h1 { font-size: 22px; line-height: 1.3; font-weight: 600; margin: 4px 0 12px; }
+h2 { font-size: 15px; font-weight: 600; margin: 28px 0 8px; color: var(--text-secondary);
+     text-transform: uppercase; letter-spacing: 0.04em; }
+p { margin: 0 0 12px; }
+.crumbs { font-size: 13px; color: var(--text-muted); }
+.lede { font-size: 17px; }
+.muted { color: var(--text-muted); }
+.chip { display: inline-block; padding: 1px 8px; border-radius: 10px; background: var(--chip); font-size: 12px;
+        color: var(--text-secondary); margin-right: 4px; white-space: nowrap; }
+.card { background: var(--surface-1); border: 1px solid var(--border); border-radius: 6px; padding: 14px 16px;
+        margin: 0 0 12px; }
+.stats { display: flex; flex-wrap: wrap; gap: 12px; margin: 16px 0; }
+.stat { background: var(--surface-1); border: 1px solid var(--border); border-radius: 6px; padding: 10px 14px;
+        min-width: 140px; }
+.stat b { display: block; font-size: 20px; font-variant-numeric: tabular-nums; }
+.stat span { font-size: 12px; color: var(--text-muted); }
+ul.grounds { list-style: none; padding: 0; margin: 0; }
+ul.grounds li { padding: 6px 0; border-bottom: 1px solid var(--border); }
+ul.grounds li:last-child { border-bottom: 0; }
+table { width: 100%; border-collapse: collapse; background: var(--surface-1); font-size: 14px; }
+th, td { text-align: left; padding: 7px 8px; border-bottom: 1px solid var(--border); vertical-align: top; }
+th { font-weight: 600; color: var(--text-secondary); cursor: pointer; white-space: nowrap; user-select: none; }
+td.num, th.num { text-align: right; font-variant-numeric: tabular-nums; white-space: nowrap; }
+code, .mono { font: 12.5px ui-monospace, SFMono-Regular, Menlo, monospace; word-break: break-all; }
+details summary { cursor: pointer; color: var(--accent); }
+.excerpt { border-left: 3px solid var(--border); padding: 2px 0 2px 10px; color: var(--text-secondary);
+           font-size: 14px; white-space: pre-wrap; }
+input[type=search] { width: 100%; padding: 8px 10px; font: inherit; border: 1px solid var(--border);
+                     border-radius: 6px; background: var(--surface-1); color: var(--text-primary); margin: 8px 0 12px; }
+.table-wrap { overflow-x: auto; }
+@media (max-width: 640px) { .hide-sm { display: none; } }
+</style>
+<script data-goatcounter="https://pintail.goatcounter.com/count" async src="https://gc.zgo.at/count.js"></script>
+</head>
+<body>
+<main>
+<p class="crumbs"><a href="../">Dataset</a> › <a href="./">Decisions</a> › 0039-kiln-vpool-00a0</p>
+<h1>This contract is one of Kiln&#x27;s vPools, created by the same factory as Kiln&#x27;s tagged vPool implementation; validators it deposits are run by Kiln.</h1>
+<p><span class="chip">Anchor</span> <span class="muted">· decided 2026-10-17</span></p>
+<p class="lede">This contract is one of Kiln&#x27;s vPools; the validators it deposits are run and allocated by Kiln.</p>
+<div class="stats"><div class="stat"><b>9,677</b><span>validators resting on it now</span></div><div class="stat"><b>309,664</b><span>ETH now</span></div><div class="stat"><b>319,456</b><span>ETH at its peak</span></div></div>
+<h2>Grounds</h2><div class="card"><ul class="grounds"><li><span class="chip">On chain</span>Its factory recorded &quot;Kiln&quot; as its operator&#x27;s name when created, and the pool calls itself &quot;Kiln vPool Shares&quot;</li><li><span class="chip">On chain</span>Every block proposed by its validators, 32,205 of them, is signed &quot;Kiln.fi&quot;</li><li><span class="chip">On chain</span>A vPool deposits validators itself, from keys registered with its own factory</li></ul></div>
+<h2>Explanation</h2><p>The contract 0x00a0…3bb9 is one of Kiln&#x27;s vPools, a pooled-staking contract that takes ETH from an integrator&#x27;s users and deposits validators itself from keys registered with its own factory. Validators it deposits are attributed to Kiln as allocator and operator. It deposited 16,853 validators between August 2023 and October 2026, all withdrawing to a single withdrawal recipient contract; about 9,700 were active in October 2026 with some 0.31M ETH.</p>
+<p><strong>Identification.</strong> No published source names this address; the identification rests on what the contract records about itself and on its validators&#x27; graffiti. The pool&#x27;s name() returns &quot;Kiln vPool Shares&quot;, and when its factory was created it recorded &quot;Kiln&quot; as its operator&#x27;s name. Its code, and that of the factory system it belongs to, is Kiln&#x27;s vPool suite, with Kiln named as author in the verified source. Every one of the 32,205 blocks its validators have proposed is signed &quot;Kiln.fi&quot;.</p>
+<p><strong>Why the code alone is not enough.</strong> Another vPool built from the same Kiln code and the same factory system names itself &quot;Coinbase Cloud vPool Shares&quot; and records Coinbase Cloud as its operator, and none of its blocks name Kiln (decision 0040). Running Kiln&#x27;s code therefore does not by itself make a vPool Kiln&#x27;s; here the pool&#x27;s own records and its graffiti both name Kiln.</p>
+<p><strong>Why Kiln is the allocator.</strong> Users and integrators that stake through Kiln&#x27;s vPool have chosen Kiln, which supplies the keys and runs the validators; this is the rule applied to providers&#x27; depositor contracts (decision 0005). The decision would change with evidence that the vPool&#x27;s keys come from an operator other than Kiln.</p>
+<h2>What would change it</h2><p>Evidence the vPool&#x27;s keys come from an operator other than Kiln.</p>
+<h2>Evidence</h2><p class="muted">Transactions and contract calls anyone can repeat on their own node.</p><div class="card"><ul class="grounds"><li><span class="mono">eth_call 0x00a0be1bbc0c99898df7e6524bf16e893c1e3bb9 name() = &quot;Kiln vPool Shares&quot;; factory() = 0xc63d9f0040d35f328274312fc8771a986fc4ba86</span></li><li><span class="mono">SetMetadata(&quot;Kiln&quot;, &quot;&quot;, &quot;&quot;) emitted by vFactory 0xc63d…ba86 at its creation, block 17,791,853</span></li><li><a class="mono" href="https://etherscan.io/tx/0xc71598b9cd08f428e1c5877c92e66db11b071f4e272a153b444cbfd1cc1bf33f">0xc71598b9…cc1bf33f</a> — Creation of the contract</li><li><a class="mono" href="https://etherscan.io/tx/0x5b4c51a827303fda95568eb2411fc7c191f314d3b1124a64d8564ab333e46423">0x5b4c51a8…33e46423</a> — First deposit through it</li></ul></div>
+<h2>Leads</h2><p class="muted">Third-party pages, such as explorer labels, that pointed the research but are not relied on.</p><ul><li><a href="https://etherscan.io/address/0x1d6103243d0507a9d1314bac09379bf57a5cf155">Etherscan address page</a></li><li><a href="https://etherscan.io/address/0xa4c04e7598c5147113b7b03f606b524c630143ce">Etherscan address page</a></li></ul>
+<h2>Treemap boxes resting on it</h2><div class="table-wrap"><table><thead><tr><th>Box</th><th class="num">ETH now</th><th class="num">Peak ETH</th></tr></thead><tbody><tr><td>Kiln › Kiln direct staking › Deposited via 0x00a0…3bb9</td><td class="num">196,320</td><td class="num">207,616</td></tr><tr><td>Coinbase › Coinbase Cloud › Withdraws to 0x116b…5e9f</td><td class="num">113,344</td><td class="num">119,616</td></tr></tbody></table></div>
+</main>
+</body>
+</html>

@@ -1,0 +1,76 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>0187-bitstamp-staking: Bitstamp&#x27;s ETH staking: two BitGo multisig wallets whose deposits were made, and whose gas was paid, by keys that Bitstamp&#x27;s ow</title>
+<style>
+:root { color-scheme: light; --surface-0: #f4f3f0; --surface-1: #fcfcfb; --border: #d9d8d3; --text-primary: #0b0b0b;
+        --text-secondary: #52514e; --text-muted: #77766f; --accent: #2a78d6; --chip: #ebe9e4; }
+@media (prefers-color-scheme: dark) {
+  :root:where(:not([data-theme="light"])) { color-scheme: dark; --surface-0: #121211; --surface-1: #1a1a19;
+    --border: #3a3a37; --text-primary: #f0efec; --text-secondary: #c3c2b7; --text-muted: #96958c; --accent: #3987e5;
+    --chip: #2a2a28; }
+}
+:root[data-theme="dark"] { color-scheme: dark; --surface-0: #121211; --surface-1: #1a1a19; --border: #3a3a37;
+  --text-primary: #f0efec; --text-secondary: #c3c2b7; --text-muted: #96958c; --accent: #3987e5; --chip: #2a2a28; }
+* { box-sizing: border-box; }
+body { margin: 0; background: var(--surface-0); color: var(--text-primary);
+       font: 15px/1.55 system-ui, -apple-system, "Segoe UI", sans-serif; }
+main { max-width: 860px; margin: 0 auto; padding: 32px 16px 64px; }
+a { color: var(--accent); }
+h1 { font-size: 22px; line-height: 1.3; font-weight: 600; margin: 4px 0 12px; }
+h2 { font-size: 15px; font-weight: 600; margin: 28px 0 8px; color: var(--text-secondary);
+     text-transform: uppercase; letter-spacing: 0.04em; }
+p { margin: 0 0 12px; }
+.crumbs { font-size: 13px; color: var(--text-muted); }
+.lede { font-size: 17px; }
+.muted { color: var(--text-muted); }
+.chip { display: inline-block; padding: 1px 8px; border-radius: 10px; background: var(--chip); font-size: 12px;
+        color: var(--text-secondary); margin-right: 4px; white-space: nowrap; }
+.card { background: var(--surface-1); border: 1px solid var(--border); border-radius: 6px; padding: 14px 16px;
+        margin: 0 0 12px; }
+.stats { display: flex; flex-wrap: wrap; gap: 12px; margin: 16px 0; }
+.stat { background: var(--surface-1); border: 1px solid var(--border); border-radius: 6px; padding: 10px 14px;
+        min-width: 140px; }
+.stat b { display: block; font-size: 20px; font-variant-numeric: tabular-nums; }
+.stat span { font-size: 12px; color: var(--text-muted); }
+ul.grounds { list-style: none; padding: 0; margin: 0; }
+ul.grounds li { padding: 6px 0; border-bottom: 1px solid var(--border); }
+ul.grounds li:last-child { border-bottom: 0; }
+table { width: 100%; border-collapse: collapse; background: var(--surface-1); font-size: 14px; }
+th, td { text-align: left; padding: 7px 8px; border-bottom: 1px solid var(--border); vertical-align: top; }
+th { font-weight: 600; color: var(--text-secondary); cursor: pointer; white-space: nowrap; user-select: none; }
+td.num, th.num { text-align: right; font-variant-numeric: tabular-nums; white-space: nowrap; }
+code, .mono { font: 12.5px ui-monospace, SFMono-Regular, Menlo, monospace; word-break: break-all; }
+details summary { cursor: pointer; color: var(--accent); }
+.excerpt { border-left: 3px solid var(--border); padding: 2px 0 2px 10px; color: var(--text-secondary);
+           font-size: 14px; white-space: pre-wrap; }
+input[type=search] { width: 100%; padding: 8px 10px; font: inherit; border: 1px solid var(--border);
+                     border-radius: 6px; background: var(--surface-1); color: var(--text-primary); margin: 8px 0 12px; }
+.table-wrap { overflow-x: auto; }
+@media (max-width: 640px) { .hide-sm { display: none; } }
+</style>
+<script data-goatcounter="https://pintail.goatcounter.com/count" async src="https://gc.zgo.at/count.js"></script>
+</head>
+<body>
+<main>
+<p class="crumbs"><a href="../">Dataset</a> › <a href="./">Decisions</a> › 0187-bitstamp-staking</p>
+<h1>Bitstamp&#x27;s ETH staking: two BitGo multisig wallets whose deposits were made, and whose gas was paid, by keys that Bitstamp&#x27;s own wallet operator funded.</h1>
+<p><span class="chip">Attribution</span><span class="chip">Allocator</span> <a href="../entities/bitstamp.html">Bitstamp staking</a> <span class="muted">· decided 2026-10-24</span></p>
+<p class="lede">Validators withdrawing to 0x88a4…c20b or 0xf666…48ae are Bitstamp&#x27;s staking.</p>
+<div class="stats"><div class="stat"><b>1,538</b><span>validators resting on it now</span></div><div class="stat"><b>49,216</b><span>ETH now</span></div><div class="stat"><b>71,008</b><span>ETH at its peak</span></div></div>
+<h2>Grounds</h2><div class="card"><ul class="grounds"><li><span class="chip">Third party</span>Bitstamp&#x27;s records, filed in a U.S. court case, name 0x1522 as its ETH wallet; 0x00bd deployed and operates it</li><li><span class="chip">On chain</span>0x538d&#x27;s ETH came from 0x1522, 0x00bd and a wallet it co-signs, which also sent 0x3a1e its only ETH</li><li><span class="chip">On chain</span>0x538d made every deposit to 0x88a4 (2023 to 2025), and 0x3a1e every deposit to 0xf666 (since February 2025)</li><li><span class="chip">On chain</span>0x88a4&#x27;s withdrawals reach Bitstamp&#x27;s hot wallet 0x7f60, into which the contracts 0x3a1e operates also empty</li></ul></div>
+<h2>Explanation</h2><p>Validators withdrawing to 0x88a4…c20b or 0xf666…48ae are the staking of Bitstamp, the exchange, with Bitstamp as allocator. In October 2026 they held about 1,540 active validators with some 49k ETH. Both addresses are BitGo multisig wallets, each with three signers. Bitstamp says it delegates its customers&#x27; stake to a staking node operator. Since 30 October 2026 that operator is recorded as Staked: the validators run on SSV operators funded from the same source as those of Staked&#x27;s own validators, and their early blocks paid Staked&#x27;s fee recipient. Bitstamp was acquired by Robinhood in 2025; the stake is recorded under Bitstamp, the service that holds it.</p>
+<p><strong>The anchor.</strong> An expert report filed in a U.S. court case (<a href="https://storage.courtlistener.com/recap/gov.uscourts.cacd.762326/gov.uscourts.cacd.762326.364.3.pdf">CFPB v. Consumer Advocacy Center, Doc. 364-3</a>) cites Bitstamp&#x27;s records giving 0x1522…e428 as the address that sent a customer&#x27;s ETH withdrawals. The account 0x00bd…74ed deployed that contract in 2017 and has called it about two million times: Bitstamp&#x27;s wallet operator.</p>
+<p><strong>The deposit keys.</strong> The signer that deployed 0x88a4…c20b got its ETH only from Bitstamp&#x27;s wallet contract, from its operator, and from a BitGo wallet it co-signs; it made every deposit to 0x88a4…c20b, from 2021 (with BLS credentials, later changed to the address) to February 2025. The signer that deployed 0xf666…48ae got its only ETH from that same co-signed wallet, in transactions sent by the first signer, and has made every deposit to 0xf666…48ae since February 2025.</p>
+<p><strong>Where the ETH goes.</strong> Withdrawals from 0x88a4…c20b pass through further wallets to 0x7f60…b752, a hot wallet into which Bitstamp&#x27;s wallet contract empties, and the second signer operates thousands of contracts that also empty into it. The hot wallet&#x27;s identification as Bitstamp&#x27;s is itself inferred.</p>
+<p><strong>Limits.</strong> No Bitstamp document names the signers or the staking wallets. Bitstamp Europe&#x27;s accounts for 2021 to 2023 list staked ether, consistent with the 2021 deposits. The decision would change with evidence that the signers act for a client of Bitstamp, or for BitGo, rather than for Bitstamp&#x27;s own staking.</p>
+<h2>What would change it</h2><p>Evidence that 0x538d or 0x3a1e acts for a client of Bitstamp, or for BitGo, rather than for Bitstamp&#x27;s own staking.</p>
+<h2>Evidence</h2><p class="muted">Transactions and contract calls anyone can repeat on their own node.</p><div class="card"><ul class="grounds"><li><a class="mono" href="https://etherscan.io/tx/0x1779f393351dba97f562428f4764cbfe9078daf23a72e017bdd538227abf91f2">0x1779f393…7abf91f2</a> — 0x00bd has Bitstamp&#x27;s wallet 0x1522 send 0x538d its first ETH, 2 ETH (block 8,398,598)</li><li><a class="mono" href="https://etherscan.io/tx/0xf9ee60808d2c524bd1a3394731504343e86a695f3b4f34c6bba42af919465fad">0xf9ee6080…19465fad</a> — 0x00bd sends 0x538d 100 ETH (block 16,540,258)</li><li><a class="mono" href="https://etherscan.io/tx/0xa785e5871021846982a1fd5ce75fb62ccdc53887c8d6d0756cb622ed68dc7d78">0xa785e587…68dc7d78</a> — 0x538d creates BitGo wallet 0x88a4 (block 17,285,200)</li><li><a class="mono" href="https://etherscan.io/tx/0x77cbef3ae95234dab1ca9a0c3ac4c2afafa1370c207087bf0eda9b830f478359">0x77cbef3a…0f478359</a> — 0x538d&#x27;s first deposit crediting 0x88a4, through 0x808e (block 17,314,430)</li><li><a class="mono" href="https://etherscan.io/tx/0xf8af90ef002b7ba3b409617e4f10dabe3cd6ae5874c201884e80b869881f5e9b">0xf8af90ef…881f5e9b</a> — 0x538d moves 18,374 ETH of withdrawals from 0x88a4 to 0x4c76 (block 24,196,202)</li><li><a class="mono" href="https://etherscan.io/tx/0x724d66917b456aaa5fcfe2105976a9aff43b842d3a818696ef28f5b3ad0ebf1d">0x724d6691…ad0ebf1d</a> — 0x538d has wallet 0x48ec send 0x3a1e its first ETH (block 21,229,264)</li><li><a class="mono" href="https://etherscan.io/tx/0x3e69aa5978f0d48c07c81dfdac1703caf14282c8df4bff09aaded57f3303e75c">0x3e69aa59…3303e75c</a> — 0x3a1e creates BitGo wallet 0xf666 (block 21,344,073)</li><li><a class="mono" href="https://etherscan.io/tx/0x237cdb2f9ce9a736b3bcf2ee8343c0c03cd27fef0019c8fc24b117aaf3e310bf">0x237cdb2f…f3e310bf</a> — 0x3a1e&#x27;s first deposit crediting 0xf666 (block 21,845,044)</li><li><a class="mono" href="https://etherscan.io/tx/0x30fbe068b8c19aace5c5fe445f6bef37eccde708a9441a51fe1bbe5e8bd6dec8">0x30fbe068…8bd6dec8</a> — 0x3a1e moves 9,284 ETH from 0x2e6b to Bitstamp&#x27;s hot wallet 0x7f60 (block 24,568,641)</li></ul></div>
+<h2>Sources</h2><div class="card"><a href="https://storage.courtlistener.com/recap/gov.uscourts.cacd.762326/gov.uscourts.cacd.762326.364.3.pdf">Bureau of Consumer Financial Protection v. Consumer Advocacy Center Inc., 8:19-cv-01998, Doc. 364-3 (expert report, filed 8 April 2022)</a><div class="muted" style="font-size:13px">U.S. District Court, Central District of California (via CourtListener RECAP) · third party · retrieved 2026-10-23</div><p class="excerpt">Figure E-18: All Ether withdrawals from [a defendant&#x27;s] Bitstamp Account to address 0x664. [...] Sending Address 0x1522900B6daFac587d499a862861C0869Be6E428 [...] Transaction ID 0xd8ea49fa2706086062cc77620f9a81d09a1cfe1d9318746c5c67432d8aef6d9b</p><div class="muted mono">sha256 ede69c0bbd8fb442d5833a6daa7bb388454cbe6b10baca1ea6baf0b3e773218a</div></div>
+<h2>Treemap boxes resting on it</h2><div class="table-wrap"><table><thead><tr><th>Box</th><th class="num">ETH now</th><th class="num">Peak ETH</th></tr></thead><tbody><tr><td>Bitstamp › Bitstamp staking › 2 named withdrawal addresses (from Feb 2021)</td><td class="num">49,216</td><td class="num">71,008</td></tr></tbody></table></div>
+<h2>Targets (2)</h2><details open><summary>The addresses or validators this decision covers</summary><ul style="list-style:none;padding:0"><li><span class="chip">withdrawal address</span><a class="mono" href="https://etherscan.io/address/0x88a4df73aac310484c60c4c0ac4904cab938c20b">0x88a4df73aac310484c60c4c0ac4904cab938c20b</a></li><li><span class="chip">withdrawal address</span><a class="mono" href="https://etherscan.io/address/0xf666814c2ae92ca0e06667f80dac1eb8a97e48ae">0xf666814c2ae92ca0e06667f80dac1eb8a97e48ae</a></li></ul></details>
+</main>
+</body>
+</html>

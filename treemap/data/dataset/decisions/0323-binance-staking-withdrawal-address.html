@@ -1,0 +1,74 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>0323-binance-staking-withdrawal-address: Binance&#x27;s own reserve wallets staked to 0x8e60…8224, or funded the account that did: validators withdrawing t</title>
+<style>
+:root { color-scheme: light; --surface-0: #f4f3f0; --surface-1: #fcfcfb; --border: #d9d8d3; --text-primary: #0b0b0b;
+        --text-secondary: #52514e; --text-muted: #77766f; --accent: #2a78d6; --chip: #ebe9e4; }
+@media (prefers-color-scheme: dark) {
+  :root:where(:not([data-theme="light"])) { color-scheme: dark; --surface-0: #121211; --surface-1: #1a1a19;
+    --border: #3a3a37; --text-primary: #f0efec; --text-secondary: #c3c2b7; --text-muted: #96958c; --accent: #3987e5;
+    --chip: #2a2a28; }
+}
+:root[data-theme="dark"] { color-scheme: dark; --surface-0: #121211; --surface-1: #1a1a19; --border: #3a3a37;
+  --text-primary: #f0efec; --text-secondary: #c3c2b7; --text-muted: #96958c; --accent: #3987e5; --chip: #2a2a28; }
+* { box-sizing: border-box; }
+body { margin: 0; background: var(--surface-0); color: var(--text-primary);
+       font: 15px/1.55 system-ui, -apple-system, "Segoe UI", sans-serif; }
+main { max-width: 860px; margin: 0 auto; padding: 32px 16px 64px; }
+a { color: var(--accent); }
+h1 { font-size: 22px; line-height: 1.3; font-weight: 600; margin: 4px 0 12px; }
+h2 { font-size: 15px; font-weight: 600; margin: 28px 0 8px; color: var(--text-secondary);
+     text-transform: uppercase; letter-spacing: 0.04em; }
+p { margin: 0 0 12px; }
+.crumbs { font-size: 13px; color: var(--text-muted); }
+.lede { font-size: 17px; }
+.muted { color: var(--text-muted); }
+.chip { display: inline-block; padding: 1px 8px; border-radius: 10px; background: var(--chip); font-size: 12px;
+        color: var(--text-secondary); margin-right: 4px; white-space: nowrap; }
+.card { background: var(--surface-1); border: 1px solid var(--border); border-radius: 6px; padding: 14px 16px;
+        margin: 0 0 12px; }
+.stats { display: flex; flex-wrap: wrap; gap: 12px; margin: 16px 0; }
+.stat { background: var(--surface-1); border: 1px solid var(--border); border-radius: 6px; padding: 10px 14px;
+        min-width: 140px; }
+.stat b { display: block; font-size: 20px; font-variant-numeric: tabular-nums; }
+.stat span { font-size: 12px; color: var(--text-muted); }
+ul.grounds { list-style: none; padding: 0; margin: 0; }
+ul.grounds li { padding: 6px 0; border-bottom: 1px solid var(--border); }
+ul.grounds li:last-child { border-bottom: 0; }
+table { width: 100%; border-collapse: collapse; background: var(--surface-1); font-size: 14px; }
+th, td { text-align: left; padding: 7px 8px; border-bottom: 1px solid var(--border); vertical-align: top; }
+th { font-weight: 600; color: var(--text-secondary); cursor: pointer; white-space: nowrap; user-select: none; }
+td.num, th.num { text-align: right; font-variant-numeric: tabular-nums; white-space: nowrap; }
+code, .mono { font: 12.5px ui-monospace, SFMono-Regular, Menlo, monospace; word-break: break-all; }
+details summary { cursor: pointer; color: var(--accent); }
+.excerpt { border-left: 3px solid var(--border); padding: 2px 0 2px 10px; color: var(--text-secondary);
+           font-size: 14px; white-space: pre-wrap; }
+input[type=search] { width: 100%; padding: 8px 10px; font: inherit; border: 1px solid var(--border);
+                     border-radius: 6px; background: var(--surface-1); color: var(--text-primary); margin: 8px 0 12px; }
+.table-wrap { overflow-x: auto; }
+@media (max-width: 640px) { .hide-sm { display: none; } }
+</style>
+<script data-goatcounter="https://pintail.goatcounter.com/count" async src="https://gc.zgo.at/count.js"></script>
+</head>
+<body>
+<main>
+<p class="crumbs"><a href="../">Dataset</a> › <a href="./">Decisions</a> › 0323-binance-staking-withdrawal-address</p>
+<h1>Binance&#x27;s own reserve wallets staked to 0x8e60…8224, or funded the account that did: validators withdrawing to it are Binance&#x27;s staking.</h1>
+<p><span class="chip">Attribution</span><span class="chip">Allocator</span> <a href="../entities/binance.html">Binance staking</a> <span class="muted">· decided 2026-10-30</span></p>
+<p class="lede">Validators withdrawing to 0x8e60…8224 are Binance&#x27;s staking.</p>
+<div class="stats"><div class="stat"><b>76,925</b><span>validators resting on it now</span></div><div class="stat"><b>3,543,050</b><span>ETH now</span></div><div class="stat"><b>3,543,050</b><span>ETH at its peak</span></div></div>
+<h2>Grounds</h2><div class="card"><ul class="grounds"><li><span class="chip">First party</span>0x32e1…1149, a wallet in Binance&#x27;s reserve list of 1 October 2026, made 40 deposits naming this address in April 2026</li><li><span class="chip">First party</span>0x2d59…b177 made 146 deposits (290,032 ETH) naming it from April to October 2026, funded only by five wallets in the same list</li><li><span class="chip">On chain</span>Binance&#x27;s deposit account 0xbdd7…32a8 names it in every deposit; it sends its withdrawn stake to wBETH&#x27;s staking address</li></ul></div>
+<h2>Explanation</h2><p>Validators withdrawing to 0x8e60…8224 are attributed to Binance&#x27;s staking as allocator. In October 2026 about 76,900 active validators, some 3.54M ETH, withdraw there.</p>
+<p>Binance&#x27;s proof-of-reserves page lists the wallets behind its reserve report of 1 October 2026. One of its Ethereum hot and cold wallets, 0x32e1…1149 (80,000 ETH at the report), itself made 40 beacon deposits between 21 and 28 April 2026, every one naming 0x8e60…8224 as the withdrawal address. A second account, 0x2d59…b177, made 146 deposits naming the same address between 1 April and 22 October 2026, 290,032 ETH in all; every ETH it received came from five wallets on the same list, among them 0x28c6…1d60, and it has sent ETH nowhere but the deposit contract.</p>
+<p>This confirms decision 0006, which identified the address through Binance&#x27;s deposit account 0xbdd7…32a8 and the wBETH token: all of that account&#x27;s execution-layer deposits name 0x8e60…8224, and the address has sent its withdrawn stake only to the staking address set in wBETH&#x27;s contract. The address itself is not on Binance&#x27;s list, which covers wallets holding liquid assets; a validator&#x27;s stake sits on the beacon chain, not in its withdrawal address. Whether Binance runs these validators itself is not established, so no operator is recorded.</p>
+<h2>What would change it</h2><p>A later Binance reserve list or statement placing 0x8e60…8224 with a client, or evidence that its validators belong to someone other than Binance.</p>
+<h2>Evidence</h2><p class="muted">Transactions and contract calls anyone can repeat on their own node.</p><div class="card"><ul class="grounds"><li><a class="mono" href="https://etherscan.io/tx/0x554c4f1a47498f1f2201e909ee668dfc21544312d6fdd730b4d26d7c7bfcd62d">0x554c4f1a…7bfcd62d</a> — 0x32e1…1149 (listed Binance wallet) deposits with 0x8e60 credentials, block 24,927,241 (2026-04-21), the first of 40</li><li><a class="mono" href="https://etherscan.io/tx/0xeb8e98ceae9f97ed5a0a1dd7154c7302ea7399a3deb2937ba745f63e32d61d57">0xeb8e98ce…32d61d57</a> — 0x2d59…b177&#x27;s first deposit with 0x8e60 credentials, block 24,782,111 (2026-04-01)</li><li><a class="mono" href="https://etherscan.io/tx/0xe963cc12158998d81026062ece8560a415c3cd7bca04fc07940c33c54c63766a">0xe963cc12…4c63766a</a> — 0x28c6…1d60 (listed Binance wallet) sends 0x2d59…b177 30,000 ETH, block 25,636,849 (2026-07-29)</li><li><a class="mono" href="https://etherscan.io/tx/0x458523f112a1665df21e89beaaeb4c1ff694e5274d46ef142a9b6cd39e9d00c0">0x458523f1…9e9d00c0</a> — 0x28c6…1d60 sends 0x2d59…b177 80,000 ETH, block 26,246,714</li><li><a href="0006-binance-eth2-depositor.html">0006-binance-eth2-depositor</a></li></ul></div>
+<h2>Sources</h2><div class="card"><a href="https://www.binance.com/en/proof-of-reserves">Binance proof-of-reserves wallet addresses, report of 1 October 2026 (PR01OCT26)</a><div class="muted" style="font-size:13px">Binance (proof-of-reserves page, &quot;Download All Address&quot;) · the entity&#x27;s own · retrieved 2026-10-30</div><p class="excerpt">ETH,ETH,0x32e11a20337ebc79abd0eeab2d91bafbd9591149,80000.017040000000000000,26093737,</p><div class="muted mono">sha256 656c334685e45635daabde9f2f446ba01b9d8b2f7a2ba03396327218f43ae685</div></div><div class="card"><a href="https://www.bnbchain.org/en/blog/new-wrapped-beth-is-now-available-on-bnb-chain">New Wrapped BETH is Now Available on BNB Chain</a><div class="muted" style="font-size:13px">BNB Chain · third party · retrieved 2026-10-19</div><p class="excerpt">Ethereum: 0xa2E3356610840701BDf5611a53974510Ae27E2e1</p><div class="muted mono">sha256 787b32a9a259f99759fb33c0571515797dfdb0c21eca5fbf2dcf6b20522cc7b1</div></div>
+<h2>Treemap boxes resting on it</h2><div class="table-wrap"><table><thead><tr><th>Box</th><th class="num">ETH now</th><th class="num">Peak ETH</th></tr></thead><tbody><tr><td>Binance › Binance staking › Withdraws to 0x8e60…8224</td><td class="num">3,543,050</td><td class="num">3,543,050</td></tr></tbody></table></div>
+<h2>Targets (1)</h2><details open><summary>The addresses or validators this decision covers</summary><ul style="list-style:none;padding:0"><li><span class="chip">withdrawal address</span><a class="mono" href="https://etherscan.io/address/0x8e609ac80f4324e499a6efd24f221a2caa868224">0x8e609ac80f4324e499a6efd24f221a2caa868224</a></li></ul></details>
+</main>
+</body>
+</html>

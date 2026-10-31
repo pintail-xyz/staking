@@ -1,0 +1,77 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>0215-bitvavo-staking: Bitvavo&#x27;s ETH staking: validators of two addresses funded by the cold wallet that refills Bitvavo&#x27;s hot wallet, which Bitvavo na</title>
+<style>
+:root { color-scheme: light; --surface-0: #f4f3f0; --surface-1: #fcfcfb; --border: #d9d8d3; --text-primary: #0b0b0b;
+        --text-secondary: #52514e; --text-muted: #77766f; --accent: #2a78d6; --chip: #ebe9e4; }
+@media (prefers-color-scheme: dark) {
+  :root:where(:not([data-theme="light"])) { color-scheme: dark; --surface-0: #121211; --surface-1: #1a1a19;
+    --border: #3a3a37; --text-primary: #f0efec; --text-secondary: #c3c2b7; --text-muted: #96958c; --accent: #3987e5;
+    --chip: #2a2a28; }
+}
+:root[data-theme="dark"] { color-scheme: dark; --surface-0: #121211; --surface-1: #1a1a19; --border: #3a3a37;
+  --text-primary: #f0efec; --text-secondary: #c3c2b7; --text-muted: #96958c; --accent: #3987e5; --chip: #2a2a28; }
+* { box-sizing: border-box; }
+body { margin: 0; background: var(--surface-0); color: var(--text-primary);
+       font: 15px/1.55 system-ui, -apple-system, "Segoe UI", sans-serif; }
+main { max-width: 860px; margin: 0 auto; padding: 32px 16px 64px; }
+a { color: var(--accent); }
+h1 { font-size: 22px; line-height: 1.3; font-weight: 600; margin: 4px 0 12px; }
+h2 { font-size: 15px; font-weight: 600; margin: 28px 0 8px; color: var(--text-secondary);
+     text-transform: uppercase; letter-spacing: 0.04em; }
+p { margin: 0 0 12px; }
+.crumbs { font-size: 13px; color: var(--text-muted); }
+.lede { font-size: 17px; }
+.muted { color: var(--text-muted); }
+.chip { display: inline-block; padding: 1px 8px; border-radius: 10px; background: var(--chip); font-size: 12px;
+        color: var(--text-secondary); margin-right: 4px; white-space: nowrap; }
+.card { background: var(--surface-1); border: 1px solid var(--border); border-radius: 6px; padding: 14px 16px;
+        margin: 0 0 12px; }
+.stats { display: flex; flex-wrap: wrap; gap: 12px; margin: 16px 0; }
+.stat { background: var(--surface-1); border: 1px solid var(--border); border-radius: 6px; padding: 10px 14px;
+        min-width: 140px; }
+.stat b { display: block; font-size: 20px; font-variant-numeric: tabular-nums; }
+.stat span { font-size: 12px; color: var(--text-muted); }
+ul.grounds { list-style: none; padding: 0; margin: 0; }
+ul.grounds li { padding: 6px 0; border-bottom: 1px solid var(--border); }
+ul.grounds li:last-child { border-bottom: 0; }
+table { width: 100%; border-collapse: collapse; background: var(--surface-1); font-size: 14px; }
+th, td { text-align: left; padding: 7px 8px; border-bottom: 1px solid var(--border); vertical-align: top; }
+th { font-weight: 600; color: var(--text-secondary); cursor: pointer; white-space: nowrap; user-select: none; }
+td.num, th.num { text-align: right; font-variant-numeric: tabular-nums; white-space: nowrap; }
+code, .mono { font: 12.5px ui-monospace, SFMono-Regular, Menlo, monospace; word-break: break-all; }
+details summary { cursor: pointer; color: var(--accent); }
+.excerpt { border-left: 3px solid var(--border); padding: 2px 0 2px 10px; color: var(--text-secondary);
+           font-size: 14px; white-space: pre-wrap; }
+input[type=search] { width: 100%; padding: 8px 10px; font: inherit; border: 1px solid var(--border);
+                     border-radius: 6px; background: var(--surface-1); color: var(--text-primary); margin: 8px 0 12px; }
+.table-wrap { overflow-x: auto; }
+@media (max-width: 640px) { .hide-sm { display: none; } }
+</style>
+<script data-goatcounter="https://pintail.goatcounter.com/count" async src="https://gc.zgo.at/count.js"></script>
+</head>
+<body>
+<main>
+<p class="crumbs"><a href="../">Dataset</a> › <a href="./">Decisions</a> › 0215-bitvavo-staking</p>
+<h1>Bitvavo&#x27;s ETH staking: validators of two addresses funded by the cold wallet that refills Bitvavo&#x27;s hot wallet, which Bitvavo named to a customer.</h1>
+<p><span class="chip">Attribution</span><span class="chip">Allocator</span> <a href="../entities/bitvavo.html">Bitvavo staking</a> <span class="muted">· decided 2026-10-25</span></p>
+<p class="lede">Validators withdrawing to 0xedc6…87c9 or 0xfc57…d030 are Bitvavo&#x27;s staking.</p>
+<div class="stats"><div class="stat"><b>522</b><span>validators resting on it now</span></div><div class="stat"><b>63,681</b><span>ETH now</span></div><div class="stat"><b>63,681</b><span>ETH at its peak</span></div></div>
+<h2>Grounds</h2><div class="card"><ul class="grounds"><li><span class="chip">Third party</span>Bitvavo told a customer (ENS forum) that 0x95b5 is its hot wallet; a refund sent there reached the customer&#x27;s account</li><li><span class="chip">On chain</span>The customer&#x27;s Bitvavo withdrawal came from 0x95b5, and their Bitvavo deposit address swept tokens to it</li><li><span class="chip">On chain</span>0xedc6 refills 0x95b5 and funded 0xfc57, which deposited validators itself, as did 0xedc6</li><li><span class="chip">First party</span>Bitvavo stakes customers&#x27; ETH itself, under keys it controls</li></ul></div>
+<h2>Explanation</h2><p>Validators withdrawing to 0xedc6…87c9 or 0xfc57…d030 are the staking of Bitvavo, the Dutch exchange, with Bitvavo as allocator. In October 2026 they held 522 active validators with about 64k ETH: twenty compounding validators at the first address and 502 at the second.</p>
+<p><strong>The anchor: Bitvavo&#x27;s hot wallet.</strong> In a <a href="https://discuss.ens.domains/t/accidentally-sending-ens-tokens-to-ens-contract-address/15696">discussion on the ENS governance forum</a> in December 2022, a customer who had withdrawn ENS tokens from Bitvavo to the wrong address relayed Bitvavo&#x27;s answer: 0x95b5…cc8a is its hot wallet, and a refund sent there would be credited. The refund was sent there, and the customer confirmed that the tokens were back. On chain, the customer&#x27;s withdrawal came from that wallet, and the customer&#x27;s Bitvavo deposit address swept tokens into it: the wallet both pays Bitvavo&#x27;s withdrawals and collects its deposits.</p>
+<p><strong>From the hot wallet to the staking.</strong> 0xedc6…87c9 refills that hot wallet and a second one, 0x079a…dc63, which pays the first one&#x27;s gas: a cold wallet refilling the exchange&#x27;s hot wallets. 0xedc6…87c9 deposited validators itself, and funded 0xfc57…d030, which deposited its own validators, partly through Kiln&#x27;s and Coinbase&#x27;s batch deposit contracts and partly directly. Another wallet in the same circle of transfers is 0xfc57…d030&#x27;s main funder.</p>
+<p><strong>What Bitvavo says.</strong> <a href="https://support.bitvavo.com/hc/en-us/articles/4405243949841-Staking-at-Bitvavo">Bitvavo says it stakes customers&#x27; assets itself</a>. <a href="https://widget.app.ledgerlens.io/bitvavo?tab=summary&amp;datasetId=N-2XtKQu_A9or4XdsWlDU">Its proof of reserves at 30 June 2026</a> counts 267,278 ETH, including staked ETH under keys Bitvavo controls. One address&#x27;s validators sign P2P.org&#x27;s graffiti, as their operator; no operator is recorded here.</p>
+<p><strong>Limits.</strong> Bitvavo&#x27;s statement reaches this record through its customer, and the staking addresses are tied to the hot wallet by ETH flows rather than by a Bitvavo statement. Community trackers and explorer labels listing the wallets as Bitvavo&#x27;s are recorded as leads. The decision would change with evidence that either address holds a client&#x27;s ETH rather than Bitvavo&#x27;s, or a Bitvavo statement that 0x95b5…cc8a is not its wallet.</p>
+<h2>What would change it</h2><p>Evidence that 0xedc6 or 0xfc57 hold a client&#x27;s ETH rather than Bitvavo&#x27;s, or a Bitvavo statement that 0x95b5 is not its wallet.</p>
+<h2>Evidence</h2><p class="muted">Transactions and contract calls anyone can repeat on their own node.</p><div class="card"><ul class="grounds"><li><a class="mono" href="https://etherscan.io/tx/0xfc3bda55b72a522bd0bc740de916c890e297f6481952535801b40f264068a3e6">0xfc3bda55…4068a3e6</a> — A Bitvavo customer&#x27;s ENS withdrawal, sent by 0x95b5, 17 December 2022</li><li><a class="mono" href="https://etherscan.io/tx/0xe3c9e56764fc1564c214e2ef6367eef38429e16a649404ef7cdf33cf332adc2f">0xe3c9e567…332adc2f</a> — The ENS Meta-governance Safe refunds the 10 ENS to 0x95b5, 25 December 2022</li><li><a class="mono" href="https://etherscan.io/tx/0x183c1f0de65a5b9bd3dd10fc7d9a8232890e503e93f29af0d03c561c845add81">0x183c1f0d…845add81</a> — The customer&#x27;s Bitvavo deposit address sweeps DIA to 0x95b5</li><li><a class="mono" href="https://etherscan.io/tx/0xf5147af52cc4d1df5d1f7f045c6e603554eb3a660d2fe5a3fd6639a5e979bcb5">0xf5147af5…e979bcb5</a> — 0xedc6 sends 0xfc57 2,500 ETH, 10 April 2025</li><li><a class="mono" href="https://etherscan.io/tx/0x5191fab8cce0b51a344b02f32ed8f08edfccf1ee9423b179129099470049696b">0x5191fab8…0049696b</a> — 0xedc6&#x27;s first compounding validator deposit, 13 October 2025</li><li><a class="mono" href="https://etherscan.io/tx/0x0668505837c9cb99000c4f43f5d1ed73ca37fbec0927e8f481f81114bb17f3b6">0x06685058…bb17f3b6</a> — 0xfc57&#x27;s first validator deposit, through Kiln&#x27;s batch deposit contract, 5 February 2025</li></ul></div>
+<h2>Sources</h2><div class="card"><a href="https://discuss.ens.domains/t/accidentally-sending-ens-tokens-to-ens-contract-address/15696">Accidentally sending ENS tokens to ENS contract address (17 December 2022 to 2 January 2023)</a><div class="muted" style="font-size:13px">ENS DAO governance forum (discuss.ens.domains) · third party · retrieved 2026-10-25</div><p class="excerpt">I was in contact with Bitvavo and they say that if you return to the address where my transaction originated from (which is their hot wallet), they will be able to put that to my account. So that is great news, you can revert the transaction to 0x95B564F3B3BaE3f206aa418667bA000AFAFAcc8a.</p><div class="muted mono">sha256 f76626e54e9951caba8e00ab42fb5bb9da7b02a0661fd0f53329c7f770f0e0ef</div></div><div class="card"><a href="https://support.bitvavo.com/hc/en-us/articles/4405243949841-Staking-at-Bitvavo">Staking at Bitvavo</a><div class="muted" style="font-size:13px">Bitvavo (support.bitvavo.com) · the entity&#x27;s own · retrieved 2026-10-25</div><p class="excerpt">Staking: Your eligible crypto-assets help support blockchain networks that use proof of stake. In return, you receive weekly staking rewards. [...] Staking (provided by Bitvavo B.V.) and Lending (provided by Bitvavo Custody B.V.) are not regulated under MiCA.</p><div class="muted mono">sha256 d20a8d72fa3ed4ab5fd3029362f57ce50ea3791ceef33f9d0fbb8d5cf9670ea7</div></div><div class="card"><a href="https://widget.app.ledgerlens.io/bitvavo?tab=summary&amp;datasetId=N-2XtKQu_A9or4XdsWlDU">Independent Accountant&#x27;s Report on Agreed-Upon Procedures, Bitvavo Platform, as of 30 June 2026</a><div class="muted" style="font-size:13px">The Network Firm for Bitvavo (Bitvavo&#x27;s proof-of-reserves widget, LedgerLens) · the entity&#x27;s own · retrieved 2026-10-25</div><p class="excerpt">ETH and staked ETH held to satisfy ETH Client Liabilities includes assets in blockchain-based addresses or staked ETH managed by keys controlled by Bitvavo, custodial accounts under Stichting Bitvavo Payments, and accounts related to the Lending Service on behalf of Platform Clients.</p><div class="muted mono">sha256 fa717a2c0e572d3992af58efb3f631c75d3a1e505eb460f12932c88523995d4c</div></div>
+<h2>Leads</h2><p class="muted">Third-party pages, such as explorer labels, that pointed the research but are not relied on.</p><ul><li><a href="https://github.com/DefiLlama/DefiLlama-Adapters/pull/18526">add bitvavo (PR #18526, commit d19d35e, merged 25 March 2026)</a></li><li><a href="https://github.com/duneanalytics/spellbook/blob/9f61b0dd2bba5a8314d0f36eca1419da5d25ac97/dbt_subprojects/hourly_spellbook/models/_sector/cex/addresses/chains/cex_evms_addresses.sql">cex_evms_addresses.sql, commit 9f61b0d</a></li><li><a href="https://etherscan.io/address/0xedc6bacdc1e29d7c5fa6f6eca6fdd447b9c487c9">Etherscan address page</a></li><li><a href="https://metadata.services.blockscout.com/api/v1/metadata?chainId=1&amp;addresses=0xedc6bacdc1e29d7c5fa6f6eca6fdd447b9c487c9">Blockscout address page</a></li><li><a href="https://etherscan.io/address/0x079a892628ebf28d0ed8f00151cff225a093dc63">Etherscan address page</a></li><li><a href="https://metadata.services.blockscout.com/api/v1/metadata?chainId=1&amp;addresses=0x079a892628ebf28d0ed8f00151cff225a093dc63">Blockscout address page</a></li></ul>
+<h2>Treemap boxes resting on it</h2><div class="table-wrap"><table><thead><tr><th>Box</th><th class="num">ETH now</th><th class="num">Peak ETH</th></tr></thead><tbody><tr><td>Bitvavo › Bitvavo staking › 2 named withdrawal addresses (from Sep 2023)</td><td class="num">63,681</td><td class="num">63,681</td></tr></tbody></table></div>
+<h2>Targets (2)</h2><details open><summary>The addresses or validators this decision covers</summary><ul style="list-style:none;padding:0"><li><span class="chip">withdrawal address</span><a class="mono" href="https://etherscan.io/address/0xedc6bacdc1e29d7c5fa6f6eca6fdd447b9c487c9">0xedc6bacdc1e29d7c5fa6f6eca6fdd447b9c487c9</a></li><li><span class="chip">withdrawal address</span><a class="mono" href="https://etherscan.io/address/0xfc57a3959582e3af9afb7fb92cb0ad1f38bdd030">0xfc57a3959582e3af9afb7fb92cb0ad1f38bdd030</a></li></ul></details>
+</main>
+</body>
+</html>

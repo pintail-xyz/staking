@@ -1,0 +1,103 @@
+<!doctype html>
+<html lang="en" data-site="static">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Ethereum stake distribution</title>
+    <script type="module" crossorigin src="./assets/index-lyTM6f26.js"></script>
+    <link rel="stylesheet" crossorigin href="./assets/index-DphrXAud.css">
+  <script data-goatcounter="https://pintail.goatcounter.com/count" async src="https://gc.zgo.at/count.js"></script>
+</head>
+  <body>
+    <main class="viz-root">
+      <header class="top">
+        <div class="title">
+          <h1>Ethereum stake distribution</h1>
+          <nav class="sites" aria-label="Related charts">
+            <a id="ledger-link" href="../supply/">Staking ratio</a>
+            <a id="liquidity-link" href="../liquidity/" hidden>Forms of ETH</a>
+            <a id="explorer-link" href="../supply/">Explorer</a>
+            <a id="entities-link" href="data/dataset/entities/">Entities</a>
+          </nav>
+        </div>
+        <p class="intro">
+          A view of staked Ether over time, organised by the entities which allocate stake to operators.
+        </p>
+        <div id="mock-banner" class="banner" hidden>
+          Mock data: the names and numbers below are invented for UI development.
+        </div>
+        <dl class="headline" aria-live="polite">
+          <div><dt>Active stake</dt><dd id="h-total">–</dd></div>
+          <div><dt>Attributed to an allocator</dt><dd id="h-attributed">–</dd><dd id="h-basis" class="sub"></dd></div>
+          <div><dt>Validators</dt><dd id="h-validators">–</dd></div>
+          <div><dt>Date</dt><dd id="h-date">–</dd></div>
+          <div class="supply-only" hidden><dt>Total supply</dt><dd id="h-supply">–</dd></div>
+          <div class="supply-only" hidden><dt>Staked share of supply</dt><dd id="h-staked">–</dd></div>
+        </dl>
+      </header>
+
+      <div class="controls">
+        <button id="play" type="button" aria-label="Play">▶</button>
+        <input id="slider" type="range" min="0" max="0" value="0" step="1" aria-label="Frame" />
+        <span id="frame-label" class="frame-label">–</span>
+        <label class="toggle" for="group">
+          <input id="group" type="checkbox" autocomplete="off" />
+          <span>Group by category</span>
+        </label>
+        <label class="toggle" for="unstaked">
+          <input id="unstaked" type="checkbox" autocomplete="off" />
+          <span id="unstaked-label">Include unstaked ETH</span>
+        </label>
+        <label class="speed">
+          Speed
+          <select id="speed">
+            <option value="2">2 weeks/s</option>
+            <option value="4" selected>4 weeks/s</option>
+            <option value="8">8 weeks/s</option>
+            <option value="16">16 weeks/s</option>
+          </select>
+        </label>
+      </div>
+
+      <nav id="breadcrumb" class="breadcrumb" aria-label="Zoom path"></nav>
+
+      <div id="chart" class="chart">
+        <svg id="treemap" role="img" aria-label="Treemap of active stake by allocator"></svg>
+        <div id="empty" class="empty" hidden></div>
+        <div id="status" class="status">Loading…</div>
+      </div>
+
+      <div id="legend" class="legend"></div>
+
+      <p class="data-download">
+        <a href="data/dataset/">Download the data</a>: who stands behind every active validator, the addresses
+        identified, and each box's history, under CC BY 4.0. <a href="data/dataset/decisions/">The decisions</a>
+        behind the attributions set out their evidence and sources, and what would change them.
+      </p>
+
+      <form class="entity-search" action="data/dataset/entities/" method="get" role="search">
+        <label for="entity-q">Search entities</label>
+        <input type="search" id="entity-q" name="q" placeholder="e.g. Figment, Lido, Coinbase" required>
+        <button type="submit">Search</button>
+      </form>
+
+      <details id="table-view" class="table-view">
+        <summary>Table view</summary>
+        <table>
+          <thead>
+            <tr><th>Name</th><th>Kind</th><th class="num">ETH</th><th class="num">% of total</th><th class="num">Validators</th><th>Basis</th></tr>
+          </thead>
+          <tbody></tbody>
+        </table>
+      </details>
+
+      <footer class="notes">
+        <details>
+          <summary>Notes</summary>
+          <ol id="notes"></ol>
+        </details>
+      </footer>
+    </main>
+    <div id="tooltip" class="tooltip" role="tooltip" hidden></div>
+  </body>
+</html>

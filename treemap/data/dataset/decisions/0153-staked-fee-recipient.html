@@ -1,0 +1,74 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>0153-staked-fee-recipient: This address is Staked&#x27;s execution-reward pool; otherwise unattributed validators paying their fees and MEV to it are taken</title>
+<style>
+:root { color-scheme: light; --surface-0: #f4f3f0; --surface-1: #fcfcfb; --border: #d9d8d3; --text-primary: #0b0b0b;
+        --text-secondary: #52514e; --text-muted: #77766f; --accent: #2a78d6; --chip: #ebe9e4; }
+@media (prefers-color-scheme: dark) {
+  :root:where(:not([data-theme="light"])) { color-scheme: dark; --surface-0: #121211; --surface-1: #1a1a19;
+    --border: #3a3a37; --text-primary: #f0efec; --text-secondary: #c3c2b7; --text-muted: #96958c; --accent: #3987e5;
+    --chip: #2a2a28; }
+}
+:root[data-theme="dark"] { color-scheme: dark; --surface-0: #121211; --surface-1: #1a1a19; --border: #3a3a37;
+  --text-primary: #f0efec; --text-secondary: #c3c2b7; --text-muted: #96958c; --accent: #3987e5; --chip: #2a2a28; }
+* { box-sizing: border-box; }
+body { margin: 0; background: var(--surface-0); color: var(--text-primary);
+       font: 15px/1.55 system-ui, -apple-system, "Segoe UI", sans-serif; }
+main { max-width: 860px; margin: 0 auto; padding: 32px 16px 64px; }
+a { color: var(--accent); }
+h1 { font-size: 22px; line-height: 1.3; font-weight: 600; margin: 4px 0 12px; }
+h2 { font-size: 15px; font-weight: 600; margin: 28px 0 8px; color: var(--text-secondary);
+     text-transform: uppercase; letter-spacing: 0.04em; }
+p { margin: 0 0 12px; }
+.crumbs { font-size: 13px; color: var(--text-muted); }
+.lede { font-size: 17px; }
+.muted { color: var(--text-muted); }
+.chip { display: inline-block; padding: 1px 8px; border-radius: 10px; background: var(--chip); font-size: 12px;
+        color: var(--text-secondary); margin-right: 4px; white-space: nowrap; }
+.card { background: var(--surface-1); border: 1px solid var(--border); border-radius: 6px; padding: 14px 16px;
+        margin: 0 0 12px; }
+.stats { display: flex; flex-wrap: wrap; gap: 12px; margin: 16px 0; }
+.stat { background: var(--surface-1); border: 1px solid var(--border); border-radius: 6px; padding: 10px 14px;
+        min-width: 140px; }
+.stat b { display: block; font-size: 20px; font-variant-numeric: tabular-nums; }
+.stat span { font-size: 12px; color: var(--text-muted); }
+ul.grounds { list-style: none; padding: 0; margin: 0; }
+ul.grounds li { padding: 6px 0; border-bottom: 1px solid var(--border); }
+ul.grounds li:last-child { border-bottom: 0; }
+table { width: 100%; border-collapse: collapse; background: var(--surface-1); font-size: 14px; }
+th, td { text-align: left; padding: 7px 8px; border-bottom: 1px solid var(--border); vertical-align: top; }
+th { font-weight: 600; color: var(--text-secondary); cursor: pointer; white-space: nowrap; user-select: none; }
+td.num, th.num { text-align: right; font-variant-numeric: tabular-nums; white-space: nowrap; }
+code, .mono { font: 12.5px ui-monospace, SFMono-Regular, Menlo, monospace; word-break: break-all; }
+details summary { cursor: pointer; color: var(--accent); }
+.excerpt { border-left: 3px solid var(--border); padding: 2px 0 2px 10px; color: var(--text-secondary);
+           font-size: 14px; white-space: pre-wrap; }
+input[type=search] { width: 100%; padding: 8px 10px; font: inherit; border: 1px solid var(--border);
+                     border-radius: 6px; background: var(--surface-1); color: var(--text-primary); margin: 8px 0 12px; }
+.table-wrap { overflow-x: auto; }
+@media (max-width: 640px) { .hide-sm { display: none; } }
+</style>
+<script data-goatcounter="https://pintail.goatcounter.com/count" async src="https://gc.zgo.at/count.js"></script>
+</head>
+<body>
+<main>
+<p class="crumbs"><a href="../">Dataset</a> › <a href="./">Decisions</a> › 0153-staked-fee-recipient</p>
+<h1>This address is Staked&#x27;s execution-reward pool; otherwise unattributed validators paying their fees and MEV to it are taken to be run, and allocated, by Staked.</h1>
+<p><span class="chip">Anchor</span> <span class="muted">· decided 2026-10-22</span></p>
+<p class="lede">This address is Staked&#x27;s fee recipient; otherwise unattributed validators paying it are run and allocated by Staked.</p>
+<div class="stats"><div class="stat"><b>2,764</b><span>validators resting on it now</span></div><div class="stat"><b>109,573</b><span>ETH now</span></div><div class="stat"><b>252,032</b><span>ETH at its peak</span></div></div>
+<h2>Grounds</h2><div class="card"><ul class="grounds"><li><span class="chip">First party</span>Validators deposited through Staked&#x27;s accounts pay their fees and MEV to it, as Staked says it collects them</li><li><span class="chip">On chain</span>It was first funded by, and pays commission to, a wallet the creator of Staked&#x27;s batch contract funded</li><li><span class="chip">On chain</span>2,858 other validators paid it in 98.6% of their blocks, as the fee recipient their operator set</li></ul></div>
+<h2>Explanation</h2><p>The address 0xe94f…6ca0c is Staked&#x27;s execution-reward pool: Staked&#x27;s validators pay their transaction fees and MEV to it, and it pays them on to stakers after Staked&#x27;s commission. Validators otherwise unattributed that paid it are attributed to Staked as allocator for as long as they did. Staked has been part of Kraken since 2021. 3,946 validators have paid it since the Merge; in October 2026 about 2,800 relied on this decision, with some 0.11M ETH.</p>
+<p><strong>Identification.</strong> <a href="https://staked.us/faq/ethereum-withdrawals/">Staked&#x27;s FAQ on withdrawals</a> explains that it collects its validators&#x27; execution-layer rewards and pays them on, keeping its commission. The validators deposited by the accounts that used Staked&#x27;s own batch deposit contract (<a href="https://github.com/Stakedllc/eth2-batch-contract">its repository</a>; decisions 0047 to 0066) pay this address. Its first incoming transfer came from a wallet funded by the creator of Staked&#x27;s batch contract, which has since received 800 ETH from it in commission, and it has made 9,066 payments on to stakers.</p>
+<p><strong>The other validators.</strong> 2,858 validators not otherwise attributed paid it in 98.6% of their blocks, as the fee recipient their operator set. Most are registered on SSV under one owner account, which also owns validators deposited through Staked&#x27;s accounts. This matches Staked&#x27;s move of its fleet to SSV in early 2025, visible in its validators&#x27; graffiti. 19 validators otherwise attributed to Bitfinex paid it in 41% of their blocks; they keep their Bitfinex attribution, since a fee recipient yields to every other allocator claim.</p>
+<p>Staked is the allocator for its clients, who keep their own withdrawal addresses. The decision would change with evidence that clients of other providers also use this address as their fee recipient.</p>
+<h2>What would change it</h2><p>Evidence that clients of other providers also use this address as their fee recipient.</p>
+<h2>Evidence</h2><p class="muted">Transactions and contract calls anyone can repeat on their own node.</p><div class="card"><ul class="grounds"><li><a class="mono" href="https://etherscan.io/tx/0x429f7dff5253c86fd3e004b019261d79ffcd7e9728df5db5cc9294e4888a3e9f">0x429f7dff…888a3e9f</a> — 0x87bc makes the first transfer to this address</li><li><a class="mono" href="https://etherscan.io/tx/0x3707d10fe214a71c39867de5165846d97b73afb07f969ec8962cc8145a8b5a2b">0x3707d10f…5a8b5a2b</a> — This address pays 0x87bc (first of 4 transfers, 800 ETH)</li></ul></div>
+<h2>Sources</h2><div class="card"><a href="https://staked.us/faq/ethereum-withdrawals/">Ethereum Withdrawals (archived 18 April 2023)</a><div class="muted" style="font-size:13px">Staked (a Kraken company) · the entity&#x27;s own · retrieved 2026-10-22</div><p class="excerpt">Staked will distribute all execution layer rewards (transaction fees + MEV) earned before the fork in early May to validators with upgraded credentials. Subsequently, Staked will distribute execution layer rewards on a 2 - 3 week cadence.</p><div class="muted mono">sha256 458d74d07047de6b370a3b704c3379a52a43218f3fa69204bc95128d2d893852</div></div><div class="card"><a href="https://github.com/Stakedllc/eth2-batch-contract">ETH2 Deposit Batching Smart Contract (README, archived 10 October 2021)</a><div class="muted" style="font-size:13px">Staked (GitHub organisation Stakedllc) · the entity&#x27;s own · retrieved 2026-10-22</div><p class="excerpt">The Staked ETH2 Deposit Batching smart contract is deployed and verified here: https://etherscan.io/address/0x39dc6a99209b5e6b81dc8540c86ff10981ebda29</p><div class="muted mono">sha256 da44901659d0c44fa17d04c0608c92e956e13f61a17d6933bb03f3394259b9c4</div></div>
+<h2>Treemap boxes resting on it</h2><div class="table-wrap"><table><thead><tr><th>Box</th><th class="num">ETH now</th><th class="num">Peak ETH</th></tr></thead><tbody><tr><td>Staked › Staked-run validators (by Staked fee recipient) › Fee recipient 0xe94f…ca0c</td><td class="num">109,573</td><td class="num">252,032</td></tr></tbody></table></div>
+</main>
+</body>
+</html>

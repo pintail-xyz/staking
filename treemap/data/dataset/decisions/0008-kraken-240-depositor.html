@@ -1,0 +1,74 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>0008-kraken-240-depositor: This account (0xed20…8ab0), funded by the same account as Kraken&#x27;s EigenLayer restaking account and depositing like Kraken&#x27;</title>
+<style>
+:root { color-scheme: light; --surface-0: #f4f3f0; --surface-1: #fcfcfb; --border: #d9d8d3; --text-primary: #0b0b0b;
+        --text-secondary: #52514e; --text-muted: #77766f; --accent: #2a78d6; --chip: #ebe9e4; }
+@media (prefers-color-scheme: dark) {
+  :root:where(:not([data-theme="light"])) { color-scheme: dark; --surface-0: #121211; --surface-1: #1a1a19;
+    --border: #3a3a37; --text-primary: #f0efec; --text-secondary: #c3c2b7; --text-muted: #96958c; --accent: #3987e5;
+    --chip: #2a2a28; }
+}
+:root[data-theme="dark"] { color-scheme: dark; --surface-0: #121211; --surface-1: #1a1a19; --border: #3a3a37;
+  --text-primary: #f0efec; --text-secondary: #c3c2b7; --text-muted: #96958c; --accent: #3987e5; --chip: #2a2a28; }
+* { box-sizing: border-box; }
+body { margin: 0; background: var(--surface-0); color: var(--text-primary);
+       font: 15px/1.55 system-ui, -apple-system, "Segoe UI", sans-serif; }
+main { max-width: 860px; margin: 0 auto; padding: 32px 16px 64px; }
+a { color: var(--accent); }
+h1 { font-size: 22px; line-height: 1.3; font-weight: 600; margin: 4px 0 12px; }
+h2 { font-size: 15px; font-weight: 600; margin: 28px 0 8px; color: var(--text-secondary);
+     text-transform: uppercase; letter-spacing: 0.04em; }
+p { margin: 0 0 12px; }
+.crumbs { font-size: 13px; color: var(--text-muted); }
+.lede { font-size: 17px; }
+.muted { color: var(--text-muted); }
+.chip { display: inline-block; padding: 1px 8px; border-radius: 10px; background: var(--chip); font-size: 12px;
+        color: var(--text-secondary); margin-right: 4px; white-space: nowrap; }
+.card { background: var(--surface-1); border: 1px solid var(--border); border-radius: 6px; padding: 14px 16px;
+        margin: 0 0 12px; }
+.stats { display: flex; flex-wrap: wrap; gap: 12px; margin: 16px 0; }
+.stat { background: var(--surface-1); border: 1px solid var(--border); border-radius: 6px; padding: 10px 14px;
+        min-width: 140px; }
+.stat b { display: block; font-size: 20px; font-variant-numeric: tabular-nums; }
+.stat span { font-size: 12px; color: var(--text-muted); }
+ul.grounds { list-style: none; padding: 0; margin: 0; }
+ul.grounds li { padding: 6px 0; border-bottom: 1px solid var(--border); }
+ul.grounds li:last-child { border-bottom: 0; }
+table { width: 100%; border-collapse: collapse; background: var(--surface-1); font-size: 14px; }
+th, td { text-align: left; padding: 7px 8px; border-bottom: 1px solid var(--border); vertical-align: top; }
+th { font-weight: 600; color: var(--text-secondary); cursor: pointer; white-space: nowrap; user-select: none; }
+td.num, th.num { text-align: right; font-variant-numeric: tabular-nums; white-space: nowrap; }
+code, .mono { font: 12.5px ui-monospace, SFMono-Regular, Menlo, monospace; word-break: break-all; }
+details summary { cursor: pointer; color: var(--accent); }
+.excerpt { border-left: 3px solid var(--border); padding: 2px 0 2px 10px; color: var(--text-secondary);
+           font-size: 14px; white-space: pre-wrap; }
+input[type=search] { width: 100%; padding: 8px 10px; font: inherit; border: 1px solid var(--border);
+                     border-radius: 6px; background: var(--surface-1); color: var(--text-primary); margin: 8px 0 12px; }
+.table-wrap { overflow-x: auto; }
+@media (max-width: 640px) { .hide-sm { display: none; } }
+</style>
+<script data-goatcounter="https://pintail.goatcounter.com/count" async src="https://gc.zgo.at/count.js"></script>
+</head>
+<body>
+<main>
+<p class="crumbs"><a href="../">Dataset</a> › <a href="./">Decisions</a> › 0008-kraken-240-depositor</p>
+<h1>This account (0xed20…8ab0), funded by the same account as Kraken&#x27;s EigenLayer restaking account and depositing like Kraken&#x27;s other accounts, makes deposits for Kraken&#x27;s staking.</h1>
+<p><span class="chip">Anchor</span> <span class="muted">· decided 2026-10-16</span></p>
+<p class="lede">This account (0xed20…8ab0) makes deposits for Kraken&#x27;s staking; validators withdrawing to its addresses are Kraken&#x27;s.</p>
+<div class="stats"><div class="stat"><b>882</b><span>validators resting on it now</span></div><div class="stat"><b>231,796</b><span>ETH now</span></div><div class="stat"><b>231,796</b><span>ETH at its peak</span></div></div>
+<h2>Grounds</h2><div class="card"><ul class="grounds"><li><span class="chip">On chain</span>Its first gas came from 0x210b…2a1b, within 40 minutes of the same top-up to Kraken&#x27;s EigenLayer restaking account</li><li><span class="chip">On chain</span>Its principal came from 0x210b…2a1b, a withdrawal address of Kraken&#x27;s main depositor (decision 0007)</li><li><span class="chip">On chain</span>It deposits through the same contract as Kraken&#x27;s main depositor and moved its stake in the same weeks</li></ul></div>
+<h2>Explanation</h2><p>The account 0xed20…8ab0 makes deposits for Kraken&#x27;s staking, and validators withdrawing to its addresses are attributed to Kraken&#x27;s staking as allocator. It deposited 8,173 validators between April 2025 and February 2026, through the same batch deposit contract as Kraken&#x27;s main deposit account (decision 0007); in October 2026 about 880 of its validators, mostly compounding, were active with some 0.23M ETH.</p>
+<p><strong>The link to Kraken.</strong> On 21 March 2025 the address 0x210b…2a1b, one of Kraken&#x27;s withdrawal addresses under decision 0007, gave this account its first 0.1 ETH of gas. Within the same 40 minutes it gave the first gas to Kraken&#x27;s EigenLayer restaking account (decision 0010) and to another deposit account (decision 0009). One account paying first gas to all three in the same window is taken to hold them all. The same address then sent this account 33 ETH just before its first deposit, and 32,906 ETH before its first large batch.</p>
+<p><strong>The pattern.</strong> Like Kraken&#x27;s other accounts in 2025, it deposited most validators with its own address as withdrawal address. It moved its stake by consolidation in the same weeks of March and June 2026 as Kraken did, partly into an address that carries the same contract code as one of Kraken&#x27;s own consolidation targets.</p>
+<p><strong>Limits.</strong> The batch contract it used has no caller check, so using it does not by itself show that Kraken sent a deposit; the link rests on the funding. The identification is also only as strong as decision 0010, which rests on Kraken&#x27;s announced restaking and on its EigenLayer operator&#x27;s self-published metadata. Whether Kraken holds this stake for itself or for a client, Kraken chose who runs the validators, which makes it the allocator. Explorer labels are recorded as leads. The decision would change with a Kraken statement contradicting it, or evidence that the account deposits keys a client chose.</p>
+<h2>What would change it</h2><p>A Kraken statement contradicting it, or evidence it deposits keys chosen by a client.</p>
+<h2>Evidence</h2><p class="muted">Transactions and contract calls anyone can repeat on their own node.</p><div class="card"><ul class="grounds"><li><a href="0010-kraken-eigenpod-depositor-4462.html">0010-kraken-eigenpod-depositor-4462</a></li><li><a class="mono" href="https://etherscan.io/tx/0x2d18320328613653f51a29434a62cce0e876177c7082fee25fcbc9f91647daf2">0x2d183203…1647daf2</a> — 0x210b…2a1b first funds Kraken&#x27;s EigenLayer restaking account 0x4462… (0.1 ETH), block 22,095,288</li><li><a class="mono" href="https://etherscan.io/tx/0x69eb75cf6e25c9d668343cb4b1f09bad9e17530b3dc6c37ab52310ff07a66692">0x69eb75cf…07a66692</a> — 0x210b…2a1b first funds 0xed20 (0.1 ETH)</li><li><a class="mono" href="https://etherscan.io/tx/0xbf0a29706456d1710f98145405b3c1af73704d95d917cba81abbcfe549fcdef8">0xbf0a2970…49fcdef8</a> — 0x210b…2a1b sends 33 ETH to 0xed20</li><li><a class="mono" href="https://etherscan.io/tx/0xc1bbaaea0562b59df8f1f9528002173a686f48342eea5424434e6ae252e5db26">0xc1bbaaea…52e5db26</a> — 0xed20&#x27;s first deposit, via 0xd403</li><li><a class="mono" href="https://etherscan.io/tx/0x21d7de11c1ed3452fbe6e04213b81dff361162ef66ca6eb6404bbb473f69ac65">0x21d7de11…3f69ac65</a> — 0x210b…2a1b sends 32,906 ETH to 0xed20</li><li><a class="mono" href="https://etherscan.io/tx/0x25ed373ac7fc544d88630feaa906a04ba20b8664fc162bda2fda3a975e535bd8">0x25ed373a…5e535bd8</a> — First consolidation by 0xed20 (into itself)</li><li><a class="mono" href="https://etherscan.io/tx/0xf54502f4d49d30bec5b3a620e08f29fee19cae5f27b5c9795b0b1ec03ee50783">0xf54502f4…3ee50783</a> — First consolidation 0xed20 into 0xf15a</li></ul></div>
+<h2>Leads</h2><p class="muted">Third-party pages, such as explorer labels, that pointed the research but are not relied on.</p><ul><li><a href="https://etherscan.io/address/0xed20e72c966da53c6ac5bbcb0ad16ac9f25b8ab0">Etherscan address page</a></li><li><a href="https://metadata.services.blockscout.com/api/v1/metadata?chainId=1&amp;addresses=0xed20e72c966da53c6ac5bbcb0ad16ac9f25b8ab0">Blockscout address page</a></li><li><a href="https://etherscan.io/address/0x210b3cb99fa1de0a64085fa80e18c22fe4722a1b">Etherscan address page</a></li><li><a href="https://metadata.services.blockscout.com/api/v1/metadata?chainId=1&amp;addresses=0x210b3cb99fa1de0a64085fa80e18c22fe4722a1b">Blockscout address page</a></li><li><a href="https://etherscan.io/address/0xd4039ecc40aeda0582036437cf3ec02845da4c13">Etherscan address page</a></li><li><a href="https://metadata.services.blockscout.com/api/v1/metadata?chainId=1&amp;addresses=0xd4039ecc40aeda0582036437cf3ec02845da4c13">Blockscout address page</a></li></ul>
+<h2>Treemap boxes resting on it</h2><div class="table-wrap"><table><thead><tr><th>Box</th><th class="num">ETH now</th><th class="num">Peak ETH</th></tr></thead><tbody><tr><td>Kraken › Kraken staking › Withdraws to 0xed20…8ab0</td><td class="num">0</td><td class="num">195,104</td></tr><tr><td>Kraken › Kraken staking › Withdraws to 0x73a0…5ac3</td><td class="num">161,090</td><td class="num">161,090</td></tr><tr><td>Kraken › Kraken staking › Withdraws to 0xf15a…d07a</td><td class="num">26,942</td><td class="num">38,957</td></tr><tr><td>Kraken › Kraken staking › Withdraws to 0x4a85…7fd9</td><td class="num">24,622</td><td class="num">24,622</td></tr><tr><td>Kraken › Kraken staking › Withdraws to 0x6b7e…b241</td><td class="num">19,142</td><td class="num">19,142</td></tr></tbody></table></div>
+</main>
+</body>
+</html>

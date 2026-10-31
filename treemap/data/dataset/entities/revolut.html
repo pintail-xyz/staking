@@ -1,0 +1,99 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Revolut: roles in the validator set</title>
+<style>
+:root { color-scheme: light; --surface-0: #f4f3f0; --surface-1: #fcfcfb; --border: #d9d8d3; --text-primary: #0b0b0b;
+        --text-secondary: #52514e; --text-muted: #77766f; --accent: #2a78d6; --chip: #ebe9e4; }
+@media (prefers-color-scheme: dark) {
+  :root:where(:not([data-theme="light"])) { color-scheme: dark; --surface-0: #121211; --surface-1: #1a1a19;
+    --border: #3a3a37; --text-primary: #f0efec; --text-secondary: #c3c2b7; --text-muted: #96958c; --accent: #3987e5;
+    --chip: #2a2a28; }
+}
+:root[data-theme="dark"] { color-scheme: dark; --surface-0: #121211; --surface-1: #1a1a19; --border: #3a3a37;
+  --text-primary: #f0efec; --text-secondary: #c3c2b7; --text-muted: #96958c; --accent: #3987e5; --chip: #2a2a28; }
+* { box-sizing: border-box; }
+body { margin: 0; background: var(--surface-0); color: var(--text-primary);
+       font: 15px/1.55 system-ui, -apple-system, "Segoe UI", sans-serif; }
+main { max-width: 860px; margin: 0 auto; padding: 32px 16px 64px; }
+a { color: var(--accent); }
+h1 { font-size: 22px; line-height: 1.3; font-weight: 600; margin: 4px 0 12px; }
+h2 { font-size: 15px; font-weight: 600; margin: 28px 0 8px; color: var(--text-secondary);
+     text-transform: uppercase; letter-spacing: 0.04em; }
+p { margin: 0 0 12px; }
+.crumbs { font-size: 13px; color: var(--text-muted); }
+.lede { font-size: 17px; }
+.muted { color: var(--text-muted); }
+.chip { display: inline-block; padding: 1px 8px; border-radius: 10px; background: var(--chip); font-size: 12px;
+        color: var(--text-secondary); margin-right: 4px; white-space: nowrap; }
+.card { background: var(--surface-1); border: 1px solid var(--border); border-radius: 6px; padding: 14px 16px;
+        margin: 0 0 12px; }
+.stats { display: flex; flex-wrap: wrap; gap: 12px; margin: 16px 0; }
+.stat { background: var(--surface-1); border: 1px solid var(--border); border-radius: 6px; padding: 10px 14px;
+        min-width: 140px; }
+.stat b { display: block; font-size: 20px; font-variant-numeric: tabular-nums; }
+.stat span { font-size: 12px; color: var(--text-muted); }
+ul.grounds { list-style: none; padding: 0; margin: 0; }
+ul.grounds li { padding: 6px 0; border-bottom: 1px solid var(--border); }
+ul.grounds li:last-child { border-bottom: 0; }
+table { width: 100%; border-collapse: collapse; background: var(--surface-1); font-size: 14px; }
+th, td { text-align: left; padding: 7px 8px; border-bottom: 1px solid var(--border); vertical-align: top; }
+th { font-weight: 600; color: var(--text-secondary); cursor: pointer; white-space: nowrap; user-select: none; }
+td.num, th.num { text-align: right; font-variant-numeric: tabular-nums; white-space: nowrap; }
+code, .mono { font: 12.5px ui-monospace, SFMono-Regular, Menlo, monospace; word-break: break-all; }
+details summary { cursor: pointer; color: var(--accent); }
+.excerpt { border-left: 3px solid var(--border); padding: 2px 0 2px 10px; color: var(--text-secondary);
+           font-size: 14px; white-space: pre-wrap; }
+input[type=search] { width: 100%; padding: 8px 10px; font: inherit; border: 1px solid var(--border);
+                     border-radius: 6px; background: var(--surface-1); color: var(--text-primary); margin: 8px 0 12px; }
+.table-wrap { overflow-x: auto; }
+@media (max-width: 640px) { .hide-sm { display: none; } }
+</style>
+<script data-goatcounter="https://pintail.goatcounter.com/count" async src="https://gc.zgo.at/count.js"></script>
+</head>
+<body>
+<main>
+<style>
+.chart { width: 100%; height: auto; background: var(--surface-1); border: 1px solid var(--border); border-radius: 6px; }
+.chart text { fill: var(--text-muted); font: 11px system-ui, sans-serif; }
+.chart .grid { stroke: var(--border); stroke-width: 1; }
+.legend { display: flex; flex-wrap: wrap; gap: 14px; font-size: 13px; color: var(--text-secondary); margin: 6px 0 14px; }
+.legend i { display: inline-block; width: 16px; height: 3px; vertical-align: middle; margin-right: 5px; background: var(--c); }
+.legend i.dashed { background: repeating-linear-gradient(90deg, var(--c) 0 6px, transparent 6px 9px); }
+.chart .event { stroke: var(--text-muted); stroke-width: 1; stroke-dasharray: 3 3; }
+.chart .event-n { fill: var(--text-secondary); font-weight: 600; }
+ol.events { padding-left: 0; list-style: none; }
+ol.events li { margin: 4px 0; }
+ol.events .n { display: inline-block; min-width: 1.6em; font-weight: 600; color: var(--text-secondary); }
+</style><p class="crumbs"><a href="../">Dataset</a> › <a href="./">Entities</a></p>
+<h1>Revolut</h1>
+<p><span class="chip">exchange</span> <span class="mono muted">revolut</span></p>
+<p><strong>How much ETH Revolut has had in each role recorded in this dataset, week by week, from
+the start of the beacon chain (1 December 2020) to 30 October 2026.</strong> Stake is the effective balance
+of active validators.</p>
+<ul><li><strong>Allocator</strong>: chose where the stake went. Counts the stake in the treemap boxes under Revolut. <span class="muted">Recorded for 89% of active stake.</span></li><li><strong>Operator</strong>: ran the validators. <span class="muted">Recorded for 49% of active stake.</span></li><li><strong>Custodian</strong>: held the stake on behalf of a client. <span class="muted">Recorded for 5.5% of active stake.</span></li><li><strong>Principal</strong>: owned the staked ETH. <span class="muted">Recorded for 5.4% of active stake.</span></li></ul>
+<p class="muted">Allocators are recorded for most stake. Operators, custodians and principals are recorded only where
+specific evidence names them, so their figures here (dashed on the charts) are lower bounds: no figure does not mean
+no role.</p>
+<h2>Its own roles</h2><svg class="chart" viewBox="0 0 760 240" role="img" aria-label="ETH by role over time"><line class="grid" x1="52" x2="752" y1="218.0" y2="218.0"/><text x="46" y="222.0" text-anchor="end">0</text><line class="grid" x1="52" x2="752" y1="114.0" y2="114.0"/><text x="46" y="118.0" text-anchor="end">58k</text><line class="grid" x1="52" x2="752" y1="10.0" y2="10.0"/><text x="46" y="14.0" text-anchor="end">116k</text><text x="52.0" y="234" text-anchor="middle">2020</text><text x="181.1" y="234" text-anchor="middle">2022</text><text x="298.9" y="234" text-anchor="middle">2023</text><text x="416.7" y="234" text-anchor="middle">2024</text><text x="536.8" y="234" text-anchor="middle">2025</text><text x="654.6" y="234" text-anchor="middle">2026</text><polyline fill="none" stroke="#2a78d6" stroke-width="2" points="52.0,218.0 54.3,218.0 56.5,218.0 58.8,218.0 61.1,218.0 63.3,218.0 65.6,218.0 67.9,218.0 70.1,218.0 72.4,218.0 74.7,218.0 76.9,218.0 79.2,218.0 81.4,218.0 83.7,218.0 86.0,218.0 88.2,218.0 90.5,218.0 92.8,218.0 95.0,218.0 97.3,218.0 99.6,218.0 101.8,218.0 104.1,218.0 106.4,218.0 108.6,218.0 110.9,218.0 113.2,218.0 115.4,218.0 117.7,218.0 120.0,218.0 122.2,218.0 124.5,218.0 126.8,218.0 129.0,218.0 131.3,218.0 133.6,218.0 135.8,218.0 138.1,218.0 140.3,218.0 142.6,218.0 144.9,218.0 147.1,218.0 149.4,218.0 151.7,218.0 153.9,218.0 156.2,218.0 158.5,218.0 160.7,218.0 163.0,218.0 165.3,218.0 167.5,218.0 169.8,218.0 172.1,218.0 174.3,218.0 176.6,218.0 178.9,218.0 181.1,218.0 183.4,218.0 185.7,218.0 187.9,218.0 190.2,218.0 192.5,218.0 194.7,218.0 197.0,218.0 199.2,218.0 201.5,218.0 203.8,218.0 206.0,218.0 208.3,218.0 210.6,218.0 212.8,218.0 215.1,218.0 217.4,218.0 219.6,218.0 221.9,218.0 224.2,218.0 226.4,218.0 228.7,218.0 231.0,218.0 233.2,218.0 235.5,218.0 237.8,218.0 240.0,218.0 242.3,218.0 244.6,218.0 246.8,218.0 249.1,218.0 251.4,218.0 253.6,218.0 255.9,218.0 258.1,218.0 260.4,218.0 262.7,217.9 264.9,217.9 267.2,217.9 269.5,217.9 271.7,217.9 274.0,217.9 276.3,217.9 278.5,217.9 280.8,217.9 283.1,217.9 285.3,217.9 287.6,217.9 289.9,217.9 292.1,217.9 294.4,217.9 296.7,217.9 298.9,217.9 301.2,217.9 303.5,217.9 305.7,217.9 308.0,217.4 310.3,210.8 312.5,198.9 314.8,195.2 317.0,193.3 319.3,191.0 321.6,187.3 323.8,184.6 326.1,182.8 328.4,181.1 330.6,179.7 332.9,176.6 335.2,175.4 337.4,174.6 339.7,177.5 342.0,177.3 344.2,177.2 346.5,177.0 348.8,176.8 351.0,176.9 353.3,177.0 355.6,177.2 357.8,176.4 360.1,175.0 362.4,175.3 364.6,174.1 366.9,172.6 369.2,170.6 371.4,167.2 373.7,165.0 375.9,163.5 378.2,161.6 380.5,158.8 382.7,157.1 385.0,154.7 387.3,151.4 389.5,148.9 391.8,148.1 394.1,147.9 396.3,147.0 398.6,145.9 400.9,145.5 403.1,144.8 405.4,143.3 407.7,143.2 409.9,141.7 412.2,140.5 414.5,140.1 416.7,138.7 419.0,137.2 421.3,138.2 423.5,137.1 425.8,136.3 428.1,135.7 430.3,136.0 432.6,136.1 434.8,135.7 437.1,138.3 439.4,139.9 441.6,142.4 443.9,142.4 446.2,141.8 448.4,141.8 450.7,140.3 453.0,139.8 455.2,138.3 457.5,137.1 459.8,134.7 462.0,135.6 464.3,135.9 466.6,136.0 468.8,135.6 471.1,135.7 473.4,135.0 475.6,134.1 477.9,133.0 480.2,131.7 482.4,132.0 484.7,131.2 487.0,131.4 489.2,127.2 491.5,126.0 493.7,125.4 496.0,124.6 498.3,123.3 500.5,122.1 502.8,122.6 505.1,122.3 507.3,122.1 509.6,122.0 511.9,120.7 514.1,121.1 516.4,121.5 518.7,127.6 520.9,130.3 523.2,132.7 525.5,132.6 527.7,134.0 530.0,134.5 532.3,134.0 534.5,132.9 536.8,132.1 539.1,131.9 541.3,132.6 543.6,132.3 545.9,129.9 548.1,128.3 550.4,126.9 552.6,125.7 554.9,121.6 557.2,118.9 559.4,113.8 561.7,112.3 564.0,110.2 566.2,104.7 568.5,101.6 570.8,99.2 573.0,98.1 575.3,96.6 577.6,97.4 579.8,99.8 582.1,100.6 584.4,100.7 586.6,100.7 588.9,100.4 591.2,99.9 593.4,98.7 595.7,95.7 598.0,100.4 600.2,105.7 602.5,104.6 604.8,101.2 607.0,99.4 609.3,103.7 611.5,108.5 613.8,110.2 616.1,115.0 618.3,115.0 620.6,115.8 622.9,111.2 625.1,109.7 627.4,108.8 629.7,108.8 631.9,109.2 634.2,113.4 636.5,113.9 638.7,114.1 641.0,116.6 643.3,116.4 645.5,111.5 647.8,106.6 650.1,106.1 652.3,111.5 654.6,112.1 656.9,111.7 659.1,110.3 661.4,110.2 663.7,110.8 665.9,111.2 668.2,111.2 670.4,111.1 672.7,111.3 675.0,110.3 677.2,111.3 679.5,109.6 681.8,109.6 684.0,109.6 686.3,104.0 688.6,91.5 690.8,78.5 693.1,67.8 695.4,57.0 697.6,51.8 699.9,48.8 702.2,44.7 704.4,40.4 706.7,39.9 709.0,38.8 711.2,38.5 713.5,37.8 715.8,36.6 718.0,35.4 720.3,29.7 722.6,22.7 724.8,17.3 727.1,15.3 729.3,17.1 731.6,16.8 733.9,15.3 736.1,13.7 738.4,12.3 740.7,14.3 742.9,14.2 745.2,12.8 747.5,12.2 749.7,11.4 752.0,10.0"><title>Allocator</title></polyline></svg><div class="legend"><span><i class="" style="--c:#2a78d6"></i>Allocator</span></div><div class="table-wrap"><table><thead><tr><th>Role</th><th class="num">ETH now</th>
+<th class="num hide-sm">Validators now</th><th class="num">Peak ETH</th><th class="num hide-sm">Peak</th>
+<th class="num hide-sm">First seen</th><th class="num hide-sm">Last seen</th></tr></thead><tbody><tr><td>Allocator</td><td class="num">115,712</td>
+<td class="num hide-sm">3,616</td><td class="num">115,712</td>
+<td class="num hide-sm">2026-10-30</td><td class="num hide-sm">2022-09-13</td>
+<td class="num hide-sm">now</td></tr></tbody></table></div>
+<h2>Clients</h2><p class="muted">Blocks proposed in the last 90 days by the validators it
+allocates or operates now, and the execution and consensus clients their graffiti names (clients add a short code by
+default; operators can turn it off, so these are shares of the blocks that carry one).</p>
+<div class="table-wrap"><table><thead><tr><th>Role</th><th class="num">Blocks</th><th class="num">With codes</th>
+<th>Execution clients</th><th>Consensus clients</th></tr></thead><tbody><tr><td>Allocator</td><td class="num">1,583</td>
+<td class="num">100%</td><td>Geth 100%</td><td>Prysm 100%</td></tr></tbody></table></div>
+<h2>Treemap boxes</h2><div class="table-wrap"><table><thead><tr><th>Box</th>
+<th class="num">ETH now</th><th class="num hide-sm">Peak ETH</th></tr></thead><tbody><tr><td>Revolut › Revolut staking › Withdraws to 0x2b78…7470</td><td class="num">115,712</td><td class="num hide-sm">115,712</td></tr></tbody></table></div>
+<h2>Decisions naming it</h2><ul><li><a href="../decisions/0118-revolut.html">0118</a> Defines Revolut (exchange)</li><li><a href="../decisions/0119-revolut-staking-name.html">0119</a> Defines Revolut staking (custodial staking)</li><li><a href="../decisions/0120-revolut-staking.html">0120</a> Validators deposited by an account funded only by a wallet that handled Revolut&#x27;s EURR stablecoin from before its launch, and withdrawing back to that account, are Revolut&#x27;s staking.</li></ul>
+<h2>Identified addresses</h2><div class="table-wrap"><table><thead><tr><th>Address</th><th>Role</th>
+<th class="hide-sm">Basis</th></tr></thead><tbody><tr><td><a class="mono" href="https://etherscan.io/address/0x2b78035514401ed1592eb691b8673a93edf97470">0x2b78035514401ed1592eb691b8673a93edf97470</a></td><td>withdrawal address</td><td class="hide-sm">asserted</td></tr></tbody></table></div>
+</main>
+</body>
+</html>

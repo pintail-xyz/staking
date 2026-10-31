@@ -1,0 +1,75 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>0005-p2p-deployer: Contracts created by this account are P2P.org&#x27;s, per P2P.org&#x27;s own code repositories and docs, so validators deposited through them</title>
+<style>
+:root { color-scheme: light; --surface-0: #f4f3f0; --surface-1: #fcfcfb; --border: #d9d8d3; --text-primary: #0b0b0b;
+        --text-secondary: #52514e; --text-muted: #77766f; --accent: #2a78d6; --chip: #ebe9e4; }
+@media (prefers-color-scheme: dark) {
+  :root:where(:not([data-theme="light"])) { color-scheme: dark; --surface-0: #121211; --surface-1: #1a1a19;
+    --border: #3a3a37; --text-primary: #f0efec; --text-secondary: #c3c2b7; --text-muted: #96958c; --accent: #3987e5;
+    --chip: #2a2a28; }
+}
+:root[data-theme="dark"] { color-scheme: dark; --surface-0: #121211; --surface-1: #1a1a19; --border: #3a3a37;
+  --text-primary: #f0efec; --text-secondary: #c3c2b7; --text-muted: #96958c; --accent: #3987e5; --chip: #2a2a28; }
+* { box-sizing: border-box; }
+body { margin: 0; background: var(--surface-0); color: var(--text-primary);
+       font: 15px/1.55 system-ui, -apple-system, "Segoe UI", sans-serif; }
+main { max-width: 860px; margin: 0 auto; padding: 32px 16px 64px; }
+a { color: var(--accent); }
+h1 { font-size: 22px; line-height: 1.3; font-weight: 600; margin: 4px 0 12px; }
+h2 { font-size: 15px; font-weight: 600; margin: 28px 0 8px; color: var(--text-secondary);
+     text-transform: uppercase; letter-spacing: 0.04em; }
+p { margin: 0 0 12px; }
+.crumbs { font-size: 13px; color: var(--text-muted); }
+.lede { font-size: 17px; }
+.muted { color: var(--text-muted); }
+.chip { display: inline-block; padding: 1px 8px; border-radius: 10px; background: var(--chip); font-size: 12px;
+        color: var(--text-secondary); margin-right: 4px; white-space: nowrap; }
+.card { background: var(--surface-1); border: 1px solid var(--border); border-radius: 6px; padding: 14px 16px;
+        margin: 0 0 12px; }
+.stats { display: flex; flex-wrap: wrap; gap: 12px; margin: 16px 0; }
+.stat { background: var(--surface-1); border: 1px solid var(--border); border-radius: 6px; padding: 10px 14px;
+        min-width: 140px; }
+.stat b { display: block; font-size: 20px; font-variant-numeric: tabular-nums; }
+.stat span { font-size: 12px; color: var(--text-muted); }
+ul.grounds { list-style: none; padding: 0; margin: 0; }
+ul.grounds li { padding: 6px 0; border-bottom: 1px solid var(--border); }
+ul.grounds li:last-child { border-bottom: 0; }
+table { width: 100%; border-collapse: collapse; background: var(--surface-1); font-size: 14px; }
+th, td { text-align: left; padding: 7px 8px; border-bottom: 1px solid var(--border); vertical-align: top; }
+th { font-weight: 600; color: var(--text-secondary); cursor: pointer; white-space: nowrap; user-select: none; }
+td.num, th.num { text-align: right; font-variant-numeric: tabular-nums; white-space: nowrap; }
+code, .mono { font: 12.5px ui-monospace, SFMono-Regular, Menlo, monospace; word-break: break-all; }
+details summary { cursor: pointer; color: var(--accent); }
+.excerpt { border-left: 3px solid var(--border); padding: 2px 0 2px 10px; color: var(--text-secondary);
+           font-size: 14px; white-space: pre-wrap; }
+input[type=search] { width: 100%; padding: 8px 10px; font: inherit; border: 1px solid var(--border);
+                     border-radius: 6px; background: var(--surface-1); color: var(--text-primary); margin: 8px 0 12px; }
+.table-wrap { overflow-x: auto; }
+@media (max-width: 640px) { .hide-sm { display: none; } }
+</style>
+<script data-goatcounter="https://pintail.goatcounter.com/count" async src="https://gc.zgo.at/count.js"></script>
+</head>
+<body>
+<main>
+<p class="crumbs"><a href="../">Dataset</a> › <a href="./">Decisions</a> › 0005-p2p-deployer</p>
+<h1>Contracts created by this account are P2P.org&#x27;s, per P2P.org&#x27;s own code repositories and docs, so validators deposited through them are run and allocated by P2P.org.</h1>
+<p><span class="chip">Anchor</span> <span class="muted">· decided 2026-10-16</span></p>
+<p class="muted">Replaces <a href="0004-p2p-deployer.html">0004-p2p-deployer</a>.</p>
+<p class="lede">This account is P2P.org&#x27;s contract deployer; validators deposited through contracts it created are run and allocated by P2P.org.</p>
+<div class="stats"><div class="stat"><b>8,830</b><span>validators resting on it now</span></div><div class="stat"><b>373,441</b><span>ETH now</span></div><div class="stat"><b>454,400</b><span>ETH at its peak</span></div></div>
+<h2>Grounds</h2><div class="card"><ul class="grounds"><li><span class="chip">First party</span>P2P.org&#x27;s own code repositories name this account as its deployer and contract owner</li><li><span class="chip">First party</span>P2P.org&#x27;s documentation lists contracts that this account created</li><li><span class="chip">On chain</span>It created the four contracts that relayed about 23,000 deposits from 2023 on</li></ul></div>
+<h2>Explanation</h2><p>The account 0x588e…033a deploys P2P.org&#x27;s contracts. Validators deposited through contracts it created are attributed to P2P.org as allocator and operator, while each client keeps its own withdrawal address. In October 2026 about 8,800 such validators were active, with some 0.37M ETH.</p>
+<p><strong>Identification.</strong> P2P.org&#x27;s own code names the account: a mainnet test in its <a href="https://github.com/p2p-org/eth-staking-fee-distributor-contracts/blob/dcea97b5294999ec9c28c50155669804bb6a2d01/test/foundry/Deoracleized.t.sol">fee distributor repository</a> gives it as P2P.org&#x27;s deployer, and one in its <a href="https://github.com/p2p-org/p2p-ssv-proxy/blob/84e06c3c05e624cc7bbfb39ee40c3ca671f9411b/test/MainnetIntegration.t.sol">SSV proxy repository</a> uses it as contract owner. <a href="https://docs.p2p.org/docs/unlimited-unified-api">P2P.org&#x27;s documentation</a> lists mainnet contracts that this account created. On chain it created the four contracts that relayed about 23,000 deposits from 2023 onwards: two depositor contracts, an SSV proxy factory and the &quot;Unlimited&quot; depositor, whose deposits only P2P.org&#x27;s operator can make.</p>
+<p>Why P2P.org is the allocator. The client keeps the withdrawal address and can exit, but P2P.org holds the validator keys and decides how the stake behaves at the consensus layer, which is the control this dataset measures. P2P.org is therefore treated as an allocator with one operator, itself. The same rule is applied to every provider&#x27;s depositor contracts. Of the 15,825 such validators that have exited, 462 were exited or consolidated by requests from the client&#x27;s withdrawal address; the rest by voluntary exits signed with the validator key, which P2P.org (or its SSV operators) holds.</p>
+<p>The deployer also created two Safe wallets, through the Safe factory, which sent 926 deposits. They are left out, since they are not depositor contracts. The decision would change with a P2P.org statement that the account deploys for others, or evidence that its key changed hands.</p>
+<h2>What would change it</h2><p>A P2P.org statement that the account deploys for others, or evidence its key changed hands.</p>
+<h2>Evidence</h2><p class="muted">Transactions and contract calls anyone can repeat on their own node.</p><div class="card"><ul class="grounds"><li><a class="mono" href="https://etherscan.io/tx/0xb655e2c2940a9cc61107a564ec4cd7fd7dc99e88dbaf945bd92752609f6b492f">0xb655e2c2…9f6b492f</a></li><li><a class="mono" href="https://etherscan.io/tx/0xbba5a689534cd2b73011a6dc68061e26fcd346192dbe8dcb7cb7d47022acb33e">0xbba5a689…22acb33e</a></li></ul></div>
+<h2>Sources</h2><div class="card"><a href="https://github.com/p2p-org/eth-staking-fee-distributor-contracts/blob/dcea97b5294999ec9c28c50155669804bb6a2d01/test/foundry/Deoracleized.t.sol">Deoracleized.t.sol (mainnet fork test), commit dcea97b (2025-01-20)</a><div class="muted" style="font-size:13px">P2P.org, p2p-org/eth-staking-fee-distributor-contracts on GitHub · the entity&#x27;s own · retrieved 2026-10-16</div><p class="excerpt">P2pOrgUnlimitedEthDepositor(payable(0x23BE839a14cEc3D6D716D904f09368Bbf9c750eb)); [...] address constant p2pDeployerAddress = 0x588ede4403DF0082C5ab245b35F0f79EB2d8033a;</p><div class="muted mono">sha256 882ac4c49f62d66875e3f3f5b7dbbdfc7decee5c20dfe4fc4e075edb1b365766</div></div><div class="card"><a href="https://github.com/p2p-org/p2p-ssv-proxy/blob/84e06c3c05e624cc7bbfb39ee40c3ca671f9411b/test/MainnetIntegration.t.sol">MainnetIntegration.t.sol, commit 84e06c3 (2026-04-09)</a><div class="muted" style="font-size:13px">P2P.org, p2p-org/p2p-ssv-proxy on GitHub · the entity&#x27;s own · retrieved 2026-10-16</div><p class="excerpt">address public constant owner = 0x588ede4403DF0082C5ab245b35F0f79EB2d8033a;</p><div class="muted mono">sha256 47bfc22b8879b6eb55ec52e49696da8c827e31a8dcf523665792ed3037232ccf</div></div><div class="card"><a href="https://docs.p2p.org/docs/unlimited-unified-api">Unlimited (Smart Contract 3.1/Unified API)</a><div class="muted" style="font-size:13px">P2P.org · the entity&#x27;s own · retrieved 2026-10-16</div><p class="excerpt">P2pOrgUnlimitedEthDepositor [...] Mainnet 0x23BE839a14cEc3D6D716D904f09368Bbf9c750eb [...] This design ensures the user retains custody over withdrawal credentials (the deposit uses a client-provided withdrawal address) while P2P coordinates the validator setup off-chain.</p><div class="muted mono">sha256 e9681928e3e50ab02383bb7da726c5d1bf41798ff67c815450c2b1caf7f6ab36</div></div>
+<h2>Treemap boxes resting on it</h2><div class="table-wrap"><table><thead><tr><th>Box</th><th class="num">ETH now</th><th class="num">Peak ETH</th></tr></thead><tbody><tr><td>P2P.org › P2P.org direct staking › Deposited via 0x10f4…0dfc</td><td class="num">6,950</td><td class="num">235,776</td></tr><tr><td>P2P.org › P2P.org direct staking › Deposited via 0x23be…50eb</td><td class="num">169,626</td><td class="num">180,196</td></tr><tr><td>P2P.org › P2P.org direct staking › Deposited via 0x8e76…9536</td><td class="num">94,701</td><td class="num">178,240</td></tr><tr><td>P2P.org › P2P.org direct staking › Deposited via 0x4ca2…adeb</td><td class="num">78,112</td><td class="num">139,104</td></tr><tr><td>P2P.org › P2P.org direct staking › Deposited via 0x7c58…9f1f</td><td class="num">24,052</td><td class="num">27,032</td></tr></tbody></table></div>
+</main>
+</body>
+</html>

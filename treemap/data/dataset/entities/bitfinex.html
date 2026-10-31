@@ -1,0 +1,101 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Bitfinex: roles in the validator set</title>
+<style>
+:root { color-scheme: light; --surface-0: #f4f3f0; --surface-1: #fcfcfb; --border: #d9d8d3; --text-primary: #0b0b0b;
+        --text-secondary: #52514e; --text-muted: #77766f; --accent: #2a78d6; --chip: #ebe9e4; }
+@media (prefers-color-scheme: dark) {
+  :root:where(:not([data-theme="light"])) { color-scheme: dark; --surface-0: #121211; --surface-1: #1a1a19;
+    --border: #3a3a37; --text-primary: #f0efec; --text-secondary: #c3c2b7; --text-muted: #96958c; --accent: #3987e5;
+    --chip: #2a2a28; }
+}
+:root[data-theme="dark"] { color-scheme: dark; --surface-0: #121211; --surface-1: #1a1a19; --border: #3a3a37;
+  --text-primary: #f0efec; --text-secondary: #c3c2b7; --text-muted: #96958c; --accent: #3987e5; --chip: #2a2a28; }
+* { box-sizing: border-box; }
+body { margin: 0; background: var(--surface-0); color: var(--text-primary);
+       font: 15px/1.55 system-ui, -apple-system, "Segoe UI", sans-serif; }
+main { max-width: 860px; margin: 0 auto; padding: 32px 16px 64px; }
+a { color: var(--accent); }
+h1 { font-size: 22px; line-height: 1.3; font-weight: 600; margin: 4px 0 12px; }
+h2 { font-size: 15px; font-weight: 600; margin: 28px 0 8px; color: var(--text-secondary);
+     text-transform: uppercase; letter-spacing: 0.04em; }
+p { margin: 0 0 12px; }
+.crumbs { font-size: 13px; color: var(--text-muted); }
+.lede { font-size: 17px; }
+.muted { color: var(--text-muted); }
+.chip { display: inline-block; padding: 1px 8px; border-radius: 10px; background: var(--chip); font-size: 12px;
+        color: var(--text-secondary); margin-right: 4px; white-space: nowrap; }
+.card { background: var(--surface-1); border: 1px solid var(--border); border-radius: 6px; padding: 14px 16px;
+        margin: 0 0 12px; }
+.stats { display: flex; flex-wrap: wrap; gap: 12px; margin: 16px 0; }
+.stat { background: var(--surface-1); border: 1px solid var(--border); border-radius: 6px; padding: 10px 14px;
+        min-width: 140px; }
+.stat b { display: block; font-size: 20px; font-variant-numeric: tabular-nums; }
+.stat span { font-size: 12px; color: var(--text-muted); }
+ul.grounds { list-style: none; padding: 0; margin: 0; }
+ul.grounds li { padding: 6px 0; border-bottom: 1px solid var(--border); }
+ul.grounds li:last-child { border-bottom: 0; }
+table { width: 100%; border-collapse: collapse; background: var(--surface-1); font-size: 14px; }
+th, td { text-align: left; padding: 7px 8px; border-bottom: 1px solid var(--border); vertical-align: top; }
+th { font-weight: 600; color: var(--text-secondary); cursor: pointer; white-space: nowrap; user-select: none; }
+td.num, th.num { text-align: right; font-variant-numeric: tabular-nums; white-space: nowrap; }
+code, .mono { font: 12.5px ui-monospace, SFMono-Regular, Menlo, monospace; word-break: break-all; }
+details summary { cursor: pointer; color: var(--accent); }
+.excerpt { border-left: 3px solid var(--border); padding: 2px 0 2px 10px; color: var(--text-secondary);
+           font-size: 14px; white-space: pre-wrap; }
+input[type=search] { width: 100%; padding: 8px 10px; font: inherit; border: 1px solid var(--border);
+                     border-radius: 6px; background: var(--surface-1); color: var(--text-primary); margin: 8px 0 12px; }
+.table-wrap { overflow-x: auto; }
+@media (max-width: 640px) { .hide-sm { display: none; } }
+</style>
+<script data-goatcounter="https://pintail.goatcounter.com/count" async src="https://gc.zgo.at/count.js"></script>
+</head>
+<body>
+<main>
+<style>
+.chart { width: 100%; height: auto; background: var(--surface-1); border: 1px solid var(--border); border-radius: 6px; }
+.chart text { fill: var(--text-muted); font: 11px system-ui, sans-serif; }
+.chart .grid { stroke: var(--border); stroke-width: 1; }
+.legend { display: flex; flex-wrap: wrap; gap: 14px; font-size: 13px; color: var(--text-secondary); margin: 6px 0 14px; }
+.legend i { display: inline-block; width: 16px; height: 3px; vertical-align: middle; margin-right: 5px; background: var(--c); }
+.legend i.dashed { background: repeating-linear-gradient(90deg, var(--c) 0 6px, transparent 6px 9px); }
+.chart .event { stroke: var(--text-muted); stroke-width: 1; stroke-dasharray: 3 3; }
+.chart .event-n { fill: var(--text-secondary); font-weight: 600; }
+ol.events { padding-left: 0; list-style: none; }
+ol.events li { margin: 4px 0; }
+ol.events .n { display: inline-block; min-width: 1.6em; font-weight: 600; color: var(--text-secondary); }
+</style><p class="crumbs"><a href="../">Dataset</a> › <a href="./">Entities</a></p>
+<h1>Bitfinex</h1>
+<p><span class="chip">exchange</span> <span class="mono muted">bitfinex</span></p>
+<p><strong>How much ETH Bitfinex has had in each role recorded in this dataset, week by week, from
+the start of the beacon chain (1 December 2020) to 30 October 2026.</strong> Stake is the effective balance
+of active validators.</p>
+<ul><li><strong>Allocator</strong>: chose where the stake went. Counts the stake in the treemap boxes under Bitfinex. <span class="muted">Recorded for 89% of active stake.</span></li><li><strong>Operator</strong>: ran the validators. <span class="muted">Recorded for 49% of active stake.</span></li><li><strong>Custodian</strong>: held the stake on behalf of a client. <span class="muted">Recorded for 5.5% of active stake.</span></li><li><strong>Principal</strong>: owned the staked ETH. <span class="muted">Recorded for 5.4% of active stake.</span></li></ul>
+<p class="muted">Allocators are recorded for most stake. Operators, custodians and principals are recorded only where
+specific evidence names them, so their figures here (dashed on the charts) are lower bounds: no figure does not mean
+no role.</p>
+<h2>Its own roles</h2><svg class="chart" viewBox="0 0 760 240" role="img" aria-label="ETH by role over time"><line class="grid" x1="52" x2="752" y1="218.0" y2="218.0"/><text x="46" y="222.0" text-anchor="end">0</text><line class="grid" x1="52" x2="752" y1="114.0" y2="114.0"/><text x="46" y="118.0" text-anchor="end">26k</text><line class="grid" x1="52" x2="752" y1="10.0" y2="10.0"/><text x="46" y="14.0" text-anchor="end">52k</text><text x="52.0" y="234" text-anchor="middle">2020</text><text x="181.1" y="234" text-anchor="middle">2022</text><text x="298.9" y="234" text-anchor="middle">2023</text><text x="416.7" y="234" text-anchor="middle">2024</text><text x="536.8" y="234" text-anchor="middle">2025</text><text x="654.6" y="234" text-anchor="middle">2026</text><polyline fill="none" stroke="#2a78d6" stroke-width="2" points="52.0,218.0 54.3,218.0 56.5,218.0 58.8,218.0 61.1,218.0 63.3,217.9 65.6,217.9 67.9,217.9 70.1,217.6 72.4,207.1 74.7,208.0 76.9,202.0 79.2,200.2 81.4,198.8 83.7,198.8 86.0,198.8 88.2,198.8 90.5,183.5 92.8,183.5 95.0,178.8 97.3,178.8 99.6,177.8 101.8,177.8 104.1,177.8 106.4,177.8 108.6,177.8 110.9,177.8 113.2,177.8 115.4,177.8 117.7,172.5 120.0,172.5 122.2,172.5 124.5,172.5 126.8,170.0 129.0,170.0 131.3,170.0 133.6,170.0 135.8,170.0 138.1,170.0 140.3,170.0 142.6,170.0 144.9,170.0 147.1,170.0 149.4,170.0 151.7,170.0 153.9,170.0 156.2,170.0 158.5,170.0 160.7,170.0 163.0,170.0 165.3,170.0 167.5,170.0 169.8,170.0 172.1,170.0 174.3,170.0 176.6,170.0 178.9,170.0 181.1,170.0 183.4,170.0 185.7,170.0 187.9,170.0 190.2,170.0 192.5,170.0 194.7,170.0 197.0,170.0 199.2,170.0 201.5,166.1 203.8,166.1 206.0,166.1 208.3,166.1 210.6,166.1 212.8,166.1 215.1,166.1 217.4,166.1 219.6,166.1 221.9,166.1 224.2,166.1 226.4,166.1 228.7,166.1 231.0,166.1 233.2,166.1 235.5,166.1 237.8,166.1 240.0,166.1 242.3,166.1 244.6,166.1 246.8,166.1 249.1,166.1 251.4,166.1 253.6,166.1 255.9,166.1 258.1,166.1 260.4,166.1 262.7,166.1 264.9,166.1 267.2,166.1 269.5,166.1 271.7,166.1 274.0,166.1 276.3,166.1 278.5,166.1 280.8,166.1 283.1,166.1 285.3,166.1 287.6,166.1 289.9,166.1 292.1,166.1 294.4,166.1 296.7,166.1 298.9,166.1 301.2,166.1 303.5,166.1 305.7,166.1 308.0,166.1 310.3,166.1 312.5,166.1 314.8,166.1 317.0,166.1 319.3,166.1 321.6,166.1 323.8,166.1 326.1,166.1 328.4,166.1 330.6,166.1 332.9,166.1 335.2,166.1 337.4,166.3 339.7,166.3 342.0,166.3 344.2,170.2 346.5,171.5 348.8,171.5 351.0,172.8 353.3,172.8 355.6,172.8 357.8,172.8 360.1,172.8 362.4,172.8 364.6,172.8 366.9,172.8 369.2,172.6 371.4,172.6 373.7,165.0 375.9,165.0 378.2,165.0 380.5,167.3 382.7,167.3 385.0,167.3 387.3,167.3 389.5,167.3 391.8,167.7 394.1,167.7 396.3,167.7 398.6,167.7 400.9,167.7 403.1,167.7 405.4,167.7 407.7,167.7 409.9,164.3 412.2,161.0 414.5,161.0 416.7,148.2 419.0,147.0 421.3,147.0 423.5,147.0 425.8,147.0 428.1,147.0 430.3,147.0 432.6,147.0 434.8,147.0 437.1,147.0 439.4,144.4 441.6,144.4 443.9,144.4 446.2,138.3 448.4,138.3 450.7,138.3 453.0,117.3 455.2,117.3 457.5,117.3 459.8,117.3 462.0,117.3 464.3,120.9 466.6,120.9 468.8,120.9 471.1,120.9 473.4,120.9 475.6,120.9 477.9,113.9 480.2,122.0 482.4,134.8 484.7,115.1 487.0,115.1 489.2,128.9 491.5,128.9 493.7,128.9 496.0,128.9 498.3,128.9 500.5,128.9 502.8,128.9 505.1,128.9 507.3,128.9 509.6,128.9 511.9,115.5 514.1,115.5 516.4,115.5 518.7,115.5 520.9,115.5 523.2,87.4 525.5,87.4 527.7,87.4 530.0,87.4 532.3,87.4 534.5,87.4 536.8,87.4 539.1,88.8 541.3,72.9 543.6,74.9 545.9,74.9 548.1,74.9 550.4,29.9 552.6,33.1 554.9,20.5 557.2,10.0 559.4,10.0 561.7,10.0 564.0,10.0 566.2,10.0 568.5,10.0 570.8,10.0 573.0,10.0 575.3,10.0 577.6,10.0 579.8,10.0 582.1,10.0 584.4,10.0 586.6,10.0 588.9,10.0 591.2,10.0 593.4,10.0 595.7,10.0 598.0,10.0 600.2,10.0 602.5,10.0 604.8,10.0 607.0,10.0 609.3,10.0 611.5,10.0 613.8,10.0 616.1,10.0 618.3,10.0 620.6,10.0 622.9,10.0 625.1,10.0 627.4,10.0 629.7,10.0 631.9,10.0 634.2,10.0 636.5,10.0 638.7,10.0 641.0,10.0 643.3,10.0 645.5,10.0 647.8,10.0 650.1,10.0 652.3,10.0 654.6,10.0 656.9,10.0 659.1,10.0 661.4,10.0 663.7,10.0 665.9,10.0 668.2,10.0 670.4,10.0 672.7,10.0 675.0,10.0 677.2,10.0 679.5,10.0 681.8,10.0 684.0,10.0 686.3,10.0 688.6,10.0 690.8,10.0 693.1,10.0 695.4,10.0 697.6,10.0 699.9,10.0 702.2,10.0 704.4,10.0 706.7,10.0 709.0,10.0 711.2,10.0 713.5,10.0 715.8,10.0 718.0,10.0 720.3,10.0 722.6,10.0 724.8,10.0 727.1,10.0 729.3,10.0 731.6,10.0 733.9,10.0 736.1,10.0 738.4,10.0 740.7,10.0 742.9,10.0 745.2,10.0 747.5,10.0 749.7,10.0 752.0,10.0"><title>Allocator</title></polyline></svg><div class="legend"><span><i class="" style="--c:#2a78d6"></i>Allocator</span></div><div class="table-wrap"><table><thead><tr><th>Role</th><th class="num">ETH now</th>
+<th class="num hide-sm">Validators now</th><th class="num">Peak ETH</th><th class="num hide-sm">Peak</th>
+<th class="num hide-sm">First seen</th><th class="num hide-sm">Last seen</th></tr></thead><tbody><tr><td>Allocator</td><td class="num">52,096</td>
+<td class="num hide-sm">1,628</td><td class="num">52,096</td>
+<td class="num hide-sm">2025-03-11</td><td class="num hide-sm">2021-01-05</td>
+<td class="num hide-sm">now</td></tr></tbody></table></div>
+<h2>Clients</h2><p class="muted">Blocks proposed in the last 90 days by the validators it
+allocates or operates now, and the execution and consensus clients their graffiti names (clients add a short code by
+default; operators can turn it off, so these are shares of the blocks that carry one).</p>
+<div class="table-wrap"><table><thead><tr><th>Role</th><th class="num">Blocks</th><th class="num">With codes</th>
+<th>Execution clients</th><th>Consensus clients</th></tr></thead><tbody><tr><td>Allocator</td><td class="num">804</td>
+<td class="num">60%</td><td>Reth 35%, Geth 33%, Nethermind 32%</td><td>Lighthouse 99%, Prysm 1%, Lodestar <1%, Teku <1%</td></tr></tbody></table></div><h2>Slashings</h2><p class="muted">7 validators slashed while it held a role in them
+(dated by the first sampled state showing the slashing).</p><div class="table-wrap"><table><thead><tr><th>Validator</th>
+<th>Slashed (first seen)</th><th>Its role then</th></tr></thead><tbody><tr><td><a href="https://beaconcha.in/validator/72496">72,496</a></td><td>2021-02-03</td><td>Allocator</td></tr><tr><td><a href="https://beaconcha.in/validator/72491">72,491</a></td><td>2021-02-03</td><td>Allocator</td></tr><tr><td><a href="https://beaconcha.in/validator/72511">72,511</a></td><td>2021-02-03</td><td>Allocator</td></tr><tr><td><a href="https://beaconcha.in/validator/72508">72,508</a></td><td>2021-02-03</td><td>Allocator</td></tr><tr><td><a href="https://beaconcha.in/validator/72503">72,503</a></td><td>2021-02-03</td><td>Allocator</td></tr><tr><td><a href="https://beaconcha.in/validator/72493">72,493</a></td><td>2021-02-03</td><td>Allocator</td></tr><tr><td><a href="https://beaconcha.in/validator/72499">72,499</a></td><td>2021-02-03</td><td>Allocator</td></tr></tbody></table></div>
+<h2>Treemap boxes</h2><div class="table-wrap"><table><thead><tr><th>Box</th>
+<th class="num">ETH now</th><th class="num hide-sm">Peak ETH</th></tr></thead><tbody><tr><td>Bitfinex › Bitfinex staking › Withdraws to 0x7713…35ec</td><td class="num">52,096</td><td class="num hide-sm">52,096</td></tr></tbody></table></div>
+<h2>Decisions naming it</h2><ul><li><a href="../decisions/0088-bitfinex.html">0088</a> Defines Bitfinex (exchange)</li><li><a href="../decisions/0089-bitfinex-staking-name.html">0089</a> Defines Bitfinex staking (custodial staking)</li><li><a href="../decisions/0090-bitfinex-staking.html">0090</a> Validators withdrawing to the address Bitfinex lists as its ETH hot wallet are Bitfinex&#x27;s staking.</li></ul>
+<h2>Identified addresses</h2><div class="table-wrap"><table><thead><tr><th>Address</th><th>Role</th>
+<th class="hide-sm">Basis</th></tr></thead><tbody><tr><td><a class="mono" href="https://etherscan.io/address/0x77134cbc06cb00b66f4c7e623d5fdbf6777635ec">0x77134cbc06cb00b66f4c7e623d5fdbf6777635ec</a></td><td>withdrawal address</td><td class="hide-sm">asserted</td></tr></tbody></table></div>
+</main>
+</body>
+</html>

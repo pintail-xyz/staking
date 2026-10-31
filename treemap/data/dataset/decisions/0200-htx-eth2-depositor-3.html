@@ -1,0 +1,75 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>0200-htx-eth2-depositor-3: Reserve wallets whose ownership HTX (formerly Huobi) proved by signature funded the multisig wallets that supplied this acc</title>
+<style>
+:root { color-scheme: light; --surface-0: #f4f3f0; --surface-1: #fcfcfb; --border: #d9d8d3; --text-primary: #0b0b0b;
+        --text-secondary: #52514e; --text-muted: #77766f; --accent: #2a78d6; --chip: #ebe9e4; }
+@media (prefers-color-scheme: dark) {
+  :root:where(:not([data-theme="light"])) { color-scheme: dark; --surface-0: #121211; --surface-1: #1a1a19;
+    --border: #3a3a37; --text-primary: #f0efec; --text-secondary: #c3c2b7; --text-muted: #96958c; --accent: #3987e5;
+    --chip: #2a2a28; }
+}
+:root[data-theme="dark"] { color-scheme: dark; --surface-0: #121211; --surface-1: #1a1a19; --border: #3a3a37;
+  --text-primary: #f0efec; --text-secondary: #c3c2b7; --text-muted: #96958c; --accent: #3987e5; --chip: #2a2a28; }
+* { box-sizing: border-box; }
+body { margin: 0; background: var(--surface-0); color: var(--text-primary);
+       font: 15px/1.55 system-ui, -apple-system, "Segoe UI", sans-serif; }
+main { max-width: 860px; margin: 0 auto; padding: 32px 16px 64px; }
+a { color: var(--accent); }
+h1 { font-size: 22px; line-height: 1.3; font-weight: 600; margin: 4px 0 12px; }
+h2 { font-size: 15px; font-weight: 600; margin: 28px 0 8px; color: var(--text-secondary);
+     text-transform: uppercase; letter-spacing: 0.04em; }
+p { margin: 0 0 12px; }
+.crumbs { font-size: 13px; color: var(--text-muted); }
+.lede { font-size: 17px; }
+.muted { color: var(--text-muted); }
+.chip { display: inline-block; padding: 1px 8px; border-radius: 10px; background: var(--chip); font-size: 12px;
+        color: var(--text-secondary); margin-right: 4px; white-space: nowrap; }
+.card { background: var(--surface-1); border: 1px solid var(--border); border-radius: 6px; padding: 14px 16px;
+        margin: 0 0 12px; }
+.stats { display: flex; flex-wrap: wrap; gap: 12px; margin: 16px 0; }
+.stat { background: var(--surface-1); border: 1px solid var(--border); border-radius: 6px; padding: 10px 14px;
+        min-width: 140px; }
+.stat b { display: block; font-size: 20px; font-variant-numeric: tabular-nums; }
+.stat span { font-size: 12px; color: var(--text-muted); }
+ul.grounds { list-style: none; padding: 0; margin: 0; }
+ul.grounds li { padding: 6px 0; border-bottom: 1px solid var(--border); }
+ul.grounds li:last-child { border-bottom: 0; }
+table { width: 100%; border-collapse: collapse; background: var(--surface-1); font-size: 14px; }
+th, td { text-align: left; padding: 7px 8px; border-bottom: 1px solid var(--border); vertical-align: top; }
+th { font-weight: 600; color: var(--text-secondary); cursor: pointer; white-space: nowrap; user-select: none; }
+td.num, th.num { text-align: right; font-variant-numeric: tabular-nums; white-space: nowrap; }
+code, .mono { font: 12.5px ui-monospace, SFMono-Regular, Menlo, monospace; word-break: break-all; }
+details summary { cursor: pointer; color: var(--accent); }
+.excerpt { border-left: 3px solid var(--border); padding: 2px 0 2px 10px; color: var(--text-secondary);
+           font-size: 14px; white-space: pre-wrap; }
+input[type=search] { width: 100%; padding: 8px 10px; font: inherit; border: 1px solid var(--border);
+                     border-radius: 6px; background: var(--surface-1); color: var(--text-primary); margin: 8px 0 12px; }
+.table-wrap { overflow-x: auto; }
+@media (max-width: 640px) { .hide-sm { display: none; } }
+</style>
+<script data-goatcounter="https://pintail.goatcounter.com/count" async src="https://gc.zgo.at/count.js"></script>
+</head>
+<body>
+<main>
+<p class="crumbs"><a href="../">Dataset</a> › <a href="./">Decisions</a> › 0200-htx-eth2-depositor-3</p>
+<h1>Reserve wallets whose ownership HTX (formerly Huobi) proved by signature funded the multisig wallets that supplied this account&#x27;s ETH and the key that created its withdrawal wallets; it is HTX&#x27;s third deposit account.</h1>
+<p><span class="chip">Anchor</span> <span class="muted">· decided 2026-10-25</span></p>
+<p class="lede">This account made HTX&#x27;s (formerly Huobi) staking deposits from May 2023; validators withdrawing to the addresses it used are HTX&#x27;s.</p>
+<div class="stats"><div class="stat"><b>1,794</b><span>validators resting on it now</span></div><div class="stat"><b>57,408</b><span>ETH now</span></div><div class="stat"><b>171,360</b><span>ETH at its peak</span></div></div>
+<h2>Grounds</h2><div class="card"><ul class="grounds"><li><span class="chip">First party</span>Three wallets HTX&#x27;s proof of reserves signs for sent 66,082 ETH to two multisig wallets that later sent this account most of its ETH</li><li><span class="chip">First party</span>Two signed HTX reserve wallets first funded the key that created its withdrawal wallets; that key also paid gas for this account</li><li><span class="chip">On chain</span>One withdrawal wallet&#x27;s ETH was moved to a Safe and deposited again through this account, with the Safe as withdrawal address</li></ul></div>
+<h2>Explanation</h2><p>The account 0xd57d…194e made HTX&#x27;s staking deposits from May 2023: validators withdrawing to the addresses it used are attributed to HTX (formerly Huobi) as allocator. It sent 9,388 deposits, about 300k ETH, between May 2023 and April 2025; in October 2026 about 2,650 of its validators were active with some 85k ETH. HTX&#x27;s customers own the stake.</p>
+<p><strong>HTX&#x27;s reserve wallets.</strong> HTX&#x27;s proof-of-reserves snapshots of <a href="https://github.com/huobiapi/Tool-Node.js-VerifyAddress/blob/9c076d8b56423de666100a481566e0a30a8db0fc/snapshot/huobi_por_20221201_part.csv">December 2022</a> and <a href="https://github.com/huobiapi/Tool-Node.js-VerifyAddress/blob/a3b042159258e58f6b10198788367a3ebf6d0dfa/snapshot/huobi_por_20230501.csv">May 2023</a> list reserve addresses, each with a signature from the address&#x27;s own key over a fixed message, which proves that HTX controls it.</p>
+<p><strong>The funding.</strong> The account received about 270k ETH, most of it from four multisig wallets. Three of the signed reserve wallets sent 66,082 ETH to two of those multisigs. The key that created the withdrawal wallets through a multisig wallet factory was itself first funded by two signed reserve wallets, and it also paid gas to the signers of two of the funding multisigs and sent the deposit account 3 ETH. The signers of the funding multisigs overlap with those of the withdrawal wallets. In December 2024 one withdrawal wallet&#x27;s ETH, 56,839 ETH, passed through a Safe multisig back to this account, which deposited it again with the Safe as withdrawal address.</p>
+<p>The deposits went through a public batch deposit contract that anyone can use, which is not itself evidence. Some 2024 funding came from other exchanges&#x27; hot wallets, as exchanges move funds between venues. Several operators sign some of these validators&#x27; blocks, mostly in SSV clusters; they remain operators only, with HTX as allocator. An explorer label is recorded as a lead. The decision would change with an HTX statement contradicting it, or evidence that the funding multisigs or the creating key belong to someone else.</p>
+<h2>What would change it</h2><p>An HTX statement contradicting it, or evidence that the funding multisigs or the creating key belong to someone else.</p>
+<h2>Evidence</h2><p class="muted">Transactions and contract calls anyone can repeat on their own node.</p><div class="card"><ul class="grounds"><li><a class="mono" href="https://etherscan.io/tx/0xdb098b9e3be98938300680b5b6455c88b7c1b2b66eb29aa1892756f88622f234">0xdb098b9e…8622f234</a> — Signed HTX reserve wallet 0x28ff sends 20,000 ETH to multisig 0x3dd2, which later funds this account</li><li><a class="mono" href="https://etherscan.io/tx/0x85ac911cfad8702c3c5db9941ceab2dad9d84d13136ed70a03694494b1c0858c">0x85ac911c…b1c0858c</a> — Signed HTX reserve wallet 0xcac7 sends 20,000 ETH to 0x3dd2</li><li><a class="mono" href="https://etherscan.io/tx/0x1fadfc7c17a8bb10dc845b328dd69974ef0625341db887c6bf3be5c926c44f95">0x1fadfc7c…26c44f95</a> — Signed HTX reserve wallet 0xa5d7 funds 0x6720, which creates the withdrawal wallets</li><li><a class="mono" href="https://etherscan.io/tx/0xa85e7e988335a8964e6f6ffa946c41b2b46041a480bc064973efaee09374a1f1">0xa85e7e98…9374a1f1</a> — 0x6720 creates withdrawal wallet 0xc435 through factory 0x258e</li><li><a class="mono" href="https://etherscan.io/tx/0xd8a07e44a60b029b4743444441c826e123ae26bbb7c38607ce059d6da4bccab4">0xd8a07e44…a4bccab4</a> — This account&#x27;s first deposit, 29 May 2023</li><li><a class="mono" href="https://etherscan.io/tx/0xf7a2ceb65e7601246fe18fb6c7e12a0704775ae02a82ca3f302136a1945752b6">0xf7a2ceb6…945752b6</a> — Withdrawal wallet 0x7832 moves 56,839 ETH to Safe 0xd19d, 20 December 2024</li><li><a class="mono" href="https://etherscan.io/tx/0x3aaab58db5a673607c597c09e9709216482ed9acc4d2e5e718e247ecae9c8c27">0x3aaab58d…ae9c8c27</a> — First deposit to Safe 0xd19d, 25 December 2024</li></ul></div>
+<h2>Sources</h2><div class="card"><a href="https://github.com/huobiapi/Tool-Node.js-VerifyAddress/blob/9c076d8b56423de666100a481566e0a30a8db0fc/snapshot/huobi_por_20221201_part.csv">Huobi proof of reserves, 1 December 2022 snapshot: reserve addresses with signatures</a><div class="muted" style="font-size:13px">Huobi (now HTX), huobiapi on GitHub · the entity&#x27;s own · retrieved 2026-10-22</div><p class="excerpt">ETH,0xcac725bef4f114f728cbcfd744a731c2a463c3fc,16083851,6213.354806,King will be back!,0x6ec9074bbac7a827d09fb9b88abfbbb5f918948afa7af03771e259f92d4942be5dff0749d5842b7079011548a5ad02c0db67cd177743a615833b8291daac40a301</p><div class="muted mono">sha256 ce4fb5e0719504a97bd9adc235f4035400cdf9b1439019a1873da1929a1fdce1</div></div><div class="card"><a href="https://github.com/huobiapi/Tool-Node.js-VerifyAddress/blob/a3b042159258e58f6b10198788367a3ebf6d0dfa/snapshot/huobi_por_20230501.csv">Huobi proof of reserves, 1 May 2023 snapshot: reserve addresses with signatures</a><div class="muted" style="font-size:13px">Huobi (now HTX), huobiapi on GitHub · the entity&#x27;s own · retrieved 2026-10-22</div><p class="excerpt">ETH,0x2abc22eb9a09ebbe7b41737ccde147f586efeb6a,17159913,6503.860051,King will be back!,0x6e23…6100 [...] ETH,0xa5d7f0f7027fa8f4d1be8042e1e43bbdec36951e,17159913,10411.3649,King will be back!,0xd330…ae01</p><div class="muted mono">sha256 eb535a13c9bf5f61e002e97125c99827cc6e795633eee4ca7b435e39d21cf4ef</div></div>
+<h2>Leads</h2><p class="muted">Third-party pages, such as explorer labels, that pointed the research but are not relied on.</p><ul><li><a href="https://metadata.services.blockscout.com/api/v1/metadata?chainId=1&amp;addresses=0xd57df663926996aa5de74b88ba8f2b63e329194e">Blockscout address page</a></li></ul>
+<h2>Treemap boxes resting on it</h2><div class="table-wrap"><table><thead><tr><th>Box</th><th class="num">ETH now</th><th class="num">Peak ETH</th></tr></thead><tbody><tr><td>HTX › HTX staking › Withdraws to 0xc435…e8e9</td><td class="num">0</td><td class="num">100,000</td></tr><tr><td>HTX › HTX staking › Withdraws to 0xd19d…a482</td><td class="num">57,408</td><td class="num">57,408</td></tr><tr><td>HTX › HTX staking › Withdraws to 0x7832…2952</td><td class="num">0</td><td class="num">50,944</td></tr><tr><td>HTX › HTX staking › Withdraws to 0x74f3…0302</td><td class="num">0</td><td class="num">40,000</td></tr><tr><td>HTX › HTX staking › Withdraws to 0x3cc0…dafd</td><td class="num">0</td><td class="num">28,480</td></tr><tr><td>HTX › HTX staking › Withdraws to 0x89d9…8bf8</td><td class="num">0</td><td class="num">6,208</td></tr><tr><td>HTX › HTX staking › Withdraws to 0xc15c…4b8b</td><td class="num">0</td><td class="num">2,880</td></tr></tbody></table></div>
+</main>
+</body>
+</html>

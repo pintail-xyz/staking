@@ -1,0 +1,69 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>0322-merge-sweeps-to-0x2bc1: Six withdrawal addresses whose rewards are swept together to 0x2bc1…8d56 belong to one staker.</title>
+<style>
+:root { color-scheme: light; --surface-0: #f4f3f0; --surface-1: #fcfcfb; --border: #d9d8d3; --text-primary: #0b0b0b;
+        --text-secondary: #52514e; --text-muted: #77766f; --accent: #2a78d6; --chip: #ebe9e4; }
+@media (prefers-color-scheme: dark) {
+  :root:where(:not([data-theme="light"])) { color-scheme: dark; --surface-0: #121211; --surface-1: #1a1a19;
+    --border: #3a3a37; --text-primary: #f0efec; --text-secondary: #c3c2b7; --text-muted: #96958c; --accent: #3987e5;
+    --chip: #2a2a28; }
+}
+:root[data-theme="dark"] { color-scheme: dark; --surface-0: #121211; --surface-1: #1a1a19; --border: #3a3a37;
+  --text-primary: #f0efec; --text-secondary: #c3c2b7; --text-muted: #96958c; --accent: #3987e5; --chip: #2a2a28; }
+* { box-sizing: border-box; }
+body { margin: 0; background: var(--surface-0); color: var(--text-primary);
+       font: 15px/1.55 system-ui, -apple-system, "Segoe UI", sans-serif; }
+main { max-width: 860px; margin: 0 auto; padding: 32px 16px 64px; }
+a { color: var(--accent); }
+h1 { font-size: 22px; line-height: 1.3; font-weight: 600; margin: 4px 0 12px; }
+h2 { font-size: 15px; font-weight: 600; margin: 28px 0 8px; color: var(--text-secondary);
+     text-transform: uppercase; letter-spacing: 0.04em; }
+p { margin: 0 0 12px; }
+.crumbs { font-size: 13px; color: var(--text-muted); }
+.lede { font-size: 17px; }
+.muted { color: var(--text-muted); }
+.chip { display: inline-block; padding: 1px 8px; border-radius: 10px; background: var(--chip); font-size: 12px;
+        color: var(--text-secondary); margin-right: 4px; white-space: nowrap; }
+.card { background: var(--surface-1); border: 1px solid var(--border); border-radius: 6px; padding: 14px 16px;
+        margin: 0 0 12px; }
+.stats { display: flex; flex-wrap: wrap; gap: 12px; margin: 16px 0; }
+.stat { background: var(--surface-1); border: 1px solid var(--border); border-radius: 6px; padding: 10px 14px;
+        min-width: 140px; }
+.stat b { display: block; font-size: 20px; font-variant-numeric: tabular-nums; }
+.stat span { font-size: 12px; color: var(--text-muted); }
+ul.grounds { list-style: none; padding: 0; margin: 0; }
+ul.grounds li { padding: 6px 0; border-bottom: 1px solid var(--border); }
+ul.grounds li:last-child { border-bottom: 0; }
+table { width: 100%; border-collapse: collapse; background: var(--surface-1); font-size: 14px; }
+th, td { text-align: left; padding: 7px 8px; border-bottom: 1px solid var(--border); vertical-align: top; }
+th { font-weight: 600; color: var(--text-secondary); cursor: pointer; white-space: nowrap; user-select: none; }
+td.num, th.num { text-align: right; font-variant-numeric: tabular-nums; white-space: nowrap; }
+code, .mono { font: 12.5px ui-monospace, SFMono-Regular, Menlo, monospace; word-break: break-all; }
+details summary { cursor: pointer; color: var(--accent); }
+.excerpt { border-left: 3px solid var(--border); padding: 2px 0 2px 10px; color: var(--text-secondary);
+           font-size: 14px; white-space: pre-wrap; }
+input[type=search] { width: 100%; padding: 8px 10px; font: inherit; border: 1px solid var(--border);
+                     border-radius: 6px; background: var(--surface-1); color: var(--text-primary); margin: 8px 0 12px; }
+.table-wrap { overflow-x: auto; }
+@media (max-width: 640px) { .hide-sm { display: none; } }
+</style>
+<script data-goatcounter="https://pintail.goatcounter.com/count" async src="https://gc.zgo.at/count.js"></script>
+</head>
+<body>
+<main>
+<p class="crumbs"><a href="../">Dataset</a> › <a href="./">Decisions</a> › 0322-merge-sweeps-to-0x2bc1</p>
+<h1>Six withdrawal addresses whose rewards are swept together to 0x2bc1…8d56 belong to one staker.</h1>
+<p><span class="chip">Merge</span> <span class="muted">· decided 2026-10-29</span></p>
+<p class="lede">The validators withdrawing to these six addresses belong to one staker, as its rewards all go to one collecting account, 0x2bc1…8d56.</p>
+<h2>Grounds</h2><div class="card"><ul class="grounds"><li><span class="chip">On chain</span>All six addresses send their ETH to 0x2bc1…8d56, which passes everything on to one account</li><li><span class="chip">On chain</span>They do so in the same four rounds (22 December 2024, 26 March 2025, 27 August 2025, 12 May 2026), each within about 150 blocks, and in the same order in the first three</li></ul></div>
+<h2>Explanation</h2><p>Six withdrawal addresses, holding 456 validators (15,000 ETH) in four clusters, send their withdrawn rewards to the same account, 0x2bc1…8d56, which passes all of it on to a single account. The sweeps come in four rounds (22 December 2024, 26 March 2025, 27 August 2025 and 12 May 2026), each finished within about 150 blocks, with the addresses sweeping in the same order in the first three. Such coordinated sweeps are run by whoever controls all six addresses, so the four clusters are joined as one staker, at the reward level. The staker is not identified.</p>
+<h2>What would change it</h2><p>Evidence that 0x2bc1…8d56 collects for several unrelated stakers, such as a service sweeping for its clients.</p>
+<h2>Evidence</h2><p class="muted">Transactions and contract calls anyone can repeat on their own node.</p><div class="card"><ul class="grounds"><li><a class="mono" href="https://etherscan.io/tx/0xb92a9cdccf4f503357ba0c29ef7239da321766b9cddfa8d5f648ae839fc4b64b">0xb92a9cdc…9fc4b64b</a> — Round 1 (block 21,459,718): 0x6acc…f39a sweeps to 0x2bc1…8d56; the other five follow within 136 blocks</li><li><a class="mono" href="https://etherscan.io/tx/0xb8abf364ae82d73652c6b0b3ce02f825518ba50798b7b22280344549c628ff3f">0xb8abf364…c628ff3f</a> — Round 1: 0x5f54…bf14 sweeps 4.59 ETH to 0x2bc1…8d56</li><li><a class="mono" href="https://etherscan.io/tx/0x6a98762f46d1dadb71f6fd56c26e76aa0fb2fab1857a6f4eeacd680cfd8f037e">0x6a98762f…fd8f037e</a> — Round 1: 0x65e3…7656 sweeps 4.55 ETH to 0x2bc1…8d56</li><li><a class="mono" href="https://etherscan.io/tx/0x3d20e7d17357706a4ed44265ba82c991b23f1fd106f74fe03a014cb005660131">0x3d20e7d1…05660131</a> — Round 1: 0xdcff…29b2 sweeps 4.68 ETH to 0x2bc1…8d56</li><li><a class="mono" href="https://etherscan.io/tx/0x26d2b7d413e9cdcd5ad04ebde62c691032729c5665218c3c54bdfe0dd0d0f8b4">0x26d2b7d4…d0d0f8b4</a> — Round 2 (block 22,133,281): the same six, in the same order, within 76 blocks</li><li><a class="mono" href="https://etherscan.io/tx/0xbb14f3b547e51c5755eb803f54b954c22924e348eb5cd2a7fa083d325eeb4664">0xbb14f3b5…5eeb4664</a> — Round 3 (block 23,235,496): the same six, in the same order, within 231 blocks</li><li><a class="mono" href="https://etherscan.io/tx/0x4f62dd1e478e4fa223079642abfff1d811a58a2c02f89b23b0ab9cdf93a3bf3c">0x4f62dd1e…93a3bf3c</a> — Round 4 (block 25,082,053): the same six within 120 blocks, the larger three first</li></ul></div>
+<h2>Targets (6)</h2><details open><summary>The addresses or validators this decision covers</summary><ul style="list-style:none;padding:0"><li><span class="chip">withdrawal address</span><a class="mono" href="https://etherscan.io/address/0x5f542c2ba7826665fc454401196d89c121a9bf14">0x5f542c2ba7826665fc454401196d89c121a9bf14</a></li><li><span class="chip">withdrawal address</span><a class="mono" href="https://etherscan.io/address/0x65e369fa3405eccfa596e01614fa40c84c417656">0x65e369fa3405eccfa596e01614fa40c84c417656</a></li><li><span class="chip">withdrawal address</span><a class="mono" href="https://etherscan.io/address/0xdcff6b7d0b487981eb6f8759ecb71167718429b2">0xdcff6b7d0b487981eb6f8759ecb71167718429b2</a></li><li><span class="chip">withdrawal address</span><a class="mono" href="https://etherscan.io/address/0xcfc50c032c369075835f8cbd5859ca9823d19a68">0xcfc50c032c369075835f8cbd5859ca9823d19a68</a></li><li><span class="chip">withdrawal address</span><a class="mono" href="https://etherscan.io/address/0x419e08c0af7efc67c328d961683b8b1d416b6758">0x419e08c0af7efc67c328d961683b8b1d416b6758</a></li><li><span class="chip">withdrawal address</span><a class="mono" href="https://etherscan.io/address/0x6acce78e343ca3acc456a837c067c820d0ddf39a">0x6acce78e343ca3acc456a837c067c820d0ddf39a</a></li></ul></details>
+</main>
+</body>
+</html>

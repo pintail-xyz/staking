@@ -1,0 +1,76 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>0141-coinbase-cloud-vpool: The validators of the vPool 0x8eea…75f4, which names itself and its operator Coinbase Cloud, are allocated by Coinbase Clou</title>
+<style>
+:root { color-scheme: light; --surface-0: #f4f3f0; --surface-1: #fcfcfb; --border: #d9d8d3; --text-primary: #0b0b0b;
+        --text-secondary: #52514e; --text-muted: #77766f; --accent: #2a78d6; --chip: #ebe9e4; }
+@media (prefers-color-scheme: dark) {
+  :root:where(:not([data-theme="light"])) { color-scheme: dark; --surface-0: #121211; --surface-1: #1a1a19;
+    --border: #3a3a37; --text-primary: #f0efec; --text-secondary: #c3c2b7; --text-muted: #96958c; --accent: #3987e5;
+    --chip: #2a2a28; }
+}
+:root[data-theme="dark"] { color-scheme: dark; --surface-0: #121211; --surface-1: #1a1a19; --border: #3a3a37;
+  --text-primary: #f0efec; --text-secondary: #c3c2b7; --text-muted: #96958c; --accent: #3987e5; --chip: #2a2a28; }
+* { box-sizing: border-box; }
+body { margin: 0; background: var(--surface-0); color: var(--text-primary);
+       font: 15px/1.55 system-ui, -apple-system, "Segoe UI", sans-serif; }
+main { max-width: 860px; margin: 0 auto; padding: 32px 16px 64px; }
+a { color: var(--accent); }
+h1 { font-size: 22px; line-height: 1.3; font-weight: 600; margin: 4px 0 12px; }
+h2 { font-size: 15px; font-weight: 600; margin: 28px 0 8px; color: var(--text-secondary);
+     text-transform: uppercase; letter-spacing: 0.04em; }
+p { margin: 0 0 12px; }
+.crumbs { font-size: 13px; color: var(--text-muted); }
+.lede { font-size: 17px; }
+.muted { color: var(--text-muted); }
+.chip { display: inline-block; padding: 1px 8px; border-radius: 10px; background: var(--chip); font-size: 12px;
+        color: var(--text-secondary); margin-right: 4px; white-space: nowrap; }
+.card { background: var(--surface-1); border: 1px solid var(--border); border-radius: 6px; padding: 14px 16px;
+        margin: 0 0 12px; }
+.stats { display: flex; flex-wrap: wrap; gap: 12px; margin: 16px 0; }
+.stat { background: var(--surface-1); border: 1px solid var(--border); border-radius: 6px; padding: 10px 14px;
+        min-width: 140px; }
+.stat b { display: block; font-size: 20px; font-variant-numeric: tabular-nums; }
+.stat span { font-size: 12px; color: var(--text-muted); }
+ul.grounds { list-style: none; padding: 0; margin: 0; }
+ul.grounds li { padding: 6px 0; border-bottom: 1px solid var(--border); }
+ul.grounds li:last-child { border-bottom: 0; }
+table { width: 100%; border-collapse: collapse; background: var(--surface-1); font-size: 14px; }
+th, td { text-align: left; padding: 7px 8px; border-bottom: 1px solid var(--border); vertical-align: top; }
+th { font-weight: 600; color: var(--text-secondary); cursor: pointer; white-space: nowrap; user-select: none; }
+td.num, th.num { text-align: right; font-variant-numeric: tabular-nums; white-space: nowrap; }
+code, .mono { font: 12.5px ui-monospace, SFMono-Regular, Menlo, monospace; word-break: break-all; }
+details summary { cursor: pointer; color: var(--accent); }
+.excerpt { border-left: 3px solid var(--border); padding: 2px 0 2px 10px; color: var(--text-secondary);
+           font-size: 14px; white-space: pre-wrap; }
+input[type=search] { width: 100%; padding: 8px 10px; font: inherit; border: 1px solid var(--border);
+                     border-radius: 6px; background: var(--surface-1); color: var(--text-primary); margin: 8px 0 12px; }
+.table-wrap { overflow-x: auto; }
+@media (max-width: 640px) { .hide-sm { display: none; } }
+</style>
+<script data-goatcounter="https://pintail.goatcounter.com/count" async src="https://gc.zgo.at/count.js"></script>
+</head>
+<body>
+<main>
+<p class="crumbs"><a href="../">Dataset</a> › <a href="./">Decisions</a> › 0141-coinbase-cloud-vpool</p>
+<h1>The validators of the vPool 0x8eea…75f4, which names itself and its operator Coinbase Cloud, are allocated by Coinbase Cloud, not Kiln.</h1>
+<p><span class="chip">Attribution</span><span class="chip">Allocator</span> <a href="../entities/coinbase.html">Coinbase Cloud</a> <span class="muted">· decided 2026-10-21</span></p>
+<p class="muted">Replaces <a href="0040-kiln-vpool-8eea.html">0040-kiln-vpool-8eea</a>.</p>
+<p class="lede">Validators withdrawing to 0x116b…5e9f, the withdrawal contract of the Coinbase Cloud vPool, are allocated by Coinbase Cloud.</p>
+<div class="stats"><div class="stat"><b>3,542</b><span>validators resting on it now</span></div><div class="stat"><b>113,344</b><span>ETH now</span></div><div class="stat"><b>119,616</b><span>ETH at its peak</span></div></div>
+<h2>Grounds</h2><div class="card"><ul class="grounds"><li><span class="chip">On chain</span>It names itself &quot;Coinbase Cloud vPool Shares&quot;, and its factory recorded &quot;Coinbase Cloud&quot; as its operator&#x27;s name</li><li><span class="chip">On chain</span>Its factory&#x27;s keys are registered by an account first funded by one that withdrew ETH from Coinbase&#x27;s custody</li><li><span class="chip">On chain</span>None of its validators&#x27; blocks name Kiln, unlike every block of Kiln&#x27;s own vPool</li></ul></div>
+<h2>Explanation</h2><p>Validators withdrawing to 0x116b…5e9f, the withdrawal contract of a vPool that names itself and its operator Coinbase Cloud, are attributed to Coinbase Cloud as allocator. The vPool, a pooled-staking contract built from Kiln&#x27;s code, deposited 5,064 validators; about 3,550 were active in October 2026 with some 0.11M ETH. The decision replaces an earlier one (0040) that had given the pool to Kiln.</p>
+<p><strong>What the pool records about itself.</strong> The pool&#x27;s name() returns &quot;Coinbase Cloud vPool Shares&quot;, and when its factory was created it recorded &quot;Coinbase Cloud&quot; as its operator&#x27;s name; the record has never changed. Kiln&#x27;s own vPool, built from the same code and the same factory system, names itself &quot;Kiln vPool Shares&quot; and records &quot;Kiln&quot; (decision 0039). Both factories were created through the same deployment contract, so Kiln&#x27;s tooling set up both.</p>
+<p><strong>Keys and graffiti.</strong> Every key added to the Coinbase Cloud factory came from its administrator account, which was first funded by an account that had received ETH from one of Coinbase&#x27;s custody wallets. No transfer links the Coinbase Cloud factory&#x27;s accounts to Kiln&#x27;s. Of the 14,065 blocks its validators have proposed, 13,846 are blank and the rest carry client version strings; none names Kiln, whereas every block of Kiln&#x27;s own vPool is signed &quot;Kiln.fi&quot;. Every deposit crediting the withdrawal contract came from this pool.</p>
+<p><strong>Why Coinbase Cloud is the allocator.</strong> The names a contract records for itself are set by whoever sets the pool up for its owner, so they say whose product it is. Whether Coinbase Cloud runs the validators itself or Kiln runs them as a white-label provider, the pool is Coinbase Cloud&#x27;s offering, which makes Coinbase Cloud the allocator. No operator is recorded. The single funding link to Coinbase&#x27;s custody wallet fits this but would not on its own identify the pool.</p>
+<p>The decision would change with a Coinbase or Kiln statement that this pool&#x27;s validators are allocated by Kiln or another party.</p>
+<h2>What would change it</h2><p>A Coinbase or Kiln statement that the pool&#x27;s validators are allocated by Kiln or by another party.</p>
+<h2>Evidence</h2><p class="muted">Transactions and contract calls anyone can repeat on their own node.</p><div class="card"><ul class="grounds"><li><span class="mono">eth_call 0x8eea6cc08d824b20efb3bf7c248de694cb1f75f4 name() = &quot;Coinbase Cloud vPool Shares&quot;; factory() = 0x2d5e65ff87d986d18ac224e725dc654bec3a04cd</span></li><li><a class="mono" href="https://etherscan.io/tx/0x8893fef50cbe98860b63b70eed96f06b86a6b49ae486da6c795b8937edc4f089">0x8893fef5…edc4f089</a> — Creation of the vFactory, emitting SetMetadata(&quot;Coinbase Cloud&quot;, &quot;&quot;, &quot;&quot;), block 18,114,639</li><li><a class="mono" href="https://etherscan.io/tx/0x7df012e99ab59bdaf62689d5f2790f414036d06b5e4ab41ec0e668492112be43">0x7df012e9…2112be43</a> — 0x84e1…3b46 first funds the factory admin 0xe9d7…7469 (0.5 ETH)</li><li><a href="0039-kiln-vpool-00a0.html">0039-kiln-vpool-00a0</a></li></ul></div>
+<h2>Treemap boxes resting on it</h2><div class="table-wrap"><table><thead><tr><th>Box</th><th class="num">ETH now</th><th class="num">Peak ETH</th></tr></thead><tbody><tr><td>Coinbase › Coinbase Cloud › Withdraws to 0x116b…5e9f</td><td class="num">113,344</td><td class="num">119,616</td></tr></tbody></table></div>
+<h2>Targets (1)</h2><details open><summary>The addresses or validators this decision covers</summary><ul style="list-style:none;padding:0"><li><span class="chip">withdrawal address</span><a class="mono" href="https://etherscan.io/address/0x116ba62f273a0859b9b29bbe4adc310c749a5e9f">0x116ba62f273a0859b9b29bbe4adc310c749a5e9f</a></li></ul></details>
+</main>
+</body>
+</html>

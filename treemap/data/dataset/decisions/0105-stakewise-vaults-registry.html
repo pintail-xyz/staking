@@ -1,0 +1,73 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>0105-stakewise-vaults-registry: StakeWise&#x27;s own deployment list names this as its V3 VaultsRegistry; validators withdrawing to a vault it registered a</title>
+<style>
+:root { color-scheme: light; --surface-0: #f4f3f0; --surface-1: #fcfcfb; --border: #d9d8d3; --text-primary: #0b0b0b;
+        --text-secondary: #52514e; --text-muted: #77766f; --accent: #2a78d6; --chip: #ebe9e4; }
+@media (prefers-color-scheme: dark) {
+  :root:where(:not([data-theme="light"])) { color-scheme: dark; --surface-0: #121211; --surface-1: #1a1a19;
+    --border: #3a3a37; --text-primary: #f0efec; --text-secondary: #c3c2b7; --text-muted: #96958c; --accent: #3987e5;
+    --chip: #2a2a28; }
+}
+:root[data-theme="dark"] { color-scheme: dark; --surface-0: #121211; --surface-1: #1a1a19; --border: #3a3a37;
+  --text-primary: #f0efec; --text-secondary: #c3c2b7; --text-muted: #96958c; --accent: #3987e5; --chip: #2a2a28; }
+* { box-sizing: border-box; }
+body { margin: 0; background: var(--surface-0); color: var(--text-primary);
+       font: 15px/1.55 system-ui, -apple-system, "Segoe UI", sans-serif; }
+main { max-width: 860px; margin: 0 auto; padding: 32px 16px 64px; }
+a { color: var(--accent); }
+h1 { font-size: 22px; line-height: 1.3; font-weight: 600; margin: 4px 0 12px; }
+h2 { font-size: 15px; font-weight: 600; margin: 28px 0 8px; color: var(--text-secondary);
+     text-transform: uppercase; letter-spacing: 0.04em; }
+p { margin: 0 0 12px; }
+.crumbs { font-size: 13px; color: var(--text-muted); }
+.lede { font-size: 17px; }
+.muted { color: var(--text-muted); }
+.chip { display: inline-block; padding: 1px 8px; border-radius: 10px; background: var(--chip); font-size: 12px;
+        color: var(--text-secondary); margin-right: 4px; white-space: nowrap; }
+.card { background: var(--surface-1); border: 1px solid var(--border); border-radius: 6px; padding: 14px 16px;
+        margin: 0 0 12px; }
+.stats { display: flex; flex-wrap: wrap; gap: 12px; margin: 16px 0; }
+.stat { background: var(--surface-1); border: 1px solid var(--border); border-radius: 6px; padding: 10px 14px;
+        min-width: 140px; }
+.stat b { display: block; font-size: 20px; font-variant-numeric: tabular-nums; }
+.stat span { font-size: 12px; color: var(--text-muted); }
+ul.grounds { list-style: none; padding: 0; margin: 0; }
+ul.grounds li { padding: 6px 0; border-bottom: 1px solid var(--border); }
+ul.grounds li:last-child { border-bottom: 0; }
+table { width: 100%; border-collapse: collapse; background: var(--surface-1); font-size: 14px; }
+th, td { text-align: left; padding: 7px 8px; border-bottom: 1px solid var(--border); vertical-align: top; }
+th { font-weight: 600; color: var(--text-secondary); cursor: pointer; white-space: nowrap; user-select: none; }
+td.num, th.num { text-align: right; font-variant-numeric: tabular-nums; white-space: nowrap; }
+code, .mono { font: 12.5px ui-monospace, SFMono-Regular, Menlo, monospace; word-break: break-all; }
+details summary { cursor: pointer; color: var(--accent); }
+.excerpt { border-left: 3px solid var(--border); padding: 2px 0 2px 10px; color: var(--text-secondary);
+           font-size: 14px; white-space: pre-wrap; }
+input[type=search] { width: 100%; padding: 8px 10px; font: inherit; border: 1px solid var(--border);
+                     border-radius: 6px; background: var(--surface-1); color: var(--text-primary); margin: 8px 0 12px; }
+.table-wrap { overflow-x: auto; }
+@media (max-width: 640px) { .hide-sm { display: none; } }
+</style>
+<script data-goatcounter="https://pintail.goatcounter.com/count" async src="https://gc.zgo.at/count.js"></script>
+</head>
+<body>
+<main>
+<p class="crumbs"><a href="../">Dataset</a> › <a href="./">Decisions</a> › 0105-stakewise-vaults-registry</p>
+<h1>StakeWise&#x27;s own deployment list names this as its V3 VaultsRegistry; validators withdrawing to a vault it registered are StakeWise V3&#x27;s.</h1>
+<p><span class="chip">Anchor</span> <span class="muted">· decided 2026-10-18</span></p>
+<p class="lede">This contract is StakeWise V3&#x27;s vault registry; validators withdrawing to a vault it registered are allocated by StakeWise V3.</p>
+<div class="stats"><div class="stat"><b>2,961</b><span>validators resting on it now</span></div><div class="stat"><b>293,547</b><span>ETH now</span></div><div class="stat"><b>360,992</b><span>ETH at its peak</span></div></div>
+<h2>Grounds</h2><div class="card"><ul class="grounds"><li><span class="chip">First party</span>StakeWise&#x27;s own deployment list names this as its V3 VaultsRegistry</li><li><span class="chip">On chain</span>Every StakeWise V3 vault is added to it when created</li><li><span class="chip">On chain</span>Each vault&#x27;s own manager chooses its operators; StakeWise is shown as the protocol</li></ul></div>
+<h2>Explanation</h2><p>The contract 0x3a00…c20e is StakeWise V3&#x27;s vault registry: every StakeWise V3 vault is added to it when created, and validators withdrawing to a registered vault are attributed to StakeWise V3 as allocator. By October 2026 the registry listed 254 vaults; about 3,000 of their validators were active, with some 0.29M ETH, many of them compounding.</p>
+<p><strong>Identification.</strong> <a href="https://github.com/stakewise/v3-core/blob/31f40df84492eb3fd64389904fcc012d278b4b41/deployments/mainnet.json">StakeWise&#x27;s own deployment list</a> names this contract as its V3 VaultsRegistry. It was created in October 2023 and has recorded each vault&#x27;s creation since. The shared MEV escrow named in the same list is the fee recipient of many StakeWise validators, which helped identify them.</p>
+<p><strong>Why StakeWise is shown as the allocator.</strong> Each vault&#x27;s administrator chooses that vault&#x27;s operators, so the choice is made within the protocol, by many parties; as with Rocket Pool, the protocol is shown as the allocator. Distinguishing vaults, for example the Genesis Vault run by StakeWise&#x27;s DAO from institutions&#x27; private vaults, would be a possible refinement.</p>
+<p>The decision would change if StakeWise&#x27;s deployment list named a different registry, or if vaults were found to be registered elsewhere.</p>
+<h2>What would change it</h2><p>StakeWise&#x27;s deployment list naming a different registry, or vaults registered elsewhere.</p>
+<h2>Sources</h2><div class="card"><a href="https://github.com/stakewise/v3-core/blob/31f40df84492eb3fd64389904fcc012d278b4b41/deployments/mainnet.json">deployments/mainnet.json (commit 31f40df)</a><div class="muted" style="font-size:13px">StakeWise, stakewise/v3-core on GitHub · the entity&#x27;s own · retrieved 2026-10-18</div><p class="excerpt">&quot;VaultsRegistry&quot;: &quot;0x3a0008a588772446f6e656133C2D5029CC4FC20E&quot;</p><div class="muted mono">sha256 26d7d2c05663244426b2416d2374d3c485982d019dd1e232ecf5e8ed8e1b5697</div></div>
+<h2>Treemap boxes resting on it</h2><div class="table-wrap"><table><thead><tr><th>Box</th><th class="num">ETH now</th><th class="num">Peak ETH</th></tr></thead><tbody><tr><td>StakeWise › StakeWise V3 vaults › Withdraws to 0xac0f…2885</td><td class="num">154,761</td><td class="num">176,320</td></tr><tr><td>StakeWise › StakeWise V3 vaults › Withdraws to 0xe6d8…6c08</td><td class="num">54,567</td><td class="num">93,824</td></tr><tr><td>StakeWise › StakeWise V3 vaults › Withdraws to 0xb266…305b</td><td class="num">24,224</td><td class="num">81,280</td></tr><tr><td>StakeWise › StakeWise V3 vaults › Withdraws to 0x4fef…47df</td><td class="num">26,048</td><td class="num">74,208</td></tr><tr><td>StakeWise › StakeWise V3 vaults › Withdraws to 0x663a…44a6</td><td class="num">8,652</td><td class="num">8,652</td></tr><tr><td>StakeWise › StakeWise V3 vaults › Withdraws to 0x4aaf…744d</td><td class="num">7,631</td><td class="num">7,633</td></tr><tr><td>StakeWise › StakeWise V3 vaults › Withdraws to 0xb36f…8113</td><td class="num">1,647</td><td class="num">6,272</td></tr><tr><td>StakeWise › StakeWise V3 vaults › Withdraws to 0xb144…94e8</td><td class="num">5,568</td><td class="num">5,568</td></tr><tr><td>StakeWise › StakeWise V3 vaults › Withdraws to 0x3be0…6a94</td><td class="num">0</td><td class="num">5,408</td></tr><tr><td>StakeWise › StakeWise V3 vaults › Withdraws to 0xa8cb…9e97</td><td class="num">5,324</td><td class="num">5,324</td></tr><tr><td>StakeWise › StakeWise V3 vaults › Withdraws to 0x47fd…8034</td><td class="num">5,125</td><td class="num">5,125</td></tr></tbody></table></div>
+</main>
+</body>
+</html>

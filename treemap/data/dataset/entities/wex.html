@@ -1,0 +1,98 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>WEX (former funds; holder unknown): roles in the validator set</title>
+<style>
+:root { color-scheme: light; --surface-0: #f4f3f0; --surface-1: #fcfcfb; --border: #d9d8d3; --text-primary: #0b0b0b;
+        --text-secondary: #52514e; --text-muted: #77766f; --accent: #2a78d6; --chip: #ebe9e4; }
+@media (prefers-color-scheme: dark) {
+  :root:where(:not([data-theme="light"])) { color-scheme: dark; --surface-0: #121211; --surface-1: #1a1a19;
+    --border: #3a3a37; --text-primary: #f0efec; --text-secondary: #c3c2b7; --text-muted: #96958c; --accent: #3987e5;
+    --chip: #2a2a28; }
+}
+:root[data-theme="dark"] { color-scheme: dark; --surface-0: #121211; --surface-1: #1a1a19; --border: #3a3a37;
+  --text-primary: #f0efec; --text-secondary: #c3c2b7; --text-muted: #96958c; --accent: #3987e5; --chip: #2a2a28; }
+* { box-sizing: border-box; }
+body { margin: 0; background: var(--surface-0); color: var(--text-primary);
+       font: 15px/1.55 system-ui, -apple-system, "Segoe UI", sans-serif; }
+main { max-width: 860px; margin: 0 auto; padding: 32px 16px 64px; }
+a { color: var(--accent); }
+h1 { font-size: 22px; line-height: 1.3; font-weight: 600; margin: 4px 0 12px; }
+h2 { font-size: 15px; font-weight: 600; margin: 28px 0 8px; color: var(--text-secondary);
+     text-transform: uppercase; letter-spacing: 0.04em; }
+p { margin: 0 0 12px; }
+.crumbs { font-size: 13px; color: var(--text-muted); }
+.lede { font-size: 17px; }
+.muted { color: var(--text-muted); }
+.chip { display: inline-block; padding: 1px 8px; border-radius: 10px; background: var(--chip); font-size: 12px;
+        color: var(--text-secondary); margin-right: 4px; white-space: nowrap; }
+.card { background: var(--surface-1); border: 1px solid var(--border); border-radius: 6px; padding: 14px 16px;
+        margin: 0 0 12px; }
+.stats { display: flex; flex-wrap: wrap; gap: 12px; margin: 16px 0; }
+.stat { background: var(--surface-1); border: 1px solid var(--border); border-radius: 6px; padding: 10px 14px;
+        min-width: 140px; }
+.stat b { display: block; font-size: 20px; font-variant-numeric: tabular-nums; }
+.stat span { font-size: 12px; color: var(--text-muted); }
+ul.grounds { list-style: none; padding: 0; margin: 0; }
+ul.grounds li { padding: 6px 0; border-bottom: 1px solid var(--border); }
+ul.grounds li:last-child { border-bottom: 0; }
+table { width: 100%; border-collapse: collapse; background: var(--surface-1); font-size: 14px; }
+th, td { text-align: left; padding: 7px 8px; border-bottom: 1px solid var(--border); vertical-align: top; }
+th { font-weight: 600; color: var(--text-secondary); cursor: pointer; white-space: nowrap; user-select: none; }
+td.num, th.num { text-align: right; font-variant-numeric: tabular-nums; white-space: nowrap; }
+code, .mono { font: 12.5px ui-monospace, SFMono-Regular, Menlo, monospace; word-break: break-all; }
+details summary { cursor: pointer; color: var(--accent); }
+.excerpt { border-left: 3px solid var(--border); padding: 2px 0 2px 10px; color: var(--text-secondary);
+           font-size: 14px; white-space: pre-wrap; }
+input[type=search] { width: 100%; padding: 8px 10px; font: inherit; border: 1px solid var(--border);
+                     border-radius: 6px; background: var(--surface-1); color: var(--text-primary); margin: 8px 0 12px; }
+.table-wrap { overflow-x: auto; }
+@media (max-width: 640px) { .hide-sm { display: none; } }
+</style>
+<script data-goatcounter="https://pintail.goatcounter.com/count" async src="https://gc.zgo.at/count.js"></script>
+</head>
+<body>
+<main>
+<style>
+.chart { width: 100%; height: auto; background: var(--surface-1); border: 1px solid var(--border); border-radius: 6px; }
+.chart text { fill: var(--text-muted); font: 11px system-ui, sans-serif; }
+.chart .grid { stroke: var(--border); stroke-width: 1; }
+.legend { display: flex; flex-wrap: wrap; gap: 14px; font-size: 13px; color: var(--text-secondary); margin: 6px 0 14px; }
+.legend i { display: inline-block; width: 16px; height: 3px; vertical-align: middle; margin-right: 5px; background: var(--c); }
+.legend i.dashed { background: repeating-linear-gradient(90deg, var(--c) 0 6px, transparent 6px 9px); }
+.chart .event { stroke: var(--text-muted); stroke-width: 1; stroke-dasharray: 3 3; }
+.chart .event-n { fill: var(--text-secondary); font-weight: 600; }
+ol.events { padding-left: 0; list-style: none; }
+ol.events li { margin: 4px 0; }
+ol.events .n { display: inline-block; min-width: 1.6em; font-weight: 600; color: var(--text-secondary); }
+</style><p class="crumbs"><a href="../">Dataset</a> › <a href="./">Entities</a></p>
+<h1>WEX (former funds; holder unknown)</h1>
+<p><span class="chip">exchange</span> <span class="mono muted">wex</span></p>
+<p><strong>How much ETH WEX (former funds; holder unknown) has had in each role recorded in this dataset, week by week, from
+the start of the beacon chain (1 December 2020) to 30 October 2026.</strong> Stake is the effective balance
+of active validators.</p>
+<ul><li><strong>Allocator</strong>: chose where the stake went. Counts the stake in the treemap boxes under WEX (former funds; holder unknown). <span class="muted">Recorded for 89% of active stake.</span></li><li><strong>Operator</strong>: ran the validators. <span class="muted">Recorded for 49% of active stake.</span></li><li><strong>Custodian</strong>: held the stake on behalf of a client. <span class="muted">Recorded for 5.5% of active stake.</span></li><li><strong>Principal</strong>: owned the staked ETH. <span class="muted">Recorded for 5.4% of active stake.</span></li></ul>
+<p class="muted">Allocators are recorded for most stake. Operators, custodians and principals are recorded only where
+specific evidence names them, so their figures here (dashed on the charts) are lower bounds: no figure does not mean
+no role.</p>
+<h2>Its own roles</h2><svg class="chart" viewBox="0 0 760 240" role="img" aria-label="ETH by role over time"><line class="grid" x1="52" x2="752" y1="218.0" y2="218.0"/><text x="46" y="222.0" text-anchor="end">0</text><line class="grid" x1="52" x2="752" y1="114.0" y2="114.0"/><text x="46" y="118.0" text-anchor="end">10k</text><line class="grid" x1="52" x2="752" y1="10.0" y2="10.0"/><text x="46" y="14.0" text-anchor="end">21k</text><text x="52.0" y="234" text-anchor="middle">2020</text><text x="181.1" y="234" text-anchor="middle">2022</text><text x="298.9" y="234" text-anchor="middle">2023</text><text x="416.7" y="234" text-anchor="middle">2024</text><text x="536.8" y="234" text-anchor="middle">2025</text><text x="654.6" y="234" text-anchor="middle">2026</text><polyline fill="none" stroke="#2a78d6" stroke-width="2" points="52.0,58.0 54.3,58.0 56.5,58.0 58.8,58.0 61.1,58.0 63.3,58.0 65.6,58.0 67.9,58.0 70.1,58.0 72.4,58.0 74.7,58.0 76.9,58.0 79.2,58.0 81.4,58.0 83.7,58.0 86.0,58.0 88.2,58.0 90.5,58.0 92.8,58.0 95.0,58.0 97.3,58.0 99.6,58.0 101.8,58.0 104.1,58.0 106.4,58.0 108.6,58.0 110.9,58.0 113.2,58.0 115.4,58.0 117.7,58.0 120.0,58.0 122.2,58.0 124.5,58.0 126.8,58.0 129.0,58.0 131.3,58.0 133.6,58.0 135.8,58.0 138.1,58.0 140.3,58.0 142.6,58.0 144.9,58.0 147.1,58.0 149.4,58.0 151.7,58.0 153.9,58.0 156.2,58.0 158.5,58.0 160.7,58.0 163.0,58.0 165.3,58.0 167.5,58.0 169.8,58.0 172.1,58.0 174.3,58.0 176.6,58.0 178.9,58.0 181.1,58.0 183.4,58.0 185.7,58.0 187.9,58.0 190.2,58.0 192.5,58.0 194.7,58.0 197.0,58.0 199.2,58.0 201.5,58.0 203.8,58.0 206.0,58.0 208.3,58.0 210.6,58.0 212.8,58.0 215.1,58.0 217.4,58.0 219.6,58.0 221.9,58.0 224.2,58.0 226.4,58.0 228.7,58.0 231.0,58.0 233.2,58.0 235.5,58.0 237.8,58.0 240.0,58.0 242.3,58.0 244.6,58.0 246.8,58.0 249.1,58.0 251.4,58.0 253.6,58.0 255.9,58.0 258.1,58.0 260.4,58.0 262.7,58.0 264.9,58.0 267.2,58.0 269.5,58.0 271.7,58.0 274.0,58.0 276.3,58.0 278.5,58.0 280.8,58.0 283.1,58.0 285.3,58.0 287.6,58.0 289.9,58.0 292.1,58.0 294.4,58.0 296.7,58.0 298.9,58.0 301.2,58.0 303.5,58.0 305.7,58.0 308.0,58.0 310.3,58.0 312.5,58.0 314.8,58.0 317.0,58.0 319.3,58.0 321.6,58.0 323.8,58.0 326.1,58.0 328.4,58.0 330.6,58.0 332.9,58.0 335.2,33.4 337.4,33.4 339.7,33.4 342.0,33.4 344.2,33.4 346.5,33.4 348.8,33.4 351.0,32.4 353.3,32.4 355.6,32.4 357.8,32.4 360.1,32.4 362.4,32.4 364.6,32.4 366.9,32.4 369.2,32.4 371.4,32.4 373.7,32.4 375.9,32.4 378.2,32.4 380.5,32.4 382.7,32.4 385.0,32.4 387.3,32.4 389.5,29.2 391.8,29.2 394.1,29.2 396.3,29.2 398.6,29.2 400.9,29.2 403.1,29.2 405.4,29.2 407.7,29.2 409.9,29.2 412.2,29.2 414.5,29.2 416.7,29.2 419.0,29.2 421.3,29.2 423.5,29.2 425.8,29.2 428.1,29.2 430.3,29.2 432.6,29.2 434.8,29.2 437.1,26.0 439.4,26.0 441.6,26.0 443.9,26.0 446.2,26.0 448.4,26.0 450.7,26.0 453.0,26.0 455.2,26.0 457.5,26.0 459.8,26.0 462.0,26.0 464.3,26.0 466.6,26.0 468.8,26.0 471.1,26.0 473.4,26.0 475.6,26.0 477.9,26.0 480.2,26.0 482.4,26.0 484.7,26.0 487.0,26.0 489.2,26.0 491.5,26.0 493.7,26.0 496.0,26.0 498.3,26.0 500.5,22.8 502.8,22.8 505.1,22.8 507.3,22.8 509.6,22.8 511.9,22.8 514.1,22.8 516.4,22.8 518.7,22.8 520.9,22.8 523.2,22.8 525.5,22.8 527.7,22.8 530.0,22.8 532.3,22.8 534.5,22.8 536.8,22.8 539.1,22.8 541.3,22.8 543.6,22.8 545.9,22.8 548.1,22.8 550.4,19.6 552.6,19.6 554.9,19.6 557.2,19.6 559.4,19.6 561.7,19.6 564.0,19.6 566.2,19.6 568.5,19.6 570.8,19.6 573.0,19.6 575.3,19.6 577.6,19.6 579.8,19.6 582.1,19.6 584.4,19.6 586.6,19.6 588.9,19.6 591.2,19.6 593.4,19.6 595.7,16.4 598.0,16.4 600.2,16.4 602.5,16.4 604.8,16.4 607.0,16.4 609.3,16.4 611.5,16.4 613.8,16.4 616.1,16.4 618.3,16.4 620.6,16.4 622.9,16.4 625.1,16.4 627.4,16.4 629.7,16.4 631.9,16.4 634.2,16.4 636.5,16.4 638.7,16.4 641.0,16.4 643.3,16.4 645.5,16.4 647.8,16.4 650.1,16.4 652.3,16.4 654.6,16.4 656.9,16.4 659.1,16.4 661.4,16.4 663.7,16.4 665.9,16.4 668.2,16.4 670.4,16.4 672.7,16.4 675.0,16.4 677.2,16.4 679.5,16.4 681.8,16.4 684.0,16.4 686.3,16.4 688.6,16.4 690.8,16.4 693.1,16.4 695.4,16.4 697.6,16.4 699.9,16.4 702.2,16.4 704.4,16.4 706.7,16.4 709.0,16.4 711.2,16.4 713.5,16.4 715.8,16.4 718.0,16.4 720.3,16.4 722.6,16.4 724.8,16.4 727.1,16.4 729.3,16.4 731.6,10.0 733.9,10.0 736.1,10.0 738.4,10.0 740.7,10.0 742.9,10.0 745.2,10.0 747.5,10.0 749.7,10.0 752.0,10.0"><title>Allocator</title></polyline></svg><div class="legend"><span><i class="" style="--c:#2a78d6"></i>Allocator</span></div><div class="table-wrap"><table><thead><tr><th>Role</th><th class="num">ETH now</th>
+<th class="num hide-sm">Validators now</th><th class="num">Peak ETH</th><th class="num hide-sm">Peak</th>
+<th class="num hide-sm">First seen</th><th class="num hide-sm">Last seen</th></tr></thead><tbody><tr><td>Allocator</td><td class="num">20,800</td>
+<td class="num hide-sm">650</td><td class="num">20,800</td>
+<td class="num hide-sm">2026-09-01</td><td class="num hide-sm">2020-12-01</td>
+<td class="num hide-sm">now</td></tr></tbody></table></div>
+<h2>Clients</h2><p class="muted">Blocks proposed in the last 90 days by the validators it
+allocates or operates now, and the execution and consensus clients their graffiti names (clients add a short code by
+default; operators can turn it off, so these are shares of the blocks that carry one).</p>
+<div class="table-wrap"><table><thead><tr><th>Role</th><th class="num">Blocks</th><th class="num">With codes</th>
+<th>Execution clients</th><th>Consensus clients</th></tr></thead><tbody><tr><td>Allocator</td><td class="num">302</td>
+<td class="num">100%</td><td>Geth 100%</td><td>Prysm 100%</td></tr></tbody></table></div>
+<h2>Treemap boxes</h2><div class="table-wrap"><table><thead><tr><th>Box</th>
+<th class="num">ETH now</th><th class="num hide-sm">Peak ETH</th></tr></thead><tbody><tr><td>WEX (former funds; holder unknown) › Staking of former WEX funds › Withdraws to 0xf4d1…63c5</td><td class="num">20,800</td><td class="num hide-sm">20,800</td></tr></tbody></table></div>
+<h2>Identified addresses</h2><div class="table-wrap"><table><thead><tr><th>Address</th><th>Role</th>
+<th class="hide-sm">Basis</th></tr></thead><tbody><tr><td><a class="mono" href="https://etherscan.io/address/0xbb84d966c09264ce9a2104a4a20bb378369986db">0xbb84d966c09264ce9a2104a4a20bb378369986db</a></td><td>anchor</td><td class="hide-sm">asserted</td></tr></tbody></table></div>
+</main>
+</body>
+</html>

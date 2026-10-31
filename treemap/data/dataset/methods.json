@@ -1,0 +1,2890 @@
+{
+ "methods": {
+  "address_snapshot.delegates_to": {
+   "version": 1,
+   "basis": "derived",
+   "relation": "delegates_to",
+   "statement": "At the snapshot block, this account had delegated its code to the object address under EIP-7702.",
+   "premises": [
+    "At the snapshot block, the account's code is the EIP-7702 delegation designator 0xef0100 || object address."
+   ],
+   "conclusion": "Calls to the account ran the object's code at that block.",
+   "evidence": [
+    "eth_getCode: block <N>"
+   ],
+   "limits": [
+    "A point observation. The account's key holder can change or remove the delegation at any time."
+   ],
+   "references": [
+    "https://eips.ethereum.org/EIPS/eip-7702"
+   ]
+  },
+  "address_snapshot.pod_owner": {
+   "version": 1,
+   "basis": "derived",
+   "relation": "pod_owner",
+   "statement": "At the snapshot block, the object address was the owner of this EigenPod.",
+   "premises": [
+    "At the snapshot block, the contract is an EIP-1967 beacon proxy and answers podOwner() with the object address."
+   ],
+   "conclusion": "The object controlled the EigenPod at that block: an EigenPod's owner alone can withdraw from it, and it is the pod's EigenLayer staker (delegating to an operator).",
+   "evidence": [
+    "eth_call: block <N>"
+   ],
+   "limits": [
+    "A point observation; an EigenPod's owner is fixed at creation by EigenLayer's EigenPodManager.",
+    "Asks only beacon proxies; any beacon proxy answering podOwner() with an address is recorded, so the pod's beacon should be checked where it matters."
+   ],
+   "references": [
+    "https://github.com/Layr-Labs/eigenlayer-contracts"
+   ]
+  },
+  "address_snapshot.proxy_admin": {
+   "version": 1,
+   "basis": "derived",
+   "relation": "proxy_admin",
+   "statement": "At the snapshot block, the EIP-1967 admin slot of this address held the object address.",
+   "premises": [
+    "At the snapshot block, reading the address's storage or code through our own Reth node returns the EIP-1967 admin slot = the object address.",
+    "EIP-1967 / EIP-1167 define these slots and bytecode patterns."
+   ],
+   "conclusion": "The relation held at that block.",
+   "evidence": [
+    "eth_getStorageAt / eth_getCode / eth_call: block <N>"
+   ],
+   "limits": [
+    "A point observation: it says nothing about other times.",
+    "Contracts can use these slots without following the standard; the value is what the slot holds."
+   ],
+   "references": [
+    "https://eips.ethereum.org/EIPS/eip-1967",
+    "https://eips.ethereum.org/EIPS/eip-1167"
+   ]
+  },
+  "address_snapshot.proxy_beacon": {
+   "version": 1,
+   "basis": "derived",
+   "relation": "proxy_beacon",
+   "statement": "At the snapshot block, the EIP-1967 beacon slot of this address held the object address.",
+   "premises": [
+    "At the snapshot block, reading the address's storage or code through our own Reth node returns the EIP-1967 beacon slot = the object address.",
+    "EIP-1967 / EIP-1167 define these slots and bytecode patterns."
+   ],
+   "conclusion": "The relation held at that block.",
+   "evidence": [
+    "eth_getStorageAt / eth_getCode / eth_call: block <N>"
+   ],
+   "limits": [
+    "A point observation: it says nothing about other times.",
+    "Contracts can use these slots without following the standard; the value is what the slot holds."
+   ],
+   "references": [
+    "https://eips.ethereum.org/EIPS/eip-1967",
+    "https://eips.ethereum.org/EIPS/eip-1167"
+   ]
+  },
+  "address_snapshot.proxy_implementation": {
+   "version": 1,
+   "basis": "derived",
+   "relation": "proxy_implementation",
+   "statement": "At the snapshot block, the implementation the proxy delegates to: the EIP-1967 implementation slot, the EIP-1167 bytecode target, or a beacon's implementation() of this address held the object address.",
+   "premises": [
+    "At the snapshot block, reading the address's storage or code through our own Reth node returns the implementation the proxy delegates to: the EIP-1967 implementation slot, the EIP-1167 bytecode target, or a beacon's implementation() = the object address.",
+    "EIP-1967 / EIP-1167 define these slots and bytecode patterns."
+   ],
+   "conclusion": "The relation held at that block.",
+   "evidence": [
+    "eth_getStorageAt / eth_getCode / eth_call: block <N>"
+   ],
+   "limits": [
+    "A point observation: it says nothing about other times.",
+    "Contracts can use these slots without following the standard; the value is what the slot holds."
+   ],
+   "references": [
+    "https://eips.ethereum.org/EIPS/eip-1967",
+    "https://eips.ethereum.org/EIPS/eip-1167"
+   ]
+  },
+  "address_snapshot.safe_owner": {
+   "version": 1,
+   "basis": "derived",
+   "relation": "safe_owner",
+   "statement": "At the snapshot block, the object address was an owner of this Safe.",
+   "premises": [
+    "At the snapshot block, the contract answers getThreshold() with t and getOwners() with a list of n addresses, 1 <= t <= n, including the object."
+   ],
+   "conclusion": "The object was one of the Safe's owners at that block.",
+   "evidence": [
+    "eth_call: block <N>"
+   ],
+   "limits": [
+    "A point observation.",
+    "Recognises Safes by their answers to these two calls; a non-Safe contract answering them the same way would be included.",
+    "One owner alone controls the Safe only if the threshold is 1."
+   ],
+   "references": [
+    "https://github.com/safe-global/safe-smart-account"
+   ]
+  },
+  "aragon.acl_permission_manager": {
+   "version": 1,
+   "basis": "derived",
+   "relation": "governed_by",
+   "statement": "At the snapshot block, the object was the permission manager of the kernel's APP_MANAGER_ROLE: it can grant or revoke the right to upgrade the DAO's apps.",
+   "premises": [
+    "ACL.getPermissionManager(kernel, APP_MANAGER_ROLE) returns the object at the snapshot block."
+   ],
+   "conclusion": "The object could grant itself or others the right to upgrade at that block.",
+   "evidence": [
+    "eth_call: the getPermissionManager call and block",
+    "acl_role: APP_MANAGER_ROLE"
+   ],
+   "limits": [
+    "A point observation."
+   ],
+   "references": [
+    "https://github.com/aragon/aragonOS"
+   ]
+  },
+  "aragon.acl_role": {
+   "version": 1,
+   "basis": "derived",
+   "relation": "governed_by",
+   "statement": "Over the interval, the object held the given role on the app: on a kernel APP_MANAGER_ROLE (upgrading apps); on the Agent EXECUTE_ROLE or RUN_SCRIPT_ROLE (acting as the Agent).",
+   "premises": [
+    "The DAO's ACL emitted SetPermission(entity, app, role, true) in the cited transaction, and no later SetPermission(entity, app, role, false) before the end of the interval.",
+    "In aragonOS, the ACL is the only source of these permissions."
+   ],
+   "conclusion": "The object could exercise the role over the interval.",
+   "evidence": [
+    "tx: the granting SetPermission transaction",
+    "acl_role: the role name"
+   ],
+   "limits": [
+    "Permissions with parameters (conditions) are not interpreted.",
+    "Who can re-grant the role is aragon.acl_permission_manager."
+   ],
+   "references": [
+    "https://github.com/aragon/aragonOS"
+   ]
+  },
+  "aragon.kernel": {
+   "version": 1,
+   "basis": "derived",
+   "relation": "governed_by",
+   "statement": "The contract is an Aragon app of this kernel (DAO), which can upgrade it.",
+   "premises": [
+    "The contract's kernel() returns the object at the snapshot block.",
+    "In aragonOS, an app proxy's kernel is set at deployment and cannot change, and the kernel decides the app's implementation."
+   ],
+   "conclusion": "The kernel governs the app's code for its whole existence.",
+   "evidence": [
+    "eth_call: <address>.kernel() at block <N>"
+   ],
+   "limits": [
+    "Who controls the kernel is a further claim (aragon.acl_role)."
+   ],
+   "references": [
+    "https://github.com/aragon/aragonOS"
+   ]
+  },
+  "beacon_state.withdrawal_credentials": {
+   "version": 1,
+   "basis": "derived",
+   "relation": "withdrawal_address",
+   "statement": "The validator's withdrawals are paid to this execution address over the claim's interval.",
+   "premises": [
+    "The beacon state at the sampled epoch (identified by its state root, read from our own Lighthouse node at a finalized epoch) lists the validator with withdrawal credentials 0x01 or 0x02 || 11 zero bytes || address.",
+    "Under the consensus rules, every withdrawal of a validator with 0x01/0x02 credentials is paid to that address, and the address cannot be changed afterwards."
+   ],
+   "conclusion": "From the first sample showing the address, the validator's withdrawals go to it.",
+   "evidence": [
+    "beacon_state: <state root>@epoch<N>, the first sample showing the address"
+   ],
+   "limits": [
+    "Says where withdrawals go, not who controls that address.",
+    "The change from 0x00 to 0x01 is located to within one sampling interval (a day by default)."
+   ],
+   "references": [
+    "https://github.com/ethereum/consensus-specs"
+   ]
+  },
+  "cluster.shared_fee_recipient": {
+   "version": 1,
+   "basis": "inferred",
+   "relation": "reward_cluster",
+   "statement": "The validator belongs to a group of deposit clusters whose proposed blocks paid the same fee recipient.",
+   "heuristic": "Take each block's proposer fee recipient (proposer_fee_recipients: the coinbase of a locally built block, or the payee of a MEV-Boost builder's payment, never the builder); connect deposit clusters whose validators used the same one; take connected components. Shared pools are not links: a fee recipient used by validators of two or more allocator entities, or one named by an ignore_link decision.",
+   "premises": [
+    "The fee recipient is set by whoever runs the validator, for its owner or itself (derived from chain data: the block's coinbase, or the builder's payment in the block's last transaction).",
+    "Inference: validators whose execution rewards go to the same address are run for one owner, or by one operator collecting for its clients."
+   ],
+   "conclusion": "The cluster is one recipient of execution rewards: an owner, or an operator.",
+   "evidence": [
+    "withdrawal / bls / sender / fee_recipient: the validator's own linking keys"
+   ],
+   "failure_modes": [
+    "A smoothing pool or a provider's fee pool used only by unattributed stakers joins unrelated owners (see reward_cluster_links to inspect which fee recipients join which deposit clusters; ignore one by decision).",
+    "A builder paying through an unrecognised forwarder or payout contract would appear as every one of its proposers' fee recipient (see execution.payments.FORWARDERS).",
+    "Only validators that have proposed since the Merge have fee recipients: one that never proposed is not linked."
+   ],
+   "limits": [
+    "Unnamed.",
+    "At any time: a fee recipient used once links the validator for its whole existence."
+   ],
+   "references": []
+  },
+  "cluster.shared_withdrawal_credentials": {
+   "version": 1,
+   "basis": "inferred",
+   "relation": "withdrawal_cluster",
+   "statement": "The validator belongs to a group of validators whose withdrawals are controlled by one party.",
+   "heuristic": "Connect validators that share an execution withdrawal address or BLS withdrawal credentials at any time; take connected components. A 0x00 -> 0x01 change connects the BLS credentials to the address.",
+   "premises": [
+    "Validators sharing a withdrawal address pay their withdrawals to the same account (derived from chain data).",
+    "Validators sharing BLS credentials have one key holder able to set their withdrawal address (derived from chain data).",
+    "Inference: whoever controls these is one party, and the 0x00 -> 0x01 change was signed by the same party that controls the address."
+   ],
+   "conclusion": "The cluster is one withdrawal controller (owner or custodian).",
+   "evidence": [
+    "withdrawal / bls: the validator's own credentials at any time"
+   ],
+   "failure_modes": [
+    "A BLS key holder can set the address to someone else's (e.g. a staking service setting its clients' addresses), joining parties.",
+    "A shared contract withdrawal address (a pool, a vault) joins all its depositors, who may be distinct owners."
+   ],
+   "limits": [
+    "Unnamed: says who is grouped, not who they are."
+   ],
+   "references": []
+  },
+  "cluster.shared_withdrawal_credentials_or_sender": {
+   "version": 1,
+   "basis": "inferred",
+   "relation": "deposit_cluster",
+   "statement": "The validator belongs to a group of withdrawal clusters whose deposits were sent by the same accounts.",
+   "heuristic": "Connect withdrawal clusters whose validators' first deposits were sent (tx.from) by the same account; take connected components. Contracts that relay deposits are not links, only the signing account.",
+   "premises": [
+    "The sender signed and paid for the deposit transaction (derived from chain data).",
+    "Inference: an account that funds deposits for several withdrawal clusters organises them."
+   ],
+   "conclusion": "The cluster is one depositing organisation.",
+   "evidence": [
+    "withdrawal / bls / sender: the validator's own linking keys"
+   ],
+   "failure_modes": [
+    "A staking service that pays for its clients' deposits joins unrelated owners (see cluster_links to inspect which senders join which withdrawal clusters).",
+    "One organisation that funds deposits from unrelated accounts stays split."
+   ],
+   "limits": [
+    "Unnamed."
+   ],
+   "references": []
+  },
+  "decision.attribute": {
+   "version": 1,
+   "basis": "asserted",
+   "relation": "(the decision's role)",
+   "statement": "A recorded human decision attributes the validators of a cluster to an entity in a role.",
+   "premises": [
+    "The decision file (registry/decisions/<id>.toml) gives targets (keys), level, entity and role, with rationale, sources and on-chain evidence.",
+    "The validators are those in the cluster, at the decision's level, containing a target key."
+   ],
+   "conclusion": "Per the decision, the entity holds the role for these validators.",
+   "evidence": [
+    "decision: the decision id",
+    "source: each external source the decision cites"
+   ],
+   "limits": [
+    "As strong as the decision's reasoning and sources; reverting the decision removes the claims."
+   ],
+   "references": []
+  },
+  "decision.custodian_as_allocator": {
+   "version": 1,
+   "basis": "inferred",
+   "relation": "assumed_allocator",
+   "statement": "A validator with no other allocator evidence and no recorded principal is assumed to be allocated by its custodian, the party a decision records as holding its withdrawal address for clients.",
+   "heuristic": "Take each custodian claim (decision.attribute with role custodian) and make the same claim with relation assumed_allocator, to the custodian's '/custody' entity. It is applied (by the treemap) last, after the principal fallback, only to validators with no allocator claim of any kind: where neither a staking service nor the owner is identified, the custodian, which holds the stake, is the nearest party known.",
+   "premises": [
+    "The validator's custodian claim: a recorded decision that the entity holds the withdrawal address for clients (decision.attribute, role custodian).",
+    "Assumption: absent positive evidence of an allocator or a recorded principal, the custodian arranged the staking.",
+    "Applied only where no other allocator claim exists for the validator, including those assumed from graffiti or from its principal (derived from the other claims)."
+   ],
+   "conclusion": "The custodian is the validator's allocator, by assumption.",
+   "evidence": [
+    "decision: the custodian decision",
+    "source: each external source it cites"
+   ],
+   "failure_modes": [
+    "A custody client that chose its own provider, or a provider the custodian offers, is counted under the custodian until evidence for the provider is found."
+   ],
+   "limits": [
+    "Overturned by any other allocator claim for the validator, for its whole history, and by its principal.",
+    "Custody shows neither who chose the provider nor who runs the keys: the box says the provider is not identified."
+   ],
+   "references": []
+  },
+  "decision.principal_as_allocator": {
+   "version": 1,
+   "basis": "inferred",
+   "relation": "assumed_allocator",
+   "statement": "A validator with no other allocator evidence is assumed to be allocated by its principal, the party a decision records as owning the stake.",
+   "heuristic": "Take each principal claim (decision.attribute with role principal) and make the same claim with relation assumed_allocator, to the principal's '/principal' entity. It is applied (by the treemap) last, only to validators with no allocator claim of any kind, assumed ones included: where nothing shows a staking service between the principal and the validators, the principal is taken to have chosen their operator.",
+   "premises": [
+    "The validator's principal claim: a recorded decision that the entity owns the stake (decision.attribute, role principal).",
+    "Assumption: absent positive evidence of an allocator, the principal chose the operator itself.",
+    "Applied only where no other allocator claim exists for the validator, including those assumed from graffiti (derived from the other claims)."
+   ],
+   "conclusion": "The principal is the validator's allocator, by assumption.",
+   "evidence": [
+    "decision: the principal decision",
+    "source: each external source it cites"
+   ],
+   "failure_modes": [
+    "A principal that hired a provider we have not identified is counted as the allocator: the provider's stake is missed until evidence for it is found."
+   ],
+   "limits": [
+    "Overturned by any other allocator claim for the validator, for its whole history.",
+    "Only validators with a recorded principal; stake whose owner is unknown stays unattributed."
+   ],
+   "references": []
+  },
+  "decision.relation": {
+   "version": 1,
+   "basis": "asserted",
+   "relation": "(the decision's relation: operated_by or owned_by)",
+   "statement": "A recorded human decision says which organisation runs an operator a protocol registered, or which organisation owns another, from a date.",
+   "premises": [
+    "The decision file (registry/decisions/<id>.toml) gives subjects (entities), relation, object (an organisation) and valid_from, with rationale, sources and on-chain evidence."
+   ],
+   "conclusion": "Per the decision, from valid_from, the object runs (operated_by) or owns (owned_by) each subject.",
+   "evidence": [
+    "decision: the decision id"
+   ],
+   "limits": [
+    "As strong as the decision's reasoning and sources; a later sale needs a superseding decision.",
+    "Neither relation moves stake between allocators: an acquired operator's stake stays with whoever allocates it."
+   ],
+   "references": []
+  },
+  "depositor.withdrawal_address": {
+   "version": 1,
+   "basis": "inferred",
+   "relation": "allocator",
+   "statement": "A validator whose withdrawal credentials ever point to an address an allocator's own deposit account or staking contract deposited to (or changed its 0x00 deposits to) has that allocator's staking as its allocator, for its whole existence.",
+   "heuristic": "Take the 0x01/0x02 withdrawal addresses of the deposits the anchor account sent (tx.from) or that were sent to the anchor contract (tx.to), and the 0x01/0x02 address its 0x00 deposits have in any later sampled state; every validator whose withdrawal address is one, at any time, is the allocator's, as is every validator whose first deposit the anchor sent or relayed (some never get an execution address).",
+   "premises": [
+    "Decision (kind anchor, one per account or contract): the anchor is the allocator's own deposit account or staking contract.",
+    "The deposits and the validators' later credentials are read from deposit logs and beacon state (derived).",
+    "Inference: the validators whose first deposit the allocator's own account or staking contract sent are its own.",
+    "Inference: an address the allocator's own deposits paid withdrawals to, or that only the holder of their BLS withdrawal key (the allocator) could change them to, is the allocator's; stake withdrawing there is stake it decides who runs."
+   ],
+   "conclusion": "The allocator is the validator's allocator. Who operated the validators is not recorded here.",
+   "evidence": [
+    "decision: the anchor decision",
+    "depositor_withdrawal_address: the address, with how many of the anchor's validators used it and whether by deposit or credential change",
+    "beacon_state: the first state with that withdrawal address"
+   ],
+   "anchors": [
+    "cream-eth2-depositor",
+    "ankr-eth2-staking",
+    "piedao-eth2-depositor",
+    "whale-eth-depositor",
+    "stader-permissionless-node-registry",
+    "stader-stake-pool-manager",
+    "stakehound-eth2-depositor",
+    "bitpie-depositor",
+    "swell-deposit-manager",
+    "swell-rsweth-deposit-manager",
+    "swell-rsweth-eigenlayer-manager",
+    "nodedao-liquid-staking",
+    "nodedao-restaking-pool",
+    "puffer-protocol",
+    "bedrock-unieth-staking",
+    "sharedstake-minter"
+   ],
+   "anchor_gating": "per_claim",
+   "failure_modes": [
+    "Anyone can deposit with any withdrawal credentials: a third party's validator pointed at the address would be counted, though its withdrawals go to the allocator.",
+    "A BLS withdrawal key may have changed hands before the 0x00 -> 0x01 change.",
+    "The allocator may hold the address for a client (custody); the client would then be the beneficial owner."
+   ],
+   "limits": [
+    "Reverting a decision removes every claim derived from it."
+   ]
+  },
+  "eip1967.AdminChanged": {
+   "version": 1,
+   "basis": "derived",
+   "relation": "governed_by",
+   "statement": "Over the interval, the object was the proxy's admin: the account that can upgrade its code.",
+   "premises": [
+    "The proxy emitted AdminChanged(previousAdmin, newAdmin) in the cited transaction, read from our own node's logs for that contract.",
+    "In an EIP-1967 proxy, the admin can replace the implementation, so it controls what the contract does.",
+    "The admin holds until the proxy's next AdminChanged event. Before a proxy's first event, its admin is that event's previousAdmin."
+   ],
+   "conclusion": "The object could upgrade the proxy over the interval.",
+   "evidence": [
+    "tx: the AdminChanged transaction (the first event's tx also evidences the admin before it)"
+   ],
+   "limits": [
+    "Relies on the proxy emitting AdminChanged whenever its admin changes, as EIP-1967 requires; a non-conforming proxy could change admin silently."
+   ],
+   "references": [
+    "https://eips.ethereum.org/EIPS/eip-1967"
+   ]
+  },
+  "ens.primary_name": {
+   "version": 1,
+   "basis": "derived",
+   "relation": "ens_name",
+   "statement": "At the snapshot block, the object was the address's ENS primary name: its reverse record names it, and the name resolves back to the address.",
+   "premises": [
+    "At the snapshot block, the ENS registry's resolver for <address>.addr.reverse answers name() with the name (eth_call).",
+    "The registry's resolver for the name answers addr() with the same address (eth_call), so the name's owner points it at the address."
+   ],
+   "conclusion": "The address presents itself under that name, and the name's holder agrees: the public association wallets and explorers display.",
+   "evidence": [
+    "eth_call: block <N>"
+   ],
+   "limits": [
+    "A point observation: names can be changed, transferred or expire.",
+    "A label, not control: it says how the address's holder chose to be known, not who they are.",
+    "Only the primary (reverse) name is read, and only for withdrawal, request source, deposit tx.to and deposit sender addresses."
+   ],
+   "references": [
+    "https://docs.ens.domains/web/reverse",
+    "https://eips.ethereum.org/EIPS/eip-181"
+   ]
+  },
+  "etherfi.node_withdrawal_address": {
+   "version": 1,
+   "basis": "inferred",
+   "relation": "allocator",
+   "statement": "A validator whose withdrawal credentials ever point to an ether.fi node, or to an EigenPod an ether.fi node owns, has ether.fi's staking as its allocator for its whole existence.",
+   "heuristic": "Take every beacon proxy of the ether.fi node beacon (address_info.proxy_beacon) and every contract whose podOwner() is one of them (address_info.pod_owner); a validator whose withdrawal address is one, at any time, is ether.fi's.",
+   "premises": [
+    "Decision (kind anchor, accepting anchor etherfi-node-beacon): 0x3c55…c03f is the beacon of ether.fi's EtherFiNode contracts.",
+    "The withdrawal address is a beacon proxy of that beacon (eth_getStorageAt, EIP-1967 beacon slot), or answers podOwner() with such a proxy (eth_call), at the snapshot block (derived).",
+    "Inference: ether.fi creates its nodes for validators it assigns to node operators (auction and whitelist), funded by its liquidity pool or by its stakers, so ether.fi decides who runs them."
+   ],
+   "conclusion": "ether.fi's staking is the validator's allocator. Node operators run the validators; the one ether.fi registered it to is cited (etherfi.validator_registered).",
+   "evidence": [
+    "decision: the anchor decision",
+    "etherfi_node or etherfi_eigenpod: the withdrawal address, and for a pod the node owning it",
+    "beacon_state: the first state with that withdrawal address",
+    "etherfi_operator: the operator account ether.fi registered the validator to, and the registering transaction"
+   ],
+   "anchors": [
+    "etherfi-node-beacon"
+   ],
+   "failure_modes": [
+    "In ether.fi's early non-pooled staking, a staker (BNFT/TNFT holder) chose to stake; ether.fi still assigned the operator, but the staker could be seen as allocator.",
+    "A contract answering podOwner() with a node without being an EigenPod would be included."
+   ],
+   "limits": [
+    "Pod owners are read at the snapshot block; an address classified before podOwner() was recorded has no owner until the next full address refresh.",
+    "Validators withdrawing elsewhere (e.g. ether.fi's restaking through other protocols) are not found.",
+    "Reverting the decision removes every claim derived from it."
+   ],
+   "references": [
+    "https://github.com/etherfi-protocol/smart-contracts"
+   ]
+  },
+  "etherfi.registered_node_withdrawal_address": {
+   "version": 1,
+   "basis": "derived",
+   "relation": "allocator",
+   "statement": "A validator that ether.fi's StakingManager registered, and whose withdrawal credentials point to an ether.fi node or its EigenPod, has ether.fi's staking as its allocator for its whole existence.",
+   "premises": [
+    "Decision (kind anchor, accepting anchor etherfi-node-beacon): 0x3c55…c03f is the beacon of ether.fi's EtherFiNode contracts; its creator and owner, 0x25e8…912d, is ether.fi's StakingManager.",
+    "The StakingManager emitted ValidatorRegistered for this pubkey (read from our node).",
+    "The validator withdraws to a beacon proxy of that beacon, or to an EigenPod one owns (address_info, read from our node)."
+   ],
+   "conclusion": "ether.fi is the validator's allocator.",
+   "evidence": [
+    "decision: the anchor decision",
+    "etherfi_node or etherfi_eigenpod: the address it withdraws to",
+    "etherfi_operator: the operator and registration transaction"
+   ],
+   "anchors": [
+    "etherfi-node-beacon"
+   ],
+   "limits": [
+    "In ether.fi's early non-pooled staking, a staker (BNFT/TNFT holder) chose to stake; ether.fi still assigned the operator, but the staker could be seen as allocator.",
+    "Reverting the decision removes every claim derived from it."
+   ]
+  },
+  "etherfi.validator_registered": {
+   "version": 1,
+   "basis": "derived",
+   "relation": "operator",
+   "statement": "ether.fi's StakingManager registered the validator to this operator account.",
+   "premises": [
+    "Decision (kind anchor, accepting anchor etherfi-node-beacon): 0x3c55…c03f is the beacon of ether.fi's EtherFiNode contracts; its creator and owner, 0x25e8…912d, is ether.fi's StakingManager (ether.fi's deployment records).",
+    "The StakingManager emitted ValidatorRegistered(operator, bNftOwner, tNftOwner, validatorId, pubkey, ipfsHash) for this pubkey in the cited transaction; operator is the owner of the auction bid the validator was created from.",
+    "The validator is ether.fi's (etherfi.node_withdrawal_address)."
+   ],
+   "conclusion": "ether.fi assigned the validator to the operator account. Which organisation the account belongs to is recorded separately, by address tags.",
+   "evidence": [
+    "decision: the anchor decision",
+    "tx: the ValidatorRegistered transaction"
+   ],
+   "anchors": [
+    "etherfi-node-beacon"
+   ],
+   "failure_modes": [
+    "An operator account can run its validators on a distributed validator cluster (SSV, Obol) whose other members are other organisations; the account is the one ether.fi registered, not every party running the keys."
+   ],
+   "limits": [
+    "Proves ether.fi's assignment, not that the operator runs the validator's keys itself.",
+    "The account's owner is not on chain: an account without an address tag is shown by its address."
+   ],
+   "references": [
+    "https://github.com/etherfi-protocol/smart-contracts"
+   ]
+  },
+  "everstake.depositor_withdrawal_address": {
+   "version": 1,
+   "basis": "inferred",
+   "relation": "allocator",
+   "statement": "A validator whose withdrawal credentials ever point to an address Everstake's own 0x00 deposits were changed to has Everstake's custodial staking as its allocator for its whole existence.",
+   "heuristic": "Take the 0x01/0x02 addresses that validators first deposited by Everstake's deposit account (tx.from) have in any sampled state; every validator whose withdrawal address is one, at any time, is Everstake's.",
+   "premises": [
+    "Decision (kind anchor, accepting anchor everstake-eth2-depositor): 0xf79c…00b9 is Everstake's deposit account.",
+    "The deposits it sent and the validators' later credentials are read from deposit logs and beacon state (derived).",
+    "Inference: its deposits had 0x00 credentials, and only the holder of a validator's BLS withdrawal key can change them, so Everstake chose the address they were changed to.",
+    "Inference: stake withdrawing to an address Everstake holds is stake Everstake decides who runs (itself), whoever's ETH it is."
+   ],
+   "conclusion": "Everstake is the validator's allocator, holding its withdrawal address. Whose ETH it is (Everstake's or its clients') is not established.",
+   "evidence": [
+    "decision: the anchor decision",
+    "everstake_withdrawal_address: the address, with how many of the depositor's validators were changed to it",
+    "beacon_state: the first state with that withdrawal address"
+   ],
+   "anchors": [
+    "everstake-eth2-depositor"
+   ],
+   "failure_modes": [
+    "Everstake might have changed its validators' credentials to an address it holds for a client (custody); the client would then be the beneficial owner, though Everstake still allocates.",
+    "Anyone can deposit to that address; a third party's validator pointed at it would be counted."
+   ],
+   "limits": [
+    "Reverting the decision removes every claim derived from it."
+   ]
+  },
+  "everstake.pool_withdrawal_address": {
+   "version": 2,
+   "basis": "derived",
+   "relation": "allocator",
+   "statement": "A validator whose withdrawal credentials point to the withdrawal address used by the Everstake Pool's deposits has Everstake's pool as its allocator.",
+   "premises": [
+    "Decision (kind anchor, accepting anchor everstake-pool): 0xd523…be34 is Everstake's Pool contract. This rests on third-party sources (Trezor's integration code and guide, ChainSecurity's audit), corroborated by an Everstake publication only through a shared deployer (see the decision).",
+    "The pool's withdrawal addresses are the withdrawal addresses of deposits made in transactions sent to the Pool contract (deposit contract logs, tx.to). Per the audited design, the Pool deposits with the rewards treasury in the withdrawal credentials.",
+    "The validator's withdrawal credentials (beacon state) point to one of those addresses over the claim's interval."
+   ],
+   "conclusion": "Over that interval the validator's stake and withdrawals belong to Everstake's pool, whose Pool contract chose the validator from Everstake's list, so the pool is its allocator.",
+   "evidence": [
+    "decision: the anchor decision",
+    "pool_withdrawal_address: the address, with the number of Pool deposits that used it",
+    "beacon_state: the state root where the withdrawal credentials were read"
+   ],
+   "anchors": [
+    "everstake-pool"
+   ],
+   "limits": [
+    "Says who allocates the stake, not who runs the validators (per the audit, validators managed by Everstake; not checked on-chain).",
+    "Includes validators deposited to the pool's withdrawal address by other routes (a few dozen): their withdrawals go to the pool all the same.",
+    "Only deposits whose transaction was sent to the Pool contract itself reveal pool withdrawal addresses; if the pool ever deposits through another contract, a new address would be missed until it is added.",
+    "Reverting the decision removes every claim derived from it."
+   ],
+   "references": [
+    "https://github.com/trezor/trezor-firmware/issues/3517",
+    "https://reports.chainsecurity.com/Everstake/ChainSecurity_Everstake_ETHB2CStaking_Audit.pdf"
+   ]
+  },
+  "exchange.depositor_withdrawal_address": {
+   "version": 3,
+   "basis": "inferred",
+   "relation": "held_by",
+   "statement": "An execution withdrawal address that an exchange's deposit account used for its beacon deposits, or that an exchange address consolidated stake into, is held by the exchange.",
+   "heuristic": "Every 0x01/0x02 withdrawal address in the deposits an anchor account of the exchange sent (tx.from), or that were sent through an anchor batch deposit contract (tx.to) is the exchange's, as is the 0x01/0x02 address that 0x00 deposits an anchor account sent were later changed to, and so, recursively, is the 0x02 withdrawal address of every validator an exchange address requested to consolidate stake into (EIP-7251).",
+   "premises": [
+    "Decision (kind anchor, one per account or contract): the anchor account (or batch deposit contract) is the exchange's.",
+    "The deposits it sent and their withdrawal credentials are read from the deposit logs (derived).",
+    "Inference: an exchange depositing its staking customers' ETH sets withdrawals to pay an address it holds.",
+    "Inference: only the source validator's withdrawal address can request a consolidation, so the exchange chose to move the stake to the target, whose withdrawal address it is taken to hold."
+   ],
+   "conclusion": "The exchange holds the key to the address, and so receives the withdrawals of the validators pointing to it (custody).",
+   "evidence": [
+    "decision: the anchor decision",
+    "deposit: the number of an anchor account's deposits to the address; or consolidation: the number of consolidation requests into it, from which exchange address, and the first one's transaction"
+   ],
+   "anchors": [
+    "binance-eth2-depositor",
+    "kraken-eth2-depositor",
+    "kraken-240-depositor",
+    "kraken-182-depositor",
+    "kraken-eigenpod-depositor-4462",
+    "kraken-eigenpod-depositor-0c47",
+    "kraken-eigenpod-depositor-8beb",
+    "kraken-eigenpod-depositor-45e3",
+    "coinbase-batch-deposit",
+    "coinbase-batch-deposit-1",
+    "okx-eth2-depositor",
+    "upbit-eth2-depositor",
+    "htx-eth2-depositor-1",
+    "htx-eth2-depositor-2",
+    "htx-eth2-depositor-3",
+    "wex-eth2-depositor"
+   ],
+   "anchor_gating": "per_claim",
+   "failure_modes": [
+    "Where the anchor is a batch deposit contract open to anyone, a non-exchange user's withdrawal address would be taken to be the exchange's.",
+    "An exchange depositing for an institutional client could use the client's address.",
+    "An exchange could consolidate stake into a validator whose withdrawal address it doesn't hold."
+   ],
+   "limits": [
+    "Each claim rests only on its own exchange's anchor decision (anchor_gating per_claim).",
+    "Says who holds the address, not who the stake belongs to economically (the exchange's customers).",
+    "The address may be a contract the exchange controls rather than a key it holds (e.g. an EigenLayer EigenPod, whose withdrawals only its podOwner can direct); the claim doesn't check which.",
+    "Reverting the decision removes every claim derived from it."
+   ],
+   "references": [
+    "https://etherscan.io/address/0xbdd75a97c29294ff805fb2fee65abd99492b32a8",
+    "https://etherscan.io/address/0xa40dfee99e1c85dc97fdc594b16a460717838703",
+    "https://etherscan.io/address/0xd4039ecc40aeda0582036437cf3ec02845da4c13",
+    "https://etherscan.io/address/0x8ebda19ddee719dab78def3e22c3d37970e35217"
+   ]
+  },
+  "exchange.withdrawal_address": {
+   "version": 3,
+   "basis": "inferred",
+   "relation": "allocator",
+   "statement": "A validator whose withdrawal credentials at any time point to a withdrawal address used by an exchange's deposit account has the exchange's staking as its allocator, for its whole existence.",
+   "heuristic": "Take the execution withdrawal addresses (0x01/0x02 credentials) of the beacon deposits the exchange's anchor accounts sent (tx.from), or that were sent through its anchor batch deposit contracts (tx.to); the 0x01/0x02 address that 0x00 deposits sent by an anchor account were later changed to; and, recursively, the 0x02 withdrawal address of every validator one of those addresses requested to consolidate stake into (EIP-7251); every validator whose credentials point to one of them in any sampled state is the exchange's, from its first deposit on.",
+   "premises": [
+    "Decision (kind anchor, one per account or contract): the anchor account (or batch deposit contract) is the exchange's, so the deposits it sends are for the exchange's staking.",
+    "The withdrawal addresses of those deposits are read from the deposit logs (derived), and the validator's credentials from beacon state (derived).",
+    "Inference: an address the exchange's own deposits pay withdrawals to is held by the exchange, and stake withdrawing to it is the exchange's customers' stake, which the exchange decides who runs.",
+    "Inference: a consolidation request can only be sent by the source validator's withdrawal address, so the exchange chose to move its stake into the target; the target's withdrawal address is taken to be the exchange's too (the request is read from the EL log; whether the beacon chain applied it is not checked).",
+    "Inference: a validator with 0x00 credentials later changed to such an address was the exchange's from the start, since only the holder of its BLS withdrawal key can sign the change.",
+    "Inference: likewise, the address a 0x00 validator the exchange's account deposited was later changed to was chosen by the exchange, so it is the exchange's (not for batch contract anchors, whose 0x00 deposits may carry clients' keys)."
+   ],
+   "conclusion": "The exchange is the validator's allocator. Whether the exchange runs the validators itself or through operators it chooses is not established (no operator claim).",
+   "evidence": [
+    "decision: the anchor decision",
+    "exchange_withdrawal_address: the address, with how it was found: the number of an anchor account's deposits that used it, or the number of consolidation requests into it from which exchange address (and the first one's transaction)",
+    "beacon_state: the first state root where the credentials were read pointing to it"
+   ],
+   "anchors": [
+    "binance-eth2-depositor",
+    "kraken-eth2-depositor",
+    "kraken-240-depositor",
+    "kraken-182-depositor",
+    "kraken-eigenpod-depositor-4462",
+    "kraken-eigenpod-depositor-0c47",
+    "kraken-eigenpod-depositor-8beb",
+    "kraken-eigenpod-depositor-45e3",
+    "coinbase-batch-deposit",
+    "coinbase-batch-deposit-1",
+    "okx-eth2-depositor",
+    "upbit-eth2-depositor",
+    "htx-eth2-depositor-1",
+    "htx-eth2-depositor-2",
+    "htx-eth2-depositor-3",
+    "wex-eth2-depositor"
+   ],
+   "anchor_gating": "per_claim",
+   "failure_modes": [
+    "Where the anchor is a batch deposit contract open to anyone, a non-exchange user's deposits through it are counted, with their withdrawal address.",
+    "Anyone can deposit with any withdrawal credentials: a third party's validator pointed at the exchange's address would be counted, though its withdrawals go to the exchange.",
+    "A BLS withdrawal key may have changed hands before the 0x00 -> 0x01 change, so the exchange may not have controlled the validator from the start.",
+    "An exchange could consolidate stake into a validator it doesn't control (e.g. handing stake to a client or another provider); its later stake would then be wrongly counted.",
+    "The exchange may run validators for an institutional client to an address it holds for that client, which is custody rather than the exchange's own staking product."
+   ],
+   "limits": [
+    "Where the anchor is a batch deposit contract, only validators first deposited through it are counted: its withdrawal addresses may be custody addresses (e.g. Coinbase Prime clients') that also receive stake the client placed with other providers.",
+    "Only withdrawal addresses the exchange's anchor accounts themselves deposited to are found. Validators the exchange deposited from other accounts are included only if they share such an address; each further deposit account needs its own anchor and decision.",
+    "Each claim rests only on its own exchange's anchor decision (anchor_gating per_claim): reverting one exchange's decision removes that exchange's claims and no others.",
+    "Reverting the decision removes every claim derived from it."
+   ],
+   "references": [
+    "https://etherscan.io/address/0xbdd75a97c29294ff805fb2fee65abd99492b32a8",
+    "https://etherscan.io/address/0xa40dfee99e1c85dc97fdc594b16a460717838703",
+    "https://etherscan.io/address/0xd4039ecc40aeda0582036437cf3ec02845da4c13",
+    "https://etherscan.io/address/0x8ebda19ddee719dab78def3e22c3d37970e35217"
+   ]
+  },
+  "fee_pool.fee_recipient": {
+   "version": 1,
+   "basis": "inferred",
+   "relation": "allocator",
+   "statement": "A validator otherwise unattributed whose proposed blocks paid a provider's own fee pool or fee recipient has that provider as its allocator, while it did.",
+   "heuristic": "Take each block's proposer fee recipient (proposer_fee_recipients: the coinbase of a locally built block, or the payee of a MEV-Boost builder's payment, never the builder). A validator that paid the anchor's address is the provider's from that block (from its whole existence if it was its first block with a known fee recipient) until its first later block paying another address. Validators with any other allocator claim are left to it.",
+   "premises": [
+    "Decision (kind anchor, one per address): the address is the provider's own fee pool or fee recipient, not a client's.",
+    "The fee recipient is set by whoever runs the validator (derived from chain data: the block's coinbase, or the builder's payment in the block's last transaction).",
+    "Inference: a validator whose execution rewards go to the provider's own pool or address is run by the provider, for itself or its clients; under the allocator lens, the provider is the clients' allocator."
+   ],
+   "conclusion": "The provider is the validator's allocator while it paid the address.",
+   "evidence": [
+    "decision: the anchor decision",
+    "fee_recipient: the address, with how many of the validator's blocks paid it and the first"
+   ],
+   "anchors": [
+    "stakefish-fee-pool",
+    "coinbase-fee-recipient",
+    "staked-fee-recipient",
+    "xhash-fee-recipient"
+   ],
+   "anchor_gating": "per_claim",
+   "failure_modes": [
+    "Anyone can set any fee recipient: a validator paying a provider's address gives it its execution rewards but need not be run by it.",
+    "A provider that also lets clients choose its address as their fee recipient for validators it doesn't run would be over-counted.",
+    "A validator that never proposed since the Merge has no fee recipient and is not found."
+   ],
+   "limits": [
+    "Only the span between blocks is known: the validator may have joined before its first block paying the address, or left before the next paying another.",
+    "Reverting a decision removes every claim derived from it."
+   ]
+  },
+  "frax.minter_deposit": {
+   "version": 1,
+   "basis": "derived",
+   "relation": "allocator",
+   "statement": "A validator whose first deposit was made by Frax's frxETH Minter has Frax (frxETH) as its allocator for its whole existence.",
+   "premises": [
+    "Decision (kind anchor, accepting anchor frax-frxeth-minter): 0xbafa…1138 is Frax's frxETHMinter.",
+    "The Minter made the validator's first deposit (traced on our node); it deposits only from validator keys Frax loads into it."
+   ],
+   "conclusion": "Frax is the validator's allocator.",
+   "evidence": [
+    "decision: the anchor decision",
+    "minter_withdrawal_address: the withdrawal address the Minter deposits to",
+    "tx: the first deposit, made through the Minter"
+   ],
+   "anchors": [
+    "frax-frxeth-minter"
+   ],
+   "limits": [
+    "frxETH v2 (validator pools per operator) is not covered.",
+    "The deposit's route is read per transaction (tx.to and the traced callers of the deposit contract): in a transaction where the protocol's contract made some deposits, every deposit in it counts as made through that contract.",
+    "Reverting the decision removes every claim derived from it."
+   ]
+  },
+  "frax.minter_withdrawal_address": {
+   "version": 1,
+   "basis": "inferred",
+   "relation": "allocator",
+   "statement": "A validator whose withdrawal credentials ever point to an address the frxETH Minter deposits to has Frax's frxETH as its allocator for its whole existence.",
+   "heuristic": "Take the 0x01/0x02 withdrawal addresses of deposits whose transaction was sent to the frxETH Minter (tx.to); a validator whose withdrawal address is one, at any time, is Frax's.",
+   "premises": [
+    "Decision (kind anchor, accepting anchor frax-frxeth-minter): 0xbafa…1138 is the frxETH Minter, as Frax's own repository names it.",
+    "The deposit's transaction was sent to the Minter (deposit contract logs, tx.to), with that withdrawal address (derived).",
+    "Inference: the Minter deposits frxETH holders' ETH with validator keys Frax's multisig adds, so Frax decides who runs the stake."
+   ],
+   "conclusion": "Frax (frxETH) is the validator's allocator. Who runs its validators is not recorded here.",
+   "evidence": [
+    "decision: the anchor decision",
+    "minter_withdrawal_address: the withdrawal address and how many Minter deposits used it",
+    "beacon_state: the first state with that withdrawal address"
+   ],
+   "anchors": [
+    "frax-frxeth-minter"
+   ],
+   "failure_modes": [
+    "Validators deposited by other routes to the same withdrawal address would be included: on 2026-10-18 every deposit to it (7,483) came through the Minter."
+   ],
+   "limits": [
+    "frxETH v2 (validator pools per operator) is not covered.",
+    "Reverting the decision removes every claim derived from it."
+   ],
+   "references": [
+    "https://github.com/FraxFinance/frxETH-public"
+   ]
+  },
+  "graffiti.address_operator_as_allocator": {
+   "version": 2,
+   "basis": "inferred",
+   "relation": "assumed_allocator",
+   "statement": "A validator with no allocator evidence and no operator's name of its own, withdrawing to an address whose validators that have proposed all name one operator in their graffiti, is assumed to be allocated by that operator.",
+   "heuristic": "Group operator claims from graffiti (graffiti.operator_label) by the validators' withdrawal addresses (0x01/0x02 credentials). Where every validator of an address that has proposed a block has named the same organisation at least once, its other validators (those yet to propose) are assumed to have that organisation as allocator for their whole existence. Applied (by the treemap) after graffiti.operator_as_allocator, only to validators with no allocator claim, and only on addresses none of whose validators has an allocator claim other than an assumed one.",
+   "premises": [
+    "Operator claims from graffiti (inferred: graffiti.operator_label) for every validator of the address that has proposed, all naming one organisation.",
+    "The validators share a withdrawal address (derived from beacon state: withdrawal credentials).",
+    "Assumption: validators withdrawing to one address are staked by one party with one provider, and that provider is their allocator (see graffiti.operator_as_allocator)."
+   ],
+   "conclusion": "The organisation is the validator's allocator, by a very weak assumption (an address-level extension of an assumption) that merits further work in each case.",
+   "evidence": [
+    "withdrawal_address: the shared address, with the number of its validators that have proposed (all signing as the organisation)"
+   ],
+   "failure_modes": [
+    "Validators yet to propose may be run by someone else: one owner can stake with several providers to one withdrawal address.",
+    "Everything in graffiti.operator_as_allocator: an unidentified protocol, exchange or fund behind the operator is missed."
+   ],
+   "limits": [
+    "Not made on an address any of whose validators has proposed with a DVT default graffiti (ssv.network, Obol's Charon): there, a name identifies one member of a cluster.",
+    "Overturned by any allocator claim for the validator, or for any other validator of the address (other than an assumed one), and by an operator's name of its own.",
+    "Addresses whose validators name more than one organisation are left alone, and so are addresses with any validator that has proposed without ever naming the organisation: an owner staking with several providers to one address leaves some providers' blocks unsigned. Version 1 extended to these too, however many had proposed without the name.",
+    "Whole existence: no account is taken of when the address's validators named the operator."
+   ]
+  },
+  "graffiti.operator_as_allocator": {
+   "version": 1,
+   "basis": "inferred",
+   "relation": "assumed_allocator",
+   "statement": "A validator with no other allocator evidence whose graffiti names an operator is assumed to be allocated by that operator, over the span of its operator claim.",
+   "heuristic": "Take each operator claim from graffiti (graffiti.operator_label) and make the same claim with relation assumed_allocator, to the operator's '/graffiti' entity. It is applied (by the treemap) only to validators with no allocator claim of any kind (a protocol's, a provider's, an exchange's, a decision's, a fee pool's): a default assumption where nothing else says who the allocator is.",
+   "premises": [
+    "The validator's operator claim from graffiti (inferred: graffiti.operator_label).",
+    "Assumption: absent other evidence, the operator chose itself; a provider running stake for its clients is their allocator.",
+    "Applied only where no allocator claim exists for the validator (derived from the other claims)."
+   ],
+   "conclusion": "The operator is the validator's allocator, by assumption, while its name appears in the validator's graffiti.",
+   "evidence": [
+    "graffiti: the first matching graffiti, with the number of blocks in the run and its first slot"
+   ],
+   "failure_modes": [
+    "An operator running validators for a protocol, exchange or fund we haven't identified is counted as their allocator: the real allocator's stake is missed until evidence for it is found.",
+    "Hosting providers (e.g. Allnodes) run machines for clients who chose their own setup; the assumption names the host.",
+    "Anyone can write any graffiti (see graffiti.operator_label)."
+   ],
+   "limits": [
+    "Not made for a validator that has proposed with a DVT default graffiti (ssv.network, Obol's Charon), or shares a withdrawal address with one that has: a DVT validator is run by a cluster, and a name in one block is only the member that proposed it.",
+    "Overturned by any other allocator claim, for the validator's whole history: an attribute decision for its withdrawal address or cluster removes it.",
+    "Only validators that proposed with an operator's name are found; their other validators are not."
+   ]
+  },
+  "graffiti.operator_label": {
+   "version": 1,
+   "basis": "inferred",
+   "relation": "operator",
+   "statement": "A validator whose proposed blocks carry an operator's name in their graffiti is run by that operator, from the first such block to the first later block naming another.",
+   "heuristic": "Match each proposed block's graffiti (32 bytes of free text set by whoever runs the validator) against a curated list of operator names (stakalytics.protocols.graffiti.OPERATORS); group a validator's matched blocks into runs naming the same organisation; each run is a claim from its first block (the validator's whole existence if that was its first block) to the first block of the next run. Blocks with no recognised name don't end a run.",
+   "premises": [
+    "The graffiti is chosen by whoever runs the validator (derived from chain data: the block body).",
+    "Inference: an operator that signs its blocks with its name runs the validators that carry it."
+   ],
+   "conclusion": "The named organisation operates the validator. This says nothing about who chose it (the allocator).",
+   "evidence": [
+    "graffiti: the first matching graffiti, with the number of blocks in the run and its first slot"
+   ],
+   "failure_modes": [
+    "Anyone can write any graffiti: a validator can carry an operator's name without being run by it.",
+    "Hosting providers (e.g. Allnodes) run machines for node operators who are their clients; the graffiti names the host.",
+    "A pattern can match text that isn't the operator's name."
+   ],
+   "limits": [
+    "Only validators that proposed (since the Merge, as far as proposals are extracted) and only operators that sign their blocks are found.",
+    "Operator only; graffiti.operator_as_allocator assumes the operator is the allocator where nothing else says."
+   ]
+  },
+  "kelp.delegator_eigenpod": {
+   "version": 1,
+   "basis": "inferred",
+   "relation": "allocator",
+   "statement": "A validator whose withdrawal credentials ever point to an EigenPod owned by one of Kelp DAO's NodeDelegators has Kelp's restaking as its allocator for its whole existence.",
+   "heuristic": "Take every contract whose EIP-1967 admin is Kelp's ProxyAdmin (address_info.proxy_admin) and every EigenPod whose podOwner() is one of them (address_info.pod_owner); a validator whose withdrawal address is such a pod, at any time, is Kelp's.",
+   "premises": [
+    "Decision (kind anchor, accepting anchor kelp-proxy-admin): 0xb61e…Dc78 is the ProxyAdmin of Kelp's contracts, as Kelp's own repository lists.",
+    "The pod owner's EIP-1967 admin slot holds that ProxyAdmin, and the pod answers podOwner() with it, at the snapshot block (derived).",
+    "Inference: Kelp's NodeDelegators restake its users' ETH (rsETH), and Kelp chooses the node operators for each."
+   ],
+   "conclusion": "Kelp's restaking is the validator's allocator. Node operators run the validators (Kelp's repository names some per delegator); they are not recorded here.",
+   "evidence": [
+    "decision: the anchor decision",
+    "kelp_eigenpod: the withdrawal address and the delegator owning it",
+    "beacon_state: the first state with that withdrawal address"
+   ],
+   "anchors": [
+    "kelp-proxy-admin"
+   ],
+   "failure_modes": [
+    "Any other contract administered by the same ProxyAdmin that owned an EigenPod would be included; on 2026-10-18 all five such pod owners were created by Kelp's ProxyFactory, four of them listed as NodeDelegators in Kelp's repository."
+   ],
+   "limits": [
+    "Admins and pod owners are read at the snapshot block; a delegator whose admin changed would drop out.",
+    "Reverting the decision removes every claim derived from it."
+   ],
+   "references": [
+    "https://github.com/Kelp-DAO/LRT-rsETH"
+   ]
+  },
+  "kelp.eigenpod_deposit": {
+   "version": 1,
+   "basis": "derived",
+   "relation": "allocator",
+   "statement": "A validator whose first deposit was made by the EigenPod of a Kelp NodeDelegator, which it withdraws to, has Kelp's restaking as its allocator for its whole existence.",
+   "premises": [
+    "Decision (kind anchor, accepting anchor kelp-proxy-admin): the ProxyAdmin administers Kelp's NodeDelegators.",
+    "The EigenPod's podOwner() is a contract that ProxyAdmin administers (read from our node).",
+    "The EigenPod itself made the validator's first deposit (traced on our node); an EigenPod deposits only when its owner stakes through EigenLayer's EigenPodManager."
+   ],
+   "conclusion": "Kelp is the validator's allocator.",
+   "evidence": [
+    "decision: the anchor decision",
+    "kelp_eigenpod: the pod and its delegator",
+    "tx: the first deposit, made by the pod"
+   ],
+   "anchors": [
+    "kelp-proxy-admin"
+   ],
+   "limits": [
+    "Admins and pod owners are read at the snapshot block; a delegator whose admin changed would drop out.",
+    "The deposit's route is read per transaction (tx.to and the traced callers of the deposit contract): in a transaction where the protocol's contract made some deposits, every deposit in it counts as made through that contract.",
+    "Reverting the decision removes every claim derived from it."
+   ]
+  },
+  "lido.exit_bus": {
+   "version": 1,
+   "basis": "derived",
+   "relation": "exit_requested_by",
+   "statement": "Lido's exit-bus oracle asked for this validator to exit, at that time.",
+   "premises": [
+    "Trust anchor lido-locator: 0xc1d0…2eb is Lido's locator (Lido's published deployed-contracts page).",
+    "The exit bus oracle found through the locator emitted ValidatorExitRequest for this pubkey in the cited transaction."
+   ],
+   "conclusion": "Lido requested the exit.",
+   "evidence": [
+    "tx: the ValidatorExitRequest transaction"
+   ],
+   "anchors": [
+    "lido-locator"
+   ],
+   "limits": [
+    "A request to the operator, not the exit itself."
+   ],
+   "references": [
+    "https://docs.lido.fi/contracts/validators-exit-bus-oracle"
+   ]
+  },
+  "lido.locator": {
+   "version": 1,
+   "basis": "derived",
+   "relation": "part_of",
+   "statement": "The address is one of Lido's contracts (or its DAO's).",
+   "premises": [
+    "Trust anchor lido-locator: 0xc1d0…2eb is Lido's locator (Lido's published deployed-contracts page).",
+    "Starting from the locator, the cited call (e.g. stakingRouter(), getStakingModule(m), kernel()) returned this address at the snapshot block.",
+    "stETH and the staking router both report withdrawal credentials pointing at the locator's withdrawal vault (checked at discovery; discovery fails otherwise)."
+   ],
+   "conclusion": "The address is part of the system Lido's locator points to.",
+   "evidence": [
+    "eth_call: the call that returned the address, and the block"
+   ],
+   "anchors": [
+    "lido-locator"
+   ],
+   "limits": [
+    "Contracts Lido used before the snapshot but no longer points to are not covered."
+   ],
+   "references": []
+  },
+  "lido.meta_registry.operator_group": {
+   "version": 1,
+   "basis": "derived",
+   "relation": "member_of",
+   "statement": "Lido declares this operator part of the operator group (one organisation's operators across modules).",
+   "premises": [
+    "Trust anchor lido-locator: 0xc1d0…2eb is Lido's locator (Lido's published deployed-contracts page).",
+    "A module found through the locator names this meta registry (META_REGISTRY()).",
+    "The registry emitted OperatorGroupCreated/Updated listing the operator, and no later event for the group before the interval's end."
+   ],
+   "conclusion": "Lido's registry groups the operator with the others listed.",
+   "evidence": [
+    "tx: the group event"
+   ],
+   "anchors": [
+    "lido-locator"
+   ],
+   "limits": [
+    "Records Lido's declaration, not an independent check of who runs the operators."
+   ],
+   "references": []
+  },
+  "lido.signing_key": {
+   "version": 1,
+   "basis": "derived",
+   "relation": "operator",
+   "statement": "Lido's staking module designates this node operator for the validator.",
+   "premises": [
+    "Trust anchor lido-locator: 0xc1d0…2eb is Lido's locator (Lido's published deployed-contracts page).",
+    "The module (found through the locator) emitted SigningKeyAdded(operatorId, pubkey) for this pubkey in the cited transaction, and the key's additions outnumber its removals (registries are index-based and keys can be added twice).",
+    "The validator's withdrawal credentials point at Lido's withdrawal vault (beacon_state evidence), so the deposit was made with Lido's credentials."
+   ],
+   "conclusion": "The validator is Lido's, assigned to that operator in that module.",
+   "evidence": [
+    "tx: the SigningKeyAdded transaction",
+    "beacon_state: a sample showing the vault credentials"
+   ],
+   "anchors": [
+    "lido-locator"
+   ],
+   "limits": [
+    "Proves Lido's designation, not that the operator actually runs the validator's keys."
+   ],
+   "references": [
+    "https://docs.lido.fi/contracts/node-operators-registry"
+   ]
+  },
+  "lido.staking_module": {
+   "version": 2,
+   "basis": "derived",
+   "relation": "allocator",
+   "statement": "Lido is this validator's allocator: its protocol chose the operator and made the deposit, and its vault receives withdrawals.",
+   "premises": [
+    "As lido.signing_key: the key is registered in a module found through Lido's locator.",
+    "The validator withdraws to the vault named by the locator (LidoLocator.withdrawalVault())."
+   ],
+   "conclusion": "Lido is the validator's allocator.",
+   "evidence": [
+    "tx: the SigningKeyAdded transaction",
+    "beacon_state: a sample showing the vault credentials",
+    "eth_call: LidoLocator.withdrawalVault() and block"
+   ],
+   "anchors": [
+    "lido-locator"
+   ],
+   "limits": [
+    "Validators whose keys were registered but deposited with other credentials are excluded (none observed)."
+   ],
+   "references": [
+    "https://docs.lido.fi/contracts/staking-router"
+   ]
+  },
+  "lido.triggerable_exit": {
+   "version": 1,
+   "basis": "derived",
+   "relation": "exit_requested_by",
+   "statement": "Lido's withdrawal vault forced this validator's exit through EIP-7002, at that time.",
+   "premises": [
+    "Trust anchor lido-locator: 0xc1d0…2eb is Lido's locator (Lido's published deployed-contracts page).",
+    "The EIP-7002 withdrawal request contract logged a full-exit request (amount 0) for this pubkey whose source address is Lido's vault."
+   ],
+   "conclusion": "Lido triggered the exit from the execution layer.",
+   "evidence": [
+    "tx: the request transaction"
+   ],
+   "anchors": [
+    "lido-locator"
+   ],
+   "limits": [
+    "A request; the consensus layer may reject it. Exits are read from beacon state."
+   ],
+   "references": [
+    "https://eips.ethereum.org/EIPS/eip-7002"
+   ]
+  },
+  "lido.vault_admin": {
+   "version": 1,
+   "basis": "derived",
+   "relation": "governor",
+   "statement": "Lido's DAO governs this validator: over the interval, a DAO contract can upgrade the vault its withdrawals go to.",
+   "premises": [
+    "The validator withdraws to Lido's withdrawal vault over the interval (withdrawal_address claim).",
+    "Over the interval, the vault's EIP-1967 admin is one of the DAO's contracts (eip1967.AdminChanged), and those contracts are part of the DAO (lido.locator, and kernel() returning the DAO's kernel)."
+   ],
+   "conclusion": "The DAO controls the contract holding the validator's withdrawals.",
+   "evidence": [
+    "tx: the vault's AdminChanged transactions",
+    "beacon_state: the sample showing the vault credentials"
+   ],
+   "anchors": [
+    "lido-locator"
+   ],
+   "limits": [
+    "Who controls the DAO's contracts is a chain of governed_by claims (Voting, Dual Governance executor); this claim stops at the DAO."
+   ],
+   "references": [
+    "https://eips.ethereum.org/EIPS/eip-1967"
+   ]
+  },
+  "liquid_collective.river_deposit": {
+   "version": 1,
+   "basis": "derived",
+   "relation": "allocator",
+   "statement": "A validator whose first deposit was made by Liquid Collective's River contract has Liquid Collective (LsETH) as its allocator for its whole existence.",
+   "premises": [
+    "Decision (kind anchor, accepting anchor liquid-collective-river): 0x8c1b…6549 is Liquid Collective's River contract.",
+    "River made the validator's first deposit (traced on our node), with its withdrawal credentials; River deposits only for validators its operators registry assigns."
+   ],
+   "conclusion": "Liquid Collective is the validator's allocator.",
+   "evidence": [
+    "decision: the anchor decision",
+    "river_withdrawal_address: the withdrawal address River deposits to",
+    "tx: the first deposit, made through River"
+   ],
+   "anchors": [
+    "liquid-collective-river"
+   ],
+   "limits": [
+    "The deposit's route is read per transaction (tx.to and the traced callers of the deposit contract): in a transaction where the protocol's contract made some deposits, every deposit in it counts as made through that contract.",
+    "Reverting the decision removes every claim derived from it."
+   ]
+  },
+  "liquid_collective.river_withdrawal_address": {
+   "version": 1,
+   "basis": "inferred",
+   "relation": "allocator",
+   "statement": "A validator whose withdrawal credentials ever point to an address River (Liquid Collective's main contract) deposits to has Liquid Collective's staking as its allocator for its whole existence.",
+   "heuristic": "Take the 0x01/0x02 withdrawal addresses of deposits whose transaction was sent to River (tx.to); a validator whose withdrawal address is one, at any time, is Liquid Collective's.",
+   "premises": [
+    "Decision (kind anchor, accepting anchor liquid-collective-river): 0x8c1b…6549 is River, the LsETH contract in Liquid Collective's docs.",
+    "The deposit's transaction was sent to River (deposit contract logs, tx.to), with that withdrawal address (derived).",
+    "Inference: River deposits its users' ETH with keys from the operators Liquid Collective registers, so the protocol decides who runs the stake."
+   ],
+   "conclusion": "Liquid Collective is the validator's allocator. Its registered node operators run the validators; which one is not recorded here.",
+   "evidence": [
+    "decision: the anchor decision",
+    "river_withdrawal_address: the withdrawal address and how many River deposits used it",
+    "beacon_state: the first state with that withdrawal address"
+   ],
+   "anchors": [
+    "liquid-collective-river"
+   ],
+   "failure_modes": [
+    "Validators deposited by other routes to the same withdrawal address are included: on 2026-10-17, 81 early ones (2022-11 to 2023-06) sent through the Safe 0xde55…6b62."
+   ],
+   "limits": [
+    "Reverting the decision removes every claim derived from it."
+   ],
+   "references": [
+    "https://docs.liquidcollective.io/eth/tokenomics/lseth"
+   ]
+  },
+  "mantle.staking_deposit": {
+   "version": 1,
+   "basis": "derived",
+   "relation": "allocator",
+   "statement": "A validator whose first deposit was made by Mantle's mETH Staking contract has Mantle (mETH) as its allocator for its whole existence.",
+   "premises": [
+    "Decision (kind anchor, accepting anchor mantle-meth-staking): 0xe3cb…9e8f is Mantle's mETH Staking contract.",
+    "The Staking contract made the validator's first deposit (traced on our node); it deposits only for validators Mantle's allocators initiate."
+   ],
+   "conclusion": "Mantle is the validator's allocator.",
+   "evidence": [
+    "decision: the anchor decision",
+    "meth_withdrawal_address: the withdrawal address the Staking contract deposits to",
+    "tx: the first deposit, made through the Staking contract"
+   ],
+   "anchors": [
+    "mantle-meth-staking"
+   ],
+   "limits": [
+    "The deposit's route is read per transaction (tx.to and the traced callers of the deposit contract): in a transaction where the protocol's contract made some deposits, every deposit in it counts as made through that contract.",
+    "Reverting the decision removes every claim derived from it."
+   ]
+  },
+  "mantle.staking_withdrawal_address": {
+   "version": 1,
+   "basis": "inferred",
+   "relation": "allocator",
+   "statement": "A validator whose withdrawal credentials ever point to an address mETH Protocol's Staking contract deposits to has Mantle's mETH staking as its allocator for its whole existence.",
+   "heuristic": "Take the 0x01/0x02 withdrawal addresses of deposits whose transaction was sent to Staking (tx.to); a validator whose withdrawal address is one, at any time, is Mantle's.",
+   "premises": [
+    "Decision (kind anchor, accepting anchor mantle-meth-staking): 0xe3cb…e8f is mETH Protocol's Staking contract, in its docs.",
+    "The deposit's transaction was sent to Staking (deposit contract logs, tx.to), with that withdrawal address (derived).",
+    "Inference: Staking deposits its users' ETH with keys from the node operators the protocol uses (its docs: its initiator service requests validators from them), so the protocol decides who runs the stake."
+   ],
+   "conclusion": "Mantle's mETH Protocol is the validator's allocator. Its node operators run the validators; which one is not recorded here.",
+   "evidence": [
+    "decision: the anchor decision",
+    "meth_withdrawal_address: the withdrawal address and how many Staking deposits used it",
+    "beacon_state: the first state with that withdrawal address"
+   ],
+   "anchors": [
+    "mantle-meth-staking"
+   ],
+   "failure_modes": [
+    "Validators deposited by other routes to the same withdrawal address are included (on 2026-10-17, none)."
+   ],
+   "limits": [
+    "Reverting the decision removes every claim derived from it."
+   ],
+   "references": [
+    "https://docs.mantle.xyz/meth/components/smart-contracts/staking-meth"
+   ]
+  },
+  "ots_getContractCreator": {
+   "version": 1,
+   "basis": "derived",
+   "relation": "created_by",
+   "statement": "This address deployed the contract (its immediate creator: a factory contract or the deploying account).",
+   "premises": [
+    "Reth's ots_getContractCreator, which searches the node's own account history, returns the creating address and the creation transaction."
+   ],
+   "conclusion": "The contract was created by that address in that transaction.",
+   "evidence": [
+    "tx: the creation transaction"
+   ],
+   "limits": [
+    "The immediate creator only: for contracts made by a factory, the account that called the factory is in address_info.creation_tx_from, not in this claim."
+   ],
+   "references": [
+    "https://github.com/otterscan/otterscan"
+   ]
+  },
+  "p2p.depositor_contract": {
+   "version": 3,
+   "basis": "inferred",
+   "relation": "operator",
+   "statement": "A validator whose first deposit was relayed by a contract P2P.org's deployer created is operated by P2P.org.",
+   "heuristic": "Take each validator's first deposit (lowest deposit index); if its transaction was sent to, or passed through, a contract whose immediate creator is the P2P deployer anchor, P2P.org operates the validator from that deposit on.",
+   "premises": [
+    "Decision (kind anchor, accepting anchor p2p-deployer): 0x588e…033a is P2P.org's deployer, so contracts it creates directly are P2P.org's.",
+    "The deposit's transaction was sent to such a contract (deposit contract logs, tx.to), or such a contract called the deposit contract within it (traced on our node with callTracer, execution.deposit_callers), and the contract's creator is read with ots_getContractCreator (derived from chain data).",
+    "Inference: P2P.org's depositor contracts are used to deposit validators P2P.org runs, per P2P.org's service (P2P generates the validator keys; the client provides the withdrawal address)."
+   ],
+   "conclusion": "P2P.org runs the validator (see p2p.direct_staking for the allocator claim). The client keeps its withdrawal address, a separate role.",
+   "evidence": [
+    "decision: the anchor decision",
+    "relayed_by: the P2P contract the first deposit was sent to or passed through",
+    "tx: the first deposit's transaction"
+   ],
+   "anchors": [
+    "p2p-deployer"
+   ],
+   "failure_modes": [
+    "Contracts passed through are found per transaction, not per deposit: a transaction relaying some deposits through the contract and making others another way counts all the validators it first deposits.",
+    "P2pEth2Depositor (0x8e76…9536, 0x4ca2…adeb) is open: anyone can call it with any keys, so a validator P2P doesn't run can be deposited through it.",
+    "Validators deposited through the SSV proxy factory are run by a distributed-validator cluster of SSV operators that P2P allows, which may include operators other than P2P.",
+    "Operators can change without a new deposit (keys handed over), which is not seen."
+   ],
+   "limits": [
+    "A deposit that reached the contract only through an internal call (a client's wallet calling the open contract) is not counted when the validator's graffiti, or that of every proposing validator on its withdrawal address, names another operator: that operator used the contract as a tool.",
+    "Only for deposits through the Unlimited depositor (0x23be…50eb) does the contract itself restrict who chooses the keys: only P2P's operator or owner can make its beacon deposit.",
+    "Only contracts the deployer created directly count. Safes created through the Safe factory by the deployer (0x719f…30ea, 0x18fb…1c18) are not included.",
+    "Validators P2P runs whose deposits were sent by other routes (e.g. directly to the deposit contract) are not found by this method; as a Lido operator, P2P's validators are found through Lido's registry.",
+    "Reverting the decision removes every claim derived from it."
+   ],
+   "references": [
+    "https://docs.p2p.org/docs/unlimited-unified-api",
+    "https://github.com/p2p-org/p2p-eth2-depositor"
+   ]
+  },
+  "p2p.direct_staking": {
+   "version": 2,
+   "basis": "inferred",
+   "relation": "allocator",
+   "statement": "A validator whose first deposit was relayed by a contract P2P.org's deployer created has P2P.org's direct staking as its allocator.",
+   "heuristic": "Take each validator's first deposit (lowest deposit index); if its transaction was sent to, or passed through, a contract whose immediate creator is the P2P deployer anchor, P2P.org allocates the validator from that deposit on.",
+   "premises": [
+    "Decision (kind anchor, accepting anchor p2p-deployer): 0x588e…033a is P2P.org's deployer, so contracts it creates directly are P2P.org's.",
+    "The deposit's transaction was sent to such a contract (deposit contract logs, tx.to), or such a contract called the deposit contract within it (traced on our node with callTracer, execution.deposit_callers), and the contract's creator is read with ots_getContractCreator (derived from chain data).",
+    "Inference: stake deposited through P2P.org's contracts is stake its client handed to P2P.org's service, which decides how it behaves at the consensus layer (P2P generates the keys and runs them, or selects the SSV operators who do)."
+   ],
+   "conclusion": "P2P.org is the validator's allocator, with itself as operator. The client keeps the withdrawal address (a separate role) and can exit, but doesn't decide how the stake behaves meanwhile.",
+   "evidence": [
+    "decision: the anchor decision",
+    "relayed_by: the P2P contract the first deposit was sent to or passed through",
+    "tx: the first deposit's transaction"
+   ],
+   "anchors": [
+    "p2p-deployer"
+   ],
+   "failure_modes": [
+    "Contracts passed through are found per transaction, not per deposit: a transaction relaying some deposits through the contract and making others another way counts all the validators it first deposits.",
+    "P2pEth2Depositor (0x8e76…9536, 0x4ca2…adeb) is open: anyone can call it with any keys, so stake P2P doesn't run can be deposited through it.",
+    "The client may move the validator to another operator (keys handed over) without a new deposit, which is not seen."
+   ],
+   "limits": [
+    "A deposit that reached the contract only through an internal call (a client's wallet calling the open contract) is not counted when the validator's graffiti, or that of every proposing validator on its withdrawal address, names another operator: that operator used the contract as a tool.",
+    "Only for deposits through the Unlimited depositor (0x23be…50eb) does the contract itself restrict who chooses the keys and when the deposit is made: only P2P's operator or owner can.",
+    "Only contracts the deployer created directly count. Safes created through the Safe factory by the deployer (0x719f…30ea, 0x18fb…1c18) are not included.",
+    "Stake P2P runs whose deposits were sent by other routes (e.g. directly to the deposit contract) is not found. As a Lido operator, P2P has Lido as allocator.",
+    "Reverting the decision removes every claim derived from it."
+   ],
+   "references": [
+    "https://docs.p2p.org/docs/unlimited-unified-api",
+    "https://github.com/p2p-org/p2p-eth2-depositor"
+   ]
+  },
+  "provider.depositor_contract": {
+   "version": 3,
+   "basis": "inferred",
+   "relation": "operator",
+   "statement": "A validator whose first deposit was relayed by a staking provider's depositor contract, or sent by one of its deposit accounts, is operated by that provider.",
+   "heuristic": "Take each validator's first deposit (lowest deposit index); if its transaction was sent to, or passed through, a depositor contract accepted as a provider's anchor, the provider operates the validator from that deposit on.",
+   "premises": [
+    "Decision (kind anchor, one per contract): the contract is the provider's depositor contract.",
+    "The deposit's transaction was sent to that contract (deposit contract logs, tx.to), or that contract called the deposit contract within it (a client's multisig wallet calling the provider's contract; traced on our node with callTracer, execution.deposit_callers).",
+    "Inference: a provider's depositor contract is used to deposit validators the provider runs, per its service (the provider generates the keys; the client provides the withdrawal address)."
+   ],
+   "conclusion": "The provider runs the validator (see provider.direct_staking for the allocator claim). The client keeps its withdrawal address, a separate role.",
+   "evidence": [
+    "decision: the contract's anchor decision",
+    "relayed_by: the depositor contract the first deposit was sent to or passed through",
+    "tx: the first deposit's transaction"
+   ],
+   "anchors": [
+    "figment-eth2-depositor-1",
+    "figment-eth2-depositor-2",
+    "figment-batch-deposit-0x01",
+    "figment-batch-deposit-0x02",
+    "kiln-batch-deposit-v1",
+    "kiln-batch-deposit-v2",
+    "kiln-ledger-live-dedicated",
+    "kiln-metamask-validator-staking",
+    "consensys-metamask-validator-staking",
+    "kiln-factory-8659",
+    "stakefish-eth2-depositor",
+    "kiln-vpool-00a0",
+    "kiln-vpool-8eea",
+    "blockdaemon-batch-deposit",
+    "blockdaemon-batch-deposit-2",
+    "infstones-imtoken-batch-deposit",
+    "bedrock-direct-staking",
+    "xhash-batch-deposit",
+    "paralinker-batch-deposit",
+    "infstones-batch-deposit-proxy",
+    "everstake-batch-deposit",
+    "everstake-batch-deposit-b60b",
+    "staked-eth2-depositor-2",
+    "staked-eth2-depositor-3",
+    "staked-eth2-depositor-4",
+    "staked-eth2-depositor-5",
+    "staked-eth2-depositor-6",
+    "staked-eth2-depositor-7",
+    "staked-eth2-depositor-9",
+    "staked-eth2-depositor-10",
+    "staked-eth2-depositor-11",
+    "staked-eth2-depositor-14",
+    "staked-eth2-depositor-15",
+    "staked-eth2-depositor-16",
+    "staked-eth2-depositor-17",
+    "staked-eth2-depositor-19",
+    "staked-eth2-depositor-20",
+    "staked-eth2-depositor-21",
+    "staked-eth2-depositor-22",
+    "staked-eth2-depositor-24",
+    "staked-eth2-depositor-25",
+    "staked-eth2-depositor-26",
+    "staked-eth2-depositor-27",
+    "staked-eth2-depositor-28",
+    "staked-eth2-depositor-30",
+    "staked-eth2-depositor-31",
+    "consensys-staking-depositor-224fc4",
+    "consensys-staking-depositor-7e9f3c",
+    "consensys-staking-depositor-d8799c",
+    "consensys-staking-depositor-78992d",
+    "consensys-staking-depositor-98f840",
+    "consensys-staking-depositor-9acdb9",
+    "consensys-staking-depositor-81a9ae",
+    "consensys-staking-depositor-5d6b0d",
+    "consensys-staking-depositor-f8c1c8",
+    "consensys-staking-depositor-cf6715",
+    "consensys-staking-depositor-ec06df",
+    "consensys-staking-depositor-61dbce",
+    "consensys-staking-depositor-24fcb9",
+    "consensys-staking-depositor-56fa2d",
+    "consensys-staking-depositor-5c56a2",
+    "consensys-staking-depositor-bd7685"
+   ],
+   "anchor_gating": "per_claim",
+   "failure_modes": [
+    "Contracts passed through are found per transaction, not per deposit: a transaction relaying some deposits through the contract and making others another way counts all the validators it first deposits.",
+    "A deposit account anchor may in fact be a client's account depositing the provider's keys; a deposit it sent through another provider's anchored contract counts for that provider instead.",
+    "The contracts are open: anyone can call deposit with any keys while the contract isn't paused, so a validator the provider doesn't run can be deposited through it.",
+    "Operators can change without a new deposit (keys handed over), which is not seen."
+   ],
+   "limits": [
+    "A deposit that reached the contract only through an internal call (a client's wallet calling the open contract) is not counted when the validator's graffiti, or that of every proposing validator on its withdrawal address, names another operator: that operator used the contract as a tool.",
+    "A deposit sent to the contract directly is not counted when the validator's own graffiti names another operator and never the provider (since version 3, 2026-10-27): the contract is open, and the operator signing its blocks is the stronger evidence. A validator yet to propose, or signing no operator's name, is still counted.",
+    "Validators the provider runs whose deposits were sent by other routes are not found by this method; as a Lido operator, its validators are found through Lido's registry.",
+    "Reverting a contract's decision removes every claim resting on it."
+   ],
+   "references": [
+    "https://docs.figment.io/docs/our-eth-batch-smart-contract",
+    "https://docs.kiln.fi/v1/kiln-products/more-tools/eth-batch-deposit-contract"
+   ]
+  },
+  "provider.direct_staking": {
+   "version": 3,
+   "basis": "inferred",
+   "relation": "allocator",
+   "statement": "A validator whose first deposit was relayed by a staking provider's depositor contract, or sent by one of its deposit accounts, has that provider's direct staking as its allocator.",
+   "heuristic": "Take each validator's first deposit (lowest deposit index); if its transaction was sent to, or passed through, a depositor contract accepted as a provider's anchor, the provider allocates the validator from that deposit on.",
+   "premises": [
+    "Decision (kind anchor, one per contract): the contract is the provider's depositor contract.",
+    "The deposit's transaction was sent to that contract (deposit contract logs, tx.to), or that contract called the deposit contract within it (a client's multisig wallet calling the provider's contract; traced on our node with callTracer, execution.deposit_callers).",
+    "Inference: stake deposited through a provider's contract is stake its client handed to the provider's service, which generates the validator keys and runs them, so decides how the stake behaves at the consensus layer."
+   ],
+   "conclusion": "The provider is the validator's allocator, with itself as operator (see provider.depositor_contract). The client keeps the withdrawal address (a separate role) and can exit, but doesn't decide how the stake behaves meanwhile.",
+   "evidence": [
+    "decision: the contract's anchor decision",
+    "relayed_by: the depositor contract the first deposit was sent to or passed through",
+    "tx: the first deposit's transaction"
+   ],
+   "anchors": [
+    "figment-eth2-depositor-1",
+    "figment-eth2-depositor-2",
+    "figment-batch-deposit-0x01",
+    "figment-batch-deposit-0x02",
+    "kiln-batch-deposit-v1",
+    "kiln-batch-deposit-v2",
+    "kiln-ledger-live-dedicated",
+    "kiln-metamask-validator-staking",
+    "consensys-metamask-validator-staking",
+    "kiln-factory-8659",
+    "stakefish-eth2-depositor",
+    "kiln-vpool-00a0",
+    "kiln-vpool-8eea",
+    "blockdaemon-batch-deposit",
+    "blockdaemon-batch-deposit-2",
+    "infstones-imtoken-batch-deposit",
+    "bedrock-direct-staking",
+    "xhash-batch-deposit",
+    "paralinker-batch-deposit",
+    "infstones-batch-deposit-proxy",
+    "everstake-batch-deposit",
+    "everstake-batch-deposit-b60b",
+    "staked-eth2-depositor-2",
+    "staked-eth2-depositor-3",
+    "staked-eth2-depositor-4",
+    "staked-eth2-depositor-5",
+    "staked-eth2-depositor-6",
+    "staked-eth2-depositor-7",
+    "staked-eth2-depositor-9",
+    "staked-eth2-depositor-10",
+    "staked-eth2-depositor-11",
+    "staked-eth2-depositor-14",
+    "staked-eth2-depositor-15",
+    "staked-eth2-depositor-16",
+    "staked-eth2-depositor-17",
+    "staked-eth2-depositor-19",
+    "staked-eth2-depositor-20",
+    "staked-eth2-depositor-21",
+    "staked-eth2-depositor-22",
+    "staked-eth2-depositor-24",
+    "staked-eth2-depositor-25",
+    "staked-eth2-depositor-26",
+    "staked-eth2-depositor-27",
+    "staked-eth2-depositor-28",
+    "staked-eth2-depositor-30",
+    "staked-eth2-depositor-31",
+    "consensys-staking-depositor-224fc4",
+    "consensys-staking-depositor-7e9f3c",
+    "consensys-staking-depositor-d8799c",
+    "consensys-staking-depositor-78992d",
+    "consensys-staking-depositor-98f840",
+    "consensys-staking-depositor-9acdb9",
+    "consensys-staking-depositor-81a9ae",
+    "consensys-staking-depositor-5d6b0d",
+    "consensys-staking-depositor-f8c1c8",
+    "consensys-staking-depositor-cf6715",
+    "consensys-staking-depositor-ec06df",
+    "consensys-staking-depositor-61dbce",
+    "consensys-staking-depositor-24fcb9",
+    "consensys-staking-depositor-56fa2d",
+    "consensys-staking-depositor-5c56a2",
+    "consensys-staking-depositor-bd7685"
+   ],
+   "anchor_gating": "per_claim",
+   "failure_modes": [
+    "Contracts passed through are found per transaction, not per deposit: a transaction relaying some deposits through the contract and making others another way counts all the validators it first deposits.",
+    "A deposit account anchor may in fact be a client's account depositing the provider's keys; a deposit it sent through another provider's anchored contract counts for that provider instead.",
+    "The contracts are open: anyone can call deposit with any keys while the contract isn't paused, so stake the provider doesn't run can be deposited through it.",
+    "A client that is itself a custodian (e.g. a lender or exchange staking its customers' ETH) chose the provider; under this framing the provider is still the allocator, and the custodian only holds the withdrawal address.",
+    "The client may move the validator to another operator (keys handed over) without a new deposit, which is not seen."
+   ],
+   "limits": [
+    "A deposit that reached the contract only through an internal call (a client's wallet calling the open contract) is not counted when the validator's graffiti, or that of every proposing validator on its withdrawal address, names another operator: that operator used the contract as a tool.",
+    "A deposit sent to the contract directly is not counted when the validator's own graffiti names another operator and never the provider (since version 3, 2026-10-27): the contract is open, and the operator signing its blocks is the stronger evidence. A validator yet to propose, or signing no operator's name, is still counted.",
+    "Stake the provider runs whose deposits were sent by other routes (directly to the deposit contract, or through another party's contract) is not found. As a Lido operator, the provider has Lido as allocator.",
+    "Reverting a contract's decision removes every claim resting on it."
+   ],
+   "references": [
+    "https://docs.figment.io/docs/our-eth-batch-smart-contract",
+    "https://docs.kiln.fi/v1/kiln-products/more-tools/eth-batch-deposit-contract"
+   ]
+  },
+  "provider.pool_deposit": {
+   "version": 1,
+   "basis": "derived",
+   "relation": "allocator",
+   "statement": "A validator whose first deposit was made by a provider's pool contract that can deposit only keys the provider registered has that provider's direct staking as its allocator.",
+   "premises": [
+    "Decision (kind anchor, one per contract): the contract is the provider's pool (for Kiln's vPool 0x00a0…3bb9: it names itself \"Kiln vPool Shares\" and its factory names its operator \"Kiln\").",
+    "The pool's verified source deposits only through its factory: Kiln's vPool purchaseValidators() calls its vFactory's deposit(), which uses keys only the factory's operator adds.",
+    "The pool made the validator's first deposit (traced on our node)."
+   ],
+   "conclusion": "The provider is the validator's allocator.",
+   "evidence": [
+    "decision: the pool's anchor decision",
+    "relayed_by: the pool contract",
+    "tx: the first deposit's transaction"
+   ],
+   "anchors": [
+    "kiln-vpool-00a0"
+   ],
+   "limits": [
+    "Covers only pools listed in stakalytics.protocols.providers.POOL_CONTRACTS whose source has been read.",
+    "The pool's depositors (vPool share holders) are its clients; the provider decides which keys and operators are used.",
+    "Reverting the decision removes every claim derived from it."
+   ],
+   "references": [
+    "https://sourcify.dev/server/v2/contract/1/0xa4c04e7598c5147113b7b03f606b524c630143ce?fields=sources"
+   ]
+  },
+  "renzo.delegator_eigenpod": {
+   "version": 1,
+   "basis": "inferred",
+   "relation": "allocator",
+   "statement": "A validator whose withdrawal credentials ever point to an EigenPod owned by one of Renzo's OperatorDelegators has Renzo's restaking as its allocator for its whole existence.",
+   "heuristic": "Take every contract whose EIP-1967 admin is Renzo's ProxyAdmin (address_info.proxy_admin) and every EigenPod whose podOwner() is one of them (address_info.pod_owner); a validator whose withdrawal address is such a pod, at any time, is Renzo's.",
+   "premises": [
+    "Decision (kind anchor, accepting anchor renzo-proxy-admin): 0x9162…1982 is the ProxyAdmin of Renzo's contracts, as the admin of the RestakeManager Renzo's docs list.",
+    "The pod owner's EIP-1967 admin slot holds that ProxyAdmin, and the pod answers podOwner() with it, at the snapshot block (derived).",
+    "Inference: Renzo's OperatorDelegators restake its users' ETH, and Renzo chooses the node operators and EigenLayer operators for each."
+   ],
+   "conclusion": "Renzo's restaking is the validator's allocator. Node operators run the validators; which one is not recorded here.",
+   "evidence": [
+    "decision: the anchor decision",
+    "renzo_eigenpod: the withdrawal address and the delegator owning it",
+    "beacon_state: the first state with that withdrawal address"
+   ],
+   "anchors": [
+    "renzo-proxy-admin"
+   ],
+   "failure_modes": [
+    "Any other contract administered by the same ProxyAdmin that owned an EigenPod would be included; on 2026-10-17 all five such pod owners stored the RestakeManager's address."
+   ],
+   "limits": [
+    "Admins and pod owners are read at the snapshot block; a delegator whose admin changed would drop out.",
+    "Reverting the decision removes every claim derived from it."
+   ],
+   "references": [
+    "https://docs.renzoprotocol.com/docs/contracts"
+   ]
+  },
+  "rocket_pool.pool_deposit": {
+   "version": 1,
+   "basis": "derived",
+   "relation": "allocator",
+   "statement": "A validator whose first deposit was made by a Rocket Pool minipool or megapool, which it withdraws to, has Rocket Pool's staking (rETH) as its allocator for its whole existence.",
+   "premises": [
+    "Decision (kind anchor, accepting anchor rocket-pool-storage): 0x1d8f…fa46 is RocketStorage, the storage address in Rocket Pool's Smartnode.",
+    "The pool was created by a pool creator while that creator was registered in RocketStorage (address_info.creator and creation_block, read from our node).",
+    "The pool contract itself made the validator's first deposit (traced on our node), which Rocket Pool's contracts do only for validators the protocol has matched to a node operator.",
+    "Framing: the protocol, not each node operator, is treated as the allocator: it assigns rETH holders' ETH to node operators by its rules."
+   ],
+   "conclusion": "Rocket Pool is the validator's allocator.",
+   "evidence": [
+    "decision: the anchor decision",
+    "rocket_pool_pool: the pool and its creator",
+    "tx: the first deposit, made by the pool"
+   ],
+   "anchors": [
+    "rocket-pool-storage"
+   ],
+   "limits": [
+    "Whether a permissionless protocol is the allocator is a framing choice: the node operator chose to run the validator and bonds 4-16 ETH of its own; one could instead treat each node operator as the allocator of its bonded share.",
+    "Solo validators migrated into a minipool (their first deposit was their staker's) are not covered; they keep rocket_pool.pool_withdrawal_address.",
+    "The deposit's route is read per transaction (tx.to and the traced callers of the deposit contract): in a transaction where the protocol's contract made some deposits, every deposit in it counts as made through that contract.",
+    "Reverting the decision removes every claim derived from it."
+   ]
+  },
+  "rocket_pool.pool_withdrawal_address": {
+   "version": 1,
+   "basis": "inferred",
+   "relation": "allocator",
+   "statement": "A validator whose withdrawal credentials ever point to a Rocket Pool minipool or megapool has Rocket Pool's staking (rETH) as its allocator: for its whole existence if its first deposit pointed to the pool, else from the first state showing the change.",
+   "heuristic": "Take every contract (address_info.creator) created by one of Rocket Pool's pool creators while it was registered in RocketStorage (address_info.creation_block within the creator's range in stakalytics.protocols.rocketpool.CREATORS); a validator whose withdrawal address is one, at any time, is Rocket Pool's, from its first deposit if that deposit named the pool, else (a 0x00 validator whose credentials were later changed to the pool: a solo staker migrating in) from the first sampled state showing the change.",
+   "premises": [
+    "Decision (kind anchor, accepting anchor rocket-pool-storage): 0x1d8f…fa46 is RocketStorage, the storage address in Rocket Pool's Smartnode.",
+    "Each creator was returned by RocketStorage's getAddress(keccak(\"contract.address\" + name)) for rocketMinipoolManager, rocketMinipoolFactory or rocketMegapoolFactory over its block range, read by eth_call on our node (recorded in the decision).",
+    "The contract's creator and creation block are from ots_getContractCreator at the snapshot (derived).",
+    "Inference: node operators join without permission and bond part of each validator's stake; the protocol assigns rETH holders' ETH to them by its rules, so it is taken as the allocator."
+   ],
+   "conclusion": "Rocket Pool is the validator's allocator. A node operator who chose to join runs it, with its own bond in it; which one is not recorded here.",
+   "evidence": [
+    "decision: the anchor decision",
+    "rocket_pool_pool: the pool and the creator (with its RocketStorage name)",
+    "beacon_state: the first state with that withdrawal address"
+   ],
+   "anchors": [
+    "rocket-pool-storage"
+   ],
+   "failure_modes": [
+    "A pool creator registered after the list in the code was written (e.g. a new factory) is missed until added.",
+    "Whether a permissionless protocol is the allocator is a framing choice: the node operator chose to run the validator and bonds 4-16 ETH of its own; one could instead treat each node operator as the allocator of its bonded share."
+   ],
+   "limits": [
+    "A migration is placed at the first daily sample showing the new credentials, up to a day after the change.",
+    "Only pools that are withdrawal addresses in the address snapshot are seen; pools created after it are not.",
+    "Reverting the decision removes every claim derived from it."
+   ],
+   "references": [
+    "https://github.com/rocket-pool/rocketpool"
+   ]
+  },
+  "ssv.cluster_owner": {
+   "version": 1,
+   "basis": "inferred",
+   "relation": "operator",
+   "statement": "A validator registered on the SSV network on a cluster whose operators all belong to one account is run by the organisation that account belongs to, while the registration holds.",
+   "heuristic": "From the SSV network contract's logs: each ValidatorAdded registration (until the validator's ValidatorRemoved) and its operator ids; each operator's owner from OperatorAdded. Where every operator of the cluster has the same owner, and an address tag (role node_operator) names that owner's organisation, that organisation is the validator's operator.",
+   "premises": [
+    "The SSV network contract recorded the registration and its operator ids, and each operator's owner (derived, on our node).",
+    "An address tag says which organisation the owner account belongs to, from the names the owner gave its operators (first party).",
+    "Inference: operators sharing one owner are one organisation's nodes, so the cluster holding all of the validator's key shares is that organisation's."
+   ],
+   "conclusion": "The tagged organisation runs the validator over the registration.",
+   "evidence": [
+    "tx: the ValidatorAdded transaction",
+    "ssv_cluster: the owner account and the operator ids",
+    "tag: the address tag naming the owner's organisation"
+   ],
+   "anchors": [],
+   "failure_modes": [
+    "An organisation can register operators for another (white-label infrastructure), under its own account; the operator then appears as the account's owner.",
+    "An operator's owner can transfer it to another account; owners are read from OperatorAdded only."
+   ],
+   "limits": [
+    "Clusters whose operators have different owners (distributed across organisations) get no operator claim.",
+    "Owners without a tag (most private operators) get no claim."
+   ],
+   "references": [
+    "https://docs.ssv.network/"
+   ]
+  },
+  "stakewise.pool_escrow_withdrawal_address": {
+   "version": 1,
+   "basis": "inferred",
+   "relation": "allocator",
+   "statement": "A validator whose withdrawal credentials ever point to StakeWise V2's Pool Escrow has StakeWise's pool as its allocator for its whole existence.",
+   "heuristic": "Every validator whose withdrawal address is the Pool Escrow in any sampled state is StakeWise's.",
+   "premises": [
+    "Decision (kind anchor, accepting anchor stakewise-pool-escrow): 0x2296…F079 is StakeWise V2's Pool Escrow, in StakeWise's list of its mainnet contracts.",
+    "The validator's credentials are read from beacon state (derived).",
+    "Inference: the pool registers its validators (through its Oracles contract) with keys from node operators StakeWise chooses, all withdrawing to the Pool Escrow, so StakeWise decides who runs the stake."
+   ],
+   "conclusion": "StakeWise's pool is the validator's allocator. Its node operators run the validators; which one is not recorded here.",
+   "evidence": [
+    "decision: the anchor decision",
+    "pool_escrow: the Pool Escrow address",
+    "beacon_state: the first state with that withdrawal address"
+   ],
+   "anchors": [
+    "stakewise-pool-escrow"
+   ],
+   "failure_modes": [
+    "Anyone can deposit with the Pool Escrow as withdrawal address; such a validator would be counted, though its withdrawals go to StakeWise.",
+    "After StakeWise's move to V3, the Pool Escrow's owner became its Genesis Vault; validators the vault adds with the escrow as withdrawal address count here."
+   ],
+   "limits": [
+    "Reverting the decision removes every claim derived from it."
+   ],
+   "references": [
+    "https://github.com/stakewise/contracts"
+   ]
+  },
+  "stakewise.solos_deposit": {
+   "version": 1,
+   "basis": "inferred",
+   "relation": "allocator",
+   "statement": "A validator first deposited through StakeWise's Solos contract has StakeWise as its allocator, from that deposit on.",
+   "heuristic": "Take each validator's first deposit; if its transaction was sent to the Solos contract (tx.to), the validator is StakeWise's.",
+   "premises": [
+    "Decision (kind anchor, accepting anchor stakewise-solos): 0xeadc…6CEca is StakeWise's Solos contract.",
+    "The deposit's transaction was sent to it (deposit contract logs, tx.to; derived).",
+    "Inference: Solos users pay StakeWise monthly to run a validator while keeping their own withdrawal key (the contract's source), so StakeWise decides how it behaves, as a provider does for direct staking."
+   ],
+   "conclusion": "StakeWise is the validator's allocator; the user's withdrawal address is a separate role.",
+   "evidence": [
+    "decision: the anchor decision",
+    "relayed_by: the Solos contract",
+    "tx: the first deposit's transaction"
+   ],
+   "anchors": [
+    "stakewise-solos"
+   ],
+   "failure_modes": [
+    "A user may have moved the validator to another operator after a later exit and redeposit; only the first deposit is read."
+   ],
+   "limits": [
+    "Reverting the decision removes every claim derived from it."
+   ],
+   "references": [
+    "https://github.com/stakewise/contracts"
+   ]
+  },
+  "stakewise.v3_vault_deposit": {
+   "version": 1,
+   "basis": "derived",
+   "relation": "allocator",
+   "statement": "A validator whose first deposit was made by a StakeWise V3 vault, which it withdraws to, has StakeWise V3 as its allocator for its whole existence.",
+   "premises": [
+    "Decision (kind anchor): the contract is StakeWise V3's VaultsRegistry, which every vault is added to.",
+    "The vault was added by the registry (VaultAdded logs, read from our node).",
+    "The vault itself made the validator's first deposit (traced on our node), which a vault does only for validators it registers.",
+    "Framing: the protocol, not each vault's admin, is treated as the allocator (vaults are permissionless, as Rocket Pool's minipools are)."
+   ],
+   "conclusion": "StakeWise V3 is the validator's allocator. Which vault, and whose, is in the evidence.",
+   "evidence": [
+    "decision: the anchor decision",
+    "stakewise_vault: the vault and the block it was added to the registry",
+    "tx: the first deposit, made by the vault"
+   ],
+   "anchors": [
+    "stakewise-vaults-registry"
+   ],
+   "limits": [
+    "A vault's admin may be an institution choosing its own operators: the protocol-level framing then hides the real allocator.",
+    "The deposit's route is read per transaction (tx.to and the traced callers of the deposit contract): in a transaction where the protocol's contract made some deposits, every deposit in it counts as made through that contract.",
+    "Reverting the decision removes every claim derived from it."
+   ]
+  },
+  "stakewise.v3_vault_withdrawal_address": {
+   "version": 1,
+   "basis": "inferred",
+   "relation": "allocator",
+   "statement": "A validator whose withdrawal credentials point to a StakeWise V3 vault has StakeWise V3 as its allocator: from the start if its first deposit pointed to the vault, else from the first state showing the change.",
+   "heuristic": "Take the vaults the VaultsRegistry added (VaultAdded logs); every validator whose 0x01/0x02 withdrawal address is one of them, at any time, is StakeWise V3's.",
+   "premises": [
+    "Decision (kind anchor): the contract is StakeWise V3's VaultsRegistry, which every vault is added to.",
+    "The registry's logs and the validators' credentials are read from our nodes (derived).",
+    "Inference: validators withdrawing to a vault were registered by it, with operators its admin chose.",
+    "Framing: the protocol, not each vault's admin, is treated as the allocator (vaults are permissionless, as Rocket Pool's minipools are)."
+   ],
+   "conclusion": "StakeWise V3 is the validator's allocator. Which vault, and whose, is in the evidence.",
+   "evidence": [
+    "decision: the anchor decision",
+    "stakewise_vault: the vault and the block it was added to the registry",
+    "beacon_state: the first state with that withdrawal address"
+   ],
+   "anchors": [
+    "stakewise-vaults-registry"
+   ],
+   "failure_modes": [
+    "Anyone can deposit with any withdrawal credentials: a validator pointed at a vault without its registering it would be counted, though its withdrawals go to the vault.",
+    "A vault's admin may be an institution choosing its own operators: the protocol-level framing then hides the real allocator."
+   ],
+   "limits": [
+    "Reverting the decision removes every claim derived from it."
+   ]
+  }
+ },
+ "anchors": {
+  "ankr-eth2-staking": {
+   "address": "0x84db6ee82b7cf3b47e8f19270abde5718b936670",
+   "entity": "ankr",
+   "statement": "This contract is Ankr's ETH liquid staking GlobalPool, as Ankr's developer docs name it: the beacon deposits sent through it are for its staking.",
+   "sources": [
+    "ankr-docs-eth-api"
+   ],
+   "corroboration": [
+    "ankr-docs-eth-liquid-staking-mechanics"
+   ],
+   "accepted_by": "0081-ankr-eth2-staking"
+  },
+  "bedrock-direct-staking": {
+   "address": "0xe8239b17034c372cdf8a5f8d3ccb7cf1795c4572",
+   "entity": "bedrock",
+   "statement": "This contract is Bedrock's direct-staking contract: it was created by the account that created Bedrock's uniETH staking contract, and the validators deposited through it pay their block rewards to a reward pool created by the same account.",
+   "sources": [
+    "bedrock-stake-readme-2024-05"
+   ],
+   "accepted_by": "0204-bedrock-direct-staking"
+  },
+  "bedrock-unieth-staking": {
+   "address": "0x4befa2aa9c305238aa3e0b5d17eb20c045269e9d",
+   "entity": "bedrock",
+   "statement": "This contract is the staking contract of Bedrock's uniETH (formerly RockX's): Bedrock's README and documentation name it, with the restaking contract and EigenPod its validators later withdrew to.",
+   "sources": [
+    "bedrock-stake-readme-2024-05",
+    "bedrock-docs-unieth-contracts-2026-10"
+   ],
+   "accepted_by": "0203-bedrock-unieth-staking"
+  },
+  "binance-eth2-depositor": {
+   "address": "0xbdd75a97c29294ff805fb2fee65abd99492b32a8",
+   "entity": "binance",
+   "statement": "This account is Binance's: the beacon deposits it sends are for Binance's ETH staking. Every execution credential in them points to 0x8e60…8224, which sends its withdrawn stake to 0x26ad…6b86, the staking address set in Binance's wBETH token contract.",
+   "sources": [
+    "bnbchain-blog-wbeth"
+   ],
+   "accepted_by": "0006-binance-eth2-depositor"
+  },
+  "binance-wbeth": {
+   "address": "0xa2e3356610840701bdf5611a53974510ae27e2e1",
+   "entity": "binance",
+   "statement": "This contract is Binance's wBETH on Ethereum: a token for ETH staked with Binance, worth more ETH over time at the exchange rate it publishes.",
+   "sources": [
+    "bnbchain-blog-wbeth"
+   ],
+   "accepted_by": "0116-binance-wbeth"
+  },
+  "bitpie-depositor": {
+   "address": "0xa8582b5a0f615bc21d7780618557042be60b32ed",
+   "entity": "bitpie",
+   "statement": "This account is Bitpie's ETH 2.0 staking address, as Bitpie announced: the beacon deposits it sends are for its staking.",
+   "sources": [
+    "bitpie-eth2-staking-address-2022"
+   ],
+   "accepted_by": "0083-bitpie-depositor"
+  },
+  "blockdaemon-batch-deposit-2": {
+   "address": "0xdc8d2a1d8cd79e1542441743e448129a00a59ae0",
+   "entity": "blockdaemon",
+   "statement": "This contract is Blockdaemon's BatchDeposit2, the mainnet deployment its repository lists: the beacon deposits sent through it are for validators Blockdaemon reserved for its clients and runs.",
+   "sources": [
+    "blockdaemon-batch-deposit2-readme-2025-12",
+    "blockdaemon-docs-ethereum-stake-intent"
+   ],
+   "accepted_by": "0209-blockdaemon-batch-deposit-2"
+  },
+  "blockdaemon-batch-deposit": {
+   "address": "0x3f124c700fb5e741f128e28985267d44f56b242f",
+   "entity": "blockdaemon",
+   "statement": "This contract is Blockdaemon's batch deposit contract: the beacon deposits sent through it are for validators Blockdaemon reserved for its clients and runs.",
+   "sources": [],
+   "corroboration": [
+    "blockdaemon-gitlab-eth2-batch-deposit-contract",
+    "blockdaemon-docs-ethereum-stake-intent"
+   ],
+   "accepted_by": "0041-blockdaemon-batch-deposit"
+  },
+  "coinbase-batch-deposit-1": {
+   "address": "0xefe9a82d56cd965d7b332c7ac1feb15c53cd4340",
+   "entity": "coinbase",
+   "statement": "This contract is Coinbase's batch deposit contract: the account that created it (0xd4e7…71a5) was first funded, in block 13,856,864, by 0xeb26…d4cf, a wallet Coinbase's retail staking pays out to. Anyone can deposit through it, so a deposit through it does not by itself show Coinbase's staking.",
+   "sources": [],
+   "accepted_by": null
+  },
+  "coinbase-batch-deposit": {
+   "address": "0x8ebda19ddee719dab78def3e22c3d37970e35217",
+   "entity": "coinbase",
+   "statement": "This contract is Coinbase's batch deposit contract: the account that created it (0x22e7…8cec) was first funded, in block 22,484,045, by 0xb5d8…f511, a wallet Coinbase's retail staking pays out to. Anyone can deposit through it, so a deposit through it does not by itself show Coinbase's staking.",
+   "sources": [],
+   "accepted_by": null
+  },
+  "coinbase-cbeth": {
+   "address": "0xbe9895146f7af43049ca1c1ae358b0541ea49704",
+   "entity": "coinbase",
+   "statement": "This contract is Coinbase's cbETH: a token for ETH staked with Coinbase, worth more ETH over time at the exchange rate it publishes.",
+   "sources": [
+    "prisma-risk-cbeth",
+    "coinbase-agentkit-erc20-constants"
+   ],
+   "accepted_by": "0117-coinbase-cbeth"
+  },
+  "coinbase-fee-recipient": {
+   "address": "0x4675c7e5baafbffbca748158becba61ef3b0a263",
+   "entity": "coinbase",
+   "statement": "This address is Coinbase's: the fee recipient of the validators Coinbase runs.",
+   "sources": [],
+   "accepted_by": "0104-coinbase-fee-recipient"
+  },
+  "consensys-metamask-validator-staking": {
+   "address": "0xdc71affc862fceb6ad32be58e098423a7727bebd",
+   "entity": "consensys",
+   "statement": "This contract, behind MetaMask's validator staking, is administered by Consensys, which registered its only operator and receives all its fees: its admin is the withdrawal address of Consensys's Rocket Pool Oracle DAO node (\"consensyscodefi\"). The beacon deposits sent through it are for validators whose operator Consensys chose.",
+   "sources": [
+    "theblock-metamask-validator-staking"
+   ],
+   "corroboration": [
+    "hackenproof-metamask-validator-staking",
+    "forklog-metamask-validator-staking"
+   ],
+   "accepted_by": "0135-consensys-metamask-validator-staking"
+  },
+  "consensys-staking-depositor-224fc4": {
+   "address": "0x224fc41805d007775260bcb5f9146ecd5c3d9495",
+   "entity": "consensys",
+   "statement": "The beacon deposits this account sends are for validators Consensys Staking runs: it batched them through the contract Consensys's guide names, at most 100 a transaction, and their software changed in step with Consensys's other validators.",
+   "sources": [
+    "consensys-staking-docs-create-stake",
+    "staked-eth2-batch-contract-readme-2021"
+   ],
+   "accepted_by": "0142-consensys-staking-depositor-224fc4"
+  },
+  "consensys-staking-depositor-24fcb9": {
+   "address": "0x24fcb9ed2bfa9264526bd675aaf392526abe19c1",
+   "entity": "consensys",
+   "statement": "The beacon deposits this account sends are for validators Consensys Staking runs: it batched them through the contract Consensys's guide names, at most 100 a transaction, and their software changed in step with Consensys's other validators.",
+   "sources": [
+    "consensys-staking-docs-create-stake",
+    "staked-eth2-batch-contract-readme-2021"
+   ],
+   "accepted_by": "0233-consensys-staking-depositor-24fcb9"
+  },
+  "consensys-staking-depositor-56fa2d": {
+   "address": "0x56fa2d29a54b5349cd5d88ffa584bffb2986a656",
+   "entity": "consensys",
+   "statement": "The beacon deposits this account sends are for validators Consensys Staking runs: it batched them through the contract Consensys's guide names, at most 100 a transaction, and their software changed in step with Consensys's other validators.",
+   "sources": [
+    "consensys-staking-docs-create-stake",
+    "staked-eth2-batch-contract-readme-2021"
+   ],
+   "accepted_by": "0234-consensys-staking-depositor-56fa2d"
+  },
+  "consensys-staking-depositor-5c56a2": {
+   "address": "0x5c56a26695585c5e9849c09367c694b711cedce4",
+   "entity": "consensys",
+   "statement": "The beacon deposits this account sends are for validators Consensys Staking runs: it batched them through the contract Consensys's guide names, at most 100 a transaction, and their software changed in step with Consensys's other validators.",
+   "sources": [
+    "consensys-staking-docs-create-stake",
+    "staked-eth2-batch-contract-readme-2021"
+   ],
+   "accepted_by": "0235-consensys-staking-depositor-5c56a2"
+  },
+  "consensys-staking-depositor-5d6b0d": {
+   "address": "0x5d6b0d1666e6da01631c8d23c7231942d345180f",
+   "entity": "consensys",
+   "statement": "The beacon deposits this account sends are for validators Consensys Staking runs: it batched them through the contract Consensys's guide names, at most 100 a transaction, and their software changed in step with Consensys's other validators.",
+   "sources": [
+    "consensys-staking-docs-create-stake",
+    "staked-eth2-batch-contract-readme-2021"
+   ],
+   "accepted_by": "0149-consensys-staking-depositor-5d6b0d"
+  },
+  "consensys-staking-depositor-61dbce": {
+   "address": "0x61dbceef9a7242c801b9d3583bec18f43ed88054",
+   "entity": "consensys",
+   "statement": "The beacon deposits this account sends are for validators Consensys Staking runs: it batched them through the contract Consensys's guide names, at most 100 a transaction, and their software changed in step with Consensys's other validators.",
+   "sources": [
+    "consensys-staking-docs-create-stake",
+    "staked-eth2-batch-contract-readme-2021"
+   ],
+   "accepted_by": "0232-consensys-staking-depositor-61dbce"
+  },
+  "consensys-staking-depositor-78992d": {
+   "address": "0x78992d75022100d2d0c5c7fbf3181a1f92000813",
+   "entity": "consensys",
+   "statement": "The beacon deposits this account sends are for validators Consensys Staking runs: it batched them through the contract Consensys's guide names, at most 100 a transaction, and their software changed in step with Consensys's other validators.",
+   "sources": [
+    "consensys-staking-docs-create-stake",
+    "staked-eth2-batch-contract-readme-2021"
+   ],
+   "accepted_by": "0145-consensys-staking-depositor-78992d"
+  },
+  "consensys-staking-depositor-7e9f3c": {
+   "address": "0x7e9f3ca26570661b6aac389b92163b21124e6e46",
+   "entity": "consensys",
+   "statement": "The beacon deposits this account sends are for validators Consensys Staking runs: it batched them through the contract Consensys's guide names, at most 100 a transaction, and their software changed in step with Consensys's other validators.",
+   "sources": [
+    "consensys-staking-docs-create-stake",
+    "staked-eth2-batch-contract-readme-2021"
+   ],
+   "accepted_by": "0143-consensys-staking-depositor-7e9f3c"
+  },
+  "consensys-staking-depositor-81a9ae": {
+   "address": "0x81a9aed213c74798deec32080b8837ca421614a3",
+   "entity": "consensys",
+   "statement": "The beacon deposits this account sends are for validators Consensys Staking runs: it batched them through the contract Consensys's guide names, at most 100 a transaction, and their software changed in step with Consensys's other validators.",
+   "sources": [
+    "consensys-staking-docs-create-stake",
+    "staked-eth2-batch-contract-readme-2021"
+   ],
+   "accepted_by": "0148-consensys-staking-depositor-81a9ae"
+  },
+  "consensys-staking-depositor-98f840": {
+   "address": "0x98f8407c1dd18d6ea2ecc48fdf772665ac5323c1",
+   "entity": "consensys",
+   "statement": "The beacon deposits this account sends are for validators Consensys Staking runs: it batched them through the contract Consensys's guide names, at most 100 a transaction, and their software changed in step with Consensys's other validators.",
+   "sources": [
+    "consensys-staking-docs-create-stake",
+    "staked-eth2-batch-contract-readme-2021"
+   ],
+   "accepted_by": "0146-consensys-staking-depositor-98f840"
+  },
+  "consensys-staking-depositor-9acdb9": {
+   "address": "0x9acdb9698f65f2eadcc2813706f83c70a482b3e5",
+   "entity": "consensys",
+   "statement": "The beacon deposits this account sends are for validators Consensys Staking runs: it batched them through the contract Consensys's guide names, at most 100 a transaction, and their software changed in step with Consensys's other validators.",
+   "sources": [
+    "consensys-staking-docs-create-stake",
+    "staked-eth2-batch-contract-readme-2021"
+   ],
+   "accepted_by": "0147-consensys-staking-depositor-9acdb9"
+  },
+  "consensys-staking-depositor-bd7685": {
+   "address": "0xbd76851ffe4ed31647d390ae158faf07a92c3c48",
+   "entity": "consensys",
+   "statement": "The beacon deposits this account sends are for validators Consensys Staking runs: it batched them through the contract Consensys's guide names, at most 100 a transaction, and their software changed in step with Consensys's other validators.",
+   "sources": [
+    "consensys-staking-docs-create-stake",
+    "staked-eth2-batch-contract-readme-2021"
+   ],
+   "accepted_by": "0236-consensys-staking-depositor-bd7685"
+  },
+  "consensys-staking-depositor-cf6715": {
+   "address": "0xcf6715cbd7a900bbbde15e8d1dd6779815258e60",
+   "entity": "consensys",
+   "statement": "The beacon deposits this account sends are for validators Consensys Staking runs: it batched them through the contract Consensys's guide names, at most 100 a transaction, and their software changed in step with Consensys's other validators.",
+   "sources": [
+    "consensys-staking-docs-create-stake",
+    "staked-eth2-batch-contract-readme-2021"
+   ],
+   "accepted_by": "0230-consensys-staking-depositor-cf6715"
+  },
+  "consensys-staking-depositor-d8799c": {
+   "address": "0xd8799c788ea59933af1c54c17f345408bac67ca7",
+   "entity": "consensys",
+   "statement": "The beacon deposits this account sends are for validators Consensys Staking runs: it batched them through the contract Consensys's guide names, at most 100 a transaction, and their software changed in step with Consensys's other validators.",
+   "sources": [
+    "consensys-staking-docs-create-stake",
+    "staked-eth2-batch-contract-readme-2021"
+   ],
+   "accepted_by": "0144-consensys-staking-depositor-d8799c"
+  },
+  "consensys-staking-depositor-ec06df": {
+   "address": "0xec06df88987cdd59bffb64b0af7bfe1944cc20e2",
+   "entity": "consensys",
+   "statement": "The beacon deposits this account sends are for validators Consensys Staking runs: it batched them through the contract Consensys's guide names, at most 100 a transaction, and their software changed in step with Consensys's other validators.",
+   "sources": [
+    "consensys-staking-docs-create-stake",
+    "staked-eth2-batch-contract-readme-2021"
+   ],
+   "accepted_by": "0231-consensys-staking-depositor-ec06df"
+  },
+  "consensys-staking-depositor-f8c1c8": {
+   "address": "0xf8c1c8b85ecb964650f127755a7394f1520183b1",
+   "entity": "consensys",
+   "statement": "The beacon deposits this account sends are for validators Consensys Staking runs: it batched them through the contract Consensys's guide names, at most 100 a transaction, and their software changed in step with Consensys's other validators.",
+   "sources": [
+    "consensys-staking-docs-create-stake",
+    "staked-eth2-batch-contract-readme-2021"
+   ],
+   "accepted_by": "0229-consensys-staking-depositor-f8c1c8"
+  },
+  "cream-eth2-depositor": {
+   "address": "0xb2c43455ee556dea95c0599b0d3f7d0abbf32fdb",
+   "entity": "cream",
+   "statement": "This account is CREAM Finance's: it sent most of the deposit transactions CREAM's docs list for its crETH2 staking.",
+   "sources": [
+    "cream-docs-eth2-migration-schedule",
+    "cream-docs-creth2-contract-address"
+   ],
+   "accepted_by": "0080-cream-eth2-depositor"
+  },
+  "etherfi-node-beacon": {
+   "address": "0x3c55986cfee455e2533f4d29006634ecf9b7c03f",
+   "entity": "etherfi",
+   "statement": "This contract is the UpgradeableBeacon of ether.fi's EtherFiNode contracts: its beacon proxies are ether.fi's nodes.",
+   "sources": [],
+   "corroboration": [
+    "etherfi-github-nodes-manager-deployment",
+    "etherfi-github-readme"
+   ],
+   "accepted_by": "0042-etherfi-node-beacon"
+  },
+  "everstake-batch-deposit-b60b": {
+   "address": "0xb60bbe5aeadb96a97a87374cd88555bc627c2f31",
+   "entity": "everstake",
+   "statement": "This contract is a later version of Everstake's batch deposit contract, created by the account that created Everstake's audited batch deposit contract and its Pool.",
+   "sources": [],
+   "accepted_by": "0111-everstake-batch-deposit-b60b"
+  },
+  "everstake-batch-deposit": {
+   "address": "0x4ff41fa0f4e77129c4c0607994050473c2067e6d",
+   "entity": "everstake",
+   "statement": "This contract is Everstake's ETH2 batch deposit contract: the beacon deposits sent through it are for validators Everstake runs.",
+   "sources": [
+    "ackee-everstake-eth2-batch-deposit-audit",
+    "everstake-blog-batch-deposit-ackee-audit"
+   ],
+   "accepted_by": "0110-everstake-batch-deposit"
+  },
+  "everstake-eth2-depositor": {
+   "address": "0xf79caa45612fb183c4e258ed449bfa632d7400b9",
+   "entity": "everstake",
+   "statement": "This account is Everstake's: the 0x00 deposits it sent were for validators whose BLS withdrawal keys Everstake holds, so the address their credentials were changed to is Everstake's. Nearly every validator withdrawing to that address signs Everstake's graffiti.",
+   "sources": [],
+   "accepted_by": "0077-everstake-eth2-depositor"
+  },
+  "everstake-pool": {
+   "address": "0xd523794c879d9ec028960a231f866758e405be34",
+   "entity": "everstake/pool",
+   "statement": "This address is the Pool contract of Everstake's pooled ETH staking (the contract Trezor Suite stakes through): the entry point users stake into, which makes the beacon deposits for the pool's validators.",
+   "sources": [
+    "trezor-firmware-issue-3517",
+    "trezor-guide-staking-ethereum",
+    "chainsecurity-everstake-eth-b2c-audit"
+   ],
+   "corroboration": [
+    "everstake-blog-batch-deposit-ackee-audit",
+    "ackee-everstake-eth2-batch-deposit-audit"
+   ],
+   "accepted_by": "0003-everstake-pool"
+  },
+  "figment-batch-deposit-0x01": {
+   "address": "0xf0075b3cf8953d3e23b0ef65960913fd97eb5227",
+   "entity": "figment",
+   "statement": "This contract is Figment's depositor contract: the beacon deposits sent through it are for validators Figment runs.",
+   "sources": [
+    "figment-docs-batch-deposits-contracts"
+   ],
+   "accepted_by": "0031-figment-batch-deposit-0x01"
+  },
+  "figment-batch-deposit-0x02": {
+   "address": "0x8b0d88b8be3c15d746feb0b1f18c883c03b6aa62",
+   "entity": "figment",
+   "statement": "This contract is Figment's depositor contract: the beacon deposits sent through it are for validators Figment runs.",
+   "sources": [
+    "figment-docs-batch-deposits-contracts"
+   ],
+   "accepted_by": "0032-figment-batch-deposit-0x02"
+  },
+  "figment-eth2-depositor-1": {
+   "address": "0xf2be95116845252a28bd43661651917dc183dab1",
+   "entity": "figment",
+   "statement": "This contract is Figment's depositor contract: the beacon deposits sent through it are for validators Figment runs.",
+   "sources": [],
+   "corroboration": [
+    "figment-docs-batch-deposits-contracts"
+   ],
+   "accepted_by": "0029-figment-eth2-depositor-1"
+  },
+  "figment-eth2-depositor-2": {
+   "address": "0xb4e2e925d75793c33f5f94cd652f6c464665c76b",
+   "entity": "figment",
+   "statement": "This contract is Figment's depositor contract: the beacon deposits sent through it are for validators Figment runs.",
+   "sources": [],
+   "corroboration": [
+    "figment-docs-batch-deposits-contracts"
+   ],
+   "accepted_by": "0030-figment-eth2-depositor-2"
+  },
+  "frax-frxeth-minter": {
+   "address": "0xbafa44efe7901e04e39dad13167d089c559c1138",
+   "entity": "frax",
+   "statement": "This contract is Frax's frxETH Minter: it makes the beacon deposits for frxETH's validators, with keys Frax's multisig adds.",
+   "sources": [
+    "frax-frxeth-validate-msig-add-validators"
+   ],
+   "accepted_by": "0112-frax-frxeth-minter"
+  },
+  "htx-eth2-depositor-1": {
+   "address": "0x194bd70b59491ce1310ea0bceabdb6c23ac9d5b2",
+   "entity": "htx",
+   "statement": "This account is HTX's (formerly Huobi): it was funded from reserve wallets HTX proved it owns, and the beacon deposits it sends are for its staking.",
+   "sources": [
+    "htx-por-snapshot-2022-12",
+    "htx-por-snapshot-2023-05"
+   ],
+   "accepted_by": "0072-htx-eth2-depositor-1"
+  },
+  "htx-eth2-depositor-2": {
+   "address": "0xb73f4d4e99f65ec4b16b684e44f81aeca5ba2b7c",
+   "entity": "htx",
+   "statement": "This account is HTX's (formerly Huobi): it was funded from reserve wallets HTX proved it owns, and the beacon deposits it sends are for its staking.",
+   "sources": [
+    "htx-por-snapshot-2022-12",
+    "htx-por-snapshot-2023-05"
+   ],
+   "accepted_by": "0073-htx-eth2-depositor-2"
+  },
+  "htx-eth2-depositor-3": {
+   "address": "0xd57df663926996aa5de74b88ba8f2b63e329194e",
+   "entity": "htx",
+   "statement": "This account is HTX's (formerly Huobi): reserve wallets HTX proved it owns funded the multisig wallets that supplied its ETH and the key that created its withdrawal wallets, and the beacon deposits it sends are for HTX's staking.",
+   "sources": [
+    "htx-por-snapshot-2022-12",
+    "htx-por-snapshot-2023-05"
+   ],
+   "accepted_by": "0200-htx-eth2-depositor-3"
+  },
+  "infstones-batch-deposit-proxy": {
+   "address": "0x85a52b6eed2f38452b33c275a5354c3442e9a2c9",
+   "entity": "infstones",
+   "statement": "This contract is InfStones' successor to its imToken batch deposit contract: created, owned and administered by the same InfStones key, and used by the same stakers from the week the older contract stopped.",
+   "sources": [
+    "infstones-news-imtoken-eth2-staking-2021",
+    "imtoken-eth2-staking-announcement-2021"
+   ],
+   "accepted_by": "0208-infstones-batch-deposit-proxy"
+  },
+  "infstones-imtoken-batch-deposit": {
+   "address": "0xbf1556a7d625654e3d64d1f0466a60a697fac178",
+   "entity": "infstones",
+   "statement": "This contract is InfStones' depositor contract for imToken's in-wallet ETH staking: the beacon deposits sent through it are for validators InfStones runs.",
+   "sources": [
+    "infstones-news-imtoken-eth2-staking-2021",
+    "imtoken-eth2-staking-announcement-2021",
+    "imtoken-progress-update-2021-05-31",
+    "imtoken-infstones-staking-guide"
+   ],
+   "accepted_by": "0189-infstones-imtoken-batch-deposit"
+  },
+  "kelp-proxy-admin": {
+   "address": "0xb61e0e39b6d4030c36a176f576aabe44bf59dc78",
+   "entity": "kelp",
+   "statement": "This ProxyAdmin administers Kelp DAO's contracts, including the NodeDelegators that own Kelp's EigenPods.",
+   "sources": [
+    "kelp-lrt-rseth-readme"
+   ],
+   "accepted_by": "0109-kelp-proxy-admin"
+  },
+  "kiln-batch-deposit-v1": {
+   "address": "0x9b8c989ff27e948f55b53bb19b3cc1947852e394",
+   "entity": "kiln",
+   "statement": "This contract is Kiln's (V1) batch deposit contract: the beacon deposits sent through it are for validators Kiln runs.",
+   "sources": [
+    "kiln-docs-eth-batch-deposit-contract"
+   ],
+   "corroboration": [
+    "kiln-github-deposit-batch-contract"
+   ],
+   "accepted_by": "0033-kiln-batch-deposit-v1"
+  },
+  "kiln-batch-deposit-v2": {
+   "address": "0x576834cb068e677db4aff6ca245c7bde16c3867e",
+   "entity": "kiln",
+   "statement": "This contract is Kiln's (V2) batch deposit contract: the beacon deposits sent through it are for validators Kiln runs.",
+   "sources": [
+    "kiln-docs-eth-batch-deposit-contract"
+   ],
+   "accepted_by": "0034-kiln-batch-deposit-v2"
+  },
+  "kiln-factory-8659": {
+   "address": "0x8659eeff31cfcff580d37af8e7af250f8998aa83",
+   "entity": "kiln",
+   "statement": "This contract, created by Kiln's deployer, is Kiln's: the beacon deposits sent through it are for validators Kiln runs.",
+   "sources": [],
+   "accepted_by": "0037-kiln-factory-8659"
+  },
+  "kiln-ledger-live-dedicated": {
+   "address": "0x1e68238ce926dec62b3fbc99ab06eb1d85ce0270",
+   "entity": "kiln",
+   "statement": "This contract is Kiln's dedicated-staking contract used from Ledger Live: the beacon deposits sent through it are for validators Kiln runs.",
+   "sources": [
+    "kiln-docs-ledger-live-dedicated-validators"
+   ],
+   "accepted_by": "0035-kiln-ledger-live-dedicated"
+  },
+  "kiln-metamask-validator-staking": {
+   "address": "0xdc71affc862fceb6ad32be58e098423a7727bebd",
+   "entity": "kiln",
+   "statement": "This contract is the Kiln On-Chain (v1) staking contract behind MetaMask's validator staking: the beacon deposits sent through it are for validators whose keys Kiln provisions and runs.",
+   "sources": [
+    "hackenproof-metamask-validator-staking"
+   ],
+   "accepted_by": null
+  },
+  "kiln-vpool-00a0": {
+   "address": "0x00a0be1bbc0c99898df7e6524bf16e893c1e3bb9",
+   "entity": "kiln",
+   "statement": "This contract is a Kiln vPool: it names itself \"Kiln vPool Shares\", its factory names its operator \"Kiln\", and the validators it deposits, which Kiln runs, sign \"Kiln.fi\" on every block.",
+   "sources": [],
+   "accepted_by": "0039-kiln-vpool-00a0"
+  },
+  "kiln-vpool-8eea": {
+   "address": "0x8eea6cc08d824b20efb3bf7c248de694cb1f75f4",
+   "entity": "kiln",
+   "statement": "This contract is a vPool built on Kiln's vsuite contracts that names itself \"Coinbase Cloud vPool Shares\"; its factory names its operator \"Coinbase Cloud\". It is not accepted as Kiln's (decision 0040 is reverted; see 0141).",
+   "sources": [],
+   "accepted_by": null
+  },
+  "kraken-182-depositor": {
+   "address": "0x1ed8b3e4278184675fefa6981dea36f4535df417",
+   "entity": "kraken",
+   "statement": "This account is Kraken's: the beacon deposits it sends are for Kraken's ETH staking. Its first gas came from 0x210b…2a1b within 40 minutes of the same top-up to Kraken's EigenLayer restaking account 0x4462…e86c, and its principal from 0xb23c…2c93.",
+   "sources": [],
+   "accepted_by": "0009-kraken-182-depositor"
+  },
+  "kraken-240-depositor": {
+   "address": "0xed20e72c966da53c6ac5bbcb0ad16ac9f25b8ab0",
+   "entity": "kraken",
+   "statement": "This account is Kraken's: the beacon deposits it sends are for Kraken's ETH staking. Its first gas came from 0x210b…2a1b within 40 minutes of the same top-up to Kraken's EigenLayer restaking account 0x4462…e86c, and its principal from 0x210b…2a1b.",
+   "sources": [],
+   "accepted_by": "0008-kraken-240-depositor"
+  },
+  "kraken-eigenpod-depositor-0c47": {
+   "address": "0x0c4720a5108f7892f7118fbb20975e1305c384c8",
+   "entity": "kraken",
+   "statement": "This account is Kraken's: the beacon deposits it sends, to an EigenPod it owns, are for Kraken's ETH staking (restaked through EigenLayer).",
+   "sources": [],
+   "corroboration": [
+    "decrypt-kraken-restaking-2024-10-16",
+    "eigendata-operator-kraken1"
+   ],
+   "accepted_by": "0011-kraken-eigenpod-depositor-0c47"
+  },
+  "kraken-eigenpod-depositor-4462": {
+   "address": "0x44627463413bc2dd296e42136a32516b57dfe86c",
+   "entity": "kraken",
+   "statement": "This account is Kraken's: the beacon deposits it sends, to an EigenPod it owns, are for Kraken's ETH staking (restaked through EigenLayer).",
+   "sources": [],
+   "corroboration": [
+    "eigendata-operator-kraken2",
+    "decrypt-kraken-restaking-2024-10-16"
+   ],
+   "accepted_by": "0010-kraken-eigenpod-depositor-4462"
+  },
+  "kraken-eigenpod-depositor-45e3": {
+   "address": "0x45e3ec88ca6842d614b33a7b80271b37646c667e",
+   "entity": "kraken",
+   "statement": "This account is Kraken's: the beacon deposits it sends, to an EigenPod it owns, are for Kraken's ETH staking (restaked through EigenLayer).",
+   "sources": [],
+   "corroboration": [
+    "decrypt-kraken-restaking-2024-10-16",
+    "eigendata-operator-kraken"
+   ],
+   "accepted_by": "0013-kraken-eigenpod-depositor-45e3"
+  },
+  "kraken-eigenpod-depositor-8beb": {
+   "address": "0x8beb929ccfea91b1e057c6143a7913afea915aa4",
+   "entity": "kraken",
+   "statement": "This account is Kraken's: the beacon deposits it sends, to an EigenPod it owns, are for Kraken's ETH staking (restaked through EigenLayer).",
+   "sources": [],
+   "corroboration": [
+    "eigendata-operator-kraken2",
+    "decrypt-kraken-restaking-2024-10-16"
+   ],
+   "accepted_by": "0012-kraken-eigenpod-depositor-8beb"
+  },
+  "kraken-eth2-depositor": {
+   "address": "0xa40dfee99e1c85dc97fdc594b16a460717838703",
+   "entity": "kraken",
+   "statement": "This account is Kraken's: the beacon deposits it sends are for Kraken's ETH staking. Its main withdrawal address, 0x210b…2a1b, gave the first gas to Kraken's EigenLayer restaking account 0x4462…e86c.",
+   "sources": [],
+   "corroboration": [
+    "forkast-kraken-unstake-2023-04-14"
+   ],
+   "accepted_by": "0007-kraken-eth2-depositor"
+  },
+  "lido-locator": {
+   "address": "0xc1d0b3de6792bf6b4b37eccdcc24e45978cfd2eb",
+   "entity": "lido",
+   "statement": "This address is Lido's LidoLocator, the on-chain directory of Lido's contracts.",
+   "sources": [
+    "lido-docs-deployed-contracts"
+   ],
+   "accepted_by": "0002-lido-locator"
+  },
+  "liquid-collective-river": {
+   "address": "0x8c1bed5b9a0928467c9b1341da1d7bd5e10b6549",
+   "entity": "liquid-collective",
+   "statement": "This contract is River, Liquid Collective's main contract (LsETH): the beacon deposits it makes are for Liquid Collective's staking.",
+   "sources": [
+    "liquid-collective-docs-lseth"
+   ],
+   "accepted_by": "0044-liquid-collective-river"
+  },
+  "mantle-meth-staking": {
+   "address": "0xe3cbd06d7dadb3f4e6557bab7edd924cd1489e8f",
+   "entity": "mantle",
+   "statement": "This contract is mETH Protocol's Staking contract: the beacon deposits it makes are for Mantle's mETH staking.",
+   "sources": [
+    "mantle-docs-meth-contracts"
+   ],
+   "corroboration": [
+    "mantle-docs-node-operators"
+   ],
+   "accepted_by": "0070-mantle-meth-staking"
+  },
+  "nodedao-liquid-staking": {
+   "address": "0x8103151e2377e78c04a3d2564e20542680ed3096",
+   "entity": "nodedao",
+   "statement": "This contract is NodeDAO's LiquidStaking contract (nETH) on Ethereum, as NodeDAO's own list of its deployed contracts names it.",
+   "sources": [
+    "nodedao-protocol-readme-2024-01"
+   ],
+   "accepted_by": "0160-nodedao-liquid-staking"
+  },
+  "nodedao-restaking-pool": {
+   "address": "0x0d6f764452ca43eb8bd22788c9db43e4b5a725bc",
+   "entity": "nodedao",
+   "statement": "This contract is NodeDAO's restaking pool (rnETH): it is owned by the timelock NodeDAO lists as its own, and its pool token, Restaking Node ETH, by the same timelock.",
+   "sources": [
+    "nodedao-protocol-readme-2024-01"
+   ],
+   "accepted_by": "0161-nodedao-restaking-pool"
+  },
+  "okx-eth2-depositor": {
+   "address": "0x5a0036bcab4501e70f086c634e2958a8beae3a11",
+   "entity": "okx",
+   "statement": "This account is OKX's: the beacon deposits it sends are for OKX's ETH staking. OKX's signed proof-of-reserves file lists the account and, as staked ETH, every validator withdrawing to the addresses it deposited to.",
+   "sources": [
+    "okx-por-2026-10-03"
+   ],
+   "accepted_by": "0025-okx-eth2-depositor"
+  },
+  "p2p-deployer": {
+   "address": "0x588ede4403df0082c5ab245b35f0f79eb2d8033a",
+   "entity": "p2p",
+   "statement": "This account is P2P.org's contract deployer: the contracts it creates are P2P.org's.",
+   "sources": [
+    "p2p-github-fee-distributor-deployer",
+    "p2p-github-ssv-proxy-owner",
+    "p2p-docs-unlimited-unified-api"
+   ],
+   "accepted_by": "0005-p2p-deployer"
+  },
+  "paralinker-batch-deposit": {
+   "address": "0xfc3e2b3003859e28f6efd8321615731f9b02c81f",
+   "entity": "paralinker",
+   "statement": "This contract is Paralinker's batch deposit contract for its staking service: the beacon deposits sent through it are for validators Paralinker runs.",
+   "sources": [
+    "paralinker-eth2-batch-contract-readme-2023-02",
+    "paralinker-docs-stake-how-to-2026-10"
+   ],
+   "accepted_by": "0207-paralinker-batch-deposit"
+  },
+  "piedao-eth2-depositor": {
+   "address": "0x66827bcd635f2bb1779d68c46aeb16541bca6ba8",
+   "entity": "piedao",
+   "statement": "No longer accepted: this account's ENS primary name is whale.eth, and nothing but an explorer tag ties it to PieDAO (anchor whale-eth-depositor).",
+   "sources": [],
+   "accepted_by": null
+  },
+  "puffer-protocol": {
+   "address": "0xf7b6b32492c2e13799d921e84202450131bd238b",
+   "entity": "puffer",
+   "statement": "This contract is Puffer's PufferProtocol: Puffer's deployment scripts name it, and it funds its node operators' validators with ETH from the pufETH vault, each withdrawing to the EigenPod of a Puffer module.",
+   "sources": [
+    "puffer-deployerhelper-2025-09"
+   ],
+   "accepted_by": "0202-puffer-protocol"
+  },
+  "renzo-proxy-admin": {
+   "address": "0x91625601e2bbbeb7171c40c79fadbcfbff6a1982",
+   "entity": "renzo",
+   "statement": "This ProxyAdmin administers Renzo's contracts, including its RestakeManager and the OperatorDelegators that own Renzo's EigenPods.",
+   "sources": [],
+   "corroboration": [
+    "renzo-docs-contracts"
+   ],
+   "accepted_by": "0043-renzo-proxy-admin"
+  },
+  "rocket-pool-storage": {
+   "address": "0x1d8f8f00cfa6758d7be78336684788fb0ee0fa46",
+   "entity": "rocket-pool",
+   "statement": "This contract is RocketStorage, where Rocket Pool registers its contracts: those registered as its minipool manager or factory, or megapool factory, create Rocket Pool's pools.",
+   "sources": [
+    "rocket-pool-smartnode-storage-address"
+   ],
+   "accepted_by": "0071-rocket-pool-storage"
+  },
+  "sharedstake-minter": {
+   "address": "0xbca3b7b87dcb15f0efa66136bc0e4684a3e5da4d",
+   "entity": "sharedstake",
+   "statement": "This contract is SharedStake's Minter: it minted vETH2 for ETH deposited with SharedStake and staked that ETH to the beacon deposit contract, as SharedStake's contract list and docs say.",
+   "sources": [
+    "sharedstake-contracts-readme-2021-02",
+    "sharedstake-docs-staking-to-eth2"
+   ],
+   "accepted_by": "0219-sharedstake-minter"
+  },
+  "stader-permissionless-node-registry": {
+   "address": "0x4f4bfa0861f62309934a5551e0b2541ee82fdcf1",
+   "entity": "stader",
+   "statement": "This contract is Stader's ETHx Permissionless Node Registry, as Stader's own contract list names it: the beacon deposits sent through it are for validators of Stader's ETHx.",
+   "sources": [
+    "stader-ethx-readme-2025-12"
+   ],
+   "accepted_by": "0152-stader-permissionless-node-registry"
+  },
+  "stader-stake-pool-manager": {
+   "address": "0xcf5ea1b38380f6af39068375516daf40ed70d299",
+   "entity": "stader",
+   "statement": "This contract is Stader's ETHx Stake Pool Manager, as Stader's own contract list names it: the beacon deposits sent through it are for validators of Stader's ETHx.",
+   "sources": [
+    "stader-ethx-readme-2025-12"
+   ],
+   "accepted_by": "0151-stader-ethx"
+  },
+  "staked-eth2-depositor-10": {
+   "address": "0x78992d75022100d2d0c5c7fbf3181a1f92000813",
+   "entity": "staked",
+   "statement": "No longer accepted: this account deposited through Staked's batch contract, but its validators are Consensys Staking's (anchor consensys-staking-depositor-78992d).",
+   "sources": [
+    "staked-eth2-batch-contract-readme-2021"
+   ],
+   "accepted_by": null
+  },
+  "staked-eth2-depositor-11": {
+   "address": "0x8acf47c6a7785bdb7e05ba210d324ee66d05aa93",
+   "entity": "staked",
+   "statement": "The beacon deposits this account sends are for validators Staked runs: they went through Staked's batch contract and pay Staked's fee recipient.",
+   "sources": [
+    "staked-eth2-batch-contract-readme-2021",
+    "staked-eth2-faq-2020-12",
+    "staked-ethereum-withdrawals-faq-2023-04"
+   ],
+   "accepted_by": "0053-staked-eth2-depositor-11"
+  },
+  "staked-eth2-depositor-14": {
+   "address": "0x98f8407c1dd18d6ea2ecc48fdf772665ac5323c1",
+   "entity": "staked",
+   "statement": "No longer accepted: this account deposited through Staked's batch contract, but its validators are Consensys Staking's (anchor consensys-staking-depositor-98f840).",
+   "sources": [
+    "staked-eth2-batch-contract-readme-2021"
+   ],
+   "accepted_by": null
+  },
+  "staked-eth2-depositor-15": {
+   "address": "0xdcd62b41aabf29a2249180a5efc7ab8e974de23b",
+   "entity": "staked",
+   "statement": "The beacon deposits this account sends are for validators Staked runs: they went through Staked's batch contract and pay Staked's fee recipient.",
+   "sources": [
+    "staked-eth2-batch-contract-readme-2021",
+    "staked-eth2-faq-2020-12",
+    "staked-ethereum-withdrawals-faq-2023-04"
+   ],
+   "accepted_by": "0055-staked-eth2-depositor-15"
+  },
+  "staked-eth2-depositor-16": {
+   "address": "0x09933f32f66de14f2df72d76b307d92be84a8a55",
+   "entity": "staked",
+   "statement": "The beacon deposits this account sends are for validators Staked runs: they went through Staked's batch contract and pay Staked's fee recipient.",
+   "sources": [
+    "staked-eth2-batch-contract-readme-2021",
+    "staked-eth2-faq-2020-12",
+    "staked-ethereum-withdrawals-faq-2023-04"
+   ],
+   "accepted_by": "0056-staked-eth2-depositor-16"
+  },
+  "staked-eth2-depositor-17": {
+   "address": "0x9477d724b5c2e8bf27b4a62795295da76855b4fc",
+   "entity": "staked",
+   "statement": "The beacon deposits this account sends are for validators Staked runs: they went through Staked's batch contract and pay Staked's fee recipient.",
+   "sources": [
+    "staked-eth2-batch-contract-readme-2021",
+    "staked-eth2-faq-2020-12",
+    "staked-ethereum-withdrawals-faq-2023-04"
+   ],
+   "accepted_by": "0057-staked-eth2-depositor-17"
+  },
+  "staked-eth2-depositor-19": {
+   "address": "0x5cba1b982ed1c9c5a89b7aaf83556d753b90f2d1",
+   "entity": "staked",
+   "statement": "The beacon deposits this account sends are for validators Staked runs: they went through Staked's batch contract and pay Staked's fee recipient.",
+   "sources": [
+    "staked-eth2-batch-contract-readme-2021",
+    "staked-eth2-faq-2020-12",
+    "staked-ethereum-withdrawals-faq-2023-04"
+   ],
+   "accepted_by": "0058-staked-eth2-depositor-19"
+  },
+  "staked-eth2-depositor-2": {
+   "address": "0x224fc41805d007775260bcb5f9146ecd5c3d9495",
+   "entity": "staked",
+   "statement": "No longer accepted: this account deposited through Staked's batch contract, but its validators are Consensys Staking's (anchor consensys-staking-depositor-224fc4).",
+   "sources": [
+    "staked-eth2-batch-contract-readme-2021"
+   ],
+   "accepted_by": null
+  },
+  "staked-eth2-depositor-20": {
+   "address": "0xd70300d3d31a38f2c1b302e0e90136a4d24ad972",
+   "entity": "staked",
+   "statement": "The beacon deposits this account sends are for validators Staked runs: they went through Staked's batch contract and pay Staked's fee recipient.",
+   "sources": [
+    "staked-eth2-batch-contract-readme-2021",
+    "staked-eth2-faq-2020-12",
+    "staked-ethereum-withdrawals-faq-2023-04"
+   ],
+   "accepted_by": "0059-staked-eth2-depositor-20"
+  },
+  "staked-eth2-depositor-21": {
+   "address": "0xaa14fa2bc16b5ed1224625d746c2c83ee7f293c7",
+   "entity": "staked",
+   "statement": "The beacon deposits this account sends are for validators Staked runs: they went through Staked's batch contract and pay Staked's fee recipient.",
+   "sources": [
+    "staked-eth2-batch-contract-readme-2021",
+    "staked-eth2-faq-2020-12",
+    "staked-ethereum-withdrawals-faq-2023-04"
+   ],
+   "accepted_by": "0060-staked-eth2-depositor-21"
+  },
+  "staked-eth2-depositor-22": {
+   "address": "0x5acfd581f7c7a243506388a072b3c85e0958e17e",
+   "entity": "staked",
+   "statement": "The beacon deposits this account sends are for validators Staked runs: they went through Staked's batch contract and pay Staked's fee recipient.",
+   "sources": [
+    "staked-eth2-batch-contract-readme-2021",
+    "staked-eth2-faq-2020-12",
+    "staked-ethereum-withdrawals-faq-2023-04"
+   ],
+   "accepted_by": "0061-staked-eth2-depositor-22"
+  },
+  "staked-eth2-depositor-24": {
+   "address": "0x2f74fbc8de432d0d2882fec43ed0e885e870d0d3",
+   "entity": "staked",
+   "statement": "The beacon deposits this account sends are for validators Staked runs: they went through Staked's batch contract and pay Staked's fee recipient.",
+   "sources": [
+    "staked-eth2-batch-contract-readme-2021",
+    "staked-eth2-faq-2020-12",
+    "staked-ethereum-withdrawals-faq-2023-04"
+   ],
+   "accepted_by": "0062-staked-eth2-depositor-24"
+  },
+  "staked-eth2-depositor-25": {
+   "address": "0x0a6ef7ee49df7ebce0cc76a1f7f53ab261f2fc83",
+   "entity": "staked",
+   "statement": "The beacon deposits this account sends are for validators Staked runs: they went through Staked's batch contract and pay Staked's fee recipient.",
+   "sources": [
+    "staked-eth2-batch-contract-readme-2021",
+    "staked-eth2-faq-2020-12",
+    "staked-ethereum-withdrawals-faq-2023-04"
+   ],
+   "accepted_by": "0063-staked-eth2-depositor-25"
+  },
+  "staked-eth2-depositor-26": {
+   "address": "0x46436f1fa2f9d77b146cde18d545ae3ed28057c1",
+   "entity": "staked",
+   "statement": "The beacon deposits this account sends are for validators Staked runs: they went through Staked's batch contract and pay Staked's fee recipient.",
+   "sources": [
+    "staked-eth2-batch-contract-readme-2021",
+    "staked-eth2-faq-2020-12",
+    "staked-ethereum-withdrawals-faq-2023-04"
+   ],
+   "accepted_by": "0064-staked-eth2-depositor-26"
+  },
+  "staked-eth2-depositor-27": {
+   "address": "0x9acdb9698f65f2eadcc2813706f83c70a482b3e5",
+   "entity": "staked",
+   "statement": "No longer accepted: this account deposited through Staked's batch contract, but its validators are Consensys Staking's (anchor consensys-staking-depositor-9acdb9).",
+   "sources": [
+    "staked-eth2-batch-contract-readme-2021"
+   ],
+   "accepted_by": null
+  },
+  "staked-eth2-depositor-28": {
+   "address": "0x3fb9d44bc83d0da2902e6230aed42fc219f8a426",
+   "entity": "staked",
+   "statement": "The beacon deposits this account sends are for validators Staked runs: they went through Staked's batch contract and pay Staked's fee recipient.",
+   "sources": [
+    "staked-eth2-batch-contract-readme-2021",
+    "staked-eth2-faq-2020-12",
+    "staked-ethereum-withdrawals-faq-2023-04"
+   ],
+   "accepted_by": "0066-staked-eth2-depositor-28"
+  },
+  "staked-eth2-depositor-3": {
+   "address": "0x7e9f3ca26570661b6aac389b92163b21124e6e46",
+   "entity": "staked",
+   "statement": "No longer accepted: this account deposited through Staked's batch contract, but its validators are Consensys Staking's (anchor consensys-staking-depositor-7e9f3c).",
+   "sources": [
+    "staked-eth2-batch-contract-readme-2021"
+   ],
+   "accepted_by": null
+  },
+  "staked-eth2-depositor-30": {
+   "address": "0x81a9aed213c74798deec32080b8837ca421614a3",
+   "entity": "staked",
+   "statement": "No longer accepted: this account deposited through Staked's batch contract, but its validators are Consensys Staking's (anchor consensys-staking-depositor-81a9ae).",
+   "sources": [
+    "staked-eth2-batch-contract-readme-2021"
+   ],
+   "accepted_by": null
+  },
+  "staked-eth2-depositor-31": {
+   "address": "0x5d6b0d1666e6da01631c8d23c7231942d345180f",
+   "entity": "staked",
+   "statement": "No longer accepted: this account deposited through Staked's batch contract, but its validators are Consensys Staking's (anchor consensys-staking-depositor-5d6b0d).",
+   "sources": [
+    "staked-eth2-batch-contract-readme-2021"
+   ],
+   "accepted_by": null
+  },
+  "staked-eth2-depositor-4": {
+   "address": "0x8626354048f90faafc212c07ec7f3613406b1b32",
+   "entity": "staked",
+   "statement": "The beacon deposits this account sends are for validators Staked runs: they went through Staked's batch contract and pay Staked's fee recipient.",
+   "sources": [
+    "staked-eth2-batch-contract-readme-2021",
+    "staked-eth2-faq-2020-12",
+    "staked-ethereum-withdrawals-faq-2023-04"
+   ],
+   "accepted_by": "0047-staked-eth2-depositor-4"
+  },
+  "staked-eth2-depositor-5": {
+   "address": "0x06de102ff2395820a65340ecf19c9da370310053",
+   "entity": "staked",
+   "statement": "The beacon deposits this account sends are for validators Staked runs: they went through Staked's batch contract and pay Staked's fee recipient.",
+   "sources": [
+    "staked-eth2-batch-contract-readme-2021",
+    "staked-eth2-faq-2020-12",
+    "staked-ethereum-withdrawals-faq-2023-04"
+   ],
+   "accepted_by": "0048-staked-eth2-depositor-5"
+  },
+  "staked-eth2-depositor-6": {
+   "address": "0x7846b30044e6ecbbc1b16ecd9e04e78b9e5d3c48",
+   "entity": "staked",
+   "statement": "The beacon deposits this account sends are for validators Staked runs: they went through Staked's batch contract and pay Staked's fee recipient.",
+   "sources": [
+    "staked-eth2-batch-contract-readme-2021",
+    "staked-eth2-faq-2020-12",
+    "staked-ethereum-withdrawals-faq-2023-04"
+   ],
+   "accepted_by": "0049-staked-eth2-depositor-6"
+  },
+  "staked-eth2-depositor-7": {
+   "address": "0x5d6411101dc4f706cc4f41c9de51dd289aea7d72",
+   "entity": "staked",
+   "statement": "The beacon deposits this account sends are for validators Staked runs: they went through Staked's batch contract and pay Staked's fee recipient.",
+   "sources": [
+    "staked-eth2-batch-contract-readme-2021",
+    "staked-eth2-faq-2020-12",
+    "staked-ethereum-withdrawals-faq-2023-04"
+   ],
+   "accepted_by": "0050-staked-eth2-depositor-7"
+  },
+  "staked-eth2-depositor-9": {
+   "address": "0xd8799c788ea59933af1c54c17f345408bac67ca7",
+   "entity": "staked",
+   "statement": "No longer accepted: this account deposited through Staked's batch contract, but its validators are Consensys Staking's (anchor consensys-staking-depositor-d8799c).",
+   "sources": [
+    "staked-eth2-batch-contract-readme-2021"
+   ],
+   "accepted_by": null
+  },
+  "staked-fee-recipient": {
+   "address": "0xe94f1fa4f27d9d288ffea234bb62e1fbc086ca0c",
+   "entity": "staked",
+   "statement": "This address is Staked's execution-reward pool: the validators Staked runs pay their fees and MEV to it, and it pays them on to stakers.",
+   "sources": [
+    "staked-ethereum-withdrawals-faq-2023-04",
+    "staked-eth2-batch-contract-readme-2021"
+   ],
+   "accepted_by": "0153-staked-fee-recipient"
+  },
+  "stakefish-eth2-depositor": {
+   "address": "0x0194512e77d798e4871973d9cb9d7ddfc0ffd801",
+   "entity": "stakefish",
+   "statement": "This contract is stakefish's batch deposit contract: its verified code is the contract in stakefish's own repository, and nearly all validators deposited through it sign stakefish's graffiti; the beacon deposits sent through it are for validators stakefish runs.",
+   "sources": [
+    "stakefish-github-eth2-batch-deposit"
+   ],
+   "corroboration": [
+    "stakefish-blog-batch-deposit-audit"
+   ],
+   "accepted_by": "0038-stakefish-eth2-depositor"
+  },
+  "stakefish-fee-pool": {
+   "address": "0xffee087852cb4898e6c3532e776e68bc68b1143b",
+   "entity": "stakefish",
+   "statement": "This contract is stakefish's fee pool: the fee recipient of the validators stakefish runs in it, all of whose blocks naming it are signed with stakefish's graffiti or left blank.",
+   "sources": [],
+   "corroboration": [
+    "stakefish-docs-fee-pool",
+    "stakefish-docs-fee-pool-claim-rewards"
+   ],
+   "accepted_by": "0103-stakefish-fee-pool"
+  },
+  "stakehound-eth2-depositor": {
+   "address": "0x607ebc82329d0cac3027b83d15e4b4e816f131b7",
+   "entity": "stakehound",
+   "statement": "This account is StakeHound's: the beacon deposits it sends are for its liquid staking (stETH), and every validator it deposited that has proposed a block signs \"StakeHound ⚡️Allnodes\".",
+   "sources": [],
+   "corroboration": [
+    "thedefiant-stakehound-fireblocks"
+   ],
+   "accepted_by": "0084-stakehound-eth2-depositor"
+  },
+  "stakewise-pool-escrow": {
+   "address": "0x2296e122c1a20fca3cac3371357bdad3be0df079",
+   "entity": "stakewise/pool",
+   "statement": "This contract is StakeWise V2's Pool Escrow, the withdrawal address of the StakeWise pool's validators.",
+   "sources": [
+    "stakewise-contracts-mainnet"
+   ],
+   "accepted_by": "0078-stakewise-pool-escrow"
+  },
+  "stakewise-solos": {
+   "address": "0xeadcba8bf9aca93f627f31fb05470f5a0686ceca",
+   "entity": "stakewise/solos",
+   "statement": "This contract is StakeWise's Solos contract: deposits sent through it are for solo validators StakeWise runs for users who keep their own withdrawal key.",
+   "sources": [],
+   "corroboration": [
+    "stakewise-contracts-solos-source"
+   ],
+   "accepted_by": "0079-stakewise-solos"
+  },
+  "stakewise-vaults-registry": {
+   "address": "0x3a0008a588772446f6e656133c2d5029cc4fc20e",
+   "entity": "stakewise",
+   "statement": "This contract is StakeWise V3's VaultsRegistry: every StakeWise V3 vault is added to it (VaultAdded).",
+   "sources": [
+    "stakewise-v3-core-mainnet"
+   ],
+   "accepted_by": "0105-stakewise-vaults-registry"
+  },
+  "swell-deposit-manager": {
+   "address": "0xb3d9cf8e163bbc840195a97e81f8a34e295b8f39",
+   "entity": "swell",
+   "statement": "This contract is the Deposit Manager of Swell's swETH: the swETH token's AccessControlManager names it, and Swell's code has it deposit for swETH's validators with its own address as their withdrawal credentials.",
+   "sources": [
+    "swell-v3-depositmanager-2026-07"
+   ],
+   "corroboration": [
+    "defillama-swell-adapter"
+   ],
+   "accepted_by": "0157-swell-deposit-manager"
+  },
+  "swell-rsweth-deposit-manager": {
+   "address": "0x5e6342d8090665be14eeb8154c8a87b7249a4889",
+   "entity": "swell",
+   "statement": "This contract is the Deposit Manager of Swell's rswETH: the rswETH token's AccessControlManager names it, and the EigenPod its 2024 deposits withdraw to is its own.",
+   "sources": [
+    "swell-v3-eigenlayermanager-2026-07"
+   ],
+   "corroboration": [
+    "defillama-swell-restaking-adapter"
+   ],
+   "accepted_by": "0158-swell-rsweth-deposit-manager"
+  },
+  "swell-rsweth-eigenlayer-manager": {
+   "address": "0xc94cffd5249df4008a043ee61e13f19af16d0936",
+   "entity": "swell",
+   "statement": "This contract is the EigenLayerManager of Swell's rswETH: rswETH's Deposit Manager names it, and Swell's code has it stake validators through staker proxies, each with its own EigenPod.",
+   "sources": [
+    "swell-v3-eigenlayermanager-2026-07"
+   ],
+   "corroboration": [
+    "defillama-swell-restaking-adapter"
+   ],
+   "accepted_by": "0159-swell-rsweth-eigenlayer-manager"
+  },
+  "upbit-eth2-depositor": {
+   "address": "0x44894aeee56c2dd589c1d5c8cb04b87576967f97",
+   "entity": "upbit",
+   "statement": "This account is Upbit's: the beacon deposits it sends are for Upbit's ETH staking.",
+   "sources": [
+    "dunamu-dart-half-year-report-2026",
+    "mtn-dunamu-upbit-polygon-staking-2026-06-24"
+   ],
+   "accepted_by": "0069-upbit-eth2-depositor"
+  },
+  "wex-eth2-depositor": {
+   "address": "0xbb84d966c09264ce9a2104a4a20bb378369986db",
+   "entity": "wex",
+   "statement": "This account staked WEX's former funds: it was funded from wallets that WEX's 2017 wallets filled, so the beacon deposits it sends are for whoever holds them.",
+   "sources": [
+    "forklog-binance-freezes-wex-accounts-2018"
+   ],
+   "accepted_by": "0074-wex-eth2-depositor"
+  },
+  "whale-eth-depositor": {
+   "address": "0x66827bcd635f2bb1779d68c46aeb16541bca6ba8",
+   "entity": "whale-eth",
+   "statement": "This account's ENS primary name is whale.eth (reverse record, forward-verified): the beacon deposits it sends are for its holder's own staking.",
+   "sources": [],
+   "accepted_by": "0150-whale-eth-depositor"
+  },
+  "xhash-batch-deposit": {
+   "address": "0xa86341e5c278443c8648be44110167e1bbd9cba6",
+   "entity": "xhash",
+   "statement": "This contract is XHash's batch deposit contract for its non-custodial staking: the beacon deposits sent through it are for validators XHash runs.",
+   "sources": [
+    "xhash-docs-no-mnemonic-staking-2026-10",
+    "xhash-app-bundle-2026-10"
+   ],
+   "accepted_by": "0206-xhash-batch-deposit"
+  },
+  "xhash-fee-recipient": {
+   "address": "0xaecd92aec5bfbe2f5a02db2dee90733897360983",
+   "entity": "xhash",
+   "statement": "This address is XHash's: the fee recipient of the validators XHash runs, alone or among SSV operators.",
+   "sources": [],
+   "accepted_by": "0228-xhash-fee-recipient"
+  }
+ }
+}

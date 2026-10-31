@@ -1,0 +1,2677 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Decisions behind the attributions</title>
+<style>
+:root { color-scheme: light; --surface-0: #f4f3f0; --surface-1: #fcfcfb; --border: #d9d8d3; --text-primary: #0b0b0b;
+        --text-secondary: #52514e; --text-muted: #77766f; --accent: #2a78d6; --chip: #ebe9e4; }
+@media (prefers-color-scheme: dark) {
+  :root:where(:not([data-theme="light"])) { color-scheme: dark; --surface-0: #121211; --surface-1: #1a1a19;
+    --border: #3a3a37; --text-primary: #f0efec; --text-secondary: #c3c2b7; --text-muted: #96958c; --accent: #3987e5;
+    --chip: #2a2a28; }
+}
+:root[data-theme="dark"] { color-scheme: dark; --surface-0: #121211; --surface-1: #1a1a19; --border: #3a3a37;
+  --text-primary: #f0efec; --text-secondary: #c3c2b7; --text-muted: #96958c; --accent: #3987e5; --chip: #2a2a28; }
+* { box-sizing: border-box; }
+body { margin: 0; background: var(--surface-0); color: var(--text-primary);
+       font: 15px/1.55 system-ui, -apple-system, "Segoe UI", sans-serif; }
+main { max-width: 860px; margin: 0 auto; padding: 32px 16px 64px; }
+a { color: var(--accent); }
+h1 { font-size: 22px; line-height: 1.3; font-weight: 600; margin: 4px 0 12px; }
+h2 { font-size: 15px; font-weight: 600; margin: 28px 0 8px; color: var(--text-secondary);
+     text-transform: uppercase; letter-spacing: 0.04em; }
+p { margin: 0 0 12px; }
+.crumbs { font-size: 13px; color: var(--text-muted); }
+.lede { font-size: 17px; }
+.muted { color: var(--text-muted); }
+.chip { display: inline-block; padding: 1px 8px; border-radius: 10px; background: var(--chip); font-size: 12px;
+        color: var(--text-secondary); margin-right: 4px; white-space: nowrap; }
+.card { background: var(--surface-1); border: 1px solid var(--border); border-radius: 6px; padding: 14px 16px;
+        margin: 0 0 12px; }
+.stats { display: flex; flex-wrap: wrap; gap: 12px; margin: 16px 0; }
+.stat { background: var(--surface-1); border: 1px solid var(--border); border-radius: 6px; padding: 10px 14px;
+        min-width: 140px; }
+.stat b { display: block; font-size: 20px; font-variant-numeric: tabular-nums; }
+.stat span { font-size: 12px; color: var(--text-muted); }
+ul.grounds { list-style: none; padding: 0; margin: 0; }
+ul.grounds li { padding: 6px 0; border-bottom: 1px solid var(--border); }
+ul.grounds li:last-child { border-bottom: 0; }
+table { width: 100%; border-collapse: collapse; background: var(--surface-1); font-size: 14px; }
+th, td { text-align: left; padding: 7px 8px; border-bottom: 1px solid var(--border); vertical-align: top; }
+th { font-weight: 600; color: var(--text-secondary); cursor: pointer; white-space: nowrap; user-select: none; }
+td.num, th.num { text-align: right; font-variant-numeric: tabular-nums; white-space: nowrap; }
+code, .mono { font: 12.5px ui-monospace, SFMono-Regular, Menlo, monospace; word-break: break-all; }
+details summary { cursor: pointer; color: var(--accent); }
+.excerpt { border-left: 3px solid var(--border); padding: 2px 0 2px 10px; color: var(--text-secondary);
+           font-size: 14px; white-space: pre-wrap; }
+input[type=search] { width: 100%; padding: 8px 10px; font: inherit; border: 1px solid var(--border);
+                     border-radius: 6px; background: var(--surface-1); color: var(--text-primary); margin: 8px 0 12px; }
+.table-wrap { overflow-x: auto; }
+@media (max-width: 640px) { .hide-sm { display: none; } }
+</style>
+<script data-goatcounter="https://pintail.goatcounter.com/count" async src="https://gc.zgo.at/count.js"></script>
+</head>
+<body>
+<main>
+<p class="crumbs"><a href="../">Dataset</a></p>
+<h1>Decisions behind the attributions</h1>
+<p>Each attribution in the dataset rests on recorded decisions: which contracts and accounts identify a staking
+service, and which withdrawal addresses or validators belong to whom. Every decision states what was decided, the
+grounds and evidence for it, its sources, and what would change it, so that anyone holding other evidence can test it.
+Stake is as of 2026-10-30; peak stake is the most that rested on the decision at any weekly frame since 2020.</p>
+<input type="search" id="q" placeholder="Filter by id, entity or text" aria-label="Filter decisions">
+<div class="table-wrap"><table id="t">
+<thead><tr><th>Id</th><th>Kind</th><th>Entity</th><th class="hide-sm">Summary</th>
+<th class="num">Validators now</th><th class="num">ETH now</th><th class="num hide-sm">Peak ETH</th></tr></thead>
+<tbody>
+<tr data-q="0002-lido-locator   lido&#x27;s validators are found from its lidolocator contract, which lido&#x27;s own documentation lists; every other lido contract is read from it on chain.">
+  <td><a href="0002-lido-locator.html">0002</a></td>
+  <td>Anchor</td>
+  <td></td>
+  <td class="hide-sm">Lido&#x27;s validators are found from its LidoLocator contract, which Lido&#x27;s own documentation lists; every other Lido contract is read from it on chain.</td>
+  <td class="num" data-v="214943">214,943</td>
+  <td class="num" data-v="9521095">9,521,095</td>
+  <td class="num hide-sm" data-v="9826880">9,826,880</td>
+</tr><tr data-q="0006-binance-eth2-depositor   this account makes the deposits for binance&#x27;s staking: the withdrawal address its deposits credit sends its withdrawn stake to the staking address of binance&#x27;s wbeth token; validators withdrawing to that address are binance&#x27;s.">
+  <td><a href="0006-binance-eth2-depositor.html">0006</a></td>
+  <td>Anchor</td>
+  <td></td>
+  <td class="hide-sm">This account makes the deposits for Binance&#x27;s staking: the withdrawal address its deposits credit sends its withdrawn stake to the staking address of Binance&#x27;s wBETH token; validators withdrawing to that address are Binance&#x27;s.</td>
+  <td class="num" data-v="76925">76,925</td>
+  <td class="num" data-v="3543050">3,543,050</td>
+  <td class="num hide-sm" data-v="3543050">3,543,050</td>
+</tr><tr data-q="0323-binance-staking-withdrawal-address binance/staking binance staking binance&#x27;s own reserve wallets staked to 0x8e60…8224, or funded the account that did: validators withdrawing to it are binance&#x27;s staking.">
+  <td><a href="0323-binance-staking-withdrawal-address.html">0323</a></td>
+  <td>Attribution</td>
+  <td><a href="../entities/binance.html">Binance staking</a> <span class="chip">Allocator</span></td>
+  <td class="hide-sm">Binance&#x27;s own reserve wallets staked to 0x8e60…8224, or funded the account that did: validators withdrawing to it are Binance&#x27;s staking.</td>
+  <td class="num" data-v="76925">76,925</td>
+  <td class="num" data-v="3543050">3,543,050</td>
+  <td class="num hide-sm" data-v="3543050">3,543,050</td>
+</tr><tr data-q="0087-bitmine-staking bitmine/staking bitmine treasury staking validators withdrawing to 111 addresses that proved common control together with bitmine&#x27;s other wallets, whose combined holdings match bitmine&#x27;s reported eth, are bitmine&#x27;s treasury staking.">
+  <td><a href="0087-bitmine-staking.html">0087</a></td>
+  <td>Attribution</td>
+  <td><a href="../entities/bitmine.html">BitMine treasury staking</a> <span class="chip">Allocator</span></td>
+  <td class="hide-sm">Validators withdrawing to 111 addresses that proved common control together with BitMine&#x27;s other wallets, whose combined holdings match BitMine&#x27;s reported ETH, are BitMine&#x27;s treasury staking.</td>
+  <td class="num" data-v="1662">1,662</td>
+  <td class="num" data-v="3228176">3,228,176</td>
+  <td class="num hide-sm" data-v="3228176">3,228,176</td>
+</tr><tr data-q="0020-coinbase-staking-2023 coinbase/staking coinbase staking these 412 addresses hold coinbase&#x27;s retail staking since 2023, by the same pattern as in 2021: deposits funded by coinbase&#x27;s tagged wallets in fixed batches, withdrawals returned to coinbase.">
+  <td><a href="0020-coinbase-staking-2023.html">0020</a></td>
+  <td>Attribution</td>
+  <td><a href="../entities/coinbase.html">Coinbase staking</a> <span class="chip">Allocator</span></td>
+  <td class="hide-sm">These 412 addresses hold Coinbase&#x27;s retail staking since 2023, by the same pattern as in 2021: deposits funded by Coinbase&#x27;s tagged wallets in fixed batches, withdrawals returned to Coinbase.</td>
+  <td class="num" data-v="86769">86,769</td>
+  <td class="num" data-v="2776608">2,776,608</td>
+  <td class="num hide-sm" data-v="2944576">2,944,576</td>
+</tr><tr data-q="0167-coinbase-prime-custodian coinbase coinbase coinbase holds these 1,313 withdrawal addresses in custody for coinbase prime clients; who chose and runs their staking is decided elsewhere.">
+  <td><a href="0167-coinbase-prime-custodian.html">0167</a></td>
+  <td>Attribution</td>
+  <td><a href="../entities/coinbase.html">Coinbase</a> <span class="chip">Custodian</span></td>
+  <td class="hide-sm">Coinbase holds these 1,313 withdrawal addresses in custody for Coinbase Prime clients; who chose and runs their staking is decided elsewhere.</td>
+  <td class="num" data-v="34152">34,152</td>
+  <td class="num" data-v="2410207">2,410,207</td>
+  <td class="num hide-sm" data-v="2410207">2,410,207</td>
+</tr><tr data-q="0115-bitmine-staking-mavan bitmine/staking bitmine treasury staking validators withdrawing to these 81 addresses are bitmine&#x27;s treasury staking, beyond the 111 addresses of decision 0087.">
+  <td><a href="0115-bitmine-staking-mavan.html">0115</a></td>
+  <td>Attribution</td>
+  <td><a href="../entities/bitmine.html">BitMine treasury staking</a> <span class="chip">Allocator</span></td>
+  <td class="hide-sm">Validators withdrawing to these 81 addresses are BitMine&#x27;s treasury staking, beyond the 111 addresses of decision 0087.</td>
+  <td class="num" data-v="1148">1,148</td>
+  <td class="num" data-v="1986396">1,986,396</td>
+  <td class="num hide-sm" data-v="1986396">1,986,396</td>
+</tr><tr data-q="0042-etherfi-node-beacon   this contract is the template behind ether.fi&#x27;s node contracts (ether.fi&#x27;s code); validators withdrawing to an ether.fi node, or to an eigenlayer pod one owns, are ether.fi&#x27;s.">
+  <td><a href="0042-etherfi-node-beacon.html">0042</a></td>
+  <td>Anchor</td>
+  <td></td>
+  <td class="hide-sm">This contract is the template behind ether.fi&#x27;s node contracts (ether.fi&#x27;s code); validators withdrawing to an ether.fi node, or to an EigenLayer pod one owns, are ether.fi&#x27;s.</td>
+  <td class="num" data-v="24540">24,540</td>
+  <td class="num" data-v="1707185">1,707,185</td>
+  <td class="num hide-sm" data-v="2397664">2,397,664</td>
+</tr><tr data-q="0134-coinbase-prime-custody-fleet coinbase/prime coinbase prime (custody clients) validators deposited through coinbase&#x27;s batch contracts from coinbase prime custody accounts, and running on coinbase&#x27;s own validator fleet, are coinbase prime custody clients&#x27; stake run by coinbase.">
+  <td><a href="0134-coinbase-prime-custody-fleet.html">0134</a></td>
+  <td>Attribution</td>
+  <td><a href="../entities/coinbase.html">Coinbase Prime (custody clients)</a> <span class="chip">Allocator</span></td>
+  <td class="hide-sm">Validators deposited through Coinbase&#x27;s batch contracts from Coinbase Prime custody accounts, and running on Coinbase&#x27;s own validator fleet, are Coinbase Prime custody clients&#x27; stake run by Coinbase.</td>
+  <td class="num" data-v="28418">28,418</td>
+  <td class="num" data-v="1130584">1,130,584</td>
+  <td class="num hide-sm" data-v="1217960">1,217,960</td>
+</tr><tr data-q="0041-blockdaemon-batch-deposit   this contract is a deployment of blockdaemon&#x27;s open-source batch deposit contract, which blockdaemon&#x27;s docs direct clients to; validators deposited through it are run by blockdaemon.">
+  <td><a href="0041-blockdaemon-batch-deposit.html">0041</a></td>
+  <td>Anchor</td>
+  <td></td>
+  <td class="hide-sm">This contract is a deployment of Blockdaemon&#x27;s open-source batch deposit contract, which Blockdaemon&#x27;s docs direct clients to; validators deposited through it are run by Blockdaemon.</td>
+  <td class="num" data-v="32461">32,461</td>
+  <td class="num" data-v="1091020">1,091,020</td>
+  <td class="num hide-sm" data-v="1091020">1,091,020</td>
+</tr><tr data-q="0007-kraken-eth2-depositor   this account makes the deposits for kraken&#x27;s staking: its main withdrawal address paid the first gas of kraken&#x27;s eigenlayer restaking account; validators withdrawing to the addresses it deposited to are kraken&#x27;s.">
+  <td><a href="0007-kraken-eth2-depositor.html">0007</a></td>
+  <td>Anchor</td>
+  <td></td>
+  <td class="hide-sm">This account makes the deposits for Kraken&#x27;s staking: its main withdrawal address paid the first gas of Kraken&#x27;s EigenLayer restaking account; validators withdrawing to the addresses it deposited to are Kraken&#x27;s.</td>
+  <td class="num" data-v="6968">6,968</td>
+  <td class="num" data-v="1046225">1,046,225</td>
+  <td class="num hide-sm" data-v="1247456">1,247,456</td>
+</tr><tr data-q="0136-grayscale-figment figment/direct figment direct staking grayscale&#x27;s ether funds split each custody deposit across operators in a fixed order; the validators in figment&#x27;s share are figment&#x27;s, which takes precedence over the custody-address decisions 0114 and 0134 for them.">
+  <td><a href="0136-grayscale-figment.html">0136</a></td>
+  <td>Attribution</td>
+  <td><a href="../entities/figment.html">Figment direct staking</a> <span class="chip">Allocator</span></td>
+  <td class="hide-sm">Grayscale&#x27;s ether funds split each custody deposit across operators in a fixed order; the validators in Figment&#x27;s share are Figment&#x27;s, which takes precedence over the custody-address decisions 0114 and 0134 for them.</td>
+  <td class="num" data-v="916">916</td>
+  <td class="num" data-v="1008180">1,008,180</td>
+  <td class="num hide-sm" data-v="1008180">1,008,180</td>
+</tr><tr data-q="0165-grayscale-principal grayscale grayscale grayscale&#x27;s ether funds hold these custody addresses&#x27; stake and chose its staking providers (figment, galaxy and one not yet identified).">
+  <td><a href="0165-grayscale-principal.html">0165</a></td>
+  <td>Attribution</td>
+  <td><a href="../entities/grayscale.html">Grayscale</a> <span class="chip">Principal</span></td>
+  <td class="hide-sm">Grayscale&#x27;s ether funds hold these custody addresses&#x27; stake and chose its staking providers (Figment, Galaxy and one not yet identified).</td>
+  <td class="num" data-v="916">916</td>
+  <td class="num" data-v="1008180">1,008,180</td>
+  <td class="num hide-sm" data-v="1008180">1,008,180</td>
+</tr><tr data-q="0031-figment-batch-deposit-0x01   figment&#x27;s documentation names this as its batch deposit contract; validators deposited through it are run by figment for its clients.">
+  <td><a href="0031-figment-batch-deposit-0x01.html">0031</a></td>
+  <td>Anchor</td>
+  <td></td>
+  <td class="hide-sm">Figment&#x27;s documentation names this as its batch deposit contract; validators deposited through it are run by Figment for its clients.</td>
+  <td class="num" data-v="25699">25,699</td>
+  <td class="num" data-v="837678">837,678</td>
+  <td class="num hide-sm" data-v="865536">865,536</td>
+</tr><tr data-q="0025-okx-eth2-depositor   this account makes the deposits for okx&#x27;s staking: okx&#x27;s signed proof-of-reserves file lists it and every validator withdrawing to the addresses it deposited to.">
+  <td><a href="0025-okx-eth2-depositor.html">0025</a></td>
+  <td>Anchor</td>
+  <td></td>
+  <td class="hide-sm">This account makes the deposits for OKX&#x27;s staking: OKX&#x27;s signed proof-of-reserves file lists it and every validator withdrawing to the addresses it deposited to.</td>
+  <td class="num" data-v="6308">6,308</td>
+  <td class="num" data-v="663473">663,473</td>
+  <td class="num hide-sm" data-v="663473">663,473</td>
+</tr><tr data-q="0139-okx-por-staking okx/staking okx staking validators at five more withdrawal addresses, three accounts and two eigenlayer pods that okx&#x27;s signed proof of reserves lists as its staked eth, are okx&#x27;s staking.">
+  <td><a href="0139-okx-por-staking.html">0139</a></td>
+  <td>Attribution</td>
+  <td><a href="../entities/okx.html">OKX staking</a> <span class="chip">Allocator</span></td>
+  <td class="hide-sm">Validators at five more withdrawal addresses, three accounts and two EigenLayer pods that OKX&#x27;s signed proof of reserves lists as its staked ETH, are OKX&#x27;s staking.</td>
+  <td class="num" data-v="6308">6,308</td>
+  <td class="num" data-v="663473">663,473</td>
+  <td class="num hide-sm" data-v="663473">663,473</td>
+</tr><tr data-q="0069-upbit-eth2-depositor   upbit says it runs its own validators and began staking eth in 2022; this account and the twelve before it were funded by the same wallets that run upbit&#x27;s polygon validator, so its deposits are upbit&#x27;s.">
+  <td><a href="0069-upbit-eth2-depositor.html">0069</a></td>
+  <td>Anchor</td>
+  <td></td>
+  <td class="hide-sm">Upbit says it runs its own validators and began staking ETH in 2022; this account and the twelve before it were funded by the same wallets that run Upbit&#x27;s Polygon validator, so its deposits are Upbit&#x27;s.</td>
+  <td class="num" data-v="20111">20,111</td>
+  <td class="num" data-v="643552">643,552</td>
+  <td class="num hide-sm" data-v="643552">643,552</td>
+</tr><tr data-q="0324-okx-staking-withdrawal-addresses okx/staking okx staking okx&#x27;s signed proof-of-reserves file lists every validator withdrawing to 0xe839…506c and 0xd5f8…7634 as okx&#x27;s staked eth: they are okx&#x27;s staking.">
+  <td><a href="0324-okx-staking-withdrawal-addresses.html">0324</a></td>
+  <td>Attribution</td>
+  <td><a href="../entities/okx.html">OKX staking</a> <span class="chip">Allocator</span></td>
+  <td class="hide-sm">OKX&#x27;s signed proof-of-reserves file lists every validator withdrawing to 0xe839…506c and 0xd5f8…7634 as OKX&#x27;s staked ETH: they are OKX&#x27;s staking.</td>
+  <td class="num" data-v="5968">5,968</td>
+  <td class="num" data-v="631981">631,981</td>
+  <td class="num hide-sm" data-v="643009">643,009</td>
+</tr><tr data-q="0196-coinbase-prime-custodian-2026 coinbase coinbase coinbase holds 167 more withdrawal addresses in custody for coinbase prime clients, found by 0134&#x27;s gas test; who chose and runs their staking is decided elsewhere.">
+  <td><a href="0196-coinbase-prime-custodian-2026.html">0196</a></td>
+  <td>Attribution</td>
+  <td><a href="../entities/coinbase.html">Coinbase</a> <span class="chip">Custodian</span></td>
+  <td class="hide-sm">Coinbase holds 167 more withdrawal addresses in custody for Coinbase Prime clients, found by 0134&#x27;s gas test; who chose and runs their staking is decided elsewhere.</td>
+  <td class="num" data-v="545">545</td>
+  <td class="num" data-v="622760">622,760</td>
+  <td class="num hide-sm" data-v="622760">622,760</td>
+</tr><tr data-q="0240-sharplink-principal sharplink sharplink wallets that received the 10,000 eth sharplink bought from the ethereum foundation, and whose lseth tracks sharplink&#x27;s reported lseth, stake through figment and coinbase: they are sharplink&#x27;s.">
+  <td><a href="0240-sharplink-principal.html">0240</a></td>
+  <td>Attribution</td>
+  <td><a href="../entities/sharplink.html">Sharplink</a> <span class="chip">Principal</span></td>
+  <td class="hide-sm">Wallets that received the 10,000 ETH Sharplink bought from the Ethereum Foundation, and whose LsETH tracks Sharplink&#x27;s reported LsETH, stake through Figment and Coinbase: they are Sharplink&#x27;s.</td>
+  <td class="num" data-v="18392">18,392</td>
+  <td class="num" data-v="597097">597,097</td>
+  <td class="num hide-sm" data-v="597097">597,097</td>
+</tr><tr data-q="0003-everstake-pool   this contract is everstake&#x27;s pooled-staking pool (the one trezor stakes through): everstake&#x27;s published audit links it to everstake&#x27;s deployer, and trezor&#x27;s own code and guide use it.">
+  <td><a href="0003-everstake-pool.html">0003</a></td>
+  <td>Anchor</td>
+  <td></td>
+  <td class="hide-sm">This contract is Everstake&#x27;s pooled-staking Pool (the one Trezor stakes through): Everstake&#x27;s published audit links it to Everstake&#x27;s deployer, and Trezor&#x27;s own code and guide use it.</td>
+  <td class="num" data-v="15929">15,929</td>
+  <td class="num" data-v="509728">509,728</td>
+  <td class="num hide-sm" data-v="514624">514,624</td>
+</tr><tr data-q="0029-figment-eth2-depositor-1   this contract, created by the same account as figment&#x27;s documented batch contract, is figment&#x27;s; validators deposited through it are run by figment.">
+  <td><a href="0029-figment-eth2-depositor-1.html">0029</a></td>
+  <td>Anchor</td>
+  <td></td>
+  <td class="hide-sm">This contract, created by the same account as Figment&#x27;s documented batch contract, is Figment&#x27;s; validators deposited through it are run by Figment.</td>
+  <td class="num" data-v="13859">13,859</td>
+  <td class="num" data-v="462730">462,730</td>
+  <td class="num hide-sm" data-v="1133024">1,133,024</td>
+</tr><tr data-q="0071-rocket-pool-storage   rocket pool&#x27;s own software names this as rocketstorage, where it registers its contracts; validators withdrawing to pools created by those contracts are rocket pool&#x27;s.">
+  <td><a href="0071-rocket-pool-storage.html">0071</a></td>
+  <td>Anchor</td>
+  <td></td>
+  <td class="hide-sm">Rocket Pool&#x27;s own software names this as RocketStorage, where it registers its contracts; validators withdrawing to pools created by those contracts are Rocket Pool&#x27;s.</td>
+  <td class="num" data-v="13233">13,233</td>
+  <td class="num" data-v="423279">423,279</td>
+  <td class="num hide-sm" data-v="856791">856,791</td>
+</tr><tr data-q="0034-kiln-batch-deposit-v2   kiln&#x27;s documentation names this as its batch deposit contract; validators deposited through it are run by kiln for its clients.">
+  <td><a href="0034-kiln-batch-deposit-v2.html">0034</a></td>
+  <td>Anchor</td>
+  <td></td>
+  <td class="hide-sm">Kiln&#x27;s documentation names this as its batch deposit contract; validators deposited through it are run by Kiln for its clients.</td>
+  <td class="num" data-v="4406">4,406</td>
+  <td class="num" data-v="413450">413,450</td>
+  <td class="num hide-sm" data-v="577874">577,874</td>
+</tr><tr data-q="0005-p2p-deployer   contracts created by this account are p2p.org&#x27;s, per p2p.org&#x27;s own code repositories and docs, so validators deposited through them are run and allocated by p2p.org.">
+  <td><a href="0005-p2p-deployer.html">0005</a></td>
+  <td>Anchor</td>
+  <td></td>
+  <td class="hide-sm">Contracts created by this account are P2P.org&#x27;s, per P2P.org&#x27;s own code repositories and docs, so validators deposited through them are run and allocated by P2P.org.</td>
+  <td class="num" data-v="8830">8,830</td>
+  <td class="num" data-v="373441">373,441</td>
+  <td class="num hide-sm" data-v="454400">454,400</td>
+</tr><tr data-q="0195-ethereum-foundation-staking ethereum-foundation/staking ethereum foundation treasury staking the ethereum foundation&#x27;s treasury staking: the validator it links as its first withdraws to safe 0xc061, and so do 33 more of about 2,048 eth each, about 70,000 eth as it announced.">
+  <td><a href="0195-ethereum-foundation-staking.html">0195</a></td>
+  <td>Attribution</td>
+  <td><a href="../entities/ethereum-foundation.html">Ethereum Foundation treasury staking</a> <span class="chip">Allocator</span></td>
+  <td class="hide-sm">The Ethereum Foundation&#x27;s treasury staking: the validator it links as its first withdraws to Safe 0xc061, and so do 33 more of about 2,048 ETH each, about 70,000 ETH as it announced.</td>
+  <td class="num" data-v="9441">9,441</td>
+  <td class="num" data-v="370656">370,656</td>
+  <td class="num hide-sm" data-v="370656">370,656</td>
+</tr><tr data-q="0024-bitcoin-suisse-staking-2023 bitcoin-suisse/staking bitcoin suisse staking these 9 addresses hold bitcoin suisse&#x27;s staking since 2023: every block their validators proposed is signed bitcoinsuisse.com, and they withdraw to the same wallet as its 2020 staking.">
+  <td><a href="0024-bitcoin-suisse-staking-2023.html">0024</a></td>
+  <td>Attribution</td>
+  <td><a href="../entities/bitcoin-suisse.html">Bitcoin Suisse staking</a> <span class="chip">Allocator</span></td>
+  <td class="hide-sm">These 9 addresses hold Bitcoin Suisse&#x27;s staking since 2023: every block their validators proposed is signed bitcoinsuisse.com, and they withdraw to the same wallet as its 2020 staking.</td>
+  <td class="num" data-v="10120">10,120</td>
+  <td class="num" data-v="323840">323,840</td>
+  <td class="num hide-sm" data-v="343872">343,872</td>
+</tr><tr data-q="0032-figment-batch-deposit-0x02   figment&#x27;s documentation names this as its batch deposit contract for compounding validators; validators deposited through it are run by figment for its clients.">
+  <td><a href="0032-figment-batch-deposit-0x02.html">0032</a></td>
+  <td>Anchor</td>
+  <td></td>
+  <td class="hide-sm">Figment&#x27;s documentation names this as its batch deposit contract for compounding validators; validators deposited through it are run by Figment for its clients.</td>
+  <td class="num" data-v="1071">1,071</td>
+  <td class="num" data-v="323087">323,087</td>
+  <td class="num hide-sm" data-v="323087">323,087</td>
+</tr><tr data-q="0039-kiln-vpool-00a0   this contract is one of kiln&#x27;s vpools, created by the same factory as kiln&#x27;s tagged vpool implementation; validators it deposits are run by kiln.">
+  <td><a href="0039-kiln-vpool-00a0.html">0039</a></td>
+  <td>Anchor</td>
+  <td></td>
+  <td class="hide-sm">This contract is one of Kiln&#x27;s vPools, created by the same factory as Kiln&#x27;s tagged vPool implementation; validators it deposits are run by Kiln.</td>
+  <td class="num" data-v="9677">9,677</td>
+  <td class="num" data-v="309664">309,664</td>
+  <td class="num hide-sm" data-v="319456">319,456</td>
+</tr><tr data-q="0038-stakefish-eth2-depositor   this contract, whose code is stakefish&#x27;s published batch deposit contract and whose validators almost all sign stakefish&#x27;s graffiti, is stakefish&#x27;s; validators deposited through it are run by stakefish.">
+  <td><a href="0038-stakefish-eth2-depositor.html">0038</a></td>
+  <td>Anchor</td>
+  <td></td>
+  <td class="hide-sm">This contract, whose code is stakefish&#x27;s published batch deposit contract and whose validators almost all sign stakefish&#x27;s graffiti, is stakefish&#x27;s; validators deposited through it are run by stakefish.</td>
+  <td class="num" data-v="4186">4,186</td>
+  <td class="num" data-v="302388">302,388</td>
+  <td class="num hide-sm" data-v="497472">497,472</td>
+</tr><tr data-q="0077-everstake-eth2-depositor   this account made everstake&#x27;s first staking deposits: its validators moved to a multisig whose owners deposited 12,000 more, and nearly all of them sign everstake&#x27;s graffiti.">
+  <td><a href="0077-everstake-eth2-depositor.html">0077</a></td>
+  <td>Anchor</td>
+  <td></td>
+  <td class="hide-sm">This account made Everstake&#x27;s first staking deposits: its validators moved to a multisig whose owners deposited 12,000 more, and nearly all of them sign Everstake&#x27;s graffiti.</td>
+  <td class="num" data-v="9407">9,407</td>
+  <td class="num" data-v="301024">301,024</td>
+  <td class="num hide-sm" data-v="401984">401,984</td>
+</tr><tr data-q="0241-sharplink-coinbase-vaults sharplink sharplink 86 coinbase custody vaults share one fee recipient and one reward sweep with seven vaults that sharplink&#x27;s own wallet funded; with decision 0240 they account for sharplink&#x27;s reported native eth.">
+  <td><a href="0241-sharplink-coinbase-vaults.html">0241</a></td>
+  <td>Attribution</td>
+  <td><a href="../entities/sharplink.html">Sharplink</a> <span class="chip">Principal</span></td>
+  <td class="hide-sm">86 Coinbase custody vaults share one fee recipient and one reward sweep with seven vaults that Sharplink&#x27;s own wallet funded; with decision 0240 they account for Sharplink&#x27;s reported native ETH.</td>
+  <td class="num" data-v="8985">8,985</td>
+  <td class="num" data-v="296073">296,073</td>
+  <td class="num hide-sm" data-v="296073">296,073</td>
+</tr><tr data-q="0105-stakewise-vaults-registry   stakewise&#x27;s own deployment list names this as its v3 vaultsregistry; validators withdrawing to a vault it registered are stakewise v3&#x27;s.">
+  <td><a href="0105-stakewise-vaults-registry.html">0105</a></td>
+  <td>Anchor</td>
+  <td></td>
+  <td class="hide-sm">StakeWise&#x27;s own deployment list names this as its V3 VaultsRegistry; validators withdrawing to a vault it registered are StakeWise V3&#x27;s.</td>
+  <td class="num" data-v="2961">2,961</td>
+  <td class="num" data-v="293547">293,547</td>
+  <td class="num hide-sm" data-v="360992">360,992</td>
+</tr><tr data-q="0023-bitcoin-suisse-staking-2020 bitcoin-suisse/staking bitcoin suisse staking these 7 addresses held bitcoin suisse&#x27;s staking from 2020: every block their validators proposed is signed bitcoinsuisse.com, and their withdrawals go to the same wallet as bitcoin suisse&#x27;s later staking.">
+  <td><a href="0023-bitcoin-suisse-staking-2020.html">0023</a></td>
+  <td>Attribution</td>
+  <td><a href="../entities/bitcoin-suisse.html">Bitcoin Suisse staking</a> <span class="chip">Allocator</span></td>
+  <td class="hide-sm">These 7 addresses held Bitcoin Suisse&#x27;s staking from 2020: every block their validators proposed is signed bitcoinsuisse.com, and their withdrawals go to the same wallet as Bitcoin Suisse&#x27;s later staking.</td>
+  <td class="num" data-v="8768">8,768</td>
+  <td class="num" data-v="280576">280,576</td>
+  <td class="num hide-sm" data-v="443424">443,424</td>
+</tr><tr data-q="0218-bitpanda-principal bitpanda bitpanda bitpanda&#x27;s staking wallets, tied to bitpanda by its best token: they hold the issuer&#x27;s supply and make the monthly burns bitpanda announces; kiln and figment run the validators.">
+  <td><a href="0218-bitpanda-principal.html">0218</a></td>
+  <td>Attribution</td>
+  <td><a href="../entities/bitpanda.html">Bitpanda</a> <span class="chip">Principal</span></td>
+  <td class="hide-sm">Bitpanda&#x27;s staking wallets, tied to Bitpanda by its BEST token: they hold the issuer&#x27;s supply and make the monthly burns Bitpanda announces; Kiln and Figment run the validators.</td>
+  <td class="num" data-v="274">274</td>
+  <td class="num" data-v="280467">280,467</td>
+  <td class="num hide-sm" data-v="280467">280,467</td>
+</tr><tr data-q="0044-liquid-collective-river   liquid collective&#x27;s documentation names this as river, its lseth contract; validators withdrawing to the address river deposits to are liquid collective&#x27;s.">
+  <td><a href="0044-liquid-collective-river.html">0044</a></td>
+  <td>Anchor</td>
+  <td></td>
+  <td class="hide-sm">Liquid Collective&#x27;s documentation names this as River, its LsETH contract; validators withdrawing to the address River deposits to are Liquid Collective&#x27;s.</td>
+  <td class="num" data-v="8552">8,552</td>
+  <td class="num" data-v="273664">273,664</td>
+  <td class="num hide-sm" data-v="365888">365,888</td>
+</tr><tr data-q="0188-bitflyer-principal bitflyer bitflyer bitflyer&#x27;s staking multisig chose its providers (kiln, then blockdaemon) and receives the withdrawals.">
+  <td><a href="0188-bitflyer-principal.html">0188</a></td>
+  <td>Attribution</td>
+  <td><a href="../entities/bitflyer.html">bitFlyer</a> <span class="chip">Principal</span></td>
+  <td class="hide-sm">bitFlyer&#x27;s staking multisig chose its providers (Kiln, then Blockdaemon) and receives the withdrawals.</td>
+  <td class="num" data-v="8081">8,081</td>
+  <td class="num" data-v="258592">258,592</td>
+  <td class="num hide-sm" data-v="258592">258,592</td>
+</tr><tr data-q="0008-kraken-240-depositor   this account (0xed20…8ab0), funded by the same account as kraken&#x27;s eigenlayer restaking account and depositing like kraken&#x27;s other accounts, makes deposits for kraken&#x27;s staking.">
+  <td><a href="0008-kraken-240-depositor.html">0008</a></td>
+  <td>Anchor</td>
+  <td></td>
+  <td class="hide-sm">This account (0xed20…8ab0), funded by the same account as Kraken&#x27;s EigenLayer restaking account and depositing like Kraken&#x27;s other accounts, makes deposits for Kraken&#x27;s staking.</td>
+  <td class="num" data-v="882">882</td>
+  <td class="num" data-v="231796">231,796</td>
+  <td class="num hide-sm" data-v="231796">231,796</td>
+</tr><tr data-q="0180-gemini-staking gemini/staking gemini staking gemini&#x27;s eth staking: the key that administers gemini&#x27;s own gusd token operates these withdrawal wallets, and gemini&#x27;s printer funds them.">
+  <td><a href="0180-gemini-staking.html">0180</a></td>
+  <td>Attribution</td>
+  <td><a href="../entities/gemini.html">Gemini staking</a> <span class="chip">Allocator</span></td>
+  <td class="hide-sm">Gemini&#x27;s ETH staking: the key that administers Gemini&#x27;s own GUSD token operates these withdrawal wallets, and Gemini&#x27;s printer funds them.</td>
+  <td class="num" data-v="3253">3,253</td>
+  <td class="num" data-v="226983">226,983</td>
+  <td class="num hide-sm" data-v="226983">226,983</td>
+</tr><tr data-q="0242-coinbase-prime-sharplink-custody-vaults coinbase/prime coinbase prime (custody clients) 64 coinbase custody vaults of sharplink&#x27;s run coinbase&#x27;s retail fleet&#x27;s client builds week by week and share their fee recipient with 29 vaults already in decision 0134: coinbase runs them, as it runs those.">
+  <td><a href="0242-coinbase-prime-sharplink-custody-vaults.html">0242</a></td>
+  <td>Attribution</td>
+  <td><a href="../entities/coinbase.html">Coinbase Prime (custody clients)</a> <span class="chip">Allocator</span></td>
+  <td class="hide-sm">64 Coinbase custody vaults of Sharplink&#x27;s run Coinbase&#x27;s retail fleet&#x27;s client builds week by week and share their fee recipient with 29 vaults already in decision 0134: Coinbase runs them, as it runs those.</td>
+  <td class="num" data-v="6408">6,408</td>
+  <td class="num" data-v="205056">205,056</td>
+  <td class="num hide-sm" data-v="205056">205,056</td>
+</tr><tr data-q="0070-mantle-meth-staking   meth protocol&#x27;s documentation names this as its staking contract; validators withdrawing to the addresses it deposits to are mantle&#x27;s (meth).">
+  <td><a href="0070-mantle-meth-staking.html">0070</a></td>
+  <td>Anchor</td>
+  <td></td>
+  <td class="hide-sm">mETH Protocol&#x27;s documentation names this as its Staking contract; validators withdrawing to the addresses it deposits to are Mantle&#x27;s (mETH).</td>
+  <td class="num" data-v="6080">6,080</td>
+  <td class="num" data-v="194560">194,560</td>
+  <td class="num hide-sm" data-v="539968">539,968</td>
+</tr><tr data-q="0075-merge-defi-whale-0x234e   ">
+  <td><a href="0075-merge-defi-whale-0x234e.html">0075</a></td>
+  <td>Merge</td>
+  <td></td>
+  <td class="hide-sm"></td>
+  <td class="num" data-v="5716">5,716</td>
+  <td class="num" data-v="182912">182,912</td>
+  <td class="num hide-sm" data-v="182912">182,912</td>
+</tr><tr data-q="0170-gate-staking gate/staking gate staking a self-run fleet, compounding its own rewards, whose deposits gate&#x27;s hot wallet funded; gate named the cold wallet behind it as its own.">
+  <td><a href="0170-gate-staking.html">0170</a></td>
+  <td>Attribution</td>
+  <td><a href="../entities/gate.html">Gate staking</a> <span class="chip">Allocator</span></td>
+  <td class="hide-sm">A self-run fleet, compounding its own rewards, whose deposits Gate&#x27;s hot wallet funded; Gate named the cold wallet behind it as its own.</td>
+  <td class="num" data-v="5716">5,716</td>
+  <td class="num" data-v="182912">182,912</td>
+  <td class="num hide-sm" data-v="182912">182,912</td>
+</tr><tr data-q="0009-kraken-182-depositor   this account (0x1ed8…f417), funded by the same account as kraken&#x27;s eigenlayer restaking account and depositing like kraken&#x27;s other accounts, makes deposits for kraken&#x27;s staking.">
+  <td><a href="0009-kraken-182-depositor.html">0009</a></td>
+  <td>Anchor</td>
+  <td></td>
+  <td class="hide-sm">This account (0x1ed8…f417), funded by the same account as Kraken&#x27;s EigenLayer restaking account and depositing like Kraken&#x27;s other accounts, makes deposits for Kraken&#x27;s staking.</td>
+  <td class="num" data-v="1623">1,623</td>
+  <td class="num" data-v="179414">179,414</td>
+  <td class="num hide-sm" data-v="194936">194,936</td>
+</tr><tr data-q="0109-kelp-proxy-admin   kelp dao&#x27;s own repository lists this contract as the administrator of its contracts; validators withdrawing to eigenlayer pods its nodedelegators own are kelp&#x27;s (rseth).">
+  <td><a href="0109-kelp-proxy-admin.html">0109</a></td>
+  <td>Anchor</td>
+  <td></td>
+  <td class="hide-sm">Kelp DAO&#x27;s own repository lists this contract as the administrator of its contracts; validators withdrawing to EigenLayer pods its NodeDelegators own are Kelp&#x27;s (rsETH).</td>
+  <td class="num" data-v="4479">4,479</td>
+  <td class="num" data-v="143328">143,328</td>
+  <td class="num hide-sm" data-v="164128">164,128</td>
+</tr><tr data-q="0123-coinspot-staking coinspot/staking coinspot staking validators withdrawing to an address that pays only the wallets refilling coinspot&#x27;s customer-withdrawal wallet, deposited with eth from the same wallets, are coinspot&#x27;s staking.">
+  <td><a href="0123-coinspot-staking.html">0123</a></td>
+  <td>Attribution</td>
+  <td><a href="../entities/coinspot.html">CoinSpot staking</a> <span class="chip">Allocator</span></td>
+  <td class="hide-sm">Validators withdrawing to an address that pays only the wallets refilling CoinSpot&#x27;s customer-withdrawal wallet, deposited with ETH from the same wallets, are CoinSpot&#x27;s staking.</td>
+  <td class="num" data-v="4303">4,303</td>
+  <td class="num" data-v="137696">137,696</td>
+  <td class="num hide-sm" data-v="137696">137,696</td>
+</tr><tr data-q="0012-kraken-eigenpod-depositor-8beb   this account, funded by kraken&#x27;s tagged wallets, deposits into an eigenlayer pod it owns, matching kraken&#x27;s announced restaking of customers&#x27; eth; its validators are kraken&#x27;s.">
+  <td><a href="0012-kraken-eigenpod-depositor-8beb.html">0012</a></td>
+  <td>Anchor</td>
+  <td></td>
+  <td class="hide-sm">This account, funded by Kraken&#x27;s tagged wallets, deposits into an EigenLayer pod it owns, matching Kraken&#x27;s announced restaking of customers&#x27; ETH; its validators are Kraken&#x27;s.</td>
+  <td class="num" data-v="115">115</td>
+  <td class="num" data-v="135412">135,412</td>
+  <td class="num hide-sm" data-v="135412">135,412</td>
+</tr><tr data-q="0243-coinbase-prime-custody-fleet-retested coinbase/prime coinbase prime (custody clients) 171 coinbase custody addresses that decision 0134&#x27;s operator test never reached pass it: their validators run coinbase&#x27;s retail fleet&#x27;s builds, or pay the same client fee recipients as validators that do.">
+  <td><a href="0243-coinbase-prime-custody-fleet-retested.html">0243</a></td>
+  <td>Attribution</td>
+  <td><a href="../entities/coinbase.html">Coinbase Prime (custody clients)</a> <span class="chip">Allocator</span></td>
+  <td class="hide-sm">171 Coinbase custody addresses that decision 0134&#x27;s operator test never reached pass it: their validators run Coinbase&#x27;s retail fleet&#x27;s builds, or pay the same client fee recipients as validators that do.</td>
+  <td class="num" data-v="3207">3,207</td>
+  <td class="num" data-v="122851">122,851</td>
+  <td class="num hide-sm" data-v="151117">151,117</td>
+</tr><tr data-q="0209-blockdaemon-batch-deposit-2   blockdaemon&#x27;s batchdeposit2 for compounding validators, whose mainnet address blockdaemon&#x27;s own repository lists.">
+  <td><a href="0209-blockdaemon-batch-deposit-2.html">0209</a></td>
+  <td>Anchor</td>
+  <td></td>
+  <td class="hide-sm">Blockdaemon&#x27;s BatchDeposit2 for compounding validators, whose mainnet address Blockdaemon&#x27;s own repository lists.</td>
+  <td class="num" data-v="202">202</td>
+  <td class="num" data-v="119355">119,355</td>
+  <td class="num hide-sm" data-v="133785">133,785</td>
+</tr><tr data-q="0120-revolut-staking revolut/staking revolut staking validators deposited by an account funded only by a wallet that handled revolut&#x27;s eurr stablecoin from before its launch, and withdrawing back to that account, are revolut&#x27;s staking.">
+  <td><a href="0120-revolut-staking.html">0120</a></td>
+  <td>Attribution</td>
+  <td><a href="../entities/revolut.html">Revolut staking</a> <span class="chip">Allocator</span></td>
+  <td class="hide-sm">Validators deposited by an account funded only by a wallet that handled Revolut&#x27;s EURR stablecoin from before its launch, and withdrawing back to that account, are Revolut&#x27;s staking.</td>
+  <td class="num" data-v="3616">3,616</td>
+  <td class="num" data-v="115712">115,712</td>
+  <td class="num hide-sm" data-v="115712">115,712</td>
+</tr><tr data-q="0037-kiln-factory-8659   this contract was created by kiln&#x27;s tagged deployer, so validators deposited through it are taken to be run by kiln; no source names the contract itself.">
+  <td><a href="0037-kiln-factory-8659.html">0037</a></td>
+  <td>Anchor</td>
+  <td></td>
+  <td class="hide-sm">This contract was created by Kiln&#x27;s tagged deployer, so validators deposited through it are taken to be run by Kiln; no source names the contract itself.</td>
+  <td class="num" data-v="1076">1,076</td>
+  <td class="num" data-v="113470">113,470</td>
+  <td class="num hide-sm" data-v="113470">113,470</td>
+</tr><tr data-q="0141-coinbase-cloud-vpool coinbase/cloud coinbase cloud the validators of the vpool 0x8eea…75f4, which names itself and its operator coinbase cloud, are allocated by coinbase cloud, not kiln.">
+  <td><a href="0141-coinbase-cloud-vpool.html">0141</a></td>
+  <td>Attribution</td>
+  <td><a href="../entities/coinbase.html">Coinbase Cloud</a> <span class="chip">Allocator</span></td>
+  <td class="hide-sm">The validators of the vPool 0x8eea…75f4, which names itself and its operator Coinbase Cloud, are allocated by Coinbase Cloud, not Kiln.</td>
+  <td class="num" data-v="3542">3,542</td>
+  <td class="num" data-v="113344">113,344</td>
+  <td class="num hide-sm" data-v="119616">119,616</td>
+</tr><tr data-q="0153-staked-fee-recipient   this address is staked&#x27;s execution-reward pool; otherwise unattributed validators paying their fees and mev to it are taken to be run, and allocated, by staked.">
+  <td><a href="0153-staked-fee-recipient.html">0153</a></td>
+  <td>Anchor</td>
+  <td></td>
+  <td class="hide-sm">This address is Staked&#x27;s execution-reward pool; otherwise unattributed validators paying their fees and MEV to it are taken to be run, and allocated, by Staked.</td>
+  <td class="num" data-v="2764">2,764</td>
+  <td class="num" data-v="109573">109,573</td>
+  <td class="num hide-sm" data-v="252032">252,032</td>
+</tr><tr data-q="0110-everstake-batch-deposit   an audit everstake commissioned and announced names this as everstake&#x27;s eth2 batch deposit contract; validators deposited through it are run by everstake for its clients.">
+  <td><a href="0110-everstake-batch-deposit.html">0110</a></td>
+  <td>Anchor</td>
+  <td></td>
+  <td class="hide-sm">An audit Everstake commissioned and announced names this as Everstake&#x27;s ETH2 batch deposit contract; validators deposited through it are run by Everstake for its clients.</td>
+  <td class="num" data-v="65">65</td>
+  <td class="num" data-v="106367">106,367</td>
+  <td class="num hide-sm" data-v="106367">106,367</td>
+</tr><tr data-q="0132-golem-foundation-octant golem-foundation/octant octant staking validators withdrawing to the safe that the golem foundation&#x27;s own octant repository lists as its mainnet &quot;withdrawal target&quot; are the foundation&#x27;s staking for octant.">
+  <td><a href="0132-golem-foundation-octant.html">0132</a></td>
+  <td>Attribution</td>
+  <td><a href="../entities/golem-foundation.html">Octant staking</a> <span class="chip">Allocator</span></td>
+  <td class="hide-sm">Validators withdrawing to the Safe that the Golem Foundation&#x27;s own Octant repository lists as its mainnet &quot;Withdrawal Target&quot; are the Foundation&#x27;s staking for Octant.</td>
+  <td class="num" data-v="3105">3,105</td>
+  <td class="num" data-v="100352">100,352</td>
+  <td class="num hide-sm" data-v="100352">100,352</td>
+</tr><tr data-q="0137-coinbase-prime-custody-figment figment/direct figment direct staking validators of coinbase prime custody clients that carry figment&#x27;s fleet fingerprint are run by figment, which takes precedence over the custody-address decisions 0114 and 0134 for them.">
+  <td><a href="0137-coinbase-prime-custody-figment.html">0137</a></td>
+  <td>Attribution</td>
+  <td><a href="../entities/figment.html">Figment direct staking</a> <span class="chip">Allocator</span></td>
+  <td class="hide-sm">Validators of Coinbase Prime custody clients that carry Figment&#x27;s fleet fingerprint are run by Figment, which takes precedence over the custody-address decisions 0114 and 0134 for them.</td>
+  <td class="num" data-v="1399">1,399</td>
+  <td class="num" data-v="99759">99,759</td>
+  <td class="num hide-sm" data-v="99759">99,759</td>
+</tr><tr data-q="0216-bitvavo-principal-coinbase-prime bitvavo bitvavo bitvavo&#x27;s stake held at coinbase prime: the validators paying fee recipient 0x13f2, which forwards to bitvavo&#x27;s wallets, as several of their withdrawal addresses do.">
+  <td><a href="0216-bitvavo-principal-coinbase-prime.html">0216</a></td>
+  <td>Attribution</td>
+  <td><a href="../entities/bitvavo.html">Bitvavo</a> <span class="chip">Principal</span></td>
+  <td class="hide-sm">Bitvavo&#x27;s stake held at Coinbase Prime: the validators paying fee recipient 0x13f2, which forwards to Bitvavo&#x27;s wallets, as several of their withdrawal addresses do.</td>
+  <td class="num" data-v="2415">2,415</td>
+  <td class="num" data-v="96278">96,278</td>
+  <td class="num hide-sm" data-v="96278">96,278</td>
+</tr><tr data-q="0013-kraken-eigenpod-depositor-45e3   this account, funded by kraken&#x27;s tagged wallets, deposits into an eigenlayer pod it owns, matching kraken&#x27;s announced restaking of customers&#x27; eth; its validators are kraken&#x27;s.">
+  <td><a href="0013-kraken-eigenpod-depositor-45e3.html">0013</a></td>
+  <td>Anchor</td>
+  <td></td>
+  <td class="hide-sm">This account, funded by Kraken&#x27;s tagged wallets, deposits into an EigenLayer pod it owns, matching Kraken&#x27;s announced restaking of customers&#x27; ETH; its validators are Kraken&#x27;s.</td>
+  <td class="num" data-v="108">108</td>
+  <td class="num" data-v="79014">79,014</td>
+  <td class="num hide-sm" data-v="88484">88,484</td>
+</tr><tr data-q="0184-crypto-com-principal crypto-com crypto.com crypto.com&#x27;s staking wallet chose its providers (figment, kiln, p2p) or staked directly, and receives the withdrawals.">
+  <td><a href="0184-crypto-com-principal.html">0184</a></td>
+  <td>Attribution</td>
+  <td><a href="../entities/crypto-com.html">Crypto.com</a> <span class="chip">Principal</span></td>
+  <td class="hide-sm">Crypto.com&#x27;s staking wallet chose its providers (Figment, Kiln, P2P) or staked directly, and receives the withdrawals.</td>
+  <td class="num" data-v="2211">2,211</td>
+  <td class="num" data-v="77862">77,862</td>
+  <td class="num hide-sm" data-v="77862">77,862</td>
+</tr><tr data-q="0199-etoro-staking etoro/staking etoro staking validators withdrawing to an address whose staking took off in the days etoro relaunched eth staking, and whose rewards are swept out monthly, are attributed to etoro&#x27;s staking; the evidence is suggestive but not conclusive, as etoro names no address.">
+  <td><a href="0199-etoro-staking.html">0199</a></td>
+  <td>Attribution</td>
+  <td><a href="../entities/etoro.html">eToro staking</a> <span class="chip">Allocator</span></td>
+  <td class="hide-sm">Validators withdrawing to an address whose staking took off in the days eToro relaunched ETH staking, and whose rewards are swept out monthly, are attributed to eToro&#x27;s staking; the evidence is suggestive but not conclusive, as eToro names no address.</td>
+  <td class="num" data-v="2323">2,323</td>
+  <td class="num" data-v="74336">74,336</td>
+  <td class="num hide-sm" data-v="74336">74,336</td>
+</tr><tr data-q="0103-stakefish-fee-pool   this contract, the fee recipient of blocks signed only with stakefish&#x27;s graffiti and with the interface of stakefish&#x27;s documented fee pool, is stakefish&#x27;s fee pool.">
+  <td><a href="0103-stakefish-fee-pool.html">0103</a></td>
+  <td>Anchor</td>
+  <td></td>
+  <td class="hide-sm">This contract, the fee recipient of blocks signed only with stakefish&#x27;s graffiti and with the interface of stakefish&#x27;s documented fee pool, is stakefish&#x27;s fee pool.</td>
+  <td class="num" data-v="676">676</td>
+  <td class="num" data-v="74018">74,018</td>
+  <td class="num hide-sm" data-v="157847">157,847</td>
+</tr><tr data-q="0212-bitbank-staking bitbank/staking bitbank staking bitbank&#x27;s eth staking: compounding validators deposited by the cold wallet that bitbank&#x27;s customer deposit contract forwards every deposit to.">
+  <td><a href="0212-bitbank-staking.html">0212</a></td>
+  <td>Attribution</td>
+  <td><a href="../entities/bitbank.html">bitbank staking</a> <span class="chip">Allocator</span></td>
+  <td class="hide-sm">bitbank&#x27;s ETH staking: compounding validators deposited by the cold wallet that bitbank&#x27;s customer deposit contract forwards every deposit to.</td>
+  <td class="num" data-v="77">77</td>
+  <td class="num" data-v="71783">71,783</td>
+  <td class="num hide-sm" data-v="78395">78,395</td>
+</tr><tr data-q="0011-kraken-eigenpod-depositor-0c47   this account, funded by kraken&#x27;s tagged wallets, deposits into an eigenlayer pod it owns, matching kraken&#x27;s announced restaking of customers&#x27; eth; its validators are kraken&#x27;s.">
+  <td><a href="0011-kraken-eigenpod-depositor-0c47.html">0011</a></td>
+  <td>Anchor</td>
+  <td></td>
+  <td class="hide-sm">This account, funded by Kraken&#x27;s tagged wallets, deposits into an EigenLayer pod it owns, matching Kraken&#x27;s announced restaking of customers&#x27; ETH; its validators are Kraken&#x27;s.</td>
+  <td class="num" data-v="41">41</td>
+  <td class="num" data-v="69396">69,396</td>
+  <td class="num hide-sm" data-v="69396">69,396</td>
+</tr><tr data-q="0174-thedao-security-fund-dappnode dappnode/staking dappnode-run staking thedao security fund&#x27;s staked endowment: dappnode runs it, and the validators say so in their blocks.">
+  <td><a href="0174-thedao-security-fund-dappnode.html">0174</a></td>
+  <td>Attribution</td>
+  <td><a href="../entities/dappnode.html">Dappnode-run staking</a> <span class="chip">Allocator</span></td>
+  <td class="hide-sm">TheDAO Security Fund&#x27;s staked endowment: Dappnode runs it, and the validators say so in their blocks.</td>
+  <td class="num" data-v="34">34</td>
+  <td class="num" data-v="69021">69,021</td>
+  <td class="num hide-sm" data-v="69426">69,426</td>
+</tr><tr data-q="0175-thedao-security-fund-principal thedao-security-fund thedao security fund thedao security fund owns the stake at 0x5201…b756 and chose dappnode to run it.">
+  <td><a href="0175-thedao-security-fund-principal.html">0175</a></td>
+  <td>Attribution</td>
+  <td><a href="../entities/thedao-security-fund.html">TheDAO Security Fund</a> <span class="chip">Principal</span></td>
+  <td class="hide-sm">TheDAO Security Fund owns the stake at 0x5201…b756 and chose Dappnode to run it.</td>
+  <td class="num" data-v="34">34</td>
+  <td class="num" data-v="69021">69,021</td>
+  <td class="num hide-sm" data-v="69021">69,021</td>
+</tr><tr data-q="0215-bitvavo-staking bitvavo/staking bitvavo staking bitvavo&#x27;s eth staking: validators of two addresses funded by the cold wallet that refills bitvavo&#x27;s hot wallet, which bitvavo named to a customer.">
+  <td><a href="0215-bitvavo-staking.html">0215</a></td>
+  <td>Attribution</td>
+  <td><a href="../entities/bitvavo.html">Bitvavo staking</a> <span class="chip">Allocator</span></td>
+  <td class="hide-sm">Bitvavo&#x27;s ETH staking: validators of two addresses funded by the cold wallet that refills Bitvavo&#x27;s hot wallet, which Bitvavo named to a customer.</td>
+  <td class="num" data-v="522">522</td>
+  <td class="num" data-v="63681">63,681</td>
+  <td class="num hide-sm" data-v="63681">63,681</td>
+</tr><tr data-q="0151-stader-ethx   stader&#x27;s own contract list names the two contracts that send every ethx validator&#x27;s first deposit; validators deposited through them, withdrawing to their own stader vaults, are stader ethx&#x27;s.">
+  <td><a href="0151-stader-ethx.html">0151</a></td>
+  <td>Anchor</td>
+  <td></td>
+  <td class="hide-sm">Stader&#x27;s own contract list names the two contracts that send every ETHx validator&#x27;s first deposit; validators deposited through them, withdrawing to their own Stader vaults, are Stader ETHx&#x27;s.</td>
+  <td class="num" data-v="1873">1,873</td>
+  <td class="num" data-v="59936">59,936</td>
+  <td class="num hide-sm" data-v="131072">131,072</td>
+</tr><tr data-q="0200-htx-eth2-depositor-3   reserve wallets whose ownership htx (formerly huobi) proved by signature funded the multisig wallets that supplied this account&#x27;s eth and the key that created its withdrawal wallets; it is htx&#x27;s third deposit account.">
+  <td><a href="0200-htx-eth2-depositor-3.html">0200</a></td>
+  <td>Anchor</td>
+  <td></td>
+  <td class="hide-sm">Reserve wallets whose ownership HTX (formerly Huobi) proved by signature funded the multisig wallets that supplied this account&#x27;s ETH and the key that created its withdrawal wallets; it is HTX&#x27;s third deposit account.</td>
+  <td class="num" data-v="1794">1,794</td>
+  <td class="num" data-v="57408">57,408</td>
+  <td class="num hide-sm" data-v="171360">171,360</td>
+</tr><tr data-q="0189-infstones-imtoken-batch-deposit   the batch-deposit contract behind imtoken&#x27;s in-wallet eth staking, whose validators infstones runs; its stake to 31 may 2021 matches imtoken&#x27;s own figure exactly.">
+  <td><a href="0189-infstones-imtoken-batch-deposit.html">0189</a></td>
+  <td>Anchor</td>
+  <td></td>
+  <td class="hide-sm">The batch-deposit contract behind imToken&#x27;s in-wallet ETH staking, whose validators InfStones runs; its stake to 31 May 2021 matches imToken&#x27;s own figure exactly.</td>
+  <td class="num" data-v="1698">1,698</td>
+  <td class="num" data-v="54336">54,336</td>
+  <td class="num hide-sm" data-v="75648">75,648</td>
+</tr><tr data-q="0090-bitfinex-staking bitfinex/staking bitfinex staking validators withdrawing to the address bitfinex lists as its eth hot wallet are bitfinex&#x27;s staking.">
+  <td><a href="0090-bitfinex-staking.html">0090</a></td>
+  <td>Attribution</td>
+  <td><a href="../entities/bitfinex.html">Bitfinex staking</a> <span class="chip">Allocator</span></td>
+  <td class="hide-sm">Validators withdrawing to the address Bitfinex lists as its ETH hot wallet are Bitfinex&#x27;s staking.</td>
+  <td class="num" data-v="1628">1,628</td>
+  <td class="num" data-v="52096">52,096</td>
+  <td class="num hide-sm" data-v="52096">52,096</td>
+</tr><tr data-q="0111-everstake-batch-deposit-b60b   created by the account behind everstake&#x27;s audited batch deposit contract and its pool, under the same contract name; validators deposited through it are run by everstake.">
+  <td><a href="0111-everstake-batch-deposit-b60b.html">0111</a></td>
+  <td>Anchor</td>
+  <td></td>
+  <td class="hide-sm">Created by the account behind Everstake&#x27;s audited batch deposit contract and its Pool, under the same contract name; validators deposited through it are run by Everstake.</td>
+  <td class="num" data-v="27">27</td>
+  <td class="num" data-v="50498">50,498</td>
+  <td class="num hide-sm" data-v="50498">50,498</td>
+</tr><tr data-q="0187-bitstamp-staking bitstamp/staking bitstamp staking bitstamp&#x27;s eth staking: two bitgo multisig wallets whose deposits were made, and whose gas was paid, by keys that bitstamp&#x27;s own wallet operator funded.">
+  <td><a href="0187-bitstamp-staking.html">0187</a></td>
+  <td>Attribution</td>
+  <td><a href="../entities/bitstamp.html">Bitstamp staking</a> <span class="chip">Allocator</span></td>
+  <td class="hide-sm">Bitstamp&#x27;s ETH staking: two BitGo multisig wallets whose deposits were made, and whose gas was paid, by keys that Bitstamp&#x27;s own wallet operator funded.</td>
+  <td class="num" data-v="1538">1,538</td>
+  <td class="num" data-v="49216">49,216</td>
+  <td class="num hide-sm" data-v="71008">71,008</td>
+</tr><tr data-q="0138-bitmine-staking-control-check bitmine/staking bitmine treasury staking two addresses that proved common control together with bitmine&#x27;s wallets, and stake the same way, are bitmine&#x27;s treasury staking.">
+  <td><a href="0138-bitmine-staking-control-check.html">0138</a></td>
+  <td>Attribution</td>
+  <td><a href="../entities/bitmine.html">BitMine treasury staking</a> <span class="chip">Allocator</span></td>
+  <td class="hide-sm">Two addresses that proved common control together with BitMine&#x27;s wallets, and stake the same way, are BitMine&#x27;s treasury staking.</td>
+  <td class="num" data-v="25">25</td>
+  <td class="num" data-v="46907">46,907</td>
+  <td class="num hide-sm" data-v="46907">46,907</td>
+</tr><tr data-q="0166-coinbase-prime-custody-figment-addresses figment/direct figment direct staking validators at 15 coinbase prime custody addresses that also deposit through figment&#x27;s batch contract, and behave like figment&#x27;s fleet, are run and allocated by figment.">
+  <td><a href="0166-coinbase-prime-custody-figment-addresses.html">0166</a></td>
+  <td>Attribution</td>
+  <td><a href="../entities/figment.html">Figment direct staking</a> <span class="chip">Allocator</span></td>
+  <td class="hide-sm">Validators at 15 Coinbase Prime custody addresses that also deposit through Figment&#x27;s batch contract, and behave like Figment&#x27;s fleet, are run and allocated by Figment.</td>
+  <td class="num" data-v="1220">1,220</td>
+  <td class="num" data-v="46820">46,820</td>
+  <td class="num hide-sm" data-v="46820">46,820</td>
+</tr><tr data-q="0112-frax-frxeth-minter   frax&#x27;s own code names this as its frxeth minter, called by frax&#x27;s multisig; validators withdrawing to the address it deposits to are frax&#x27;s (frxeth).">
+  <td><a href="0112-frax-frxeth-minter.html">0112</a></td>
+  <td>Anchor</td>
+  <td></td>
+  <td class="hide-sm">Frax&#x27;s own code names this as its frxETH Minter, called by Frax&#x27;s multisig; validators withdrawing to the address it deposits to are Frax&#x27;s (frxETH).</td>
+  <td class="num" data-v="1414">1,414</td>
+  <td class="num" data-v="45248">45,248</td>
+  <td class="num hide-sm" data-v="237184">237,184</td>
+</tr><tr data-q="0084-stakehound-eth2-depositor   this account made the deposits for stakehound&#x27;s liquid staking, including the validators whose withdrawal key was lost, as reported in the press.">
+  <td><a href="0084-stakehound-eth2-depositor.html">0084</a></td>
+  <td>Anchor</td>
+  <td></td>
+  <td class="hide-sm">This account made the deposits for StakeHound&#x27;s liquid staking, including the validators whose withdrawal key was lost, as reported in the press.</td>
+  <td class="num" data-v="1172">1,172</td>
+  <td class="num" data-v="37504">37,504</td>
+  <td class="num hide-sm" data-v="65440">65,440</td>
+</tr><tr data-q="0104-coinbase-fee-recipient   this address receives the fees of nearly 127,000 validators already known to be coinbase&#x27;s, and passes them to coinbase&#x27;s own wallets; otherwise unattributed validators paying it are taken to be run by coinbase.">
+  <td><a href="0104-coinbase-fee-recipient.html">0104</a></td>
+  <td>Anchor</td>
+  <td></td>
+  <td class="hide-sm">This address receives the fees of nearly 127,000 validators already known to be Coinbase&#x27;s, and passes them to Coinbase&#x27;s own wallets; otherwise unattributed validators paying it are taken to be run by Coinbase.</td>
+  <td class="num" data-v="1093">1,093</td>
+  <td class="num" data-v="34976">34,976</td>
+  <td class="num hide-sm" data-v="40960">40,960</td>
+</tr><tr data-q="0135-consensys-metamask-validator-staking   metamask&#x27;s validator staking contract, though deployed by kiln, is administered by consensys, whose safes are its only operator&#x27;s fee recipient and its treasury; validators deposited through it are allocated by consensys, not kiln.">
+  <td><a href="0135-consensys-metamask-validator-staking.html">0135</a></td>
+  <td>Anchor</td>
+  <td></td>
+  <td class="hide-sm">MetaMask&#x27;s validator staking contract, though deployed by Kiln, is administered by Consensys, whose Safes are its only operator&#x27;s fee recipient and its treasury; validators deposited through it are allocated by Consensys, not Kiln.</td>
+  <td class="num" data-v="1085">1,085</td>
+  <td class="num" data-v="34720">34,720</td>
+  <td class="num hide-sm" data-v="122368">122,368</td>
+</tr><tr data-q="0064-staked-eth2-depositor-26   validators this account deposited through staked&#x27;s batch contract pay their execution-layer rewards to staked&#x27;s fee recipient, so staked (now part of kraken) runs them.">
+  <td><a href="0064-staked-eth2-depositor-26.html">0064</a></td>
+  <td>Anchor</td>
+  <td></td>
+  <td class="hide-sm">Validators this account deposited through Staked&#x27;s batch contract pay their execution-layer rewards to Staked&#x27;s fee recipient, so Staked (now part of Kraken) runs them.</td>
+  <td class="num" data-v="885">885</td>
+  <td class="num" data-v="28320">28,320</td>
+  <td class="num hide-sm" data-v="29504">29,504</td>
+</tr><tr data-q="0192-maicoin-staking maicoin/staking maicoin staking maicoin&#x27;s eth staking: 23 safes with the same six owners, whose deposits were made by a key that maicoin&#x27;s hot wallet funded, and by a second key depositing to the same safes.">
+  <td><a href="0192-maicoin-staking.html">0192</a></td>
+  <td>Attribution</td>
+  <td><a href="../entities/maicoin.html">MaiCoin staking</a> <span class="chip">Allocator</span></td>
+  <td class="hide-sm">MaiCoin&#x27;s ETH staking: 23 Safes with the same six owners, whose deposits were made by a key that MaiCoin&#x27;s hot wallet funded, and by a second key depositing to the same Safes.</td>
+  <td class="num" data-v="843">843</td>
+  <td class="num" data-v="26976">26,976</td>
+  <td class="num hide-sm" data-v="27008">27,008</td>
+</tr><tr data-q="0126-bitget-staking bitget/staking bitget staking this address deposits validators to itself, funded 32 eth at a time by one wallet, and most of its validators sign &quot;bitget&quot;: it is bitget&#x27;s staking.">
+  <td><a href="0126-bitget-staking.html">0126</a></td>
+  <td>Attribution</td>
+  <td><a href="../entities/bitget.html">Bitget staking</a> <span class="chip">Allocator</span></td>
+  <td class="hide-sm">This address deposits validators to itself, funded 32 ETH at a time by one wallet, and most of its validators sign &quot;Bitget&quot;: it is Bitget&#x27;s staking.</td>
+  <td class="num" data-v="842">842</td>
+  <td class="num" data-v="26944">26,944</td>
+  <td class="num hide-sm" data-v="30176">30,176</td>
+</tr><tr data-q="0227-coinbase-prime-custodian-exited coinbase coinbase coinbase held 930 more withdrawal addresses in custody for coinbase prime clients, their validators deposited through its batch contract from 2022 and nearly all since exited; who chose and ran their staking is decided elsewhere.">
+  <td><a href="0227-coinbase-prime-custodian-exited.html">0227</a></td>
+  <td>Attribution</td>
+  <td><a href="../entities/coinbase.html">Coinbase</a> <span class="chip">Custodian</span></td>
+  <td class="hide-sm">Coinbase held 930 more withdrawal addresses in custody for Coinbase Prime clients, their validators deposited through its batch contract from 2022 and nearly all since exited; who chose and ran their staking is decided elsewhere.</td>
+  <td class="num" data-v="27">27</td>
+  <td class="num" data-v="22682">22,682</td>
+  <td class="num hide-sm" data-v="735232">735,232</td>
+</tr><tr data-q="0074-wex-eth2-depositor   this account was funded from wallets that wex&#x27;s former eth funded in 2017, as reported when wex collapsed; its validators are attributed to whoever holds wex&#x27;s former funds.">
+  <td><a href="0074-wex-eth2-depositor.html">0074</a></td>
+  <td>Anchor</td>
+  <td></td>
+  <td class="hide-sm">This account was funded from wallets that WEX&#x27;s former ETH funded in 2017, as reported when WEX collapsed; its validators are attributed to whoever holds WEX&#x27;s former funds.</td>
+  <td class="num" data-v="650">650</td>
+  <td class="num" data-v="20800">20,800</td>
+  <td class="num hide-sm" data-v="20800">20,800</td>
+</tr><tr data-q="0093-kucoin-staking kucoin/staking kucoin staking kucoin&#x27;s own wallet list names two of the accounts that deposited these validators, and the stake kucoin said it had then matches them to one validator.">
+  <td><a href="0093-kucoin-staking.html">0093</a></td>
+  <td>Attribution</td>
+  <td><a href="../entities/kucoin.html">KuCoin staking</a> <span class="chip">Allocator</span></td>
+  <td class="hide-sm">KuCoin&#x27;s own wallet list names two of the accounts that deposited these validators, and the stake KuCoin said it had then matches them to one validator.</td>
+  <td class="num" data-v="625">625</td>
+  <td class="num" data-v="20000">20,000</td>
+  <td class="num hide-sm" data-v="29664">29,664</td>
+</tr><tr data-q="0133-mercado-bitcoin-figment figment/direct figment direct staking a client staking through figment: part of its stake was deposited through figment&#x27;s contract, and the rest shares its fee recipients, changed on the same day, so figment allocates all of it.">
+  <td><a href="0133-mercado-bitcoin-figment.html">0133</a></td>
+  <td>Attribution</td>
+  <td><a href="../entities/figment.html">Figment direct staking</a> <span class="chip">Allocator</span></td>
+  <td class="hide-sm">A client staking through Figment: part of its stake was deposited through Figment&#x27;s contract, and the rest shares its fee recipients, changed on the same day, so Figment allocates all of it.</td>
+  <td class="num" data-v="559">559</td>
+  <td class="num" data-v="17888">17,888</td>
+  <td class="num hide-sm" data-v="23424">23,424</td>
+</tr><tr data-q="0157-swell-deposit-manager   the sweth token&#x27;s own on-chain registry names this contract its deposit manager; validators deposited through it, all withdrawing to it, are swell sweth&#x27;s.">
+  <td><a href="0157-swell-deposit-manager.html">0157</a></td>
+  <td>Anchor</td>
+  <td></td>
+  <td class="hide-sm">The swETH token&#x27;s own on-chain registry names this contract its Deposit Manager; validators deposited through it, all withdrawing to it, are Swell swETH&#x27;s.</td>
+  <td class="num" data-v="350">350</td>
+  <td class="num" data-v="11200">11,200</td>
+  <td class="num hide-sm" data-v="248736">248,736</td>
+</tr><tr data-q="0152-stader-permissionless-node-registry   stader&#x27;s own contract list names the two contracts that send every ethx validator&#x27;s first deposit; validators deposited through them, withdrawing to their own stader vaults, are stader ethx&#x27;s.">
+  <td><a href="0152-stader-permissionless-node-registry.html">0152</a></td>
+  <td>Anchor</td>
+  <td></td>
+  <td class="hide-sm">Stader&#x27;s own contract list names the two contracts that send every ETHx validator&#x27;s first deposit; validators deposited through them, withdrawing to their own Stader vaults, are Stader ETHx&#x27;s.</td>
+  <td class="num" data-v="323">323</td>
+  <td class="num" data-v="10336">10,336</td>
+  <td class="num hide-sm" data-v="32544">32,544</td>
+</tr><tr data-q="0203-bedrock-unieth-staking   bedrock&#x27;s readme and documentation name this contract unieth&#x27;s staking contract; validators it deposited, withdrawing to it or to bedrock&#x27;s eigenpods, are bedrock unieth&#x27;s.">
+  <td><a href="0203-bedrock-unieth-staking.html">0203</a></td>
+  <td>Anchor</td>
+  <td></td>
+  <td class="hide-sm">Bedrock&#x27;s README and documentation name this contract uniETH&#x27;s staking contract; validators it deposited, withdrawing to it or to Bedrock&#x27;s EigenPods, are Bedrock uniETH&#x27;s.</td>
+  <td class="num" data-v="316">316</td>
+  <td class="num" data-v="10112">10,112</td>
+  <td class="num hide-sm" data-v="49120">49,120</td>
+</tr><tr data-q="0161-nodedao-restaking-pool   this contract and its pool token, restaking node eth, are owned by the timelock nodedao lists as its own; validators it deposited, withdrawing to an eigenpod nodedao also controls, are nodedao rneth&#x27;s.">
+  <td><a href="0161-nodedao-restaking-pool.html">0161</a></td>
+  <td>Anchor</td>
+  <td></td>
+  <td class="hide-sm">This contract and its pool token, Restaking Node ETH, are owned by the timelock NodeDAO lists as its own; validators it deposited, withdrawing to an EigenPod NodeDAO also controls, are NodeDAO rnETH&#x27;s.</td>
+  <td class="num" data-v="298">298</td>
+  <td class="num" data-v="9536">9,536</td>
+  <td class="num hide-sm" data-v="11680">11,680</td>
+</tr><tr data-q="0202-puffer-protocol   puffer&#x27;s deployment scripts name this contract pufferprotocol; validators it funded, withdrawing to its modules&#x27; eigenpods, are puffer pufeth&#x27;s.">
+  <td><a href="0202-puffer-protocol.html">0202</a></td>
+  <td>Anchor</td>
+  <td></td>
+  <td class="hide-sm">Puffer&#x27;s deployment scripts name this contract PufferProtocol; validators it funded, withdrawing to its modules&#x27; EigenPods, are Puffer pufETH&#x27;s.</td>
+  <td class="num" data-v="296">296</td>
+  <td class="num" data-v="9472">9,472</td>
+  <td class="num hide-sm" data-v="201120">201,120</td>
+</tr><tr data-q="0183-crypto-com-staking crypto-com/staking crypto.com staking crypto.com&#x27;s eth staking: the wallet that pays for the keys of crypto.com&#x27;s cdceth token is the only source of this staking wallet&#x27;s eth.">
+  <td><a href="0183-crypto-com-staking.html">0183</a></td>
+  <td>Attribution</td>
+  <td><a href="../entities/crypto-com.html">Crypto.com staking</a> <span class="chip">Allocator</span></td>
+  <td class="hide-sm">Crypto.com&#x27;s ETH staking: the wallet that pays for the keys of Crypto.com&#x27;s CDCETH token is the only source of this staking wallet&#x27;s ETH.</td>
+  <td class="num" data-v="62">62</td>
+  <td class="num" data-v="9094">9,094</td>
+  <td class="num hide-sm" data-v="9094">9,094</td>
+</tr><tr data-q="0081-ankr-eth2-staking   this contract, which ankr&#x27;s docs name its mainnet globalpool, made the deposits for ankr&#x27;s liquid staking; validators withdrawing to the withdrawal pool its docs name are ankr&#x27;s.">
+  <td><a href="0081-ankr-eth2-staking.html">0081</a></td>
+  <td>Anchor</td>
+  <td></td>
+  <td class="hide-sm">This contract, which Ankr&#x27;s docs name its mainnet GlobalPool, made the deposits for Ankr&#x27;s liquid staking; validators withdrawing to the withdrawal pool its docs name are Ankr&#x27;s.</td>
+  <td class="num" data-v="260">260</td>
+  <td class="num" data-v="8320">8,320</td>
+  <td class="num hide-sm" data-v="56352">56,352</td>
+</tr><tr data-q="0205-ebunker-ssv ebunker/ssv ebunker staking (ssv) validators ebunker&#x27;s own accounts registered on ssv, on clusters of operators ebunker registered under its name.">
+  <td><a href="0205-ebunker-ssv.html">0205</a></td>
+  <td>Attribution</td>
+  <td><a href="../entities/ebunker.html">Ebunker staking (SSV)</a> <span class="chip">Allocator</span></td>
+  <td class="hide-sm">Validators Ebunker&#x27;s own accounts registered on SSV, on clusters of operators Ebunker registered under its name.</td>
+  <td class="num" data-v="250">250</td>
+  <td class="num" data-v="8266">8,266</td>
+  <td class="num hide-sm" data-v="32352">32,352</td>
+</tr><tr data-q="0204-bedrock-direct-staking   a direct-staking contract created by the deployer of bedrock&#x27;s unieth staking contract; its validators pay their block rewards to a bedrock reward pool from the same deployer.">
+  <td><a href="0204-bedrock-direct-staking.html">0204</a></td>
+  <td>Anchor</td>
+  <td></td>
+  <td class="hide-sm">A direct-staking contract created by the deployer of Bedrock&#x27;s uniETH staking contract; its validators pay their block rewards to a Bedrock reward pool from the same deployer.</td>
+  <td class="num" data-v="256">256</td>
+  <td class="num" data-v="8192">8,192</td>
+  <td class="num hide-sm" data-v="32960">32,960</td>
+</tr><tr data-q="0222-hashkey-exchange-staking hashkey-exchange/staking hashkey exchange staking hashkey exchange&#x27;s staking: validators deposited by the cold wallet hashkey named, withdrawing to an address that sweeps its rewards back to it.">
+  <td><a href="0222-hashkey-exchange-staking.html">0222</a></td>
+  <td>Attribution</td>
+  <td><a href="../entities/hashkey-exchange.html">HashKey Exchange staking</a> <span class="chip">Allocator</span></td>
+  <td class="hide-sm">HashKey Exchange&#x27;s staking: validators deposited by the cold wallet HashKey named, withdrawing to an address that sweeps its rewards back to it.</td>
+  <td class="num" data-v="88">88</td>
+  <td class="num" data-v="7066">7,066</td>
+  <td class="num hide-sm" data-v="8810">8,810</td>
+</tr><tr data-q="0208-infstones-batch-deposit-proxy   the batch deposit proxy infstones&#x27; key created in june 2026, three days after the last deposit through its imtoken contract (0189), used by the same stakers.">
+  <td><a href="0208-infstones-batch-deposit-proxy.html">0208</a></td>
+  <td>Anchor</td>
+  <td></td>
+  <td class="hide-sm">The batch deposit proxy InfStones&#x27; key created in June 2026, three days after the last deposit through its imToken contract (0189), used by the same stakers.</td>
+  <td class="num" data-v="129">129</td>
+  <td class="num" data-v="5985">5,985</td>
+  <td class="num hide-sm" data-v="5985">5,985</td>
+</tr><tr data-q="0050-staked-eth2-depositor-7   validators this account deposited through staked&#x27;s batch contract pay their execution-layer rewards to staked&#x27;s fee recipient, so staked (now part of kraken) runs them.">
+  <td><a href="0050-staked-eth2-depositor-7.html">0050</a></td>
+  <td>Anchor</td>
+  <td></td>
+  <td class="hide-sm">Validators this account deposited through Staked&#x27;s batch contract pay their execution-layer rewards to Staked&#x27;s fee recipient, so Staked (now part of Kraken) runs them.</td>
+  <td class="num" data-v="183">183</td>
+  <td class="num" data-v="5856">5,856</td>
+  <td class="num hide-sm" data-v="5920">5,920</td>
+</tr><tr data-q="0226-coinbase-prime-custody-fleet-exited coinbase/prime coinbase prime (custody clients) institutional stake deposited through coinbase&#x27;s batch contract from 2022 to 2025 and run on coinbase&#x27;s own validator fleet, nearly all of it since exited: coinbase prime clients&#x27; stake run by coinbase, as in 0134.">
+  <td><a href="0226-coinbase-prime-custody-fleet-exited.html">0226</a></td>
+  <td>Attribution</td>
+  <td><a href="../entities/coinbase.html">Coinbase Prime (custody clients)</a> <span class="chip">Allocator</span></td>
+  <td class="hide-sm">Institutional stake deposited through Coinbase&#x27;s batch contract from 2022 to 2025 and run on Coinbase&#x27;s own validator fleet, nearly all of it since exited: Coinbase Prime clients&#x27; stake run by Coinbase, as in 0134.</td>
+  <td class="num" data-v="149">149</td>
+  <td class="num" data-v="4768">4,768</td>
+  <td class="num hide-sm" data-v="815168">815,168</td>
+</tr><tr data-q="0083-bitpie-depositor   bitpie names this account as its eth 2.0 staking address, with 900 validators; validators whose first deposit it sent, and the address they withdraw to, are bitpie&#x27;s staking.">
+  <td><a href="0083-bitpie-depositor.html">0083</a></td>
+  <td>Anchor</td>
+  <td></td>
+  <td class="hide-sm">Bitpie names this account as its ETH 2.0 staking address, with 900 validators; validators whose first deposit it sent, and the address they withdraw to, are Bitpie&#x27;s staking.</td>
+  <td class="num" data-v="148">148</td>
+  <td class="num" data-v="4736">4,736</td>
+  <td class="num hide-sm" data-v="28800">28,800</td>
+</tr><tr data-q="0206-xhash-batch-deposit   xhash&#x27;s batch deposit contract, which xhash&#x27;s staking documentation names and its web application sends deposits to.">
+  <td><a href="0206-xhash-batch-deposit.html">0206</a></td>
+  <td>Anchor</td>
+  <td></td>
+  <td class="hide-sm">XHash&#x27;s batch deposit contract, which XHash&#x27;s staking documentation names and its web application sends deposits to.</td>
+  <td class="num" data-v="117">117</td>
+  <td class="num" data-v="3744">3,744</td>
+  <td class="num hide-sm" data-v="65056">65,056</td>
+</tr><tr data-q="0099-bitrue-staking bitrue/staking bitrue staking validators deposited by and withdrawing to an address funded only by bitrue&#x27;s hot wallet, which took over from the wallet that funded bitrue&#x27;s published insurance wallet, are bitrue&#x27;s staking.">
+  <td><a href="0099-bitrue-staking.html">0099</a></td>
+  <td>Attribution</td>
+  <td><a href="../entities/bitrue.html">Bitrue staking</a> <span class="chip">Allocator</span></td>
+  <td class="hide-sm">Validators deposited by and withdrawing to an address funded only by Bitrue&#x27;s hot wallet, which took over from the wallet that funded Bitrue&#x27;s published insurance wallet, are Bitrue&#x27;s staking.</td>
+  <td class="num" data-v="116">116</td>
+  <td class="num" data-v="3712">3,712</td>
+  <td class="num hide-sm" data-v="6112">6,112</td>
+</tr><tr data-q="0207-paralinker-batch-deposit   paralinker&#x27;s deployment of staked&#x27;s batch deposit contract, which its own repository names and its staking guide links; its validators sign &#x27;staking via paralinker&#x27;.">
+  <td><a href="0207-paralinker-batch-deposit.html">0207</a></td>
+  <td>Anchor</td>
+  <td></td>
+  <td class="hide-sm">Paralinker&#x27;s deployment of Staked&#x27;s batch deposit contract, which its own repository names and its staking guide links; its validators sign &#x27;Staking via Paralinker&#x27;.</td>
+  <td class="num" data-v="112">112</td>
+  <td class="num" data-v="3584">3,584</td>
+  <td class="num hide-sm" data-v="29984">29,984</td>
+</tr><tr data-q="0228-xhash-fee-recipient   the fee recipient of validators deposited through xhash&#x27;s own batch contract and of validators signing xhash.com; otherwise unattributed validators paying it are taken to be run by xhash.">
+  <td><a href="0228-xhash-fee-recipient.html">0228</a></td>
+  <td>Anchor</td>
+  <td></td>
+  <td class="hide-sm">The fee recipient of validators deposited through XHash&#x27;s own batch contract and of validators signing XHash.com; otherwise unattributed validators paying it are taken to be run by XHash.</td>
+  <td class="num" data-v="89">89</td>
+  <td class="num" data-v="3218">3,218</td>
+  <td class="num hide-sm" data-v="44928">44,928</td>
+</tr><tr data-q="0225-ssv-labs-staking ssv-labs/staking ssv labs staking ssv labs&#x27; staking: validators of the one account ssv labs&#x27; private operator admits, which it spreads across ssv operators of its choice.">
+  <td><a href="0225-ssv-labs-staking.html">0225</a></td>
+  <td>Attribution</td>
+  <td><a href="../entities/ssv-labs.html">SSV Labs staking</a> <span class="chip">Allocator</span></td>
+  <td class="hide-sm">SSV Labs&#x27; staking: validators of the one account SSV Labs&#x27; private operator admits, which it spreads across SSV operators of its choice.</td>
+  <td class="num" data-v="91">91</td>
+  <td class="num" data-v="2880">2,880</td>
+  <td class="num hide-sm" data-v="5792">5,792</td>
+</tr><tr data-q="0235-consensys-staking-depositor-5c56a2   validators this account deposited are consensys staking&#x27;s: it batched them as consensys&#x27;s platform does, they paid the client&#x27;s own fee recipient, and their software changed in step with consensys&#x27;s other validators.">
+  <td><a href="0235-consensys-staking-depositor-5c56a2.html">0235</a></td>
+  <td>Anchor</td>
+  <td></td>
+  <td class="hide-sm">Validators this account deposited are Consensys Staking&#x27;s: it batched them as Consensys&#x27;s platform does, they paid the client&#x27;s own fee recipient, and their software changed in step with Consensys&#x27;s other validators.</td>
+  <td class="num" data-v="87">87</td>
+  <td class="num" data-v="2784">2,784</td>
+  <td class="num hide-sm" data-v="3040">3,040</td>
+</tr><tr data-q="0219-sharedstake-minter   sharedstake&#x27;s own contract list and docs name this its veth2 minter, which staked the pool&#x27;s eth; validators deposited through it are sharedstake&#x27;s.">
+  <td><a href="0219-sharedstake-minter.html">0219</a></td>
+  <td>Anchor</td>
+  <td></td>
+  <td class="hide-sm">SharedStake&#x27;s own contract list and docs name this its vETH2 Minter, which staked the pool&#x27;s ETH; validators deposited through it are SharedStake&#x27;s.</td>
+  <td class="num" data-v="40">40</td>
+  <td class="num" data-v="1280">1,280</td>
+  <td class="num hide-sm" data-v="16000">16,000</td>
+</tr><tr data-q="0033-kiln-batch-deposit-v1   kiln&#x27;s documentation and code name this as its (now deprecated) batch deposit contract; validators deposited through it are run by kiln for its clients.">
+  <td><a href="0033-kiln-batch-deposit-v1.html">0033</a></td>
+  <td>Anchor</td>
+  <td></td>
+  <td class="hide-sm">Kiln&#x27;s documentation and code name this as its (now deprecated) batch deposit contract; validators deposited through it are run by Kiln for its clients.</td>
+  <td class="num" data-v="19">19</td>
+  <td class="num" data-v="608">608</td>
+  <td class="num hide-sm" data-v="535424">535,424</td>
+</tr><tr data-q="0016-coinbase-staking-2021 coinbase/staking coinbase staking these 96 addresses held coinbase&#x27;s 2021 retail staking: their deposits were funded by coinbase&#x27;s tagged hot wallets in fixed batches, and their withdrawals went back to coinbase.">
+  <td><a href="0016-coinbase-staking-2021.html">0016</a></td>
+  <td>Attribution</td>
+  <td><a href="../entities/coinbase.html">Coinbase staking</a> <span class="chip">Allocator</span></td>
+  <td class="hide-sm">These 96 addresses held Coinbase&#x27;s 2021 retail staking: their deposits were funded by Coinbase&#x27;s tagged hot wallets in fixed batches, and their withdrawals went back to Coinbase.</td>
+  <td class="num" data-v="0">0</td>
+  <td class="num" data-v="0">0</td>
+  <td class="num hide-sm" data-v="1225696">1,225,696</td>
+</tr><tr data-q="0017-coinbase-staking-2021-b coinbase/staking coinbase staking these 93 addresses held more of coinbase&#x27;s 2021 retail staking, by the same pattern: deposits funded by coinbase&#x27;s tagged wallets, withdrawals returned to coinbase.">
+  <td><a href="0017-coinbase-staking-2021-b.html">0017</a></td>
+  <td>Attribution</td>
+  <td><a href="../entities/coinbase.html">Coinbase staking</a> <span class="chip">Allocator</span></td>
+  <td class="hide-sm">These 93 addresses held more of Coinbase&#x27;s 2021 retail staking, by the same pattern: deposits funded by Coinbase&#x27;s tagged wallets, withdrawals returned to Coinbase.</td>
+  <td class="num" data-v="0">0</td>
+  <td class="num" data-v="0">0</td>
+  <td class="num hide-sm" data-v="1190048">1,190,048</td>
+</tr><tr data-q="0043-renzo-proxy-admin   this contract administers renzo&#x27;s contracts, including the restakemanager its docs list (read on chain); validators withdrawing to eigenlayer pods those contracts own are renzo&#x27;s.">
+  <td><a href="0043-renzo-proxy-admin.html">0043</a></td>
+  <td>Anchor</td>
+  <td></td>
+  <td class="hide-sm">This contract administers Renzo&#x27;s contracts, including the RestakeManager its docs list (read on chain); validators withdrawing to EigenLayer pods those contracts own are Renzo&#x27;s.</td>
+  <td class="num" data-v="0">0</td>
+  <td class="num" data-v="0">0</td>
+  <td class="num hide-sm" data-v="1030272">1,030,272</td>
+</tr><tr data-q="0035-kiln-ledger-live-dedicated   kiln&#x27;s documentation names this as the contract behind ledger live&#x27;s dedicated staking; validators deposited through it were run by kiln.">
+  <td><a href="0035-kiln-ledger-live-dedicated.html">0035</a></td>
+  <td>Anchor</td>
+  <td></td>
+  <td class="hide-sm">Kiln&#x27;s documentation names this as the contract behind Ledger Live&#x27;s dedicated staking; validators deposited through it were run by Kiln.</td>
+  <td class="num" data-v="0">0</td>
+  <td class="num" data-v="0">0</td>
+  <td class="num hide-sm" data-v="459584">459,584</td>
+</tr><tr data-q="0162-celsius-staking-2021 celsius/staking celsius staking this address was celsius&#x27;s staking (2021-2024): its funding and its exits run through the wallets that hold and pay for the cel token cited in the examiner&#x27;s report on celsius.">
+  <td><a href="0162-celsius-staking-2021.html">0162</a></td>
+  <td>Attribution</td>
+  <td><a href="../entities/celsius.html">Celsius staking</a> <span class="chip">Allocator</span></td>
+  <td class="hide-sm">This address was Celsius&#x27;s staking (2021-2024): its funding and its exits run through the wallets that hold and pay for the CEL token cited in the examiner&#x27;s report on Celsius.</td>
+  <td class="num" data-v="0">0</td>
+  <td class="num" data-v="0">0</td>
+  <td class="num hide-sm" data-v="158176">158,176</td>
+</tr><tr data-q="0158-swell-rsweth-deposit-manager   the rsweth token&#x27;s own on-chain registry names this contract its deposit manager; validators it deposited in 2024, withdrawing to its own eigenpod, are swell rsweth&#x27;s.">
+  <td><a href="0158-swell-rsweth-deposit-manager.html">0158</a></td>
+  <td>Anchor</td>
+  <td></td>
+  <td class="hide-sm">The rswETH token&#x27;s own on-chain registry names this contract its Deposit Manager; validators it deposited in 2024, withdrawing to its own EigenPod, are Swell rswETH&#x27;s.</td>
+  <td class="num" data-v="0">0</td>
+  <td class="num" data-v="0">0</td>
+  <td class="num hide-sm" data-v="128576">128,576</td>
+</tr><tr data-q="0010-kraken-eigenpod-depositor-4462   this account, funded by kraken&#x27;s tagged wallets, deposits into an eigenlayer pod it owns, matching kraken&#x27;s announced restaking of customers&#x27; eth; its validators are kraken&#x27;s.">
+  <td><a href="0010-kraken-eigenpod-depositor-4462.html">0010</a></td>
+  <td>Anchor</td>
+  <td></td>
+  <td class="hide-sm">This account, funded by Kraken&#x27;s tagged wallets, deposits into an EigenLayer pod it owns, matching Kraken&#x27;s announced restaking of customers&#x27; ETH; its validators are Kraken&#x27;s.</td>
+  <td class="num" data-v="0">0</td>
+  <td class="num" data-v="0">0</td>
+  <td class="num hide-sm" data-v="121664">121,664</td>
+</tr><tr data-q="0072-htx-eth2-depositor-1   this account&#x27;s eth came from a reserve wallet whose ownership htx (formerly huobi) proved by signature, and from the hot wallets that fill it; its validators moved to an address htx&#x27;s reserves started.">
+  <td><a href="0072-htx-eth2-depositor-1.html">0072</a></td>
+  <td>Anchor</td>
+  <td></td>
+  <td class="hide-sm">This account&#x27;s ETH came from a reserve wallet whose ownership HTX (formerly Huobi) proved by signature, and from the hot wallets that fill it; its validators moved to an address HTX&#x27;s reserves started.</td>
+  <td class="num" data-v="0">0</td>
+  <td class="num" data-v="0">0</td>
+  <td class="num hide-sm" data-v="92256">92,256</td>
+</tr><tr data-q="0078-stakewise-pool-escrow   stakewise&#x27;s own list of its contracts names this as its v2 pool escrow; validators withdrawing to it were stakewise&#x27;s pool&#x27;s.">
+  <td><a href="0078-stakewise-pool-escrow.html">0078</a></td>
+  <td>Anchor</td>
+  <td></td>
+  <td class="hide-sm">StakeWise&#x27;s own list of its contracts names this as its V2 Pool Escrow; validators withdrawing to it were StakeWise&#x27;s pool&#x27;s.</td>
+  <td class="num" data-v="0">0</td>
+  <td class="num" data-v="0">0</td>
+  <td class="num hide-sm" data-v="87936">87,936</td>
+</tr><tr data-q="0229-consensys-staking-depositor-f8c1c8   validators this account deposited are consensys staking&#x27;s: it batched them as consensys&#x27;s platform does, they paid the client&#x27;s own fee recipient, and their software changed in step with consensys&#x27;s other validators.">
+  <td><a href="0229-consensys-staking-depositor-f8c1c8.html">0229</a></td>
+  <td>Anchor</td>
+  <td></td>
+  <td class="hide-sm">Validators this account deposited are Consensys Staking&#x27;s: it batched them as Consensys&#x27;s platform does, they paid the client&#x27;s own fee recipient, and their software changed in step with Consensys&#x27;s other validators.</td>
+  <td class="num" data-v="0">0</td>
+  <td class="num" data-v="0">0</td>
+  <td class="num hide-sm" data-v="72896">72,896</td>
+</tr><tr data-q="0230-consensys-staking-depositor-cf6715   validators this account deposited are consensys staking&#x27;s: it batched them as consensys&#x27;s platform does, they paid the client&#x27;s own fee recipient, and their software changed in step with consensys&#x27;s other validators.">
+  <td><a href="0230-consensys-staking-depositor-cf6715.html">0230</a></td>
+  <td>Anchor</td>
+  <td></td>
+  <td class="hide-sm">Validators this account deposited are Consensys Staking&#x27;s: it batched them as Consensys&#x27;s platform does, they paid the client&#x27;s own fee recipient, and their software changed in step with Consensys&#x27;s other validators.</td>
+  <td class="num" data-v="0">0</td>
+  <td class="num" data-v="0">0</td>
+  <td class="num hide-sm" data-v="41600">41,600</td>
+</tr><tr data-q="0049-staked-eth2-depositor-6   validators this account deposited through staked&#x27;s batch contract pay their execution-layer rewards to staked&#x27;s fee recipient, so staked (now part of kraken) runs them.">
+  <td><a href="0049-staked-eth2-depositor-6.html">0049</a></td>
+  <td>Anchor</td>
+  <td></td>
+  <td class="hide-sm">Validators this account deposited through Staked&#x27;s batch contract pay their execution-layer rewards to Staked&#x27;s fee recipient, so Staked (now part of Kraken) runs them.</td>
+  <td class="num" data-v="0">0</td>
+  <td class="num" data-v="0">0</td>
+  <td class="num hide-sm" data-v="27744">27,744</td>
+</tr><tr data-q="0159-swell-rsweth-eigenlayer-manager   rsweth&#x27;s deposit manager names this contract its eigenlayermanager; validators it deposited, withdrawing to the eigenpods of its staker proxies, are swell rsweth&#x27;s.">
+  <td><a href="0159-swell-rsweth-eigenlayer-manager.html">0159</a></td>
+  <td>Anchor</td>
+  <td></td>
+  <td class="hide-sm">rswETH&#x27;s Deposit Manager names this contract its EigenLayerManager; validators it deposited, withdrawing to the EigenPods of its staker proxies, are Swell rswETH&#x27;s.</td>
+  <td class="num" data-v="0">0</td>
+  <td class="num" data-v="0">0</td>
+  <td class="num hide-sm" data-v="25600">25,600</td>
+</tr><tr data-q="0080-cream-eth2-depositor   cream&#x27;s docs list every transaction it deposited to the beacon chain with; this account sent most of them, and all the validators moved to one address. they were cream&#x27;s creth2 staking.">
+  <td><a href="0080-cream-eth2-depositor.html">0080</a></td>
+  <td>Anchor</td>
+  <td></td>
+  <td class="hide-sm">CREAM&#x27;s docs list every transaction it deposited to the beacon chain with; this account sent most of them, and all the validators moved to one address. They were CREAM&#x27;s crETH2 staking.</td>
+  <td class="num" data-v="0">0</td>
+  <td class="num" data-v="0">0</td>
+  <td class="num hide-sm" data-v="25152">25,152</td>
+</tr><tr data-q="0066-staked-eth2-depositor-28   validators this account deposited through staked&#x27;s batch contract pay their execution-layer rewards to staked&#x27;s fee recipient, so staked (now part of kraken) runs them.">
+  <td><a href="0066-staked-eth2-depositor-28.html">0066</a></td>
+  <td>Anchor</td>
+  <td></td>
+  <td class="hide-sm">Validators this account deposited through Staked&#x27;s batch contract pay their execution-layer rewards to Staked&#x27;s fee recipient, so Staked (now part of Kraken) runs them.</td>
+  <td class="num" data-v="0">0</td>
+  <td class="num" data-v="0">0</td>
+  <td class="num hide-sm" data-v="24960">24,960</td>
+</tr><tr data-q="0231-consensys-staking-depositor-ec06df   validators this account deposited are consensys staking&#x27;s: it batched them as consensys&#x27;s platform does, they paid the client&#x27;s own fee recipient, and their software changed in step with consensys&#x27;s other validators.">
+  <td><a href="0231-consensys-staking-depositor-ec06df.html">0231</a></td>
+  <td>Anchor</td>
+  <td></td>
+  <td class="hide-sm">Validators this account deposited are Consensys Staking&#x27;s: it batched them as Consensys&#x27;s platform does, they paid the client&#x27;s own fee recipient, and their software changed in step with Consensys&#x27;s other validators.</td>
+  <td class="num" data-v="0">0</td>
+  <td class="num" data-v="0">0</td>
+  <td class="num hide-sm" data-v="23360">23,360</td>
+</tr><tr data-q="0030-figment-eth2-depositor-2   this contract, created by the same account as figment&#x27;s documented batch contract, is figment&#x27;s; validators deposited through it are run by figment.">
+  <td><a href="0030-figment-eth2-depositor-2.html">0030</a></td>
+  <td>Anchor</td>
+  <td></td>
+  <td class="hide-sm">This contract, created by the same account as Figment&#x27;s documented batch contract, is Figment&#x27;s; validators deposited through it are run by Figment.</td>
+  <td class="num" data-v="0">0</td>
+  <td class="num" data-v="0">0</td>
+  <td class="num hide-sm" data-v="22976">22,976</td>
+</tr><tr data-q="0150-whale-eth-depositor   the account that deposited these 710 validators has the ens primary name whale.eth; it staked its own eth, so its validators are attributed to whale.eth, not to piedao.">
+  <td><a href="0150-whale-eth-depositor.html">0150</a></td>
+  <td>Anchor</td>
+  <td></td>
+  <td class="hide-sm">The account that deposited these 710 validators has the ENS primary name whale.eth; it staked its own ETH, so its validators are attributed to whale.eth, not to PieDAO.</td>
+  <td class="num" data-v="0">0</td>
+  <td class="num" data-v="0">0</td>
+  <td class="num hide-sm" data-v="22720">22,720</td>
+</tr><tr data-q="0142-consensys-staking-depositor-224fc4   validators this account deposited are consensys staking&#x27;s: it batched them as consensys&#x27;s platform does, they paid the client&#x27;s own fee recipient, and their software changed in step with consensys&#x27;s other validators.">
+  <td><a href="0142-consensys-staking-depositor-224fc4.html">0142</a></td>
+  <td>Anchor</td>
+  <td></td>
+  <td class="hide-sm">Validators this account deposited are Consensys Staking&#x27;s: it batched them as Consensys&#x27;s platform does, they paid the client&#x27;s own fee recipient, and their software changed in step with Consensys&#x27;s other validators.</td>
+  <td class="num" data-v="0">0</td>
+  <td class="num" data-v="0">0</td>
+  <td class="num hide-sm" data-v="20000">20,000</td>
+</tr><tr data-q="0143-consensys-staking-depositor-7e9f3c   validators this account deposited are consensys staking&#x27;s: it batched them as consensys&#x27;s platform does, they paid the client&#x27;s own fee recipient, and their software changed in step with consensys&#x27;s other validators.">
+  <td><a href="0143-consensys-staking-depositor-7e9f3c.html">0143</a></td>
+  <td>Anchor</td>
+  <td></td>
+  <td class="hide-sm">Validators this account deposited are Consensys Staking&#x27;s: it batched them as Consensys&#x27;s platform does, they paid the client&#x27;s own fee recipient, and their software changed in step with Consensys&#x27;s other validators.</td>
+  <td class="num" data-v="0">0</td>
+  <td class="num" data-v="0">0</td>
+  <td class="num hide-sm" data-v="20000">20,000</td>
+</tr><tr data-q="0146-consensys-staking-depositor-98f840   validators this account deposited are consensys staking&#x27;s: it batched them as consensys&#x27;s platform does, they paid the client&#x27;s own fee recipient, and their software changed in step with consensys&#x27;s other validators.">
+  <td><a href="0146-consensys-staking-depositor-98f840.html">0146</a></td>
+  <td>Anchor</td>
+  <td></td>
+  <td class="hide-sm">Validators this account deposited are Consensys Staking&#x27;s: it batched them as Consensys&#x27;s platform does, they paid the client&#x27;s own fee recipient, and their software changed in step with Consensys&#x27;s other validators.</td>
+  <td class="num" data-v="0">0</td>
+  <td class="num" data-v="0">0</td>
+  <td class="num hide-sm" data-v="20000">20,000</td>
+</tr><tr data-q="0147-consensys-staking-depositor-9acdb9   validators this account deposited are consensys staking&#x27;s: it batched them as consensys&#x27;s platform does, they paid the client&#x27;s own fee recipient, and their software changed in step with consensys&#x27;s other validators.">
+  <td><a href="0147-consensys-staking-depositor-9acdb9.html">0147</a></td>
+  <td>Anchor</td>
+  <td></td>
+  <td class="hide-sm">Validators this account deposited are Consensys Staking&#x27;s: it batched them as Consensys&#x27;s platform does, they paid the client&#x27;s own fee recipient, and their software changed in step with Consensys&#x27;s other validators.</td>
+  <td class="num" data-v="0">0</td>
+  <td class="num" data-v="0">0</td>
+  <td class="num hide-sm" data-v="20000">20,000</td>
+</tr><tr data-q="0148-consensys-staking-depositor-81a9ae   validators this account deposited are consensys staking&#x27;s: it batched them as consensys&#x27;s platform does, they paid the client&#x27;s own fee recipient, and their software changed in step with consensys&#x27;s other validators.">
+  <td><a href="0148-consensys-staking-depositor-81a9ae.html">0148</a></td>
+  <td>Anchor</td>
+  <td></td>
+  <td class="hide-sm">Validators this account deposited are Consensys Staking&#x27;s: it batched them as Consensys&#x27;s platform does, they paid the client&#x27;s own fee recipient, and their software changed in step with Consensys&#x27;s other validators.</td>
+  <td class="num" data-v="0">0</td>
+  <td class="num" data-v="0">0</td>
+  <td class="num hide-sm" data-v="20000">20,000</td>
+</tr><tr data-q="0149-consensys-staking-depositor-5d6b0d   validators this account deposited are consensys staking&#x27;s: it batched them as consensys&#x27;s platform does, they paid the client&#x27;s own fee recipient, and their software changed in step with consensys&#x27;s other validators.">
+  <td><a href="0149-consensys-staking-depositor-5d6b0d.html">0149</a></td>
+  <td>Anchor</td>
+  <td></td>
+  <td class="hide-sm">Validators this account deposited are Consensys Staking&#x27;s: it batched them as Consensys&#x27;s platform does, they paid the client&#x27;s own fee recipient, and their software changed in step with Consensys&#x27;s other validators.</td>
+  <td class="num" data-v="0">0</td>
+  <td class="num" data-v="0">0</td>
+  <td class="num hide-sm" data-v="20000">20,000</td>
+</tr><tr data-q="0096-coinex-staking coinex/staking coinex staking validators withdrawing to, or deposited by, wallets that coinex&#x27;s proof of reserves lists and signs for were coinex&#x27;s staking; its reserve files also list the validators themselves.">
+  <td><a href="0096-coinex-staking.html">0096</a></td>
+  <td>Attribution</td>
+  <td><a href="../entities/coinex.html">CoinEx staking</a> <span class="chip">Allocator</span></td>
+  <td class="hide-sm">Validators withdrawing to, or deposited by, wallets that CoinEx&#x27;s proof of reserves lists and signs for were CoinEx&#x27;s staking; its reserve files also list the validators themselves.</td>
+  <td class="num" data-v="0">0</td>
+  <td class="num" data-v="0">0</td>
+  <td class="num hide-sm" data-v="16928">16,928</td>
+</tr><tr data-q="0160-nodedao-liquid-staking   nodedao&#x27;s own list of its contracts names this its liquidstaking contract; validators deposited through it are nodedao neth&#x27;s.">
+  <td><a href="0160-nodedao-liquid-staking.html">0160</a></td>
+  <td>Anchor</td>
+  <td></td>
+  <td class="hide-sm">NodeDAO&#x27;s own list of its contracts names this its LiquidStaking contract; validators deposited through it are NodeDAO nETH&#x27;s.</td>
+  <td class="num" data-v="0">0</td>
+  <td class="num" data-v="0">0</td>
+  <td class="num hide-sm" data-v="15200">15,200</td>
+</tr><tr data-q="0063-staked-eth2-depositor-25   validators this account deposited through staked&#x27;s batch contract pay their execution-layer rewards to staked&#x27;s fee recipient, so staked (now part of kraken) runs them.">
+  <td><a href="0063-staked-eth2-depositor-25.html">0063</a></td>
+  <td>Anchor</td>
+  <td></td>
+  <td class="hide-sm">Validators this account deposited through Staked&#x27;s batch contract pay their execution-layer rewards to Staked&#x27;s fee recipient, so Staked (now part of Kraken) runs them.</td>
+  <td class="num" data-v="0">0</td>
+  <td class="num" data-v="0">0</td>
+  <td class="num hide-sm" data-v="12960">12,960</td>
+</tr><tr data-q="0232-consensys-staking-depositor-61dbce   validators this account deposited are consensys staking&#x27;s: it batched them as consensys&#x27;s platform does, they paid the client&#x27;s own fee recipient, and their software changed in step with consensys&#x27;s other validators.">
+  <td><a href="0232-consensys-staking-depositor-61dbce.html">0232</a></td>
+  <td>Anchor</td>
+  <td></td>
+  <td class="hide-sm">Validators this account deposited are Consensys Staking&#x27;s: it batched them as Consensys&#x27;s platform does, they paid the client&#x27;s own fee recipient, and their software changed in step with Consensys&#x27;s other validators.</td>
+  <td class="num" data-v="0">0</td>
+  <td class="num" data-v="0">0</td>
+  <td class="num hide-sm" data-v="12832">12,832</td>
+</tr><tr data-q="0079-stakewise-solos   this contract, whose source is in stakewise&#x27;s repository, ran stakewise&#x27;s solos service; validators deposited through it were run by stakewise.">
+  <td><a href="0079-stakewise-solos.html">0079</a></td>
+  <td>Anchor</td>
+  <td></td>
+  <td class="hide-sm">This contract, whose source is in StakeWise&#x27;s repository, ran StakeWise&#x27;s Solos service; validators deposited through it were run by StakeWise.</td>
+  <td class="num" data-v="0">0</td>
+  <td class="num" data-v="0">0</td>
+  <td class="num hide-sm" data-v="12192">12,192</td>
+</tr><tr data-q="0047-staked-eth2-depositor-4   validators this account deposited through staked&#x27;s batch contract pay their execution-layer rewards to staked&#x27;s fee recipient, so staked (now part of kraken) runs them.">
+  <td><a href="0047-staked-eth2-depositor-4.html">0047</a></td>
+  <td>Anchor</td>
+  <td></td>
+  <td class="hide-sm">Validators this account deposited through Staked&#x27;s batch contract pay their execution-layer rewards to Staked&#x27;s fee recipient, so Staked (now part of Kraken) runs them.</td>
+  <td class="num" data-v="0">0</td>
+  <td class="num" data-v="0">0</td>
+  <td class="num hide-sm" data-v="10624">10,624</td>
+</tr><tr data-q="0053-staked-eth2-depositor-11   validators this account deposited through staked&#x27;s batch contract pay their execution-layer rewards to staked&#x27;s fee recipient, so staked (now part of kraken) runs them.">
+  <td><a href="0053-staked-eth2-depositor-11.html">0053</a></td>
+  <td>Anchor</td>
+  <td></td>
+  <td class="hide-sm">Validators this account deposited through Staked&#x27;s batch contract pay their execution-layer rewards to Staked&#x27;s fee recipient, so Staked (now part of Kraken) runs them.</td>
+  <td class="num" data-v="0">0</td>
+  <td class="num" data-v="0">0</td>
+  <td class="num hide-sm" data-v="8704">8,704</td>
+</tr><tr data-q="0233-consensys-staking-depositor-24fcb9   validators this account deposited are consensys staking&#x27;s: it batched them as consensys&#x27;s platform does, they paid the client&#x27;s own fee recipient, and their software changed in step with consensys&#x27;s other validators.">
+  <td><a href="0233-consensys-staking-depositor-24fcb9.html">0233</a></td>
+  <td>Anchor</td>
+  <td></td>
+  <td class="hide-sm">Validators this account deposited are Consensys Staking&#x27;s: it batched them as Consensys&#x27;s platform does, they paid the client&#x27;s own fee recipient, and their software changed in step with Consensys&#x27;s other validators.</td>
+  <td class="num" data-v="0">0</td>
+  <td class="num" data-v="0">0</td>
+  <td class="num hide-sm" data-v="8000">8,000</td>
+</tr><tr data-q="0144-consensys-staking-depositor-d8799c   validators this account deposited are consensys staking&#x27;s: it batched them as consensys&#x27;s platform does, they paid the client&#x27;s own fee recipient, and their software changed in step with consensys&#x27;s other validators.">
+  <td><a href="0144-consensys-staking-depositor-d8799c.html">0144</a></td>
+  <td>Anchor</td>
+  <td></td>
+  <td class="hide-sm">Validators this account deposited are Consensys Staking&#x27;s: it batched them as Consensys&#x27;s platform does, they paid the client&#x27;s own fee recipient, and their software changed in step with Consensys&#x27;s other validators.</td>
+  <td class="num" data-v="0">0</td>
+  <td class="num" data-v="0">0</td>
+  <td class="num hide-sm" data-v="6976">6,976</td>
+</tr><tr data-q="0048-staked-eth2-depositor-5   validators this account deposited through staked&#x27;s batch contract pay their execution-layer rewards to staked&#x27;s fee recipient, so staked (now part of kraken) runs them.">
+  <td><a href="0048-staked-eth2-depositor-5.html">0048</a></td>
+  <td>Anchor</td>
+  <td></td>
+  <td class="hide-sm">Validators this account deposited through Staked&#x27;s batch contract pay their execution-layer rewards to Staked&#x27;s fee recipient, so Staked (now part of Kraken) runs them.</td>
+  <td class="num" data-v="0">0</td>
+  <td class="num" data-v="0">0</td>
+  <td class="num hide-sm" data-v="6400">6,400</td>
+</tr><tr data-q="0234-consensys-staking-depositor-56fa2d   validators this account deposited are consensys staking&#x27;s: it batched them as consensys&#x27;s platform does, they paid the client&#x27;s own fee recipient, and their software changed in step with consensys&#x27;s other validators.">
+  <td><a href="0234-consensys-staking-depositor-56fa2d.html">0234</a></td>
+  <td>Anchor</td>
+  <td></td>
+  <td class="hide-sm">Validators this account deposited are Consensys Staking&#x27;s: it batched them as Consensys&#x27;s platform does, they paid the client&#x27;s own fee recipient, and their software changed in step with Consensys&#x27;s other validators.</td>
+  <td class="num" data-v="0">0</td>
+  <td class="num" data-v="0">0</td>
+  <td class="num hide-sm" data-v="6016">6,016</td>
+</tr><tr data-q="0145-consensys-staking-depositor-78992d   validators this account deposited are consensys staking&#x27;s: it batched them as consensys&#x27;s platform does, they paid the client&#x27;s own fee recipient, and their software changed in step with consensys&#x27;s other validators.">
+  <td><a href="0145-consensys-staking-depositor-78992d.html">0145</a></td>
+  <td>Anchor</td>
+  <td></td>
+  <td class="hide-sm">Validators this account deposited are Consensys Staking&#x27;s: it batched them as Consensys&#x27;s platform does, they paid the client&#x27;s own fee recipient, and their software changed in step with Consensys&#x27;s other validators.</td>
+  <td class="num" data-v="0">0</td>
+  <td class="num" data-v="0">0</td>
+  <td class="num hide-sm" data-v="5824">5,824</td>
+</tr><tr data-q="0056-staked-eth2-depositor-16   validators this account deposited through staked&#x27;s batch contract pay their execution-layer rewards to staked&#x27;s fee recipient, so staked (now part of kraken) runs them.">
+  <td><a href="0056-staked-eth2-depositor-16.html">0056</a></td>
+  <td>Anchor</td>
+  <td></td>
+  <td class="hide-sm">Validators this account deposited through Staked&#x27;s batch contract pay their execution-layer rewards to Staked&#x27;s fee recipient, so Staked (now part of Kraken) runs them.</td>
+  <td class="num" data-v="0">0</td>
+  <td class="num" data-v="0">0</td>
+  <td class="num hide-sm" data-v="2816">2,816</td>
+</tr><tr data-q="0062-staked-eth2-depositor-24   validators this account deposited through staked&#x27;s batch contract pay their execution-layer rewards to staked&#x27;s fee recipient, so staked (now part of kraken) runs them.">
+  <td><a href="0062-staked-eth2-depositor-24.html">0062</a></td>
+  <td>Anchor</td>
+  <td></td>
+  <td class="hide-sm">Validators this account deposited through Staked&#x27;s batch contract pay their execution-layer rewards to Staked&#x27;s fee recipient, so Staked (now part of Kraken) runs them.</td>
+  <td class="num" data-v="0">0</td>
+  <td class="num" data-v="0">0</td>
+  <td class="num hide-sm" data-v="2624">2,624</td>
+</tr><tr data-q="0055-staked-eth2-depositor-15   validators this account deposited through staked&#x27;s batch contract pay their execution-layer rewards to staked&#x27;s fee recipient, so staked (now part of kraken) runs them.">
+  <td><a href="0055-staked-eth2-depositor-15.html">0055</a></td>
+  <td>Anchor</td>
+  <td></td>
+  <td class="hide-sm">Validators this account deposited through Staked&#x27;s batch contract pay their execution-layer rewards to Staked&#x27;s fee recipient, so Staked (now part of Kraken) runs them.</td>
+  <td class="num" data-v="0">0</td>
+  <td class="num" data-v="0">0</td>
+  <td class="num hide-sm" data-v="2304">2,304</td>
+</tr><tr data-q="0236-consensys-staking-depositor-bd7685   validators this account deposited are consensys staking&#x27;s: it batched them as consensys&#x27;s platform does, they paid the client&#x27;s own fee recipient, and their software changed in step with consensys&#x27;s other validators.">
+  <td><a href="0236-consensys-staking-depositor-bd7685.html">0236</a></td>
+  <td>Anchor</td>
+  <td></td>
+  <td class="hide-sm">Validators this account deposited are Consensys Staking&#x27;s: it batched them as Consensys&#x27;s platform does, they paid the client&#x27;s own fee recipient, and their software changed in step with Consensys&#x27;s other validators.</td>
+  <td class="num" data-v="0">0</td>
+  <td class="num" data-v="0">0</td>
+  <td class="num hide-sm" data-v="2176">2,176</td>
+</tr><tr data-q="0057-staked-eth2-depositor-17   validators this account deposited through staked&#x27;s batch contract pay their execution-layer rewards to staked&#x27;s fee recipient, so staked (now part of kraken) runs them.">
+  <td><a href="0057-staked-eth2-depositor-17.html">0057</a></td>
+  <td>Anchor</td>
+  <td></td>
+  <td class="hide-sm">Validators this account deposited through Staked&#x27;s batch contract pay their execution-layer rewards to Staked&#x27;s fee recipient, so Staked (now part of Kraken) runs them.</td>
+  <td class="num" data-v="0">0</td>
+  <td class="num" data-v="0">0</td>
+  <td class="num hide-sm" data-v="2080">2,080</td>
+</tr><tr data-q="0058-staked-eth2-depositor-19   validators this account deposited through staked&#x27;s batch contract pay their execution-layer rewards to staked&#x27;s fee recipient, so staked (now part of kraken) runs them.">
+  <td><a href="0058-staked-eth2-depositor-19.html">0058</a></td>
+  <td>Anchor</td>
+  <td></td>
+  <td class="hide-sm">Validators this account deposited through Staked&#x27;s batch contract pay their execution-layer rewards to Staked&#x27;s fee recipient, so Staked (now part of Kraken) runs them.</td>
+  <td class="num" data-v="0">0</td>
+  <td class="num" data-v="0">0</td>
+  <td class="num hide-sm" data-v="2080">2,080</td>
+</tr><tr data-q="0059-staked-eth2-depositor-20   validators this account deposited through staked&#x27;s batch contract pay their execution-layer rewards to staked&#x27;s fee recipient, so staked (now part of kraken) runs them.">
+  <td><a href="0059-staked-eth2-depositor-20.html">0059</a></td>
+  <td>Anchor</td>
+  <td></td>
+  <td class="hide-sm">Validators this account deposited through Staked&#x27;s batch contract pay their execution-layer rewards to Staked&#x27;s fee recipient, so Staked (now part of Kraken) runs them.</td>
+  <td class="num" data-v="0">0</td>
+  <td class="num" data-v="0">0</td>
+  <td class="num hide-sm" data-v="2048">2,048</td>
+</tr><tr data-q="0060-staked-eth2-depositor-21   validators this account deposited through staked&#x27;s batch contract pay their execution-layer rewards to staked&#x27;s fee recipient, so staked (now part of kraken) runs them.">
+  <td><a href="0060-staked-eth2-depositor-21.html">0060</a></td>
+  <td>Anchor</td>
+  <td></td>
+  <td class="hide-sm">Validators this account deposited through Staked&#x27;s batch contract pay their execution-layer rewards to Staked&#x27;s fee recipient, so Staked (now part of Kraken) runs them.</td>
+  <td class="num" data-v="0">0</td>
+  <td class="num" data-v="0">0</td>
+  <td class="num hide-sm" data-v="2016">2,016</td>
+</tr><tr data-q="0061-staked-eth2-depositor-22   validators this account deposited through staked&#x27;s batch contract pay their execution-layer rewards to staked&#x27;s fee recipient, so staked (now part of kraken) runs them.">
+  <td><a href="0061-staked-eth2-depositor-22.html">0061</a></td>
+  <td>Anchor</td>
+  <td></td>
+  <td class="hide-sm">Validators this account deposited through Staked&#x27;s batch contract pay their execution-layer rewards to Staked&#x27;s fee recipient, so Staked (now part of Kraken) runs them.</td>
+  <td class="num" data-v="0">0</td>
+  <td class="num" data-v="0">0</td>
+  <td class="num hide-sm" data-v="1888">1,888</td>
+</tr><tr data-q="0001-everstake-pool   ">
+  <td><a href="0001-everstake-pool.html">0001</a></td>
+  <td>Anchor <span class="chip">superseded</span></td>
+  <td></td>
+  <td class="hide-sm"></td>
+  <td class="num" data-v="0">–</td>
+  <td class="num" data-v="0">–</td>
+  <td class="num hide-sm" data-v="0">–</td>
+</tr><tr data-q="0004-p2p-deployer   ">
+  <td><a href="0004-p2p-deployer.html">0004</a></td>
+  <td>Anchor <span class="chip">superseded</span></td>
+  <td></td>
+  <td class="hide-sm"></td>
+  <td class="num" data-v="0">–</td>
+  <td class="num" data-v="0">–</td>
+  <td class="num hide-sm" data-v="0">–</td>
+</tr><tr data-q="0014-coinbase coinbase coinbase ">
+  <td><a href="0014-coinbase.html">0014</a></td>
+  <td>Name</td>
+  <td><a href="../entities/coinbase.html">Coinbase</a></td>
+  <td class="hide-sm"></td>
+  <td class="num" data-v="0">–</td>
+  <td class="num" data-v="0">–</td>
+  <td class="num hide-sm" data-v="0">–</td>
+</tr><tr data-q="0015-coinbase-staking coinbase/staking coinbase staking ">
+  <td><a href="0015-coinbase-staking.html">0015</a></td>
+  <td>Name</td>
+  <td><a href="../entities/coinbase.html">Coinbase staking</a></td>
+  <td class="hide-sm"></td>
+  <td class="num" data-v="0">–</td>
+  <td class="num" data-v="0">–</td>
+  <td class="num hide-sm" data-v="0">–</td>
+</tr><tr data-q="0018-coinbase-batch-deposit   ">
+  <td><a href="0018-coinbase-batch-deposit.html">0018</a></td>
+  <td>Anchor <span class="chip">reverted</span></td>
+  <td></td>
+  <td class="hide-sm"></td>
+  <td class="num" data-v="0">–</td>
+  <td class="num" data-v="0">–</td>
+  <td class="num hide-sm" data-v="0">–</td>
+</tr><tr data-q="0019-coinbase-batch-deposit-1   ">
+  <td><a href="0019-coinbase-batch-deposit-1.html">0019</a></td>
+  <td>Anchor <span class="chip">reverted</span></td>
+  <td></td>
+  <td class="hide-sm"></td>
+  <td class="num" data-v="0">–</td>
+  <td class="num" data-v="0">–</td>
+  <td class="num hide-sm" data-v="0">–</td>
+</tr><tr data-q="0021-bitcoin-suisse bitcoin-suisse bitcoin suisse ">
+  <td><a href="0021-bitcoin-suisse.html">0021</a></td>
+  <td>Name</td>
+  <td><a href="../entities/bitcoin-suisse.html">Bitcoin Suisse</a></td>
+  <td class="hide-sm"></td>
+  <td class="num" data-v="0">–</td>
+  <td class="num" data-v="0">–</td>
+  <td class="num hide-sm" data-v="0">–</td>
+</tr><tr data-q="0022-bitcoin-suisse-staking bitcoin-suisse/staking bitcoin suisse staking ">
+  <td><a href="0022-bitcoin-suisse-staking.html">0022</a></td>
+  <td>Name</td>
+  <td><a href="../entities/bitcoin-suisse.html">Bitcoin Suisse staking</a></td>
+  <td class="hide-sm"></td>
+  <td class="num" data-v="0">–</td>
+  <td class="num" data-v="0">–</td>
+  <td class="num hide-sm" data-v="0">–</td>
+</tr><tr data-q="0026-celsius celsius celsius ">
+  <td><a href="0026-celsius.html">0026</a></td>
+  <td>Name</td>
+  <td><a href="../entities/celsius.html">Celsius</a></td>
+  <td class="hide-sm"></td>
+  <td class="num" data-v="0">–</td>
+  <td class="num" data-v="0">–</td>
+  <td class="num hide-sm" data-v="0">–</td>
+</tr><tr data-q="0027-celsius-staking celsius/staking celsius staking ">
+  <td><a href="0027-celsius-staking.html">0027</a></td>
+  <td>Name</td>
+  <td><a href="../entities/celsius.html">Celsius staking</a></td>
+  <td class="hide-sm"></td>
+  <td class="num" data-v="0">–</td>
+  <td class="num" data-v="0">–</td>
+  <td class="num hide-sm" data-v="0">–</td>
+</tr><tr data-q="0028-celsius-staking-2021 celsius/staking celsius staking ">
+  <td><a href="0028-celsius-staking-2021.html">0028</a></td>
+  <td>Attribution <span class="chip">superseded</span></td>
+  <td><a href="../entities/celsius.html">Celsius staking</a> <span class="chip">Allocator</span></td>
+  <td class="hide-sm"></td>
+  <td class="num" data-v="0">–</td>
+  <td class="num" data-v="0">–</td>
+  <td class="num hide-sm" data-v="0">–</td>
+</tr><tr data-q="0036-kiln-metamask-validator-staking   ">
+  <td><a href="0036-kiln-metamask-validator-staking.html">0036</a></td>
+  <td>Anchor <span class="chip">superseded</span></td>
+  <td></td>
+  <td class="hide-sm"></td>
+  <td class="num" data-v="0">–</td>
+  <td class="num" data-v="0">–</td>
+  <td class="num hide-sm" data-v="0">–</td>
+</tr><tr data-q="0040-kiln-vpool-8eea   ">
+  <td><a href="0040-kiln-vpool-8eea.html">0040</a></td>
+  <td>Anchor <span class="chip">reverted</span></td>
+  <td></td>
+  <td class="hide-sm"></td>
+  <td class="num" data-v="0">–</td>
+  <td class="num" data-v="0">–</td>
+  <td class="num hide-sm" data-v="0">–</td>
+</tr><tr data-q="0045-staked-eth2-depositor-2   ">
+  <td><a href="0045-staked-eth2-depositor-2.html">0045</a></td>
+  <td>Anchor <span class="chip">superseded</span></td>
+  <td></td>
+  <td class="hide-sm"></td>
+  <td class="num" data-v="0">–</td>
+  <td class="num" data-v="0">–</td>
+  <td class="num hide-sm" data-v="0">–</td>
+</tr><tr data-q="0046-staked-eth2-depositor-3   ">
+  <td><a href="0046-staked-eth2-depositor-3.html">0046</a></td>
+  <td>Anchor <span class="chip">superseded</span></td>
+  <td></td>
+  <td class="hide-sm"></td>
+  <td class="num" data-v="0">–</td>
+  <td class="num" data-v="0">–</td>
+  <td class="num hide-sm" data-v="0">–</td>
+</tr><tr data-q="0051-staked-eth2-depositor-9   ">
+  <td><a href="0051-staked-eth2-depositor-9.html">0051</a></td>
+  <td>Anchor <span class="chip">superseded</span></td>
+  <td></td>
+  <td class="hide-sm"></td>
+  <td class="num" data-v="0">–</td>
+  <td class="num" data-v="0">–</td>
+  <td class="num hide-sm" data-v="0">–</td>
+</tr><tr data-q="0052-staked-eth2-depositor-10   ">
+  <td><a href="0052-staked-eth2-depositor-10.html">0052</a></td>
+  <td>Anchor <span class="chip">superseded</span></td>
+  <td></td>
+  <td class="hide-sm"></td>
+  <td class="num" data-v="0">–</td>
+  <td class="num" data-v="0">–</td>
+  <td class="num hide-sm" data-v="0">–</td>
+</tr><tr data-q="0054-staked-eth2-depositor-14   ">
+  <td><a href="0054-staked-eth2-depositor-14.html">0054</a></td>
+  <td>Anchor <span class="chip">superseded</span></td>
+  <td></td>
+  <td class="hide-sm"></td>
+  <td class="num" data-v="0">–</td>
+  <td class="num" data-v="0">–</td>
+  <td class="num hide-sm" data-v="0">–</td>
+</tr><tr data-q="0065-staked-eth2-depositor-27   ">
+  <td><a href="0065-staked-eth2-depositor-27.html">0065</a></td>
+  <td>Anchor <span class="chip">superseded</span></td>
+  <td></td>
+  <td class="hide-sm"></td>
+  <td class="num" data-v="0">–</td>
+  <td class="num" data-v="0">–</td>
+  <td class="num hide-sm" data-v="0">–</td>
+</tr><tr data-q="0067-staked-eth2-depositor-30   ">
+  <td><a href="0067-staked-eth2-depositor-30.html">0067</a></td>
+  <td>Anchor <span class="chip">superseded</span></td>
+  <td></td>
+  <td class="hide-sm"></td>
+  <td class="num" data-v="0">–</td>
+  <td class="num" data-v="0">–</td>
+  <td class="num hide-sm" data-v="0">–</td>
+</tr><tr data-q="0068-staked-eth2-depositor-31   ">
+  <td><a href="0068-staked-eth2-depositor-31.html">0068</a></td>
+  <td>Anchor <span class="chip">superseded</span></td>
+  <td></td>
+  <td class="hide-sm"></td>
+  <td class="num" data-v="0">–</td>
+  <td class="num" data-v="0">–</td>
+  <td class="num hide-sm" data-v="0">–</td>
+</tr><tr data-q="0073-htx-eth2-depositor-2   much of this account&#x27;s eth came from reserve wallets whose ownership htx (formerly huobi) proved by signature; its validators withdraw to an address htx&#x27;s reserves started.">
+  <td><a href="0073-htx-eth2-depositor-2.html">0073</a></td>
+  <td>Anchor</td>
+  <td></td>
+  <td class="hide-sm">Much of this account&#x27;s ETH came from reserve wallets whose ownership HTX (formerly Huobi) proved by signature; its validators withdraw to an address HTX&#x27;s reserves started.</td>
+  <td class="num" data-v="0">–</td>
+  <td class="num" data-v="0">–</td>
+  <td class="num hide-sm" data-v="0">–</td>
+</tr><tr data-q="0076-merge-arthapala   ">
+  <td><a href="0076-merge-arthapala.html">0076</a></td>
+  <td>Merge</td>
+  <td></td>
+  <td class="hide-sm"></td>
+  <td class="num" data-v="0">–</td>
+  <td class="num" data-v="0">–</td>
+  <td class="num hide-sm" data-v="0">–</td>
+</tr><tr data-q="0082-piedao-eth2-depositor   ">
+  <td><a href="0082-piedao-eth2-depositor.html">0082</a></td>
+  <td>Anchor <span class="chip">superseded</span></td>
+  <td></td>
+  <td class="hide-sm"></td>
+  <td class="num" data-v="0">–</td>
+  <td class="num" data-v="0">–</td>
+  <td class="num hide-sm" data-v="0">–</td>
+</tr><tr data-q="0085-bitmine bitmine bitmine ">
+  <td><a href="0085-bitmine.html">0085</a></td>
+  <td>Name</td>
+  <td><a href="../entities/bitmine.html">BitMine</a></td>
+  <td class="hide-sm"></td>
+  <td class="num" data-v="0">–</td>
+  <td class="num" data-v="0">–</td>
+  <td class="num hide-sm" data-v="0">–</td>
+</tr><tr data-q="0086-bitmine-staking bitmine/staking bitmine treasury staking ">
+  <td><a href="0086-bitmine-staking.html">0086</a></td>
+  <td>Name <span class="chip">superseded</span></td>
+  <td><a href="../entities/bitmine.html">BitMine treasury staking</a></td>
+  <td class="hide-sm"></td>
+  <td class="num" data-v="0">–</td>
+  <td class="num" data-v="0">–</td>
+  <td class="num hide-sm" data-v="0">–</td>
+</tr><tr data-q="0088-bitfinex bitfinex bitfinex ">
+  <td><a href="0088-bitfinex.html">0088</a></td>
+  <td>Name</td>
+  <td><a href="../entities/bitfinex.html">Bitfinex</a></td>
+  <td class="hide-sm"></td>
+  <td class="num" data-v="0">–</td>
+  <td class="num" data-v="0">–</td>
+  <td class="num hide-sm" data-v="0">–</td>
+</tr><tr data-q="0089-bitfinex-staking-name bitfinex/staking bitfinex staking ">
+  <td><a href="0089-bitfinex-staking-name.html">0089</a></td>
+  <td>Name</td>
+  <td><a href="../entities/bitfinex.html">Bitfinex staking</a></td>
+  <td class="hide-sm"></td>
+  <td class="num" data-v="0">–</td>
+  <td class="num" data-v="0">–</td>
+  <td class="num hide-sm" data-v="0">–</td>
+</tr><tr data-q="0091-kucoin kucoin kucoin ">
+  <td><a href="0091-kucoin.html">0091</a></td>
+  <td>Name</td>
+  <td><a href="../entities/kucoin.html">KuCoin</a></td>
+  <td class="hide-sm"></td>
+  <td class="num" data-v="0">–</td>
+  <td class="num" data-v="0">–</td>
+  <td class="num hide-sm" data-v="0">–</td>
+</tr><tr data-q="0092-kucoin-staking-name kucoin/staking kucoin staking ">
+  <td><a href="0092-kucoin-staking-name.html">0092</a></td>
+  <td>Name</td>
+  <td><a href="../entities/kucoin.html">KuCoin staking</a></td>
+  <td class="hide-sm"></td>
+  <td class="num" data-v="0">–</td>
+  <td class="num" data-v="0">–</td>
+  <td class="num hide-sm" data-v="0">–</td>
+</tr><tr data-q="0094-coinex coinex coinex ">
+  <td><a href="0094-coinex.html">0094</a></td>
+  <td>Name</td>
+  <td><a href="../entities/coinex.html">CoinEx</a></td>
+  <td class="hide-sm"></td>
+  <td class="num" data-v="0">–</td>
+  <td class="num" data-v="0">–</td>
+  <td class="num hide-sm" data-v="0">–</td>
+</tr><tr data-q="0095-coinex-staking-name coinex/staking coinex staking ">
+  <td><a href="0095-coinex-staking-name.html">0095</a></td>
+  <td>Name</td>
+  <td><a href="../entities/coinex.html">CoinEx staking</a></td>
+  <td class="hide-sm"></td>
+  <td class="num" data-v="0">–</td>
+  <td class="num" data-v="0">–</td>
+  <td class="num hide-sm" data-v="0">–</td>
+</tr><tr data-q="0097-bitrue bitrue bitrue ">
+  <td><a href="0097-bitrue.html">0097</a></td>
+  <td>Name</td>
+  <td><a href="../entities/bitrue.html">Bitrue</a></td>
+  <td class="hide-sm"></td>
+  <td class="num" data-v="0">–</td>
+  <td class="num" data-v="0">–</td>
+  <td class="num hide-sm" data-v="0">–</td>
+</tr><tr data-q="0098-bitrue-staking-name bitrue/staking bitrue staking ">
+  <td><a href="0098-bitrue-staking-name.html">0098</a></td>
+  <td>Name</td>
+  <td><a href="../entities/bitrue.html">Bitrue staking</a></td>
+  <td class="hide-sm"></td>
+  <td class="num" data-v="0">–</td>
+  <td class="num" data-v="0">–</td>
+  <td class="num hide-sm" data-v="0">–</td>
+</tr><tr data-q="0100-ignore-rocket-pool-smoothing-pool   ">
+  <td><a href="0100-ignore-rocket-pool-smoothing-pool.html">0100</a></td>
+  <td>Ignored link</td>
+  <td></td>
+  <td class="hide-sm"></td>
+  <td class="num" data-v="0">–</td>
+  <td class="num" data-v="0">–</td>
+  <td class="num hide-sm" data-v="0">–</td>
+</tr><tr data-q="0101-ignore-dappnode-smooth   ">
+  <td><a href="0101-ignore-dappnode-smooth.html">0101</a></td>
+  <td>Ignored link</td>
+  <td></td>
+  <td class="hide-sm"></td>
+  <td class="num" data-v="0">–</td>
+  <td class="num" data-v="0">–</td>
+  <td class="num hide-sm" data-v="0">–</td>
+</tr><tr data-q="0102-ignore-stader-socializing-pool   ">
+  <td><a href="0102-ignore-stader-socializing-pool.html">0102</a></td>
+  <td>Ignored link</td>
+  <td></td>
+  <td class="hide-sm"></td>
+  <td class="num" data-v="0">–</td>
+  <td class="num" data-v="0">–</td>
+  <td class="num hide-sm" data-v="0">–</td>
+</tr><tr data-q="0106-btcturk btcturk btcturk ">
+  <td><a href="0106-btcturk.html">0106</a></td>
+  <td>Name</td>
+  <td>BtcTurk</td>
+  <td class="hide-sm"></td>
+  <td class="num" data-v="0">–</td>
+  <td class="num" data-v="0">–</td>
+  <td class="num hide-sm" data-v="0">–</td>
+</tr><tr data-q="0107-btcturk-staking-name btcturk/staking btcturk staking ">
+  <td><a href="0107-btcturk-staking-name.html">0107</a></td>
+  <td>Name</td>
+  <td>BtcTurk staking</td>
+  <td class="hide-sm"></td>
+  <td class="num" data-v="0">–</td>
+  <td class="num" data-v="0">–</td>
+  <td class="num hide-sm" data-v="0">–</td>
+</tr><tr data-q="0108-btcturk-staking btcturk/staking btcturk staking ">
+  <td><a href="0108-btcturk-staking.html">0108</a></td>
+  <td>Attribution <span class="chip">reverted</span></td>
+  <td>BtcTurk staking <span class="chip">Allocator</span></td>
+  <td class="hide-sm"></td>
+  <td class="num" data-v="0">–</td>
+  <td class="num" data-v="0">–</td>
+  <td class="num hide-sm" data-v="0">–</td>
+</tr><tr data-q="0113-coinbase-prime coinbase/prime coinbase prime (custody clients) ">
+  <td><a href="0113-coinbase-prime.html">0113</a></td>
+  <td>Name</td>
+  <td><a href="../entities/coinbase.html">Coinbase Prime (custody clients)</a></td>
+  <td class="hide-sm"></td>
+  <td class="num" data-v="0">–</td>
+  <td class="num" data-v="0">–</td>
+  <td class="num hide-sm" data-v="0">–</td>
+</tr><tr data-q="0114-coinbase-prime-custody-staking coinbase/prime coinbase prime (custody clients) ">
+  <td><a href="0114-coinbase-prime-custody-staking.html">0114</a></td>
+  <td>Attribution <span class="chip">superseded</span></td>
+  <td><a href="../entities/coinbase.html">Coinbase Prime (custody clients)</a> <span class="chip">Allocator</span></td>
+  <td class="hide-sm"></td>
+  <td class="num" data-v="0">–</td>
+  <td class="num" data-v="0">–</td>
+  <td class="num hide-sm" data-v="0">–</td>
+</tr><tr data-q="0116-binance-wbeth   bnb chain&#x27;s announcement names this as wbeth on ethereum, and the eth paid in to mint it goes to a binance wallet.">
+  <td><a href="0116-binance-wbeth.html">0116</a></td>
+  <td>Anchor</td>
+  <td></td>
+  <td class="hide-sm">BNB Chain&#x27;s announcement names this as wBETH on Ethereum, and the ETH paid in to mint it goes to a Binance wallet.</td>
+  <td class="num" data-v="0">–</td>
+  <td class="num" data-v="0">–</td>
+  <td class="num hide-sm" data-v="0">–</td>
+</tr><tr data-q="0117-coinbase-cbeth   a risk report lists this as cbeth&#x27;s contract, and the cbeth it mints is passed straight to a coinbase wallet.">
+  <td><a href="0117-coinbase-cbeth.html">0117</a></td>
+  <td>Anchor</td>
+  <td></td>
+  <td class="hide-sm">A risk report lists this as cbETH&#x27;s contract, and the cbETH it mints is passed straight to a Coinbase wallet.</td>
+  <td class="num" data-v="0">–</td>
+  <td class="num" data-v="0">–</td>
+  <td class="num hide-sm" data-v="0">–</td>
+</tr><tr data-q="0118-revolut revolut revolut ">
+  <td><a href="0118-revolut.html">0118</a></td>
+  <td>Name</td>
+  <td><a href="../entities/revolut.html">Revolut</a></td>
+  <td class="hide-sm"></td>
+  <td class="num" data-v="0">–</td>
+  <td class="num" data-v="0">–</td>
+  <td class="num hide-sm" data-v="0">–</td>
+</tr><tr data-q="0119-revolut-staking-name revolut/staking revolut staking ">
+  <td><a href="0119-revolut-staking-name.html">0119</a></td>
+  <td>Name</td>
+  <td><a href="../entities/revolut.html">Revolut staking</a></td>
+  <td class="hide-sm"></td>
+  <td class="num" data-v="0">–</td>
+  <td class="num" data-v="0">–</td>
+  <td class="num hide-sm" data-v="0">–</td>
+</tr><tr data-q="0121-coinspot coinspot coinspot ">
+  <td><a href="0121-coinspot.html">0121</a></td>
+  <td>Name</td>
+  <td><a href="../entities/coinspot.html">CoinSpot</a></td>
+  <td class="hide-sm"></td>
+  <td class="num" data-v="0">–</td>
+  <td class="num" data-v="0">–</td>
+  <td class="num hide-sm" data-v="0">–</td>
+</tr><tr data-q="0122-coinspot-staking-name coinspot/staking coinspot staking ">
+  <td><a href="0122-coinspot-staking-name.html">0122</a></td>
+  <td>Name</td>
+  <td><a href="../entities/coinspot.html">CoinSpot staking</a></td>
+  <td class="hide-sm"></td>
+  <td class="num" data-v="0">–</td>
+  <td class="num" data-v="0">–</td>
+  <td class="num hide-sm" data-v="0">–</td>
+</tr><tr data-q="0124-bitget bitget bitget ">
+  <td><a href="0124-bitget.html">0124</a></td>
+  <td>Name</td>
+  <td><a href="../entities/bitget.html">Bitget</a></td>
+  <td class="hide-sm"></td>
+  <td class="num" data-v="0">–</td>
+  <td class="num" data-v="0">–</td>
+  <td class="num hide-sm" data-v="0">–</td>
+</tr><tr data-q="0125-bitget-staking-name bitget/staking bitget staking ">
+  <td><a href="0125-bitget-staking-name.html">0125</a></td>
+  <td>Name</td>
+  <td><a href="../entities/bitget.html">Bitget staking</a></td>
+  <td class="hide-sm"></td>
+  <td class="num" data-v="0">–</td>
+  <td class="num" data-v="0">–</td>
+  <td class="num hide-sm" data-v="0">–</td>
+</tr><tr data-q="0127-coinjar coinjar coinjar ">
+  <td><a href="0127-coinjar.html">0127</a></td>
+  <td>Name</td>
+  <td>CoinJar</td>
+  <td class="hide-sm"></td>
+  <td class="num" data-v="0">–</td>
+  <td class="num" data-v="0">–</td>
+  <td class="num hide-sm" data-v="0">–</td>
+</tr><tr data-q="0128-coinjar-staking-name coinjar/staking coinjar staking ">
+  <td><a href="0128-coinjar-staking-name.html">0128</a></td>
+  <td>Name</td>
+  <td>CoinJar staking</td>
+  <td class="hide-sm"></td>
+  <td class="num" data-v="0">–</td>
+  <td class="num" data-v="0">–</td>
+  <td class="num hide-sm" data-v="0">–</td>
+</tr><tr data-q="0129-coinjar-staking coinjar/staking coinjar staking ">
+  <td><a href="0129-coinjar-staking.html">0129</a></td>
+  <td>Attribution <span class="chip">reverted</span></td>
+  <td>CoinJar staking <span class="chip">Allocator</span></td>
+  <td class="hide-sm"></td>
+  <td class="num" data-v="0">–</td>
+  <td class="num" data-v="0">–</td>
+  <td class="num hide-sm" data-v="0">–</td>
+</tr><tr data-q="0130-golem-foundation golem-foundation golem foundation ">
+  <td><a href="0130-golem-foundation.html">0130</a></td>
+  <td>Name</td>
+  <td><a href="../entities/golem-foundation.html">Golem Foundation</a></td>
+  <td class="hide-sm"></td>
+  <td class="num" data-v="0">–</td>
+  <td class="num" data-v="0">–</td>
+  <td class="num hide-sm" data-v="0">–</td>
+</tr><tr data-q="0131-golem-foundation-octant-name golem-foundation/octant octant staking ">
+  <td><a href="0131-golem-foundation-octant-name.html">0131</a></td>
+  <td>Name</td>
+  <td><a href="../entities/golem-foundation.html">Octant staking</a></td>
+  <td class="hide-sm"></td>
+  <td class="num" data-v="0">–</td>
+  <td class="num" data-v="0">–</td>
+  <td class="num hide-sm" data-v="0">–</td>
+</tr><tr data-q="0140-coinbase-cloud coinbase/cloud coinbase cloud ">
+  <td><a href="0140-coinbase-cloud.html">0140</a></td>
+  <td>Name</td>
+  <td><a href="../entities/coinbase.html">Coinbase Cloud</a></td>
+  <td class="hide-sm"></td>
+  <td class="num" data-v="0">–</td>
+  <td class="num" data-v="0">–</td>
+  <td class="num hide-sm" data-v="0">–</td>
+</tr><tr data-q="0154-bitflyer bitflyer bitflyer ">
+  <td><a href="0154-bitflyer.html">0154</a></td>
+  <td>Name</td>
+  <td><a href="../entities/bitflyer.html">bitFlyer</a></td>
+  <td class="hide-sm"></td>
+  <td class="num" data-v="0">–</td>
+  <td class="num" data-v="0">–</td>
+  <td class="num hide-sm" data-v="0">–</td>
+</tr><tr data-q="0155-bitflyer-staking-name bitflyer/staking bitflyer staking ">
+  <td><a href="0155-bitflyer-staking-name.html">0155</a></td>
+  <td>Name</td>
+  <td><a href="../entities/bitflyer.html">bitFlyer staking</a></td>
+  <td class="hide-sm"></td>
+  <td class="num" data-v="0">–</td>
+  <td class="num" data-v="0">–</td>
+  <td class="num hide-sm" data-v="0">–</td>
+</tr><tr data-q="0156-bitflyer-staking bitflyer/staking bitflyer staking validators withdrawing to a multisig whose staking began the day bitflyer launched eth staking, and whose size fits bitflyer&#x27;s reported eth, are attributed to bitflyer&#x27;s staking; the evidence is strongly suggestive but not conclusive, as bitflyer names no address.">
+  <td><a href="0156-bitflyer-staking.html">0156</a></td>
+  <td>Attribution</td>
+  <td><a href="../entities/bitflyer.html">bitFlyer staking</a> <span class="chip">Allocator</span></td>
+  <td class="hide-sm">Validators withdrawing to a multisig whose staking began the day bitFlyer launched ETH staking, and whose size fits bitFlyer&#x27;s reported ETH, are attributed to bitFlyer&#x27;s staking; the evidence is strongly suggestive but not conclusive, as bitFlyer names no address.</td>
+  <td class="num" data-v="0">–</td>
+  <td class="num" data-v="0">–</td>
+  <td class="num hide-sm" data-v="0">–</td>
+</tr><tr data-q="0163-celsius-principal celsius celsius celsius&#x27;s two staking accounts: celsius chose the providers (blockdaemon, figment) or staked directly, and received the withdrawals.">
+  <td><a href="0163-celsius-principal.html">0163</a></td>
+  <td>Attribution</td>
+  <td><a href="../entities/celsius.html">Celsius</a> <span class="chip">Principal</span></td>
+  <td class="hide-sm">Celsius&#x27;s two staking accounts: Celsius chose the providers (Blockdaemon, Figment) or staked directly, and received the withdrawals.</td>
+  <td class="num" data-v="0">–</td>
+  <td class="num" data-v="0">–</td>
+  <td class="num hide-sm" data-v="0">–</td>
+</tr><tr data-q="0164-grayscale grayscale grayscale ">
+  <td><a href="0164-grayscale.html">0164</a></td>
+  <td>Name</td>
+  <td><a href="../entities/grayscale.html">Grayscale</a></td>
+  <td class="hide-sm"></td>
+  <td class="num" data-v="0">–</td>
+  <td class="num" data-v="0">–</td>
+  <td class="num hide-sm" data-v="0">–</td>
+</tr><tr data-q="0168-gate gate gate ">
+  <td><a href="0168-gate.html">0168</a></td>
+  <td>Name</td>
+  <td><a href="../entities/gate.html">Gate</a></td>
+  <td class="hide-sm"></td>
+  <td class="num" data-v="0">–</td>
+  <td class="num" data-v="0">–</td>
+  <td class="num hide-sm" data-v="0">–</td>
+</tr><tr data-q="0169-gate-staking-name gate/staking gate staking ">
+  <td><a href="0169-gate-staking-name.html">0169</a></td>
+  <td>Name</td>
+  <td><a href="../entities/gate.html">Gate staking</a></td>
+  <td class="hide-sm"></td>
+  <td class="num" data-v="0">–</td>
+  <td class="num" data-v="0">–</td>
+  <td class="num hide-sm" data-v="0">–</td>
+</tr><tr data-q="0171-thedao-security-fund thedao-security-fund thedao security fund ">
+  <td><a href="0171-thedao-security-fund.html">0171</a></td>
+  <td>Name</td>
+  <td><a href="../entities/thedao-security-fund.html">TheDAO Security Fund</a></td>
+  <td class="hide-sm"></td>
+  <td class="num" data-v="0">–</td>
+  <td class="num" data-v="0">–</td>
+  <td class="num hide-sm" data-v="0">–</td>
+</tr><tr data-q="0172-dappnode dappnode dappnode ">
+  <td><a href="0172-dappnode.html">0172</a></td>
+  <td>Name</td>
+  <td><a href="../entities/dappnode.html">Dappnode</a></td>
+  <td class="hide-sm"></td>
+  <td class="num" data-v="0">–</td>
+  <td class="num" data-v="0">–</td>
+  <td class="num hide-sm" data-v="0">–</td>
+</tr><tr data-q="0173-dappnode-staking-name dappnode/staking dappnode-run staking ">
+  <td><a href="0173-dappnode-staking-name.html">0173</a></td>
+  <td>Name</td>
+  <td><a href="../entities/dappnode.html">Dappnode-run staking</a></td>
+  <td class="hide-sm"></td>
+  <td class="num" data-v="0">–</td>
+  <td class="num" data-v="0">–</td>
+  <td class="num hide-sm" data-v="0">–</td>
+</tr><tr data-q="0176-ebunker-ssv-name ebunker/ssv ebunker staking (ssv) ">
+  <td><a href="0176-ebunker-ssv-name.html">0176</a></td>
+  <td>Name</td>
+  <td><a href="../entities/ebunker.html">Ebunker staking (SSV)</a></td>
+  <td class="hide-sm"></td>
+  <td class="num" data-v="0">–</td>
+  <td class="num" data-v="0">–</td>
+  <td class="num hide-sm" data-v="0">–</td>
+</tr><tr data-q="0177-ebunker-ssv ebunker/ssv ebunker staking (ssv) ">
+  <td><a href="0177-ebunker-ssv.html">0177</a></td>
+  <td>Attribution <span class="chip">superseded</span></td>
+  <td><a href="../entities/ebunker.html">Ebunker staking (SSV)</a> <span class="chip">Allocator</span></td>
+  <td class="hide-sm"></td>
+  <td class="num" data-v="0">–</td>
+  <td class="num" data-v="0">–</td>
+  <td class="num hide-sm" data-v="0">–</td>
+</tr><tr data-q="0178-gemini gemini gemini ">
+  <td><a href="0178-gemini.html">0178</a></td>
+  <td>Name</td>
+  <td><a href="../entities/gemini.html">Gemini</a></td>
+  <td class="hide-sm"></td>
+  <td class="num" data-v="0">–</td>
+  <td class="num" data-v="0">–</td>
+  <td class="num hide-sm" data-v="0">–</td>
+</tr><tr data-q="0179-gemini-staking-name gemini/staking gemini staking ">
+  <td><a href="0179-gemini-staking-name.html">0179</a></td>
+  <td>Name</td>
+  <td><a href="../entities/gemini.html">Gemini staking</a></td>
+  <td class="hide-sm"></td>
+  <td class="num" data-v="0">–</td>
+  <td class="num" data-v="0">–</td>
+  <td class="num hide-sm" data-v="0">–</td>
+</tr><tr data-q="0181-crypto-com crypto-com crypto.com ">
+  <td><a href="0181-crypto-com.html">0181</a></td>
+  <td>Name</td>
+  <td><a href="../entities/crypto-com.html">Crypto.com</a></td>
+  <td class="hide-sm"></td>
+  <td class="num" data-v="0">–</td>
+  <td class="num" data-v="0">–</td>
+  <td class="num hide-sm" data-v="0">–</td>
+</tr><tr data-q="0182-crypto-com-staking-name crypto-com/staking crypto.com staking ">
+  <td><a href="0182-crypto-com-staking-name.html">0182</a></td>
+  <td>Name</td>
+  <td><a href="../entities/crypto-com.html">Crypto.com staking</a></td>
+  <td class="hide-sm"></td>
+  <td class="num" data-v="0">–</td>
+  <td class="num" data-v="0">–</td>
+  <td class="num hide-sm" data-v="0">–</td>
+</tr><tr data-q="0185-bitstamp bitstamp bitstamp ">
+  <td><a href="0185-bitstamp.html">0185</a></td>
+  <td>Name</td>
+  <td><a href="../entities/bitstamp.html">Bitstamp</a></td>
+  <td class="hide-sm"></td>
+  <td class="num" data-v="0">–</td>
+  <td class="num" data-v="0">–</td>
+  <td class="num hide-sm" data-v="0">–</td>
+</tr><tr data-q="0186-bitstamp-staking-name bitstamp/staking bitstamp staking ">
+  <td><a href="0186-bitstamp-staking-name.html">0186</a></td>
+  <td>Name</td>
+  <td><a href="../entities/bitstamp.html">Bitstamp staking</a></td>
+  <td class="hide-sm"></td>
+  <td class="num" data-v="0">–</td>
+  <td class="num" data-v="0">–</td>
+  <td class="num hide-sm" data-v="0">–</td>
+</tr><tr data-q="0190-maicoin maicoin maicoin ">
+  <td><a href="0190-maicoin.html">0190</a></td>
+  <td>Name</td>
+  <td><a href="../entities/maicoin.html">MaiCoin</a></td>
+  <td class="hide-sm"></td>
+  <td class="num" data-v="0">–</td>
+  <td class="num" data-v="0">–</td>
+  <td class="num hide-sm" data-v="0">–</td>
+</tr><tr data-q="0191-maicoin-staking-name maicoin/staking maicoin staking ">
+  <td><a href="0191-maicoin-staking-name.html">0191</a></td>
+  <td>Name</td>
+  <td><a href="../entities/maicoin.html">MaiCoin staking</a></td>
+  <td class="hide-sm"></td>
+  <td class="num" data-v="0">–</td>
+  <td class="num" data-v="0">–</td>
+  <td class="num hide-sm" data-v="0">–</td>
+</tr><tr data-q="0193-ethereum-foundation ethereum-foundation ethereum foundation ">
+  <td><a href="0193-ethereum-foundation.html">0193</a></td>
+  <td>Name</td>
+  <td><a href="../entities/ethereum-foundation.html">Ethereum Foundation</a></td>
+  <td class="hide-sm"></td>
+  <td class="num" data-v="0">–</td>
+  <td class="num" data-v="0">–</td>
+  <td class="num hide-sm" data-v="0">–</td>
+</tr><tr data-q="0194-ethereum-foundation-staking-name ethereum-foundation/staking ethereum foundation treasury staking ">
+  <td><a href="0194-ethereum-foundation-staking-name.html">0194</a></td>
+  <td>Name</td>
+  <td><a href="../entities/ethereum-foundation.html">Ethereum Foundation treasury staking</a></td>
+  <td class="hide-sm"></td>
+  <td class="num" data-v="0">–</td>
+  <td class="num" data-v="0">–</td>
+  <td class="num hide-sm" data-v="0">–</td>
+</tr><tr data-q="0197-etoro etoro etoro ">
+  <td><a href="0197-etoro.html">0197</a></td>
+  <td>Name</td>
+  <td><a href="../entities/etoro.html">eToro</a></td>
+  <td class="hide-sm"></td>
+  <td class="num" data-v="0">–</td>
+  <td class="num" data-v="0">–</td>
+  <td class="num hide-sm" data-v="0">–</td>
+</tr><tr data-q="0198-etoro-staking-name etoro/staking etoro staking ">
+  <td><a href="0198-etoro-staking-name.html">0198</a></td>
+  <td>Name</td>
+  <td><a href="../entities/etoro.html">eToro staking</a></td>
+  <td class="hide-sm"></td>
+  <td class="num" data-v="0">–</td>
+  <td class="num" data-v="0">–</td>
+  <td class="num hide-sm" data-v="0">–</td>
+</tr><tr data-q="0201-htx-principal-ebunker htx htx htx&#x27;s withdrawal wallet 0xc15c handed 380 of its validators to ebunker, whose own accounts registered them on ssv; htx is their principal.">
+  <td><a href="0201-htx-principal-ebunker.html">0201</a></td>
+  <td>Attribution</td>
+  <td><a href="../entities/htx.html">HTX</a> <span class="chip">Principal</span></td>
+  <td class="hide-sm">HTX&#x27;s withdrawal wallet 0xc15c handed 380 of its validators to Ebunker, whose own accounts registered them on SSV; HTX is their principal.</td>
+  <td class="num" data-v="0">–</td>
+  <td class="num" data-v="0">–</td>
+  <td class="num hide-sm" data-v="0">–</td>
+</tr><tr data-q="0210-bitbank bitbank bitbank ">
+  <td><a href="0210-bitbank.html">0210</a></td>
+  <td>Name</td>
+  <td><a href="../entities/bitbank.html">bitbank</a></td>
+  <td class="hide-sm"></td>
+  <td class="num" data-v="0">–</td>
+  <td class="num" data-v="0">–</td>
+  <td class="num hide-sm" data-v="0">–</td>
+</tr><tr data-q="0211-bitbank-staking-name bitbank/staking bitbank staking ">
+  <td><a href="0211-bitbank-staking-name.html">0211</a></td>
+  <td>Name</td>
+  <td><a href="../entities/bitbank.html">bitbank staking</a></td>
+  <td class="hide-sm"></td>
+  <td class="num" data-v="0">–</td>
+  <td class="num" data-v="0">–</td>
+  <td class="num hide-sm" data-v="0">–</td>
+</tr><tr data-q="0213-bitvavo bitvavo bitvavo ">
+  <td><a href="0213-bitvavo.html">0213</a></td>
+  <td>Name</td>
+  <td><a href="../entities/bitvavo.html">Bitvavo</a></td>
+  <td class="hide-sm"></td>
+  <td class="num" data-v="0">–</td>
+  <td class="num" data-v="0">–</td>
+  <td class="num hide-sm" data-v="0">–</td>
+</tr><tr data-q="0214-bitvavo-staking-name bitvavo/staking bitvavo staking ">
+  <td><a href="0214-bitvavo-staking-name.html">0214</a></td>
+  <td>Name</td>
+  <td><a href="../entities/bitvavo.html">Bitvavo staking</a></td>
+  <td class="hide-sm"></td>
+  <td class="num" data-v="0">–</td>
+  <td class="num" data-v="0">–</td>
+  <td class="num hide-sm" data-v="0">–</td>
+</tr><tr data-q="0217-bitpanda bitpanda bitpanda ">
+  <td><a href="0217-bitpanda.html">0217</a></td>
+  <td>Name</td>
+  <td><a href="../entities/bitpanda.html">Bitpanda</a></td>
+  <td class="hide-sm"></td>
+  <td class="num" data-v="0">–</td>
+  <td class="num" data-v="0">–</td>
+  <td class="num hide-sm" data-v="0">–</td>
+</tr><tr data-q="0220-hashkey-exchange hashkey-exchange hashkey exchange ">
+  <td><a href="0220-hashkey-exchange.html">0220</a></td>
+  <td>Name</td>
+  <td><a href="../entities/hashkey-exchange.html">HashKey Exchange</a></td>
+  <td class="hide-sm"></td>
+  <td class="num" data-v="0">–</td>
+  <td class="num" data-v="0">–</td>
+  <td class="num hide-sm" data-v="0">–</td>
+</tr><tr data-q="0221-hashkey-exchange-staking-name hashkey-exchange/staking hashkey exchange staking ">
+  <td><a href="0221-hashkey-exchange-staking-name.html">0221</a></td>
+  <td>Name</td>
+  <td><a href="../entities/hashkey-exchange.html">HashKey Exchange staking</a></td>
+  <td class="hide-sm"></td>
+  <td class="num" data-v="0">–</td>
+  <td class="num" data-v="0">–</td>
+  <td class="num hide-sm" data-v="0">–</td>
+</tr><tr data-q="0223-ssv-labs ssv-labs ssv labs ">
+  <td><a href="0223-ssv-labs.html">0223</a></td>
+  <td>Name</td>
+  <td><a href="../entities/ssv-labs.html">SSV Labs</a></td>
+  <td class="hide-sm"></td>
+  <td class="num" data-v="0">–</td>
+  <td class="num" data-v="0">–</td>
+  <td class="num hide-sm" data-v="0">–</td>
+</tr><tr data-q="0224-ssv-labs-staking-name ssv-labs/staking ssv labs staking ">
+  <td><a href="0224-ssv-labs-staking-name.html">0224</a></td>
+  <td>Name</td>
+  <td><a href="../entities/ssv-labs.html">SSV Labs staking</a></td>
+  <td class="hide-sm"></td>
+  <td class="num" data-v="0">–</td>
+  <td class="num" data-v="0">–</td>
+  <td class="num hide-sm" data-v="0">–</td>
+</tr><tr data-q="0237-bitmine-treasury-staking bitmine/staking bitmine treasury staking ">
+  <td><a href="0237-bitmine-treasury-staking.html">0237</a></td>
+  <td>Name</td>
+  <td><a href="../entities/bitmine.html">BitMine treasury staking</a></td>
+  <td class="hide-sm"></td>
+  <td class="num" data-v="0">–</td>
+  <td class="num" data-v="0">–</td>
+  <td class="num hide-sm" data-v="0">–</td>
+</tr><tr data-q="0238-bitmine-staking-october-2026 bitmine/staking bitmine treasury staking six addresses that proved common control together with bitmine&#x27;s wallets deposited exactly the 159,728 eth by which bitmine&#x27;s reported staked eth rose in the week of 20 october 2026.">
+  <td><a href="0238-bitmine-staking-october-2026.html">0238</a></td>
+  <td>Attribution</td>
+  <td><a href="../entities/bitmine.html">BitMine treasury staking</a> <span class="chip">Allocator</span></td>
+  <td class="hide-sm">Six addresses that proved common control together with BitMine&#x27;s wallets deposited exactly the 159,728 ETH by which BitMine&#x27;s reported staked ETH rose in the week of 20 October 2026.</td>
+  <td class="num" data-v="0">–</td>
+  <td class="num" data-v="0">–</td>
+  <td class="num hide-sm" data-v="0">–</td>
+</tr><tr data-q="0239-sharplink sharplink sharplink ">
+  <td><a href="0239-sharplink.html">0239</a></td>
+  <td>Name</td>
+  <td><a href="../entities/sharplink.html">Sharplink</a></td>
+  <td class="hide-sm"></td>
+  <td class="num" data-v="0">–</td>
+  <td class="num" data-v="0">–</td>
+  <td class="num hide-sm" data-v="0">–</td>
+</tr><tr data-q="0244-nodemonster nodemonster nodemonster ">
+  <td><a href="0244-nodemonster.html">0244</a></td>
+  <td>Name</td>
+  <td><a href="../entities/nodemonster.html">NodeMonster</a></td>
+  <td class="hide-sm"></td>
+  <td class="num" data-v="0">–</td>
+  <td class="num" data-v="0">–</td>
+  <td class="num hide-sm" data-v="0">–</td>
+</tr><tr data-q="0245-finoa-consensus-services finoa-consensus-services finoa consensus services ">
+  <td><a href="0245-finoa-consensus-services.html">0245</a></td>
+  <td>Name</td>
+  <td><a href="../entities/finoa-consensus-services.html">Finoa Consensus Services</a></td>
+  <td class="hide-sm"></td>
+  <td class="num" data-v="0">–</td>
+  <td class="num" data-v="0">–</td>
+  <td class="num hide-sm" data-v="0">–</td>
+</tr><tr data-q="0246-pier-two pier-two pier two ">
+  <td><a href="0246-pier-two.html">0246</a></td>
+  <td>Name</td>
+  <td><a href="../entities/pier-two.html">Pier Two</a></td>
+  <td class="hide-sm"></td>
+  <td class="num" data-v="0">–</td>
+  <td class="num" data-v="0">–</td>
+  <td class="num hide-sm" data-v="0">–</td>
+</tr><tr data-q="0247-hashkey-cloud hashkey-cloud hashkey cloud ">
+  <td><a href="0247-hashkey-cloud.html">0247</a></td>
+  <td>Name</td>
+  <td><a href="../entities/hashkey-cloud.html">HashKey Cloud</a></td>
+  <td class="hide-sm"></td>
+  <td class="num" data-v="0">–</td>
+  <td class="num" data-v="0">–</td>
+  <td class="num hide-sm" data-v="0">–</td>
+</tr><tr data-q="0248-dsrv dsrv dsrv ">
+  <td><a href="0248-dsrv.html">0248</a></td>
+  <td>Name</td>
+  <td><a href="../entities/dsrv.html">DSRV</a></td>
+  <td class="hide-sm"></td>
+  <td class="num" data-v="0">–</td>
+  <td class="num" data-v="0">–</td>
+  <td class="num hide-sm" data-v="0">–</td>
+</tr><tr data-q="0249-rockx rockx rockx ">
+  <td><a href="0249-rockx.html">0249</a></td>
+  <td>Name</td>
+  <td><a href="../entities/rockx.html">RockX</a></td>
+  <td class="hide-sm"></td>
+  <td class="num" data-v="0">–</td>
+  <td class="num" data-v="0">–</td>
+  <td class="num hide-sm" data-v="0">–</td>
+</tr><tr data-q="0250-ethernodes ethernodes ethernodes ">
+  <td><a href="0250-ethernodes.html">0250</a></td>
+  <td>Name</td>
+  <td><a href="../entities/ethernodes.html">Ethernodes</a></td>
+  <td class="hide-sm"></td>
+  <td class="num" data-v="0">–</td>
+  <td class="num" data-v="0">–</td>
+  <td class="num hide-sm" data-v="0">–</td>
+</tr><tr data-q="0251-attestant attestant attestant ">
+  <td><a href="0251-attestant.html">0251</a></td>
+  <td>Name</td>
+  <td><a href="../entities/attestant.html">Attestant</a></td>
+  <td class="hide-sm"></td>
+  <td class="num" data-v="0">–</td>
+  <td class="num" data-v="0">–</td>
+  <td class="num hide-sm" data-v="0">–</td>
+</tr><tr data-q="0252-bitwise bitwise bitwise ">
+  <td><a href="0252-bitwise.html">0252</a></td>
+  <td>Name</td>
+  <td><a href="../entities/bitwise.html">Bitwise</a></td>
+  <td class="hide-sm"></td>
+  <td class="num" data-v="0">–</td>
+  <td class="num" data-v="0">–</td>
+  <td class="num hide-sm" data-v="0">–</td>
+</tr><tr data-q="0253-chorus-one chorus-one chorus one ">
+  <td><a href="0253-chorus-one.html">0253</a></td>
+  <td>Name</td>
+  <td><a href="../entities/chorus-one.html">Chorus One</a></td>
+  <td class="hide-sm"></td>
+  <td class="num" data-v="0">–</td>
+  <td class="num" data-v="0">–</td>
+  <td class="num hide-sm" data-v="0">–</td>
+</tr><tr data-q="0254-mavan mavan mavan ">
+  <td><a href="0254-mavan.html">0254</a></td>
+  <td>Name</td>
+  <td><a href="../entities/mavan.html">MAVAN</a></td>
+  <td class="hide-sm"></td>
+  <td class="num" data-v="0">–</td>
+  <td class="num" data-v="0">–</td>
+  <td class="num hide-sm" data-v="0">–</td>
+</tr><tr data-q="0255-attestant-lido-operators attestant attestant lido operators 1/29 and 4/0, and lido&#x27;s operator group 4.1, are attestant&#x27;s.">
+  <td><a href="0255-attestant-lido-operators.html">0255</a></td>
+  <td>Operator or owner</td>
+  <td><a href="../entities/attestant.html">Attestant</a> <span class="chip">Operated by</span></td>
+  <td class="hide-sm">Lido operators 1/29 and 4/0, and Lido&#x27;s operator group 4.1, are Attestant&#x27;s.</td>
+  <td class="num" data-v="0">–</td>
+  <td class="num" data-v="0">–</td>
+  <td class="num hide-sm" data-v="0">–</td>
+</tr><tr data-q="0256-chorus-one-lido-operator chorus-one chorus one lido operator 1/3 is chorus one&#x27;s.">
+  <td><a href="0256-chorus-one-lido-operator.html">0256</a></td>
+  <td>Operator or owner</td>
+  <td><a href="../entities/chorus-one.html">Chorus One</a> <span class="chip">Operated by</span></td>
+  <td class="hide-sm">Lido operator 1/3 is Chorus One&#x27;s.</td>
+  <td class="num" data-v="0">–</td>
+  <td class="num" data-v="0">–</td>
+  <td class="num hide-sm" data-v="0">–</td>
+</tr><tr data-q="0257-pier-two-lido-operator pier-two pier two lido operator 1/36 is pier two&#x27;s, since renamed mavan.">
+  <td><a href="0257-pier-two-lido-operator.html">0257</a></td>
+  <td>Operator or owner</td>
+  <td><a href="../entities/pier-two.html">Pier Two</a> <span class="chip">Operated by</span></td>
+  <td class="hide-sm">Lido operator 1/36 is Pier Two&#x27;s, since renamed MAVAN.</td>
+  <td class="num" data-v="0">–</td>
+  <td class="num" data-v="0">–</td>
+  <td class="num hide-sm" data-v="0">–</td>
+</tr><tr data-q="0258-mavan-lido-operator mavan mavan lido operator 4/26 is mavan&#x27;s.">
+  <td><a href="0258-mavan-lido-operator.html">0258</a></td>
+  <td>Operator or owner</td>
+  <td><a href="../entities/mavan.html">MAVAN</a> <span class="chip">Operated by</span></td>
+  <td class="hide-sm">Lido operator 4/26 is MAVAN&#x27;s.</td>
+  <td class="num" data-v="0">–</td>
+  <td class="num" data-v="0">–</td>
+  <td class="num hide-sm" data-v="0">–</td>
+</tr><tr data-q="0259-attestant-owned-by-bitwise bitwise bitwise bitwise owns attestant from 13 november 2024.">
+  <td><a href="0259-attestant-owned-by-bitwise.html">0259</a></td>
+  <td>Operator or owner</td>
+  <td><a href="../entities/bitwise.html">Bitwise</a> <span class="chip">Owned by</span></td>
+  <td class="hide-sm">Bitwise owns Attestant from 13 November 2024.</td>
+  <td class="num" data-v="0">–</td>
+  <td class="num" data-v="0">–</td>
+  <td class="num hide-sm" data-v="0">–</td>
+</tr><tr data-q="0260-chorus-one-owned-by-bitwise bitwise bitwise bitwise owns chorus one from 24 february 2026.">
+  <td><a href="0260-chorus-one-owned-by-bitwise.html">0260</a></td>
+  <td>Operator or owner</td>
+  <td><a href="../entities/bitwise.html">Bitwise</a> <span class="chip">Owned by</span></td>
+  <td class="hide-sm">Bitwise owns Chorus One from 24 February 2026.</td>
+  <td class="num" data-v="0">–</td>
+  <td class="num" data-v="0">–</td>
+  <td class="num hide-sm" data-v="0">–</td>
+</tr><tr data-q="0261-pier-two-owned-by-mavan mavan mavan mavan owns pier two from 24 march 2026.">
+  <td><a href="0261-pier-two-owned-by-mavan.html">0261</a></td>
+  <td>Operator or owner</td>
+  <td><a href="../entities/mavan.html">MAVAN</a> <span class="chip">Owned by</span></td>
+  <td class="hide-sm">MAVAN owns Pier Two from 24 March 2026.</td>
+  <td class="num" data-v="0">–</td>
+  <td class="num" data-v="0">–</td>
+  <td class="num hide-sm" data-v="0">–</td>
+</tr><tr data-q="0262-mavan-owned-by-bitmine bitmine bitmine bitmine owns 98% of mavan, from at least 24 march 2026.">
+  <td><a href="0262-mavan-owned-by-bitmine.html">0262</a></td>
+  <td>Operator or owner</td>
+  <td><a href="../entities/bitmine.html">BitMine</a> <span class="chip">Owned by</span></td>
+  <td class="hide-sm">BitMine owns 98% of MAVAN, from at least 24 March 2026.</td>
+  <td class="num" data-v="0">–</td>
+  <td class="num" data-v="0">–</td>
+  <td class="num hide-sm" data-v="0">–</td>
+</tr><tr data-q="0263-staking-facilities staking-facilities staking facilities ">
+  <td><a href="0263-staking-facilities.html">0263</a></td>
+  <td>Name</td>
+  <td><a href="../entities/staking-facilities.html">Staking Facilities</a></td>
+  <td class="hide-sm"></td>
+  <td class="num" data-v="0">–</td>
+  <td class="num" data-v="0">–</td>
+  <td class="num hide-sm" data-v="0">–</td>
+</tr><tr data-q="0264-rocklogic rocklogic rocklogic ">
+  <td><a href="0264-rocklogic.html">0264</a></td>
+  <td>Name</td>
+  <td><a href="../entities/rocklogic.html">RockLogic</a></td>
+  <td class="hide-sm"></td>
+  <td class="num" data-v="0">–</td>
+  <td class="num" data-v="0">–</td>
+  <td class="num hide-sm" data-v="0">–</td>
+</tr><tr data-q="0265-sigma-prime sigma-prime sigma prime ">
+  <td><a href="0265-sigma-prime.html">0265</a></td>
+  <td>Name</td>
+  <td><a href="../entities/sigma-prime.html">Sigma Prime</a></td>
+  <td class="hide-sm"></td>
+  <td class="num" data-v="0">–</td>
+  <td class="num" data-v="0">–</td>
+  <td class="num hide-sm" data-v="0">–</td>
+</tr><tr data-q="0266-parafi-technologies parafi-technologies parafi technologies ">
+  <td><a href="0266-parafi-technologies.html">0266</a></td>
+  <td>Name</td>
+  <td><a href="../entities/parafi-technologies.html">ParaFi Technologies</a></td>
+  <td class="hide-sm"></td>
+  <td class="num" data-v="0">–</td>
+  <td class="num" data-v="0">–</td>
+  <td class="num hide-sm" data-v="0">–</td>
+</tr><tr data-q="0267-launchnodes launchnodes launchnodes ">
+  <td><a href="0267-launchnodes.html">0267</a></td>
+  <td>Name</td>
+  <td><a href="../entities/launchnodes.html">Launchnodes</a></td>
+  <td class="hide-sm"></td>
+  <td class="num" data-v="0">–</td>
+  <td class="num" data-v="0">–</td>
+  <td class="num hide-sm" data-v="0">–</td>
+</tr><tr data-q="0268-chainsafe chainsafe chainsafe ">
+  <td><a href="0268-chainsafe.html">0268</a></td>
+  <td>Name</td>
+  <td><a href="../entities/chainsafe.html">ChainSafe</a></td>
+  <td class="hide-sm"></td>
+  <td class="num" data-v="0">–</td>
+  <td class="num" data-v="0">–</td>
+  <td class="num hide-sm" data-v="0">–</td>
+</tr><tr data-q="0269-develp develp develp ">
+  <td><a href="0269-develp.html">0269</a></td>
+  <td>Name</td>
+  <td><a href="../entities/develp.html">Develp</a></td>
+  <td class="hide-sm"></td>
+  <td class="num" data-v="0">–</td>
+  <td class="num" data-v="0">–</td>
+  <td class="num hide-sm" data-v="0">–</td>
+</tr><tr data-q="0270-gateway-fm gateway-fm gateway.fm ">
+  <td><a href="0270-gateway-fm.html">0270</a></td>
+  <td>Name</td>
+  <td><a href="../entities/gateway-fm.html">Gateway.fm</a></td>
+  <td class="hide-sm"></td>
+  <td class="num" data-v="0">–</td>
+  <td class="num" data-v="0">–</td>
+  <td class="num hide-sm" data-v="0">–</td>
+</tr><tr data-q="0271-jump-crypto jump-crypto jump crypto ">
+  <td><a href="0271-jump-crypto.html">0271</a></td>
+  <td>Name</td>
+  <td><a href="../entities/jump-crypto.html">Jump Crypto</a></td>
+  <td class="hide-sm"></td>
+  <td class="num" data-v="0">–</td>
+  <td class="num" data-v="0">–</td>
+  <td class="num hide-sm" data-v="0">–</td>
+</tr><tr data-q="0272-anyblock-analytics anyblock-analytics anyblock analytics ">
+  <td><a href="0272-anyblock-analytics.html">0272</a></td>
+  <td>Name</td>
+  <td><a href="../entities/anyblock-analytics.html">Anyblock Analytics</a></td>
+  <td class="hide-sm"></td>
+  <td class="num" data-v="0">–</td>
+  <td class="num" data-v="0">–</td>
+  <td class="num hide-sm" data-v="0">–</td>
+</tr><tr data-q="0273-a41-lido-operators a41 a41 lido&#x27;s node operator 1/32 (&quot;a41&quot;) is run by a41.">
+  <td><a href="0273-a41-lido-operators.html">0273</a></td>
+  <td>Operator or owner</td>
+  <td><a href="../entities/a41.html">A41</a> <span class="chip">Operated by</span></td>
+  <td class="hide-sm">Lido&#x27;s node operator 1/32 (&quot;A41&quot;) is run by A41.</td>
+  <td class="num" data-v="0">–</td>
+  <td class="num" data-v="0">–</td>
+  <td class="num hide-sm" data-v="0">–</td>
+</tr><tr data-q="0274-allnodes-lido-operators allnodes allnodes lido&#x27;s operator group 4.26 (&quot;allnodes&quot;) and the operators it lists are run by allnodes.">
+  <td><a href="0274-allnodes-lido-operators.html">0274</a></td>
+  <td>Operator or owner</td>
+  <td><a href="../entities/allnodes.html">Allnodes</a> <span class="chip">Operated by</span></td>
+  <td class="hide-sm">Lido&#x27;s operator group 4.26 (&quot;Allnodes&quot;) and the operators it lists are run by Allnodes.</td>
+  <td class="num" data-v="0">–</td>
+  <td class="num" data-v="0">–</td>
+  <td class="num hide-sm" data-v="0">–</td>
+</tr><tr data-q="0275-anyblock-analytics-lido-operators anyblock-analytics anyblock analytics lido&#x27;s node operator 1/12 (&quot;anyblock analytics&quot;) is run by anyblock analytics.">
+  <td><a href="0275-anyblock-analytics-lido-operators.html">0275</a></td>
+  <td>Operator or owner</td>
+  <td><a href="../entities/anyblock-analytics.html">Anyblock Analytics</a> <span class="chip">Operated by</span></td>
+  <td class="hide-sm">Lido&#x27;s node operator 1/12 (&quot;Anyblock Analytics&quot;) is run by Anyblock Analytics.</td>
+  <td class="num" data-v="0">–</td>
+  <td class="num" data-v="0">–</td>
+  <td class="num hide-sm" data-v="0">–</td>
+</tr><tr data-q="0276-blockdaemon-lido-operators blockdaemon blockdaemon lido&#x27;s operator group 4.27 (&quot;blockdaemon&quot;) and the operators it lists are run by blockdaemon.">
+  <td><a href="0276-blockdaemon-lido-operators.html">0276</a></td>
+  <td>Operator or owner</td>
+  <td><a href="../entities/blockdaemon.html">Blockdaemon</a> <span class="chip">Operated by</span></td>
+  <td class="hide-sm">Lido&#x27;s operator group 4.27 (&quot;Blockdaemon&quot;) and the operators it lists are run by Blockdaemon.</td>
+  <td class="num" data-v="0">–</td>
+  <td class="num" data-v="0">–</td>
+  <td class="num hide-sm" data-v="0">–</td>
+</tr><tr data-q="0277-blockscape-lido-operators blockscape blockscape lido&#x27;s operator group 4.6 (&quot;blockscape&quot;) and the operators it lists are run by blockscape.">
+  <td><a href="0277-blockscape-lido-operators.html">0277</a></td>
+  <td>Operator or owner</td>
+  <td><a href="../entities/blockscape.html">Blockscape</a> <span class="chip">Operated by</span></td>
+  <td class="hide-sm">Lido&#x27;s operator group 4.6 (&quot;Blockscape&quot;) and the operators it lists are run by Blockscape.</td>
+  <td class="num" data-v="0">–</td>
+  <td class="num" data-v="0">–</td>
+  <td class="num hide-sm" data-v="0">–</td>
+</tr><tr data-q="0278-chainlayer-lido-operators chainlayer chainlayer lido&#x27;s operator group 4.13 (&quot;chainlayer&quot;) and the operators it lists are run by chainlayer.">
+  <td><a href="0278-chainlayer-lido-operators.html">0278</a></td>
+  <td>Operator or owner</td>
+  <td><a href="../entities/chainlayer.html">ChainLayer</a> <span class="chip">Operated by</span></td>
+  <td class="hide-sm">Lido&#x27;s operator group 4.13 (&quot;Chainlayer&quot;) and the operators it lists are run by ChainLayer.</td>
+  <td class="num" data-v="0">–</td>
+  <td class="num" data-v="0">–</td>
+  <td class="num hide-sm" data-v="0">–</td>
+</tr><tr data-q="0279-chainsafe-lido-operators chainsafe chainsafe lido&#x27;s operator group 4.32 (&quot;chainsafe&quot;) and the operators it lists are run by chainsafe.">
+  <td><a href="0279-chainsafe-lido-operators.html">0279</a></td>
+  <td>Operator or owner</td>
+  <td><a href="../entities/chainsafe.html">ChainSafe</a> <span class="chip">Operated by</span></td>
+  <td class="hide-sm">Lido&#x27;s operator group 4.32 (&quot;ChainSafe&quot;) and the operators it lists are run by ChainSafe.</td>
+  <td class="num" data-v="0">–</td>
+  <td class="num" data-v="0">–</td>
+  <td class="num hide-sm" data-v="0">–</td>
+</tr><tr data-q="0280-consensys-lido-operators consensys consensys lido&#x27;s operator group 4.7 (&quot;consensys&quot;) and the operators it lists are run by consensys.">
+  <td><a href="0280-consensys-lido-operators.html">0280</a></td>
+  <td>Operator or owner</td>
+  <td><a href="../entities/consensys.html">Consensys</a> <span class="chip">Operated by</span></td>
+  <td class="hide-sm">Lido&#x27;s operator group 4.7 (&quot;Consensys&quot;) and the operators it lists are run by Consensys.</td>
+  <td class="num" data-v="0">–</td>
+  <td class="num" data-v="0">–</td>
+  <td class="num hide-sm" data-v="0">–</td>
+</tr><tr data-q="0281-develp-lido-operators develp develp lido&#x27;s operator group 4.5 (&quot;develp&quot;) and the operators it lists are run by develp.">
+  <td><a href="0281-develp-lido-operators.html">0281</a></td>
+  <td>Operator or owner</td>
+  <td><a href="../entities/develp.html">Develp</a> <span class="chip">Operated by</span></td>
+  <td class="hide-sm">Lido&#x27;s operator group 4.5 (&quot;Develp&quot;) and the operators it lists are run by Develp.</td>
+  <td class="num" data-v="0">–</td>
+  <td class="num" data-v="0">–</td>
+  <td class="num hide-sm" data-v="0">–</td>
+</tr><tr data-q="0282-dsrv-lido-operators dsrv dsrv lido&#x27;s operator group 4.23 (&quot;dsrv&quot;) and the operators it lists are run by dsrv.">
+  <td><a href="0282-dsrv-lido-operators.html">0282</a></td>
+  <td>Operator or owner</td>
+  <td><a href="../entities/dsrv.html">DSRV</a> <span class="chip">Operated by</span></td>
+  <td class="hide-sm">Lido&#x27;s operator group 4.23 (&quot;DSRV&quot;) and the operators it lists are run by DSRV.</td>
+  <td class="num" data-v="0">–</td>
+  <td class="num" data-v="0">–</td>
+  <td class="num hide-sm" data-v="0">–</td>
+</tr><tr data-q="0283-ebunker-lido-operators ebunker ebunker lido&#x27;s operator group 4.2 (&quot;ebunker&quot;) and the operators it lists are run by ebunker.">
+  <td><a href="0283-ebunker-lido-operators.html">0283</a></td>
+  <td>Operator or owner</td>
+  <td><a href="../entities/ebunker.html">ebunker</a> <span class="chip">Operated by</span></td>
+  <td class="hide-sm">Lido&#x27;s operator group 4.2 (&quot;Ebunker&quot;) and the operators it lists are run by ebunker.</td>
+  <td class="num" data-v="0">–</td>
+  <td class="num" data-v="0">–</td>
+  <td class="num hide-sm" data-v="0">–</td>
+</tr><tr data-q="0284-everstake-lido-operators everstake everstake lido&#x27;s operator group 4.25 (&quot;everstake&quot;) and the operators it lists are run by everstake.">
+  <td><a href="0284-everstake-lido-operators.html">0284</a></td>
+  <td>Operator or owner</td>
+  <td><a href="../entities/everstake.html">Everstake</a> <span class="chip">Operated by</span></td>
+  <td class="hide-sm">Lido&#x27;s operator group 4.25 (&quot;Everstake&quot;) and the operators it lists are run by Everstake.</td>
+  <td class="num" data-v="0">–</td>
+  <td class="num" data-v="0">–</td>
+  <td class="num hide-sm" data-v="0">–</td>
+</tr><tr data-q="0285-figment-lido-operators figment figment lido&#x27;s operator group 4.28 (&quot;figment&quot;) and the operators it lists are run by figment.">
+  <td><a href="0285-figment-lido-operators.html">0285</a></td>
+  <td>Operator or owner</td>
+  <td><a href="../entities/figment.html">Figment</a> <span class="chip">Operated by</span></td>
+  <td class="hide-sm">Lido&#x27;s operator group 4.28 (&quot;Figment&quot;) and the operators it lists are run by Figment.</td>
+  <td class="num" data-v="0">–</td>
+  <td class="num" data-v="0">–</td>
+  <td class="num hide-sm" data-v="0">–</td>
+</tr><tr data-q="0286-galaxy-lido-operators galaxy galaxy lido&#x27;s operator group 4.31 (&quot;galaxy&quot;) and the operators it lists are run by galaxy, from galaxy&#x27;s acquisition of cryptomanufaktur&#x27;s assets.">
+  <td><a href="0286-galaxy-lido-operators.html">0286</a></td>
+  <td>Operator or owner</td>
+  <td><a href="../entities/galaxy.html">Galaxy</a> <span class="chip">Operated by</span></td>
+  <td class="hide-sm">Lido&#x27;s operator group 4.31 (&quot;Galaxy&quot;) and the operators it lists are run by Galaxy, from Galaxy&#x27;s acquisition of CryptoManufaktur&#x27;s assets.</td>
+  <td class="num" data-v="0">–</td>
+  <td class="num" data-v="0">–</td>
+  <td class="num hide-sm" data-v="0">–</td>
+</tr><tr data-q="0287-gateway-fm-lido-operators gateway-fm gateway.fm lido&#x27;s operator group 4.11 (&quot;gateway.fm as&quot;) and the operators it lists are run by gateway.fm.">
+  <td><a href="0287-gateway-fm-lido-operators.html">0287</a></td>
+  <td>Operator or owner</td>
+  <td><a href="../entities/gateway-fm.html">Gateway.fm</a> <span class="chip">Operated by</span></td>
+  <td class="hide-sm">Lido&#x27;s operator group 4.11 (&quot;Gateway.fm AS&quot;) and the operators it lists are run by Gateway.fm.</td>
+  <td class="num" data-v="0">–</td>
+  <td class="num" data-v="0">–</td>
+  <td class="num hide-sm" data-v="0">–</td>
+</tr><tr data-q="0288-hashkey-cloud-lido-operators hashkey-cloud hashkey cloud lido&#x27;s operator group 4.22 (&quot;hashkey cloud&quot;) and the operators it lists are run by hashkey cloud.">
+  <td><a href="0288-hashkey-cloud-lido-operators.html">0288</a></td>
+  <td>Operator or owner</td>
+  <td><a href="../entities/hashkey-cloud.html">HashKey Cloud</a> <span class="chip">Operated by</span></td>
+  <td class="hide-sm">Lido&#x27;s operator group 4.22 (&quot;HashKey Cloud&quot;) and the operators it lists are run by HashKey Cloud.</td>
+  <td class="num" data-v="0">–</td>
+  <td class="num" data-v="0">–</td>
+  <td class="num hide-sm" data-v="0">–</td>
+</tr><tr data-q="0289-infstones-lido-operators infstones infstones lido&#x27;s operator group 4.30 (&quot;infstones&quot;) and the operators it lists are run by infstones.">
+  <td><a href="0289-infstones-lido-operators.html">0289</a></td>
+  <td>Operator or owner</td>
+  <td><a href="../entities/infstones.html">InfStones</a> <span class="chip">Operated by</span></td>
+  <td class="hide-sm">Lido&#x27;s operator group 4.30 (&quot;InfStones&quot;) and the operators it lists are run by InfStones.</td>
+  <td class="num" data-v="0">–</td>
+  <td class="num" data-v="0">–</td>
+  <td class="num hide-sm" data-v="0">–</td>
+</tr><tr data-q="0290-jump-crypto-lido-operators jump-crypto jump crypto lido&#x27;s node operator 1/1 is jump crypto&#x27;s from jump&#x27;s acquisition of certus one in august 2021.">
+  <td><a href="0290-jump-crypto-lido-operators.html">0290</a></td>
+  <td>Operator or owner</td>
+  <td><a href="../entities/jump-crypto.html">Jump Crypto</a> <span class="chip">Operated by</span></td>
+  <td class="hide-sm">Lido&#x27;s node operator 1/1 is Jump Crypto&#x27;s from Jump&#x27;s acquisition of Certus One in August 2021.</td>
+  <td class="num" data-v="0">–</td>
+  <td class="num" data-v="0">–</td>
+  <td class="num hide-sm" data-v="0">–</td>
+</tr><tr data-q="0291-kiln-lido-operators kiln kiln lido&#x27;s node operator 1/8 (&quot;kiln&quot;) is run by kiln.">
+  <td><a href="0291-kiln-lido-operators.html">0291</a></td>
+  <td>Operator or owner</td>
+  <td><a href="../entities/kiln.html">Kiln</a> <span class="chip">Operated by</span></td>
+  <td class="hide-sm">Lido&#x27;s node operator 1/8 (&quot;Kiln&quot;) is run by Kiln.</td>
+  <td class="num" data-v="0">–</td>
+  <td class="num" data-v="0">–</td>
+  <td class="num hide-sm" data-v="0">–</td>
+</tr><tr data-q="0292-kukis-global-lido-operators kukis-global kukis global lido&#x27;s operator group 4.9 (&quot;kukis global&quot;) and the operators it lists are run by kukis global.">
+  <td><a href="0292-kukis-global-lido-operators.html">0292</a></td>
+  <td>Operator or owner</td>
+  <td><a href="../entities/kukis-global.html">Kukis Global</a> <span class="chip">Operated by</span></td>
+  <td class="hide-sm">Lido&#x27;s operator group 4.9 (&quot;Kukis Global&quot;) and the operators it lists are run by Kukis Global.</td>
+  <td class="num" data-v="0">–</td>
+  <td class="num" data-v="0">–</td>
+  <td class="num hide-sm" data-v="0">–</td>
+</tr><tr data-q="0293-launchnodes-lido-operators launchnodes launchnodes lido&#x27;s operator group 4.21 (&quot;launchnodes&quot;) and the operators it lists are run by launchnodes.">
+  <td><a href="0293-launchnodes-lido-operators.html">0293</a></td>
+  <td>Operator or owner</td>
+  <td><a href="../entities/launchnodes.html">Launchnodes</a> <span class="chip">Operated by</span></td>
+  <td class="hide-sm">Lido&#x27;s operator group 4.21 (&quot;Launchnodes&quot;) and the operators it lists are run by Launchnodes.</td>
+  <td class="num" data-v="0">–</td>
+  <td class="num" data-v="0">–</td>
+  <td class="num hide-sm" data-v="0">–</td>
+</tr><tr data-q="0294-mavan-lido-operators mavan mavan lido&#x27;s operator group 4.20 (&quot;mavan&quot;) is mavan&#x27;s.">
+  <td><a href="0294-mavan-lido-operators.html">0294</a></td>
+  <td>Operator or owner</td>
+  <td><a href="../entities/mavan.html">MAVAN</a> <span class="chip">Operated by</span></td>
+  <td class="hide-sm">Lido&#x27;s operator group 4.20 (&quot;MAVAN&quot;) is MAVAN&#x27;s.</td>
+  <td class="num" data-v="0">–</td>
+  <td class="num" data-v="0">–</td>
+  <td class="num hide-sm" data-v="0">–</td>
+</tr><tr data-q="0295-p2p-lido-operators p2p p2p.org lido&#x27;s operator group 4.16 (&quot;p2p.org&quot;) and the operators it lists are run by p2p.org.">
+  <td><a href="0295-p2p-lido-operators.html">0295</a></td>
+  <td>Operator or owner</td>
+  <td><a href="../entities/p2p.html">P2P.org</a> <span class="chip">Operated by</span></td>
+  <td class="hide-sm">Lido&#x27;s operator group 4.16 (&quot;P2P.org&quot;) and the operators it lists are run by P2P.org.</td>
+  <td class="num" data-v="0">–</td>
+  <td class="num" data-v="0">–</td>
+  <td class="num hide-sm" data-v="0">–</td>
+</tr><tr data-q="0296-parafi-technologies-lido-operators parafi-technologies parafi technologies lido&#x27;s operator group 4.19 (&quot;parafi technologies&quot;) and the operators it lists are run by parafi technologies.">
+  <td><a href="0296-parafi-technologies-lido-operators.html">0296</a></td>
+  <td>Operator or owner</td>
+  <td><a href="../entities/parafi-technologies.html">ParaFi Technologies</a> <span class="chip">Operated by</span></td>
+  <td class="hide-sm">Lido&#x27;s operator group 4.19 (&quot;ParaFi Technologies&quot;) and the operators it lists are run by ParaFi Technologies.</td>
+  <td class="num" data-v="0">–</td>
+  <td class="num" data-v="0">–</td>
+  <td class="num hide-sm" data-v="0">–</td>
+</tr><tr data-q="0297-prysmatic-labs-lido-operators prysmatic-labs prysmatic labs lido&#x27;s operator group 4.34 (&quot;prysm by offchain labs&quot;) and the operators it lists are run by prysmatic labs.">
+  <td><a href="0297-prysmatic-labs-lido-operators.html">0297</a></td>
+  <td>Operator or owner</td>
+  <td><a href="../entities/prysmatic-labs.html">Prysmatic Labs</a> <span class="chip">Operated by</span></td>
+  <td class="hide-sm">Lido&#x27;s operator group 4.34 (&quot;Prysm by Offchain Labs&quot;) and the operators it lists are run by Prysmatic Labs.</td>
+  <td class="num" data-v="0">–</td>
+  <td class="num" data-v="0">–</td>
+  <td class="num hide-sm" data-v="0">–</td>
+</tr><tr data-q="0298-rockawayx-lido-operators rockawayx rockawayx lido&#x27;s operator group 4.33 (&quot;rockawayx infra&quot;) and the operators it lists are run by rockawayx.">
+  <td><a href="0298-rockawayx-lido-operators.html">0298</a></td>
+  <td>Operator or owner</td>
+  <td><a href="../entities/rockawayx.html">RockawayX</a> <span class="chip">Operated by</span></td>
+  <td class="hide-sm">Lido&#x27;s operator group 4.33 (&quot;RockawayX Infra&quot;) and the operators it lists are run by RockawayX.</td>
+  <td class="num" data-v="0">–</td>
+  <td class="num" data-v="0">–</td>
+  <td class="num hide-sm" data-v="0">–</td>
+</tr><tr data-q="0299-rocklogic-lido-operators rocklogic rocklogic lido&#x27;s operator group 4.17 (&quot;rocklogic gmbh&quot;) and the operators it lists are run by rocklogic.">
+  <td><a href="0299-rocklogic-lido-operators.html">0299</a></td>
+  <td>Operator or owner</td>
+  <td><a href="../entities/rocklogic.html">RockLogic</a> <span class="chip">Operated by</span></td>
+  <td class="hide-sm">Lido&#x27;s operator group 4.17 (&quot;RockLogic GmbH&quot;) and the operators it lists are run by RockLogic.</td>
+  <td class="num" data-v="0">–</td>
+  <td class="num" data-v="0">–</td>
+  <td class="num hide-sm" data-v="0">–</td>
+</tr><tr data-q="0300-rockx-lido-operators rockx rockx lido&#x27;s operator group 4.4 (&quot;rockx&quot;) and the operators it lists are run by rockx.">
+  <td><a href="0300-rockx-lido-operators.html">0300</a></td>
+  <td>Operator or owner</td>
+  <td><a href="../entities/rockx.html">RockX</a> <span class="chip">Operated by</span></td>
+  <td class="hide-sm">Lido&#x27;s operator group 4.4 (&quot;RockX&quot;) and the operators it lists are run by RockX.</td>
+  <td class="num" data-v="0">–</td>
+  <td class="num" data-v="0">–</td>
+  <td class="num hide-sm" data-v="0">–</td>
+</tr><tr data-q="0301-senseinode-lido-operators senseinode senseinode lido&#x27;s operator group 4.12 (&quot;senseinode&quot;) and the operators it lists are run by senseinode.">
+  <td><a href="0301-senseinode-lido-operators.html">0301</a></td>
+  <td>Operator or owner</td>
+  <td><a href="../entities/senseinode.html">SenseiNode</a> <span class="chip">Operated by</span></td>
+  <td class="hide-sm">Lido&#x27;s operator group 4.12 (&quot;SenseiNode&quot;) and the operators it lists are run by SenseiNode.</td>
+  <td class="num" data-v="0">–</td>
+  <td class="num" data-v="0">–</td>
+  <td class="num hide-sm" data-v="0">–</td>
+</tr><tr data-q="0302-sigma-prime-lido-operators sigma-prime sigma prime lido&#x27;s operator group 4.18 (&quot;sigma prime&quot;) and the operators it lists are run by sigma prime.">
+  <td><a href="0302-sigma-prime-lido-operators.html">0302</a></td>
+  <td>Operator or owner</td>
+  <td><a href="../entities/sigma-prime.html">Sigma Prime</a> <span class="chip">Operated by</span></td>
+  <td class="hide-sm">Lido&#x27;s operator group 4.18 (&quot;Sigma Prime&quot;) and the operators it lists are run by Sigma Prime.</td>
+  <td class="num" data-v="0">–</td>
+  <td class="num" data-v="0">–</td>
+  <td class="num hide-sm" data-v="0">–</td>
+</tr><tr data-q="0303-simply-staking-lido-operators simply-staking simply staking lido&#x27;s operator group 4.3 (&quot;simply staking&quot;) and the operators it lists are run by simply staking.">
+  <td><a href="0303-simply-staking-lido-operators.html">0303</a></td>
+  <td>Operator or owner</td>
+  <td><a href="../entities/simply-staking.html">Simply Staking</a> <span class="chip">Operated by</span></td>
+  <td class="hide-sm">Lido&#x27;s operator group 4.3 (&quot;Simply Staking&quot;) and the operators it lists are run by Simply Staking.</td>
+  <td class="num" data-v="0">–</td>
+  <td class="num" data-v="0">–</td>
+  <td class="num hide-sm" data-v="0">–</td>
+</tr><tr data-q="0304-solstice-lido-operators solstice solstice lido&#x27;s operator group 4.29 (&quot;solstice&quot;) and the operators it lists are run by solstice, from its acquisition of bridgetower&#x27;s staking division.">
+  <td><a href="0304-solstice-lido-operators.html">0304</a></td>
+  <td>Operator or owner</td>
+  <td><a href="../entities/solstice.html">Solstice</a> <span class="chip">Operated by</span></td>
+  <td class="hide-sm">Lido&#x27;s operator group 4.29 (&quot;Solstice&quot;) and the operators it lists are run by Solstice, from its acquisition of Bridgetower&#x27;s staking division.</td>
+  <td class="num" data-v="0">–</td>
+  <td class="num" data-v="0">–</td>
+  <td class="num hide-sm" data-v="0">–</td>
+</tr><tr data-q="0305-stakefish-lido-operators stakefish stakefish lido&#x27;s operator group 4.15 (&quot;stakefish&quot;) and the operators it lists are run by stakefish.">
+  <td><a href="0305-stakefish-lido-operators.html">0305</a></td>
+  <td>Operator or owner</td>
+  <td><a href="../entities/stakefish.html">stakefish</a> <span class="chip">Operated by</span></td>
+  <td class="hide-sm">Lido&#x27;s operator group 4.15 (&quot;stakefish&quot;) and the operators it lists are run by stakefish.</td>
+  <td class="num" data-v="0">–</td>
+  <td class="num" data-v="0">–</td>
+  <td class="num hide-sm" data-v="0">–</td>
+</tr><tr data-q="0306-stakely-lido-operators stakely stakely lido&#x27;s operator group 4.10 (&quot;stakely&quot;) and the operators it lists are run by stakely.">
+  <td><a href="0306-stakely-lido-operators.html">0306</a></td>
+  <td>Operator or owner</td>
+  <td><a href="../entities/stakely.html">Stakely</a> <span class="chip">Operated by</span></td>
+  <td class="hide-sm">Lido&#x27;s operator group 4.10 (&quot;Stakely&quot;) and the operators it lists are run by Stakely.</td>
+  <td class="num" data-v="0">–</td>
+  <td class="num" data-v="0">–</td>
+  <td class="num hide-sm" data-v="0">–</td>
+</tr><tr data-q="0307-stakin-lido-operators stakin stakin lido&#x27;s operator group 4.14 (&quot;stakin by the tie&quot;) and the operators it lists are run by stakin.">
+  <td><a href="0307-stakin-lido-operators.html">0307</a></td>
+  <td>Operator or owner</td>
+  <td><a href="../entities/stakin.html">Stakin</a> <span class="chip">Operated by</span></td>
+  <td class="hide-sm">Lido&#x27;s operator group 4.14 (&quot;Stakin by The Tie&quot;) and the operators it lists are run by Stakin.</td>
+  <td class="num" data-v="0">–</td>
+  <td class="num" data-v="0">–</td>
+  <td class="num hide-sm" data-v="0">–</td>
+</tr><tr data-q="0308-staking-facilities-lido-operators staking-facilities staking facilities lido&#x27;s operator group 4.24 (&quot;staking facilities&quot;) and the operators it lists are run by staking facilities.">
+  <td><a href="0308-staking-facilities-lido-operators.html">0308</a></td>
+  <td>Operator or owner</td>
+  <td><a href="../entities/staking-facilities.html">Staking Facilities</a> <span class="chip">Operated by</span></td>
+  <td class="hide-sm">Lido&#x27;s operator group 4.24 (&quot;Staking Facilities&quot;) and the operators it lists are run by Staking Facilities.</td>
+  <td class="num" data-v="0">–</td>
+  <td class="num" data-v="0">–</td>
+  <td class="num hide-sm" data-v="0">–</td>
+</tr><tr data-q="0309-twinstake-lido-operators twinstake twinstake lido&#x27;s operator group 4.8 (&quot;twinstake&quot;) and the operators it lists are run by twinstake, from the operator&#x27;s transfer from nethermind.">
+  <td><a href="0309-twinstake-lido-operators.html">0309</a></td>
+  <td>Operator or owner</td>
+  <td><a href="../entities/twinstake.html">Twinstake</a> <span class="chip">Operated by</span></td>
+  <td class="hide-sm">Lido&#x27;s operator group 4.8 (&quot;Twinstake&quot;) and the operators it lists are run by Twinstake, from the operator&#x27;s transfer from Nethermind.</td>
+  <td class="num" data-v="0">–</td>
+  <td class="num" data-v="0">–</td>
+  <td class="num hide-sm" data-v="0">–</td>
+</tr><tr data-q="0310-htx htx htx ">
+  <td><a href="0310-htx.html">0310</a></td>
+  <td>Name</td>
+  <td><a href="../entities/htx.html">HTX</a></td>
+  <td class="hide-sm"></td>
+  <td class="num" data-v="0">–</td>
+  <td class="num" data-v="0">–</td>
+  <td class="num hide-sm" data-v="0">–</td>
+</tr><tr data-q="0311-certus-one certus-one certus one ">
+  <td><a href="0311-certus-one.html">0311</a></td>
+  <td>Name</td>
+  <td><a href="../entities/certus-one.html">Certus One</a></td>
+  <td class="hide-sm"></td>
+  <td class="num" data-v="0">–</td>
+  <td class="num" data-v="0">–</td>
+  <td class="num hide-sm" data-v="0">–</td>
+</tr><tr data-q="0312-certus-one-lido-operator certus-one certus one lido operator 1/1 was certus one&#x27;s until jump acquired certus one in august 2021.">
+  <td><a href="0312-certus-one-lido-operator.html">0312</a></td>
+  <td>Operator or owner</td>
+  <td><a href="../entities/certus-one.html">Certus One</a> <span class="chip">Operated by</span></td>
+  <td class="hide-sm">Lido operator 1/1 was Certus One&#x27;s until Jump acquired Certus One in August 2021.</td>
+  <td class="num" data-v="0">–</td>
+  <td class="num" data-v="0">–</td>
+  <td class="num hide-sm" data-v="0">–</td>
+</tr><tr data-q="0313-cryptomanufaktur cryptomanufaktur cryptomanufaktur ">
+  <td><a href="0313-cryptomanufaktur.html">0313</a></td>
+  <td>Name</td>
+  <td><a href="../entities/cryptomanufaktur.html">CryptoManufaktur</a></td>
+  <td class="hide-sm"></td>
+  <td class="num" data-v="0">–</td>
+  <td class="num" data-v="0">–</td>
+  <td class="num hide-sm" data-v="0">–</td>
+</tr><tr data-q="0314-cryptomanufaktur-lido-operator cryptomanufaktur cryptomanufaktur lido operator 1/23 was cryptomanufaktur&#x27;s until galaxy acquired its assets in july 2024.">
+  <td><a href="0314-cryptomanufaktur-lido-operator.html">0314</a></td>
+  <td>Operator or owner</td>
+  <td><a href="../entities/cryptomanufaktur.html">CryptoManufaktur</a> <span class="chip">Operated by</span></td>
+  <td class="hide-sm">Lido operator 1/23 was CryptoManufaktur&#x27;s until Galaxy acquired its assets in July 2024.</td>
+  <td class="num" data-v="0">–</td>
+  <td class="num" data-v="0">–</td>
+  <td class="num hide-sm" data-v="0">–</td>
+</tr><tr data-q="0315-bridgetower bridgetower bridgetower ">
+  <td><a href="0315-bridgetower.html">0315</a></td>
+  <td>Name</td>
+  <td><a href="../entities/bridgetower.html">Bridgetower</a></td>
+  <td class="hide-sm"></td>
+  <td class="num" data-v="0">–</td>
+  <td class="num" data-v="0">–</td>
+  <td class="num hide-sm" data-v="0">–</td>
+</tr><tr data-q="0316-bridgetower-lido-operator bridgetower bridgetower lido operator 1/17 was bridgetower&#x27;s until solstice acquired its staking division in december 2024.">
+  <td><a href="0316-bridgetower-lido-operator.html">0316</a></td>
+  <td>Operator or owner</td>
+  <td><a href="../entities/bridgetower.html">Bridgetower</a> <span class="chip">Operated by</span></td>
+  <td class="hide-sm">Lido operator 1/17 was Bridgetower&#x27;s until Solstice acquired its staking division in December 2024.</td>
+  <td class="num" data-v="0">–</td>
+  <td class="num" data-v="0">–</td>
+  <td class="num hide-sm" data-v="0">–</td>
+</tr><tr data-q="0317-nethermind-lido-operator nethermind nethermind lido operator 1/25 was nethermind&#x27;s until its validators passed to twinstake in october 2025.">
+  <td><a href="0317-nethermind-lido-operator.html">0317</a></td>
+  <td>Operator or owner</td>
+  <td><a href="../entities/nethermind.html">Nethermind</a> <span class="chip">Operated by</span></td>
+  <td class="hide-sm">Lido operator 1/25 was Nethermind&#x27;s until its validators passed to Twinstake in October 2025.</td>
+  <td class="num" data-v="0">–</td>
+  <td class="num" data-v="0">–</td>
+  <td class="num hide-sm" data-v="0">–</td>
+</tr><tr data-q="0318-the-tie the-tie the tie ">
+  <td><a href="0318-the-tie.html">0318</a></td>
+  <td>Name</td>
+  <td><a href="../entities/the-tie.html">The Tie</a></td>
+  <td class="hide-sm"></td>
+  <td class="num" data-v="0">–</td>
+  <td class="num" data-v="0">–</td>
+  <td class="num hide-sm" data-v="0">–</td>
+</tr><tr data-q="0319-stakin-owned-by-the-tie the-tie the tie the tie owns stakin from 12 january 2026.">
+  <td><a href="0319-stakin-owned-by-the-tie.html">0319</a></td>
+  <td>Operator or owner</td>
+  <td><a href="../entities/the-tie.html">The Tie</a> <span class="chip">Owned by</span></td>
+  <td class="hide-sm">The Tie owns Stakin from 12 January 2026.</td>
+  <td class="num" data-v="0">–</td>
+  <td class="num" data-v="0">–</td>
+  <td class="num hide-sm" data-v="0">–</td>
+</tr><tr data-q="0320-offchain-labs offchain-labs offchain labs ">
+  <td><a href="0320-offchain-labs.html">0320</a></td>
+  <td>Name</td>
+  <td><a href="../entities/offchain-labs.html">Offchain Labs</a></td>
+  <td class="hide-sm"></td>
+  <td class="num" data-v="0">–</td>
+  <td class="num" data-v="0">–</td>
+  <td class="num hide-sm" data-v="0">–</td>
+</tr><tr data-q="0321-prysmatic-labs-owned-by-offchain-labs offchain-labs offchain labs offchain labs owns prysmatic labs from 12 october 2022.">
+  <td><a href="0321-prysmatic-labs-owned-by-offchain-labs.html">0321</a></td>
+  <td>Operator or owner</td>
+  <td><a href="../entities/offchain-labs.html">Offchain Labs</a> <span class="chip">Owned by</span></td>
+  <td class="hide-sm">Offchain Labs owns Prysmatic Labs from 12 October 2022.</td>
+  <td class="num" data-v="0">–</td>
+  <td class="num" data-v="0">–</td>
+  <td class="num hide-sm" data-v="0">–</td>
+</tr><tr data-q="0322-merge-sweeps-to-0x2bc1   six withdrawal addresses whose rewards are swept together to 0x2bc1…8d56 belong to one staker.">
+  <td><a href="0322-merge-sweeps-to-0x2bc1.html">0322</a></td>
+  <td>Merge</td>
+  <td></td>
+  <td class="hide-sm">Six withdrawal addresses whose rewards are swept together to 0x2bc1…8d56 belong to one staker.</td>
+  <td class="num" data-v="0">–</td>
+  <td class="num" data-v="0">–</td>
+  <td class="num hide-sm" data-v="0">–</td>
+</tr>
+</tbody></table></div>
+<p class="muted">Generated 2026-10-31 04:45 UTC. Published under
+<a href="https://creativecommons.org/licenses/by/4.0/">CC BY 4.0</a>; quoted source passages remain their publishers'.</p>
+<script>
+const q = document.getElementById('q'), tb = document.querySelector('#t tbody');
+q.addEventListener('input', () => { const v = q.value.toLowerCase();
+  for (const r of tb.rows) r.style.display = r.dataset.q.includes(v) ? '' : 'none'; });
+document.querySelectorAll('#t th').forEach((th, i) => th.addEventListener('click', () => {
+  const num = th.classList.contains('num'), dir = th.dataset.dir === 'asc' ? -1 : 1; th.dataset.dir = dir > 0 ? 'asc' : 'desc';
+  const key = r => num ? +r.cells[i].dataset.v : r.cells[i].textContent.trim();
+  [...tb.rows].sort((a, b) => (key(a) > key(b) ? 1 : key(a) < key(b) ? -1 : 0) * (num ? -dir : dir))
+    .forEach(r => tb.appendChild(r)); }));
+</script>
+</main>
+</body>
+</html>

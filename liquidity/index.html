@@ -1,0 +1,213 @@
+<!doctype html>
+<html lang="en" data-site="static">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Forms of ETH</title>
+<script src="https://cdn.plot.ly/plotly-3.4.0.min.js" charset="utf-8"></script>
+<style>
+  /* colours, type and layout as on the staking ratio and stake treemap pages, so the pages match */
+  :root {
+    color-scheme: light;
+    --surface-0: #f4f3f0; --surface-1: #fcfcfb; --border: #d9d8d3; --grid: #e6e5e0;
+    --text-primary: #0b0b0b; --text-secondary: #52514e; --text-muted: #77766f; --accent: #2a78d6;
+    /* ETH itself: two neutrals, not series hues (unstaked the lighter); issues: the validated categorical order,
+       fixed per token */
+    --eth: #b9b7ae; --staked: #8a887f;
+    --s1: #2a78d6; --s2: #eb6834; --s3: #1baf7a; --s4: #eda100; --s5: #e87ba4; --s6: #008300; --s7: #6250d6; --s8: #e34948;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:where(:not([data-theme="light"])) {
+      color-scheme: dark;
+      --surface-0: #121211; --surface-1: #1a1a19; --border: #3a3a37; --grid: #2a2a28;
+      --text-primary: #f0efec; --text-secondary: #c3c2b7; --text-muted: #96958c; --accent: #3987e5;
+      --eth: #55544f; --staked: #7a7972;
+      --s1: #3987e5; --s2: #d95926; --s3: #199e70; --s4: #c98500; --s5: #d55181; --s6: #008300; --s7: #9085e9; --s8: #e66767;
+    }
+  }
+  :root[data-theme="dark"] {
+    color-scheme: dark;
+    --surface-0: #121211; --surface-1: #1a1a19; --border: #3a3a37; --grid: #2a2a28;
+    --text-primary: #f0efec; --text-secondary: #c3c2b7; --text-muted: #96958c; --accent: #3987e5;
+    --eth: #55544f; --staked: #7a7972;
+    --s1: #3987e5; --s2: #d95926; --s3: #199e70; --s4: #c98500; --s5: #d55181; --s6: #008300; --s7: #9085e9; --s8: #e66767;
+  }
+  * { box-sizing: border-box; }
+  body { margin: 0; background: var(--surface-0); color: var(--text-primary);
+         font: 14px/1.4 system-ui, -apple-system, "Segoe UI", sans-serif; }
+  main { max-width: 1400px; margin: 0 auto; padding-block: 16px 32px;
+         padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px)); }
+  a { color: var(--accent); }
+  header.top .title { display: flex; flex-wrap: wrap; align-items: baseline; gap: 8px 16px; }
+  header.top h1 { font-size: 20px; margin: 0 0 8px; font-weight: 600; }
+  .sites { display: flex; gap: 14px; font-size: 13px; }
+  .sites a { text-decoration: none; }
+  .sites a:hover { text-decoration: underline; }
+  .lede { color: var(--text-secondary); margin: 0 0 12px; max-width: 760px; }
+  .controls { display: flex; flex-wrap: wrap; gap: 8px 20px; align-items: center; margin: 4px 0 8px; font-size: 13px;
+              color: var(--text-secondary); }
+  .seg { display: inline-flex; border: 1px solid var(--border); border-radius: 6px; overflow: hidden; }
+  .seg button { font: inherit; padding: 3px 10px; border: 0; background: var(--surface-1); color: var(--text-secondary);
+                cursor: pointer; }
+  .seg button + button { border-left: 1px solid var(--border); }
+  .seg button[aria-pressed="true"] { background: var(--text-primary); color: var(--surface-0); }
+  label.check { display: inline-flex; gap: 6px; align-items: center; cursor: pointer; }
+  #chart { width: 100%; height: 600px; background: var(--surface-1); border: 1px solid var(--border); border-radius: 6px; }
+  .below { max-width: 420px; margin-top: 16px; }
+  table { border-collapse: collapse; width: 100%; font-size: 13px; }
+  caption { text-align: left; font-weight: 600; padding-bottom: 6px; }
+  th, td { padding: 4px 6px; border-bottom: 1px solid var(--border); text-align: right; font-variant-numeric: tabular-nums; }
+  th:first-child, td:first-child { text-align: left; }
+  th { color: var(--text-secondary); font-weight: 500; }
+  td .key { display: inline-block; width: 10px; height: 10px; border-radius: 2px; margin-right: 6px; vertical-align: -1px; }
+  .hint { color: var(--text-muted); font-size: 12px; margin: 6px 0 0; }
+  .note { color: var(--text-secondary); font-size: 13px; margin: 16px 0 0; max-width: 760px; }
+  @media (max-width: 760px) { #chart { height: 480px; } }
+</style>
+<script data-goatcounter="https://pintail.goatcounter.com/count" async src="https://gc.zgo.at/count.js"></script>
+</head>
+<body>
+<main>
+  <header class="top">
+    <div class="title">
+      <h1>Forms of ETH</h1>
+      <nav class="sites" aria-label="Related charts">
+        <a id="ledger-link" href="../supply/">Staking ratio</a>
+        <a id="treemap-link" href="../treemap/">Stake treemap</a>
+      </nav>
+    </div>
+    <p class="lede">All ETH, by the form it takes: unstaked ETH, staked ETH that no token represents, and the tokens
+      issued against staked ETH, each counted once, by its base unit: wrapped forms count as what they wrap (WETH as
+      ETH, wstETH as stETH). Tokens are valued in ETH at their own redemption rate.</p>
+  </header>
+
+  <div class="controls" role="group" aria-label="Chart options">
+    <span>Show <span class="seg"><button type="button" id="u-eth" aria-pressed="true">ETH value</button><button
+      type="button" id="u-share" aria-pressed="false">Share of total</button></span></span>
+    <label class="check"><input type="checkbox" id="with-eth" checked> Unstaked ETH</label>
+    <label class="check"><input type="checkbox" id="with-staked" checked> Illiquid staked ETH</label>
+    <span>From <span class="seg"><button type="button" id="r-genesis" aria-pressed="false">Genesis</button><button
+      type="button" id="r-beacon" aria-pressed="true">Beacon Launch</button><button
+      type="button" id="r-merge" aria-pressed="false">Merge</button></span></span>
+  </div>
+
+  <div id="chart" role="img" aria-label="Stacked area chart of forms of ETH over time"></div>
+
+  <div class="below">
+    <div>
+      <table id="values"><caption></caption><thead><tr><th>Form</th><th>ETH</th><th>Share</th></tr></thead>
+        <tbody></tbody></table>
+      <p class="hint">Hover the chart to see another date; click to keep it.</p>
+    </div>
+  </div>
+  <p class="note">Exchange tokens are counted at their full value, but an exchange may keep some of the ETH behind
+    them unstaked, and that ETH also counts here as unstaked ETH. Checked against each exchange's stake (October
+    2026): none for cbETH, as Coinbase's stake has always exceeded it; for wBETH at most about 240k ETH (0.2% of
+    supply) at any time, and none now.</p>
+</main>
+<script>
+// The other charts: in the static site (<html data-site="static">) its sibling folders; served live, the same host
+// on their own ports (the ledger's chart on 8350, the treemap on 8352), by whichever name this page was reached.
+if (document.documentElement.dataset.site !== "static") {
+  const host = `${location.protocol}//${location.hostname}`;
+  document.getElementById("ledger-link").href = `${host}:8350/`;
+  document.getElementById("treemap-link").href = `${host}:8352/`;
+}
+
+const state = { share: false, withEth: true, withStaked: true, from: "beacon", index: null, pinned: false };
+const css = (name) => getComputedStyle(document.documentElement).getPropertyValue(name).trim();
+const fmt = new Intl.NumberFormat("en-US", { maximumFractionDigits: 0 });
+const pct = (x) => (x >= 0.001 ? `${(x * 100).toFixed(1)}%` : x > 0 ? "<0.1%" : "–");
+let data;
+
+// colour follows the token, never its rank or how many are shown: ETH itself in neutrals, each issue a fixed slot
+const SLOTS = { steth: 1, wbeth: 2, cbeth: 3, reth: 4, meth: 5, lseth: 6, frxeth: 7, sweth: 8 };
+const NEUTRAL = { eth: "--eth", staked: "--staked" };
+const colour = (id) => css(NEUTRAL[id] ?? (SLOTS[id] ? `--s${SLOTS[id]}` : "--text-muted"));
+
+function visible() {
+  return data.series.map((s) => ({ ...s, colour: colour(s.id) }))
+    .filter((s) => (s.id === "eth" ? state.withEth : s.id === "staked" ? state.withStaked : true));
+}
+
+// where the x axis starts: the chain's first day, the beacon chain's genesis, or the Merge; each of the last two is
+// marked with a dashed line while the chart starts before it
+const EVENTS = [{ id: "beacon", date: "2020-12-01", label: "Beacon Launch" }, { id: "merge", date: "2022-09-15", label: "Merge" }];
+const FROM = { genesis: () => data.dates[0], ...Object.fromEntries(EVENTS.map((e) => [e.id, () => e.date])) };
+
+function render() {
+  const series = visible();
+  const traces = series.map((s) => ({
+    x: data.dates, y: s.eth.map((v) => v ?? 0), name: s.name, type: "scatter", mode: "lines",
+    stackgroup: "one", groupnorm: state.share ? "percent" : "",
+    // a 1px surface-coloured edge keeps neighbouring fills apart
+    line: { width: 1, color: css("--surface-1") }, fillcolor: s.colour,
+    text: s.eth.map((v) => (v == null ? "–" : `${fmt.format(v)} ETH`)),
+    // the form's name before its value: in the unified hover, a swatch alone is hard to match to the legend
+    hovertemplate: state.share ? "%{fullData.name}: %{y:.2f}% · %{text}<extra></extra>"
+                               : "%{fullData.name}: %{text}<extra></extra>",
+  }));
+  const ink = css("--text-secondary");
+  const events = EVENTS.filter((e) => e.date > FROM[state.from]());
+  const layout = {
+    shapes: events.map((e) => ({ type: "line", xref: "x", yref: "paper", x0: e.date, x1: e.date, y0: 0, y1: 1,
+                                 line: { color: css("--text-muted"), width: 1, dash: "dash" }, layer: "above" })),
+    // labels above the plot, clear of the stack
+    annotations: events.map((e) => ({ xref: "x", yref: "paper", x: e.date, y: 1, yanchor: "bottom", showarrow: false,
+                                      text: e.label, font: { color: css("--text-muted"), size: 11 } })),
+    paper_bgcolor: css("--surface-1"), plot_bgcolor: css("--surface-1"), font: { color: ink, size: 12 },
+    margin: { l: 76, r: 16, t: 28, b: 40 }, hovermode: "x unified", showlegend: true,
+    legend: { orientation: "h", y: -0.12, traceorder: "reversed", font: { color: css("--text-primary") } },
+    hoverlabel: { bgcolor: css("--surface-1"), bordercolor: css("--border"), font: { color: css("--text-primary") } },
+    xaxis: { type: "date", hoverformat: "%Y-%m-%d", gridcolor: css("--grid"), linecolor: css("--border"),
+             range: [FROM[state.from](), data.dates.at(-1)] },
+    yaxis: { gridcolor: css("--grid"), zeroline: false, ticksuffix: state.share ? "%" : "",
+             tickformat: state.share ? "" : "~s", rangemode: "tozero", fixedrange: true,
+             range: state.share ? [0, 100] : undefined, title: { text: state.share ? "" : "ETH", standoff: 12 } },
+  };
+  Plotly.react("chart", traces, layout, { responsive: true, displayModeBar: false });
+  table(state.index ?? data.dates.length - 1);
+}
+
+// ETH itself first (unstaked, then staked), then the issues
+const rank = (s) => ["eth", "staked"].indexOf(s.id) >>> 0;
+
+// the value table: every form at one date (the latest, the hovered one, or the clicked one)
+function table(i) {
+  const series = visible();
+  const total = series.reduce((a, s) => a + (s.eth[i] ?? 0), 0);
+  const t = document.getElementById("values");
+  t.querySelector("caption").textContent = `${data.dates[i]}${state.pinned ? " (kept)" : ""}`;
+  t.querySelector("tbody").innerHTML = series
+    .map((s) => [s, s.eth[i]]).sort((a, b) => rank(a[0]) - rank(b[0]) || (b[1] ?? 0) - (a[1] ?? 0))
+    .map(([s, v]) => `<tr><td><span class="key" style="background:${s.colour}"></span>${s.name}</td>
+      <td>${v == null ? "–" : fmt.format(v)}</td><td>${v == null ? "–" : pct(v / total)}</td></tr>`).join("")
+    + `<tr><th>Total</th><th>${fmt.format(total)}</th><th></th></tr>`;
+}
+
+function pressed(on, off) { on.setAttribute("aria-pressed", "true"); off.setAttribute("aria-pressed", "false"); }
+const $ = (id) => document.getElementById(id);
+$("u-eth").onclick = () => { state.share = false; pressed($("u-eth"), $("u-share")); render(); };
+$("u-share").onclick = () => { state.share = true; pressed($("u-share"), $("u-eth")); render(); };
+$("with-eth").onchange = (e) => { state.withEth = e.target.checked; render(); };
+$("with-staked").onchange = (e) => { state.withStaked = e.target.checked; render(); };
+for (const from of Object.keys(FROM)) {
+  $(`r-${from}`).onclick = () => {
+    state.from = from;
+    for (const f of Object.keys(FROM)) $(`r-${f}`).setAttribute("aria-pressed", String(f === from));
+    render();
+  };
+}
+matchMedia("(prefers-color-scheme: dark)").addEventListener("change", render);
+
+fetch("data.json", { cache: "no-cache" }).then((r) => r.json()).then((d) => {
+  data = d;
+  render();
+  const chart = $("chart");
+  chart.on("plotly_hover", (e) => { if (!state.pinned) table(e.points[0].pointIndex); });
+  chart.on("plotly_unhover", () => { if (!state.pinned) table(state.index ?? d.dates.length - 1); });
+  chart.on("plotly_click", (e) => { state.pinned = true; state.index = e.points[0].pointIndex; table(state.index); });
+});
+</script>
+</body>
+</html>

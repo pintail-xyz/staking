@@ -1,0 +1,314 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Entities in the validator set</title>
+<style>
+:root { color-scheme: light; --surface-0: #f4f3f0; --surface-1: #fcfcfb; --border: #d9d8d3; --text-primary: #0b0b0b;
+        --text-secondary: #52514e; --text-muted: #77766f; --accent: #2a78d6; --chip: #ebe9e4; }
+@media (prefers-color-scheme: dark) {
+  :root:where(:not([data-theme="light"])) { color-scheme: dark; --surface-0: #121211; --surface-1: #1a1a19;
+    --border: #3a3a37; --text-primary: #f0efec; --text-secondary: #c3c2b7; --text-muted: #96958c; --accent: #3987e5;
+    --chip: #2a2a28; }
+}
+:root[data-theme="dark"] { color-scheme: dark; --surface-0: #121211; --surface-1: #1a1a19; --border: #3a3a37;
+  --text-primary: #f0efec; --text-secondary: #c3c2b7; --text-muted: #96958c; --accent: #3987e5; --chip: #2a2a28; }
+* { box-sizing: border-box; }
+body { margin: 0; background: var(--surface-0); color: var(--text-primary);
+       font: 15px/1.55 system-ui, -apple-system, "Segoe UI", sans-serif; }
+main { max-width: 860px; margin: 0 auto; padding: 32px 16px 64px; }
+a { color: var(--accent); }
+h1 { font-size: 22px; line-height: 1.3; font-weight: 600; margin: 4px 0 12px; }
+h2 { font-size: 15px; font-weight: 600; margin: 28px 0 8px; color: var(--text-secondary);
+     text-transform: uppercase; letter-spacing: 0.04em; }
+p { margin: 0 0 12px; }
+.crumbs { font-size: 13px; color: var(--text-muted); }
+.lede { font-size: 17px; }
+.muted { color: var(--text-muted); }
+.chip { display: inline-block; padding: 1px 8px; border-radius: 10px; background: var(--chip); font-size: 12px;
+        color: var(--text-secondary); margin-right: 4px; white-space: nowrap; }
+.card { background: var(--surface-1); border: 1px solid var(--border); border-radius: 6px; padding: 14px 16px;
+        margin: 0 0 12px; }
+.stats { display: flex; flex-wrap: wrap; gap: 12px; margin: 16px 0; }
+.stat { background: var(--surface-1); border: 1px solid var(--border); border-radius: 6px; padding: 10px 14px;
+        min-width: 140px; }
+.stat b { display: block; font-size: 20px; font-variant-numeric: tabular-nums; }
+.stat span { font-size: 12px; color: var(--text-muted); }
+ul.grounds { list-style: none; padding: 0; margin: 0; }
+ul.grounds li { padding: 6px 0; border-bottom: 1px solid var(--border); }
+ul.grounds li:last-child { border-bottom: 0; }
+table { width: 100%; border-collapse: collapse; background: var(--surface-1); font-size: 14px; }
+th, td { text-align: left; padding: 7px 8px; border-bottom: 1px solid var(--border); vertical-align: top; }
+th { font-weight: 600; color: var(--text-secondary); cursor: pointer; white-space: nowrap; user-select: none; }
+td.num, th.num { text-align: right; font-variant-numeric: tabular-nums; white-space: nowrap; }
+code, .mono { font: 12.5px ui-monospace, SFMono-Regular, Menlo, monospace; word-break: break-all; }
+details summary { cursor: pointer; color: var(--accent); }
+.excerpt { border-left: 3px solid var(--border); padding: 2px 0 2px 10px; color: var(--text-secondary);
+           font-size: 14px; white-space: pre-wrap; }
+input[type=search] { width: 100%; padding: 8px 10px; font: inherit; border: 1px solid var(--border);
+                     border-radius: 6px; background: var(--surface-1); color: var(--text-primary); margin: 8px 0 12px; }
+.table-wrap { overflow-x: auto; }
+@media (max-width: 640px) { .hide-sm { display: none; } }
+</style>
+<script data-goatcounter="https://pintail.goatcounter.com/count" async src="https://gc.zgo.at/count.js"></script>
+</head>
+<body>
+<main>
+<p class="crumbs"><a href="../">Dataset</a></p>
+<h1>Entities in the validator set</h1>
+<p>Every organisation the attributions name, with the stake it holds as allocator and as operator on 2026-10-30
+(ETH). Each page shows its roles over time since the beacon chain's genesis, including those of custodian and
+principal.</p>
+<p class="muted">* Operators are recorded for 49% of active stake (allocators for
+89%), only where specific evidence names them, so the operator column is a lower bound.
+Custodians (5.5%) and principals (5.4%) are recorded for too little
+of the stake to compare organisations here, and are shown on each organisation's page.</p>
+<input type="search" id="q" placeholder="Search by name or former name, e.g. Figment, Lido, Huobi" aria-label="Search entities" autofocus>
+<div class="table-wrap"><table id="t"><thead><tr><th>Entity</th><th class="hide-sm">Kind</th><th class="num">Allocator</th><th class="num">Operator*</th>
+<th class="hide-sm">Owner</th></tr></thead><tbody>
+<tr data-q="lido lido "><td><a href="lido.html">Lido</a></td>
+<td class="hide-sm">protocol</td><td class="num" data-v="9521095">9,521,095</td><td class="num" data-v="0"></td>
+<td class="hide-sm"></td></tr><tr data-q="bitmine bitmine "><td><a href="bitmine.html">BitMine</a></td>
+<td class="hide-sm">treasury company</td><td class="num" data-v="5214572">5,214,572</td><td class="num" data-v="0"></td>
+<td class="hide-sm"></td></tr><tr data-q="coinbase coinbase "><td><a href="coinbase.html">Coinbase</a></td>
+<td class="hide-sm">exchange</td><td class="num" data-v="4801189">4,801,189</td><td class="num" data-v="0"></td>
+<td class="hide-sm"></td></tr><tr data-q="binance binance "><td><a href="binance.html">Binance</a></td>
+<td class="hide-sm">exchange</td><td class="num" data-v="3543050">3,543,050</td><td class="num" data-v="0"></td>
+<td class="hide-sm"></td></tr><tr data-q="staked staked "><td><a href="staked.html">Staked</a></td>
+<td class="hide-sm">staking provider</td><td class="num" data-v="143749">143,749</td><td class="num" data-v="3385434">3,385,434</td>
+<td class="hide-sm"></td></tr><tr data-q="figment figment "><td><a href="figment.html">Figment</a></td>
+<td class="hide-sm">staking provider</td><td class="num" data-v="1929069">1,929,069</td><td class="num" data-v="1816483">1,816,483</td>
+<td class="hide-sm"></td></tr><tr data-q="kraken kraken "><td><a href="kraken.html">Kraken</a></td>
+<td class="hide-sm">exchange</td><td class="num" data-v="1741257">1,741,257</td><td class="num" data-v="0"></td>
+<td class="hide-sm"></td></tr><tr data-q="etherfi ether.fi "><td><a href="etherfi.html">ether.fi</a></td>
+<td class="hide-sm">liquid staking protocol</td><td class="num" data-v="1707185">1,707,185</td><td class="num" data-v="0"></td>
+<td class="hide-sm"></td></tr><tr data-q="blockdaemon blockdaemon "><td><a href="blockdaemon.html">Blockdaemon</a></td>
+<td class="hide-sm">staking provider</td><td class="num" data-v="1210375">1,210,375</td><td class="num" data-v="1464551">1,464,551</td>
+<td class="hide-sm"></td></tr><tr data-q="everstake everstake "><td><a href="everstake.html">Everstake</a></td>
+<td class="hide-sm">staking provider</td><td class="num" data-v="967649">967,649</td><td class="num" data-v="1083561">1,083,561</td>
+<td class="hide-sm"></td></tr><tr data-q="galaxy galaxy "><td><a href="galaxy.html">Galaxy</a></td>
+<td class="hide-sm">node operator</td><td class="num" data-v="752100">752,100</td><td class="num" data-v="1065240">1,065,240</td>
+<td class="hide-sm"></td></tr><tr data-q="p2p p2p.org "><td><a href="p2p.html">P2P.org</a></td>
+<td class="hide-sm">staking provider</td><td class="num" data-v="400930">400,930</td><td class="num" data-v="1020342">1,020,342</td>
+<td class="hide-sm"></td></tr><tr data-q="kiln kiln "><td><a href="kiln.html">Kiln</a></td>
+<td class="hide-sm">staking provider</td><td class="num" data-v="791965">791,965</td><td class="num" data-v="788225">788,225</td>
+<td class="hide-sm"></td></tr><tr data-q="allnodes allnodes "><td><a href="allnodes.html">Allnodes</a></td>
+<td class="hide-sm">node operator</td><td class="num" data-v="254639">254,639</td><td class="num" data-v="769986">769,986</td>
+<td class="hide-sm"></td></tr><tr data-q="okx okx "><td><a href="okx.html">OKX</a></td>
+<td class="hide-sm">exchange</td><td class="num" data-v="663473">663,473</td><td class="num" data-v="0"></td>
+<td class="hide-sm"></td></tr><tr data-q="stakefish stakefish "><td><a href="stakefish.html">stakefish</a></td>
+<td class="hide-sm">staking provider</td><td class="num" data-v="376875">376,875</td><td class="num" data-v="650864">650,864</td>
+<td class="hide-sm"></td></tr><tr data-q="upbit upbit "><td><a href="upbit.html">Upbit</a></td>
+<td class="hide-sm">exchange</td><td class="num" data-v="643552">643,552</td><td class="num" data-v="0"></td>
+<td class="hide-sm"></td></tr><tr data-q="bitcoin-suisse bitcoin suisse "><td><a href="bitcoin-suisse.html">Bitcoin Suisse</a></td>
+<td class="hide-sm">broker</td><td class="num" data-v="607692">607,692</td><td class="num" data-v="591834">591,834</td>
+<td class="hide-sm"></td></tr><tr data-q="grayscale grayscale "><td><a href="grayscale.html">Grayscale</a></td>
+<td class="hide-sm">asset manager</td><td class="num" data-v="485231">485,231</td><td class="num" data-v="0"></td>
+<td class="hide-sm"></td></tr><tr data-q="twinstake twinstake "><td><a href="twinstake.html">Twinstake</a></td>
+<td class="hide-sm">node operator</td><td class="num" data-v="190356">190,356</td><td class="num" data-v="483649">483,649</td>
+<td class="hide-sm"></td></tr><tr data-q="infstones infstones "><td><a href="infstones.html">InfStones</a></td>
+<td class="hide-sm">staking provider</td><td class="num" data-v="60321">60,321</td><td class="num" data-v="474425">474,425</td>
+<td class="hide-sm"></td></tr><tr data-q="rocket-pool rocket pool "><td><a href="rocket-pool.html">Rocket Pool</a></td>
+<td class="hide-sm">liquid staking protocol</td><td class="num" data-v="423279">423,279</td><td class="num" data-v="0"></td>
+<td class="hide-sm"></td></tr><tr data-q="hashkey-cloud hashkey cloud "><td><a href="hashkey-cloud.html">HashKey Cloud</a></td>
+<td class="hide-sm">node operator</td><td class="num" data-v="0"></td><td class="num" data-v="418770">418,770</td>
+<td class="hide-sm"></td></tr><tr data-q="ebunker ebunker "><td><a href="ebunker.html">ebunker</a></td>
+<td class="hide-sm">node operator</td><td class="num" data-v="8266">8,266</td><td class="num" data-v="360893">360,893</td>
+<td class="hide-sm"></td></tr><tr data-q="dsrv dsrv "><td><a href="dsrv.html">DSRV</a></td>
+<td class="hide-sm">node operator</td><td class="num" data-v="0"></td><td class="num" data-v="339753">339,753</td>
+<td class="hide-sm"></td></tr><tr data-q="luganodes luganodes "><td><a href="luganodes.html">Luganodes</a></td>
+<td class="hide-sm">node operator</td><td class="num" data-v="0"></td><td class="num" data-v="316973">316,973</td>
+<td class="hide-sm"></td></tr><tr data-q="stakewise stakewise "><td><a href="stakewise.html">StakeWise</a></td>
+<td class="hide-sm">liquid staking protocol</td><td class="num" data-v="311489">311,489</td><td class="num" data-v="0"></td>
+<td class="hide-sm"></td></tr><tr data-q="stakin stakin the tie"><td><a href="stakin.html">Stakin</a></td>
+<td class="hide-sm">node operator</td><td class="num" data-v="0"></td><td class="num" data-v="284390">284,390</td>
+<td class="hide-sm">The Tie</td></tr><tr data-q="rocklogic rocklogic "><td><a href="rocklogic.html">RockLogic</a></td>
+<td class="hide-sm">node operator</td><td class="num" data-v="0"></td><td class="num" data-v="275506">275,506</td>
+<td class="hide-sm"></td></tr><tr data-q="stakely stakely "><td><a href="stakely.html">Stakely</a></td>
+<td class="hide-sm">node operator</td><td class="num" data-v="132">132</td><td class="num" data-v="274890">274,890</td>
+<td class="hide-sm"></td></tr><tr data-q="liquid-collective liquid collective "><td><a href="liquid-collective.html">Liquid Collective</a></td>
+<td class="hide-sm">liquid staking protocol</td><td class="num" data-v="273664">273,664</td><td class="num" data-v="0"></td>
+<td class="hide-sm"></td></tr><tr data-q="launchnodes launchnodes "><td><a href="launchnodes.html">Launchnodes</a></td>
+<td class="hide-sm">node operator</td><td class="num" data-v="0"></td><td class="num" data-v="262792">262,792</td>
+<td class="hide-sm"></td></tr><tr data-q="prysmatic-labs prysmatic labs offchain labs"><td><a href="prysmatic-labs.html">Prysmatic Labs</a></td>
+<td class="hide-sm">node operator</td><td class="num" data-v="4608">4,608</td><td class="num" data-v="262324">262,324</td>
+<td class="hide-sm">Offchain Labs</td></tr><tr data-q="senseinode senseinode "><td><a href="senseinode.html">SenseiNode</a></td>
+<td class="hide-sm">node operator</td><td class="num" data-v="64">64</td><td class="num" data-v="259936">259,936</td>
+<td class="hide-sm"></td></tr><tr data-q="blockscape blockscape "><td><a href="blockscape.html">Blockscape</a></td>
+<td class="hide-sm">node operator</td><td class="num" data-v="0"></td><td class="num" data-v="259584">259,584</td>
+<td class="hide-sm"></td></tr><tr data-q="attestant attestant bitwise"><td><a href="attestant.html">Attestant</a></td>
+<td class="hide-sm">staking provider</td><td class="num" data-v="0"></td><td class="num" data-v="258885">258,885</td>
+<td class="hide-sm">Bitwise</td></tr><tr data-q="rockawayx rockawayx "><td><a href="rockawayx.html">RockawayX</a></td>
+<td class="hide-sm">node operator</td><td class="num" data-v="0"></td><td class="num" data-v="258208">258,208</td>
+<td class="hide-sm"></td></tr><tr data-q="staking-facilities staking facilities "><td><a href="staking-facilities.html">Staking Facilities</a></td>
+<td class="hide-sm">node operator</td><td class="num" data-v="0"></td><td class="num" data-v="258048">258,048</td>
+<td class="hide-sm"></td></tr><tr data-q="chainlayer chainlayer "><td><a href="chainlayer.html">ChainLayer</a></td>
+<td class="hide-sm">node operator</td><td class="num" data-v="0"></td><td class="num" data-v="257870">257,870</td>
+<td class="hide-sm"></td></tr><tr data-q="kukis-global kukis global "><td><a href="kukis-global.html">Kukis Global</a></td>
+<td class="hide-sm">node operator</td><td class="num" data-v="0"></td><td class="num" data-v="257856">257,856</td>
+<td class="hide-sm"></td></tr><tr data-q="sigma-prime sigma prime "><td><a href="sigma-prime.html">Sigma Prime</a></td>
+<td class="hide-sm">node operator</td><td class="num" data-v="0"></td><td class="num" data-v="257776">257,776</td>
+<td class="hide-sm"></td></tr><tr data-q="chainsafe chainsafe "><td><a href="chainsafe.html">ChainSafe</a></td>
+<td class="hide-sm">node operator</td><td class="num" data-v="0"></td><td class="num" data-v="257760">257,760</td>
+<td class="hide-sm"></td></tr><tr data-q="develp develp "><td><a href="develp.html">Develp</a></td>
+<td class="hide-sm">node operator</td><td class="num" data-v="0"></td><td class="num" data-v="257760">257,760</td>
+<td class="hide-sm"></td></tr><tr data-q="simply-staking simply staking "><td><a href="simply-staking.html">Simply Staking</a></td>
+<td class="hide-sm">node operator</td><td class="num" data-v="0"></td><td class="num" data-v="257730">257,730</td>
+<td class="hide-sm"></td></tr><tr data-q="solstice solstice "><td><a href="solstice.html">Solstice</a></td>
+<td class="hide-sm">node operator</td><td class="num" data-v="0"></td><td class="num" data-v="257440">257,440</td>
+<td class="hide-sm"></td></tr><tr data-q="gateway-fm gateway.fm "><td><a href="gateway-fm.html">Gateway.fm</a></td>
+<td class="hide-sm">node operator</td><td class="num" data-v="0"></td><td class="num" data-v="257408">257,408</td>
+<td class="hide-sm"></td></tr><tr data-q="parafi-technologies parafi technologies "><td><a href="parafi-technologies.html">ParaFi Technologies</a></td>
+<td class="hide-sm">node operator</td><td class="num" data-v="0"></td><td class="num" data-v="257408">257,408</td>
+<td class="hide-sm"></td></tr><tr data-q="rockx rockx "><td><a href="rockx.html">RockX</a></td>
+<td class="hide-sm">node operator</td><td class="num" data-v="0"></td><td class="num" data-v="253440">253,440</td>
+<td class="hide-sm"></td></tr><tr data-q="mavan mavan bitmine"><td><a href="mavan.html">MAVAN</a></td>
+<td class="hide-sm">staking provider</td><td class="num" data-v="0"></td><td class="num" data-v="237635">237,635</td>
+<td class="hide-sm">BitMine</td></tr><tr data-q="gemini gemini "><td><a href="gemini.html">Gemini</a></td>
+<td class="hide-sm">exchange</td><td class="num" data-v="226983">226,983</td><td class="num" data-v="0"></td>
+<td class="hide-sm"></td></tr><tr data-q="mantle mantle "><td><a href="mantle.html">Mantle</a></td>
+<td class="hide-sm">liquid staking protocol</td><td class="num" data-v="194560">194,560</td><td class="num" data-v="0"></td>
+<td class="hide-sm"></td></tr><tr data-q="gate gate "><td><a href="gate.html">Gate</a></td>
+<td class="hide-sm">exchange</td><td class="num" data-v="182912">182,912</td><td class="num" data-v="0"></td>
+<td class="hide-sm"></td></tr><tr data-q="nodemonster nodemonster "><td><a href="nodemonster.html">NodeMonster</a></td>
+<td class="hide-sm">node operator</td><td class="num" data-v="0"></td><td class="num" data-v="145104">145,104</td>
+<td class="hide-sm"></td></tr><tr data-q="kelp kelp dao "><td><a href="kelp.html">Kelp DAO</a></td>
+<td class="hide-sm">liquid restaking protocol</td><td class="num" data-v="143328">143,328</td><td class="num" data-v="0"></td>
+<td class="hide-sm"></td></tr><tr data-q="coinspot coinspot "><td><a href="coinspot.html">CoinSpot</a></td>
+<td class="hide-sm">exchange</td><td class="num" data-v="137696">137,696</td><td class="num" data-v="0"></td>
+<td class="hide-sm"></td></tr><tr data-q="revolut revolut "><td><a href="revolut.html">Revolut</a></td>
+<td class="hide-sm">exchange</td><td class="num" data-v="115712">115,712</td><td class="num" data-v="0"></td>
+<td class="hide-sm"></td></tr><tr data-q="chainnodes chainnodes "><td><a href="chainnodes.html">Chainnodes</a></td>
+<td class="hide-sm">node operator</td><td class="num" data-v="0"></td><td class="num" data-v="103360">103,360</td>
+<td class="hide-sm"></td></tr><tr data-q="golem-foundation golem foundation "><td><a href="golem-foundation.html">Golem Foundation</a></td>
+<td class="hide-sm">foundation</td><td class="num" data-v="100352">100,352</td><td class="num" data-v="0"></td>
+<td class="hide-sm"></td></tr><tr data-q="nethermind nethermind "><td><a href="nethermind.html">Nethermind</a></td>
+<td class="hide-sm">node operator</td><td class="num" data-v="5159">5,159</td><td class="num" data-v="86636">86,636</td>
+<td class="hide-sm"></td></tr><tr data-q="etoro etoro "><td><a href="etoro.html">eToro</a></td>
+<td class="hide-sm">broker</td><td class="num" data-v="74336">74,336</td><td class="num" data-v="0"></td>
+<td class="hide-sm"></td></tr><tr data-q="bitbank bitbank "><td><a href="bitbank.html">bitbank</a></td>
+<td class="hide-sm">exchange</td><td class="num" data-v="71783">71,783</td><td class="num" data-v="0"></td>
+<td class="hide-sm"></td></tr><tr data-q="htx htx  huobi"><td><a href="htx.html">HTX</a></td>
+<td class="hide-sm">exchange</td><td class="num" data-v="70496">70,496</td><td class="num" data-v="13088">13,088</td>
+<td class="hide-sm"></td></tr><tr data-q="stader stader labs "><td><a href="stader.html">Stader Labs</a></td>
+<td class="hide-sm">liquid staking protocol</td><td class="num" data-v="70272">70,272</td><td class="num" data-v="0"></td>
+<td class="hide-sm"></td></tr><tr data-q="ethereum-foundation ethereum foundation "><td><a href="ethereum-foundation.html">Ethereum Foundation</a></td>
+<td class="hide-sm">foundation</td><td class="num" data-v="69632">69,632</td><td class="num" data-v="0"></td>
+<td class="hide-sm"></td></tr><tr data-q="dappnode dappnode "><td><a href="dappnode.html">Dappnode</a></td>
+<td class="hide-sm">provider</td><td class="num" data-v="69021">69,021</td><td class="num" data-v="0"></td>
+<td class="hide-sm"></td></tr><tr data-q="bitvavo bitvavo "><td><a href="bitvavo.html">Bitvavo</a></td>
+<td class="hide-sm">exchange</td><td class="num" data-v="63681">63,681</td><td class="num" data-v="0"></td>
+<td class="hide-sm"></td></tr><tr data-q="finoa-consensus-services finoa consensus services "><td><a href="finoa-consensus-services.html">Finoa Consensus Services</a></td>
+<td class="hide-sm">node operator</td><td class="num" data-v="0"></td><td class="num" data-v="53568">53,568</td>
+<td class="hide-sm"></td></tr><tr data-q="bitfinex bitfinex "><td><a href="bitfinex.html">Bitfinex</a></td>
+<td class="hide-sm">exchange</td><td class="num" data-v="52096">52,096</td><td class="num" data-v="0"></td>
+<td class="hide-sm"></td></tr><tr data-q="bitstamp bitstamp "><td><a href="bitstamp.html">Bitstamp</a></td>
+<td class="hide-sm">exchange</td><td class="num" data-v="49216">49,216</td><td class="num" data-v="0"></td>
+<td class="hide-sm"></td></tr><tr data-q="ethernodes ethernodes "><td><a href="ethernodes.html">Ethernodes</a></td>
+<td class="hide-sm">node operator</td><td class="num" data-v="0"></td><td class="num" data-v="49124">49,124</td>
+<td class="hide-sm"></td></tr><tr data-q="frax frax finance "><td><a href="frax.html">Frax Finance</a></td>
+<td class="hide-sm">liquid staking protocol</td><td class="num" data-v="45248">45,248</td><td class="num" data-v="45248">45,248</td>
+<td class="hide-sm"></td></tr><tr data-q="consensys consensys "><td><a href="consensys.html">Consensys</a></td>
+<td class="hide-sm">staking provider</td><td class="num" data-v="37504">37,504</td><td class="num" data-v="37504">37,504</td>
+<td class="hide-sm"></td></tr><tr data-q="stakehound stakehound "><td><a href="stakehound.html">StakeHound</a></td>
+<td class="hide-sm">liquid staking protocol</td><td class="num" data-v="37504">37,504</td><td class="num" data-v="0"></td>
+<td class="hide-sm"></td></tr><tr data-q="pier-two pier two mavan"><td><a href="pier-two.html">Pier Two</a></td>
+<td class="hide-sm">node operator</td><td class="num" data-v="0"></td><td class="num" data-v="34400">34,400</td>
+<td class="hide-sm">MAVAN</td></tr><tr data-q="cryptomanufaktur cryptomanufaktur "><td><a href="cryptomanufaktur.html">CryptoManufaktur</a></td>
+<td class="hide-sm">node operator</td><td class="num" data-v="0"></td><td class="num" data-v="27392">27,392</td>
+<td class="hide-sm"></td></tr><tr data-q="maicoin maicoin "><td><a href="maicoin.html">MaiCoin</a></td>
+<td class="hide-sm">exchange</td><td class="num" data-v="26976">26,976</td><td class="num" data-v="0"></td>
+<td class="hide-sm"></td></tr><tr data-q="bitget bitget "><td><a href="bitget.html">Bitget</a></td>
+<td class="hide-sm">exchange</td><td class="num" data-v="26944">26,944</td><td class="num" data-v="0"></td>
+<td class="hide-sm"></td></tr><tr data-q="wex wex (former funds; holder unknown) "><td><a href="wex.html">WEX (former funds; holder unknown)</a></td>
+<td class="hide-sm">exchange</td><td class="num" data-v="20800">20,800</td><td class="num" data-v="0"></td>
+<td class="hide-sm"></td></tr><tr data-q="kucoin kucoin "><td><a href="kucoin.html">KuCoin</a></td>
+<td class="hide-sm">exchange</td><td class="num" data-v="20000">20,000</td><td class="num" data-v="0"></td>
+<td class="hide-sm"></td></tr><tr data-q="bedrock bedrock "><td><a href="bedrock.html">Bedrock</a></td>
+<td class="hide-sm">staking provider</td><td class="num" data-v="18400">18,400</td><td class="num" data-v="8192">8,192</td>
+<td class="hide-sm"></td></tr><tr data-q="swell swell "><td><a href="swell.html">Swell</a></td>
+<td class="hide-sm">liquid staking protocol</td><td class="num" data-v="16576">16,576</td><td class="num" data-v="0"></td>
+<td class="hide-sm"></td></tr><tr data-q="puffer puffer "><td><a href="puffer.html">Puffer</a></td>
+<td class="hide-sm">liquid staking protocol</td><td class="num" data-v="9600">9,600</td><td class="num" data-v="0"></td>
+<td class="hide-sm"></td></tr><tr data-q="nodedao nodedao "><td><a href="nodedao.html">NodeDAO</a></td>
+<td class="hide-sm">liquid staking protocol</td><td class="num" data-v="9536">9,536</td><td class="num" data-v="0"></td>
+<td class="hide-sm"></td></tr><tr data-q="crypto-com crypto.com "><td><a href="crypto-com.html">Crypto.com</a></td>
+<td class="hide-sm">exchange</td><td class="num" data-v="9094">9,094</td><td class="num" data-v="0"></td>
+<td class="hide-sm"></td></tr><tr data-q="ankr ankr "><td><a href="ankr.html">Ankr</a></td>
+<td class="hide-sm">liquid staking protocol</td><td class="num" data-v="8320">8,320</td><td class="num" data-v="0"></td>
+<td class="hide-sm"></td></tr><tr data-q="hashkey-exchange hashkey exchange "><td><a href="hashkey-exchange.html">HashKey Exchange</a></td>
+<td class="hide-sm">exchange</td><td class="num" data-v="7066">7,066</td><td class="num" data-v="0"></td>
+<td class="hide-sm"></td></tr><tr data-q="xhash xhash "><td><a href="xhash.html">XHash</a></td>
+<td class="hide-sm">staking provider</td><td class="num" data-v="6962">6,962</td><td class="num" data-v="6400">6,400</td>
+<td class="hide-sm"></td></tr><tr data-q="bridgetower-capital bridgetower capital "><td><a href="bridgetower-capital.html">Bridgetower Capital</a></td>
+<td class="hide-sm">node operator</td><td class="num" data-v="0"></td><td class="num" data-v="5600">5,600</td>
+<td class="hide-sm"></td></tr><tr data-q="bitpie bitpie "><td><a href="bitpie.html">Bitpie</a></td>
+<td class="hide-sm">wallet</td><td class="num" data-v="4736">4,736</td><td class="num" data-v="0"></td>
+<td class="hide-sm"></td></tr><tr data-q="bitrue bitrue "><td><a href="bitrue.html">Bitrue</a></td>
+<td class="hide-sm">exchange</td><td class="num" data-v="3712">3,712</td><td class="num" data-v="0"></td>
+<td class="hide-sm"></td></tr><tr data-q="paralinker paralinker "><td><a href="paralinker.html">Paralinker</a></td>
+<td class="hide-sm">staking provider</td><td class="num" data-v="3584">3,584</td><td class="num" data-v="3584">3,584</td>
+<td class="hide-sm"></td></tr><tr data-q="ssv-labs ssv labs "><td><a href="ssv-labs.html">SSV Labs</a></td>
+<td class="hide-sm">provider</td><td class="num" data-v="2880">2,880</td><td class="num" data-v="0"></td>
+<td class="hide-sm"></td></tr><tr data-q="sharedstake sharedstake "><td><a href="sharedstake.html">SharedStake</a></td>
+<td class="hide-sm">liquid staking protocol</td><td class="num" data-v="1280">1,280</td><td class="num" data-v="0"></td>
+<td class="hide-sm"></td></tr><tr data-q="bitpanda bitpanda "><td><a href="bitpanda.html">Bitpanda</a></td>
+<td class="hide-sm">exchange</td><td class="num" data-v="64">64</td><td class="num" data-v="0"></td>
+<td class="hide-sm"></td></tr><tr data-q="a41 a41 "><td><a href="a41.html">A41</a></td>
+<td class="hide-sm">node operator</td><td class="num" data-v="0"></td><td class="num" data-v="0"></td>
+<td class="hide-sm"></td></tr><tr data-q="anyblock-analytics anyblock analytics "><td><a href="anyblock-analytics.html">Anyblock Analytics</a></td>
+<td class="hide-sm">node operator</td><td class="num" data-v="0"></td><td class="num" data-v="0"></td>
+<td class="hide-sm"></td></tr><tr data-q="bitflyer bitflyer "><td><a href="bitflyer.html">bitFlyer</a></td>
+<td class="hide-sm">exchange</td><td class="num" data-v="0"></td><td class="num" data-v="0"></td>
+<td class="hide-sm"></td></tr><tr data-q="bitwise bitwise "><td><a href="bitwise.html">Bitwise</a></td>
+<td class="hide-sm">asset manager</td><td class="num" data-v="0"></td><td class="num" data-v="0"></td>
+<td class="hide-sm"></td></tr><tr data-q="bridgetower bridgetower "><td><a href="bridgetower.html">Bridgetower</a></td>
+<td class="hide-sm">node operator</td><td class="num" data-v="0"></td><td class="num" data-v="0"></td>
+<td class="hide-sm"></td></tr><tr data-q="celsius celsius "><td><a href="celsius.html">Celsius</a></td>
+<td class="hide-sm">lender</td><td class="num" data-v="0"></td><td class="num" data-v="0"></td>
+<td class="hide-sm"></td></tr><tr data-q="certus-one certus one "><td><a href="certus-one.html">Certus One</a></td>
+<td class="hide-sm">node operator</td><td class="num" data-v="0"></td><td class="num" data-v="0"></td>
+<td class="hide-sm"></td></tr><tr data-q="chainup chainup "><td><a href="chainup.html">ChainUp</a></td>
+<td class="hide-sm">node operator</td><td class="num" data-v="0"></td><td class="num" data-v="0"></td>
+<td class="hide-sm"></td></tr><tr data-q="chorus-one chorus one bitwise"><td><a href="chorus-one.html">Chorus One</a></td>
+<td class="hide-sm">staking provider</td><td class="num" data-v="0"></td><td class="num" data-v="0"></td>
+<td class="hide-sm">Bitwise</td></tr><tr data-q="coinex coinex "><td><a href="coinex.html">CoinEx</a></td>
+<td class="hide-sm">exchange</td><td class="num" data-v="0"></td><td class="num" data-v="0"></td>
+<td class="hide-sm"></td></tr><tr data-q="cosmostation cosmostation "><td><a href="cosmostation.html">Cosmostation</a></td>
+<td class="hide-sm">node operator</td><td class="num" data-v="0"></td><td class="num" data-v="0"></td>
+<td class="hide-sm"></td></tr><tr data-q="cream cream finance "><td><a href="cream.html">CREAM Finance</a></td>
+<td class="hide-sm">liquid staking protocol</td><td class="num" data-v="0"></td><td class="num" data-v="0"></td>
+<td class="hide-sm"></td></tr><tr data-q="hashhub hashhub "><td><a href="hashhub.html">HashHub</a></td>
+<td class="hide-sm">node operator</td><td class="num" data-v="0"></td><td class="num" data-v="0"></td>
+<td class="hide-sm"></td></tr><tr data-q="jump-crypto jump crypto "><td><a href="jump-crypto.html">Jump Crypto</a></td>
+<td class="hide-sm">node operator</td><td class="num" data-v="0"></td><td class="num" data-v="0"></td>
+<td class="hide-sm"></td></tr><tr data-q="offchain-labs offchain labs "><td><a href="offchain-labs.html">Offchain Labs</a></td>
+<td class="hide-sm">company</td><td class="num" data-v="0"></td><td class="num" data-v="0"></td>
+<td class="hide-sm"></td></tr><tr data-q="renzo renzo "><td><a href="renzo.html">Renzo</a></td>
+<td class="hide-sm">liquid restaking protocol</td><td class="num" data-v="0"></td><td class="num" data-v="0"></td>
+<td class="hide-sm"></td></tr><tr data-q="sharplink sharplink  sharplink gaming"><td><a href="sharplink.html">Sharplink</a></td>
+<td class="hide-sm">treasury company</td><td class="num" data-v="0"></td><td class="num" data-v="0"></td>
+<td class="hide-sm"></td></tr><tr data-q="the-tie the tie "><td><a href="the-tie.html">The Tie</a></td>
+<td class="hide-sm">company</td><td class="num" data-v="0"></td><td class="num" data-v="0"></td>
+<td class="hide-sm"></td></tr><tr data-q="thedao-security-fund thedao security fund "><td><a href="thedao-security-fund.html">TheDAO Security Fund</a></td>
+<td class="hide-sm">foundation</td><td class="num" data-v="0"></td><td class="num" data-v="0"></td>
+<td class="hide-sm"></td></tr><tr data-q="whale-eth whale.eth "><td><a href="whale-eth.html">whale.eth</a></td>
+<td class="hide-sm">individual</td><td class="num" data-v="0"></td><td class="num" data-v="0"></td>
+<td class="hide-sm"></td></tr>
+</tbody></table></div>
+<script>
+const q = document.getElementById('q'), tb = document.querySelector('#t tbody');
+const apply = () => { const v = q.value.toLowerCase();
+  for (const r of tb.rows) r.style.display = r.dataset.q.includes(v) ? '' : 'none'; };
+q.addEventListener('input', apply);
+const p = new URLSearchParams(location.search).get('q'); if (p) { q.value = p; apply(); }
+document.querySelectorAll('#t th').forEach((th, i) => th.addEventListener('click', () => {
+  const num = th.classList.contains('num'), dir = th.dataset.dir === 'asc' ? -1 : 1; th.dataset.dir = dir > 0 ? 'asc' : 'desc';
+  const key = r => num ? +(r.cells[i].dataset.v || 0) : r.cells[i].textContent.trim();
+  [...tb.rows].sort((a, b) => (key(a) > key(b) ? 1 : key(a) < key(b) ? -1 : 0) * (num ? -dir : dir))
+    .forEach(r => tb.appendChild(r)); }));
+</script>
+</main>
+</body>
+</html>

@@ -1,0 +1,76 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>0138-bitmine-staking-control-check: Two addresses that proved common control together with BitMine&#x27;s wallets, and stake the same way, are BitMine&#x27;s tr</title>
+<style>
+:root { color-scheme: light; --surface-0: #f4f3f0; --surface-1: #fcfcfb; --border: #d9d8d3; --text-primary: #0b0b0b;
+        --text-secondary: #52514e; --text-muted: #77766f; --accent: #2a78d6; --chip: #ebe9e4; }
+@media (prefers-color-scheme: dark) {
+  :root:where(:not([data-theme="light"])) { color-scheme: dark; --surface-0: #121211; --surface-1: #1a1a19;
+    --border: #3a3a37; --text-primary: #f0efec; --text-secondary: #c3c2b7; --text-muted: #96958c; --accent: #3987e5;
+    --chip: #2a2a28; }
+}
+:root[data-theme="dark"] { color-scheme: dark; --surface-0: #121211; --surface-1: #1a1a19; --border: #3a3a37;
+  --text-primary: #f0efec; --text-secondary: #c3c2b7; --text-muted: #96958c; --accent: #3987e5; --chip: #2a2a28; }
+* { box-sizing: border-box; }
+body { margin: 0; background: var(--surface-0); color: var(--text-primary);
+       font: 15px/1.55 system-ui, -apple-system, "Segoe UI", sans-serif; }
+main { max-width: 860px; margin: 0 auto; padding: 32px 16px 64px; }
+a { color: var(--accent); }
+h1 { font-size: 22px; line-height: 1.3; font-weight: 600; margin: 4px 0 12px; }
+h2 { font-size: 15px; font-weight: 600; margin: 28px 0 8px; color: var(--text-secondary);
+     text-transform: uppercase; letter-spacing: 0.04em; }
+p { margin: 0 0 12px; }
+.crumbs { font-size: 13px; color: var(--text-muted); }
+.lede { font-size: 17px; }
+.muted { color: var(--text-muted); }
+.chip { display: inline-block; padding: 1px 8px; border-radius: 10px; background: var(--chip); font-size: 12px;
+        color: var(--text-secondary); margin-right: 4px; white-space: nowrap; }
+.card { background: var(--surface-1); border: 1px solid var(--border); border-radius: 6px; padding: 14px 16px;
+        margin: 0 0 12px; }
+.stats { display: flex; flex-wrap: wrap; gap: 12px; margin: 16px 0; }
+.stat { background: var(--surface-1); border: 1px solid var(--border); border-radius: 6px; padding: 10px 14px;
+        min-width: 140px; }
+.stat b { display: block; font-size: 20px; font-variant-numeric: tabular-nums; }
+.stat span { font-size: 12px; color: var(--text-muted); }
+ul.grounds { list-style: none; padding: 0; margin: 0; }
+ul.grounds li { padding: 6px 0; border-bottom: 1px solid var(--border); }
+ul.grounds li:last-child { border-bottom: 0; }
+table { width: 100%; border-collapse: collapse; background: var(--surface-1); font-size: 14px; }
+th, td { text-align: left; padding: 7px 8px; border-bottom: 1px solid var(--border); vertical-align: top; }
+th { font-weight: 600; color: var(--text-secondary); cursor: pointer; white-space: nowrap; user-select: none; }
+td.num, th.num { text-align: right; font-variant-numeric: tabular-nums; white-space: nowrap; }
+code, .mono { font: 12.5px ui-monospace, SFMono-Regular, Menlo, monospace; word-break: break-all; }
+details summary { cursor: pointer; color: var(--accent); }
+.excerpt { border-left: 3px solid var(--border); padding: 2px 0 2px 10px; color: var(--text-secondary);
+           font-size: 14px; white-space: pre-wrap; }
+input[type=search] { width: 100%; padding: 8px 10px; font: inherit; border: 1px solid var(--border);
+                     border-radius: 6px; background: var(--surface-1); color: var(--text-primary); margin: 8px 0 12px; }
+.table-wrap { overflow-x: auto; }
+@media (max-width: 640px) { .hide-sm { display: none; } }
+</style>
+<script data-goatcounter="https://pintail.goatcounter.com/count" async src="https://gc.zgo.at/count.js"></script>
+</head>
+<body>
+<main>
+<p class="crumbs"><a href="../">Dataset</a> › <a href="./">Decisions</a> › 0138-bitmine-staking-control-check</p>
+<h1>Two addresses that proved common control together with BitMine&#x27;s wallets, and stake the same way, are BitMine&#x27;s treasury staking.</h1>
+<p><span class="chip">Attribution</span><span class="chip">Allocator</span> <a href="../entities/bitmine.html">BitMine treasury staking</a> <span class="muted">· decided 2026-10-21</span></p>
+<p class="lede">Validators withdrawing to these 2 addresses are BitMine&#x27;s treasury staking.</p>
+<div class="stats"><div class="stat"><b>25</b><span>validators resting on it now</span></div><div class="stat"><b>46,907</b><span>ETH now</span></div><div class="stat"><b>46,907</b><span>ETH at its peak</span></div></div>
+<h2>Grounds</h2><div class="card"><ul class="grounds"><li><span class="chip">On chain</span>Both sent 0.001 ETH in the same 73 minutes as all of BitMine&#x27;s wallets in decision 0087, to the same two new accounts</li><li><span class="chip">On chain</span>Like BitMine&#x27;s, each deposits compounding validators to itself; one runs on the same SSV operators, one on the same client build</li><li><span class="chip">First party</span>Their 45k ETH, staked from October 2025, brings BitMine&#x27;s January 2026 total within 1% of the figure it reported</li></ul></div>
+<h2>Explanation</h2><p>Validators withdrawing to 0xcc31…df43 and 0xdd6a…b30a are BitMine Immersion Technologies&#x27; treasury staking, with BitMine as allocator. In October 2026 the two addresses held 36 compounding validators with about 47k ETH, deposited from October 2025.</p>
+<p><strong>Common control.</strong> Both addresses took part in the control transfers of 31 August 2026 described under decision 0087, sending 0.001 ETH to the same two new accounts within the same 73 minutes as all 111 of BitMine&#x27;s wallets in that decision.</p>
+<p><strong>The same way of staking.</strong> Each deposits compounding validators to itself, through the same two batch contracts BitMine&#x27;s other wallets used. The first address&#x27;s validators run on the same SSV operators as part of decision 0087&#x27;s validators, registered by an owner account funded by the same account as those of 0087. The second&#x27;s validators run on two of the fleets that also run validators of decisions 0087 and 0115: Nimbus with its default graffiti, and the Nethermind build seen only on BitMine&#x27;s validators.</p>
+<p><strong>The match with BitMine&#x27;s figures.</strong> <a href="https://www.prnewswire.com/news-releases/bitmine-immersion-technologies-bmnr-announces-eth-holdings-reach-4-144-million-tokens-and-total-crypto-and-total-cash-holdings-of-14-2-billion-302652341.html">BitMine&#x27;s first weekly figure</a>, 659,219 ETH staked as of 4 January 2026, is 6% above the deposits of decisions 0087 and 0115 by then; with these two addresses the deposits are 1% above it. Their figures as of 30 August 2026 are also part of the match described under decision 0087 (<a href="https://www.prnewswire.com/news-releases/bitmine-immersion-technologies-bmnr-announces-eth-holdings-reach-5-90-million-tokens-and-total-crypto-and-total-cash-holdings-of-15-6-billion-302864579.html">release</a>).</p>
+<p><strong>Limits.</strong> As for decision 0087, the control transfers show one holder, or parties acting together, and the identification with BitMine rests on the match with its reported figures. These two addresses began staking about twelve weeks before BitMine&#x27;s other wallets; that they fill the gap in its first weekly figure is the only evidence for the timing, and an outside client of the same providers would look the same. The decision would change with evidence that either address is held by someone other than BitMine, or with a provider identified for these validators.</p>
+<h2>What would change it</h2><p>Evidence that either address is held by someone other than BitMine, or a provider identified for these validators.</p>
+<h2>Evidence</h2><p class="muted">Transactions and contract calls anyone can repeat on their own node.</p><div class="card"><ul class="grounds"><li><a href="0087-bitmine-staking.html">0087-bitmine-staking</a></li><li><a class="mono" href="https://etherscan.io/tx/0x4b7362c8fe3fe003ba82b1ebb7d435ee9b7196bd601ae866274e8e9492a33e2c">0x4b7362c8…92a33e2c</a> — 0xcc31… sends 0.001 ETH to 0x35ce…1b3d, block 25,875,662</li><li><a class="mono" href="https://etherscan.io/tx/0xa5ea138fd2db87a42226969f055bbced82b4b1faba1cdcc7de40188137443d47">0xa5ea138f…37443d47</a> — 0xdd6a… sends 0.001 ETH to 0x35ce…1b3d, block 25,875,808</li></ul></div>
+<h2>Sources</h2><div class="card"><a href="https://www.prnewswire.com/news-releases/bitmine-immersion-technologies-bmnr-announces-eth-holdings-reach-4-144-million-tokens-and-total-crypto-and-total-cash-holdings-of-14-2-billion-302652341.html">Bitmine Immersion Technologies (BMNR) Announces ETH Holdings Reach 4.144 Million Tokens, and Total Crypto and Total Cash Holdings of $14.2 Billion (figures as of 2026-01-04)</a><div class="muted" style="font-size:13px">Bitmine Immersion Technologies, via PR Newswire · the entity&#x27;s own · retrieved 2026-10-18</div><p class="excerpt">We remain the largest &#x27;fresh money&#x27; buyer of ETH in the world.&#x27; Bitmine released a special Chairman&#x27;s message ( link ) explaining why Bitmine stockholders should vote to support the amendment to increase authorized shares ahead of the upcoming annual stockholder meeting on January 15, 2026 (the &#x27;Ann</p><div class="muted mono">sha256 13c5f160da7e9cf8b25596ed348207bc9db5f3273be48aad99db76210013c267</div></div><div class="card"><a href="https://www.prnewswire.com/news-releases/bitmine-immersion-technologies-bmnr-announces-eth-holdings-reach-5-90-million-tokens-and-total-crypto-and-total-cash-holdings-of-15-6-billion-302864579.html">Bitmine Immersion Technologies (BMNR) Announces ETH Holdings Reach 5.90 Million Tokens, and Total Crypto and Total Cash Holdings of $15.6 Billion (figures as of 2026-08-30)</a><div class="muted" style="font-size:13px">Bitmine Immersion Technologies, via PR Newswire · the entity&#x27;s own · retrieved 2026-10-18</div><p class="excerpt">As of August 30, 2026, Bitmine total staked ETH stands at 5,067,309 ($12.7 billion at $2,511 per ETH ). &#x27;Bitmine has staked more ETH than other entities in the world.</p><div class="muted mono">sha256 a146dab81ca0c2b3310d66a29e4b1156b7018c23d01c5d6a2e2f2701a165ea33</div></div>
+<h2>Treemap boxes resting on it</h2><div class="table-wrap"><table><thead><tr><th>Box</th><th class="num">ETH now</th><th class="num">Peak ETH</th></tr></thead><tbody><tr><td>BitMine › BitMine treasury staking › 2 named withdrawal addresses (from Oct 2025)</td><td class="num">46,907</td><td class="num">46,907</td></tr></tbody></table></div>
+<h2>Targets (2)</h2><details open><summary>The addresses or validators this decision covers</summary><ul style="list-style:none;padding:0"><li><span class="chip">withdrawal address</span><a class="mono" href="https://etherscan.io/address/0xcc31dd59242e06292eb2534e46b8210f0b33df43">0xcc31dd59242e06292eb2534e46b8210f0b33df43</a></li><li><span class="chip">withdrawal address</span><a class="mono" href="https://etherscan.io/address/0xdd6a2e655c334f44952c52208e569314ce69b30a">0xdd6a2e655c334f44952c52208e569314ce69b30a</a></li></ul></details>
+</main>
+</body>
+</html>

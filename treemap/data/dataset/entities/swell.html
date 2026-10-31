@@ -1,0 +1,98 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Swell: roles in the validator set</title>
+<style>
+:root { color-scheme: light; --surface-0: #f4f3f0; --surface-1: #fcfcfb; --border: #d9d8d3; --text-primary: #0b0b0b;
+        --text-secondary: #52514e; --text-muted: #77766f; --accent: #2a78d6; --chip: #ebe9e4; }
+@media (prefers-color-scheme: dark) {
+  :root:where(:not([data-theme="light"])) { color-scheme: dark; --surface-0: #121211; --surface-1: #1a1a19;
+    --border: #3a3a37; --text-primary: #f0efec; --text-secondary: #c3c2b7; --text-muted: #96958c; --accent: #3987e5;
+    --chip: #2a2a28; }
+}
+:root[data-theme="dark"] { color-scheme: dark; --surface-0: #121211; --surface-1: #1a1a19; --border: #3a3a37;
+  --text-primary: #f0efec; --text-secondary: #c3c2b7; --text-muted: #96958c; --accent: #3987e5; --chip: #2a2a28; }
+* { box-sizing: border-box; }
+body { margin: 0; background: var(--surface-0); color: var(--text-primary);
+       font: 15px/1.55 system-ui, -apple-system, "Segoe UI", sans-serif; }
+main { max-width: 860px; margin: 0 auto; padding: 32px 16px 64px; }
+a { color: var(--accent); }
+h1 { font-size: 22px; line-height: 1.3; font-weight: 600; margin: 4px 0 12px; }
+h2 { font-size: 15px; font-weight: 600; margin: 28px 0 8px; color: var(--text-secondary);
+     text-transform: uppercase; letter-spacing: 0.04em; }
+p { margin: 0 0 12px; }
+.crumbs { font-size: 13px; color: var(--text-muted); }
+.lede { font-size: 17px; }
+.muted { color: var(--text-muted); }
+.chip { display: inline-block; padding: 1px 8px; border-radius: 10px; background: var(--chip); font-size: 12px;
+        color: var(--text-secondary); margin-right: 4px; white-space: nowrap; }
+.card { background: var(--surface-1); border: 1px solid var(--border); border-radius: 6px; padding: 14px 16px;
+        margin: 0 0 12px; }
+.stats { display: flex; flex-wrap: wrap; gap: 12px; margin: 16px 0; }
+.stat { background: var(--surface-1); border: 1px solid var(--border); border-radius: 6px; padding: 10px 14px;
+        min-width: 140px; }
+.stat b { display: block; font-size: 20px; font-variant-numeric: tabular-nums; }
+.stat span { font-size: 12px; color: var(--text-muted); }
+ul.grounds { list-style: none; padding: 0; margin: 0; }
+ul.grounds li { padding: 6px 0; border-bottom: 1px solid var(--border); }
+ul.grounds li:last-child { border-bottom: 0; }
+table { width: 100%; border-collapse: collapse; background: var(--surface-1); font-size: 14px; }
+th, td { text-align: left; padding: 7px 8px; border-bottom: 1px solid var(--border); vertical-align: top; }
+th { font-weight: 600; color: var(--text-secondary); cursor: pointer; white-space: nowrap; user-select: none; }
+td.num, th.num { text-align: right; font-variant-numeric: tabular-nums; white-space: nowrap; }
+code, .mono { font: 12.5px ui-monospace, SFMono-Regular, Menlo, monospace; word-break: break-all; }
+details summary { cursor: pointer; color: var(--accent); }
+.excerpt { border-left: 3px solid var(--border); padding: 2px 0 2px 10px; color: var(--text-secondary);
+           font-size: 14px; white-space: pre-wrap; }
+input[type=search] { width: 100%; padding: 8px 10px; font: inherit; border: 1px solid var(--border);
+                     border-radius: 6px; background: var(--surface-1); color: var(--text-primary); margin: 8px 0 12px; }
+.table-wrap { overflow-x: auto; }
+@media (max-width: 640px) { .hide-sm { display: none; } }
+</style>
+<script data-goatcounter="https://pintail.goatcounter.com/count" async src="https://gc.zgo.at/count.js"></script>
+</head>
+<body>
+<main>
+<style>
+.chart { width: 100%; height: auto; background: var(--surface-1); border: 1px solid var(--border); border-radius: 6px; }
+.chart text { fill: var(--text-muted); font: 11px system-ui, sans-serif; }
+.chart .grid { stroke: var(--border); stroke-width: 1; }
+.legend { display: flex; flex-wrap: wrap; gap: 14px; font-size: 13px; color: var(--text-secondary); margin: 6px 0 14px; }
+.legend i { display: inline-block; width: 16px; height: 3px; vertical-align: middle; margin-right: 5px; background: var(--c); }
+.legend i.dashed { background: repeating-linear-gradient(90deg, var(--c) 0 6px, transparent 6px 9px); }
+.chart .event { stroke: var(--text-muted); stroke-width: 1; stroke-dasharray: 3 3; }
+.chart .event-n { fill: var(--text-secondary); font-weight: 600; }
+ol.events { padding-left: 0; list-style: none; }
+ol.events li { margin: 4px 0; }
+ol.events .n { display: inline-block; min-width: 1.6em; font-weight: 600; color: var(--text-secondary); }
+</style><p class="crumbs"><a href="../">Dataset</a> › <a href="./">Entities</a></p>
+<h1>Swell</h1>
+<p><span class="chip">liquid staking protocol</span> <span class="mono muted">swell</span></p>
+<p><strong>How much ETH Swell has had in each role recorded in this dataset, week by week, from
+the start of the beacon chain (1 December 2020) to 30 October 2026.</strong> Stake is the effective balance
+of active validators.</p>
+<ul><li><strong>Allocator</strong>: chose where the stake went. Counts the stake in the treemap boxes under Swell. <span class="muted">Recorded for 89% of active stake.</span></li><li><strong>Operator</strong>: ran the validators. <span class="muted">Recorded for 49% of active stake.</span></li><li><strong>Custodian</strong>: held the stake on behalf of a client. <span class="muted">Recorded for 5.5% of active stake.</span></li><li><strong>Principal</strong>: owned the staked ETH. <span class="muted">Recorded for 5.4% of active stake.</span></li></ul>
+<p class="muted">Allocators are recorded for most stake. Operators, custodians and principals are recorded only where
+specific evidence names them, so their figures here (dashed on the charts) are lower bounds: no figure does not mean
+no role.</p>
+<h2>Its own roles</h2><svg class="chart" viewBox="0 0 760 240" role="img" aria-label="ETH by role over time"><line class="grid" x1="52" x2="752" y1="218.0" y2="218.0"/><text x="46" y="222.0" text-anchor="end">0</text><line class="grid" x1="52" x2="752" y1="114.0" y2="114.0"/><text x="46" y="118.0" text-anchor="end">167k</text><line class="grid" x1="52" x2="752" y1="10.0" y2="10.0"/><text x="46" y="14.0" text-anchor="end">334k</text><text x="52.0" y="234" text-anchor="middle">2020</text><text x="181.1" y="234" text-anchor="middle">2022</text><text x="298.9" y="234" text-anchor="middle">2023</text><text x="416.7" y="234" text-anchor="middle">2024</text><text x="536.8" y="234" text-anchor="middle">2025</text><text x="654.6" y="234" text-anchor="middle">2026</text><polyline fill="none" stroke="#2a78d6" stroke-width="2" points="52.0,218.0 54.3,218.0 56.5,218.0 58.8,218.0 61.1,218.0 63.3,218.0 65.6,218.0 67.9,218.0 70.1,218.0 72.4,218.0 74.7,218.0 76.9,218.0 79.2,218.0 81.4,218.0 83.7,218.0 86.0,218.0 88.2,218.0 90.5,218.0 92.8,218.0 95.0,218.0 97.3,218.0 99.6,218.0 101.8,218.0 104.1,218.0 106.4,218.0 108.6,218.0 110.9,218.0 113.2,218.0 115.4,218.0 117.7,218.0 120.0,218.0 122.2,218.0 124.5,218.0 126.8,218.0 129.0,218.0 131.3,218.0 133.6,218.0 135.8,218.0 138.1,218.0 140.3,218.0 142.6,218.0 144.9,218.0 147.1,218.0 149.4,218.0 151.7,218.0 153.9,218.0 156.2,218.0 158.5,218.0 160.7,218.0 163.0,218.0 165.3,218.0 167.5,218.0 169.8,218.0 172.1,218.0 174.3,218.0 176.6,218.0 178.9,218.0 181.1,218.0 183.4,218.0 185.7,218.0 187.9,218.0 190.2,218.0 192.5,218.0 194.7,218.0 197.0,218.0 199.2,218.0 201.5,218.0 203.8,218.0 206.0,218.0 208.3,218.0 210.6,218.0 212.8,218.0 215.1,218.0 217.4,218.0 219.6,218.0 221.9,218.0 224.2,218.0 226.4,218.0 228.7,218.0 231.0,218.0 233.2,218.0 235.5,218.0 237.8,218.0 240.0,218.0 242.3,218.0 244.6,218.0 246.8,218.0 249.1,218.0 251.4,218.0 253.6,218.0 255.9,218.0 258.1,218.0 260.4,218.0 262.7,218.0 264.9,218.0 267.2,218.0 269.5,218.0 271.7,218.0 274.0,218.0 276.3,218.0 278.5,218.0 280.8,218.0 283.1,218.0 285.3,218.0 287.6,218.0 289.9,218.0 292.1,218.0 294.4,218.0 296.7,218.0 298.9,218.0 301.2,218.0 303.5,218.0 305.7,218.0 308.0,218.0 310.3,218.0 312.5,218.0 314.8,218.0 317.0,218.0 319.3,218.0 321.6,218.0 323.8,218.0 326.1,218.0 328.4,218.0 330.6,218.0 332.9,218.0 335.2,217.9 337.4,217.9 339.7,216.0 342.0,215.6 344.2,214.0 346.5,213.5 348.8,213.1 351.0,212.2 353.3,210.7 355.6,209.4 357.8,207.0 360.1,206.3 362.4,206.1 364.6,205.3 366.9,201.9 369.2,200.5 371.4,196.8 373.7,194.2 375.9,192.3 378.2,190.5 380.5,189.6 382.7,188.8 385.0,188.4 387.3,188.2 389.5,187.9 391.8,187.8 394.1,187.7 396.3,187.6 398.6,187.5 400.9,187.4 403.1,187.3 405.4,187.1 407.7,187.0 409.9,186.6 412.2,181.2 414.5,153.0 416.7,135.1 419.0,128.7 421.3,126.5 423.5,108.3 425.8,101.4 428.1,85.9 430.3,57.9 432.6,50.3 434.8,44.9 437.1,40.9 439.4,44.0 441.6,42.8 443.9,44.0 446.2,38.7 448.4,34.9 450.7,32.0 453.0,20.4 455.2,14.1 457.5,10.0 459.8,11.1 462.0,21.9 464.3,24.0 466.6,25.6 468.8,25.6 471.1,27.5 473.4,29.1 475.6,30.2 477.9,30.3 480.2,31.2 482.4,34.5 484.7,34.9 487.0,43.3 489.2,56.5 491.5,83.0 493.7,89.8 496.0,72.3 498.3,80.5 500.5,83.4 502.8,101.6 505.1,93.3 507.3,82.1 509.6,87.4 511.9,92.3 514.1,97.2 516.4,98.4 518.7,108.2 520.9,111.8 523.2,119.8 525.5,122.1 527.7,125.8 530.0,127.9 532.3,129.4 534.5,131.5 536.8,140.4 539.1,142.2 541.3,145.7 543.6,147.8 545.9,151.9 548.1,159.2 550.4,160.5 552.6,160.5 554.9,160.8 557.2,161.6 559.4,162.7 561.7,164.3 564.0,167.5 566.2,167.1 568.5,168.9 570.8,174.7 573.0,175.4 575.3,174.3 577.6,174.3 579.8,168.0 582.1,168.0 584.4,168.8 586.6,170.1 588.9,170.3 591.2,170.6 593.4,172.2 595.7,172.5 598.0,173.0 600.2,173.6 602.5,173.6 604.8,175.0 607.0,177.8 609.3,178.4 611.5,179.0 613.8,179.2 616.1,179.8 618.3,186.7 620.6,189.7 622.9,189.7 625.1,189.7 627.4,189.7 629.7,189.7 631.9,189.7 634.2,189.9 636.5,189.9 638.7,189.9 641.0,190.5 643.3,191.9 645.5,191.9 647.8,192.2 650.1,193.3 652.3,193.6 654.6,194.0 656.9,194.7 659.1,194.8 661.4,194.8 663.7,195.4 665.9,195.5 668.2,195.8 670.4,195.8 672.7,196.0 675.0,196.0 677.2,196.3 679.5,196.3 681.8,196.9 684.0,197.6 686.3,197.6 688.6,198.4 690.8,198.4 693.1,198.6 695.4,199.6 697.6,199.7 699.9,199.8 702.2,200.9 704.4,201.2 706.7,202.6 709.0,202.7 711.2,202.8 713.5,202.8 715.8,202.8 718.0,202.9 720.3,203.0 722.6,203.0 724.8,207.7 727.1,208.9 729.3,207.8 731.6,207.8 733.9,207.8 736.1,207.8 738.4,208.6 740.7,208.6 742.9,208.6 745.2,208.6 747.5,210.9 749.7,207.7 752.0,207.7"><title>Allocator</title></polyline></svg><div class="legend"><span><i class="" style="--c:#2a78d6"></i>Allocator</span></div><div class="table-wrap"><table><thead><tr><th>Role</th><th class="num">ETH now</th>
+<th class="num hide-sm">Validators now</th><th class="num">Peak ETH</th><th class="num hide-sm">Peak</th>
+<th class="num hide-sm">First seen</th><th class="num hide-sm">Last seen</th></tr></thead><tbody><tr><td>Allocator</td><td class="num">16,576</td>
+<td class="num hide-sm">518</td><td class="num">333,792</td>
+<td class="num hide-sm">2024-05-07</td><td class="num hide-sm">2023-04-25</td>
+<td class="num hide-sm">now</td></tr></tbody></table></div>
+<h2>Clients</h2><p class="muted">Blocks proposed in the last 90 days by the validators it
+allocates or operates now, and the execution and consensus clients their graffiti names (clients add a short code by
+default; operators can turn it off, so these are shares of the blocks that carry one).</p>
+<div class="table-wrap"><table><thead><tr><th>Role</th><th class="num">Blocks</th><th class="num">With codes</th>
+<th>Execution clients</th><th>Consensus clients</th></tr></thead><tbody><tr><td>Allocator</td><td class="num">157</td>
+<td class="num">90%</td><td>Geth 52%, Reth 28%, Nethermind 19%</td><td>Prysm 55%, Lighthouse 43%, Teku 3%</td></tr></tbody></table></div>
+<h2>Treemap boxes</h2><div class="table-wrap"><table><thead><tr><th>Box</th>
+<th class="num">ETH now</th><th class="num hide-sm">Peak ETH</th></tr></thead><tbody><tr><td>Swell › Swell swETH › Withdraws to 0xb3d9…8f39</td><td class="num">11,200</td><td class="num hide-sm">248,736</td></tr><tr><td>Swell › Swell rswETH › Withdraws to 0x8d0b…7258</td><td class="num">0</td><td class="num hide-sm">128,576</td></tr><tr><td>Swell › Swell rswETH › Other rationales (31)</td><td class="num">5,376</td><td class="num hide-sm">62,496</td></tr><tr><td>Swell › Swell rswETH › Withdraws to 0x5178…7eea</td><td class="num">0</td><td class="num hide-sm">6,400</td></tr><tr><td>Swell › Swell rswETH › Withdraws to 0x82e2…c3d6</td><td class="num">0</td><td class="num hide-sm">6,400</td></tr><tr><td>Swell › Swell rswETH › Withdraws to 0x8bd5…25db</td><td class="num">0</td><td class="num hide-sm">6,400</td></tr><tr><td>Swell › Swell rswETH › Withdraws to 0xfc47…93b3</td><td class="num">0</td><td class="num hide-sm">6,400</td></tr></tbody></table></div>
+<h2>Identified addresses</h2><div class="table-wrap"><table><thead><tr><th>Address</th><th>Role</th>
+<th class="hide-sm">Basis</th></tr></thead><tbody><tr><td><a class="mono" href="https://etherscan.io/address/0x5e6342d8090665be14eeb8154c8a87b7249a4889">0x5e6342d8090665be14eeb8154c8a87b7249a4889</a></td><td>anchor</td><td class="hide-sm">asserted</td></tr><tr><td><a class="mono" href="https://etherscan.io/address/0xb3d9cf8e163bbc840195a97e81f8a34e295b8f39">0xb3d9cf8e163bbc840195a97e81f8a34e295b8f39</a></td><td>anchor</td><td class="hide-sm">asserted</td></tr><tr><td><a class="mono" href="https://etherscan.io/address/0xc94cffd5249df4008a043ee61e13f19af16d0936">0xc94cffd5249df4008a043ee61e13f19af16d0936</a></td><td>anchor</td><td class="hide-sm">asserted</td></tr></tbody></table></div>
+</main>
+</body>
+</html>

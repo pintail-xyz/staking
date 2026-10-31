@@ -1,0 +1,74 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>0112-frax-frxeth-minter: Frax&#x27;s own code names this as its frxETH Minter, called by Frax&#x27;s multisig; validators withdrawing to the address it deposits</title>
+<style>
+:root { color-scheme: light; --surface-0: #f4f3f0; --surface-1: #fcfcfb; --border: #d9d8d3; --text-primary: #0b0b0b;
+        --text-secondary: #52514e; --text-muted: #77766f; --accent: #2a78d6; --chip: #ebe9e4; }
+@media (prefers-color-scheme: dark) {
+  :root:where(:not([data-theme="light"])) { color-scheme: dark; --surface-0: #121211; --surface-1: #1a1a19;
+    --border: #3a3a37; --text-primary: #f0efec; --text-secondary: #c3c2b7; --text-muted: #96958c; --accent: #3987e5;
+    --chip: #2a2a28; }
+}
+:root[data-theme="dark"] { color-scheme: dark; --surface-0: #121211; --surface-1: #1a1a19; --border: #3a3a37;
+  --text-primary: #f0efec; --text-secondary: #c3c2b7; --text-muted: #96958c; --accent: #3987e5; --chip: #2a2a28; }
+* { box-sizing: border-box; }
+body { margin: 0; background: var(--surface-0); color: var(--text-primary);
+       font: 15px/1.55 system-ui, -apple-system, "Segoe UI", sans-serif; }
+main { max-width: 860px; margin: 0 auto; padding: 32px 16px 64px; }
+a { color: var(--accent); }
+h1 { font-size: 22px; line-height: 1.3; font-weight: 600; margin: 4px 0 12px; }
+h2 { font-size: 15px; font-weight: 600; margin: 28px 0 8px; color: var(--text-secondary);
+     text-transform: uppercase; letter-spacing: 0.04em; }
+p { margin: 0 0 12px; }
+.crumbs { font-size: 13px; color: var(--text-muted); }
+.lede { font-size: 17px; }
+.muted { color: var(--text-muted); }
+.chip { display: inline-block; padding: 1px 8px; border-radius: 10px; background: var(--chip); font-size: 12px;
+        color: var(--text-secondary); margin-right: 4px; white-space: nowrap; }
+.card { background: var(--surface-1); border: 1px solid var(--border); border-radius: 6px; padding: 14px 16px;
+        margin: 0 0 12px; }
+.stats { display: flex; flex-wrap: wrap; gap: 12px; margin: 16px 0; }
+.stat { background: var(--surface-1); border: 1px solid var(--border); border-radius: 6px; padding: 10px 14px;
+        min-width: 140px; }
+.stat b { display: block; font-size: 20px; font-variant-numeric: tabular-nums; }
+.stat span { font-size: 12px; color: var(--text-muted); }
+ul.grounds { list-style: none; padding: 0; margin: 0; }
+ul.grounds li { padding: 6px 0; border-bottom: 1px solid var(--border); }
+ul.grounds li:last-child { border-bottom: 0; }
+table { width: 100%; border-collapse: collapse; background: var(--surface-1); font-size: 14px; }
+th, td { text-align: left; padding: 7px 8px; border-bottom: 1px solid var(--border); vertical-align: top; }
+th { font-weight: 600; color: var(--text-secondary); cursor: pointer; white-space: nowrap; user-select: none; }
+td.num, th.num { text-align: right; font-variant-numeric: tabular-nums; white-space: nowrap; }
+code, .mono { font: 12.5px ui-monospace, SFMono-Regular, Menlo, monospace; word-break: break-all; }
+details summary { cursor: pointer; color: var(--accent); }
+.excerpt { border-left: 3px solid var(--border); padding: 2px 0 2px 10px; color: var(--text-secondary);
+           font-size: 14px; white-space: pre-wrap; }
+input[type=search] { width: 100%; padding: 8px 10px; font: inherit; border: 1px solid var(--border);
+                     border-radius: 6px; background: var(--surface-1); color: var(--text-primary); margin: 8px 0 12px; }
+.table-wrap { overflow-x: auto; }
+@media (max-width: 640px) { .hide-sm { display: none; } }
+</style>
+<script data-goatcounter="https://pintail.goatcounter.com/count" async src="https://gc.zgo.at/count.js"></script>
+</head>
+<body>
+<main>
+<p class="crumbs"><a href="../">Dataset</a> › <a href="./">Decisions</a> › 0112-frax-frxeth-minter</p>
+<h1>Frax&#x27;s own code names this as its frxETH Minter, called by Frax&#x27;s multisig; validators withdrawing to the address it deposits to are Frax&#x27;s (frxETH).</h1>
+<p><span class="chip">Anchor</span> <span class="muted">· decided 2026-10-18</span></p>
+<p class="lede">This contract is Frax&#x27;s frxETH Minter; validators withdrawing to the address it deposits to are allocated by Frax (frxETH).</p>
+<div class="stats"><div class="stat"><b>1,414</b><span>validators resting on it now</span></div><div class="stat"><b>45,248</b><span>ETH now</span></div><div class="stat"><b>237,184</b><span>ETH at its peak</span></div></div>
+<h2>Grounds</h2><div class="card"><ul class="grounds"><li><span class="chip">First party</span>Frax&#x27;s own code checks that its multisig&#x27;s queued validators are deposited through this contract</li><li><span class="chip">On chain</span>All its deposits withdraw to Frax&#x27;s multisig, which received no deposits any other way</li><li><span class="chip">Third party</span>Etherscan&#x27;s address page attributes it to Frax Finance</li></ul></div>
+<h2>Explanation</h2><p>The contract 0xbafa…1138 is the frxETH Minter of Frax Finance&#x27;s liquid staking token frxETH. Validators withdrawing to the address it deposits to are attributed to Frax as allocator. 7,483 deposits were sent through it between October 2022 and June 2025, holding as much as 237k ETH; about 1,400 validators were active in October 2026 with some 45k ETH.</p>
+<p><strong>Identification.</strong> Frax&#x27;s own code (<a href="https://github.com/FraxFinance/frxETH-public/blob/018eaf4daf0eb5ca94dfbb275d3fa59008ea829e/node-scripts/validate-msig-add-validators.ts">a script in its frxETH repository</a>) checks the validators that Frax&#x27;s multisig wallet 0x8306…a81c queues, and requires each queued transaction to call this contract. Every deposit sent through the Minter withdraws to that multisig, and the multisig has received no deposits by any other route. The validators sign the graffiti &quot;¤ Frax Finance ¤&quot;. Etherscan&#x27;s address page attributes the contract to Frax Finance; that is recorded as third-party corroboration.</p>
+<p><strong>Why Frax is the allocator.</strong> Frax&#x27;s multisig chooses the validator keys the Minter deposits with. No operator is recorded. No validator here has a conflicting allocator claim.</p>
+<p>The decision would change with a Frax statement contradicting it, or deposits to the multisig by another route.</p>
+<h2>What would change it</h2><p>A Frax statement contradicting it, or deposits to the same withdrawal address by another route.</p>
+<h2>Evidence</h2><p class="muted">Transactions and contract calls anyone can repeat on their own node.</p><div class="card"><ul class="grounds"><li><a class="mono" href="https://etherscan.io/tx/0xe4b76b498e85ca562decc2c3def0f0df289bc8f4019a28d8247c79337e580f4d">0xe4b76b49…7e580f4d</a> — Creation of the Minter</li><li><a class="mono" href="https://etherscan.io/tx/0xada470496300be3d7d01f8e480443ad91d749c966f0e5091eb21e009b6097d00">0xada47049…b6097d00</a> — First deposit through it</li></ul></div>
+<h2>Sources</h2><div class="card"><a href="https://github.com/FraxFinance/frxETH-public/blob/018eaf4daf0eb5ca94dfbb275d3fa59008ea829e/node-scripts/validate-msig-add-validators.ts">node-scripts/validate-msig-add-validators.ts (commit 018eaf4)</a><div class="muted" style="font-size:13px">Frax Finance, FraxFinance/frxETH-public on GitHub · the entity&#x27;s own · retrieved 2026-10-18</div><p class="excerpt">Wrong to_address of ${tx.transaction.txInfo.to.value}, should be 0xbAFA44EFE7901E04E39Dad13167D089C559c1138</p><div class="muted mono">sha256 7a44f00006e7325fd76f90f8871656e76be345a3d02f2e17db54517d77ee9d28</div></div>
+<h2>Treemap boxes resting on it</h2><div class="table-wrap"><table><thead><tr><th>Box</th><th class="num">ETH now</th><th class="num">Peak ETH</th></tr></thead><tbody><tr><td>Frax Finance › Frax Ether (frxETH) › Withdraws to 0x8306…a81c</td><td class="num">45,248</td><td class="num">237,184</td></tr></tbody></table></div>
+</main>
+</body>
+</html>

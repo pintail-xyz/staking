@@ -1,0 +1,75 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>0003-everstake-pool: This contract is Everstake&#x27;s pooled-staking Pool (the one Trezor stakes through): Everstake&#x27;s published audit links it to Eversta</title>
+<style>
+:root { color-scheme: light; --surface-0: #f4f3f0; --surface-1: #fcfcfb; --border: #d9d8d3; --text-primary: #0b0b0b;
+        --text-secondary: #52514e; --text-muted: #77766f; --accent: #2a78d6; --chip: #ebe9e4; }
+@media (prefers-color-scheme: dark) {
+  :root:where(:not([data-theme="light"])) { color-scheme: dark; --surface-0: #121211; --surface-1: #1a1a19;
+    --border: #3a3a37; --text-primary: #f0efec; --text-secondary: #c3c2b7; --text-muted: #96958c; --accent: #3987e5;
+    --chip: #2a2a28; }
+}
+:root[data-theme="dark"] { color-scheme: dark; --surface-0: #121211; --surface-1: #1a1a19; --border: #3a3a37;
+  --text-primary: #f0efec; --text-secondary: #c3c2b7; --text-muted: #96958c; --accent: #3987e5; --chip: #2a2a28; }
+* { box-sizing: border-box; }
+body { margin: 0; background: var(--surface-0); color: var(--text-primary);
+       font: 15px/1.55 system-ui, -apple-system, "Segoe UI", sans-serif; }
+main { max-width: 860px; margin: 0 auto; padding: 32px 16px 64px; }
+a { color: var(--accent); }
+h1 { font-size: 22px; line-height: 1.3; font-weight: 600; margin: 4px 0 12px; }
+h2 { font-size: 15px; font-weight: 600; margin: 28px 0 8px; color: var(--text-secondary);
+     text-transform: uppercase; letter-spacing: 0.04em; }
+p { margin: 0 0 12px; }
+.crumbs { font-size: 13px; color: var(--text-muted); }
+.lede { font-size: 17px; }
+.muted { color: var(--text-muted); }
+.chip { display: inline-block; padding: 1px 8px; border-radius: 10px; background: var(--chip); font-size: 12px;
+        color: var(--text-secondary); margin-right: 4px; white-space: nowrap; }
+.card { background: var(--surface-1); border: 1px solid var(--border); border-radius: 6px; padding: 14px 16px;
+        margin: 0 0 12px; }
+.stats { display: flex; flex-wrap: wrap; gap: 12px; margin: 16px 0; }
+.stat { background: var(--surface-1); border: 1px solid var(--border); border-radius: 6px; padding: 10px 14px;
+        min-width: 140px; }
+.stat b { display: block; font-size: 20px; font-variant-numeric: tabular-nums; }
+.stat span { font-size: 12px; color: var(--text-muted); }
+ul.grounds { list-style: none; padding: 0; margin: 0; }
+ul.grounds li { padding: 6px 0; border-bottom: 1px solid var(--border); }
+ul.grounds li:last-child { border-bottom: 0; }
+table { width: 100%; border-collapse: collapse; background: var(--surface-1); font-size: 14px; }
+th, td { text-align: left; padding: 7px 8px; border-bottom: 1px solid var(--border); vertical-align: top; }
+th { font-weight: 600; color: var(--text-secondary); cursor: pointer; white-space: nowrap; user-select: none; }
+td.num, th.num { text-align: right; font-variant-numeric: tabular-nums; white-space: nowrap; }
+code, .mono { font: 12.5px ui-monospace, SFMono-Regular, Menlo, monospace; word-break: break-all; }
+details summary { cursor: pointer; color: var(--accent); }
+.excerpt { border-left: 3px solid var(--border); padding: 2px 0 2px 10px; color: var(--text-secondary);
+           font-size: 14px; white-space: pre-wrap; }
+input[type=search] { width: 100%; padding: 8px 10px; font: inherit; border: 1px solid var(--border);
+                     border-radius: 6px; background: var(--surface-1); color: var(--text-primary); margin: 8px 0 12px; }
+.table-wrap { overflow-x: auto; }
+@media (max-width: 640px) { .hide-sm { display: none; } }
+</style>
+<script data-goatcounter="https://pintail.goatcounter.com/count" async src="https://gc.zgo.at/count.js"></script>
+</head>
+<body>
+<main>
+<p class="crumbs"><a href="../">Dataset</a> › <a href="./">Decisions</a> › 0003-everstake-pool</p>
+<h1>This contract is Everstake&#x27;s pooled-staking Pool (the one Trezor stakes through): Everstake&#x27;s published audit links it to Everstake&#x27;s deployer, and Trezor&#x27;s own code and guide use it.</h1>
+<p><span class="chip">Anchor</span> <span class="muted">· decided 2026-10-16</span></p>
+<p class="muted">Replaces <a href="0001-everstake-pool.html">0001-everstake-pool</a>.</p>
+<p class="lede">This contract is the Pool of Everstake&#x27;s pooled ETH staking; the validators it deposits are Everstake&#x27;s.</p>
+<div class="stats"><div class="stat"><b>15,929</b><span>validators resting on it now</span></div><div class="stat"><b>509,728</b><span>ETH now</span></div><div class="stat"><b>514,624</b><span>ETH at its peak</span></div></div>
+<h2>Grounds</h2><div class="card"><ul class="grounds"><li><span class="chip">Third party</span>Trezor&#x27;s code and staking guide name this contract as the Everstake pool that Trezor stakes through</li><li><span class="chip">First party</span>Everstake&#x27;s blog names a batch deposit contract as Everstake&#x27;s own</li><li><span class="chip">On chain</span>The account that deployed this Pool also deployed that batch deposit contract</li><li><span class="chip">Third party</span>An independent audit describes Everstake&#x27;s Pool, depositing with its rewards treasury as withdrawal address</li></ul></div>
+<h2>Explanation</h2><p>The contract 0xd523…be34 is the Pool of Everstake&#x27;s pooled ETH staking, the pool through which Trezor&#x27;s wallet stakes. Validators it deposits are attributed to Everstake as allocator. All 20,677 deposits sent through it use a single withdrawal address, 0x6be4…1e67; about 16,100 validators were active in October 2026 with some 0.51M ETH.</p>
+<p><strong>Trezor&#x27;s use of the pool.</strong> Trezor&#x27;s firmware repository gives this address as the mainnet pool for its Ethereum staking (<a href="https://github.com/trezor/trezor-firmware/issues/3517">issue 3517</a>), and <a href="https://trezor.io/guides/sending-receiving-staking-funds/staking-assets-in-trezor-suite/staking-ethereum-eth-in-trezor-suite">Trezor&#x27;s staking guide</a> says that staking is provided by Everstake through the Everstake staking pool. <a href="https://reports.chainsecurity.com/Everstake/ChainSecurity_Everstake_ETHB2CStaking_Audit.pdf">ChainSecurity&#x27;s audit</a> of Everstake&#x27;s staking contracts describes a pool that deposits with its rewards treasury as withdrawal address, which is how this contract behaves.</p>
+<p><strong>The link from Everstake itself.</strong> <a href="https://everstake.com/resources/blog/everstakes-eth2-batch-deposit-contract-security-audited-by-ackee">Everstake&#x27;s blog</a> announces the audit of its own batch deposit contract and links <a href="https://github.com/Ackee-Blockchain/public-audit-reports/blob/master/2025/ackee-blockchain-everstake-eth2-batch-deposit-report.pdf">the auditor&#x27;s report</a>, which gives that contract&#x27;s mainnet address. On chain, the account that created that batch deposit contract also created this Pool and its withdrawal address. The account that deployed the Pool therefore also deploys a contract Everstake publicly calls its own. The Pool and its withdrawal address also share one proxy administrator.</p>
+<p>5,465 accounts have sent deposits to the pool; as pool participants, their identities say nothing about who controls the validators. The 95 validators deposited through Everstake&#x27;s batch deposit contracts are not attributed by this decision. A deployment key could in principle deploy contracts for others, so the link from Everstake remains an inference. The decision would change with an Everstake publication listing different contracts, or evidence that the deployer or the Pool is operated for another organisation.</p>
+<h2>What would change it</h2><p>An Everstake publication listing different contracts, or evidence the deployer works for another organisation.</p>
+<h2>Evidence</h2><p class="muted">Transactions and contract calls anyone can repeat on their own node.</p><div class="card"><ul class="grounds"><li><a class="mono" href="https://etherscan.io/tx/0x746689576170f6bbfe64a0c8e7e1714978d6817705cf40c04b07d2a8d4ef0909">0x74668957…d4ef0909</a></li><li><a class="mono" href="https://etherscan.io/tx/0x3b28ed3de105538de4603e8f367c42025a8d561b92b1c0d696d206f53dad1057">0x3b28ed3d…3dad1057</a></li><li><a class="mono" href="https://etherscan.io/tx/0xba2a69bedb5230df2d39e1f7c7f295d268f9cdc6378ee59b1ba2bcb5ed9e66bc">0xba2a69be…ed9e66bc</a></li><li><a class="mono" href="https://etherscan.io/tx/0x9fd9989cda9fa01231d2d8cd63457253e4ca8d0975bdf379132daa89a8fce514">0x9fd9989c…a8fce514</a></li><li><span class="mono">EIP-1967 admin slot of 0xd523… and 0x6be4… = 0xd491302a6621128f4b5a6a49ce6657230732b0cb</span></li></ul></div>
+<h2>Sources</h2><div class="card"><a href="https://everstake.com/resources/blog/everstakes-eth2-batch-deposit-contract-security-audited-by-ackee">Everstake&#x27;s ETH2 Batch Deposit Contract Security Audited by Ackee (Mar 5, 2026; last updated Sep 10, 2026)</a><div class="muted" style="font-size:13px">Everstake · the entity&#x27;s own · retrieved 2026-10-16</div><p class="excerpt">We are glad to announce that Everstake&#x27;s ETH2 Batch Deposit Contract has undergone an independent audit by Ackee Blockchain Security [...] The full report, complete with all findings and recommendations, is available at Ackee&#x27;s GitHub.</p><div class="muted mono">sha256 ac678014e848de5f44caba1dd1732440c46f610a0c161e1140586ddd2543de41</div></div><div class="card"><a href="https://github.com/Ackee-Blockchain/public-audit-reports/blob/master/2025/ackee-blockchain-everstake-eth2-batch-deposit-report.pdf">Audit Report | Everstake: ETH2 Batch Deposit Contract, 21.11.2025</a><div class="muted" style="font-size:13px">Ackee Blockchain Security · third party · retrieved 2026-10-16</div><p class="excerpt">Everstake engaged Ackee Blockchain Security to perform a security review of Everstake ETH2 Batch Deposit Contract [...] The contract in scope was also deployed at the 0x4ff41fa0f4e77129c4c0607994050473c2067e6d address on Mainnet.</p><div class="muted mono">sha256 d08e339f9aa1e76bad8fea541dc2dba13c5597fdfe2faad984fb050de646bc45</div></div><div class="card"><a href="https://github.com/trezor/trezor-firmware/issues/3517">Trezor Ethereum staking pool (issue #3517, opened 2024-02-05)</a><div class="muted" style="font-size:13px">Trezor (SatoshiLabs), trezor-firmware repository on GitHub · third party · retrieved 2026-10-16</div><p class="excerpt">ADDRESS_CONTRACT_POOL = &#x27;0xD523794C879D9eC028960a231F866758e405bE34&#x27;;</p><div class="muted mono">sha256 1f2a9887c93d6889bb18efa5b6b95d0c7af6b00ff80e0d40713a86164de0334f</div></div><div class="card"><a href="https://trezor.io/guides/sending-receiving-staking-funds/staking-assets-in-trezor-suite/staking-ethereum-eth-in-trezor-suite">Staking Ethereum (ETH) in Trezor Suite</a><div class="muted" style="font-size:13px">Trezor (SatoshiLabs) · third party · retrieved 2026-10-16</div><p class="excerpt">The service is provided by Everstake, a widely used staking provider. [...] When you stake, your ETH enters the Everstake staking pool.</p><div class="muted mono">sha256 e1a331982772e496141255cc8e82893a65747c2368a70eee1bafb0202034a427</div></div><div class="card"><a href="https://reports.chainsecurity.com/Everstake/ChainSecurity_Everstake_ETHB2CStaking_Audit.pdf">Code Assessment of the ETH B2C Staking Smart Contracts (Everstake), August 17, 2023</a><div class="muted" style="font-size:13px">ChainSecurity (Decentralized Security AG) · third party · retrieved 2026-10-16</div><p class="excerpt">The Pool holds a list of validators that are managed by Everstake and can be used when the pending amount in the Pool reaches 32ETH. When it does, a validator is consumed from the list and the beacon deposit contract is called with the validator&#x27;s public key, signature, and deposit data root along with the address of the rewards treasury encoded in the withdrawal credentials.</p><div class="muted mono">sha256 be085dba59e240920bdefff1610f9a937c6367b19658955ce6cdefa418e2f54a</div></div>
+<h2>Treemap boxes resting on it</h2><div class="table-wrap"><table><thead><tr><th>Box</th><th class="num">ETH now</th><th class="num">Peak ETH</th></tr></thead><tbody><tr><td>Everstake › Everstake pooled staking › Withdraws to 0x6be4…1e67</td><td class="num">509,728</td><td class="num">514,624</td></tr></tbody></table></div>
+</main>
+</body>
+</html>

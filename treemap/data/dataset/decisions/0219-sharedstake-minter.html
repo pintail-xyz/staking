@@ -1,0 +1,74 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>0219-sharedstake-minter: SharedStake&#x27;s own contract list and docs name this its vETH2 Minter, which staked the pool&#x27;s ETH; validators deposited throug</title>
+<style>
+:root { color-scheme: light; --surface-0: #f4f3f0; --surface-1: #fcfcfb; --border: #d9d8d3; --text-primary: #0b0b0b;
+        --text-secondary: #52514e; --text-muted: #77766f; --accent: #2a78d6; --chip: #ebe9e4; }
+@media (prefers-color-scheme: dark) {
+  :root:where(:not([data-theme="light"])) { color-scheme: dark; --surface-0: #121211; --surface-1: #1a1a19;
+    --border: #3a3a37; --text-primary: #f0efec; --text-secondary: #c3c2b7; --text-muted: #96958c; --accent: #3987e5;
+    --chip: #2a2a28; }
+}
+:root[data-theme="dark"] { color-scheme: dark; --surface-0: #121211; --surface-1: #1a1a19; --border: #3a3a37;
+  --text-primary: #f0efec; --text-secondary: #c3c2b7; --text-muted: #96958c; --accent: #3987e5; --chip: #2a2a28; }
+* { box-sizing: border-box; }
+body { margin: 0; background: var(--surface-0); color: var(--text-primary);
+       font: 15px/1.55 system-ui, -apple-system, "Segoe UI", sans-serif; }
+main { max-width: 860px; margin: 0 auto; padding: 32px 16px 64px; }
+a { color: var(--accent); }
+h1 { font-size: 22px; line-height: 1.3; font-weight: 600; margin: 4px 0 12px; }
+h2 { font-size: 15px; font-weight: 600; margin: 28px 0 8px; color: var(--text-secondary);
+     text-transform: uppercase; letter-spacing: 0.04em; }
+p { margin: 0 0 12px; }
+.crumbs { font-size: 13px; color: var(--text-muted); }
+.lede { font-size: 17px; }
+.muted { color: var(--text-muted); }
+.chip { display: inline-block; padding: 1px 8px; border-radius: 10px; background: var(--chip); font-size: 12px;
+        color: var(--text-secondary); margin-right: 4px; white-space: nowrap; }
+.card { background: var(--surface-1); border: 1px solid var(--border); border-radius: 6px; padding: 14px 16px;
+        margin: 0 0 12px; }
+.stats { display: flex; flex-wrap: wrap; gap: 12px; margin: 16px 0; }
+.stat { background: var(--surface-1); border: 1px solid var(--border); border-radius: 6px; padding: 10px 14px;
+        min-width: 140px; }
+.stat b { display: block; font-size: 20px; font-variant-numeric: tabular-nums; }
+.stat span { font-size: 12px; color: var(--text-muted); }
+ul.grounds { list-style: none; padding: 0; margin: 0; }
+ul.grounds li { padding: 6px 0; border-bottom: 1px solid var(--border); }
+ul.grounds li:last-child { border-bottom: 0; }
+table { width: 100%; border-collapse: collapse; background: var(--surface-1); font-size: 14px; }
+th, td { text-align: left; padding: 7px 8px; border-bottom: 1px solid var(--border); vertical-align: top; }
+th { font-weight: 600; color: var(--text-secondary); cursor: pointer; white-space: nowrap; user-select: none; }
+td.num, th.num { text-align: right; font-variant-numeric: tabular-nums; white-space: nowrap; }
+code, .mono { font: 12.5px ui-monospace, SFMono-Regular, Menlo, monospace; word-break: break-all; }
+details summary { cursor: pointer; color: var(--accent); }
+.excerpt { border-left: 3px solid var(--border); padding: 2px 0 2px 10px; color: var(--text-secondary);
+           font-size: 14px; white-space: pre-wrap; }
+input[type=search] { width: 100%; padding: 8px 10px; font: inherit; border: 1px solid var(--border);
+                     border-radius: 6px; background: var(--surface-1); color: var(--text-primary); margin: 8px 0 12px; }
+.table-wrap { overflow-x: auto; }
+@media (max-width: 640px) { .hide-sm { display: none; } }
+</style>
+<script data-goatcounter="https://pintail.goatcounter.com/count" async src="https://gc.zgo.at/count.js"></script>
+</head>
+<body>
+<main>
+<p class="crumbs"><a href="../">Dataset</a> › <a href="./">Decisions</a> › 0219-sharedstake-minter</p>
+<h1>SharedStake&#x27;s own contract list and docs name this its vETH2 Minter, which staked the pool&#x27;s ETH; validators deposited through it are SharedStake&#x27;s.</h1>
+<p><span class="chip">Anchor</span> <span class="muted">· decided 2026-10-26</span></p>
+<p class="lede">Validators whose first deposit SharedStake&#x27;s Minter relayed, and those withdrawing to the address they later set, are SharedStake vETH2&#x27;s.</p>
+<div class="stats"><div class="stat"><b>40</b><span>validators resting on it now</span></div><div class="stat"><b>1,280</b><span>ETH now</span></div><div class="stat"><b>16,000</b><span>ETH at its peak</span></div></div>
+<h2>Grounds</h2><div class="card"><ul class="grounds"><li><span class="chip">First party</span>SharedStake&#x27;s contract list and docs name 0xbca3 its Minter, which stakes the pool&#x27;s ETH to the deposit contract</li><li><span class="chip">On chain</span>It relayed the deposits of 500 validators (16,000 ETH) in February-April 2021, all with BLS credentials</li><li><span class="chip">On chain</span>490 later set withdrawal address 0xa1fe, the node operator in SharedStake&#x27;s deploy script and its fee recipient</li><li><span class="chip">First party</span>Their blocks carry the graffiti set in SharedStake&#x27;s own validator config (SharedStake.org)</li></ul></div>
+<h2>Explanation</h2><p>The contract 0xbca3…da4d is the vETH2 Minter of SharedStake, a liquid staking pool. Validators whose first deposit it relayed, and those withdrawing to the address they later set, are attributed to SharedStake vETH2 as allocator. It relayed the deposits of 500 validators, 16,000 ETH, between February and April 2021; 40 remained active in October 2026, with 1,280 ETH.</p>
+<p><strong>Identification.</strong> <a href="https://github.com/SharedStake/Contracts/blob/a1abdb5064839d42a23ca275d192e5ca13c76d5d/Readme.md">SharedStake&#x27;s list of its contracts</a> names this contract as its Minter, responsible for minting and burning vETH2 and for staking ether to the beacon chain, and <a href="https://github.com/SharedStake/Docs/blob/2ec9c3ecf6c9472da2a8c437ec3f48856620a32c/untitled/staking-to-eth2.md">its documentation</a> explains that the Minter is paused while SharedStake deploys validators to the deposit contract. <a href="https://github.com/SharedStake/infra/blob/ad1314e15f166775a7b044463eb23c68b0f213d9/config.yaml">Its validator configuration</a> sets the graffiti &quot;SharedStake.org Prysm Validators&quot;.</p>
+<p><strong>On chain.</strong> All 500 deposits were sent through the Minter by 0xa1fe…409e (sharedstake.eth), with BLS credentials. 490 of the validators later changed to that address as their withdrawal address; the other ten still have BLS credentials. The address is the fee recipient of nearly all their blocks, and most blocks carry SharedStake&#x27;s graffiti. SharedStake&#x27;s later deployment script names the same address as its node operator.</p>
+<p>The withdrawal address is an account SharedStake&#x27;s developer also uses for deployments, so the withdrawals may go to SharedStake&#x27;s operator rather than to vETH2 holders; the validators were funded by the pool either way. The decision would change with a SharedStake statement contradicting it, or evidence that validators deposited through the Minter were not SharedStake&#x27;s.</p>
+<h2>What would change it</h2><p>A SharedStake statement contradicting it, or evidence that validators deposited through the Minter were not SharedStake&#x27;s.</p>
+<h2>Evidence</h2><p class="muted">Transactions and contract calls anyone can repeat on their own node.</p><div class="card"><ul class="grounds"><li><a class="mono" href="https://etherscan.io/tx/0x66da7cafb6987194a4160e82f20bdeff21395a6842ea7daea3e133d5a3bf5e6f">0x66da7caf…a3bf5e6f</a> — The first deposit relayed by SharedStake&#x27;s Minter, 3 February 2021</li></ul></div>
+<h2>Sources</h2><div class="card"><a href="https://github.com/SharedStake/Contracts/blob/a1abdb5064839d42a23ca275d192e5ca13c76d5d/Readme.md">SharedStake Contracts README: its on-chain contracts and their addresses (commit of 16 February 2021)</a><div class="muted" style="font-size:13px">SharedStake (SharedStake/Contracts on GitHub) · the entity&#x27;s own · retrieved 2026-10-26</div><p class="excerpt">Minter contract is responsible for: - minting/burning vEth2 - Staking Ether to Eth2 [...] Address: 0xbca3b7b87dcb15f0efa66136bc0e4684a3e5da4d</p><div class="muted mono">sha256 0b0e00a06c18daa13d9ebf3000d71c63d3b145c9bad7ebb8ba12b34aa4efbc8b</div></div><div class="card"><a href="https://github.com/SharedStake/Docs/blob/2ec9c3ecf6c9472da2a8c437ec3f48856620a32c/untitled/staking-to-eth2.md">SharedStake docs: Staking to Eth2 (commit of 15 February 2021)</a><div class="muted" style="font-size:13px">SharedStake (SharedStake/Docs on GitHub) · the entity&#x27;s own · retrieved 2026-10-26</div><p class="excerpt">The staking process is handled by a contract defined as a Minter Contract for the vEth2 token. [...] We deploy multiple validators to the Eth2.0 Deposit Contract.</p><div class="muted mono">sha256 0bf3b71f1e95561b2dbd627afeeacba303447e5ee5f362ae8f898482f44bab14</div></div><div class="card"><a href="https://github.com/SharedStake/infra/blob/ad1314e15f166775a7b044463eb23c68b0f213d9/config.yaml">SharedStake mainnet validator settings, config.yaml (commit of 23 February 2021)</a><div class="muted" style="font-size:13px">SharedStake (SharedStake/infra on GitHub) · the entity&#x27;s own · retrieved 2026-10-26</div><p class="excerpt">graffiti: &quot;SharedStake.org Prysm Validators - #supportEIP1559 - https://SharedStake.org&quot;</p><div class="muted mono">sha256 8c3fb281f61854ff1db353f10acc4e41cb6e4e607686e8bb6c3103585c386867</div></div>
+<h2>Treemap boxes resting on it</h2><div class="table-wrap"><table><thead><tr><th>Box</th><th class="num">ETH now</th><th class="num">Peak ETH</th></tr></thead><tbody><tr><td>SharedStake › SharedStake vETH2 › Withdraws to sharedstake.eth</td><td class="num">960</td><td class="num">15,680</td></tr><tr><td>SharedStake › SharedStake vETH2 › Deposited via 0xbca3…da4d</td><td class="num">320</td><td class="num">320</td></tr></tbody></table></div>
+</main>
+</body>
+</html>

@@ -1,0 +1,75 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>0133-mercado-bitcoin-figment: A client staking through Figment: part of its stake was deposited through Figment&#x27;s contract, and the rest shares its fe</title>
+<style>
+:root { color-scheme: light; --surface-0: #f4f3f0; --surface-1: #fcfcfb; --border: #d9d8d3; --text-primary: #0b0b0b;
+        --text-secondary: #52514e; --text-muted: #77766f; --accent: #2a78d6; --chip: #ebe9e4; }
+@media (prefers-color-scheme: dark) {
+  :root:where(:not([data-theme="light"])) { color-scheme: dark; --surface-0: #121211; --surface-1: #1a1a19;
+    --border: #3a3a37; --text-primary: #f0efec; --text-secondary: #c3c2b7; --text-muted: #96958c; --accent: #3987e5;
+    --chip: #2a2a28; }
+}
+:root[data-theme="dark"] { color-scheme: dark; --surface-0: #121211; --surface-1: #1a1a19; --border: #3a3a37;
+  --text-primary: #f0efec; --text-secondary: #c3c2b7; --text-muted: #96958c; --accent: #3987e5; --chip: #2a2a28; }
+* { box-sizing: border-box; }
+body { margin: 0; background: var(--surface-0); color: var(--text-primary);
+       font: 15px/1.55 system-ui, -apple-system, "Segoe UI", sans-serif; }
+main { max-width: 860px; margin: 0 auto; padding: 32px 16px 64px; }
+a { color: var(--accent); }
+h1 { font-size: 22px; line-height: 1.3; font-weight: 600; margin: 4px 0 12px; }
+h2 { font-size: 15px; font-weight: 600; margin: 28px 0 8px; color: var(--text-secondary);
+     text-transform: uppercase; letter-spacing: 0.04em; }
+p { margin: 0 0 12px; }
+.crumbs { font-size: 13px; color: var(--text-muted); }
+.lede { font-size: 17px; }
+.muted { color: var(--text-muted); }
+.chip { display: inline-block; padding: 1px 8px; border-radius: 10px; background: var(--chip); font-size: 12px;
+        color: var(--text-secondary); margin-right: 4px; white-space: nowrap; }
+.card { background: var(--surface-1); border: 1px solid var(--border); border-radius: 6px; padding: 14px 16px;
+        margin: 0 0 12px; }
+.stats { display: flex; flex-wrap: wrap; gap: 12px; margin: 16px 0; }
+.stat { background: var(--surface-1); border: 1px solid var(--border); border-radius: 6px; padding: 10px 14px;
+        min-width: 140px; }
+.stat b { display: block; font-size: 20px; font-variant-numeric: tabular-nums; }
+.stat span { font-size: 12px; color: var(--text-muted); }
+ul.grounds { list-style: none; padding: 0; margin: 0; }
+ul.grounds li { padding: 6px 0; border-bottom: 1px solid var(--border); }
+ul.grounds li:last-child { border-bottom: 0; }
+table { width: 100%; border-collapse: collapse; background: var(--surface-1); font-size: 14px; }
+th, td { text-align: left; padding: 7px 8px; border-bottom: 1px solid var(--border); vertical-align: top; }
+th { font-weight: 600; color: var(--text-secondary); cursor: pointer; white-space: nowrap; user-select: none; }
+td.num, th.num { text-align: right; font-variant-numeric: tabular-nums; white-space: nowrap; }
+code, .mono { font: 12.5px ui-monospace, SFMono-Regular, Menlo, monospace; word-break: break-all; }
+details summary { cursor: pointer; color: var(--accent); }
+.excerpt { border-left: 3px solid var(--border); padding: 2px 0 2px 10px; color: var(--text-secondary);
+           font-size: 14px; white-space: pre-wrap; }
+input[type=search] { width: 100%; padding: 8px 10px; font: inherit; border: 1px solid var(--border);
+                     border-radius: 6px; background: var(--surface-1); color: var(--text-primary); margin: 8px 0 12px; }
+.table-wrap { overflow-x: auto; }
+@media (max-width: 640px) { .hide-sm { display: none; } }
+</style>
+<script data-goatcounter="https://pintail.goatcounter.com/count" async src="https://gc.zgo.at/count.js"></script>
+</head>
+<body>
+<main>
+<p class="crumbs"><a href="../">Dataset</a> › <a href="./">Decisions</a> › 0133-mercado-bitcoin-figment</p>
+<h1>A client staking through Figment: part of its stake was deposited through Figment&#x27;s contract, and the rest shares its fee recipients, changed on the same day, so Figment allocates all of it.</h1>
+<p><span class="chip">Attribution</span><span class="chip">Allocator</span> <a href="../entities/figment.html">Figment direct staking</a> <span class="muted">· decided 2026-10-20</span></p>
+<p class="lede">Validators withdrawing to this address are allocated by Figment, for one of its clients.</p>
+<div class="stats"><div class="stat"><b>559</b><span>validators resting on it now</span></div><div class="stat"><b>17,888</b><span>ETH now</span></div><div class="stat"><b>23,424</b><span>ETH at its peak</span></div></div>
+<h2>Grounds</h2><div class="card"><ul class="grounds"><li><span class="chip">On chain</span>One account deposited all of them: 205 through Figment&#x27;s documented batch contract, 788 directly</li><li><span class="chip">On chain</span>Both groups paid the same fee recipient, and both switched to another within the same five hours</li><li><span class="chip">On chain</span>So one operator configures both, and Figment runs the 205 deposited through its contract</li></ul></div>
+<h2>Explanation</h2><p>Validators withdrawing to 0xbcc3…e4a2 that no other provider claim covers are attributed to Figment as allocator, for one of its clients. 788 validators were deposited directly to the deposit contract between July 2023 and March 2025; 559 were active in October 2026 with about 18k ETH. The same client&#x27;s 205 later validators, deposited through Figment&#x27;s documented batch contract, are Figment&#x27;s under decision 0031.</p>
+<p><strong>The shared configuration.</strong> One account sent every deposit to this address, first 788 directly and then 205 through Figment&#x27;s contract, as Figment&#x27;s other clients do. The validators of both groups paid the same fee recipient, which no other validator uses, and then both switched to the withdrawal address itself as fee recipient within the same five hours. A fee recipient is set by whoever runs the validator client, so one operator runs both groups; the group deposited through Figment&#x27;s contract is Figment&#x27;s, so the rest is too. Both groups&#x27; graffiti shows the same client version string only.</p>
+<p><strong>Why Figment is the allocator.</strong> When an exchange or other client stakes through a provider, the provider is the allocator, and the client holds the withdrawals. The client&#x27;s identity rests only on explorer and community labels, which are recorded as leads, so it is not named here; the attribution to Figment does not depend on it.</p>
+<p><strong>Limits.</strong> The client could run both groups&#x27; validator clients itself and set the fee recipient, with Figment only depositing the later 205. The decision would change with evidence that another operator runs the directly deposited validators, or that the client chooses their operators itself.</p>
+<h2>What would change it</h2><p>Evidence that another operator runs the directly deposited validators, or that the client chooses their operators itself.</p>
+<h2>Evidence</h2><p class="muted">Transactions and contract calls anyone can repeat on their own node.</p><div class="card"><ul class="grounds"><li><a href="0031-figment-batch-deposit-0x01.html">0031-figment-batch-deposit-0x01</a></li><li><a class="mono" href="https://etherscan.io/tx/0x624b01d6db1ce4d0a703e332fe69d459d40c312f92335d178a336e90bd1b4eec">0x624b01d6…bd1b4eec</a> — First direct deposit, from 0xb8ba…d7ef</li><li><a class="mono" href="https://etherscan.io/tx/0x327c65cde3c4ab2a6d4aecbb7d26a994ab0ea292b37e07078fcad1b8421b01ce">0x327c65cd…421b01ce</a> — First deposit through Figment&#x27;s 0xf007, from 0xb8ba…d7ef</li><li><a class="mono" href="https://etherscan.io/tx/0xc07eb2095b0d81ec692c3b2e590205c5356f3a0eb1875cd9ed0aaf345c851131">0xc07eb209…5c851131</a> — Direct group: last payment to 0xf324 (slot 14,228,982)</li><li><a class="mono" href="https://etherscan.io/tx/0x6c55f51c18effd7c2f252c33aba90b355585ea571c0961de8da4f3e9e5de03e6">0x6c55f51c…e5de03e6</a> — Direct group: first payment to 0xbcc3 (slot 14,230,495)</li><li><a class="mono" href="https://etherscan.io/tx/0xa371b48ed8e98183f352d7d23e5fd91f8232d230b5ba9244a7503f7e7cced22f">0xa371b48e…7cced22f</a> — Figment group: last payment to 0xf324 (slot 14,219,265)</li><li><a class="mono" href="https://etherscan.io/tx/0xe0f5250e90d1831d8ccf696e12803a3328fa426b82962f7d577bd9ab33246802">0xe0f5250e…33246802</a> — Figment group: first payment to 0xbcc3 (slot 14,232,406)</li></ul></div>
+<h2>Leads</h2><p class="muted">Third-party pages, such as explorer labels, that pointed the research but are not relied on.</p><ul><li><a href="https://etherscan.io/address/0xb8ba36e591facee901ffd3d5d82df491551ad7ef">Etherscan address page</a></li><li><a href="https://metadata.services.blockscout.com/api/v1/metadata?chainId=1&amp;addresses=0xb8ba36e591facee901ffd3d5d82df491551ad7ef">Blockscout address page</a></li><li><a href="https://github.com/duneanalytics/spellbook/blob/e5b41162a270135790f5f39491f9677360a6adb0/dbt_subprojects/hourly_spellbook/models/_sector/staking/ethereum/entities/staking_ethereum_entities_depositor_addresses.sql">staking_ethereum_entities_depositor_addresses.sql</a></li></ul>
+<h2>Treemap boxes resting on it</h2><div class="table-wrap"><table><thead><tr><th>Box</th><th class="num">ETH now</th><th class="num">Peak ETH</th></tr></thead><tbody><tr><td>Figment › Figment direct staking › Withdraws to 0xbcc3…e4a2</td><td class="num">17,888</td><td class="num">23,424</td></tr></tbody></table></div>
+<h2>Targets (1)</h2><details open><summary>The addresses or validators this decision covers</summary><ul style="list-style:none;padding:0"><li><span class="chip">withdrawal address</span><a class="mono" href="https://etherscan.io/address/0xbcc3141c4b51614f206ad10bcd025990ee01e4a2">0xbcc3141c4b51614f206ad10bcd025990ee01e4a2</a></li></ul></details>
+</main>
+</body>
+</html>

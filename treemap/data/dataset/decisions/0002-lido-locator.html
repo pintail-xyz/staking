@@ -1,0 +1,73 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>0002-lido-locator: Lido&#x27;s validators are found from its LidoLocator contract, which Lido&#x27;s own documentation lists; every other Lido contract is read </title>
+<style>
+:root { color-scheme: light; --surface-0: #f4f3f0; --surface-1: #fcfcfb; --border: #d9d8d3; --text-primary: #0b0b0b;
+        --text-secondary: #52514e; --text-muted: #77766f; --accent: #2a78d6; --chip: #ebe9e4; }
+@media (prefers-color-scheme: dark) {
+  :root:where(:not([data-theme="light"])) { color-scheme: dark; --surface-0: #121211; --surface-1: #1a1a19;
+    --border: #3a3a37; --text-primary: #f0efec; --text-secondary: #c3c2b7; --text-muted: #96958c; --accent: #3987e5;
+    --chip: #2a2a28; }
+}
+:root[data-theme="dark"] { color-scheme: dark; --surface-0: #121211; --surface-1: #1a1a19; --border: #3a3a37;
+  --text-primary: #f0efec; --text-secondary: #c3c2b7; --text-muted: #96958c; --accent: #3987e5; --chip: #2a2a28; }
+* { box-sizing: border-box; }
+body { margin: 0; background: var(--surface-0); color: var(--text-primary);
+       font: 15px/1.55 system-ui, -apple-system, "Segoe UI", sans-serif; }
+main { max-width: 860px; margin: 0 auto; padding: 32px 16px 64px; }
+a { color: var(--accent); }
+h1 { font-size: 22px; line-height: 1.3; font-weight: 600; margin: 4px 0 12px; }
+h2 { font-size: 15px; font-weight: 600; margin: 28px 0 8px; color: var(--text-secondary);
+     text-transform: uppercase; letter-spacing: 0.04em; }
+p { margin: 0 0 12px; }
+.crumbs { font-size: 13px; color: var(--text-muted); }
+.lede { font-size: 17px; }
+.muted { color: var(--text-muted); }
+.chip { display: inline-block; padding: 1px 8px; border-radius: 10px; background: var(--chip); font-size: 12px;
+        color: var(--text-secondary); margin-right: 4px; white-space: nowrap; }
+.card { background: var(--surface-1); border: 1px solid var(--border); border-radius: 6px; padding: 14px 16px;
+        margin: 0 0 12px; }
+.stats { display: flex; flex-wrap: wrap; gap: 12px; margin: 16px 0; }
+.stat { background: var(--surface-1); border: 1px solid var(--border); border-radius: 6px; padding: 10px 14px;
+        min-width: 140px; }
+.stat b { display: block; font-size: 20px; font-variant-numeric: tabular-nums; }
+.stat span { font-size: 12px; color: var(--text-muted); }
+ul.grounds { list-style: none; padding: 0; margin: 0; }
+ul.grounds li { padding: 6px 0; border-bottom: 1px solid var(--border); }
+ul.grounds li:last-child { border-bottom: 0; }
+table { width: 100%; border-collapse: collapse; background: var(--surface-1); font-size: 14px; }
+th, td { text-align: left; padding: 7px 8px; border-bottom: 1px solid var(--border); vertical-align: top; }
+th { font-weight: 600; color: var(--text-secondary); cursor: pointer; white-space: nowrap; user-select: none; }
+td.num, th.num { text-align: right; font-variant-numeric: tabular-nums; white-space: nowrap; }
+code, .mono { font: 12.5px ui-monospace, SFMono-Regular, Menlo, monospace; word-break: break-all; }
+details summary { cursor: pointer; color: var(--accent); }
+.excerpt { border-left: 3px solid var(--border); padding: 2px 0 2px 10px; color: var(--text-secondary);
+           font-size: 14px; white-space: pre-wrap; }
+input[type=search] { width: 100%; padding: 8px 10px; font: inherit; border: 1px solid var(--border);
+                     border-radius: 6px; background: var(--surface-1); color: var(--text-primary); margin: 8px 0 12px; }
+.table-wrap { overflow-x: auto; }
+@media (max-width: 640px) { .hide-sm { display: none; } }
+</style>
+<script data-goatcounter="https://pintail.goatcounter.com/count" async src="https://gc.zgo.at/count.js"></script>
+</head>
+<body>
+<main>
+<p class="crumbs"><a href="../">Dataset</a> › <a href="./">Decisions</a> › 0002-lido-locator</p>
+<h1>Lido&#x27;s validators are found from its LidoLocator contract, which Lido&#x27;s own documentation lists; every other Lido contract is read from it on chain.</h1>
+<p><span class="chip">Anchor</span> <span class="muted">· decided 2026-10-16</span></p>
+<p class="lede">This contract is Lido&#x27;s LidoLocator, the directory from which all of Lido&#x27;s other contracts are read.</p>
+<div class="stats"><div class="stat"><b>214,943</b><span>validators resting on it now</span></div><div class="stat"><b>9,521,095</b><span>ETH now</span></div><div class="stat"><b>9,826,880</b><span>ETH at its peak</span></div></div>
+<h2>Grounds</h2><div class="card"><ul class="grounds"><li><span class="chip">First party</span>Lido&#x27;s documentation lists this address as its Lido Locator</li><li><span class="chip">On chain</span>The contracts it lists agree: the staking router and stETH both withdraw to the vault it names</li></ul></div>
+<h2>Explanation</h2><p>Lido&#x27;s validators are identified from its own contracts, starting from a single address: the LidoLocator at 0xc1d0…2eb, which <a href="https://docs.lido.fi/deployed-contracts/">Lido&#x27;s documentation lists among its deployed contracts</a>. The locator is a directory; every other Lido contract used here (the staking router, the node operator registries, the withdrawal vault, stETH) is read from it on chain rather than taken from any list.</p>
+<p>The addresses read from it are mutually consistent. The withdrawal credentials returned by the staking router and by stETH both point to the withdrawal vault the locator names, and stETH&#x27;s Aragon kernel grants its permission manager role to Lido&#x27;s Agent contract. A validator is counted as Lido&#x27;s when its public key appears in one of Lido&#x27;s node operator registries reached in this way; its operator is the node operator whose keys it is.</p>
+<p>The decision would change if Lido&#x27;s documentation named a different locator, or if Lido moved to a new one, which would be recorded as a new anchor.</p>
+<h2>What would change it</h2><p>Lido documentation naming a different locator, or a move to a new one.</p>
+<h2>Evidence</h2><p class="muted">Transactions and contract calls anyone can repeat on their own node.</p><div class="card"><ul class="grounds"><li><span class="mono">LidoLocator.withdrawalVault(), StakingRouter.getWithdrawalCredentials(), Lido.getWithdrawalCredentials() agree</span></li></ul></div>
+<h2>Sources</h2><div class="card"><a href="https://docs.lido.fi/deployed-contracts/">Deployed contracts (Ethereum mainnet)</a><div class="muted" style="font-size:13px">Lido · the entity&#x27;s own · retrieved 2026-10-15</div><p class="excerpt">Lido Locator: 0xC1d0b3DE6792Bf6b4b37EccdcC24e45978Cfd2Eb (proxy)</p><div class="muted mono">sha256 7b08ed1eab9bc82fcfd43b1272ba0361441728af74ecbf734a031f82a1bb1af3</div></div>
+<h2>Treemap boxes resting on it</h2><div class="table-wrap"><table><thead><tr><th>Box</th><th class="num">ETH now</th><th class="num">Peak ETH</th></tr></thead><tbody><tr><td>Lido › curated-onchain-v1 › Everstake</td><td class="num">0</td><td class="num">320,064</td></tr><tr><td>Lido › curated-onchain-v1 › RockX</td><td class="num">253,440</td><td class="num">320,064</td></tr><tr><td>Lido › curated-onchain-v1 › Figment</td><td class="num">0</td><td class="num">320,064</td></tr><tr><td>Lido › curated-onchain-v1 › Blockdaemon</td><td class="num">0</td><td class="num">320,032</td></tr><tr><td>Lido › curated-onchain-v1 › Simply Staking</td><td class="num">0</td><td class="num">320,032</td></tr><tr><td>Lido › curated-onchain-v1 › Solstice</td><td class="num">0</td><td class="num">320,032</td></tr><tr><td>Lido › curated-onchain-v1 › Stakely</td><td class="num">0</td><td class="num">320,032</td></tr><tr><td>Lido › curated-onchain-v1 › InfStones</td><td class="num">0</td><td class="num">320,032</td></tr><tr><td>Lido › curated-onchain-v1 › HashKey Cloud</td><td class="num">0</td><td class="num">320,032</td></tr><tr><td>Lido › curated-onchain-v1 › Galaxy</td><td class="num">0</td><td class="num">320,032</td></tr><tr><td>Lido › curated-onchain-v1 › Kukis Global</td><td class="num">0</td><td class="num">320,032</td></tr><tr><td>Lido › curated-onchain-v1 › Twinstake</td><td class="num">0</td><td class="num">320,032</td></tr><tr><td>Lido › curated-onchain-v1 › Prysm Team at Offchain Labs</td><td class="num">0</td><td class="num">320,032</td></tr><tr><td>Lido › curated-onchain-v1 › Sigma Prime</td><td class="num">0</td><td class="num">320,032</td></tr><tr><td>Lido › curated-onchain-v1 › Attestant (BVI) Limited</td><td class="num">0</td><td class="num">320,032</td></tr><tr><td>Lido › curated-onchain-v1 › Allnodes</td><td class="num">0</td><td class="num">320,000</td></tr><tr><td>Lido › curated-onchain-v1 › Stakin by The Tie</td><td class="num">0</td><td class="num">320,000</td></tr><tr><td>Lido › curated-onchain-v1 › ChainLayer</td><td class="num">0</td><td class="num">320,000</td></tr><tr><td>Lido › curated-onchain-v1 › ChainSafe</td><td class="num">0</td><td class="num">320,000</td></tr><tr><td>Lido › curated-onchain-v1 › DSRV</td><td class="num">0</td><td class="num">318,880</td></tr><tr><td>Lido › curated-onchain-v1 › Kiln</td><td class="num">0</td><td class="num">317,344</td></tr><tr><td>Lido › curated-onchain-v1 › Chorus One</td><td class="num">0</td><td class="num">316,736</td></tr><tr><td>Lido › curated-onchain-v1 › P2P.org</td><td class="num">0</td><td class="num">314,336</td></tr><tr><td>Lido › curated-onchain-v1 › Blockscape</td><td class="num">0</td><td class="num">314,112</td></tr><tr><td>Lido › curated-onchain-v1 › stakefish</td><td class="num">0</td><td class="num">288,000</td></tr><tr><td>Lido › curated-onchain-v1 › Consensys</td><td class="num">0</td><td class="num">287,744</td></tr><tr><td>Lido › curated-onchain-v1 › RockLogic GmbH</td><td class="num">0</td><td class="num">287,712</td></tr><tr><td>Lido › curated-onchain-v1 › A41</td><td class="num">0</td><td class="num">287,712</td></tr><tr><td>Lido › curated-onchain-v1 › Ebunker</td><td class="num">0</td><td class="num">287,712</td></tr><tr><td>Lido › curated-onchain-v1 › MAVAN</td><td class="num">0</td><td class="num">287,712</td></tr><tr><td>Lido › curated-onchain-v1 › ParaFi Technologies LLC</td><td class="num">0</td><td class="num">287,712</td></tr><tr><td>Lido › curated-onchain-v1 › RockawayX Infra</td><td class="num">0</td><td class="num">287,712</td></tr><tr><td>Lido › curated-onchain-v1 › SenseiNode</td><td class="num">0</td><td class="num">284,736</td></tr><tr><td>Lido › curated-onchain-v1 › Staking Facilities</td><td class="num">0</td><td class="num">270,752</td></tr><tr><td>Lido › curated-onchain-v1 › Launchnodes</td><td class="num">0</td><td class="num">270,720</td></tr><tr><td>Lido › curated-onchain-v1 › Develp GmbH</td><td class="num">0</td><td class="num">270,720</td></tr><tr><td>Lido › curated-onchain-v1 › Gateway.fm AS</td><td class="num">0</td><td class="num">270,720</td></tr><tr><td>Lido › curated-onchain-v2 › Twinstake › Twinstake - PGO</td><td class="num">257,697</td><td class="num">257,697</td></tr><tr><td>Lido › curated-onchain-v1 › Develp › Develp GmbH</td><td class="num">251,424</td><td class="num">253,440</td></tr><tr><td>Lido › curated-onchain-v1 › Blockscape › Blockscape</td><td class="num">253,440</td><td class="num">253,440</td></tr><tr><td>Lido › curated-onchain-v1 › DSRV › DSRV</td><td class="num">253,440</td><td class="num">253,440</td></tr><tr><td>Lido › curated-onchain-v1 › Staking Facilities › Staking Facilities</td><td class="num">241,536</td><td class="num">253,440</td></tr><tr><td>Lido › curated-onchain-v1 › Allnodes › Allnodes</td><td class="num">253,440</td><td class="num">253,440</td></tr><tr><td>Lido › curated-onchain-v1 › Figment › Figment</td><td class="num">253,440</td><td class="num">253,440</td></tr><tr><td>Lido › curated-onchain-v1 › Solstice › Solstice</td><td class="num">253,440</td><td class="num">253,440</td></tr><tr><td>Lido › curated-onchain-v1 › InfStones › InfStones</td><td class="num">247,680</td><td class="num">253,440</td></tr><tr><td>Lido › curated-onchain-v1 › Galaxy › Galaxy</td><td class="num">253,440</td><td class="num">253,440</td></tr><tr><td>Lido › curated-onchain-v1 › ChainSafe › ChainSafe</td><td class="num">253,440</td><td class="num">253,440</td></tr><tr><td>Lido › curated-onchain-v1 › Gateway.fm AS › Gateway.fm AS</td><td class="num">251,392</td><td class="num">253,408</td></tr><tr><td>Lido › curated-onchain-v1 › ParaFi Technologies › ParaFi Technologies LLC</td><td class="num">251,424</td><td class="num">253,408</td></tr></tbody></table></div><p class="muted">and 743 more (boxes.csv).</p>
+</main>
+</body>
+</html>

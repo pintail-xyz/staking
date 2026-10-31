@@ -1,0 +1,76 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>0222-hashkey-exchange-staking: HashKey Exchange&#x27;s staking: validators deposited by the cold wallet HashKey named, withdrawing to an address that sweep</title>
+<style>
+:root { color-scheme: light; --surface-0: #f4f3f0; --surface-1: #fcfcfb; --border: #d9d8d3; --text-primary: #0b0b0b;
+        --text-secondary: #52514e; --text-muted: #77766f; --accent: #2a78d6; --chip: #ebe9e4; }
+@media (prefers-color-scheme: dark) {
+  :root:where(:not([data-theme="light"])) { color-scheme: dark; --surface-0: #121211; --surface-1: #1a1a19;
+    --border: #3a3a37; --text-primary: #f0efec; --text-secondary: #c3c2b7; --text-muted: #96958c; --accent: #3987e5;
+    --chip: #2a2a28; }
+}
+:root[data-theme="dark"] { color-scheme: dark; --surface-0: #121211; --surface-1: #1a1a19; --border: #3a3a37;
+  --text-primary: #f0efec; --text-secondary: #c3c2b7; --text-muted: #96958c; --accent: #3987e5; --chip: #2a2a28; }
+* { box-sizing: border-box; }
+body { margin: 0; background: var(--surface-0); color: var(--text-primary);
+       font: 15px/1.55 system-ui, -apple-system, "Segoe UI", sans-serif; }
+main { max-width: 860px; margin: 0 auto; padding: 32px 16px 64px; }
+a { color: var(--accent); }
+h1 { font-size: 22px; line-height: 1.3; font-weight: 600; margin: 4px 0 12px; }
+h2 { font-size: 15px; font-weight: 600; margin: 28px 0 8px; color: var(--text-secondary);
+     text-transform: uppercase; letter-spacing: 0.04em; }
+p { margin: 0 0 12px; }
+.crumbs { font-size: 13px; color: var(--text-muted); }
+.lede { font-size: 17px; }
+.muted { color: var(--text-muted); }
+.chip { display: inline-block; padding: 1px 8px; border-radius: 10px; background: var(--chip); font-size: 12px;
+        color: var(--text-secondary); margin-right: 4px; white-space: nowrap; }
+.card { background: var(--surface-1); border: 1px solid var(--border); border-radius: 6px; padding: 14px 16px;
+        margin: 0 0 12px; }
+.stats { display: flex; flex-wrap: wrap; gap: 12px; margin: 16px 0; }
+.stat { background: var(--surface-1); border: 1px solid var(--border); border-radius: 6px; padding: 10px 14px;
+        min-width: 140px; }
+.stat b { display: block; font-size: 20px; font-variant-numeric: tabular-nums; }
+.stat span { font-size: 12px; color: var(--text-muted); }
+ul.grounds { list-style: none; padding: 0; margin: 0; }
+ul.grounds li { padding: 6px 0; border-bottom: 1px solid var(--border); }
+ul.grounds li:last-child { border-bottom: 0; }
+table { width: 100%; border-collapse: collapse; background: var(--surface-1); font-size: 14px; }
+th, td { text-align: left; padding: 7px 8px; border-bottom: 1px solid var(--border); vertical-align: top; }
+th { font-weight: 600; color: var(--text-secondary); cursor: pointer; white-space: nowrap; user-select: none; }
+td.num, th.num { text-align: right; font-variant-numeric: tabular-nums; white-space: nowrap; }
+code, .mono { font: 12.5px ui-monospace, SFMono-Regular, Menlo, monospace; word-break: break-all; }
+details summary { cursor: pointer; color: var(--accent); }
+.excerpt { border-left: 3px solid var(--border); padding: 2px 0 2px 10px; color: var(--text-secondary);
+           font-size: 14px; white-space: pre-wrap; }
+input[type=search] { width: 100%; padding: 8px 10px; font: inherit; border: 1px solid var(--border);
+                     border-radius: 6px; background: var(--surface-1); color: var(--text-primary); margin: 8px 0 12px; }
+.table-wrap { overflow-x: auto; }
+@media (max-width: 640px) { .hide-sm { display: none; } }
+</style>
+<script data-goatcounter="https://pintail.goatcounter.com/count" async src="https://gc.zgo.at/count.js"></script>
+</head>
+<body>
+<main>
+<p class="crumbs"><a href="../">Dataset</a> › <a href="./">Decisions</a> › 0222-hashkey-exchange-staking</p>
+<h1>HashKey Exchange&#x27;s staking: validators deposited by the cold wallet HashKey named, withdrawing to an address that sweeps its rewards back to it.</h1>
+<p><span class="chip">Attribution</span><span class="chip">Allocator</span> <a href="../entities/hashkey-exchange.html">HashKey Exchange staking</a> <span class="muted">· decided 2026-10-26</span></p>
+<p class="lede">Validators withdrawing to 0x7317…89e9 are HashKey Exchange&#x27;s staking.</p>
+<div class="stats"><div class="stat"><b>88</b><span>validators resting on it now</span></div><div class="stat"><b>7,066</b><span>ETH now</span></div><div class="stat"><b>8,810</b><span>ETH at its peak</span></div></div>
+<h2>Grounds</h2><div class="card"><ul class="grounds"><li><span class="chip">First party</span>HashKey staff named 0xee1b HashKey Exchange&#x27;s second ETH cold wallet (DefiLlama PR 13793)</li><li><span class="chip">On chain</span>0xee1b sent all 140 deposits of the validators withdrawing to 0x7317 (March-October 2026)</li><li><span class="chip">On chain</span>0x7317 is their fee recipient, sweeps their rewards back to 0xee1b and requests their exits itself</li></ul></div>
+<h2>Explanation</h2><p>Validators withdrawing to 0x7317…89e9 are the staking of HashKey Exchange, the Hong Kong exchange, with HashKey Exchange as allocator. 140 compounding validators were deposited between March and October 2026; 88 were active in October 2026 with about 7,000 ETH.</p>
+<p><strong>The anchor.</strong> In <a href="https://github.com/DefiLlama/DefiLlama-Adapters/pull/13793">a change to DefiLlama&#x27;s adapter for HashKey Exchange</a>, merged in March 2025, a HashKey employee, whose public profile shows a hashkey.com email address, added 0xee1b…7ad9 as HashKey Exchange&#x27;s second ETH cold wallet, citing the transfer of 65,340 ETH to it from the first.</p>
+<p><strong>On chain.</strong> That cold wallet sent all 140 deposits of the validators withdrawing to 0x7317…89e9, and no other deposits came from it, from the first cold wallet or from the withdrawal address. The withdrawal address is the fee recipient of all their blocks, has swept 4,732 ETH of rewards back to the cold wallet, and has itself sent 35 exit and partial-withdrawal requests: whoever holds it runs the stake and returns its rewards to HashKey&#x27;s cold wallet.</p>
+<p><strong>The operator.</strong> The blocks carry only client tags, so no operator is recorded. HashKey Cloud, HashKey Group&#x27;s staking business, <a href="https://www.hashkey.cloud/newsroom/hashkey-cloud-launches-etf-staking-pro-supporting-asias-first-ethereum-spot-etfs-to-pioneer-a-new-era-of-on-chain-finance">says it runs staking for an Ethereum ETF</a> with HashKey Exchange as custodian; some of this stake may be the ETF&#x27;s, held by HashKey Exchange, which chose how to stake it either way. The decision would change with evidence that the withdrawal address holds a client&#x27;s ETH under another allocator, or a HashKey statement that the cold wallet is not its own.</p>
+<h2>What would change it</h2><p>Evidence that 0x7317 holds a client&#x27;s ETH under another allocator, or a HashKey statement that 0xee1b is not its wallet.</p>
+<h2>Evidence</h2><p class="muted">Transactions and contract calls anyone can repeat on their own node.</p><div class="card"><ul class="grounds"><li><a class="mono" href="https://etherscan.io/tx/0x56f65b9ed6732677a0d7e2645a8cd28bbe994a9b9c6e39b50ca1ac4f1dfb2ed1">0x56f65b9e…1dfb2ed1</a> — HashKey&#x27;s cold wallet 1 sends 65,340 ETH to cold wallet 2 (0xee1b), cited in DefiLlama PR 13793</li><li><a class="mono" href="https://etherscan.io/tx/0x8ae81fde5c66183e5bf75f60948e7ee847756de2c9b2abb0d0e5fbdada602ffb">0x8ae81fde…da602ffb</a> — 0xee1b&#x27;s first validator deposit, withdrawing to 0x7317, 25 March 2026</li></ul></div>
+<h2>Sources</h2><div class="card"><a href="https://github.com/DefiLlama/DefiLlama-Adapters/pull/13793">Update HashKey Exchange Ethereum ETH Cold Wallet Address (PR #13793, commit 83d45bb, merged 10 March 2025)</a><div class="muted" style="font-size:13px">HashKey staff, via DefiLlama/DefiLlama-Adapters on GitHub · the entity&#x27;s own · retrieved 2026-10-26</div><p class="excerpt">The cold wallet changed a new address and transferred 60,000+ ETH [...] &quot;0x7ffbafdc1e4f0a4b97130b075fb4a25f807a1807&quot;, // cold 1 &quot;0xee1bf4d7c53af2beafc7dc1dcea222a8c6d87ad9&quot;, // cold 2</p><div class="muted mono">sha256 5655b7485e58acea9657ae0e4b9fdecee972dd439ae1fc569e50940c4ce02664</div></div><div class="card"><a href="https://www.hashkey.cloud/newsroom/hashkey-cloud-launches-etf-staking-pro-supporting-asias-first-ethereum-spot-etfs-to-pioneer-a-new-era-of-on-chain-finance">HashKey Cloud Launches ETF Staking Pro, Supporting Asia&#x27;s First Ethereum Spot ETFs (2025-04-15)</a><div class="muted" style="font-size:13px">HashKey Cloud · the entity&#x27;s own · retrieved 2026-10-26</div><p class="excerpt">HashKey Cloud, with the support of HashKey Exchange, enables the ETF to offer secure and compliant staking services. [...] Funds are managed throughout the process by regulated custodians (such as HashKey Exchange)</p><div class="muted mono">sha256 58f9118984bb66efa79793ec5895cf6d04df2fd2a20b8ac790bc500954755fce</div></div>
+<h2>Leads</h2><p class="muted">Third-party pages, such as explorer labels, that pointed the research but are not relied on.</p><ul><li><a href="https://github.com/duneanalytics/spellbook/blob/9f61b0dd2bba5a8314d0f36eca1419da5d25ac97/dbt_subprojects/hourly_spellbook/models/_sector/cex/addresses/chains/cex_evms_addresses.sql">cex_evms_addresses.sql, commit 9f61b0d</a></li></ul>
+<h2>Treemap boxes resting on it</h2><div class="table-wrap"><table><thead><tr><th>Box</th><th class="num">ETH now</th><th class="num">Peak ETH</th></tr></thead><tbody><tr><td>HashKey Exchange › HashKey Exchange staking › Withdraws to 0x7317…89e9</td><td class="num">7,066</td><td class="num">8,810</td></tr></tbody></table></div>
+<h2>Targets (1)</h2><details open><summary>The addresses or validators this decision covers</summary><ul style="list-style:none;padding:0"><li><span class="chip">withdrawal address</span><a class="mono" href="https://etherscan.io/address/0x73174028c2e0e9fec19faed6ee64897985f889e9">0x73174028c2e0e9fec19faed6ee64897985f889e9</a></li></ul></details>
+</main>
+</body>
+</html>

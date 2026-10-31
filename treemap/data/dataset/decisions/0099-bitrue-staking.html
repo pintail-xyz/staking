@@ -1,0 +1,77 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>0099-bitrue-staking: Validators deposited by and withdrawing to an address funded only by Bitrue&#x27;s hot wallet, which took over from the wallet that fu</title>
+<style>
+:root { color-scheme: light; --surface-0: #f4f3f0; --surface-1: #fcfcfb; --border: #d9d8d3; --text-primary: #0b0b0b;
+        --text-secondary: #52514e; --text-muted: #77766f; --accent: #2a78d6; --chip: #ebe9e4; }
+@media (prefers-color-scheme: dark) {
+  :root:where(:not([data-theme="light"])) { color-scheme: dark; --surface-0: #121211; --surface-1: #1a1a19;
+    --border: #3a3a37; --text-primary: #f0efec; --text-secondary: #c3c2b7; --text-muted: #96958c; --accent: #3987e5;
+    --chip: #2a2a28; }
+}
+:root[data-theme="dark"] { color-scheme: dark; --surface-0: #121211; --surface-1: #1a1a19; --border: #3a3a37;
+  --text-primary: #f0efec; --text-secondary: #c3c2b7; --text-muted: #96958c; --accent: #3987e5; --chip: #2a2a28; }
+* { box-sizing: border-box; }
+body { margin: 0; background: var(--surface-0); color: var(--text-primary);
+       font: 15px/1.55 system-ui, -apple-system, "Segoe UI", sans-serif; }
+main { max-width: 860px; margin: 0 auto; padding: 32px 16px 64px; }
+a { color: var(--accent); }
+h1 { font-size: 22px; line-height: 1.3; font-weight: 600; margin: 4px 0 12px; }
+h2 { font-size: 15px; font-weight: 600; margin: 28px 0 8px; color: var(--text-secondary);
+     text-transform: uppercase; letter-spacing: 0.04em; }
+p { margin: 0 0 12px; }
+.crumbs { font-size: 13px; color: var(--text-muted); }
+.lede { font-size: 17px; }
+.muted { color: var(--text-muted); }
+.chip { display: inline-block; padding: 1px 8px; border-radius: 10px; background: var(--chip); font-size: 12px;
+        color: var(--text-secondary); margin-right: 4px; white-space: nowrap; }
+.card { background: var(--surface-1); border: 1px solid var(--border); border-radius: 6px; padding: 14px 16px;
+        margin: 0 0 12px; }
+.stats { display: flex; flex-wrap: wrap; gap: 12px; margin: 16px 0; }
+.stat { background: var(--surface-1); border: 1px solid var(--border); border-radius: 6px; padding: 10px 14px;
+        min-width: 140px; }
+.stat b { display: block; font-size: 20px; font-variant-numeric: tabular-nums; }
+.stat span { font-size: 12px; color: var(--text-muted); }
+ul.grounds { list-style: none; padding: 0; margin: 0; }
+ul.grounds li { padding: 6px 0; border-bottom: 1px solid var(--border); }
+ul.grounds li:last-child { border-bottom: 0; }
+table { width: 100%; border-collapse: collapse; background: var(--surface-1); font-size: 14px; }
+th, td { text-align: left; padding: 7px 8px; border-bottom: 1px solid var(--border); vertical-align: top; }
+th { font-weight: 600; color: var(--text-secondary); cursor: pointer; white-space: nowrap; user-select: none; }
+td.num, th.num { text-align: right; font-variant-numeric: tabular-nums; white-space: nowrap; }
+code, .mono { font: 12.5px ui-monospace, SFMono-Regular, Menlo, monospace; word-break: break-all; }
+details summary { cursor: pointer; color: var(--accent); }
+.excerpt { border-left: 3px solid var(--border); padding: 2px 0 2px 10px; color: var(--text-secondary);
+           font-size: 14px; white-space: pre-wrap; }
+input[type=search] { width: 100%; padding: 8px 10px; font: inherit; border: 1px solid var(--border);
+                     border-radius: 6px; background: var(--surface-1); color: var(--text-primary); margin: 8px 0 12px; }
+.table-wrap { overflow-x: auto; }
+@media (max-width: 640px) { .hide-sm { display: none; } }
+</style>
+<script data-goatcounter="https://pintail.goatcounter.com/count" async src="https://gc.zgo.at/count.js"></script>
+</head>
+<body>
+<main>
+<p class="crumbs"><a href="../">Dataset</a> › <a href="./">Decisions</a> › 0099-bitrue-staking</p>
+<h1>Validators deposited by and withdrawing to an address funded only by Bitrue&#x27;s hot wallet, which took over from the wallet that funded Bitrue&#x27;s published insurance wallet, are Bitrue&#x27;s staking.</h1>
+<p><span class="chip">Attribution</span><span class="chip">Allocator</span> <a href="../entities/bitrue.html">Bitrue staking</a> <span class="muted">· decided 2026-10-17</span></p>
+<p class="lede">Validators withdrawing to, or deposited by, this address are Bitrue&#x27;s staking.</p>
+<div class="stats"><div class="stat"><b>116</b><span>validators resting on it now</span></div><div class="stat"><b>3,712</b><span>ETH now</span></div><div class="stat"><b>6,112</b><span>ETH at its peak</span></div></div>
+<h2>Grounds</h2><div class="card"><ul class="grounds"><li><span class="chip">First party</span>The wallet that funded Bitrue&#x27;s published insurance wallet handed over to a new hot wallet during Bitrue&#x27;s announced address change</li><li><span class="chip">On chain</span>That new hot wallet supplied all the ETH this address deposited</li><li><span class="chip">On chain</span>Its withdrawals go to a wallet that pays only that hot wallet</li></ul></div>
+<h2>Explanation</h2><p>Validators deposited by and withdrawing to 0x4fd7…717d are the staking of Bitrue, the exchange, with Bitrue as allocator. The address sent the deposits of 302 validators between June 2023 and August 2026, all with itself as withdrawal address, and no one else has deposited to it; 116 were active in October 2026. The stake is Bitrue&#x27;s customers&#x27;.</p>
+<p><strong>What Bitrue published.</strong> Bitrue&#x27;s help centre names its insurance fund&#x27;s Ethereum wallet (<a href="https://support.bitrue.com/hc/en-001/articles/360049715433-Bitrue-s-New-Insurance-Wallet-Is-Live">June 2020</a>, and again in <a href="https://support.bitrue.com/hc/en-001/articles/12425985186073-Bitrue-s-Statement-on-Transparency">its statement on transparency of November 2022</a>), and <a href="https://support.bitrue.com/hc/en-001/articles/360052551853-All-Our-ERC20-Wallet-Addresses-Will-Change-On-August-5th">announced that all its ERC-20 deposit addresses would change</a> during maintenance on 5 August 2020, between 04:00 and 12:00 UTC.</p>
+<p><strong>The hot wallets.</strong> The insurance wallet was funded in June 2020 by 0x3487…d13e, an exchange hot wallet. On 5 August 2020, inside the announced maintenance window, a new wallet, 0x6cc8…fd21, received its first ETH from 0x3487…d13e; within two hours it was receiving customer funds, while 0x3487…d13e&#x27;s traffic fell sharply and stopped by January 2021. The two wallets share over 700 counterparties: the same customers. 0x6cc8…fd21 supplied all the ETH that 0x4fd7…717d deposited, and 0x4fd7…717d sends its withdrawals to two wallets that pay only 0x6cc8…fd21.</p>
+<p>So the stake is funded by, and returns to, the hot wallet Bitrue switched to on 5 August 2020. No operator is recorded.</p>
+<p><strong>Limits.</strong> The hot wallet is tied to Bitrue by its funding of Bitrue&#x27;s published insurance wallet and by the timing of the switch, not by name. A community-maintained tracker listing these wallets as Bitrue&#x27;s is recorded as a lead. The decision would change with a Bitrue statement contradicting it, or evidence that the address or its funding wallet holds ETH for a client.</p>
+<h2>What would change it</h2><p>A Bitrue statement contradicting it, or evidence that the address or its funding wallet holds ETH for a client.</p>
+<h2>Evidence</h2><p class="muted">Transactions and contract calls anyone can repeat on their own node.</p><div class="card"><ul class="grounds"><li><a class="mono" href="https://etherscan.io/tx/0xe2d8cfcf10af28dd0fa52ad6e91088e28f37c4fa70941ccfce26133539b529da">0xe2d8cfcf…39b529da</a> — 0x3487…d13e funds Bitrue&#x27;s published insurance wallet 0xf306…f184 (0.1 ETH, 2020-06-10)</li><li><a class="mono" href="https://etherscan.io/tx/0xacb90f0814ec5c41a953e3d969dbc07f48646c33fc93f2c8500304e73bfe0e2f">0xacb90f08…3bfe0e2f</a> — 0x3487…d13e funds the insurance wallet again (1.994 ETH, 2020-06-18)</li><li><a class="mono" href="https://etherscan.io/tx/0xf41e435b3ab24015fe184e3407515fbdfc8b8cfe034c2668571867538f217a3a">0xf41e435b…8f217a3a</a> — First transaction of hot wallet 0x6cc8…fd21, from 0x3487, at 05:36 UTC on 5 August 2020, during Bitrue&#x27;s announced wallet change</li><li><a class="mono" href="https://etherscan.io/tx/0x569f367cad7b39d4f4aa0e9fac28e8ab1f6163547afd69f8210e58473bd40b1d">0x569f367c…3bd40b1d</a> — 0x3487 moves 310 ETH to 0x6cc8 the same morning</li><li><a class="mono" href="https://etherscan.io/tx/0x92e89ae4368b7153e278747615e0f52f2bfd7c33ddf967238210f719bf8507dc">0x92e89ae4…bf8507dc</a> — 0x6cc8 first funds this address (2023-06-02); it sent all 9,354 ETH the address received</li><li><a class="mono" href="https://etherscan.io/tx/0x01ff3987be44cd2389b58b29224e23f90e303e8697ac5d7c1afed77980db9215">0x01ff3987…80db9215</a> — This address sends withdrawals to 0x795b…dd40 (17.9 ETH)</li><li><a class="mono" href="https://etherscan.io/tx/0x875f7cff691fc8c816350e9c83e653ebc473ce6570b4dabe71e38ecbf2d32a4c">0x875f7cff…f2d32a4c</a> — 0x795b pays 0x6cc8, its only destination (first of 443 transfers, 60,608 ETH)</li></ul></div>
+<h2>Sources</h2><div class="card"><a href="https://support.bitrue.com/hc/en-001/articles/360049715433-Bitrue-s-New-Insurance-Wallet-Is-Live">Bitrue&#x27;s New Insurance Wallet Is Live (5 June 2020)</a><div class="muted" style="font-size:13px">Bitrue (help centre) · the entity&#x27;s own · retrieved 2026-10-21</div><p class="excerpt">We are the first exchange to keep these addresses open for public viewing [...] Token Amount Address XRP 25,000,000 Bithomp BTR 40,000,000 Etherscan</p><div class="muted mono">sha256 f0fa2da4fdcc44dfc547bcbe90f988dd61d5d6371295f9e239e9e0ac7d01a4ab</div></div><div class="card"><a href="https://support.bitrue.com/hc/en-001/articles/12425985186073-Bitrue-s-Statement-on-Transparency">Bitrue&#x27;s Statement on Transparency (12 November 2022)</a><div class="muted" style="font-size:13px">Bitrue (help centre) · the entity&#x27;s own · retrieved 2026-10-21</div><p class="excerpt">For the sake of transparency, we have made public the addresses of the insurance fund here: https://bithomp.com/explorer/rNYW2bie6KwUSYhhtcnXWzRy5nLCa1UNCn and https://etherscan.io/address/0xf306f253dc042d88f83a49003a931c45b8e6f184</p><div class="muted mono">sha256 4933b120c14ed7a204bcd986a2891df1fb71a910e44b35819319e601ac723cd8</div></div><div class="card"><a href="https://support.bitrue.com/hc/en-001/articles/360052551853-All-Our-ERC20-Wallet-Addresses-Will-Change-On-August-5th">All Our ERC20 Wallet Addresses Will Change On August 5th (3 August 2020)</a><div class="muted" style="font-size:13px">Bitrue (help centre) · the entity&#x27;s own · retrieved 2026-10-21</div><p class="excerpt">On Wednesday August 5th at 04:00am (UTC) we plan to perform some important maintenance on our ETH Ethereum wallet. [...] We anticipate that the maintenance will take approximately 8 hours to complete, ending at 12:00pm. [...] Once the maintenance period has been completed, all addresses for ERC20 token wallets will have changed.</p><div class="muted mono">sha256 02b9f0bab7c2d1448c6c3f9b7ce33bb63217d0f91226a5d70cc086f1fa8a3cad</div></div>
+<h2>Leads</h2><p class="muted">Third-party pages, such as explorer labels, that pointed the research but are not relied on.</p><ul><li><a href="https://github.com/DefiLlama/DefiLlama-Adapters/blob/c25980b9679d586ba5e37eb6d257fd4a3fef7b82/projects/bitrue-cex/index.js">projects/bitrue-cex/index.js (commit c25980b): Bitrue&#x27;s reserve addresses</a></li></ul>
+<h2>Treemap boxes resting on it</h2><div class="table-wrap"><table><thead><tr><th>Box</th><th class="num">ETH now</th><th class="num">Peak ETH</th></tr></thead><tbody><tr><td>Bitrue › Bitrue staking › Withdraws to 0x4fd7…717d</td><td class="num">3,712</td><td class="num">6,112</td></tr></tbody></table></div>
+<h2>Targets (1)</h2><details open><summary>The addresses or validators this decision covers</summary><ul style="list-style:none;padding:0"><li><span class="chip">withdrawal address</span><a class="mono" href="https://etherscan.io/address/0x4fd797f0cc7c87b1b48b0a0db6b66db63780717d">0x4fd797f0cc7c87b1b48b0a0db6b66db63780717d</a></li></ul></details>
+</main>
+</body>
+</html>

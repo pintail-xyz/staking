@@ -1,0 +1,75 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>0126-bitget-staking: This address deposits validators to itself, funded 32 ETH at a time by one wallet, and most of its validators sign &quot;Bitget&quot;: it i</title>
+<style>
+:root { color-scheme: light; --surface-0: #f4f3f0; --surface-1: #fcfcfb; --border: #d9d8d3; --text-primary: #0b0b0b;
+        --text-secondary: #52514e; --text-muted: #77766f; --accent: #2a78d6; --chip: #ebe9e4; }
+@media (prefers-color-scheme: dark) {
+  :root:where(:not([data-theme="light"])) { color-scheme: dark; --surface-0: #121211; --surface-1: #1a1a19;
+    --border: #3a3a37; --text-primary: #f0efec; --text-secondary: #c3c2b7; --text-muted: #96958c; --accent: #3987e5;
+    --chip: #2a2a28; }
+}
+:root[data-theme="dark"] { color-scheme: dark; --surface-0: #121211; --surface-1: #1a1a19; --border: #3a3a37;
+  --text-primary: #f0efec; --text-secondary: #c3c2b7; --text-muted: #96958c; --accent: #3987e5; --chip: #2a2a28; }
+* { box-sizing: border-box; }
+body { margin: 0; background: var(--surface-0); color: var(--text-primary);
+       font: 15px/1.55 system-ui, -apple-system, "Segoe UI", sans-serif; }
+main { max-width: 860px; margin: 0 auto; padding: 32px 16px 64px; }
+a { color: var(--accent); }
+h1 { font-size: 22px; line-height: 1.3; font-weight: 600; margin: 4px 0 12px; }
+h2 { font-size: 15px; font-weight: 600; margin: 28px 0 8px; color: var(--text-secondary);
+     text-transform: uppercase; letter-spacing: 0.04em; }
+p { margin: 0 0 12px; }
+.crumbs { font-size: 13px; color: var(--text-muted); }
+.lede { font-size: 17px; }
+.muted { color: var(--text-muted); }
+.chip { display: inline-block; padding: 1px 8px; border-radius: 10px; background: var(--chip); font-size: 12px;
+        color: var(--text-secondary); margin-right: 4px; white-space: nowrap; }
+.card { background: var(--surface-1); border: 1px solid var(--border); border-radius: 6px; padding: 14px 16px;
+        margin: 0 0 12px; }
+.stats { display: flex; flex-wrap: wrap; gap: 12px; margin: 16px 0; }
+.stat { background: var(--surface-1); border: 1px solid var(--border); border-radius: 6px; padding: 10px 14px;
+        min-width: 140px; }
+.stat b { display: block; font-size: 20px; font-variant-numeric: tabular-nums; }
+.stat span { font-size: 12px; color: var(--text-muted); }
+ul.grounds { list-style: none; padding: 0; margin: 0; }
+ul.grounds li { padding: 6px 0; border-bottom: 1px solid var(--border); }
+ul.grounds li:last-child { border-bottom: 0; }
+table { width: 100%; border-collapse: collapse; background: var(--surface-1); font-size: 14px; }
+th, td { text-align: left; padding: 7px 8px; border-bottom: 1px solid var(--border); vertical-align: top; }
+th { font-weight: 600; color: var(--text-secondary); cursor: pointer; white-space: nowrap; user-select: none; }
+td.num, th.num { text-align: right; font-variant-numeric: tabular-nums; white-space: nowrap; }
+code, .mono { font: 12.5px ui-monospace, SFMono-Regular, Menlo, monospace; word-break: break-all; }
+details summary { cursor: pointer; color: var(--accent); }
+.excerpt { border-left: 3px solid var(--border); padding: 2px 0 2px 10px; color: var(--text-secondary);
+           font-size: 14px; white-space: pre-wrap; }
+input[type=search] { width: 100%; padding: 8px 10px; font: inherit; border: 1px solid var(--border);
+                     border-radius: 6px; background: var(--surface-1); color: var(--text-primary); margin: 8px 0 12px; }
+.table-wrap { overflow-x: auto; }
+@media (max-width: 640px) { .hide-sm { display: none; } }
+</style>
+<script data-goatcounter="https://pintail.goatcounter.com/count" async src="https://gc.zgo.at/count.js"></script>
+</head>
+<body>
+<main>
+<p class="crumbs"><a href="../">Dataset</a> › <a href="./">Decisions</a> › 0126-bitget-staking</p>
+<h1>This address deposits validators to itself, funded 32 ETH at a time by one wallet, and most of its validators sign &quot;Bitget&quot;: it is Bitget&#x27;s staking.</h1>
+<p><span class="chip">Attribution</span><span class="chip">Allocator</span> <a href="../entities/bitget.html">Bitget staking</a> <span class="muted">· decided 2026-10-20</span></p>
+<p class="lede">Validators withdrawing to this address are Bitget&#x27;s staking.</p>
+<div class="stats"><div class="stat"><b>842</b><span>validators resting on it now</span></div><div class="stat"><b>26,944</b><span>ETH now</span></div><div class="stat"><b>30,176</b><span>ETH at its peak</span></div></div>
+<h2>Grounds</h2><div class="card"><ul class="grounds"><li><span class="chip">On chain</span>It deposits all its validators to itself, and 761 of the 906 that have proposed signed &quot;Bitget&quot; (until slot 12,410,001)</li><li><span class="chip">On chain</span>One wallet funded it with 884 transfers of exactly 32 ETH, and it pays withdrawals back to that wallet</li></ul></div>
+<h2>Explanation</h2><p>Validators withdrawing to 0x1d5b…00dc are the staking of Bitget, the exchange, with Bitget as allocator. 944 validators were deposited between July 2023 and April 2025; 842 were active in October 2026 with about 27k ETH.</p>
+<p><strong>The address.</strong> It sent every deposit itself, directly to the deposit contract, with itself as withdrawal address. One wallet funded it with 884 transfers of exactly 32 ETH from January 2024, and since June 2025 it has paid withdrawals back to that wallet. It is its validators&#x27; own fee recipient.</p>
+<p><strong>The graffiti.</strong> Of the 906 validators that have proposed a block, 761 signed &quot;Bitget&quot; at least once, on 1,889 blocks up to slot 12,410,001; later blocks carry no name. The rest signed only client version strings or left their blocks blank. An exchange&#x27;s wallet depositing to itself, with its validators signing the exchange&#x27;s name for over a year, makes Bitget the allocator and probably the operator, although no operator is recorded.</p>
+<p><strong>Limits.</strong> Graffiti is chosen by whoever runs a validator, and anyone could type a name; every validator withdrawing to the address is taken to be Bitget&#x27;s, including those that never signed it. Bitget&#x27;s proof-of-reserves data gives totals by coin and chain only, with no wallet addresses, so it can neither confirm nor contradict this. Explorer labels and community label sets are recorded as leads. The decision would change with a Bitget statement contradicting it, or evidence that the wallet holds ETH for a client or stakes through a provider.</p>
+<h2>What would change it</h2><p>A Bitget statement contradicting it, or evidence that the wallet stakes for a client or through a provider.</p>
+<h2>Evidence</h2><p class="muted">Transactions and contract calls anyone can repeat on their own node.</p><div class="card"><ul class="grounds"><li><a class="mono" href="https://etherscan.io/tx/0x9383ce2e762b4a8916835b87f0605f4d142760d1249571c6979c23dcb42bb06e">0x9383ce2e…b42bb06e</a> — First deposit, from 0x1d5b to itself</li><li><a class="mono" href="https://etherscan.io/tx/0x41e45da7fd89b673425a500d3f7d8f9aed9205457319368840039c34e826d575">0x41e45da7…e826d575</a> — Bitget: Hot Wallet sends 32 ETH to 0x1d5b (first)</li><li><a class="mono" href="https://etherscan.io/tx/0xad69fea9e3cf2e4e1a4154f845db57f0bb48f575951145d6f14e6933e716e191">0xad69fea9…e716e191</a> — 0x1d5b sends 193 ETH to Bitget: Hot Wallet</li></ul></div>
+<h2>Leads</h2><p class="muted">Third-party pages, such as explorer labels, that pointed the research but are not relied on.</p><ul><li><a href="https://etherscan.io/address/0x1d5ba5414f2983212e03bf7725add9eb4cdb00dc">Etherscan address page</a></li><li><a href="https://metadata.services.blockscout.com/api/v1/metadata?chainId=1&amp;addresses=0x1d5ba5414f2983212e03bf7725add9eb4cdb00dc,0x1ab4973a48dc892cd9971ece8e01dcc7688f8f23">Blockscout address page</a></li><li><a href="https://github.com/duneanalytics/spellbook/blob/e5b41162a270135790f5f39491f9677360a6adb0/dbt_subprojects/hourly_spellbook/models/_sector/staking/ethereum/entities/staking_ethereum_entities_depositor_addresses.sql">staking_ethereum_entities_depositor_addresses.sql</a></li></ul>
+<h2>Treemap boxes resting on it</h2><div class="table-wrap"><table><thead><tr><th>Box</th><th class="num">ETH now</th><th class="num">Peak ETH</th></tr></thead><tbody><tr><td>Bitget › Bitget staking › Withdraws to 0x1d5b…00dc</td><td class="num">26,944</td><td class="num">30,176</td></tr></tbody></table></div>
+<h2>Targets (1)</h2><details open><summary>The addresses or validators this decision covers</summary><ul style="list-style:none;padding:0"><li><span class="chip">withdrawal address</span><a class="mono" href="https://etherscan.io/address/0x1d5ba5414f2983212e03bf7725add9eb4cdb00dc">0x1d5ba5414f2983212e03bf7725add9eb4cdb00dc</a></li></ul></details>
+</main>
+</body>
+</html>

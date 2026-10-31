@@ -1,0 +1,99 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>OKX: roles in the validator set</title>
+<style>
+:root { color-scheme: light; --surface-0: #f4f3f0; --surface-1: #fcfcfb; --border: #d9d8d3; --text-primary: #0b0b0b;
+        --text-secondary: #52514e; --text-muted: #77766f; --accent: #2a78d6; --chip: #ebe9e4; }
+@media (prefers-color-scheme: dark) {
+  :root:where(:not([data-theme="light"])) { color-scheme: dark; --surface-0: #121211; --surface-1: #1a1a19;
+    --border: #3a3a37; --text-primary: #f0efec; --text-secondary: #c3c2b7; --text-muted: #96958c; --accent: #3987e5;
+    --chip: #2a2a28; }
+}
+:root[data-theme="dark"] { color-scheme: dark; --surface-0: #121211; --surface-1: #1a1a19; --border: #3a3a37;
+  --text-primary: #f0efec; --text-secondary: #c3c2b7; --text-muted: #96958c; --accent: #3987e5; --chip: #2a2a28; }
+* { box-sizing: border-box; }
+body { margin: 0; background: var(--surface-0); color: var(--text-primary);
+       font: 15px/1.55 system-ui, -apple-system, "Segoe UI", sans-serif; }
+main { max-width: 860px; margin: 0 auto; padding: 32px 16px 64px; }
+a { color: var(--accent); }
+h1 { font-size: 22px; line-height: 1.3; font-weight: 600; margin: 4px 0 12px; }
+h2 { font-size: 15px; font-weight: 600; margin: 28px 0 8px; color: var(--text-secondary);
+     text-transform: uppercase; letter-spacing: 0.04em; }
+p { margin: 0 0 12px; }
+.crumbs { font-size: 13px; color: var(--text-muted); }
+.lede { font-size: 17px; }
+.muted { color: var(--text-muted); }
+.chip { display: inline-block; padding: 1px 8px; border-radius: 10px; background: var(--chip); font-size: 12px;
+        color: var(--text-secondary); margin-right: 4px; white-space: nowrap; }
+.card { background: var(--surface-1); border: 1px solid var(--border); border-radius: 6px; padding: 14px 16px;
+        margin: 0 0 12px; }
+.stats { display: flex; flex-wrap: wrap; gap: 12px; margin: 16px 0; }
+.stat { background: var(--surface-1); border: 1px solid var(--border); border-radius: 6px; padding: 10px 14px;
+        min-width: 140px; }
+.stat b { display: block; font-size: 20px; font-variant-numeric: tabular-nums; }
+.stat span { font-size: 12px; color: var(--text-muted); }
+ul.grounds { list-style: none; padding: 0; margin: 0; }
+ul.grounds li { padding: 6px 0; border-bottom: 1px solid var(--border); }
+ul.grounds li:last-child { border-bottom: 0; }
+table { width: 100%; border-collapse: collapse; background: var(--surface-1); font-size: 14px; }
+th, td { text-align: left; padding: 7px 8px; border-bottom: 1px solid var(--border); vertical-align: top; }
+th { font-weight: 600; color: var(--text-secondary); cursor: pointer; white-space: nowrap; user-select: none; }
+td.num, th.num { text-align: right; font-variant-numeric: tabular-nums; white-space: nowrap; }
+code, .mono { font: 12.5px ui-monospace, SFMono-Regular, Menlo, monospace; word-break: break-all; }
+details summary { cursor: pointer; color: var(--accent); }
+.excerpt { border-left: 3px solid var(--border); padding: 2px 0 2px 10px; color: var(--text-secondary);
+           font-size: 14px; white-space: pre-wrap; }
+input[type=search] { width: 100%; padding: 8px 10px; font: inherit; border: 1px solid var(--border);
+                     border-radius: 6px; background: var(--surface-1); color: var(--text-primary); margin: 8px 0 12px; }
+.table-wrap { overflow-x: auto; }
+@media (max-width: 640px) { .hide-sm { display: none; } }
+</style>
+<script data-goatcounter="https://pintail.goatcounter.com/count" async src="https://gc.zgo.at/count.js"></script>
+</head>
+<body>
+<main>
+<style>
+.chart { width: 100%; height: auto; background: var(--surface-1); border: 1px solid var(--border); border-radius: 6px; }
+.chart text { fill: var(--text-muted); font: 11px system-ui, sans-serif; }
+.chart .grid { stroke: var(--border); stroke-width: 1; }
+.legend { display: flex; flex-wrap: wrap; gap: 14px; font-size: 13px; color: var(--text-secondary); margin: 6px 0 14px; }
+.legend i { display: inline-block; width: 16px; height: 3px; vertical-align: middle; margin-right: 5px; background: var(--c); }
+.legend i.dashed { background: repeating-linear-gradient(90deg, var(--c) 0 6px, transparent 6px 9px); }
+.chart .event { stroke: var(--text-muted); stroke-width: 1; stroke-dasharray: 3 3; }
+.chart .event-n { fill: var(--text-secondary); font-weight: 600; }
+ol.events { padding-left: 0; list-style: none; }
+ol.events li { margin: 4px 0; }
+ol.events .n { display: inline-block; min-width: 1.6em; font-weight: 600; color: var(--text-secondary); }
+</style><p class="crumbs"><a href="../">Dataset</a> › <a href="./">Entities</a></p>
+<h1>OKX</h1>
+<p><span class="chip">exchange</span> <span class="mono muted">okx</span></p>
+<p><strong>How much ETH OKX has had in each role recorded in this dataset, week by week, from
+the start of the beacon chain (1 December 2020) to 30 October 2026.</strong> Stake is the effective balance
+of active validators.</p>
+<ul><li><strong>Allocator</strong>: chose where the stake went. Counts the stake in the treemap boxes under OKX. <span class="muted">Recorded for 89% of active stake.</span></li><li><strong>Operator</strong>: ran the validators. <span class="muted">Recorded for 49% of active stake.</span></li><li><strong>Custodian</strong>: held the stake on behalf of a client. <span class="muted">Recorded for 5.5% of active stake.</span></li><li><strong>Principal</strong>: owned the staked ETH. <span class="muted">Recorded for 5.4% of active stake.</span></li></ul>
+<p class="muted">Allocators are recorded for most stake. Operators, custodians and principals are recorded only where
+specific evidence names them, so their figures here (dashed on the charts) are lower bounds: no figure does not mean
+no role.</p>
+<h2>Its own roles</h2><svg class="chart" viewBox="0 0 760 240" role="img" aria-label="ETH by role over time"><line class="grid" x1="52" x2="752" y1="218.0" y2="218.0"/><text x="46" y="222.0" text-anchor="end">0</text><line class="grid" x1="52" x2="752" y1="114.0" y2="114.0"/><text x="46" y="118.0" text-anchor="end">332k</text><line class="grid" x1="52" x2="752" y1="10.0" y2="10.0"/><text x="46" y="14.0" text-anchor="end">663k</text><text x="52.0" y="234" text-anchor="middle">2020</text><text x="181.1" y="234" text-anchor="middle">2022</text><text x="298.9" y="234" text-anchor="middle">2023</text><text x="416.7" y="234" text-anchor="middle">2024</text><text x="536.8" y="234" text-anchor="middle">2025</text><text x="654.6" y="234" text-anchor="middle">2026</text><polyline fill="none" stroke="#2a78d6" stroke-width="2" points="52.0,218.0 54.3,218.0 56.5,218.0 58.8,218.0 61.1,218.0 63.3,218.0 65.6,217.5 67.9,217.5 70.1,211.9 72.4,211.5 74.7,211.2 76.9,210.8 79.2,210.5 81.4,210.2 83.7,209.7 86.0,209.6 88.2,209.6 90.5,209.5 92.8,209.5 95.0,209.3 97.3,209.1 99.6,209.0 101.8,208.9 104.1,208.9 106.4,208.8 108.6,208.4 110.9,208.4 113.2,208.4 115.4,208.2 117.7,208.2 120.0,208.1 122.2,208.0 124.5,208.0 126.8,208.0 129.0,207.8 131.3,207.8 133.6,207.7 135.8,207.7 138.1,207.7 140.3,207.6 142.6,207.6 144.9,207.5 147.1,207.2 149.4,207.1 151.7,207.0 153.9,206.8 156.2,206.7 158.5,206.6 160.7,206.4 163.0,206.3 165.3,206.1 167.5,205.9 169.8,205.8 172.1,205.8 174.3,205.8 176.6,205.8 178.9,205.8 181.1,205.8 183.4,205.8 185.7,205.8 187.9,205.8 190.2,205.8 192.5,205.8 194.7,205.5 197.0,205.2 199.2,205.0 201.5,205.0 203.8,204.9 206.0,204.9 208.3,204.9 210.6,204.8 212.8,204.4 215.1,204.3 217.4,204.1 219.6,204.0 221.9,203.5 224.2,203.5 226.4,203.2 228.7,202.9 231.0,202.8 233.2,202.7 235.5,202.6 237.8,202.5 240.0,202.5 242.3,202.4 244.6,202.0 246.8,201.8 249.1,200.9 251.4,200.7 253.6,200.6 255.9,200.6 258.1,200.6 260.4,200.6 262.7,200.6 264.9,200.3 267.2,199.9 269.5,199.8 271.7,199.5 274.0,199.5 276.3,199.4 278.5,199.2 280.8,198.6 283.1,198.3 285.3,197.9 287.6,197.8 289.9,197.7 292.1,197.6 294.4,197.2 296.7,196.5 298.9,196.3 301.2,196.2 303.5,196.1 305.7,195.9 308.0,195.7 310.3,195.6 312.5,195.4 314.8,194.9 317.0,194.8 319.3,192.9 321.6,191.9 323.8,190.9 326.1,190.6 328.4,189.8 330.6,186.2 332.9,181.6 335.2,176.9 337.4,173.4 339.7,172.4 342.0,167.6 344.2,163.3 346.5,161.2 348.8,158.7 351.0,155.7 353.3,154.7 355.6,153.1 357.8,150.5 360.1,145.5 362.4,145.2 364.6,144.4 366.9,139.3 369.2,136.8 371.4,133.9 373.7,127.5 375.9,119.1 378.2,110.1 380.5,104.7 382.7,103.6 385.0,96.2 387.3,87.7 389.5,77.4 391.8,73.2 394.1,71.6 396.3,72.8 398.6,71.6 400.9,72.1 403.1,66.4 405.4,64.6 407.7,63.8 409.9,65.3 412.2,64.6 414.5,63.7 416.7,65.7 419.0,65.7 421.3,69.7 423.5,58.6 425.8,55.1 428.1,61.5 430.3,70.5 432.6,70.5 434.8,73.4 437.1,84.5 439.4,85.1 441.6,93.1 443.9,94.9 446.2,101.8 448.4,104.6 450.7,106.0 453.0,108.9 455.2,108.9 457.5,107.7 459.8,107.6 462.0,107.6 464.3,107.4 466.6,107.1 468.8,114.1 471.1,113.3 473.4,108.5 475.6,105.4 477.9,103.2 480.2,102.6 482.4,99.7 484.7,98.0 487.0,93.2 489.2,89.8 491.5,87.8 493.7,86.6 496.0,84.6 498.3,84.3 500.5,79.7 502.8,77.7 505.1,71.7 507.3,66.9 509.6,66.5 511.9,65.5 514.1,65.6 516.4,66.3 518.7,63.5 520.9,70.6 523.2,72.5 525.5,77.5 527.7,88.4 530.0,88.8 532.3,84.9 534.5,78.4 536.8,78.0 539.1,78.0 541.3,74.9 543.6,76.3 545.9,76.3 548.1,73.8 550.4,69.7 552.6,64.0 554.9,64.6 557.2,66.1 559.4,62.3 561.7,57.2 564.0,52.2 566.2,51.1 568.5,59.0 570.8,55.3 573.0,55.3 575.3,51.9 577.6,48.4 579.8,43.9 582.1,38.7 584.4,34.5 586.6,29.5 588.9,29.9 591.2,29.9 593.4,20.8 595.7,15.0 598.0,16.8 600.2,15.1 602.5,13.8 604.8,13.8 607.0,13.8 609.3,14.1 611.5,14.3 613.8,17.4 616.1,17.4 618.3,42.6 620.6,42.5 622.9,42.0 625.1,40.2 627.4,39.4 629.7,39.1 631.9,39.1 634.2,38.6 636.5,37.1 638.7,37.7 641.0,46.3 643.3,52.9 645.5,51.2 647.8,49.6 650.1,46.7 652.3,58.5 654.6,64.8 656.9,65.7 659.1,71.4 661.4,78.6 663.7,85.7 665.9,86.9 668.2,86.9 670.4,86.8 672.7,90.7 675.0,90.9 677.2,91.3 679.5,89.5 681.8,89.1 684.0,89.3 686.3,88.8 688.6,87.5 690.8,84.8 693.1,82.1 695.4,81.7 697.6,80.4 699.9,78.7 702.2,78.7 704.4,81.4 706.7,82.0 709.0,82.1 711.2,85.2 713.5,87.0 715.8,86.1 718.0,81.3 720.3,78.0 722.6,72.7 724.8,69.5 727.1,69.3 729.3,62.2 731.6,59.4 733.9,56.6 736.1,54.6 738.4,49.7 740.7,33.1 742.9,18.8 745.2,16.0 747.5,24.1 749.7,12.8 752.0,10.0"><title>Allocator</title></polyline></svg><div class="legend"><span><i class="" style="--c:#2a78d6"></i>Allocator</span></div><div class="table-wrap"><table><thead><tr><th>Role</th><th class="num">ETH now</th>
+<th class="num hide-sm">Validators now</th><th class="num">Peak ETH</th><th class="num hide-sm">Peak</th>
+<th class="num hide-sm">First seen</th><th class="num hide-sm">Last seen</th></tr></thead><tbody><tr><td>Allocator</td><td class="num">663,473</td>
+<td class="num hide-sm">6,308</td><td class="num">663,473</td>
+<td class="num hide-sm">2026-10-30</td><td class="num hide-sm">2021-01-05</td>
+<td class="num hide-sm">now</td></tr></tbody></table></div>
+<h2>Clients</h2><p class="muted">Blocks proposed in the last 90 days by the validators it
+allocates or operates now, and the execution and consensus clients their graffiti names (clients add a short code by
+default; operators can turn it off, so these are shares of the blocks that carry one).</p>
+<div class="table-wrap"><table><thead><tr><th>Role</th><th class="num">Blocks</th><th class="num">With codes</th>
+<th>Execution clients</th><th>Consensus clients</th></tr></thead><tbody><tr><td>Allocator</td><td class="num">7,339</td>
+<td class="num">100%</td><td>Geth 100%</td><td>Prysm 98%, Lighthouse 2%</td></tr></tbody></table></div>
+<h2>Treemap boxes</h2><div class="table-wrap"><table><thead><tr><th>Box</th>
+<th class="num">ETH now</th><th class="num hide-sm">Peak ETH</th></tr></thead><tbody><tr><td>OKX › OKX staking › 2 named withdrawal addresses (from Jan 2021)</td><td class="num">631,981</td><td class="num hide-sm">643,009</td></tr><tr><td>OKX › OKX staking › 5 named withdrawal addresses (from Jun 2024)</td><td class="num">31,492</td><td class="num hide-sm">31,492</td></tr></tbody></table></div>
+<h2>Decisions naming it</h2><ul><li><a href="../decisions/0139-okx-por-staking.html">0139</a> Validators at five more withdrawal addresses, three accounts and two EigenLayer pods that OKX&#x27;s signed proof of reserves lists as its staked ETH, are OKX&#x27;s staking.</li><li><a href="../decisions/0324-okx-staking-withdrawal-addresses.html">0324</a> OKX&#x27;s signed proof-of-reserves file lists every validator withdrawing to 0xe839…506c and 0xd5f8…7634 as OKX&#x27;s staked ETH: they are OKX&#x27;s staking.</li></ul>
+<h2>Identified addresses</h2><div class="table-wrap"><table><thead><tr><th>Address</th><th>Role</th>
+<th class="hide-sm">Basis</th></tr></thead><tbody><tr><td><a class="mono" href="https://etherscan.io/address/0x05e851e9196fa1fc55f92ddd07ee83a978db35d0">0x05e851e9196fa1fc55f92ddd07ee83a978db35d0</a></td><td>withdrawal address</td><td class="hide-sm">first_party</td></tr><tr><td><a class="mono" href="https://etherscan.io/address/0x05e851e9196fa1fc55f92ddd07ee83a978db35d0">0x05e851e9196fa1fc55f92ddd07ee83a978db35d0</a></td><td>withdrawal address</td><td class="hide-sm">asserted</td></tr><tr><td><a class="mono" href="https://etherscan.io/address/0x4ccda666c69cd35be70aabd8931d824b2cfa3d2d">0x4ccda666c69cd35be70aabd8931d824b2cfa3d2d</a></td><td>withdrawal address</td><td class="hide-sm">first_party</td></tr><tr><td><a class="mono" href="https://etherscan.io/address/0x4ccda666c69cd35be70aabd8931d824b2cfa3d2d">0x4ccda666c69cd35be70aabd8931d824b2cfa3d2d</a></td><td>withdrawal address</td><td class="hide-sm">asserted</td></tr><tr><td><a class="mono" href="https://etherscan.io/address/0x5a0036bcab4501e70f086c634e2958a8beae3a11">0x5a0036bcab4501e70f086c634e2958a8beae3a11</a></td><td>anchor</td><td class="hide-sm">asserted</td></tr><tr><td><a class="mono" href="https://etherscan.io/address/0x9b4495fcc3c99b3cb73a3722320ff1858c81c2f0">0x9b4495fcc3c99b3cb73a3722320ff1858c81c2f0</a></td><td>withdrawal address</td><td class="hide-sm">first_party</td></tr><tr><td><a class="mono" href="https://etherscan.io/address/0x9b4495fcc3c99b3cb73a3722320ff1858c81c2f0">0x9b4495fcc3c99b3cb73a3722320ff1858c81c2f0</a></td><td>withdrawal address</td><td class="hide-sm">asserted</td></tr><tr><td><a class="mono" href="https://etherscan.io/address/0xaa0cbae2dd290f8aed1b672ebe2e197fd969628b">0xaa0cbae2dd290f8aed1b672ebe2e197fd969628b</a></td><td>depositor</td><td class="hide-sm">first_party</td></tr><tr><td><a class="mono" href="https://etherscan.io/address/0xc458114f4000bf3c19fe1c69c82a881a29251650">0xc458114f4000bf3c19fe1c69c82a881a29251650</a></td><td>depositor</td><td class="hide-sm">first_party</td></tr><tr><td><a class="mono" href="https://etherscan.io/address/0xc64f36b050caeba77bc64f3443d75ec83c882b56">0xc64f36b050caeba77bc64f3443d75ec83c882b56</a></td><td>withdrawal address</td><td class="hide-sm">asserted</td></tr><tr><td><a class="mono" href="https://etherscan.io/address/0xd5f8c864f21824daf3a4b22d9c33693642ed7634">0xd5f8c864f21824daf3a4b22d9c33693642ed7634</a></td><td>withdrawal address</td><td class="hide-sm">first_party</td></tr><tr><td><a class="mono" href="https://etherscan.io/address/0xd5f8c864f21824daf3a4b22d9c33693642ed7634">0xd5f8c864f21824daf3a4b22d9c33693642ed7634</a></td><td>withdrawal address</td><td class="hide-sm">asserted</td></tr><tr><td><a class="mono" href="https://etherscan.io/address/0xe6a64adc9270ffd033d9f06686c4617afef7cfa3">0xe6a64adc9270ffd033d9f06686c4617afef7cfa3</a></td><td>withdrawal address</td><td class="hide-sm">asserted</td></tr><tr><td><a class="mono" href="https://etherscan.io/address/0xe839a3e9efb32c6a56ab7128e51056585275506c">0xe839a3e9efb32c6a56ab7128e51056585275506c</a></td><td>withdrawal address</td><td class="hide-sm">first_party</td></tr><tr><td><a class="mono" href="https://etherscan.io/address/0xe839a3e9efb32c6a56ab7128e51056585275506c">0xe839a3e9efb32c6a56ab7128e51056585275506c</a></td><td>withdrawal address</td><td class="hide-sm">asserted</td></tr></tbody></table></div>
+</main>
+</body>
+</html>

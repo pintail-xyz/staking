@@ -1,0 +1,76 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>0069-upbit-eth2-depositor: Upbit says it runs its own validators and began staking ETH in 2022; this account and the twelve before it were funded by t</title>
+<style>
+:root { color-scheme: light; --surface-0: #f4f3f0; --surface-1: #fcfcfb; --border: #d9d8d3; --text-primary: #0b0b0b;
+        --text-secondary: #52514e; --text-muted: #77766f; --accent: #2a78d6; --chip: #ebe9e4; }
+@media (prefers-color-scheme: dark) {
+  :root:where(:not([data-theme="light"])) { color-scheme: dark; --surface-0: #121211; --surface-1: #1a1a19;
+    --border: #3a3a37; --text-primary: #f0efec; --text-secondary: #c3c2b7; --text-muted: #96958c; --accent: #3987e5;
+    --chip: #2a2a28; }
+}
+:root[data-theme="dark"] { color-scheme: dark; --surface-0: #121211; --surface-1: #1a1a19; --border: #3a3a37;
+  --text-primary: #f0efec; --text-secondary: #c3c2b7; --text-muted: #96958c; --accent: #3987e5; --chip: #2a2a28; }
+* { box-sizing: border-box; }
+body { margin: 0; background: var(--surface-0); color: var(--text-primary);
+       font: 15px/1.55 system-ui, -apple-system, "Segoe UI", sans-serif; }
+main { max-width: 860px; margin: 0 auto; padding: 32px 16px 64px; }
+a { color: var(--accent); }
+h1 { font-size: 22px; line-height: 1.3; font-weight: 600; margin: 4px 0 12px; }
+h2 { font-size: 15px; font-weight: 600; margin: 28px 0 8px; color: var(--text-secondary);
+     text-transform: uppercase; letter-spacing: 0.04em; }
+p { margin: 0 0 12px; }
+.crumbs { font-size: 13px; color: var(--text-muted); }
+.lede { font-size: 17px; }
+.muted { color: var(--text-muted); }
+.chip { display: inline-block; padding: 1px 8px; border-radius: 10px; background: var(--chip); font-size: 12px;
+        color: var(--text-secondary); margin-right: 4px; white-space: nowrap; }
+.card { background: var(--surface-1); border: 1px solid var(--border); border-radius: 6px; padding: 14px 16px;
+        margin: 0 0 12px; }
+.stats { display: flex; flex-wrap: wrap; gap: 12px; margin: 16px 0; }
+.stat { background: var(--surface-1); border: 1px solid var(--border); border-radius: 6px; padding: 10px 14px;
+        min-width: 140px; }
+.stat b { display: block; font-size: 20px; font-variant-numeric: tabular-nums; }
+.stat span { font-size: 12px; color: var(--text-muted); }
+ul.grounds { list-style: none; padding: 0; margin: 0; }
+ul.grounds li { padding: 6px 0; border-bottom: 1px solid var(--border); }
+ul.grounds li:last-child { border-bottom: 0; }
+table { width: 100%; border-collapse: collapse; background: var(--surface-1); font-size: 14px; }
+th, td { text-align: left; padding: 7px 8px; border-bottom: 1px solid var(--border); vertical-align: top; }
+th { font-weight: 600; color: var(--text-secondary); cursor: pointer; white-space: nowrap; user-select: none; }
+td.num, th.num { text-align: right; font-variant-numeric: tabular-nums; white-space: nowrap; }
+code, .mono { font: 12.5px ui-monospace, SFMono-Regular, Menlo, monospace; word-break: break-all; }
+details summary { cursor: pointer; color: var(--accent); }
+.excerpt { border-left: 3px solid var(--border); padding: 2px 0 2px 10px; color: var(--text-secondary);
+           font-size: 14px; white-space: pre-wrap; }
+input[type=search] { width: 100%; padding: 8px 10px; font: inherit; border: 1px solid var(--border);
+                     border-radius: 6px; background: var(--surface-1); color: var(--text-primary); margin: 8px 0 12px; }
+.table-wrap { overflow-x: auto; }
+@media (max-width: 640px) { .hide-sm { display: none; } }
+</style>
+<script data-goatcounter="https://pintail.goatcounter.com/count" async src="https://gc.zgo.at/count.js"></script>
+</head>
+<body>
+<main>
+<p class="crumbs"><a href="../">Dataset</a> › <a href="./">Decisions</a> › 0069-upbit-eth2-depositor</p>
+<h1>Upbit says it runs its own validators and began staking ETH in 2022; this account and the twelve before it were funded by the same wallets that run Upbit&#x27;s Polygon validator, so its deposits are Upbit&#x27;s.</h1>
+<p><span class="chip">Anchor</span> <span class="muted">· decided 2026-10-17</span></p>
+<p class="lede">This account makes Upbit&#x27;s staking deposits; validators withdrawing to the address it deposits to are Upbit&#x27;s.</p>
+<div class="stats"><div class="stat"><b>20,111</b><span>validators resting on it now</span></div><div class="stat"><b>643,552</b><span>ETH now</span></div><div class="stat"><b>643,552</b><span>ETH at its peak</span></div></div>
+<h2>Grounds</h2><div class="card"><ul class="grounds"><li><span class="chip">First party</span>Upbit&#x27;s operator Dunamu says Upbit runs its own validators and began staking ETH in 2022</li><li><span class="chip">On chain</span>Every gas payment to Upbit&#x27;s Polygon validator came from wallets that fund this account&#x27;s deposits</li><li><span class="chip">On chain</span>This account and twelve before it deposited all these validators in turn from January 2022</li><li><span class="chip">On chain</span>96% of the 1.22M ETH they deposited came from one closed network of wallets; most of the rest is restaked rewards</li></ul></div>
+<h2>Explanation</h2><p>The account 0x4489…7f97 makes the beacon deposits for Upbit&#x27;s ETH staking, and validators withdrawing to its withdrawal address, 0x7e2a…2d05, are attributed to Upbit as allocator. 37,657 validators have withdrawn to that address; about 20,100 were active in October 2026 with some 0.64M ETH. Upbit runs its own validators, but no operator claim is made.</p>
+<p><strong>What Upbit says.</strong> Dunamu, Upbit&#x27;s operator, states in its <a href="https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20260814003803">half-year report for 2026</a> that Upbit Staking runs its own validators and nodes, keeps staked assets in cold wallets, and began staking with Ethereum in 2022. It publishes no Ethereum addresses. In June 2026 Dunamu announced that Upbit was <a href="https://news.mtn.co.kr/news-detail/2026062410251155977">the largest of Polygon&#x27;s 102 validators</a>, with about 413 million POL. On Polygon&#x27;s staking contract at that date exactly 102 validators were active and the largest held 413.25 million POL, so that validator is Upbit&#x27;s; its owner and signer accounts are on Ethereum.</p>
+<p><strong>The deposits.</strong> Every validator withdrawing to 0x7e2a…2d05 was first deposited by one of 13 accounts used in sequence: twelve from January 2022 to April 2023 (with BLS credentials, later changed to 0x7e2a…2d05), then 0x4489…7f97 from April 2023. Each account began where the previous one stopped, and each received a 0-ETH transaction from the same account just before it started depositing: one operator setting up each new depositor.</p>
+<p><strong>The link to Upbit.</strong> The 13 accounts received 1,215,587 ETH. 96% came from a closed network of wallets which deal almost only with one another, an operator&#x27;s internal wallet system rather than a public venue; most of the rest is restaked rewards. Every gas payment ever made to the signer of Upbit&#x27;s Polygon validator (21 payments) came from wallets in that same network, and its owner account was funded by another. Withdrawn stake returns to the network.</p>
+<p><strong>Limits.</strong> The link from Dunamu&#x27;s statements to these addresses runs through the Polygon validator and the shared wallets; Dunamu names no Ethereum address. Since the funding network is closed and covers every deposit since 2022, a customer staking independently would have to share Upbit&#x27;s internal wallets. Explorer labels and community label sets naming the accounts are recorded as leads. The decision would change with an Upbit statement contradicting it, or evidence that the funding wallets or the withdrawal address belong to someone other than Upbit.</p>
+<h2>What would change it</h2><p>An Upbit statement contradicting it, or evidence that the funding wallets or the withdrawal address belong to someone other than Upbit.</p>
+<h2>Evidence</h2><p class="muted">Transactions and contract calls anyone can repeat on their own node.</p><div class="card"><ul class="grounds"><li><span class="mono">Polygon StakeManager 0x5e3ef299fddf15eaa0432e6e66473ace8c13d908 validators(163) at block 25377198: owner 0xc8f33508bf216dc0e24cc0a046b7e9bee21e0046, signer 0x69f5c4d08f6bc8cd29fe5f004d46fb566270868d, 413,253,181 POL staked</span> — Validator 163 was the largest of the 102 active Polygon validators on 23 June 2026, the day Dunamu named Upbit the largest</li><li><a class="mono" href="https://etherscan.io/tx/0xa8ce24b98d4eba23605acecb3a5e069090b4b7c6cc3e1578c778bc787e1d6010">0xa8ce24b9…7e1d6010</a> — First gas payment to the Polygon signer, from 0xdbd4…fc1a, which also funded 68 of this account&#x27;s deposits</li><li><a class="mono" href="https://etherscan.io/tx/0x64d29afc24a5b1be0087b5ad9886e6bad48186e2ac599585ecf1d3b9e4b7c2d2">0x64d29afc…e4b7c2d2</a> — 0x09e0…157e funds the Polygon validator&#x27;s owner (0.5 ETH)</li><li><a class="mono" href="https://etherscan.io/tx/0xb102ee7941833e15d6102868d05c34ff11f9ffb86260050b638ab69502c994fa">0xb102ee79…02c994fa</a> — 0x09e0…157e sends 32 ETH to this account (one of 111)</li><li><a class="mono" href="https://etherscan.io/tx/0xe81dfdc68f9ed10fe6e5dea1cb2b60a9a768e5bb69bbc8872a339fec9e270197">0xe81dfdc6…9e270197</a> — First deposit of the twelve earlier accounts (0x9902, 2022-01-03), later changed to 0x7e2a</li><li><a class="mono" href="https://etherscan.io/tx/0xf4fe6423a7ba45fec0e3cd103bc07003e6eae784bfbf24a8b7ccaa244fba150d">0xf4fe6423…4fba150d</a> — 0xcef7…2318 sends 0x9902 its first transaction, before its first deposit</li><li><a class="mono" href="https://etherscan.io/tx/0xe1e6eb268a4030b0113fdaad21d9331e290b464dbd1836720c819aa1dcee23f5">0xe1e6eb26…dcee23f5</a> — 0xcef7…2318 sends this account its first transaction, before its first deposit</li><li><a class="mono" href="https://etherscan.io/tx/0xfa627f84f93ad98d727ec34464d1b9dfe677c85722926313d540ff0fb69e7bfe">0xfa627f84…b69e7bfe</a> — This account&#x27;s first deposit</li><li><a class="mono" href="https://etherscan.io/tx/0x31a74b81ef8314caad4ca3dd40914e35e2335650a75ecfd0d40b87e22dec4c42">0x31a74b81…2dec4c42</a> — 0x7e2a sends 32 ETH to 0xfdec…0eb3</li><li><a class="mono" href="https://etherscan.io/tx/0x0ff5a0630a226719129759795f23f38b06d962ec4f8ad145e07e0e8ffb82d418">0x0ff5a063…fb82d418</a> — 0xfdec…0eb3 pays a wallet that funds this account&#x27;s deposits (544 ETH)</li></ul></div>
+<h2>Sources</h2><div class="card"><a href="https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20260814003803">Dunamu half-year report for 2026 (반기보고서, filed 14 August 2026)</a><div class="muted" style="font-size:13px">Dunamu Inc. (filed with the Financial Supervisory Service, DART) · the entity&#x27;s own · retrieved 2026-10-21</div><p class="excerpt">업비트 스테이킹은 스테이킹된 자산을 콜드월렛에 안전하게 보관하며, 직접 검증자(Validator)와 블록체인 노드를 운영하며 보안 업무를 대행합니다. 2022년 이더리움 스테이킹을 시작으로 솔라나, 코스모스, 에이다, 폴리곤에코시스템토큰, 크로노스 스테이킹을 지원하였습니다.</p><div class="muted mono">sha256 d8e1303c200c0da64b6a6863e81c47730ef5141023309c5eb3a3e5a98f37cb4b</div></div><div class="card"><a href="https://news.mtn.co.kr/news-detail/2026062410251155977">업비트, 폴리곤 스테이킹 세계 1위…글로벌 102개 검증인 중 최대 규모</a><div class="muted" style="font-size:13px">MTN Money Today (이상현), 2026-06-24 · third party · retrieved 2026-10-21</div><p class="excerpt">업비트 운영사 두나무는 24일 업비트가 폴리곤(POL) 스테이킹 규모 기준 글로벌 1위를 기록했다고 밝혔다. [...] 업비트는 폴리곤 네트워크에 참여하는 102개 검증인 가운데 가장 큰 규모의 스테이킹 물량을 확보하고 있다. 지난 23일 기준 업비트의 폴리곤 스테이킹 규모는 4억1317만3181 POL로 집계됐다. 코인베이스가 2위, 바이낸스는 4위로 뒤를 이었다.</p><div class="muted mono">sha256 5a66d9b51f52c88ed8c994e3d7a1ac8052ac248fcd5f57a94149de134571748b</div></div>
+<h2>Leads</h2><p class="muted">Third-party pages, such as explorer labels, that pointed the research but are not relied on.</p><ul><li><a href="https://etherscan.io/address/0x8913f85a2ae4ba3bf76d2a2a0418f391f2cc1519">Etherscan address page</a></li><li><a href="https://etherscan.io/address/0x09e050f40b3ccfaa568680bf0e459cf8dfc4157e">Etherscan address page</a></li><li><a href="https://metadata.services.blockscout.com/api/v1/metadata?chainId=1&amp;addresses=0x09e050f40b3ccfaa568680bf0e459cf8dfc4157e">Blockscout address page</a></li><li><a href="https://etherscan.io/address/0xfdeced66af5596e1a4567b52a71060e3ba470eb3">Etherscan address page</a></li><li><a href="https://etherscan.io/address/0x0e58e8993100f1cbe45376c410f97f4893d9bfcd">Etherscan address page</a></li><li><a href="https://metadata.services.blockscout.com/api/v1/metadata?chainId=1&amp;addresses=0x0e58e8993100f1cbe45376c410f97f4893d9bfcd">Blockscout address page</a></li><li><a href="https://etherscan.io/address/0x7e2a2fa2a064f693f0a55c5639476d913ff12d05">Etherscan address page</a></li><li><a href="https://metadata.services.blockscout.com/api/v1/metadata?chainId=1&amp;addresses=0x7e2a2fa2a064f693f0a55c5639476d913ff12d05">Blockscout address page</a></li><li><a href="https://github.com/duneanalytics/spellbook/blob/e5b41162a270135790f5f39491f9677360a6adb0/dbt_subprojects/hourly_spellbook/models/_sector/staking/ethereum/entities/staking_ethereum_entities_depositor_addresses.sql">staking_ethereum_entities_depositor_addresses.sql</a></li></ul>
+<h2>Treemap boxes resting on it</h2><div class="table-wrap"><table><thead><tr><th>Box</th><th class="num">ETH now</th><th class="num">Peak ETH</th></tr></thead><tbody><tr><td>Upbit › Upbit staking › Withdraws to 0x7e2a…2d05</td><td class="num">643,552</td><td class="num">643,552</td></tr></tbody></table></div>
+</main>
+</body>
+</html>
