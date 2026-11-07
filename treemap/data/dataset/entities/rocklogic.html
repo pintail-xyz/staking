@@ -1,0 +1,98 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>RockLogic: roles in the validator set</title>
+<style>
+:root { color-scheme: light; --surface-0: #f4f3f0; --surface-1: #fcfcfb; --border: #d9d8d3; --text-primary: #0b0b0b;
+        --text-secondary: #52514e; --text-muted: #77766f; --accent: #2a78d6; --chip: #ebe9e4; }
+@media (prefers-color-scheme: dark) {
+  :root:where(:not([data-theme="light"])) { color-scheme: dark; --surface-0: #121211; --surface-1: #1a1a19;
+    --border: #3a3a37; --text-primary: #f0efec; --text-secondary: #c3c2b7; --text-muted: #96958c; --accent: #3987e5;
+    --chip: #2a2a28; }
+}
+:root[data-theme="dark"] { color-scheme: dark; --surface-0: #121211; --surface-1: #1a1a19; --border: #3a3a37;
+  --text-primary: #f0efec; --text-secondary: #c3c2b7; --text-muted: #96958c; --accent: #3987e5; --chip: #2a2a28; }
+* { box-sizing: border-box; }
+body { margin: 0; background: var(--surface-0); color: var(--text-primary);
+       font: 15px/1.55 system-ui, -apple-system, "Segoe UI", sans-serif; }
+main { max-width: 860px; margin: 0 auto; padding: 32px 16px 64px; }
+a { color: var(--accent); }
+h1 { font-size: 22px; line-height: 1.3; font-weight: 600; margin: 4px 0 12px; }
+h2 { font-size: 15px; font-weight: 600; margin: 28px 0 8px; color: var(--text-secondary);
+     text-transform: uppercase; letter-spacing: 0.04em; }
+p { margin: 0 0 12px; }
+.crumbs { font-size: 13px; color: var(--text-muted); }
+.lede { font-size: 17px; }
+.muted { color: var(--text-muted); }
+.chip { display: inline-block; padding: 1px 8px; border-radius: 10px; background: var(--chip); font-size: 12px;
+        color: var(--text-secondary); margin-right: 4px; white-space: nowrap; }
+.card { background: var(--surface-1); border: 1px solid var(--border); border-radius: 6px; padding: 14px 16px;
+        margin: 0 0 12px; }
+.stats { display: flex; flex-wrap: wrap; gap: 12px; margin: 16px 0; }
+.stat { background: var(--surface-1); border: 1px solid var(--border); border-radius: 6px; padding: 10px 14px;
+        min-width: 140px; }
+.stat b { display: block; font-size: 20px; font-variant-numeric: tabular-nums; }
+.stat span { font-size: 12px; color: var(--text-muted); }
+ul.grounds { list-style: none; padding: 0; margin: 0; }
+ul.grounds li { padding: 6px 0; border-bottom: 1px solid var(--border); }
+ul.grounds li:last-child { border-bottom: 0; }
+table { width: 100%; border-collapse: collapse; background: var(--surface-1); font-size: 14px; }
+th, td { text-align: left; padding: 7px 8px; border-bottom: 1px solid var(--border); vertical-align: top; }
+th { font-weight: 600; color: var(--text-secondary); cursor: pointer; white-space: nowrap; user-select: none; }
+td.num, th.num { text-align: right; font-variant-numeric: tabular-nums; white-space: nowrap; }
+code, .mono { font: 12.5px ui-monospace, SFMono-Regular, Menlo, monospace; word-break: break-all; }
+details summary { cursor: pointer; color: var(--accent); }
+.excerpt { border-left: 3px solid var(--border); padding: 2px 0 2px 10px; color: var(--text-secondary);
+           font-size: 14px; white-space: pre-wrap; }
+input[type=search] { width: 100%; padding: 8px 10px; font: inherit; border: 1px solid var(--border);
+                     border-radius: 6px; background: var(--surface-1); color: var(--text-primary); margin: 8px 0 12px; }
+.table-wrap { overflow-x: auto; }
+@media (max-width: 640px) { .hide-sm { display: none; } }
+</style>
+<script data-goatcounter="https://pintail.goatcounter.com/count" async src="https://gc.zgo.at/count.js"></script>
+</head>
+<body>
+<main>
+<style>
+.chart { width: 100%; height: auto; background: var(--surface-1); border: 1px solid var(--border); border-radius: 6px; }
+.chart text { fill: var(--text-muted); font: 11px system-ui, sans-serif; }
+.chart .grid { stroke: var(--border); stroke-width: 1; }
+.legend { display: flex; flex-wrap: wrap; gap: 14px; font-size: 13px; color: var(--text-secondary); margin: 6px 0 14px; }
+.legend i { display: inline-block; width: 16px; height: 3px; vertical-align: middle; margin-right: 5px; background: var(--c); }
+.legend i.dashed { background: repeating-linear-gradient(90deg, var(--c) 0 6px, transparent 6px 9px); }
+.chart .event { stroke: var(--text-muted); stroke-width: 1; stroke-dasharray: 3 3; }
+.chart .event-n { fill: var(--text-secondary); font-weight: 600; }
+ol.events { padding-left: 0; list-style: none; }
+ol.events li { margin: 4px 0; }
+ol.events .n { display: inline-block; min-width: 1.6em; font-weight: 600; color: var(--text-secondary); }
+</style><p class="crumbs"><a href="../">Dataset</a> › <a href="./">Entities</a></p>
+<h1>RockLogic</h1>
+<p><span class="chip">node operator</span> <span class="mono muted">rocklogic</span></p>
+<p><strong>How much ETH RockLogic has had in each role recorded in this dataset, week by week, from
+the start of the beacon chain (1 December 2020) to 6 November 2026.</strong> Stake is the effective balance
+of active validators.</p>
+<ul><li><strong>Allocator</strong>: chose where the stake went. Counts the stake in the treemap boxes under RockLogic. <span class="muted">Recorded for 89% of active stake.</span></li><li><strong>Operator</strong>: ran the validators. <span class="muted">Recorded for 51% of active stake.</span></li><li><strong>Custodian</strong>: held the stake on behalf of a client. <span class="muted">Recorded for 5.3% of active stake.</span></li><li><strong>Principal</strong>: owned the staked ETH. <span class="muted">Recorded for 6.1% of active stake.</span></li></ul>
+<p class="muted">Allocators are recorded for most stake. Operators, custodians and principals are recorded only where
+specific evidence names them, so their figures here (dashed on the charts) are lower bounds: no figure does not mean
+no role.</p>
+<h2>Its own roles</h2><svg class="chart" viewBox="0 0 760 240" role="img" aria-label="ETH by role over time"><line class="grid" x1="52" x2="752" y1="218.0" y2="218.0"/><text x="46" y="222.0" text-anchor="end">0</text><line class="grid" x1="52" x2="752" y1="114.0" y2="114.0"/><text x="46" y="118.0" text-anchor="end">146k</text><line class="grid" x1="52" x2="752" y1="10.0" y2="10.0"/><text x="46" y="14.0" text-anchor="end">293k</text><text x="52.0" y="234" text-anchor="middle">2020</text><text x="180.7" y="234" text-anchor="middle">2022</text><text x="298.1" y="234" text-anchor="middle">2023</text><text x="415.5" y="234" text-anchor="middle">2024</text><text x="535.2" y="234" text-anchor="middle">2025</text><text x="652.6" y="234" text-anchor="middle">2026</text><line class="event" x1="237.2" x2="237.2" y1="10" y2="218"/><text class="event-n" x="240.2" y="20">1</text><polyline fill="none" stroke="#e0742a" stroke-width="2" stroke-dasharray="6 3" points="52.0,218.0 54.3,218.0 56.5,218.0 58.8,218.0 61.0,218.0 63.3,218.0 65.5,218.0 67.8,218.0 70.1,218.0 72.3,218.0 74.6,218.0 76.8,218.0 79.1,218.0 81.4,218.0 83.6,218.0 85.9,218.0 88.1,218.0 90.4,218.0 92.6,218.0 94.9,218.0 97.2,218.0 99.4,218.0 101.7,218.0 103.9,218.0 106.2,218.0 108.5,218.0 110.7,218.0 113.0,218.0 115.2,218.0 117.5,218.0 119.7,218.0 122.0,218.0 124.3,218.0 126.5,218.0 128.8,218.0 131.0,218.0 133.3,218.0 135.5,218.0 137.8,218.0 140.1,218.0 142.3,218.0 144.6,218.0 146.8,218.0 149.1,218.0 151.4,218.0 153.6,218.0 155.9,218.0 158.1,218.0 160.4,218.0 162.6,218.0 164.9,218.0 167.2,218.0 169.4,218.0 171.7,218.0 173.9,218.0 176.2,218.0 178.5,218.0 180.7,218.0 183.0,218.0 185.2,218.0 187.5,218.0 189.7,218.0 192.0,218.0 194.3,218.0 196.5,218.0 198.8,218.0 201.0,218.0 203.3,218.0 205.5,218.0 207.8,218.0 210.1,218.0 212.3,218.0 214.6,218.0 216.8,218.0 219.1,218.0 221.4,218.0 223.6,218.0 225.9,218.0 228.1,218.0 230.4,218.0 232.6,218.0 234.9,218.0 237.2,218.0 239.4,217.3 241.7,216.9 243.9,216.9 246.2,216.1 248.5,215.8 250.7,215.8 253.0,215.3 255.2,214.8 257.5,214.1 259.7,213.5 262.0,213.2 264.3,212.2 266.5,206.6 268.8,206.6 271.0,202.0 273.3,200.6 275.5,196.6 277.8,180.0 280.1,169.2 282.3,166.9 284.6,163.7 286.8,162.3 289.1,161.1 291.4,160.2 293.6,159.4 295.9,159.4 298.1,159.4 300.4,159.4 302.6,159.4 304.9,159.4 307.2,155.0 309.4,154.4 311.7,150.8 313.9,145.5 316.2,132.1 318.5,127.0 320.7,115.1 323.0,110.6 325.2,107.0 327.5,103.7 329.7,101.7 332.0,98.1 334.3,91.5 336.5,86.3 338.8,86.3 341.0,86.3 343.3,86.3 345.5,86.3 347.8,86.3 350.1,86.3 352.3,86.3 354.6,86.3 356.8,86.3 359.1,86.3 361.4,86.3 363.6,86.3 365.9,86.3 368.1,86.3 370.4,86.3 372.6,86.3 374.9,86.3 377.2,86.3 379.4,86.3 381.7,86.3 383.9,86.3 386.2,86.3 388.5,86.3 390.7,86.3 393.0,86.3 395.2,86.3 397.5,86.3 399.7,86.3 402.0,86.3 404.3,68.7 406.5,43.7 408.8,23.3 411.0,23.3 413.3,23.3 415.5,23.3 417.8,23.3 420.1,23.3 422.3,23.3 424.6,23.3 426.8,23.3 429.1,23.3 431.4,15.3 433.6,15.3 435.9,13.7 438.1,13.4 440.4,13.4 442.6,13.4 444.9,14.3 447.2,17.2 449.4,19.1 451.7,19.2 453.9,19.3 456.2,19.6 458.5,20.1 460.7,20.1 463.0,16.5 465.2,15.5 467.5,16.4 469.7,17.7 472.0,17.7 474.3,19.5 476.5,19.6 478.8,20.1 481.0,20.1 483.3,20.7 485.5,22.0 487.8,22.3 490.1,22.8 492.3,23.8 494.6,23.8 496.8,24.8 499.1,25.3 501.4,25.3 503.6,25.5 505.9,27.8 508.1,27.1 510.4,28.3 512.6,28.3 514.9,28.2 517.2,28.2 519.4,28.7 521.7,28.7 523.9,28.2 526.2,28.6 528.5,31.0 530.7,32.0 533.0,32.7 535.2,33.0 537.5,33.4 539.7,34.5 542.0,35.6 544.3,36.5 546.5,38.1 548.8,38.1 551.0,38.9 553.3,39.6 555.5,40.0 557.8,40.9 560.1,40.9 562.3,41.0 564.6,41.7 566.8,42.9 569.1,43.4 571.4,44.5 573.6,45.5 575.9,46.0 578.1,48.1 580.4,48.7 582.6,49.1 584.9,49.1 587.2,49.5 589.4,49.9 591.7,48.8 593.9,49.0 596.2,49.5 598.5,51.7 600.7,53.8 603.0,54.1 605.2,54.8 607.5,56.3 609.7,57.3 612.0,58.3 614.3,59.2 616.5,60.0 618.8,60.8 621.0,60.8 623.3,60.8 625.5,60.8 627.8,60.8 630.1,60.8 632.3,60.8 634.6,60.8 636.8,60.8 639.1,60.8 641.4,60.8 643.6,60.8 645.9,60.8 648.1,60.4 650.4,60.2 652.6,59.9 654.9,59.7 657.2,58.9 659.4,58.6 661.7,57.5 663.9,58.6 666.2,58.5 668.5,59.4 670.7,61.6 673.0,58.1 675.2,55.6 677.5,53.5 679.7,52.1 682.0,51.2 684.3,52.0 686.5,52.4 688.8,54.0 691.0,60.0 693.3,60.5 695.5,60.8 697.8,59.5 700.1,57.6 702.3,57.7 704.6,57.8 706.8,57.8 709.1,57.8 711.4,58.1 713.6,58.1 715.9,56.8 718.1,56.0 720.4,53.5 722.6,53.0 724.9,51.2 727.2,48.7 729.4,46.7 731.7,43.4 733.9,42.4 736.2,53.6 738.5,42.4 740.7,38.7 743.0,38.5 745.2,36.7 747.5,15.3 749.7,12.3 752.0,10.0"><title>Operator</title></polyline></svg><div class="legend"><span><i class="dashed" style="--c:#e0742a"></i>Operator (recorded only in part)</span></div><div class="table-wrap"><table><thead><tr><th>Role</th><th class="num">ETH now</th>
+<th class="num hide-sm">Validators now</th><th class="num">Peak ETH</th><th class="num hide-sm">Peak</th>
+<th class="num hide-sm">First seen</th><th class="num hide-sm">Last seen</th></tr></thead><tbody><tr><td>Operator</td><td class="num">292,507</td>
+<td class="num hide-sm">1,375</td><td class="num">292,507</td>
+<td class="num hide-sm">2026-11-06</td><td class="num hide-sm">2022-07-05</td>
+<td class="num hide-sm">now</td></tr></tbody></table></div>
+<h2>Events</h2><p class="muted">Numbered as marked on the charts.</p><ol class="events"><li><span class="n">1</span> 24 June 2022: Added to Lido's registry as operator 1/22, named "RockLogic GmbH" (<a href="https://etherscan.io/tx/0xd08aa7c37faf58cea71921c1935c4092cfc750a29d222a86149bf8c0a62cf851">transaction</a>)</li></ol><h2>Clients</h2><p class="muted">Blocks proposed in the last 90 days by the validators it
+allocates or operates now, and the execution and consensus clients their graffiti names (clients add a short code by
+default; operators can turn it off, so these are shares of the blocks that carry one).</p>
+<div class="table-wrap"><table><thead><tr><th>Role</th><th class="num">Blocks</th><th class="num">With codes</th>
+<th>Execution clients</th><th>Consensus clients</th></tr></thead><tbody><tr><td>Operator</td><td class="num">1,489</td>
+<td class="num">24%</td><td>Besu 76%, Geth 17%, Nethermind 6%, Reth 1%</td><td>Prysm 63%, Lodestar 19%, Lighthouse 18%</td></tr></tbody></table></div><h2>Slashings</h2><p class="muted">11 validators slashed while it held a role in them
+(dated by the first sampled state showing the slashing).</p><div class="table-wrap"><table><thead><tr><th>Validator</th>
+<th>Slashed (first seen)</th><th>Its role then</th></tr></thead><tbody><tr><td><a href="https://beaconcha.in/validator/459098">459,098</a></td><td>2023-04-14</td><td>Operator</td></tr><tr><td><a href="https://beaconcha.in/validator/459103">459,103</a></td><td>2023-04-14</td><td>Operator</td></tr><tr><td><a href="https://beaconcha.in/validator/458237">458,237</a></td><td>2023-04-14</td><td>Operator</td></tr><tr><td><a href="https://beaconcha.in/validator/459890">459,890</a></td><td>2023-04-14</td><td>Operator</td></tr><tr><td><a href="https://beaconcha.in/validator/458566">458,566</a></td><td>2023-04-14</td><td>Operator</td></tr><tr><td><a href="https://beaconcha.in/validator/459140">459,140</a></td><td>2023-04-14</td><td>Operator</td></tr><tr><td><a href="https://beaconcha.in/validator/458038">458,038</a></td><td>2023-04-14</td><td>Operator</td></tr><tr><td><a href="https://beaconcha.in/validator/459803">459,803</a></td><td>2023-04-14</td><td>Operator</td></tr><tr><td><a href="https://beaconcha.in/validator/459225">459,225</a></td><td>2023-04-14</td><td>Operator</td></tr><tr><td><a href="https://beaconcha.in/validator/459093">459,093</a></td><td>2023-04-14</td><td>Operator</td></tr><tr><td><a href="https://beaconcha.in/validator/458562">458,562</a></td><td>2023-04-14</td><td>Operator</td></tr></tbody></table></div>
+<h2>Protocol operators it runs</h2><ul><li>RockLogic GmbH <span class="mono muted">lido/1/22</span></li><li>RockLogic GmbH - PTO <span class="mono muted">lido/4/1</span></li><li>RockLogic GmbH - DO <span class="mono muted">lido/4/21</span></li><li>RockLogic GmbH - IODC+ <span class="mono muted">lido/4/22</span></li><li>RockLogic GmbH <span class="mono muted">lido/group/4.17</span></li></ul>
+<h2>Decisions naming it</h2><ul><li><a href="../decisions/0264-rocklogic.html">0264</a> Defines RockLogic (node operator)</li><li><a href="../decisions/0299-rocklogic-lido-operators.html">0299</a> Lido&#x27;s operator group 4.17 (&quot;RockLogic GmbH&quot;) and the operators it lists are run by RockLogic.</li></ul>
+</main>
+</body>
+</html>

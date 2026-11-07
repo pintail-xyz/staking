@@ -1,0 +1,77 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>0192-maicoin-staking: MaiCoin&#x27;s ETH staking: 23 Safes with the same six owners, whose deposits were made by a key that MaiCoin&#x27;s hot wallet funded, an</title>
+<style>
+:root { color-scheme: light; --surface-0: #f4f3f0; --surface-1: #fcfcfb; --border: #d9d8d3; --text-primary: #0b0b0b;
+        --text-secondary: #52514e; --text-muted: #77766f; --accent: #2a78d6; --chip: #ebe9e4; }
+@media (prefers-color-scheme: dark) {
+  :root:where(:not([data-theme="light"])) { color-scheme: dark; --surface-0: #121211; --surface-1: #1a1a19;
+    --border: #3a3a37; --text-primary: #f0efec; --text-secondary: #c3c2b7; --text-muted: #96958c; --accent: #3987e5;
+    --chip: #2a2a28; }
+}
+:root[data-theme="dark"] { color-scheme: dark; --surface-0: #121211; --surface-1: #1a1a19; --border: #3a3a37;
+  --text-primary: #f0efec; --text-secondary: #c3c2b7; --text-muted: #96958c; --accent: #3987e5; --chip: #2a2a28; }
+* { box-sizing: border-box; }
+body { margin: 0; background: var(--surface-0); color: var(--text-primary);
+       font: 15px/1.55 system-ui, -apple-system, "Segoe UI", sans-serif; }
+main { max-width: 860px; margin: 0 auto; padding: 32px 16px 64px; }
+a { color: var(--accent); }
+h1 { font-size: 22px; line-height: 1.3; font-weight: 600; margin: 4px 0 12px; }
+h2 { font-size: 15px; font-weight: 600; margin: 28px 0 8px; color: var(--text-secondary);
+     text-transform: uppercase; letter-spacing: 0.04em; }
+p { margin: 0 0 12px; }
+.crumbs { font-size: 13px; color: var(--text-muted); }
+.lede { font-size: 17px; }
+.muted { color: var(--text-muted); }
+.chip { display: inline-block; padding: 1px 8px; border-radius: 10px; background: var(--chip); font-size: 12px;
+        color: var(--text-secondary); margin-right: 4px; white-space: nowrap; }
+.card { background: var(--surface-1); border: 1px solid var(--border); border-radius: 6px; padding: 14px 16px;
+        margin: 0 0 12px; }
+.stats { display: flex; flex-wrap: wrap; gap: 12px; margin: 16px 0; }
+.stat { background: var(--surface-1); border: 1px solid var(--border); border-radius: 6px; padding: 10px 14px;
+        min-width: 140px; }
+.stat b { display: block; font-size: 20px; font-variant-numeric: tabular-nums; }
+.stat span { font-size: 12px; color: var(--text-muted); }
+ul.grounds { list-style: none; padding: 0; margin: 0; }
+ul.grounds li { padding: 6px 0; border-bottom: 1px solid var(--border); }
+ul.grounds li:last-child { border-bottom: 0; }
+table { width: 100%; border-collapse: collapse; background: var(--surface-1); font-size: 14px; }
+th, td { text-align: left; padding: 7px 8px; border-bottom: 1px solid var(--border); vertical-align: top; }
+th { font-weight: 600; color: var(--text-secondary); cursor: pointer; white-space: nowrap; user-select: none; }
+td.num, th.num { text-align: right; font-variant-numeric: tabular-nums; white-space: nowrap; }
+code, .mono { font: 12.5px ui-monospace, SFMono-Regular, Menlo, monospace; word-break: break-all; }
+details summary { cursor: pointer; color: var(--accent); }
+.excerpt { border-left: 3px solid var(--border); padding: 2px 0 2px 10px; color: var(--text-secondary);
+           font-size: 14px; white-space: pre-wrap; }
+input[type=search] { width: 100%; padding: 8px 10px; font: inherit; border: 1px solid var(--border);
+                     border-radius: 6px; background: var(--surface-1); color: var(--text-primary); margin: 8px 0 12px; }
+.table-wrap { overflow-x: auto; }
+@media (max-width: 640px) { .hide-sm { display: none; } }
+</style>
+<script data-goatcounter="https://pintail.goatcounter.com/count" async src="https://gc.zgo.at/count.js"></script>
+</head>
+<body>
+<main>
+<p class="crumbs"><a href="../">Dataset</a> › <a href="./">Decisions</a> › 0192-maicoin-staking</p>
+<h1>MaiCoin&#x27;s ETH staking: 23 Safes with the same six owners, whose deposits were made by a key that MaiCoin&#x27;s hot wallet funded, and by a second key depositing to the same Safes.</h1>
+<p><span class="chip">Attribution</span><span class="chip">Allocator</span> <a href="../entities/maicoin.html">MaiCoin staking</a> <span class="muted">· decided 2026-10-24</span></p>
+<p class="lede">Validators withdrawing to these 23 Safes are MaiCoin&#x27;s staking.</p>
+<div class="stats"><div class="stat"><b>843</b><span>validators resting on it now</span></div><div class="stat"><b>26,976</b><span>ETH now</span></div><div class="stat"><b>27,008</b><span>ETH at its peak</span></div></div>
+<h2>Grounds</h2><div class="card"><ul class="grounds"><li><span class="chip">Third party</span>A tracing report filed in a U.S. court case names 0xf803 a MaiCoin deposit address; it sweeps to 0x477b</li><li><span class="chip">On chain</span>0x477b sent deposit key 0x5a43 27,018 ETH in 263 transfers; it and 0x8e69 made every deposit to these Safes</li><li><span class="chip">On chain</span>All 23 are 3-of-6 Safes with the same six owners, who also own the Safe receiving their block rewards</li></ul></div>
+<h2>Explanation</h2><p>Validators withdrawing to these 23 Safe multisigs are the staking of MaiCoin, the Taiwanese exchange operator, with MaiCoin as allocator. In October 2026 they held 843 active validators with about 27k ETH, all previously unattributed. MaiCoin offers its customers ETH staking; who runs the validators is not established.</p>
+<p><strong>The anchor.</strong> A tracing report filed in a U.S. court case (<a href="https://storage.courtlistener.com/recap/gov.uscourts.cacd.936897/gov.uscourts.cacd.936897.1.1_1.pdf">2:24-cv-06769, exhibit 1-1</a>) names 0xf803…6975 as a MaiCoin deposit address in March 2023. That address was given gas by, and swept everything it received to, 0x477b…6b6f, a hot wallet.</p>
+<p><strong>The deposits.</strong> The hot wallet funded the deposit key 0x5a43…f212 with 27,018 ETH in 263 transfers from September 2023, and the key&#x27;s first deposit followed within minutes of its first funding. That key and a second, 0x8e69…b1c4, which deposited to some of the same Safes, made every deposit to these 23 Safes, mostly in groups of 40 or 10 validators per Safe. Rewards withdrawn from the Safes flow back to the first key.</p>
+<p><strong>The Safes.</strong> Each is a 3-of-6 Safe with the same six owners, who also own the Safes receiving the validators&#x27; block rewards. The hot wallet also funded the creator and owner of MAX, MaiCoin&#x27;s exchange token.</p>
+<p><strong>Limits.</strong> The court record names a customer deposit address, not the staking; the link from the hot wallet rests on funding, as for Bitstamp (decision 0187). MaiCoin&#x27;s own pages describe its staking product but name no address. Explorer labels are recorded as leads. The decision would change with evidence that the hot wallet is not MaiCoin&#x27;s, or that the deposit keys or the Safes&#x27; owners act for a MaiCoin client rather than MaiCoin.</p>
+<h2>What would change it</h2><p>Evidence that 0x477b is not MaiCoin&#x27;s, or that 0x5a43, 0x8e69 or the Safes&#x27; owners act for a MaiCoin client rather than MaiCoin.</p>
+<h2>Evidence</h2><p class="muted">Transactions and contract calls anyone can repeat on their own node.</p><div class="card"><ul class="grounds"><li><a class="mono" href="https://etherscan.io/tx/0x5b21368e8b3854564dbb1d8019956057094bd4cf2dd1a40844e50331160c9e9f">0x5b21368e…160c9e9f</a> — The deposit to MaiCoin address 0xf803 named in the court report (block 16,830,758)</li><li><a class="mono" href="https://etherscan.io/tx/0x30c20c512d8bd6808510d240cf916fce2b9940468dee2a436d6026f716eb4ac5">0x30c20c51…16eb4ac5</a> — 0xf803 sweeps that USDT to 0x477b (block 16,830,890)</li><li><a class="mono" href="https://etherscan.io/tx/0xb09d98566869f234d4386b555abdb17539dec63b72509c0cb9718fbf0de2bcf3">0xb09d9856…0de2bcf3</a> — 0x477b sends deposit key 0x5a43 its first 32 ETH (block 18,219,510)</li><li><a class="mono" href="https://etherscan.io/tx/0x372c0f4ea8aca783367f2df57bcde32f3f76801cb54adc85c5b2112c0fa74e08">0x372c0f4e…0fa74e08</a> — 0x5a43&#x27;s first deposit (block 18,219,632)</li><li><a class="mono" href="https://etherscan.io/tx/0x5af6feb2178cac2122b701a1a7306755aed3f5093da3e7ea3e0be85ddc5a4cc1">0x5af6feb2…dc5a4cc1</a> — 0x477b&#x27;s largest transfer to 0x5a43, 1,603 ETH (block 20,689,515)</li><li><a class="mono" href="https://etherscan.io/tx/0xbe2c98173831d252687b9a3c91a9f30a02259eece39215827eb8014b689e3fea">0xbe2c9817…689e3fea</a> — 0x8e69&#x27;s first deposit, crediting Safe 0x0405 (block 20,568,195)</li><li><a class="mono" href="https://etherscan.io/tx/0xf2c50fd917741597081229165baf0c0c3c9b4336c1ea51343faaecab5cc50de9">0xf2c50fd9…5cc50de9</a> — 0x5a43&#x27;s first deposit crediting one of the 23 Safes, 0x77ac (block 20,891,170)</li></ul></div>
+<h2>Sources</h2><div class="card"><a href="https://storage.courtlistener.com/recap/gov.uscourts.cacd.936897/gov.uscourts.cacd.936897.1.1_1.pdf">2:24-cv-06769, complaint exhibit 1-1 (CipherBlade investigative report, filed 10 April 2024)</a><div class="muted" style="font-size:13px">U.S. District Court, Central District of California (via CourtListener RECAP) · third party · retrieved 2026-10-24</div><p class="excerpt">3.3 Maicoin [...] had forwarded funds to 1 Maicoin deposit address [...] 0x5b21368e8b3854564dbb1d8019956057094bd4cf2dd1a40844e50331160c9e9f [...] Maicoin 0xf803ab8ee0abb4594687b11f9dd09ed915816975 USDT 124.74</p><div class="muted mono">sha256 dbfd6b00ce6681dd37e3929bc4e2e76418a60ab57d89eb3212cc3b108f5778f6</div></div>
+<h2>Leads</h2><p class="muted">Third-party pages, such as explorer labels, that pointed the research but are not relied on.</p><ul><li><a href="https://metadata.services.blockscout.com/api/v1/metadata?chainId=1&amp;addresses=0x477b8d5ef7c2c42db84deb555419cd817c336b6f,0xd3621b7ea5062dbcf6daa333c24c651894c5d2ea,0xf803ab8ee0abb4594687b11f9dd09ed915816975,0x5a436013386f7d60b965e8ece3113036aa3cf212">Blockscout address page</a></li></ul>
+<h2>Treemap boxes resting on it</h2><div class="table-wrap"><table><thead><tr><th>Box</th><th class="num">ETH now</th><th class="num">Peak ETH</th></tr></thead><tbody><tr><td>MaiCoin › MaiCoin staking › 23 named withdrawal addresses (from Sep 2024)</td><td class="num">26,976</td><td class="num">27,008</td></tr></tbody></table></div>
+<h2>Targets (23)</h2><details><summary>The addresses or validators this decision covers</summary><ul style="list-style:none;padding:0"><li><span class="chip">withdrawal address</span><a class="mono" href="https://etherscan.io/address/0x0405b0a460a54320ed71c2df2a606271af8a2e4c">0x0405b0a460a54320ed71c2df2a606271af8a2e4c</a></li><li><span class="chip">withdrawal address</span><a class="mono" href="https://etherscan.io/address/0x13efe153d837721cbc8c0ef9735c4c65f4a947d9">0x13efe153d837721cbc8c0ef9735c4c65f4a947d9</a></li><li><span class="chip">withdrawal address</span><a class="mono" href="https://etherscan.io/address/0x1891aad76b9905a4c5b7a0b601a0f454ce31f987">0x1891aad76b9905a4c5b7a0b601a0f454ce31f987</a></li><li><span class="chip">withdrawal address</span><a class="mono" href="https://etherscan.io/address/0x18b0946d4b48c3fdee720093d336e4e52c0b7fd0">0x18b0946d4b48c3fdee720093d336e4e52c0b7fd0</a></li><li><span class="chip">withdrawal address</span><a class="mono" href="https://etherscan.io/address/0x1ad23a52637faa4c6f0adf0bbe71a5cbb6daec83">0x1ad23a52637faa4c6f0adf0bbe71a5cbb6daec83</a></li><li><span class="chip">withdrawal address</span><a class="mono" href="https://etherscan.io/address/0x2873657a5f15097a5fecba7d13452e387deccb0d">0x2873657a5f15097a5fecba7d13452e387deccb0d</a></li><li><span class="chip">withdrawal address</span><a class="mono" href="https://etherscan.io/address/0x2b9206999077b9b7af22daa8d5a935c942c3a4d5">0x2b9206999077b9b7af22daa8d5a935c942c3a4d5</a></li><li><span class="chip">withdrawal address</span><a class="mono" href="https://etherscan.io/address/0x2eb7f0443c17fabe096c48516ad6add260207973">0x2eb7f0443c17fabe096c48516ad6add260207973</a></li><li><span class="chip">withdrawal address</span><a class="mono" href="https://etherscan.io/address/0x31687cfdd56c6d8c9fe145f7fe5f2f58b1ae21d2">0x31687cfdd56c6d8c9fe145f7fe5f2f58b1ae21d2</a></li><li><span class="chip">withdrawal address</span><a class="mono" href="https://etherscan.io/address/0x36301dea4176d305060b3606701fc051230ea3bb">0x36301dea4176d305060b3606701fc051230ea3bb</a></li><li><span class="chip">withdrawal address</span><a class="mono" href="https://etherscan.io/address/0x3bb66b847342209e8a584fa88fe843f263299e47">0x3bb66b847342209e8a584fa88fe843f263299e47</a></li><li><span class="chip">withdrawal address</span><a class="mono" href="https://etherscan.io/address/0x4249f7c4a15852a73cc1b3bc7f18974c4640c9b8">0x4249f7c4a15852a73cc1b3bc7f18974c4640c9b8</a></li><li><span class="chip">withdrawal address</span><a class="mono" href="https://etherscan.io/address/0x6ca0337c45dfb63c4c7fdfc41a1f6d9c52b44991">0x6ca0337c45dfb63c4c7fdfc41a1f6d9c52b44991</a></li><li><span class="chip">withdrawal address</span><a class="mono" href="https://etherscan.io/address/0x735bfd34e6a71f8eadacdef1bb8284ef01327ceb">0x735bfd34e6a71f8eadacdef1bb8284ef01327ceb</a></li><li><span class="chip">withdrawal address</span><a class="mono" href="https://etherscan.io/address/0x73757504e3f9b79c82617a4e0f1ef0592d101dc9">0x73757504e3f9b79c82617a4e0f1ef0592d101dc9</a></li><li><span class="chip">withdrawal address</span><a class="mono" href="https://etherscan.io/address/0x77ac934ddfdc14fb997f6008c1d5ecfae2cbaed7">0x77ac934ddfdc14fb997f6008c1d5ecfae2cbaed7</a></li><li><span class="chip">withdrawal address</span><a class="mono" href="https://etherscan.io/address/0x85303c8ea2da948ac96ecb5fd2798f686f4de9cf">0x85303c8ea2da948ac96ecb5fd2798f686f4de9cf</a></li><li><span class="chip">withdrawal address</span><a class="mono" href="https://etherscan.io/address/0x9e62b3e22801628cbc72f7ae9724080bca05f931">0x9e62b3e22801628cbc72f7ae9724080bca05f931</a></li><li><span class="chip">withdrawal address</span><a class="mono" href="https://etherscan.io/address/0xd469f29d114a0327afe9dbdcf03f35dafa0b2bce">0xd469f29d114a0327afe9dbdcf03f35dafa0b2bce</a></li><li><span class="chip">withdrawal address</span><a class="mono" href="https://etherscan.io/address/0xd5448b06b01b432e56e45e05bb28e15e46b8c9d2">0xd5448b06b01b432e56e45e05bb28e15e46b8c9d2</a></li><li><span class="chip">withdrawal address</span><a class="mono" href="https://etherscan.io/address/0xe1fdf98f0dc1695af061692346e53a622e0a599f">0xe1fdf98f0dc1695af061692346e53a622e0a599f</a></li><li><span class="chip">withdrawal address</span><a class="mono" href="https://etherscan.io/address/0xf0a18d81c9cb70751896407f1ce0a3a514bc9358">0xf0a18d81c9cb70751896407f1ce0a3a514bc9358</a></li><li><span class="chip">withdrawal address</span><a class="mono" href="https://etherscan.io/address/0xffa35bd8a0d56380c9e3ab1aa0bc0dd9ba9456c1">0xffa35bd8a0d56380c9e3ab1aa0bc0dd9ba9456c1</a></li></ul></details>
+</main>
+</body>
+</html>

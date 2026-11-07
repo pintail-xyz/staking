@@ -1,0 +1,74 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>0081-ankr-eth2-staking: This contract, which Ankr&#x27;s docs name its mainnet GlobalPool, made the deposits for Ankr&#x27;s liquid staking; validators withdraw</title>
+<style>
+:root { color-scheme: light; --surface-0: #f4f3f0; --surface-1: #fcfcfb; --border: #d9d8d3; --text-primary: #0b0b0b;
+        --text-secondary: #52514e; --text-muted: #77766f; --accent: #2a78d6; --chip: #ebe9e4; }
+@media (prefers-color-scheme: dark) {
+  :root:where(:not([data-theme="light"])) { color-scheme: dark; --surface-0: #121211; --surface-1: #1a1a19;
+    --border: #3a3a37; --text-primary: #f0efec; --text-secondary: #c3c2b7; --text-muted: #96958c; --accent: #3987e5;
+    --chip: #2a2a28; }
+}
+:root[data-theme="dark"] { color-scheme: dark; --surface-0: #121211; --surface-1: #1a1a19; --border: #3a3a37;
+  --text-primary: #f0efec; --text-secondary: #c3c2b7; --text-muted: #96958c; --accent: #3987e5; --chip: #2a2a28; }
+* { box-sizing: border-box; }
+body { margin: 0; background: var(--surface-0); color: var(--text-primary);
+       font: 15px/1.55 system-ui, -apple-system, "Segoe UI", sans-serif; }
+main { max-width: 860px; margin: 0 auto; padding: 32px 16px 64px; }
+a { color: var(--accent); }
+h1 { font-size: 22px; line-height: 1.3; font-weight: 600; margin: 4px 0 12px; }
+h2 { font-size: 15px; font-weight: 600; margin: 28px 0 8px; color: var(--text-secondary);
+     text-transform: uppercase; letter-spacing: 0.04em; }
+p { margin: 0 0 12px; }
+.crumbs { font-size: 13px; color: var(--text-muted); }
+.lede { font-size: 17px; }
+.muted { color: var(--text-muted); }
+.chip { display: inline-block; padding: 1px 8px; border-radius: 10px; background: var(--chip); font-size: 12px;
+        color: var(--text-secondary); margin-right: 4px; white-space: nowrap; }
+.card { background: var(--surface-1); border: 1px solid var(--border); border-radius: 6px; padding: 14px 16px;
+        margin: 0 0 12px; }
+.stats { display: flex; flex-wrap: wrap; gap: 12px; margin: 16px 0; }
+.stat { background: var(--surface-1); border: 1px solid var(--border); border-radius: 6px; padding: 10px 14px;
+        min-width: 140px; }
+.stat b { display: block; font-size: 20px; font-variant-numeric: tabular-nums; }
+.stat span { font-size: 12px; color: var(--text-muted); }
+ul.grounds { list-style: none; padding: 0; margin: 0; }
+ul.grounds li { padding: 6px 0; border-bottom: 1px solid var(--border); }
+ul.grounds li:last-child { border-bottom: 0; }
+table { width: 100%; border-collapse: collapse; background: var(--surface-1); font-size: 14px; }
+th, td { text-align: left; padding: 7px 8px; border-bottom: 1px solid var(--border); vertical-align: top; }
+th { font-weight: 600; color: var(--text-secondary); cursor: pointer; white-space: nowrap; user-select: none; }
+td.num, th.num { text-align: right; font-variant-numeric: tabular-nums; white-space: nowrap; }
+code, .mono { font: 12.5px ui-monospace, SFMono-Regular, Menlo, monospace; word-break: break-all; }
+details summary { cursor: pointer; color: var(--accent); }
+.excerpt { border-left: 3px solid var(--border); padding: 2px 0 2px 10px; color: var(--text-secondary);
+           font-size: 14px; white-space: pre-wrap; }
+input[type=search] { width: 100%; padding: 8px 10px; font: inherit; border: 1px solid var(--border);
+                     border-radius: 6px; background: var(--surface-1); color: var(--text-primary); margin: 8px 0 12px; }
+.table-wrap { overflow-x: auto; }
+@media (max-width: 640px) { .hide-sm { display: none; } }
+</style>
+<script data-goatcounter="https://pintail.goatcounter.com/count" async src="https://gc.zgo.at/count.js"></script>
+</head>
+<body>
+<main>
+<p class="crumbs"><a href="../">Dataset</a> › <a href="./">Decisions</a> › 0081-ankr-eth2-staking</p>
+<h1>This contract, which Ankr&#x27;s docs name its mainnet GlobalPool, made the deposits for Ankr&#x27;s liquid staking; validators withdrawing to the withdrawal pool its docs name are Ankr&#x27;s.</h1>
+<p><span class="chip">Anchor</span> <span class="muted">· decided 2026-10-17</span></p>
+<p class="lede">This contract made the deposits for Ankr&#x27;s liquid staking; validators withdrawing to its withdrawal pool are Ankr&#x27;s.</p>
+<div class="stats"><div class="stat"><b>260</b><span>validators resting on it now</span></div><div class="stat"><b>8,320</b><span>ETH now</span></div><div class="stat"><b>56,352</b><span>ETH at its peak</span></div></div>
+<h2>Grounds</h2><div class="card"><ul class="grounds"><li><span class="chip">First party</span>Ankr&#x27;s developer docs name this contract its mainnet GlobalPool, the contract users stake ETH through</li><li><span class="chip">First party</span>The same docs name the address its validators withdraw to as the withdrawal address for Ankr validators</li></ul></div>
+<h2>Explanation</h2><p>The contract 0x84db…6670 is Ankr&#x27;s liquid staking pool, which made the deposits for Ankr&#x27;s ETH liquid staking: validators withdrawing to the withdrawal pool it names are attributed to Ankr as allocator. 1,840 validators were deposited through it between November 2020 and November 2025; they made up 1.4% of all stake at their peak in early 2021, and 261 were active in October 2026.</p>
+<p><strong>Identification.</strong> <a href="https://www.ankr.com/docs/staking-for-developers/smart-contract-api/eth-api/">Ankr&#x27;s developer documentation</a> names this contract as its mainnet GlobalPool, the contract users stake ETH through, and its <a href="https://www.ankr.com/docs/staking-for-developers/dev-details/eth-liquid-staking-mechanics/">page on liquid staking mechanics</a> names 0x6742…9348 as the withdrawal address for Ankr&#x27;s validators. Every validator deposited through the pool either names that withdrawal address or was later changed to it from BLS credentials.</p>
+<p>Ankr chooses the operators of its pool&#x27;s validators, so it is the allocator. No operator is recorded. Explorer labels and community label sets are recorded as leads. The decision would change with evidence that the contract deposited for others.</p>
+<h2>What would change it</h2><p>Evidence the contract deposited for others, or that the tag is wrong.</p>
+<h2>Evidence</h2><p class="muted">Transactions and contract calls anyone can repeat on their own node.</p><div class="card"><ul class="grounds"><li><a class="mono" href="https://etherscan.io/tx/0xd12cc75257938b79fd0cd363dbfbd50176f1960d6924060894d0e29ed7f40a6e">0xd12cc752…d7f40a6e</a> — First deposit through it</li></ul></div>
+<h2>Sources</h2><div class="card"><a href="https://www.ankr.com/docs/staking-for-developers/smart-contract-api/eth-api/">ETH Liquid Staking API (Ankr developer docs)</a><div class="muted" style="font-size:13px">Ankr · the entity&#x27;s own · retrieved 2026-10-21</div><p class="excerpt">Smart contract — Mainnet GlobalPool Proxy — 0x84db6eE82b7Cf3b47E8F19270abdE5718B936670</p><div class="muted mono">sha256 b778660c78b7c1eca0811ed6148d89dab7420bb268545a12bd98bd2aa95aaa80</div></div><div class="card"><a href="https://www.ankr.com/docs/staking-for-developers/dev-details/eth-liquid-staking-mechanics/">ETH liquid staking mechanics (Ankr developer docs)</a><div class="muted" style="font-size:13px">Ankr · the entity&#x27;s own · retrieved 2026-10-21</div><p class="excerpt">withdrawalPool (0x67428dE0680494E448F1A19d33C2022a51719348) — withdrawal address for Ankr validators</p><div class="muted mono">sha256 c1e5c11982ac2e1a8d5242c9cb707dee76e523f29565c79692976c3c01f587d6</div></div>
+<h2>Leads</h2><p class="muted">Third-party pages, such as explorer labels, that pointed the research but are not relied on.</p><ul><li><a href="https://etherscan.io/address/0x84db6ee82b7cf3b47e8f19270abde5718b936670">Etherscan address page</a></li><li><a href="https://metadata.services.blockscout.com/api/v1/metadata?chainId=1&amp;addresses=0x84db6ee82b7cf3b47e8f19270abde5718b936670">Blockscout address page</a></li><li><a href="https://etherscan.io/address/0x67428de0680494e448f1a19d33c2022a51719348">Etherscan address page</a></li><li><a href="https://metadata.services.blockscout.com/api/v1/metadata?chainId=1&amp;addresses=0x67428de0680494e448f1a19d33c2022a51719348">Blockscout address page</a></li><li><a href="https://github.com/duneanalytics/spellbook/blob/e5b41162a270135790f5f39491f9677360a6adb0/dbt_subprojects/hourly_spellbook/models/_sector/staking/ethereum/entities/staking_ethereum_entities_depositor_addresses.sql">staking_ethereum_entities_depositor_addresses.sql</a></li></ul>
+<h2>Treemap boxes resting on it</h2><div class="table-wrap"><table><thead><tr><th>Box</th><th class="num">ETH now</th><th class="num">Peak ETH</th></tr></thead><tbody><tr><td>Ankr › Ankr staking (aETHb/ankrETH) › Withdraws to 0x6742…9348</td><td class="num">8,320</td><td class="num">56,352</td></tr></tbody></table></div>
+</main>
+</body>
+</html>
