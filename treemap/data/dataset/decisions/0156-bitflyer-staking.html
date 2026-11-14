@@ -1,0 +1,75 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>0156-bitflyer-staking: Validators withdrawing to a multisig whose staking began the day bitFlyer launched ETH staking, and whose size fits bitFlyer&#x27;s </title>
+<style>
+:root { color-scheme: light; --surface-0: #f4f3f0; --surface-1: #fcfcfb; --border: #d9d8d3; --text-primary: #0b0b0b;
+        --text-secondary: #52514e; --text-muted: #77766f; --accent: #2a78d6; --chip: #ebe9e4; }
+@media (prefers-color-scheme: dark) {
+  :root:where(:not([data-theme="light"])) { color-scheme: dark; --surface-0: #121211; --surface-1: #1a1a19;
+    --border: #3a3a37; --text-primary: #f0efec; --text-secondary: #c3c2b7; --text-muted: #96958c; --accent: #3987e5;
+    --chip: #2a2a28; }
+}
+:root[data-theme="dark"] { color-scheme: dark; --surface-0: #121211; --surface-1: #1a1a19; --border: #3a3a37;
+  --text-primary: #f0efec; --text-secondary: #c3c2b7; --text-muted: #96958c; --accent: #3987e5; --chip: #2a2a28; }
+* { box-sizing: border-box; }
+body { margin: 0; background: var(--surface-0); color: var(--text-primary);
+       font: 15px/1.55 system-ui, -apple-system, "Segoe UI", sans-serif; }
+main { max-width: 860px; margin: 0 auto; padding: 32px 16px 64px; }
+a { color: var(--accent); }
+h1 { font-size: 22px; line-height: 1.3; font-weight: 600; margin: 4px 0 12px; }
+h2 { font-size: 15px; font-weight: 600; margin: 28px 0 8px; color: var(--text-secondary);
+     text-transform: uppercase; letter-spacing: 0.04em; }
+p { margin: 0 0 12px; }
+.crumbs { font-size: 13px; color: var(--text-muted); }
+.lede { font-size: 17px; }
+.muted { color: var(--text-muted); }
+.chip { display: inline-block; padding: 1px 8px; border-radius: 10px; background: var(--chip); font-size: 12px;
+        color: var(--text-secondary); margin-right: 4px; white-space: nowrap; }
+.card { background: var(--surface-1); border: 1px solid var(--border); border-radius: 6px; padding: 14px 16px;
+        margin: 0 0 12px; }
+.stats { display: flex; flex-wrap: wrap; gap: 12px; margin: 16px 0; }
+.stat { background: var(--surface-1); border: 1px solid var(--border); border-radius: 6px; padding: 10px 14px;
+        min-width: 140px; }
+.stat b { display: block; font-size: 20px; font-variant-numeric: tabular-nums; }
+.stat span { font-size: 12px; color: var(--text-muted); }
+ul.grounds { list-style: none; padding: 0; margin: 0; }
+ul.grounds li { padding: 6px 0; border-bottom: 1px solid var(--border); }
+ul.grounds li:last-child { border-bottom: 0; }
+table { width: 100%; border-collapse: collapse; background: var(--surface-1); font-size: 14px; }
+th, td { text-align: left; padding: 7px 8px; border-bottom: 1px solid var(--border); vertical-align: top; }
+th { font-weight: 600; color: var(--text-secondary); cursor: pointer; white-space: nowrap; user-select: none; }
+td.num, th.num { text-align: right; font-variant-numeric: tabular-nums; white-space: nowrap; }
+code, .mono { font: 12.5px ui-monospace, SFMono-Regular, Menlo, monospace; word-break: break-all; }
+details summary { cursor: pointer; color: var(--accent); }
+.excerpt { border-left: 3px solid var(--border); padding: 2px 0 2px 10px; color: var(--text-secondary);
+           font-size: 14px; white-space: pre-wrap; }
+input[type=search] { width: 100%; padding: 8px 10px; font: inherit; border: 1px solid var(--border);
+                     border-radius: 6px; background: var(--surface-1); color: var(--text-primary); margin: 8px 0 12px; }
+.table-wrap { overflow-x: auto; }
+@media (max-width: 640px) { .hide-sm { display: none; } }
+</style>
+<script data-goatcounter="https://pintail.goatcounter.com/count" async src="https://gc.zgo.at/count.js"></script>
+</head>
+<body>
+<main>
+<p class="crumbs"><a href="../">Dataset</a> › <a href="./">Decisions</a> › 0156-bitflyer-staking</p>
+<h1>Validators withdrawing to a multisig whose staking began the day bitFlyer launched ETH staking, and whose size fits bitFlyer&#x27;s reported ETH, are attributed to bitFlyer&#x27;s staking; the evidence is strongly suggestive but not conclusive, as bitFlyer names no address.</h1>
+<p><span class="chip">Attribution</span><span class="chip">Allocator</span> <a href="../entities/bitflyer.html">bitFlyer staking</a> <span class="muted">· decided 2026-10-22</span></p>
+<p class="lede">Validators withdrawing to this address are attributed to bitFlyer&#x27;s staking (strongly suggestive, not conclusive).</p>
+<h2>Grounds</h2><div class="card"><ul class="grounds"><li><span class="chip">First party</span>bitFlyer launched ETH staking on 12 August 2025; these validators&#x27; first large deposits were made that afternoon, Japan time</li><li><span class="chip">First party</span>bitFlyer&#x27;s audited accounts show 272,751 ETH held at end-2025; these validators then held 245,670 ETH</li><li><span class="chip">On chain</span>All deposits go through the 3-of-3 multisig they withdraw to, which got 256,246 ETH from one wallet</li></ul></div>
+<h2>Explanation</h2><p>Validators withdrawing to the multisig wallet 0x51b4…b913 are attributed to the ETH staking of bitFlyer, the Japanese exchange. The evidence is strongly suggestive but not conclusive: bitFlyer names no address, and the link rests on timing and size. 11,922 validators have been deposited since May 2025; about 8,080 were active in October 2026 with some 0.26M ETH. Most were deposited through Kiln&#x27;s and Blockdaemon&#x27;s contracts, so those providers are their allocators; this decision applies only to validators no provider claims, and decision 0188 records bitFlyer as principal of all of them.</p>
+<p><strong>The multisig.</strong> It is a multisig wallet with three owners, all of whom must sign. Every deposit was sent through it by its owners. One wallet sent it 256,246 ETH in 30 transfers from May 2025 to February 2026, and it is its validators&#x27; own fee recipient.</p>
+<p><strong>The timing.</strong> bitFlyer&#x27;s <a href="https://bitflyer.com/ja-jp/s/staking">staking page</a> launched ETH staking for customers who opt in, with the amount staked to be increased in stages; <a href="https://bitflyer.com/pub/business-report-12th.pdf">its business report for 2025</a> confirms the launch in August 2025, and <a href="https://coinpost.jp/?p=641425">CoinPost dates it to 12 August</a>. After two test deposits in May, this multisig began its large deposits at 17:21 Japan time on 12 August 2025.</p>
+<p><strong>The size.</strong> <a href="https://bitflyer.com/pub/financial-statement-12th.pdf">bitFlyer&#x27;s audited accounts for 2025</a> give 272,751 ETH held, its own and its customers&#x27;, at 31 December 2025. The validators then held 245,666 ETH and the multisig 2,792 ETH, about 90% of the total; a larger fleet could not have been bitFlyer&#x27;s. bitFlyer also publishes the rate it earned each month; the fleet&#x27;s rates are close but not distinctive enough to count either way.</p>
+<p><strong>Limits.</strong> Nothing bitFlyer signed or sent ties it to the multisig. bitFlyer&#x27;s FAQ says it uses a staking service provider, unnamed, which fits the providers found. Explorer labels on the funding wallet are recorded as leads. The decision would change with an address list or statement from bitFlyer that excludes this multisig, or evidence that the multisig or the wallet funding it belongs to someone else.</p>
+<h2>What would change it</h2><p>An address list or statement from bitFlyer that excludes this multisig, or evidence that the multisig or the wallet funding it belongs to someone else.</p>
+<h2>Evidence</h2><p class="muted">Transactions and contract calls anyone can repeat on their own node.</p><div class="card"><ul class="grounds"><li><a class="mono" href="https://etherscan.io/tx/0x583ed8a17dce0d3d48eb694ce1ed29e72667232296a8d6c7eac07ab46ea9f392">0x583ed8a1…6ea9f392</a> — First deposit of the main fleet, 12 August 2025 08:21 UTC (17:21 JST), the day bitFlyer launched ETH staking</li><li><a class="mono" href="https://etherscan.io/tx/0xdad703caf8d0ef2b1cece001bb3a1ecb4700036de57346a7f33dc597c2d4b007">0xdad703ca…c2d4b007</a> — Test deposit through the multisig, 22 May 2025</li><li><a class="mono" href="https://etherscan.io/tx/0xfaf09f6044939f4652967f83688a419fef04adce07cdf77dcef681e8c3c79464">0xfaf09f60…c3c79464</a> — 0x8350…bd96&#x27;s first transfer to the multisig (0.01 ETH test)</li><li><a class="mono" href="https://etherscan.io/tx/0xdb466f4b293e43bc61f20440db82c22c0614608c9263653074e0f03c88218c12">0xdb466f4b…88218c12</a> — 0x8350…bd96&#x27;s last transfer to the multisig (6,720 ETH, February 2026)</li></ul></div>
+<h2>Sources</h2><div class="card"><a href="https://bitflyer.com/ja-jp/s/staking">ステーキング (staking service page, archived 13 August 2025)</a><div class="muted" style="font-size:13px">bitFlyer, Inc. · the entity&#x27;s own · retrieved 2026-10-22</div><p class="excerpt">ステーキング対象の暗号資産は段階的に増やしていくため、サービスの開始から一定期間は付与される報酬が上記の計算結果よりも少なくなる場合がございます</p><div class="muted mono">sha256 00b028723372cfdc2f2291559f8d8fbcce987508c891a9f97cd54092b4e7d35f</div></div><div class="card"><a href="https://bitflyer.com/pub/business-report-12th.pdf">事業報告（第12期）: business report for 2025</a><div class="muted" style="font-size:13px">bitFlyer, Inc. · the entity&#x27;s own · retrieved 2026-10-22</div><p class="excerpt">2025 年 8 月にイーサリアム（ETH）ステーキングサービスを開始し、保有する暗号資産から報酬を得られる仕組みを新たに提供いたしました。</p><div class="muted mono">sha256 b3ceb761789942ac0857115286479798d1ce6e3d25a6070dd9ac9208b50e566c</div></div><div class="card"><a href="https://bitflyer.com/pub/financial-statement-12th.pdf">計算書類（第12期）: financial statements for 1 January to 31 December 2025</a><div class="muted" style="font-size:13px">bitFlyer, Inc. · the entity&#x27;s own · retrieved 2026-10-22</div><p class="excerpt">２．保有する暗号資産の種類ごとの保有数量及び貸借対照表計上額 ... ETH（イーサリアム） 272,751 ETH 126,831</p><div class="muted mono">sha256 55dd4ea32136edbd8cdbcd3a5dc44a1455d708c426fd82364c39bcf02a59f1bc</div></div><div class="card"><a href="https://coinpost.jp/?p=641425">ビットフライヤー、イーサリアムのステーキングサービスを開始 (12 August 2025)</a><div class="muted" style="font-size:13px">CoinPost · third party · retrieved 2026-10-22</div><p class="excerpt">暗号資産（仮想通貨）取引所のbitFlyer（ビットフライヤー）は12日、イーサリアム（ETH）を対象としたステーキングサービスの提供を開始した。</p><div class="muted mono">sha256 c62e330c6191f7f9333696eae2d67eed004b81a5097b25818ecf9a272f9ae380</div></div>
+<h2>Leads</h2><p class="muted">Third-party pages, such as explorer labels, that pointed the research but are not relied on.</p><ul><li><a href="https://metadata.services.blockscout.com/api/v1/metadata?chainId=1&amp;addresses=0x835033bd90b943fa0d0f8e5382d9dc568d3fbd96,0x51b4096d4bde1b883f6d6ca3b1b7eb54dc20b913,0x402c560c69dfabb8fb261f78ed059ce9d6a699a4,0x42111b47c4f1f42f9532aeff3b6166e2bf0cf31d">Blockscout address page</a></li></ul>
+<h2>Targets (1)</h2><details open><summary>The addresses or validators this decision covers</summary><ul style="list-style:none;padding:0"><li><span class="chip">withdrawal address</span><a class="mono" href="https://etherscan.io/address/0x51b4096d4bde1b883f6d6ca3b1b7eb54dc20b913">0x51b4096d4bde1b883f6d6ca3b1b7eb54dc20b913</a></li></ul></details>
+</main>
+</body>
+</html>

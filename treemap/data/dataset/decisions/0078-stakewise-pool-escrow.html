@@ -1,0 +1,73 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>0078-stakewise-pool-escrow: StakeWise&#x27;s own list of its contracts names this as its V2 Pool Escrow; validators withdrawing to it were StakeWise&#x27;s pool</title>
+<style>
+:root { color-scheme: light; --surface-0: #f4f3f0; --surface-1: #fcfcfb; --border: #d9d8d3; --text-primary: #0b0b0b;
+        --text-secondary: #52514e; --text-muted: #77766f; --accent: #2a78d6; --chip: #ebe9e4; }
+@media (prefers-color-scheme: dark) {
+  :root:where(:not([data-theme="light"])) { color-scheme: dark; --surface-0: #121211; --surface-1: #1a1a19;
+    --border: #3a3a37; --text-primary: #f0efec; --text-secondary: #c3c2b7; --text-muted: #96958c; --accent: #3987e5;
+    --chip: #2a2a28; }
+}
+:root[data-theme="dark"] { color-scheme: dark; --surface-0: #121211; --surface-1: #1a1a19; --border: #3a3a37;
+  --text-primary: #f0efec; --text-secondary: #c3c2b7; --text-muted: #96958c; --accent: #3987e5; --chip: #2a2a28; }
+* { box-sizing: border-box; }
+body { margin: 0; background: var(--surface-0); color: var(--text-primary);
+       font: 15px/1.55 system-ui, -apple-system, "Segoe UI", sans-serif; }
+main { max-width: 860px; margin: 0 auto; padding: 32px 16px 64px; }
+a { color: var(--accent); }
+h1 { font-size: 22px; line-height: 1.3; font-weight: 600; margin: 4px 0 12px; }
+h2 { font-size: 15px; font-weight: 600; margin: 28px 0 8px; color: var(--text-secondary);
+     text-transform: uppercase; letter-spacing: 0.04em; }
+p { margin: 0 0 12px; }
+.crumbs { font-size: 13px; color: var(--text-muted); }
+.lede { font-size: 17px; }
+.muted { color: var(--text-muted); }
+.chip { display: inline-block; padding: 1px 8px; border-radius: 10px; background: var(--chip); font-size: 12px;
+        color: var(--text-secondary); margin-right: 4px; white-space: nowrap; }
+.card { background: var(--surface-1); border: 1px solid var(--border); border-radius: 6px; padding: 14px 16px;
+        margin: 0 0 12px; }
+.stats { display: flex; flex-wrap: wrap; gap: 12px; margin: 16px 0; }
+.stat { background: var(--surface-1); border: 1px solid var(--border); border-radius: 6px; padding: 10px 14px;
+        min-width: 140px; }
+.stat b { display: block; font-size: 20px; font-variant-numeric: tabular-nums; }
+.stat span { font-size: 12px; color: var(--text-muted); }
+ul.grounds { list-style: none; padding: 0; margin: 0; }
+ul.grounds li { padding: 6px 0; border-bottom: 1px solid var(--border); }
+ul.grounds li:last-child { border-bottom: 0; }
+table { width: 100%; border-collapse: collapse; background: var(--surface-1); font-size: 14px; }
+th, td { text-align: left; padding: 7px 8px; border-bottom: 1px solid var(--border); vertical-align: top; }
+th { font-weight: 600; color: var(--text-secondary); cursor: pointer; white-space: nowrap; user-select: none; }
+td.num, th.num { text-align: right; font-variant-numeric: tabular-nums; white-space: nowrap; }
+code, .mono { font: 12.5px ui-monospace, SFMono-Regular, Menlo, monospace; word-break: break-all; }
+details summary { cursor: pointer; color: var(--accent); }
+.excerpt { border-left: 3px solid var(--border); padding: 2px 0 2px 10px; color: var(--text-secondary);
+           font-size: 14px; white-space: pre-wrap; }
+input[type=search] { width: 100%; padding: 8px 10px; font: inherit; border: 1px solid var(--border);
+                     border-radius: 6px; background: var(--surface-1); color: var(--text-primary); margin: 8px 0 12px; }
+.table-wrap { overflow-x: auto; }
+@media (max-width: 640px) { .hide-sm { display: none; } }
+</style>
+<script data-goatcounter="https://pintail.goatcounter.com/count" async src="https://gc.zgo.at/count.js"></script>
+</head>
+<body>
+<main>
+<p class="crumbs"><a href="../">Dataset</a> › <a href="./">Decisions</a> › 0078-stakewise-pool-escrow</p>
+<h1>StakeWise&#x27;s own list of its contracts names this as its V2 Pool Escrow; validators withdrawing to it were StakeWise&#x27;s pool&#x27;s.</h1>
+<p><span class="chip">Anchor</span> <span class="muted">· decided 2026-10-17</span></p>
+<p class="lede">This contract is the Pool Escrow of StakeWise V2; validators withdrawing to it were StakeWise&#x27;s pool&#x27;s.</p>
+<div class="stats"><div class="stat"><b>0</b><span>validators resting on it now</span></div><div class="stat"><b>0</b><span>ETH now</span></div><div class="stat"><b>87,936</b><span>ETH at its peak</span></div></div>
+<h2>Grounds</h2><div class="card"><ul class="grounds"><li><span class="chip">First party</span>StakeWise&#x27;s own list of its mainnet contracts names this as its V2 Pool Escrow</li><li><span class="chip">First party</span>Its validators were deposited through StakeWise&#x27;s Pool and Oracles contracts, from the same list</li></ul></div>
+<h2>Explanation</h2><p>The contract 0x2296…f079 is the Pool Escrow of StakeWise&#x27;s version 2 staking pool, and validators withdrawing to it are attributed to StakeWise as allocator. 2,751 validators withdrew to it; they made up 0.53% of all stake at their peak in 2021, and all have since exited.</p>
+<p><strong>Identification.</strong> <a href="https://github.com/stakewise/contracts/blob/29022d7c4628420efe5fed0560e5269db07d9892/networks/mainnet.md">StakeWise&#x27;s own list of its mainnet contracts</a> names this contract as its V2 Pool Escrow, together with the pool&#x27;s Pool and Oracles contracts. The validators were deposited through the Pool contract from February 2021 (912 first deposits, most of them sent by one of its operators of the time) and through the Oracles contract from January 2022 (1,839), all with the Pool Escrow as withdrawal address.</p>
+<p>StakeWise chose the operators of its pool, so it is the allocator; no operator is recorded. StakeWise&#x27;s version 3 vaults are covered by decision 0105. Explorer labels are recorded as leads. The decision would change if StakeWise&#x27;s contract list named a different escrow.</p>
+<h2>What would change it</h2><p>StakeWise&#x27;s contract list naming a different escrow.</p>
+<h2>Sources</h2><div class="card"><a href="https://github.com/stakewise/contracts/blob/29022d7c4628420efe5fed0560e5269db07d9892/networks/mainnet.md">networks/mainnet.md (commit 29022d7)</a><div class="muted" style="font-size:13px">StakeWise, stakewise/contracts on GitHub · the entity&#x27;s own · retrieved 2026-10-17</div><p class="excerpt">## Pool Escrow [...] - Contract: [0x2296e122c1a20Fca3CAc3371357BdAd3be0dF079]</p><div class="muted mono">sha256 8f970659d6b16b96daca6ad92aba5ea936661e23722c4df978e6a12d4afdf657</div></div>
+<h2>Leads</h2><p class="muted">Third-party pages, such as explorer labels, that pointed the research but are not relied on.</p><ul><li><a href="https://etherscan.io/address/0x2296e122c1a20fca3cac3371357bdad3be0df079">Etherscan address page</a></li><li><a href="https://metadata.services.blockscout.com/api/v1/metadata?chainId=1&amp;addresses=0x2296e122c1a20fca3cac3371357bdad3be0df079">Blockscout address page</a></li><li><a href="https://etherscan.io/address/0xc874b064f465bdd6411d45734b56fac750cda29a">Etherscan address page</a></li><li><a href="https://metadata.services.blockscout.com/api/v1/metadata?chainId=1&amp;addresses=0xc874b064f465bdd6411d45734b56fac750cda29a">Blockscout address page</a></li><li><a href="https://github.com/duneanalytics/spellbook/blob/e5b41162a270135790f5f39491f9677360a6adb0/dbt_subprojects/hourly_spellbook/models/_sector/staking/ethereum/entities/staking_ethereum_entities_depositor_addresses.sql">staking_ethereum_entities_depositor_addresses.sql</a></li></ul>
+<h2>Treemap boxes resting on it</h2><div class="table-wrap"><table><thead><tr><th>Box</th><th class="num">ETH now</th><th class="num">Peak ETH</th></tr></thead><tbody><tr><td>StakeWise › StakeWise V2 pool (sETH2) › Withdraws to 0x2296…f079</td><td class="num">0</td><td class="num">87,936</td></tr></tbody></table></div>
+</main>
+</body>
+</html>

@@ -1,0 +1,99 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>KuCoin: roles in the validator set</title>
+<style>
+:root { color-scheme: light; --surface-0: #f4f3f0; --surface-1: #fcfcfb; --border: #d9d8d3; --text-primary: #0b0b0b;
+        --text-secondary: #52514e; --text-muted: #77766f; --accent: #2a78d6; --chip: #ebe9e4; }
+@media (prefers-color-scheme: dark) {
+  :root:where(:not([data-theme="light"])) { color-scheme: dark; --surface-0: #121211; --surface-1: #1a1a19;
+    --border: #3a3a37; --text-primary: #f0efec; --text-secondary: #c3c2b7; --text-muted: #96958c; --accent: #3987e5;
+    --chip: #2a2a28; }
+}
+:root[data-theme="dark"] { color-scheme: dark; --surface-0: #121211; --surface-1: #1a1a19; --border: #3a3a37;
+  --text-primary: #f0efec; --text-secondary: #c3c2b7; --text-muted: #96958c; --accent: #3987e5; --chip: #2a2a28; }
+* { box-sizing: border-box; }
+body { margin: 0; background: var(--surface-0); color: var(--text-primary);
+       font: 15px/1.55 system-ui, -apple-system, "Segoe UI", sans-serif; }
+main { max-width: 860px; margin: 0 auto; padding: 32px 16px 64px; }
+a { color: var(--accent); }
+h1 { font-size: 22px; line-height: 1.3; font-weight: 600; margin: 4px 0 12px; }
+h2 { font-size: 15px; font-weight: 600; margin: 28px 0 8px; color: var(--text-secondary);
+     text-transform: uppercase; letter-spacing: 0.04em; }
+p { margin: 0 0 12px; }
+.crumbs { font-size: 13px; color: var(--text-muted); }
+.lede { font-size: 17px; }
+.muted { color: var(--text-muted); }
+.chip { display: inline-block; padding: 1px 8px; border-radius: 10px; background: var(--chip); font-size: 12px;
+        color: var(--text-secondary); margin-right: 4px; white-space: nowrap; }
+.card { background: var(--surface-1); border: 1px solid var(--border); border-radius: 6px; padding: 14px 16px;
+        margin: 0 0 12px; }
+.stats { display: flex; flex-wrap: wrap; gap: 12px; margin: 16px 0; }
+.stat { background: var(--surface-1); border: 1px solid var(--border); border-radius: 6px; padding: 10px 14px;
+        min-width: 140px; }
+.stat b { display: block; font-size: 20px; font-variant-numeric: tabular-nums; }
+.stat span { font-size: 12px; color: var(--text-muted); }
+ul.grounds { list-style: none; padding: 0; margin: 0; }
+ul.grounds li { padding: 6px 0; border-bottom: 1px solid var(--border); }
+ul.grounds li:last-child { border-bottom: 0; }
+table { width: 100%; border-collapse: collapse; background: var(--surface-1); font-size: 14px; }
+th, td { text-align: left; padding: 7px 8px; border-bottom: 1px solid var(--border); vertical-align: top; }
+th { font-weight: 600; color: var(--text-secondary); cursor: pointer; white-space: nowrap; user-select: none; }
+td.num, th.num { text-align: right; font-variant-numeric: tabular-nums; white-space: nowrap; }
+code, .mono { font: 12.5px ui-monospace, SFMono-Regular, Menlo, monospace; word-break: break-all; }
+details summary { cursor: pointer; color: var(--accent); }
+.excerpt { border-left: 3px solid var(--border); padding: 2px 0 2px 10px; color: var(--text-secondary);
+           font-size: 14px; white-space: pre-wrap; }
+input[type=search] { width: 100%; padding: 8px 10px; font: inherit; border: 1px solid var(--border);
+                     border-radius: 6px; background: var(--surface-1); color: var(--text-primary); margin: 8px 0 12px; }
+.table-wrap { overflow-x: auto; }
+@media (max-width: 640px) { .hide-sm { display: none; } }
+</style>
+<script data-goatcounter="https://pintail.goatcounter.com/count" async src="https://gc.zgo.at/count.js"></script>
+</head>
+<body>
+<main>
+<style>
+.chart { width: 100%; height: auto; background: var(--surface-1); border: 1px solid var(--border); border-radius: 6px; }
+.chart text { fill: var(--text-muted); font: 11px system-ui, sans-serif; }
+.chart .grid { stroke: var(--border); stroke-width: 1; }
+.legend { display: flex; flex-wrap: wrap; gap: 14px; font-size: 13px; color: var(--text-secondary); margin: 6px 0 14px; }
+.legend i { display: inline-block; width: 16px; height: 3px; vertical-align: middle; margin-right: 5px; background: var(--c); }
+.legend i.dashed { background: repeating-linear-gradient(90deg, var(--c) 0 6px, transparent 6px 9px); }
+.chart .event { stroke: var(--text-muted); stroke-width: 1; stroke-dasharray: 3 3; }
+.chart .event-n { fill: var(--text-secondary); font-weight: 600; }
+ol.events { padding-left: 0; list-style: none; }
+ol.events li { margin: 4px 0; }
+ol.events .n { display: inline-block; min-width: 1.6em; font-weight: 600; color: var(--text-secondary); }
+</style><p class="crumbs"><a href="../">Dataset</a> › <a href="./">Entities</a></p>
+<h1>KuCoin</h1>
+<p><span class="chip">exchange</span> <span class="mono muted">kucoin</span></p>
+<p><strong>How much ETH KuCoin has had in each role recorded in this dataset, week by week, from
+the start of the beacon chain (1 December 2020) to 13 November 2026.</strong> Stake is the effective balance
+of active validators.</p>
+<ul><li><strong>Allocator</strong>: chose where the stake went. Counts the stake in the treemap boxes under KuCoin. <span class="muted">Recorded for 89% of active stake.</span></li><li><strong>Operator</strong>: ran the validators. <span class="muted">Recorded for 51% of active stake.</span></li><li><strong>Custodian</strong>: held the stake on behalf of a client. <span class="muted">Recorded for 5.3% of active stake.</span></li><li><strong>Principal</strong>: owned the staked ETH. <span class="muted">Recorded for 6.2% of active stake.</span></li></ul>
+<p class="muted">Allocators are recorded for most stake. Operators, custodians and principals are recorded only where
+specific evidence names them, so their figures here (dashed on the charts) are lower bounds: no figure does not mean
+no role.</p>
+<h2>Its own roles</h2><svg class="chart" viewBox="0 0 760 240" role="img" aria-label="ETH by role over time"><line class="grid" x1="52" x2="752" y1="218.0" y2="218.0"/><text x="46" y="222.0" text-anchor="end">0</text><line class="grid" x1="52" x2="752" y1="114.0" y2="114.0"/><text x="46" y="118.0" text-anchor="end">15k</text><line class="grid" x1="52" x2="752" y1="10.0" y2="10.0"/><text x="46" y="14.0" text-anchor="end">30k</text><text x="52.0" y="234" text-anchor="middle">2020</text><text x="180.3" y="234" text-anchor="middle">2022</text><text x="297.3" y="234" text-anchor="middle">2023</text><text x="414.4" y="234" text-anchor="middle">2024</text><text x="533.7" y="234" text-anchor="middle">2025</text><text x="650.7" y="234" text-anchor="middle">2026</text><polyline fill="none" stroke="#2a78d6" stroke-width="2" points="52.0,218.0 54.3,212.4 56.5,189.5 58.8,189.5 61.0,167.1 63.3,167.1 65.5,167.1 67.8,167.1 70.0,167.1 72.3,122.2 74.5,122.2 76.8,122.2 79.0,122.2 81.3,77.3 83.5,77.3 85.8,77.3 88.0,77.3 90.3,77.3 92.5,77.3 94.8,77.3 97.0,77.3 99.3,77.3 101.5,77.3 103.8,77.3 106.0,77.3 108.3,77.3 110.5,77.3 112.8,77.3 115.0,77.3 117.3,77.3 119.5,77.3 121.8,77.3 124.0,77.3 126.3,77.3 128.5,77.3 130.8,77.3 133.0,77.3 135.3,77.3 137.5,77.3 139.8,77.3 142.0,77.3 144.3,77.3 146.5,77.3 148.8,77.3 151.0,77.3 153.3,77.3 155.5,77.3 157.8,77.3 160.0,77.1 162.3,32.4 164.5,32.4 166.8,32.4 169.0,32.4 171.3,32.4 173.5,32.4 175.8,32.4 178.0,32.4 180.3,32.4 182.5,32.4 184.8,32.4 187.0,32.4 189.3,32.4 191.5,32.4 193.8,32.4 196.1,32.4 198.3,32.4 200.6,32.4 202.8,32.4 205.1,32.4 207.3,32.4 209.6,32.4 211.8,32.4 214.1,32.4 216.3,32.4 218.6,32.4 220.8,32.4 223.1,32.4 225.3,32.4 227.6,32.4 229.8,32.4 232.1,32.4 234.3,32.4 236.6,32.4 238.8,32.4 241.1,32.4 243.3,32.4 245.6,32.4 247.8,32.4 250.1,32.4 252.3,32.4 254.6,32.4 256.8,32.4 259.1,32.4 261.3,32.4 263.6,32.4 265.8,32.4 268.1,32.4 270.3,32.4 272.6,10.0 274.8,10.0 277.1,10.0 279.3,10.0 281.6,10.0 283.8,10.0 286.1,10.0 288.3,10.0 290.6,10.0 292.8,10.0 295.1,10.0 297.3,10.0 299.6,10.0 301.8,10.0 304.1,10.0 306.3,10.0 308.6,10.0 310.8,10.0 313.1,10.0 315.3,10.0 317.6,10.0 319.8,10.0 322.1,10.0 324.3,10.0 326.6,10.0 328.8,10.0 331.1,10.0 333.4,10.0 335.6,10.0 337.9,10.0 340.1,32.4 342.4,32.4 344.6,32.4 346.9,32.4 349.1,32.4 351.4,32.4 353.6,32.4 355.9,32.4 358.1,32.4 360.4,32.4 362.6,32.4 364.9,32.4 367.1,32.4 369.4,32.4 371.6,32.4 373.9,32.4 376.1,32.4 378.4,32.4 380.6,32.4 382.9,32.4 385.1,32.4 387.4,32.4 389.6,32.4 391.9,32.4 394.1,32.4 396.4,32.4 398.6,32.4 400.9,32.4 403.1,32.4 405.4,32.4 407.6,32.4 409.9,32.4 412.1,32.4 414.4,32.4 416.6,32.4 418.9,32.4 421.1,32.4 423.4,32.4 425.6,32.4 427.9,32.4 430.1,32.4 432.4,32.4 434.6,32.4 436.9,32.4 439.1,32.4 441.4,32.4 443.6,32.4 445.9,32.4 448.1,32.4 450.4,32.4 452.6,32.4 454.9,32.4 457.1,32.4 459.4,32.4 461.6,32.4 463.9,32.4 466.1,32.4 468.4,32.4 470.6,32.4 472.9,32.4 475.2,32.4 477.4,32.4 479.7,32.4 481.9,32.4 484.2,32.4 486.4,32.4 488.7,32.4 490.9,32.4 493.2,32.4 495.4,32.4 497.7,32.4 499.9,32.4 502.2,32.4 504.4,32.4 506.7,32.4 508.9,32.4 511.2,32.4 513.4,32.4 515.7,32.4 517.9,32.4 520.2,32.4 522.4,32.4 524.7,32.4 526.9,32.4 529.2,32.4 531.4,32.4 533.7,32.4 535.9,32.4 538.2,32.4 540.4,32.4 542.7,32.4 544.9,32.4 547.2,32.4 549.4,32.4 551.7,32.4 553.9,32.4 556.2,32.4 558.4,32.4 560.7,32.4 562.9,32.4 565.2,32.4 567.4,32.4 569.7,32.4 571.9,32.4 574.2,32.4 576.4,32.4 578.7,32.4 580.9,32.4 583.2,32.4 585.4,32.4 587.7,32.4 589.9,32.4 592.2,32.4 594.4,32.4 596.7,32.4 598.9,32.4 601.2,32.4 603.4,32.4 605.7,32.4 607.9,32.4 610.2,32.4 612.5,32.4 614.7,32.4 617.0,32.4 619.2,32.4 621.5,32.4 623.7,32.4 626.0,32.4 628.2,32.4 630.5,32.4 632.7,32.4 635.0,32.4 637.2,32.4 639.5,32.4 641.7,32.4 644.0,32.4 646.2,32.4 648.5,32.4 650.7,32.4 653.0,32.4 655.2,77.8 657.5,77.8 659.7,77.8 662.0,77.8 664.2,77.8 666.5,77.8 668.7,77.8 671.0,77.8 673.2,77.8 675.5,77.8 677.7,77.8 680.0,77.8 682.2,77.8 684.5,77.8 686.7,77.8 689.0,77.8 691.2,77.8 693.5,77.8 695.7,77.8 698.0,77.8 700.2,77.8 702.5,77.8 704.7,77.8 707.0,77.8 709.2,77.8 711.5,77.8 713.7,77.8 716.0,77.8 718.2,77.8 720.5,77.8 722.7,77.8 725.0,77.8 727.2,77.8 729.5,77.8 731.7,77.8 734.0,77.8 736.2,77.8 738.5,77.8 740.7,77.8 743.0,77.8 745.2,77.8 747.5,77.8 749.7,77.8 752.0,77.8"><title>Allocator</title></polyline></svg><div class="legend"><span><i class="" style="--c:#2a78d6"></i>Allocator</span></div><div class="table-wrap"><table><thead><tr><th>Role</th><th class="num">ETH now</th>
+<th class="num hide-sm">Validators now</th><th class="num">Peak ETH</th><th class="num hide-sm">Peak</th>
+<th class="num hide-sm">First seen</th><th class="num hide-sm">Last seen</th></tr></thead><tbody><tr><td>Allocator</td><td class="num">20,000</td>
+<td class="num hide-sm">625</td><td class="num">29,664</td>
+<td class="num hide-sm">2022-10-18</td><td class="num hide-sm">2020-12-08</td>
+<td class="num hide-sm">now</td></tr></tbody></table></div>
+<h2>Clients</h2><p class="muted">Blocks proposed in the last 90 days by the validators it
+allocates or operates now, and the execution and consensus clients their graffiti names (clients add a short code by
+default; operators can turn it off, so these are shares of the blocks that carry one).</p>
+<div class="table-wrap"><table><thead><tr><th>Role</th><th class="num">Blocks</th><th class="num">With codes</th>
+<th>Execution clients</th><th>Consensus clients</th></tr></thead><tbody><tr><td>Allocator</td><td class="num">282</td>
+<td class="num">0%</td><td>–</td><td>–</td></tr></tbody></table></div>
+<h2>Treemap boxes</h2><div class="table-wrap"><table><thead><tr><th>Box</th>
+<th class="num">ETH now</th><th class="num hide-sm">Peak ETH</th></tr></thead><tbody><tr><td>KuCoin › KuCoin staking › 5 named keys (from Dec 2020)</td><td class="num">20,000</td><td class="num hide-sm">29,664</td></tr></tbody></table></div>
+<h2>Decisions naming it</h2><ul><li><a href="../decisions/0091-kucoin.html">0091</a> Defines KuCoin (exchange)</li><li><a href="../decisions/0092-kucoin-staking-name.html">0092</a> Defines KuCoin staking (custodial staking)</li><li><a href="../decisions/0093-kucoin-staking.html">0093</a> KuCoin&#x27;s own wallet list names two of the accounts that deposited these validators, and the stake KuCoin said it had then matches them to one validator.</li></ul>
+<h2>Identified addresses</h2><div class="table-wrap"><table><thead><tr><th>Address</th><th>Role</th>
+<th class="hide-sm">Basis</th></tr></thead><tbody><tr><td><a class="mono" href="https://etherscan.io/address/0x1692e170361cefd1eb7240ec13d048fd9af6d667">0x1692e170361cefd1eb7240ec13d048fd9af6d667</a></td><td>deposit account</td><td class="hide-sm">asserted</td></tr><tr><td><a class="mono" href="https://etherscan.io/address/0x7b915c27a0ed48e2ce726ee40f20b2bf8a88a1b3">0x7b915c27a0ed48e2ce726ee40f20b2bf8a88a1b3</a></td><td>deposit account</td><td class="hide-sm">asserted</td></tr><tr><td><a class="mono" href="https://etherscan.io/address/0x9f4cf329f4cf376b7aded854d6054859dd102a2a">0x9f4cf329f4cf376b7aded854d6054859dd102a2a</a></td><td>withdrawal address</td><td class="hide-sm">asserted</td></tr><tr><td><a class="mono" href="https://etherscan.io/address/0xd6216fc19db775df9774a6e33526131da7d19a2c">0xd6216fc19db775df9774a6e33526131da7d19a2c</a></td><td>deposit account</td><td class="hide-sm">asserted</td></tr><tr><td><a class="mono" href="https://etherscan.io/address/0xf8da05c625a6e601281110cba52b156e714e1dc2">0xf8da05c625a6e601281110cba52b156e714e1dc2</a></td><td>deposit account</td><td class="hide-sm">asserted</td></tr></tbody></table></div>
+</main>
+</body>
+</html>

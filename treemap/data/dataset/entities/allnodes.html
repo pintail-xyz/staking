@@ -1,0 +1,106 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Allnodes: roles in the validator set</title>
+<style>
+:root { color-scheme: light; --surface-0: #f4f3f0; --surface-1: #fcfcfb; --border: #d9d8d3; --text-primary: #0b0b0b;
+        --text-secondary: #52514e; --text-muted: #77766f; --accent: #2a78d6; --chip: #ebe9e4; }
+@media (prefers-color-scheme: dark) {
+  :root:where(:not([data-theme="light"])) { color-scheme: dark; --surface-0: #121211; --surface-1: #1a1a19;
+    --border: #3a3a37; --text-primary: #f0efec; --text-secondary: #c3c2b7; --text-muted: #96958c; --accent: #3987e5;
+    --chip: #2a2a28; }
+}
+:root[data-theme="dark"] { color-scheme: dark; --surface-0: #121211; --surface-1: #1a1a19; --border: #3a3a37;
+  --text-primary: #f0efec; --text-secondary: #c3c2b7; --text-muted: #96958c; --accent: #3987e5; --chip: #2a2a28; }
+* { box-sizing: border-box; }
+body { margin: 0; background: var(--surface-0); color: var(--text-primary);
+       font: 15px/1.55 system-ui, -apple-system, "Segoe UI", sans-serif; }
+main { max-width: 860px; margin: 0 auto; padding: 32px 16px 64px; }
+a { color: var(--accent); }
+h1 { font-size: 22px; line-height: 1.3; font-weight: 600; margin: 4px 0 12px; }
+h2 { font-size: 15px; font-weight: 600; margin: 28px 0 8px; color: var(--text-secondary);
+     text-transform: uppercase; letter-spacing: 0.04em; }
+p { margin: 0 0 12px; }
+.crumbs { font-size: 13px; color: var(--text-muted); }
+.lede { font-size: 17px; }
+.muted { color: var(--text-muted); }
+.chip { display: inline-block; padding: 1px 8px; border-radius: 10px; background: var(--chip); font-size: 12px;
+        color: var(--text-secondary); margin-right: 4px; white-space: nowrap; }
+.card { background: var(--surface-1); border: 1px solid var(--border); border-radius: 6px; padding: 14px 16px;
+        margin: 0 0 12px; }
+.stats { display: flex; flex-wrap: wrap; gap: 12px; margin: 16px 0; }
+.stat { background: var(--surface-1); border: 1px solid var(--border); border-radius: 6px; padding: 10px 14px;
+        min-width: 140px; }
+.stat b { display: block; font-size: 20px; font-variant-numeric: tabular-nums; }
+.stat span { font-size: 12px; color: var(--text-muted); }
+ul.grounds { list-style: none; padding: 0; margin: 0; }
+ul.grounds li { padding: 6px 0; border-bottom: 1px solid var(--border); }
+ul.grounds li:last-child { border-bottom: 0; }
+table { width: 100%; border-collapse: collapse; background: var(--surface-1); font-size: 14px; }
+th, td { text-align: left; padding: 7px 8px; border-bottom: 1px solid var(--border); vertical-align: top; }
+th { font-weight: 600; color: var(--text-secondary); cursor: pointer; white-space: nowrap; user-select: none; }
+td.num, th.num { text-align: right; font-variant-numeric: tabular-nums; white-space: nowrap; }
+code, .mono { font: 12.5px ui-monospace, SFMono-Regular, Menlo, monospace; word-break: break-all; }
+details summary { cursor: pointer; color: var(--accent); }
+.excerpt { border-left: 3px solid var(--border); padding: 2px 0 2px 10px; color: var(--text-secondary);
+           font-size: 14px; white-space: pre-wrap; }
+input[type=search] { width: 100%; padding: 8px 10px; font: inherit; border: 1px solid var(--border);
+                     border-radius: 6px; background: var(--surface-1); color: var(--text-primary); margin: 8px 0 12px; }
+.table-wrap { overflow-x: auto; }
+@media (max-width: 640px) { .hide-sm { display: none; } }
+</style>
+<script data-goatcounter="https://pintail.goatcounter.com/count" async src="https://gc.zgo.at/count.js"></script>
+</head>
+<body>
+<main>
+<style>
+.chart { width: 100%; height: auto; background: var(--surface-1); border: 1px solid var(--border); border-radius: 6px; }
+.chart text { fill: var(--text-muted); font: 11px system-ui, sans-serif; }
+.chart .grid { stroke: var(--border); stroke-width: 1; }
+.legend { display: flex; flex-wrap: wrap; gap: 14px; font-size: 13px; color: var(--text-secondary); margin: 6px 0 14px; }
+.legend i { display: inline-block; width: 16px; height: 3px; vertical-align: middle; margin-right: 5px; background: var(--c); }
+.legend i.dashed { background: repeating-linear-gradient(90deg, var(--c) 0 6px, transparent 6px 9px); }
+.chart .event { stroke: var(--text-muted); stroke-width: 1; stroke-dasharray: 3 3; }
+.chart .event-n { fill: var(--text-secondary); font-weight: 600; }
+ol.events { padding-left: 0; list-style: none; }
+ol.events li { margin: 4px 0; }
+ol.events .n { display: inline-block; min-width: 1.6em; font-weight: 600; color: var(--text-secondary); }
+</style><p class="crumbs"><a href="../">Dataset</a> › <a href="./">Entities</a></p>
+<h1>Allnodes</h1>
+<p><span class="chip">node operator</span> <span class="mono muted">allnodes</span></p>
+<p><strong>How much ETH Allnodes has had in each role recorded in this dataset, week by week, from
+the start of the beacon chain (1 December 2020) to 13 November 2026.</strong> Stake is the effective balance
+of active validators.</p>
+<ul><li><strong>Allocator</strong>: chose where the stake went. Counts the stake in the treemap boxes under Allnodes. <span class="muted">Recorded for 89% of active stake.</span></li><li><strong>Operator</strong>: ran the validators. <span class="muted">Recorded for 51% of active stake.</span></li><li><strong>Custodian</strong>: held the stake on behalf of a client. <span class="muted">Recorded for 5.3% of active stake.</span></li><li><strong>Principal</strong>: owned the staked ETH. <span class="muted">Recorded for 6.2% of active stake.</span></li></ul>
+<p class="muted">Allocators are recorded for most stake. Operators, custodians and principals are recorded only where
+specific evidence names them, so their figures here (dashed on the charts) are lower bounds: no figure does not mean
+no role.</p>
+<h2>Its own roles</h2><svg class="chart" viewBox="0 0 760 240" role="img" aria-label="ETH by role over time"><line class="grid" x1="52" x2="752" y1="218.0" y2="218.0"/><text x="46" y="222.0" text-anchor="end">0</text><line class="grid" x1="52" x2="752" y1="114.0" y2="114.0"/><text x="46" y="118.0" text-anchor="end">504k</text><line class="grid" x1="52" x2="752" y1="10.0" y2="10.0"/><text x="46" y="14.0" text-anchor="end">1.0M</text><text x="52.0" y="234" text-anchor="middle">2020</text><text x="180.3" y="234" text-anchor="middle">2022</text><text x="297.3" y="234" text-anchor="middle">2023</text><text x="414.4" y="234" text-anchor="middle">2024</text><text x="533.7" y="234" text-anchor="middle">2025</text><text x="650.7" y="234" text-anchor="middle">2026</text><line class="event" x1="139.8" x2="139.8" y1="10" y2="218"/><text class="event-n" x="142.8" y="20">1</text><polyline fill="none" stroke="#2a78d6" stroke-width="2" points="52.0,217.5 54.3,217.2 56.5,216.5 58.8,216.2 61.0,215.5 63.3,215.0 65.5,214.8 67.8,214.3 70.0,213.2 72.3,212.6 74.5,212.2 76.8,210.5 79.0,209.3 81.3,208.4 83.5,207.9 85.8,207.5 88.0,207.4 90.3,207.0 92.5,206.8 94.8,206.7 97.0,206.0 99.3,205.2 101.5,204.9 103.8,204.6 106.0,204.3 108.3,204.0 110.5,203.7 112.8,203.5 115.0,202.2 117.3,201.9 119.5,201.3 121.8,201.2 124.0,200.8 126.3,199.8 128.5,199.4 130.8,199.2 133.0,199.1 135.3,198.8 137.5,198.7 139.8,198.3 142.0,197.9 144.3,197.5 146.5,197.3 148.8,197.0 151.0,196.2 153.3,196.1 155.5,195.7 157.8,195.5 160.0,195.4 162.3,195.3 164.5,195.1 166.8,194.9 169.0,194.8 171.3,194.7 173.5,194.6 175.8,194.2 178.0,194.2 180.3,193.6 182.5,193.5 184.8,193.4 187.0,193.3 189.3,193.2 191.5,193.0 193.8,192.7 196.1,192.4 198.3,192.4 200.6,192.3 202.8,192.1 205.1,192.1 207.3,192.0 209.6,192.0 211.8,191.7 214.1,191.6 216.3,191.4 218.6,191.3 220.8,191.2 223.1,191.2 225.3,191.0 227.6,190.6 229.8,190.4 232.1,190.2 234.3,189.9 236.6,189.8 238.8,189.7 241.1,189.7 243.3,189.6 245.6,189.4 247.8,188.7 250.1,188.4 252.3,188.3 254.6,188.2 256.8,188.1 259.1,188.0 261.3,188.0 263.6,187.5 265.8,187.3 268.1,186.9 270.3,186.8 272.6,186.7 274.8,186.6 277.1,186.2 279.3,186.0 281.6,185.8 283.8,184.4 286.1,184.1 288.3,183.7 290.6,183.1 292.8,183.1 295.1,182.2 297.3,182.0 299.6,181.9 301.8,181.8 304.1,181.6 306.3,181.4 308.6,181.1 310.8,180.8 313.1,180.7 315.3,179.7 317.6,179.6 319.8,179.0 322.1,178.8 324.3,178.7 326.6,178.6 328.8,178.7 331.1,177.2 333.4,176.6 335.6,177.0 337.9,176.1 340.1,173.5 342.4,172.0 344.6,170.7 346.9,170.5 349.1,170.1 351.4,170.2 353.6,170.1 355.9,169.6 358.1,169.1 360.4,169.3 362.6,168.9 364.9,168.9 367.1,168.5 369.4,167.2 371.6,166.4 373.9,165.6 376.1,165.3 378.4,164.6 380.6,163.5 382.9,161.5 385.1,160.0 387.4,157.7 389.6,156.6 391.9,155.8 394.1,157.3 396.4,154.6 398.6,154.1 400.9,153.8 403.1,153.7 405.4,153.8 407.6,153.5 409.9,153.5 412.1,153.9 414.4,153.8 416.6,153.8 418.9,154.0 421.1,154.2 423.4,155.4 425.6,154.7 427.9,154.4 430.1,154.3 432.4,153.9 434.6,154.2 436.9,154.6 439.1,155.7 441.4,155.8 443.6,154.3 445.9,154.4 448.1,153.7 450.4,153.7 452.6,153.8 454.9,153.6 457.1,153.4 459.4,153.4 461.6,153.6 463.9,153.4 466.1,153.0 468.4,152.7 470.6,152.7 472.9,152.5 475.2,152.4 477.4,152.3 479.7,152.5 481.9,152.7 484.2,153.0 486.4,153.2 488.7,153.3 490.9,153.4 493.2,153.5 495.4,153.5 497.7,153.5 499.9,153.6 502.2,154.2 504.4,154.3 506.7,154.4 508.9,153.8 511.2,154.0 513.4,154.3 515.7,154.6 517.9,154.8 520.2,154.9 522.4,155.2 524.7,156.8 526.9,157.0 529.2,157.3 531.4,157.3 533.7,157.4 535.9,157.3 538.2,159.2 540.4,159.5 542.7,159.6 544.9,160.0 547.2,160.0 549.4,160.0 551.7,160.0 553.9,159.8 556.2,159.6 558.4,159.7 560.7,158.5 562.9,156.7 565.2,156.7 567.4,156.9 569.7,157.1 571.9,157.2 574.2,159.2 576.4,159.6 578.7,161.4 580.9,161.5 583.2,161.6 585.4,162.6 587.7,162.6 589.9,161.9 592.2,161.9 594.4,162.3 596.7,162.0 598.9,162.2 601.2,161.8 603.4,162.1 605.7,162.4 607.9,163.4 610.2,165.2 612.5,165.8 614.7,165.7 617.0,166.0 619.2,165.8 621.5,165.7 623.7,165.7 626.0,165.7 628.2,165.9 630.5,166.2 632.7,166.2 635.0,165.9 637.2,166.3 639.5,166.3 641.7,166.2 644.0,166.1 646.2,166.0 648.5,165.9 650.7,166.1 653.0,166.2 655.2,165.8 657.5,165.7 659.7,166.5 662.0,166.6 664.2,166.6 666.5,166.5 668.7,166.5 671.0,166.2 673.2,166.2 675.5,166.2 677.7,167.6 680.0,167.8 682.2,167.8 684.5,167.8 686.7,167.3 689.0,167.3 691.2,167.4 693.5,167.4 695.7,167.1 698.0,166.3 700.2,166.5 702.5,166.5 704.7,165.2 707.0,165.3 709.2,165.8 711.5,165.6 713.7,165.7 716.0,165.6 718.2,165.5 720.5,165.5 722.7,165.6 725.0,165.6 727.2,165.6 729.5,165.6 731.7,165.6 734.0,165.4 736.2,165.4 738.5,164.3 740.7,164.3 743.0,165.4 745.2,165.4 747.5,166.0 749.7,166.2 752.0,166.2"><title>Allocator</title></polyline><polyline fill="none" stroke="#e0742a" stroke-width="2" stroke-dasharray="6 3" points="52.0,217.5 54.3,217.2 56.5,216.5 58.8,216.2 61.0,215.5 63.3,215.0 65.5,214.7 67.8,214.1 70.0,213.0 72.3,212.5 74.5,212.0 76.8,210.4 79.0,201.7 81.3,200.8 83.5,200.2 85.8,199.8 88.0,199.7 90.3,199.3 92.5,199.1 94.8,199.0 97.0,198.2 99.3,197.5 101.5,197.2 103.8,196.9 106.0,196.6 108.3,196.3 110.5,196.0 112.8,195.7 115.0,194.5 117.3,194.2 119.5,193.6 121.8,193.4 124.0,193.1 126.3,192.1 128.5,191.7 130.8,191.5 133.0,191.4 135.3,191.0 137.5,191.0 139.8,190.6 142.0,190.3 144.3,189.1 146.5,187.6 148.8,187.2 151.0,185.9 153.3,183.9 155.5,183.5 157.8,183.4 160.0,181.5 162.3,180.3 164.5,180.0 166.8,176.8 169.0,176.2 171.3,175.0 173.5,173.1 175.8,171.0 178.0,168.5 180.3,166.0 182.5,163.5 184.8,161.8 187.0,156.6 189.3,155.3 191.5,155.1 193.8,154.7 196.1,154.3 198.3,154.1 200.6,153.9 202.8,152.2 205.1,148.0 207.3,147.8 209.6,145.5 211.8,145.2 214.1,143.4 216.3,139.2 218.6,137.0 220.8,136.7 223.1,134.1 225.3,131.2 227.6,129.3 229.8,128.0 232.1,127.7 234.3,127.3 236.6,127.2 238.8,127.0 241.1,126.9 243.3,126.7 245.6,126.5 247.8,125.7 250.1,125.3 252.3,125.2 254.6,124.8 256.8,124.6 259.1,124.5 261.3,124.4 263.6,123.6 265.8,123.1 268.1,122.4 270.3,122.1 272.6,121.7 274.8,121.6 277.1,121.0 279.3,120.8 281.6,120.3 283.8,118.7 286.1,118.2 288.3,117.6 290.6,116.9 292.8,116.7 295.1,115.9 297.3,115.5 299.6,115.2 301.8,115.0 304.1,114.6 306.3,114.4 308.6,113.9 310.8,112.8 313.1,112.6 315.3,111.4 317.6,111.3 319.8,110.5 322.1,110.1 324.3,109.9 326.6,109.8 328.8,109.7 331.1,108.2 333.4,107.7 335.6,108.2 337.9,107.5 340.1,105.4 342.4,103.8 344.6,102.3 346.9,97.2 349.1,95.5 351.4,94.8 353.6,93.7 355.9,91.5 358.1,88.8 360.4,88.2 362.6,85.9 364.9,84.7 367.1,83.5 369.4,80.8 371.6,78.1 373.9,75.9 376.1,74.3 378.4,71.7 380.6,67.7 382.9,63.4 385.1,61.6 387.4,58.8 389.6,57.2 391.9,57.2 394.1,58.1 396.4,55.9 398.6,56.4 400.9,56.2 403.1,56.0 405.4,55.4 407.6,55.8 409.9,62.1 412.1,62.1 414.4,61.3 416.6,60.6 418.9,61.8 421.1,59.4 423.4,58.4 425.6,55.8 427.9,52.8 430.1,47.4 432.4,44.4 434.6,43.4 436.9,43.1 439.1,42.2 441.4,40.4 443.6,39.2 445.9,39.4 448.1,38.8 450.4,38.3 452.6,38.6 454.9,38.7 457.1,37.7 459.4,37.0 461.6,36.2 463.9,29.2 466.1,21.1 468.4,19.1 470.6,19.1 472.9,18.8 475.2,19.2 477.4,19.0 479.7,19.2 481.9,15.8 484.2,13.7 486.4,13.7 488.7,11.6 490.9,10.0 493.2,10.9 495.4,11.0 497.7,11.1 499.9,12.1 502.2,13.0 504.4,16.0 506.7,16.0 508.9,16.4 511.2,17.0 513.4,17.3 515.7,18.8 517.9,22.1 520.2,23.5 522.4,19.3 524.7,25.5 526.9,29.4 529.2,32.8 531.4,33.3 533.7,33.4 535.9,33.4 538.2,39.5 540.4,45.2 542.7,45.5 544.9,47.5 547.2,47.4 549.4,47.5 551.7,49.7 553.9,50.0 556.2,50.2 558.4,50.3 560.7,49.9 562.9,48.3 565.2,49.5 567.4,49.9 569.7,50.5 571.9,51.2 574.2,53.3 576.4,54.3 578.7,55.1 580.9,55.2 583.2,55.3 585.4,56.9 587.7,57.0 589.9,56.1 592.2,56.1 594.4,56.9 596.7,57.5 598.9,60.2 601.2,59.9 603.4,60.8 605.7,61.8 607.9,63.3 610.2,66.7 612.5,68.8 614.7,69.0 617.0,69.6 619.2,69.4 621.5,68.8 623.7,68.8 626.0,68.8 628.2,69.5 630.5,70.0 632.7,69.9 635.0,67.9 637.2,68.4 639.5,67.4 641.7,67.4 644.0,67.3 646.2,63.5 648.5,63.4 650.7,63.6 653.0,63.6 655.2,62.9 657.5,62.7 659.7,63.2 662.0,63.8 664.2,63.9 666.5,64.2 668.7,64.9 671.0,63.6 673.2,63.7 675.5,62.3 677.7,63.4 680.0,63.3 682.2,63.4 684.5,64.0 686.7,66.9 689.0,68.2 691.2,68.4 693.5,68.4 695.7,67.2 698.0,65.9 700.2,66.1 702.5,66.2 704.7,65.0 707.0,65.0 709.2,65.7 711.5,65.6 713.7,65.0 716.0,64.6 718.2,63.9 720.5,63.8 722.7,63.2 725.0,62.5 727.2,62.1 729.5,61.2 731.7,60.9 734.0,60.2 736.2,59.6 738.5,58.1 740.7,58.0 743.0,58.8 745.2,58.9 747.5,59.5 749.7,59.7 752.0,59.7"><title>Operator</title></polyline></svg><div class="legend"><span><i class="" style="--c:#2a78d6"></i>Allocator</span><span><i class="dashed" style="--c:#e0742a"></i>Operator (recorded only in part)</span></div><div class="table-wrap"><table><thead><tr><th>Role</th><th class="num">ETH now</th>
+<th class="num hide-sm">Validators now</th><th class="num">Peak ETH</th><th class="num hide-sm">Peak</th>
+<th class="num hide-sm">First seen</th><th class="num hide-sm">Last seen</th></tr></thead><tbody><tr><td>Allocator</td><td class="num">251,185</td>
+<td class="num hide-sm">6,297</td><td class="num">318,364</td>
+<td class="num hide-sm">2024-07-16</td><td class="num hide-sm">2020-12-01</td>
+<td class="num hide-sm">now</td></tr><tr><td>Operator</td><td class="num">766,828</td>
+<td class="num hide-sm">20,428</td><td class="num">1,007,675</td>
+<td class="num hide-sm">2024-08-27</td><td class="num hide-sm">2020-12-01</td>
+<td class="num hide-sm">now</td></tr></tbody></table></div>
+<h2>Events</h2><p class="muted">Numbered as marked on the charts.</p><ol class="events"><li><span class="n">1</span> 27 August 2021: Added to Lido's registry as operator 1/11, named "Allnodes" (<a href="https://etherscan.io/tx/0xfdf4468701f007e73dc8024323db39ff40790e3cb40e4d9265c9c6f82d2ef402">transaction</a>)</li></ol><h2>Clients</h2><p class="muted">Blocks proposed in the last 90 days by the validators it
+allocates or operates now, and the execution and consensus clients their graffiti names (clients add a short code by
+default; operators can turn it off, so these are shares of the blocks that carry one).</p>
+<div class="table-wrap"><table><thead><tr><th>Role</th><th class="num">Blocks</th><th class="num">With codes</th>
+<th>Execution clients</th><th>Consensus clients</th></tr></thead><tbody><tr><td>Allocator</td><td class="num">3,926</td>
+<td class="num">5%</td><td>Nethermind 77%, Geth 13%, Reth 9%</td><td>Lighthouse 86%, Prysm 13%, Lodestar 1%</td></tr><tr><td>Operator</td><td class="num">11,084</td>
+<td class="num">2%</td><td>Nethermind 79%, Geth 13%, Reth 8%</td><td>Lighthouse 87%, Prysm 12%, Lodestar 2%</td></tr></tbody></table></div><h2>Slashings</h2><p class="muted">6 validators slashed while it held a role in them
+(dated by the first sampled state showing the slashing).</p><div class="table-wrap"><table><thead><tr><th>Validator</th>
+<th>Slashed (first seen)</th><th>Its role then</th></tr></thead><tbody><tr><td><a href="https://beaconcha.in/validator/67319">67,319</a></td><td>2021-06-03</td><td>Allocator</td></tr><tr><td><a href="https://beaconcha.in/validator/119315">119,315</a></td><td>2021-06-03</td><td>Allocator</td></tr><tr><td><a href="https://beaconcha.in/validator/48607">48,607</a></td><td>2023-05-13</td><td>Allocator, Operator</td></tr><tr><td><a href="https://beaconcha.in/validator/48608">48,608</a></td><td>2023-05-13</td><td>Allocator, Operator</td></tr><tr><td><a href="https://beaconcha.in/validator/48609">48,609</a></td><td>2023-05-13</td><td>Allocator, Operator</td></tr><tr><td><a href="https://beaconcha.in/validator/1073521">1,073,521</a></td><td>2025-09-10</td><td>Operator</td></tr></tbody></table></div>
+<h2>Treemap boxes</h2><div class="table-wrap"><table><thead><tr><th>Box</th>
+<th class="num">ETH now</th><th class="num hide-sm">Peak ETH</th></tr></thead><tbody><tr><td>Allnodes › Allnodes-run validators (by graffiti) › Graffiti names Allnodes</td><td class="num">249,633</td><td class="num hide-sm">316,412</td></tr><tr><td>Allnodes › Allnodes-run validators (by graffiti on a shared withdrawal address) › Other rationales (226)</td><td class="num">1,552</td><td class="num hide-sm">7,520</td></tr><tr><td>Allnodes › Allnodes-run validators (by graffiti on a shared withdrawal address) › Shares address 0x5c6d…6a9a</td><td class="num">0</td><td class="num hide-sm">5,728</td></tr><tr><td>Allnodes › Allnodes-run validators (by graffiti on a shared withdrawal address) › Shares address 0xe79a…c2b6</td><td class="num">0</td><td class="num hide-sm">2,592</td></tr></tbody></table></div>
+<h2>Protocol operators it runs</h2><ul><li>Allnodes <span class="mono muted">lido/1/11</span></li><li>Allnodes <span class="mono muted">lido/4/39</span></li><li>Allnodes <span class="mono muted">lido/group/4.26</span></li></ul>
+<h2>Decisions naming it</h2><ul><li><a href="../decisions/0274-allnodes-lido-operators.html">0274</a> Lido&#x27;s operator group 4.26 (&quot;Allnodes&quot;) and the operators it lists are run by Allnodes.</li></ul>
+<h2>Identified addresses</h2><div class="table-wrap"><table><thead><tr><th>Address</th><th>Role</th>
+<th class="hide-sm">Basis</th></tr></thead><tbody><tr><td><a class="mono" href="https://etherscan.io/address/0x74b44741efbc3edc7f0cdade165eab1afe9c65ca">0x74b44741efbc3edc7f0cdade165eab1afe9c65ca</a></td><td>node operator</td><td class="hide-sm">inferred</td></tr><tr><td><a class="mono" href="https://etherscan.io/address/0x78ca32ac90d7f99225a3b9288d561e0cb3744899">0x78ca32ac90d7f99225a3b9288d561e0cb3744899</a></td><td>node operator</td><td class="hide-sm">inferred</td></tr></tbody></table></div>
+</main>
+</body>
+</html>

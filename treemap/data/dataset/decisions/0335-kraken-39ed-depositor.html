@@ -1,0 +1,73 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>0335-kraken-39ed-depositor: This account (0x39ed…82e5), funded by and paying back to a wallet that receives Kraken&#x27;s withdrawn stake, makes deposits f</title>
+<style>
+:root { color-scheme: light; --surface-0: #f4f3f0; --surface-1: #fcfcfb; --border: #d9d8d3; --text-primary: #0b0b0b;
+        --text-secondary: #52514e; --text-muted: #77766f; --accent: #2a78d6; --chip: #ebe9e4; }
+@media (prefers-color-scheme: dark) {
+  :root:where(:not([data-theme="light"])) { color-scheme: dark; --surface-0: #121211; --surface-1: #1a1a19;
+    --border: #3a3a37; --text-primary: #f0efec; --text-secondary: #c3c2b7; --text-muted: #96958c; --accent: #3987e5;
+    --chip: #2a2a28; }
+}
+:root[data-theme="dark"] { color-scheme: dark; --surface-0: #121211; --surface-1: #1a1a19; --border: #3a3a37;
+  --text-primary: #f0efec; --text-secondary: #c3c2b7; --text-muted: #96958c; --accent: #3987e5; --chip: #2a2a28; }
+* { box-sizing: border-box; }
+body { margin: 0; background: var(--surface-0); color: var(--text-primary);
+       font: 15px/1.55 system-ui, -apple-system, "Segoe UI", sans-serif; }
+main { max-width: 860px; margin: 0 auto; padding: 32px 16px 64px; }
+a { color: var(--accent); }
+h1 { font-size: 22px; line-height: 1.3; font-weight: 600; margin: 4px 0 12px; }
+h2 { font-size: 15px; font-weight: 600; margin: 28px 0 8px; color: var(--text-secondary);
+     text-transform: uppercase; letter-spacing: 0.04em; }
+p { margin: 0 0 12px; }
+.crumbs { font-size: 13px; color: var(--text-muted); }
+.lede { font-size: 17px; }
+.muted { color: var(--text-muted); }
+.chip { display: inline-block; padding: 1px 8px; border-radius: 10px; background: var(--chip); font-size: 12px;
+        color: var(--text-secondary); margin-right: 4px; white-space: nowrap; }
+.card { background: var(--surface-1); border: 1px solid var(--border); border-radius: 6px; padding: 14px 16px;
+        margin: 0 0 12px; }
+.stats { display: flex; flex-wrap: wrap; gap: 12px; margin: 16px 0; }
+.stat { background: var(--surface-1); border: 1px solid var(--border); border-radius: 6px; padding: 10px 14px;
+        min-width: 140px; }
+.stat b { display: block; font-size: 20px; font-variant-numeric: tabular-nums; }
+.stat span { font-size: 12px; color: var(--text-muted); }
+ul.grounds { list-style: none; padding: 0; margin: 0; }
+ul.grounds li { padding: 6px 0; border-bottom: 1px solid var(--border); }
+ul.grounds li:last-child { border-bottom: 0; }
+table { width: 100%; border-collapse: collapse; background: var(--surface-1); font-size: 14px; }
+th, td { text-align: left; padding: 7px 8px; border-bottom: 1px solid var(--border); vertical-align: top; }
+th { font-weight: 600; color: var(--text-secondary); cursor: pointer; white-space: nowrap; user-select: none; }
+td.num, th.num { text-align: right; font-variant-numeric: tabular-nums; white-space: nowrap; }
+code, .mono { font: 12.5px ui-monospace, SFMono-Regular, Menlo, monospace; word-break: break-all; }
+details summary { cursor: pointer; color: var(--accent); }
+.excerpt { border-left: 3px solid var(--border); padding: 2px 0 2px 10px; color: var(--text-secondary);
+           font-size: 14px; white-space: pre-wrap; }
+input[type=search] { width: 100%; padding: 8px 10px; font: inherit; border: 1px solid var(--border);
+                     border-radius: 6px; background: var(--surface-1); color: var(--text-primary); margin: 8px 0 12px; }
+.table-wrap { overflow-x: auto; }
+@media (max-width: 640px) { .hide-sm { display: none; } }
+</style>
+<script data-goatcounter="https://pintail.goatcounter.com/count" async src="https://gc.zgo.at/count.js"></script>
+</head>
+<body>
+<main>
+<p class="crumbs"><a href="../">Dataset</a> › <a href="./">Decisions</a> › 0335-kraken-39ed-depositor</p>
+<h1>This account (0x39ed…82e5), funded by and paying back to a wallet that receives Kraken&#x27;s withdrawn stake, makes deposits for Kraken&#x27;s staking through Figment&#x27;s open depositor contract.</h1>
+<p><span class="chip">Anchor</span> <span class="muted">· decided 2026-11-10</span></p>
+<p class="lede">This account (0x39ed…82e5) makes deposits for Kraken&#x27;s staking; validators withdrawing to its addresses are Kraken&#x27;s, from when Figment no longer runs them.</p>
+<div class="stats"><div class="stat"><b>2,555</b><span>validators resting on it now</span></div><div class="stat"><b>81,760</b><span>ETH now</span></div><div class="stat"><b>81,760</b><span>ETH at its peak</span></div></div>
+<h2>Grounds</h2><div class="card"><ul class="grounds"><li><span class="chip">On chain</span>First funded by 0x267b…ffdc0, which got 1.86M ETH from Kraken&#x27;s withdrawal address 0x210b (0007); it sent 27,408 ETH back</li><li><span class="chip">On chain</span>Kraken Staking, owned by Kraken (0325), registered its validators on SSV from its own account onto its own operators</li><li><span class="chip">On chain</span>Its validators withdraw to the account itself and pay their fees to it</li></ul></div>
+<h2>Explanation</h2><p>The account 0x39ed…82e5 makes deposits for Kraken&#x27;s staking. From June 2023 it deposited 4,538 validators through Figment&#x27;s depositor contract (0xf2be…dab1), each withdrawing to the account itself, which is also its validators&#x27; fee recipient.</p>
+<p><strong>The link to Kraken.</strong> The account&#x27;s first ETH, in June 2023, came from 0x267b…ffdc0. That wallet received 1.86M ETH in 35 transfers from 0x210b…2a1b, one of Kraken&#x27;s withdrawal addresses under decision 0007. Over the following years 0x267b sent the account 24,333 ETH and the account sent 27,408 ETH back.</p>
+<p><strong>Who runs the validators.</strong> Figment&#x27;s contract is open to anyone, but stake deposited through it is taken to be run by Figment (method provider.depositor_contract). From 19 March 2025, Kraken Staking (formerly Staked), which Kraken owns (decision 0325), registered 2,017 of the account&#x27;s validators on the SSV network from its own account, on clusters made only of its own operators. The registering account splits the validator key into its shares, so Kraken Staking then held the keys. Under the allocator chain rule, Figment is the allocator while it ran a validator and Kraken its principal (decision 0337); once Kraken&#x27;s own operator holds the keys, Kraken is the allocator. Some validators were registered on SSV within a day of their deposit, so Figment never ran those. The other 2,521 validators, most of them exited before March 2025, were never registered this way and stay Figment&#x27;s, with Kraken as principal.</p>
+<p><strong>Limits.</strong> The link to Kraken rests on the funding through 0x267b, which no source names; the wallet receiving Kraken&#x27;s withdrawn stake is taken to be Kraken&#x27;s own. The account also exchanged ETH with 0x4063…c84d, which is not identified. The decision would change with a Kraken statement contradicting it, evidence that 0x267b is not Kraken&#x27;s, or evidence that the account deposits on a client&#x27;s instruction.</p>
+<h2>What would change it</h2><p>A Kraken statement contradicting it, evidence that 0x267b…ffdc0 is not Kraken&#x27;s, or evidence that the account deposits for a client who chose the operators.</p>
+<h2>Evidence</h2><p class="muted">Transactions and contract calls anyone can repeat on their own node.</p><div class="card"><ul class="grounds"><li><a href="0007-kraken-eth2-depositor.html">0007-kraken-eth2-depositor</a></li><li><a href="0325-staked-owned-by-kraken.html">0325-staked-owned-by-kraken</a></li><li><a class="mono" href="https://etherscan.io/tx/0xdb45c5de9aa1f82eeeac7969164842c3de2ae8eddea97c33419fc60e49e62f2a">0xdb45c5de…49e62f2a</a> — Kraken&#x27;s withdrawal address 0x210b…2a1b sends 100,000 ETH to 0x267b…ffdc0, block 17,137,047</li><li><a class="mono" href="https://etherscan.io/tx/0x439ff1412066615585be41586607595d54d70bfbb51a1fb0c23d8c0b70fc4cc4">0x439ff141…70fc4cc4</a> — 0x267b…ffdc0 first funds 0x39ed (0.05 ETH), block 17,435,474</li><li><a class="mono" href="https://etherscan.io/tx/0xc085f186291c6977ed6c5ce9c6c22b9e5d81fa4c9c41cf4ae6cce9493d240762">0xc085f186…3d240762</a> — 0x39ed sends 3,474 ETH back to 0x267b…ffdc0</li><li><a class="mono" href="https://etherscan.io/tx/0x176acd3a81c4be71118406ff185acd15bf8966755c6885aad4d33967f61e7915">0x176acd3a…f61e7915</a> — 0x39ed&#x27;s first deposit, via Figment&#x27;s 0xf2be…dab1, block 17,523,658</li><li><a class="mono" href="https://etherscan.io/tx/0x040af35029697772bb433cdc7634b0fc158951917025209d4aecec3270606064">0x040af350…70606064</a> — Kraken Staking&#x27;s account 0xdbc4…f593 first registers one of 0x39ed&#x27;s validators on SSV, on its own operators, 19 March 2025</li></ul></div>
+<h2>Treemap boxes resting on it</h2><div class="table-wrap"><table><thead><tr><th>Box</th><th class="num">ETH now</th><th class="num">Peak ETH</th></tr></thead><tbody><tr><td>Kraken › Kraken staking › Withdraws to 0x39ed…82e5</td><td class="num">54,016</td><td class="num">54,016</td></tr></tbody></table></div>
+</main>
+</body>
+</html>

@@ -1,0 +1,99 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>SSV Labs: roles in the validator set</title>
+<style>
+:root { color-scheme: light; --surface-0: #f4f3f0; --surface-1: #fcfcfb; --border: #d9d8d3; --text-primary: #0b0b0b;
+        --text-secondary: #52514e; --text-muted: #77766f; --accent: #2a78d6; --chip: #ebe9e4; }
+@media (prefers-color-scheme: dark) {
+  :root:where(:not([data-theme="light"])) { color-scheme: dark; --surface-0: #121211; --surface-1: #1a1a19;
+    --border: #3a3a37; --text-primary: #f0efec; --text-secondary: #c3c2b7; --text-muted: #96958c; --accent: #3987e5;
+    --chip: #2a2a28; }
+}
+:root[data-theme="dark"] { color-scheme: dark; --surface-0: #121211; --surface-1: #1a1a19; --border: #3a3a37;
+  --text-primary: #f0efec; --text-secondary: #c3c2b7; --text-muted: #96958c; --accent: #3987e5; --chip: #2a2a28; }
+* { box-sizing: border-box; }
+body { margin: 0; background: var(--surface-0); color: var(--text-primary);
+       font: 15px/1.55 system-ui, -apple-system, "Segoe UI", sans-serif; }
+main { max-width: 860px; margin: 0 auto; padding: 32px 16px 64px; }
+a { color: var(--accent); }
+h1 { font-size: 22px; line-height: 1.3; font-weight: 600; margin: 4px 0 12px; }
+h2 { font-size: 15px; font-weight: 600; margin: 28px 0 8px; color: var(--text-secondary);
+     text-transform: uppercase; letter-spacing: 0.04em; }
+p { margin: 0 0 12px; }
+.crumbs { font-size: 13px; color: var(--text-muted); }
+.lede { font-size: 17px; }
+.muted { color: var(--text-muted); }
+.chip { display: inline-block; padding: 1px 8px; border-radius: 10px; background: var(--chip); font-size: 12px;
+        color: var(--text-secondary); margin-right: 4px; white-space: nowrap; }
+.card { background: var(--surface-1); border: 1px solid var(--border); border-radius: 6px; padding: 14px 16px;
+        margin: 0 0 12px; }
+.stats { display: flex; flex-wrap: wrap; gap: 12px; margin: 16px 0; }
+.stat { background: var(--surface-1); border: 1px solid var(--border); border-radius: 6px; padding: 10px 14px;
+        min-width: 140px; }
+.stat b { display: block; font-size: 20px; font-variant-numeric: tabular-nums; }
+.stat span { font-size: 12px; color: var(--text-muted); }
+ul.grounds { list-style: none; padding: 0; margin: 0; }
+ul.grounds li { padding: 6px 0; border-bottom: 1px solid var(--border); }
+ul.grounds li:last-child { border-bottom: 0; }
+table { width: 100%; border-collapse: collapse; background: var(--surface-1); font-size: 14px; }
+th, td { text-align: left; padding: 7px 8px; border-bottom: 1px solid var(--border); vertical-align: top; }
+th { font-weight: 600; color: var(--text-secondary); cursor: pointer; white-space: nowrap; user-select: none; }
+td.num, th.num { text-align: right; font-variant-numeric: tabular-nums; white-space: nowrap; }
+code, .mono { font: 12.5px ui-monospace, SFMono-Regular, Menlo, monospace; word-break: break-all; }
+details summary { cursor: pointer; color: var(--accent); }
+.excerpt { border-left: 3px solid var(--border); padding: 2px 0 2px 10px; color: var(--text-secondary);
+           font-size: 14px; white-space: pre-wrap; }
+input[type=search] { width: 100%; padding: 8px 10px; font: inherit; border: 1px solid var(--border);
+                     border-radius: 6px; background: var(--surface-1); color: var(--text-primary); margin: 8px 0 12px; }
+.table-wrap { overflow-x: auto; }
+@media (max-width: 640px) { .hide-sm { display: none; } }
+</style>
+<script data-goatcounter="https://pintail.goatcounter.com/count" async src="https://gc.zgo.at/count.js"></script>
+</head>
+<body>
+<main>
+<style>
+.chart { width: 100%; height: auto; background: var(--surface-1); border: 1px solid var(--border); border-radius: 6px; }
+.chart text { fill: var(--text-muted); font: 11px system-ui, sans-serif; }
+.chart .grid { stroke: var(--border); stroke-width: 1; }
+.legend { display: flex; flex-wrap: wrap; gap: 14px; font-size: 13px; color: var(--text-secondary); margin: 6px 0 14px; }
+.legend i { display: inline-block; width: 16px; height: 3px; vertical-align: middle; margin-right: 5px; background: var(--c); }
+.legend i.dashed { background: repeating-linear-gradient(90deg, var(--c) 0 6px, transparent 6px 9px); }
+.chart .event { stroke: var(--text-muted); stroke-width: 1; stroke-dasharray: 3 3; }
+.chart .event-n { fill: var(--text-secondary); font-weight: 600; }
+ol.events { padding-left: 0; list-style: none; }
+ol.events li { margin: 4px 0; }
+ol.events .n { display: inline-block; min-width: 1.6em; font-weight: 600; color: var(--text-secondary); }
+</style><p class="crumbs"><a href="../">Dataset</a> › <a href="./">Entities</a></p>
+<h1>SSV Labs</h1>
+<p><span class="chip">provider</span> <span class="mono muted">ssv-labs</span></p>
+<p><strong>How much ETH SSV Labs has had in each role recorded in this dataset, week by week, from
+the start of the beacon chain (1 December 2020) to 13 November 2026.</strong> Stake is the effective balance
+of active validators.</p>
+<ul><li><strong>Allocator</strong>: chose where the stake went. Counts the stake in the treemap boxes under SSV Labs. <span class="muted">Recorded for 89% of active stake.</span></li><li><strong>Operator</strong>: ran the validators. <span class="muted">Recorded for 51% of active stake.</span></li><li><strong>Custodian</strong>: held the stake on behalf of a client. <span class="muted">Recorded for 5.3% of active stake.</span></li><li><strong>Principal</strong>: owned the staked ETH. <span class="muted">Recorded for 6.2% of active stake.</span></li></ul>
+<p class="muted">Allocators are recorded for most stake. Operators, custodians and principals are recorded only where
+specific evidence names them, so their figures here (dashed on the charts) are lower bounds: no figure does not mean
+no role.</p>
+<h2>Its own roles</h2><svg class="chart" viewBox="0 0 760 240" role="img" aria-label="ETH by role over time"><line class="grid" x1="52" x2="752" y1="218.0" y2="218.0"/><text x="46" y="222.0" text-anchor="end">0</text><line class="grid" x1="52" x2="752" y1="114.0" y2="114.0"/><text x="46" y="118.0" text-anchor="end">3k</text><line class="grid" x1="52" x2="752" y1="10.0" y2="10.0"/><text x="46" y="14.0" text-anchor="end">6k</text><text x="52.0" y="234" text-anchor="middle">2020</text><text x="180.3" y="234" text-anchor="middle">2022</text><text x="297.3" y="234" text-anchor="middle">2023</text><text x="414.4" y="234" text-anchor="middle">2024</text><text x="533.7" y="234" text-anchor="middle">2025</text><text x="650.7" y="234" text-anchor="middle">2026</text><polyline fill="none" stroke="#2a78d6" stroke-width="2" points="52.0,182.4 54.3,182.4 56.5,182.4 58.8,182.4 61.0,182.4 63.3,182.4 65.5,182.4 67.8,182.4 70.0,182.4 72.3,182.4 74.5,182.4 76.8,182.4 79.0,182.4 81.3,182.4 83.5,182.4 85.8,182.4 88.0,182.4 90.3,182.4 92.5,182.4 94.8,182.4 97.0,182.4 99.3,182.4 101.5,182.4 103.8,182.4 106.0,182.4 108.3,182.4 110.5,182.4 112.8,182.4 115.0,182.4 117.3,182.4 119.5,182.4 121.8,182.4 124.0,182.4 126.3,182.4 128.5,182.4 130.8,182.4 133.0,182.4 135.3,182.4 137.5,182.4 139.8,182.4 142.0,182.4 144.3,182.4 146.5,182.4 148.8,182.4 151.0,182.4 153.3,182.4 155.5,182.4 157.8,182.4 160.0,182.4 162.3,182.4 164.5,182.4 166.8,182.4 169.0,182.4 171.3,182.4 173.5,182.4 175.8,182.4 178.0,182.4 180.3,182.4 182.5,182.4 184.8,182.4 187.0,182.4 189.3,182.4 191.5,182.4 193.8,182.4 196.1,182.4 198.3,182.4 200.6,182.4 202.8,182.4 205.1,182.4 207.3,182.4 209.6,182.4 211.8,182.4 214.1,182.4 216.3,182.4 218.6,182.4 220.8,182.4 223.1,182.4 225.3,182.4 227.6,182.4 229.8,182.4 232.1,182.4 234.3,182.4 236.6,182.4 238.8,182.4 241.1,182.4 243.3,182.4 245.6,182.4 247.8,182.4 250.1,182.4 252.3,182.4 254.6,182.4 256.8,182.4 259.1,182.4 261.3,182.4 263.6,182.4 265.8,182.4 268.1,182.4 270.3,182.4 272.6,182.4 274.8,182.4 277.1,182.4 279.3,182.4 281.6,182.4 283.8,182.4 286.1,182.4 288.3,182.4 290.6,182.4 292.8,182.4 295.1,182.4 297.3,182.4 299.6,182.4 301.8,182.4 304.1,182.4 306.3,182.4 308.6,182.4 310.8,182.4 313.1,182.4 315.3,182.4 317.6,182.4 319.8,182.4 322.1,182.4 324.3,182.4 326.6,182.4 328.8,182.4 331.1,182.4 333.4,182.4 335.6,182.4 337.9,182.4 340.1,182.4 342.4,182.4 344.6,182.4 346.9,182.4 349.1,182.4 351.4,182.4 353.6,182.4 355.9,182.4 358.1,182.4 360.4,182.4 362.6,182.4 364.9,74.4 367.1,10.0 369.4,10.0 371.6,10.0 373.9,10.0 376.1,10.0 378.4,10.0 380.6,10.0 382.9,10.0 385.1,10.0 387.4,10.0 389.6,10.0 391.9,10.0 394.1,10.0 396.4,10.0 398.6,10.0 400.9,10.0 403.1,10.0 405.4,10.0 407.6,10.0 409.9,10.0 412.1,10.0 414.4,10.0 416.6,10.0 418.9,10.0 421.1,10.0 423.4,10.0 425.6,10.0 427.9,10.0 430.1,10.0 432.4,10.0 434.6,10.0 436.9,10.0 439.1,10.0 441.4,10.0 443.6,10.0 445.9,10.0 448.1,10.0 450.4,10.0 452.6,10.0 454.9,10.0 457.1,10.0 459.4,10.0 461.6,10.0 463.9,10.0 466.1,10.0 468.4,10.0 470.6,10.0 472.9,10.0 475.2,10.0 477.4,10.0 479.7,10.0 481.9,10.0 484.2,10.0 486.4,10.0 488.7,10.0 490.9,10.0 493.2,10.0 495.4,10.0 497.7,10.0 499.9,10.0 502.2,10.0 504.4,10.0 506.7,10.0 508.9,10.0 511.2,10.0 513.4,10.0 515.7,10.0 517.9,10.0 520.2,10.0 522.4,10.0 524.7,10.0 526.9,10.0 529.2,10.0 531.4,10.0 533.7,10.0 535.9,10.0 538.2,10.0 540.4,10.0 542.7,10.0 544.9,10.0 547.2,10.0 549.4,10.0 551.7,10.0 553.9,10.0 556.2,10.0 558.4,10.0 560.7,10.0 562.9,10.0 565.2,10.0 567.4,10.0 569.7,10.0 571.9,10.0 574.2,10.0 576.4,10.0 578.7,10.0 580.9,10.0 583.2,10.0 585.4,10.0 587.7,10.0 589.9,10.0 592.2,10.0 594.4,10.0 596.7,10.0 598.9,10.0 601.2,10.0 603.4,10.1 605.7,10.1 607.9,10.1 610.2,13.6 612.5,29.7 614.7,29.7 617.0,29.7 619.2,29.7 621.5,29.7 623.7,29.7 626.0,29.7 628.2,53.8 630.5,53.8 632.7,53.8 635.0,53.8 637.2,53.8 639.5,53.8 641.7,53.8 644.0,53.8 646.2,77.9 648.5,77.9 650.7,77.9 653.0,77.9 655.2,77.9 657.5,77.9 659.7,77.9 662.0,77.9 664.2,78.0 666.5,78.0 668.7,78.1 671.0,78.1 673.2,78.1 675.5,78.1 677.7,78.1 680.0,78.1 682.2,78.1 684.5,78.1 686.7,78.1 689.0,78.1 691.2,78.1 693.5,78.1 695.7,78.1 698.0,78.1 700.2,78.1 702.5,78.2 704.7,78.4 707.0,78.4 709.2,78.4 711.5,78.4 713.7,78.4 716.0,78.4 718.2,78.4 720.5,78.4 722.7,78.4 725.0,78.4 727.2,78.5 729.5,78.5 731.7,78.5 734.0,78.5 736.2,78.8 738.5,78.8 740.7,78.8 743.0,114.6 745.2,114.6 747.5,114.6 749.7,114.6 752.0,114.6"><title>Allocator</title></polyline></svg><div class="legend"><span><i class="" style="--c:#2a78d6"></i>Allocator</span></div><div class="table-wrap"><table><thead><tr><th>Role</th><th class="num">ETH now</th>
+<th class="num hide-sm">Validators now</th><th class="num">Peak ETH</th><th class="num hide-sm">Peak</th>
+<th class="num hide-sm">First seen</th><th class="num hide-sm">Last seen</th></tr></thead><tbody><tr><td>Allocator</td><td class="num">2,880</td>
+<td class="num hide-sm">91</td><td class="num">5,792</td>
+<td class="num hide-sm">2023-08-08</td><td class="num hide-sm">2020-12-01</td>
+<td class="num hide-sm">now</td></tr></tbody></table></div>
+<h2>Clients</h2><p class="muted">Blocks proposed in the last 90 days by the validators it
+allocates or operates now, and the execution and consensus clients their graffiti names (clients add a short code by
+default; operators can turn it off, so these are shares of the blocks that carry one).</p>
+<div class="table-wrap"><table><thead><tr><th>Role</th><th class="num">Blocks</th><th class="num">With codes</th>
+<th>Execution clients</th><th>Consensus clients</th></tr></thead><tbody><tr><td>Allocator</td><td class="num">16</td>
+<td class="num">62%</td><td>Geth 70%, Erigon 10%, Nethermind 10%, Reth 10%</td><td>Lighthouse 60%, Lodestar 20%, Prysm 20%</td></tr></tbody></table></div>
+<h2>Treemap boxes</h2><div class="table-wrap"><table><thead><tr><th>Box</th>
+<th class="num">ETH now</th><th class="num hide-sm">Peak ETH</th></tr></thead><tbody><tr><td>SSV Labs › SSV Labs staking › Withdraws to 0x5e33…a9cb</td><td class="num">2,880</td><td class="num hide-sm">5,792</td></tr></tbody></table></div>
+<h2>Decisions naming it</h2><ul><li><a href="../decisions/0223-ssv-labs.html">0223</a> Defines SSV Labs (provider)</li><li><a href="../decisions/0224-ssv-labs-staking-name.html">0224</a> Defines SSV Labs staking (treasury staking)</li><li><a href="../decisions/0225-ssv-labs-staking.html">0225</a> SSV Labs&#x27; staking: validators of the one account SSV Labs&#x27; private operator admits, which it spreads across SSV operators of its choice.</li></ul>
+<h2>Identified addresses</h2><div class="table-wrap"><table><thead><tr><th>Address</th><th>Role</th>
+<th class="hide-sm">Basis</th></tr></thead><tbody><tr><td><a class="mono" href="https://etherscan.io/address/0x5e33db0b37622f7e6b2f0654aa7b985d854ea9cb">0x5e33db0b37622f7e6b2f0654aa7b985d854ea9cb</a></td><td>withdrawal address</td><td class="hide-sm">asserted</td></tr></tbody></table></div>
+</main>
+</body>
+</html>

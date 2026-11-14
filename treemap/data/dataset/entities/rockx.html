@@ -1,0 +1,98 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>RockX: roles in the validator set</title>
+<style>
+:root { color-scheme: light; --surface-0: #f4f3f0; --surface-1: #fcfcfb; --border: #d9d8d3; --text-primary: #0b0b0b;
+        --text-secondary: #52514e; --text-muted: #77766f; --accent: #2a78d6; --chip: #ebe9e4; }
+@media (prefers-color-scheme: dark) {
+  :root:where(:not([data-theme="light"])) { color-scheme: dark; --surface-0: #121211; --surface-1: #1a1a19;
+    --border: #3a3a37; --text-primary: #f0efec; --text-secondary: #c3c2b7; --text-muted: #96958c; --accent: #3987e5;
+    --chip: #2a2a28; }
+}
+:root[data-theme="dark"] { color-scheme: dark; --surface-0: #121211; --surface-1: #1a1a19; --border: #3a3a37;
+  --text-primary: #f0efec; --text-secondary: #c3c2b7; --text-muted: #96958c; --accent: #3987e5; --chip: #2a2a28; }
+* { box-sizing: border-box; }
+body { margin: 0; background: var(--surface-0); color: var(--text-primary);
+       font: 15px/1.55 system-ui, -apple-system, "Segoe UI", sans-serif; }
+main { max-width: 860px; margin: 0 auto; padding: 32px 16px 64px; }
+a { color: var(--accent); }
+h1 { font-size: 22px; line-height: 1.3; font-weight: 600; margin: 4px 0 12px; }
+h2 { font-size: 15px; font-weight: 600; margin: 28px 0 8px; color: var(--text-secondary);
+     text-transform: uppercase; letter-spacing: 0.04em; }
+p { margin: 0 0 12px; }
+.crumbs { font-size: 13px; color: var(--text-muted); }
+.lede { font-size: 17px; }
+.muted { color: var(--text-muted); }
+.chip { display: inline-block; padding: 1px 8px; border-radius: 10px; background: var(--chip); font-size: 12px;
+        color: var(--text-secondary); margin-right: 4px; white-space: nowrap; }
+.card { background: var(--surface-1); border: 1px solid var(--border); border-radius: 6px; padding: 14px 16px;
+        margin: 0 0 12px; }
+.stats { display: flex; flex-wrap: wrap; gap: 12px; margin: 16px 0; }
+.stat { background: var(--surface-1); border: 1px solid var(--border); border-radius: 6px; padding: 10px 14px;
+        min-width: 140px; }
+.stat b { display: block; font-size: 20px; font-variant-numeric: tabular-nums; }
+.stat span { font-size: 12px; color: var(--text-muted); }
+ul.grounds { list-style: none; padding: 0; margin: 0; }
+ul.grounds li { padding: 6px 0; border-bottom: 1px solid var(--border); }
+ul.grounds li:last-child { border-bottom: 0; }
+table { width: 100%; border-collapse: collapse; background: var(--surface-1); font-size: 14px; }
+th, td { text-align: left; padding: 7px 8px; border-bottom: 1px solid var(--border); vertical-align: top; }
+th { font-weight: 600; color: var(--text-secondary); cursor: pointer; white-space: nowrap; user-select: none; }
+td.num, th.num { text-align: right; font-variant-numeric: tabular-nums; white-space: nowrap; }
+code, .mono { font: 12.5px ui-monospace, SFMono-Regular, Menlo, monospace; word-break: break-all; }
+details summary { cursor: pointer; color: var(--accent); }
+.excerpt { border-left: 3px solid var(--border); padding: 2px 0 2px 10px; color: var(--text-secondary);
+           font-size: 14px; white-space: pre-wrap; }
+input[type=search] { width: 100%; padding: 8px 10px; font: inherit; border: 1px solid var(--border);
+                     border-radius: 6px; background: var(--surface-1); color: var(--text-primary); margin: 8px 0 12px; }
+.table-wrap { overflow-x: auto; }
+@media (max-width: 640px) { .hide-sm { display: none; } }
+</style>
+<script data-goatcounter="https://pintail.goatcounter.com/count" async src="https://gc.zgo.at/count.js"></script>
+</head>
+<body>
+<main>
+<style>
+.chart { width: 100%; height: auto; background: var(--surface-1); border: 1px solid var(--border); border-radius: 6px; }
+.chart text { fill: var(--text-muted); font: 11px system-ui, sans-serif; }
+.chart .grid { stroke: var(--border); stroke-width: 1; }
+.legend { display: flex; flex-wrap: wrap; gap: 14px; font-size: 13px; color: var(--text-secondary); margin: 6px 0 14px; }
+.legend i { display: inline-block; width: 16px; height: 3px; vertical-align: middle; margin-right: 5px; background: var(--c); }
+.legend i.dashed { background: repeating-linear-gradient(90deg, var(--c) 0 6px, transparent 6px 9px); }
+.chart .event { stroke: var(--text-muted); stroke-width: 1; stroke-dasharray: 3 3; }
+.chart .event-n { fill: var(--text-secondary); font-weight: 600; }
+ol.events { padding-left: 0; list-style: none; }
+ol.events li { margin: 4px 0; }
+ol.events .n { display: inline-block; min-width: 1.6em; font-weight: 600; color: var(--text-secondary); }
+</style><p class="crumbs"><a href="../">Dataset</a> › <a href="./">Entities</a></p>
+<h1>RockX</h1>
+<p><span class="chip">node operator</span> <span class="mono muted">rockx</span></p>
+<p><strong>How much ETH RockX has had in each role recorded in this dataset, week by week, from
+the start of the beacon chain (1 December 2020) to 13 November 2026.</strong> Stake is the effective balance
+of active validators.</p>
+<ul><li><strong>Allocator</strong>: chose where the stake went. Counts the stake in the treemap boxes under RockX. <span class="muted">Recorded for 89% of active stake.</span></li><li><strong>Operator</strong>: ran the validators. <span class="muted">Recorded for 51% of active stake.</span></li><li><strong>Custodian</strong>: held the stake on behalf of a client. <span class="muted">Recorded for 5.3% of active stake.</span></li><li><strong>Principal</strong>: owned the staked ETH. <span class="muted">Recorded for 6.2% of active stake.</span></li></ul>
+<p class="muted">Allocators are recorded for most stake. Operators, custodians and principals are recorded only where
+specific evidence names them, so their figures here (dashed on the charts) are lower bounds: no figure does not mean
+no role.</p>
+<h2>Its own roles</h2><svg class="chart" viewBox="0 0 760 240" role="img" aria-label="ETH by role over time"><line class="grid" x1="52" x2="752" y1="218.0" y2="218.0"/><text x="46" y="222.0" text-anchor="end">0</text><line class="grid" x1="52" x2="752" y1="114.0" y2="114.0"/><text x="46" y="118.0" text-anchor="end">160k</text><line class="grid" x1="52" x2="752" y1="10.0" y2="10.0"/><text x="46" y="14.0" text-anchor="end">320k</text><text x="52.0" y="234" text-anchor="middle">2020</text><text x="180.3" y="234" text-anchor="middle">2022</text><text x="297.3" y="234" text-anchor="middle">2023</text><text x="414.4" y="234" text-anchor="middle">2024</text><text x="533.7" y="234" text-anchor="middle">2025</text><text x="650.7" y="234" text-anchor="middle">2026</text><line class="event" x1="139.8" x2="139.8" y1="10" y2="218"/><text class="event-n" x="142.8" y="20">1</text><polyline fill="none" stroke="#e0742a" stroke-width="2" stroke-dasharray="6 3" points="52.0,218.0 54.3,218.0 56.5,218.0 58.8,218.0 61.0,218.0 63.3,218.0 65.5,218.0 67.8,218.0 70.0,218.0 72.3,218.0 74.5,218.0 76.8,218.0 79.0,218.0 81.3,218.0 83.5,218.0 85.8,218.0 88.0,218.0 90.3,218.0 92.5,218.0 94.8,218.0 97.0,218.0 99.3,218.0 101.5,218.0 103.8,218.0 106.0,218.0 108.3,218.0 110.5,218.0 112.8,218.0 115.0,218.0 117.3,218.0 119.5,218.0 121.8,218.0 124.0,218.0 126.3,218.0 128.5,218.0 130.8,218.0 133.0,218.0 135.3,218.0 137.5,218.0 139.8,218.0 142.0,218.0 144.3,215.9 146.5,211.4 148.8,211.4 151.0,209.6 153.3,203.8 155.5,203.8 157.8,203.8 160.0,198.2 162.3,194.8 164.5,194.8 166.8,192.0 169.0,187.3 171.3,182.8 173.5,178.3 175.8,173.8 178.0,167.1 180.3,161.2 182.5,154.3 184.8,151.5 187.0,151.5 189.3,151.5 191.5,151.5 193.8,151.5 196.1,151.5 198.3,145.4 200.6,134.8 202.8,126.6 205.1,107.4 207.3,89.1 209.6,89.1 211.8,89.1 214.1,89.1 216.3,89.1 218.6,84.5 220.8,83.8 223.1,75.7 225.3,67.7 227.6,64.3 229.8,64.3 232.1,64.3 234.3,64.3 236.6,64.3 238.8,64.3 241.1,64.3 243.3,64.3 245.6,64.3 247.8,64.3 250.1,64.3 252.3,64.3 254.6,64.3 256.8,64.3 259.1,64.3 261.3,64.3 263.6,64.3 265.8,64.3 268.1,64.3 270.3,64.3 272.6,64.3 274.8,64.3 277.1,64.3 279.3,64.3 281.6,64.3 283.8,64.3 286.1,64.3 288.3,64.3 290.6,64.3 292.8,64.3 295.1,64.3 297.3,64.3 299.6,64.3 301.8,64.3 304.1,64.3 306.3,64.3 308.6,64.3 310.8,64.3 313.1,64.3 315.3,64.3 317.6,64.3 319.8,64.3 322.1,64.3 324.3,64.3 326.6,64.3 328.8,64.3 331.1,64.3 333.4,64.3 335.6,64.3 337.9,64.3 340.1,64.3 342.4,64.3 344.6,64.3 346.9,64.3 349.1,64.3 351.4,64.3 353.6,63.2 355.9,59.1 358.1,54.0 360.4,51.6 362.6,48.6 364.9,47.5 367.1,44.1 369.4,40.1 371.6,35.8 373.9,33.3 376.1,30.7 378.4,25.7 380.6,18.9 382.9,12.8 385.1,10.8 387.4,10.0 389.6,10.0 391.9,12.0 394.1,12.0 396.4,14.1 398.6,17.5 400.9,18.1 403.1,18.1 405.4,18.1 407.6,23.4 409.9,30.4 412.1,32.4 414.4,32.4 416.6,32.4 418.9,32.6 421.1,32.6 423.4,32.6 425.6,32.6 427.9,32.6 430.1,32.6 432.4,32.6 434.6,31.3 436.9,31.0 439.1,31.0 441.4,31.0 443.6,31.9 445.9,34.5 448.1,36.2 450.4,36.3 452.6,36.4 454.9,36.7 457.1,37.2 459.4,37.2 461.6,33.9 463.9,32.9 466.1,33.8 468.4,34.9 470.6,34.9 472.9,36.6 475.2,36.7 477.4,37.2 479.7,37.2 481.9,37.7 484.2,38.8 486.4,39.2 488.7,39.6 490.9,40.5 493.2,40.5 495.4,41.4 497.7,41.9 499.9,41.9 502.2,42.1 504.4,44.2 506.7,43.5 508.9,44.6 511.2,44.7 513.4,44.6 515.7,44.5 517.9,45.0 520.2,45.0 522.4,44.6 524.7,44.9 526.9,47.1 529.2,48.1 531.4,48.6 533.7,49.0 535.9,49.3 538.2,50.3 540.4,51.3 542.7,52.1 544.9,53.6 547.2,53.6 549.4,54.3 551.7,55.0 553.9,55.3 556.2,56.2 558.4,56.2 560.7,56.2 562.9,56.9 565.2,58.0 567.4,58.4 569.7,59.4 571.9,60.4 574.2,60.8 576.4,62.7 578.7,63.2 580.9,63.7 583.2,63.7 585.4,64.0 587.7,64.3 589.9,63.4 592.2,63.6 594.4,64.1 596.7,66.0 598.9,67.9 601.2,68.2 603.4,68.8 605.7,70.2 607.9,71.2 610.2,72.1 612.5,72.9 614.7,73.6 617.0,74.3 619.2,74.3 621.5,74.3 623.7,74.3 626.0,74.3 628.2,74.3 630.5,74.3 632.7,74.3 635.0,74.3 637.2,74.3 639.5,74.3 641.7,74.3 644.0,74.3 646.2,73.9 648.5,73.8 650.7,73.6 653.0,73.3 655.2,72.6 657.5,72.3 659.7,71.3 662.0,72.3 664.2,72.3 666.5,72.9 668.7,75.1 671.0,71.8 673.2,69.4 675.5,67.7 677.7,66.4 680.0,65.5 682.2,66.0 684.5,66.7 686.7,67.8 689.0,73.7 691.2,74.1 693.5,74.4 695.7,73.2 698.0,71.4 700.2,71.6 702.5,71.7 704.7,71.7 707.0,71.7 709.2,72.0 711.5,72.1 713.7,70.8 716.0,70.0 718.2,67.9 720.5,67.2 722.7,65.5 725.0,63.5 727.2,61.7 729.5,59.0 731.7,57.6 734.0,56.3 736.2,54.1 738.5,52.5 740.7,52.3 743.0,50.6 745.2,53.3 747.5,53.3 749.7,53.3 752.0,53.3"><title>Operator</title></polyline></svg><div class="legend"><span><i class="dashed" style="--c:#e0742a"></i>Operator (recorded only in part)</span></div><div class="table-wrap"><table><thead><tr><th>Role</th><th class="num">ETH now</th>
+<th class="num hide-sm">Validators now</th><th class="num">Peak ETH</th><th class="num hide-sm">Peak</th>
+<th class="num hide-sm">First seen</th><th class="num hide-sm">Last seen</th></tr></thead><tbody><tr><td>Operator</td><td class="num">253,440</td>
+<td class="num hide-sm">7,920</td><td class="num">320,064</td>
+<td class="num hide-sm">2023-10-10</td><td class="num hide-sm">2021-09-14</td>
+<td class="num hide-sm">now</td></tr></tbody></table></div>
+<h2>Events</h2><p class="muted">Numbered as marked on the charts.</p><ol class="events"><li><span class="n">1</span> 27 August 2021: Added to Lido's registry as operator 1/9, named "RockX" (<a href="https://etherscan.io/tx/0xfdf4468701f007e73dc8024323db39ff40790e3cb40e4d9265c9c6f82d2ef402">transaction</a>)</li></ol><h2>Clients</h2><p class="muted">Blocks proposed in the last 90 days by the validators it
+allocates or operates now, and the execution and consensus clients their graffiti names (clients add a short code by
+default; operators can turn it off, so these are shares of the blocks that carry one).</p>
+<div class="table-wrap"><table><thead><tr><th>Role</th><th class="num">Blocks</th><th class="num">With codes</th>
+<th>Execution clients</th><th>Consensus clients</th></tr></thead><tbody><tr><td>Operator</td><td class="num">3,656</td>
+<td class="num">70%</td><td>Geth 63%, Nethermind 37%</td><td>Lighthouse 99%, Prysm 1%</td></tr></tbody></table></div>
+<h2>Protocol operators it runs</h2><ul><li>RockX <span class="mono muted">lido/1/9</span></li><li>RockX-PTO-Operator <span class="mono muted">lido/4/3</span></li><li>RockX <span class="mono muted">lido/group/4.4</span></li></ul>
+<h2>Decisions naming it</h2><ul><li><a href="../decisions/0249-rockx.html">0249</a> Defines RockX (node operator)</li><li><a href="../decisions/0300-rockx-lido-operators.html">0300</a> Lido&#x27;s operator group 4.4 (&quot;RockX&quot;) and the operators it lists are run by RockX.</li></ul>
+<h2>Identified addresses</h2><div class="table-wrap"><table><thead><tr><th>Address</th><th>Role</th>
+<th class="hide-sm">Basis</th></tr></thead><tbody><tr><td><a class="mono" href="https://etherscan.io/address/0x7c44b0f16969d09534aabc690b558088d21ce17b">0x7c44b0f16969d09534aabc690b558088d21ce17b</a></td><td>node operator</td><td class="hide-sm">first_party</td></tr></tbody></table></div>
+</main>
+</body>
+</html>

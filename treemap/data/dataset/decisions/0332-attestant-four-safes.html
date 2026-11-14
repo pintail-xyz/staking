@@ -1,0 +1,75 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>0332-attestant-four-safes: Four Safe multisigs funded by one depositor, whose validators upgrade with Attestant&#x27;s Lido fleet and build blocks as it do</title>
+<style>
+:root { color-scheme: light; --surface-0: #f4f3f0; --surface-1: #fcfcfb; --border: #d9d8d3; --text-primary: #0b0b0b;
+        --text-secondary: #52514e; --text-muted: #77766f; --accent: #2a78d6; --chip: #ebe9e4; }
+@media (prefers-color-scheme: dark) {
+  :root:where(:not([data-theme="light"])) { color-scheme: dark; --surface-0: #121211; --surface-1: #1a1a19;
+    --border: #3a3a37; --text-primary: #f0efec; --text-secondary: #c3c2b7; --text-muted: #96958c; --accent: #3987e5;
+    --chip: #2a2a28; }
+}
+:root[data-theme="dark"] { color-scheme: dark; --surface-0: #121211; --surface-1: #1a1a19; --border: #3a3a37;
+  --text-primary: #f0efec; --text-secondary: #c3c2b7; --text-muted: #96958c; --accent: #3987e5; --chip: #2a2a28; }
+* { box-sizing: border-box; }
+body { margin: 0; background: var(--surface-0); color: var(--text-primary);
+       font: 15px/1.55 system-ui, -apple-system, "Segoe UI", sans-serif; }
+main { max-width: 860px; margin: 0 auto; padding: 32px 16px 64px; }
+a { color: var(--accent); }
+h1 { font-size: 22px; line-height: 1.3; font-weight: 600; margin: 4px 0 12px; }
+h2 { font-size: 15px; font-weight: 600; margin: 28px 0 8px; color: var(--text-secondary);
+     text-transform: uppercase; letter-spacing: 0.04em; }
+p { margin: 0 0 12px; }
+.crumbs { font-size: 13px; color: var(--text-muted); }
+.lede { font-size: 17px; }
+.muted { color: var(--text-muted); }
+.chip { display: inline-block; padding: 1px 8px; border-radius: 10px; background: var(--chip); font-size: 12px;
+        color: var(--text-secondary); margin-right: 4px; white-space: nowrap; }
+.card { background: var(--surface-1); border: 1px solid var(--border); border-radius: 6px; padding: 14px 16px;
+        margin: 0 0 12px; }
+.stats { display: flex; flex-wrap: wrap; gap: 12px; margin: 16px 0; }
+.stat { background: var(--surface-1); border: 1px solid var(--border); border-radius: 6px; padding: 10px 14px;
+        min-width: 140px; }
+.stat b { display: block; font-size: 20px; font-variant-numeric: tabular-nums; }
+.stat span { font-size: 12px; color: var(--text-muted); }
+ul.grounds { list-style: none; padding: 0; margin: 0; }
+ul.grounds li { padding: 6px 0; border-bottom: 1px solid var(--border); }
+ul.grounds li:last-child { border-bottom: 0; }
+table { width: 100%; border-collapse: collapse; background: var(--surface-1); font-size: 14px; }
+th, td { text-align: left; padding: 7px 8px; border-bottom: 1px solid var(--border); vertical-align: top; }
+th { font-weight: 600; color: var(--text-secondary); cursor: pointer; white-space: nowrap; user-select: none; }
+td.num, th.num { text-align: right; font-variant-numeric: tabular-nums; white-space: nowrap; }
+code, .mono { font: 12.5px ui-monospace, SFMono-Regular, Menlo, monospace; word-break: break-all; }
+details summary { cursor: pointer; color: var(--accent); }
+.excerpt { border-left: 3px solid var(--border); padding: 2px 0 2px 10px; color: var(--text-secondary);
+           font-size: 14px; white-space: pre-wrap; }
+input[type=search] { width: 100%; padding: 8px 10px; font: inherit; border: 1px solid var(--border);
+                     border-radius: 6px; background: var(--surface-1); color: var(--text-primary); margin: 8px 0 12px; }
+.table-wrap { overflow-x: auto; }
+@media (max-width: 640px) { .hide-sm { display: none; } }
+</style>
+<script data-goatcounter="https://pintail.goatcounter.com/count" async src="https://gc.zgo.at/count.js"></script>
+</head>
+<body>
+<main>
+<p class="crumbs"><a href="../">Dataset</a> › <a href="./">Decisions</a> › 0332-attestant-four-safes</p>
+<h1>Four Safe multisigs funded by one depositor, whose validators upgrade with Attestant&#x27;s Lido fleet and build blocks as it does, are staked with Attestant.</h1>
+<p><span class="chip">Attribution</span><span class="chip">Allocator</span> <a href="../entities/attestant.html">Attestant direct staking</a> <span class="muted">· decided 2026-11-04</span></p>
+<p class="lede">Validators withdrawing to these four Safes, one depositor&#x27;s stake, are allocated by Attestant.</p>
+<div class="stats"><div class="stat"><b>16</b><span>validators resting on it now</span></div><div class="stat"><b>32,115</b><span>ETH now</span></div><div class="stat"><b>32,115</b><span>ETH at its peak</span></div></div>
+<h2>Grounds</h2><div class="card"><ul class="grounds"><li><span class="chip">On chain</span>One account deposited all 1,001 of their validators in 2024, and the four Safes act together</li><li><span class="chip">On chain</span>Two of them moved between client builds with Attestant&#x27;s Lido fleet three times each; all four moved through the same eight builds together</li><li><span class="chip">On chain</span>Since May 2026 they build nine in ten blocks locally with blank or Besu extra data, as Attestant&#x27;s Lido validators do</li></ul></div>
+<h2>Explanation</h2><p>The validators withdrawing to four Safe multisigs, 0x2456…1ba8, 0x9225…a589, 0x3b83…741c and 0x76a7…d94a, are attributed to Attestant as allocator. They hold 16 validators and about 32,100 ETH (November 2026). The depositor is not identified, so Attestant, the firm it chose, is the allocator.</p>
+<p><strong>One depositor.</strong> A single account deposited all 1,001 of the Safes&#x27; original validators between May and August 2024, about 250 for each Safe, and sent nothing else; its ETH came from another Safe. The four Safes have acted together since: on 8 November 2024 each sent ETH to the same Safe within ten minutes, and between 24 and 27 March 2026 each consolidated its validators into four.</p>
+<p><strong>Attestant&#x27;s fleet.</strong> Their validators sign the client builds they run (Nethermind and Prysm) and moved through the same eight builds together. Two of the Safes&#x27; moves are timed to within a day, three times each, and each falls in a switch made by the Lido validators that Attestant runs, which upgrade on their own schedule, days after a build appears (method graffiti.upgrade_lockstep). From May 2026 the four Safes&#x27; validators build nine in ten of their blocks locally, with blank or Besu extra data, as Attestant&#x27;s Lido validators do, and as does the share of the iShares Staked Ethereum Trust that its prospectus and its deposits show Attestant runs (0329).</p>
+<p>The decision would change with evidence that another firm runs these validators, or if their behaviour diverged from Attestant&#x27;s fleet.</p>
+<h2>What would change it</h2><p>Evidence that another firm runs these validators, or their behaviour diverging from Attestant&#x27;s fleet.</p>
+<h2>Evidence</h2><p class="muted">Transactions and contract calls anyone can repeat on their own node.</p><div class="card"><ul class="grounds"><li><span class="mono">1,001 deposits (32,032 ETH) sent by 0xca9c02f98195abc364c1b0c8dbfae55169a273cf through 0xfa5f9eaa65ffb2a75de092eb7f3fc84fc86b5b18, 2024-05-11 to 2024-08-30</span> — About 250 validators for each Safe; the depositor sent nothing else, and was funded by the Safe 0x651bbd829a7cbd32f35dfc099cbde1e04789393c.</li><li><span class="mono">blocks 21,140,109 to 21,140,159 (8 November 2024)</span> — Each of the four Safes sent ETH to the same Safe, 0x13f073bb6338036649e16e256f31784666a8fbbb, within ten minutes.</li><li><span class="mono">250 consolidation requests from each Safe, 24 to 27 March 2026</span> — Each Safe consolidated its validators into four.</li><li><span class="mono">client codes NM…P… (Nethermind with Prysm builds) from June 2026</span> — All four Safes&#x27; validators moved through the same eight builds over the same days; 0x3b83… and 0x9225… each matched three of the switches of the Lido validators Attestant runs to within a day (upgrade lockstep), with none against.</li><li><span class="mono">their blocks since January 2026</span> — Until April 2026 almost all were bought from MEV-Boost relays; from May 2026 nine in ten were built locally, with blank or Besu extra data, as are those of the Lido validators Attestant runs and of the share of the iShares Staked Ethereum Trust Attestant runs (0329).</li></ul></div>
+<h2>Sources</h2><div class="card"><a href="https://www.sec.gov/Archives/edgar/data/2099103/000143774926007771/iset20260311_424b3.htm">iShares Staked Ethereum Trust ETF prospectus (11 March 2026)</a><div class="muted" style="font-size:13px">iShares Staked Ethereum Trust ETF (BlackRock), prospectus filed with the SEC (Form 424B3) · the entity&#x27;s own · retrieved 2026-11-04</div><p class="excerpt">As of the date of this prospectus, the Approved Validators are Figment Inc., Galaxy Blockchain Infrastructure LLC and Attestant Limited.</p><div class="muted mono">sha256 93ecc6693ad13455c6d99e884ae2b325b982118da0525c5c66af3f6948d5b2fc</div></div>
+<h2>Treemap boxes resting on it</h2><div class="table-wrap"><table><thead><tr><th>Box</th><th class="num">ETH now</th><th class="num">Peak ETH</th></tr></thead><tbody><tr><td>Attestant › Attestant direct staking › 4 named withdrawal addresses (from May 2024)</td><td class="num">32,115</td><td class="num">32,115</td></tr></tbody></table></div>
+<h2>Targets (4)</h2><details open><summary>The addresses or validators this decision covers</summary><ul style="list-style:none;padding:0"><li><span class="chip">withdrawal address</span><a class="mono" href="https://etherscan.io/address/0x2456634f6933d0433aa9d2ecd6b823425c541ba8">0x2456634f6933d0433aa9d2ecd6b823425c541ba8</a></li><li><span class="chip">withdrawal address</span><a class="mono" href="https://etherscan.io/address/0x922526b494f03fedc7454b02dd020e8c19f7a589">0x922526b494f03fedc7454b02dd020e8c19f7a589</a></li><li><span class="chip">withdrawal address</span><a class="mono" href="https://etherscan.io/address/0x3b83f04529c1b32f4af12de1fb3d916eca0e741c">0x3b83f04529c1b32f4af12de1fb3d916eca0e741c</a></li><li><span class="chip">withdrawal address</span><a class="mono" href="https://etherscan.io/address/0x76a7850b5ead4daca27943354ed40340cca8d94a">0x76a7850b5ead4daca27943354ed40340cca8d94a</a></li></ul></details>
+</main>
+</body>
+</html>

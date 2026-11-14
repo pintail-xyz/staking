@@ -1,0 +1,96 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Gateway.fm: roles in the validator set</title>
+<style>
+:root { color-scheme: light; --surface-0: #f4f3f0; --surface-1: #fcfcfb; --border: #d9d8d3; --text-primary: #0b0b0b;
+        --text-secondary: #52514e; --text-muted: #77766f; --accent: #2a78d6; --chip: #ebe9e4; }
+@media (prefers-color-scheme: dark) {
+  :root:where(:not([data-theme="light"])) { color-scheme: dark; --surface-0: #121211; --surface-1: #1a1a19;
+    --border: #3a3a37; --text-primary: #f0efec; --text-secondary: #c3c2b7; --text-muted: #96958c; --accent: #3987e5;
+    --chip: #2a2a28; }
+}
+:root[data-theme="dark"] { color-scheme: dark; --surface-0: #121211; --surface-1: #1a1a19; --border: #3a3a37;
+  --text-primary: #f0efec; --text-secondary: #c3c2b7; --text-muted: #96958c; --accent: #3987e5; --chip: #2a2a28; }
+* { box-sizing: border-box; }
+body { margin: 0; background: var(--surface-0); color: var(--text-primary);
+       font: 15px/1.55 system-ui, -apple-system, "Segoe UI", sans-serif; }
+main { max-width: 860px; margin: 0 auto; padding: 32px 16px 64px; }
+a { color: var(--accent); }
+h1 { font-size: 22px; line-height: 1.3; font-weight: 600; margin: 4px 0 12px; }
+h2 { font-size: 15px; font-weight: 600; margin: 28px 0 8px; color: var(--text-secondary);
+     text-transform: uppercase; letter-spacing: 0.04em; }
+p { margin: 0 0 12px; }
+.crumbs { font-size: 13px; color: var(--text-muted); }
+.lede { font-size: 17px; }
+.muted { color: var(--text-muted); }
+.chip { display: inline-block; padding: 1px 8px; border-radius: 10px; background: var(--chip); font-size: 12px;
+        color: var(--text-secondary); margin-right: 4px; white-space: nowrap; }
+.card { background: var(--surface-1); border: 1px solid var(--border); border-radius: 6px; padding: 14px 16px;
+        margin: 0 0 12px; }
+.stats { display: flex; flex-wrap: wrap; gap: 12px; margin: 16px 0; }
+.stat { background: var(--surface-1); border: 1px solid var(--border); border-radius: 6px; padding: 10px 14px;
+        min-width: 140px; }
+.stat b { display: block; font-size: 20px; font-variant-numeric: tabular-nums; }
+.stat span { font-size: 12px; color: var(--text-muted); }
+ul.grounds { list-style: none; padding: 0; margin: 0; }
+ul.grounds li { padding: 6px 0; border-bottom: 1px solid var(--border); }
+ul.grounds li:last-child { border-bottom: 0; }
+table { width: 100%; border-collapse: collapse; background: var(--surface-1); font-size: 14px; }
+th, td { text-align: left; padding: 7px 8px; border-bottom: 1px solid var(--border); vertical-align: top; }
+th { font-weight: 600; color: var(--text-secondary); cursor: pointer; white-space: nowrap; user-select: none; }
+td.num, th.num { text-align: right; font-variant-numeric: tabular-nums; white-space: nowrap; }
+code, .mono { font: 12.5px ui-monospace, SFMono-Regular, Menlo, monospace; word-break: break-all; }
+details summary { cursor: pointer; color: var(--accent); }
+.excerpt { border-left: 3px solid var(--border); padding: 2px 0 2px 10px; color: var(--text-secondary);
+           font-size: 14px; white-space: pre-wrap; }
+input[type=search] { width: 100%; padding: 8px 10px; font: inherit; border: 1px solid var(--border);
+                     border-radius: 6px; background: var(--surface-1); color: var(--text-primary); margin: 8px 0 12px; }
+.table-wrap { overflow-x: auto; }
+@media (max-width: 640px) { .hide-sm { display: none; } }
+</style>
+<script data-goatcounter="https://pintail.goatcounter.com/count" async src="https://gc.zgo.at/count.js"></script>
+</head>
+<body>
+<main>
+<style>
+.chart { width: 100%; height: auto; background: var(--surface-1); border: 1px solid var(--border); border-radius: 6px; }
+.chart text { fill: var(--text-muted); font: 11px system-ui, sans-serif; }
+.chart .grid { stroke: var(--border); stroke-width: 1; }
+.legend { display: flex; flex-wrap: wrap; gap: 14px; font-size: 13px; color: var(--text-secondary); margin: 6px 0 14px; }
+.legend i { display: inline-block; width: 16px; height: 3px; vertical-align: middle; margin-right: 5px; background: var(--c); }
+.legend i.dashed { background: repeating-linear-gradient(90deg, var(--c) 0 6px, transparent 6px 9px); }
+.chart .event { stroke: var(--text-muted); stroke-width: 1; stroke-dasharray: 3 3; }
+.chart .event-n { fill: var(--text-secondary); font-weight: 600; }
+ol.events { padding-left: 0; list-style: none; }
+ol.events li { margin: 4px 0; }
+ol.events .n { display: inline-block; min-width: 1.6em; font-weight: 600; color: var(--text-secondary); }
+</style><p class="crumbs"><a href="../">Dataset</a> › <a href="./">Entities</a></p>
+<h1>Gateway.fm</h1>
+<p><span class="chip">node operator</span> <span class="mono muted">gateway-fm</span></p>
+<p><strong>How much ETH Gateway.fm has had in each role recorded in this dataset, week by week, from
+the start of the beacon chain (1 December 2020) to 13 November 2026.</strong> Stake is the effective balance
+of active validators.</p>
+<ul><li><strong>Allocator</strong>: chose where the stake went. Counts the stake in the treemap boxes under Gateway.fm. <span class="muted">Recorded for 89% of active stake.</span></li><li><strong>Operator</strong>: ran the validators. <span class="muted">Recorded for 51% of active stake.</span></li><li><strong>Custodian</strong>: held the stake on behalf of a client. <span class="muted">Recorded for 5.3% of active stake.</span></li><li><strong>Principal</strong>: owned the staked ETH. <span class="muted">Recorded for 6.2% of active stake.</span></li></ul>
+<p class="muted">Allocators are recorded for most stake. Operators, custodians and principals are recorded only where
+specific evidence names them, so their figures here (dashed on the charts) are lower bounds: no figure does not mean
+no role.</p>
+<h2>Its own roles</h2><svg class="chart" viewBox="0 0 760 240" role="img" aria-label="ETH by role over time"><line class="grid" x1="52" x2="752" y1="218.0" y2="218.0"/><text x="46" y="222.0" text-anchor="end">0</text><line class="grid" x1="52" x2="752" y1="114.0" y2="114.0"/><text x="46" y="118.0" text-anchor="end">135k</text><line class="grid" x1="52" x2="752" y1="10.0" y2="10.0"/><text x="46" y="14.0" text-anchor="end">271k</text><text x="52.0" y="234" text-anchor="middle">2020</text><text x="180.3" y="234" text-anchor="middle">2022</text><text x="297.3" y="234" text-anchor="middle">2023</text><text x="414.4" y="234" text-anchor="middle">2024</text><text x="533.7" y="234" text-anchor="middle">2025</text><text x="650.7" y="234" text-anchor="middle">2026</text><line class="event" x1="387.4" x2="387.4" y1="10" y2="218"/><text class="event-n" x="390.4" y="20">1</text><polyline fill="none" stroke="#e0742a" stroke-width="2" stroke-dasharray="6 3" points="52.0,218.0 54.3,218.0 56.5,218.0 58.8,218.0 61.0,218.0 63.3,218.0 65.5,218.0 67.8,218.0 70.0,218.0 72.3,218.0 74.5,218.0 76.8,218.0 79.0,218.0 81.3,218.0 83.5,218.0 85.8,218.0 88.0,218.0 90.3,218.0 92.5,218.0 94.8,218.0 97.0,218.0 99.3,218.0 101.5,218.0 103.8,218.0 106.0,218.0 108.3,218.0 110.5,218.0 112.8,218.0 115.0,218.0 117.3,218.0 119.5,218.0 121.8,218.0 124.0,218.0 126.3,218.0 128.5,218.0 130.8,218.0 133.0,218.0 135.3,218.0 137.5,218.0 139.8,218.0 142.0,218.0 144.3,218.0 146.5,218.0 148.8,218.0 151.0,218.0 153.3,218.0 155.5,218.0 157.8,218.0 160.0,218.0 162.3,218.0 164.5,218.0 166.8,218.0 169.0,218.0 171.3,218.0 173.5,218.0 175.8,218.0 178.0,218.0 180.3,218.0 182.5,218.0 184.8,218.0 187.0,218.0 189.3,218.0 191.5,218.0 193.8,218.0 196.1,218.0 198.3,218.0 200.6,218.0 202.8,218.0 205.1,218.0 207.3,218.0 209.6,218.0 211.8,218.0 214.1,218.0 216.3,218.0 218.6,218.0 220.8,218.0 223.1,218.0 225.3,218.0 227.6,218.0 229.8,218.0 232.1,218.0 234.3,218.0 236.6,218.0 238.8,218.0 241.1,218.0 243.3,218.0 245.6,218.0 247.8,218.0 250.1,218.0 252.3,218.0 254.6,218.0 256.8,218.0 259.1,218.0 261.3,218.0 263.6,218.0 265.8,218.0 268.1,218.0 270.3,218.0 272.6,218.0 274.8,218.0 277.1,218.0 279.3,218.0 281.6,218.0 283.8,218.0 286.1,218.0 288.3,218.0 290.6,218.0 292.8,218.0 295.1,218.0 297.3,218.0 299.6,218.0 301.8,218.0 304.1,218.0 306.3,218.0 308.6,218.0 310.8,218.0 313.1,218.0 315.3,218.0 317.6,218.0 319.8,218.0 322.1,218.0 324.3,218.0 326.6,218.0 328.8,218.0 331.1,218.0 333.4,218.0 335.6,218.0 337.9,218.0 340.1,218.0 342.4,218.0 344.6,218.0 346.9,218.0 349.1,218.0 351.4,218.0 353.6,218.0 355.9,218.0 358.1,218.0 360.4,218.0 362.6,218.0 364.9,218.0 367.1,218.0 369.4,218.0 371.6,218.0 373.9,218.0 376.1,218.0 378.4,218.0 380.6,218.0 382.9,218.0 385.1,218.0 387.4,218.0 389.6,216.2 391.9,215.5 394.1,215.5 396.4,215.5 398.6,215.5 400.9,215.5 403.1,215.5 405.4,215.5 407.6,205.7 409.9,205.7 412.1,205.7 414.4,205.7 416.6,205.7 418.9,205.7 421.1,205.7 423.4,205.7 425.6,205.7 427.9,205.7 430.1,205.7 432.4,205.7 434.6,205.7 436.9,205.7 439.1,205.7 441.4,205.7 443.6,205.7 445.9,205.7 448.1,205.7 450.4,205.7 452.6,205.7 454.9,198.4 457.1,183.6 459.4,162.5 461.6,131.9 463.9,107.4 466.1,96.4 468.4,81.4 470.6,77.4 472.9,74.5 475.2,72.3 477.4,69.2 479.7,54.9 481.9,42.9 484.2,39.8 486.4,39.8 488.7,27.8 490.9,27.8 493.2,19.7 495.4,19.4 497.7,19.4 499.9,19.4 502.2,10.0 504.4,12.5 506.7,11.7 508.9,13.0 511.2,13.0 513.4,13.0 515.7,12.9 517.9,13.4 520.2,13.4 522.4,13.0 524.7,13.4 526.9,15.9 529.2,17.1 531.4,17.7 533.7,18.1 535.9,18.5 538.2,19.7 540.4,21.0 542.7,21.9 544.9,23.6 547.2,23.6 549.4,24.5 551.7,25.3 553.9,25.7 556.2,26.7 558.4,26.7 560.7,26.7 562.9,27.5 565.2,28.8 567.4,29.3 569.7,30.5 571.9,31.6 574.2,32.2 576.4,34.4 578.7,35.0 580.9,35.5 583.2,35.5 585.4,36.0 587.7,36.3 589.9,35.2 592.2,35.4 594.4,36.0 596.7,38.3 598.9,40.5 601.2,40.9 603.4,41.6 605.7,43.3 607.9,44.4 610.2,45.5 612.5,46.4 614.7,47.3 617.0,48.1 619.2,48.1 621.5,48.1 623.7,48.1 626.0,48.1 628.2,48.1 630.5,48.1 632.7,48.1 635.0,48.1 637.2,48.1 639.5,48.1 641.7,48.1 644.0,48.1 646.2,47.7 648.5,47.6 650.7,47.2 653.0,46.9 655.2,46.1 657.5,45.7 659.7,44.5 662.0,45.7 664.2,45.7 666.5,46.6 668.7,49.0 671.0,45.3 673.2,42.5 675.5,40.3 677.7,38.9 680.0,37.7 682.2,38.2 684.5,39.1 686.7,40.4 689.0,47.3 691.2,47.8 693.5,48.2 695.7,46.8 698.0,44.6 700.2,44.8 702.5,44.9 704.7,44.9 707.0,44.9 709.2,45.1 711.5,45.2 713.7,43.7 716.0,42.8 718.2,40.3 720.5,39.7 722.7,37.6 725.0,35.0 727.2,32.9 729.5,29.3 731.7,27.9 734.0,26.3 736.2,24.0 738.5,22.4 740.7,22.1 743.0,20.3 745.2,20.2 747.5,19.6 749.7,19.6 752.0,19.6"><title>Operator</title></polyline></svg><div class="legend"><span><i class="dashed" style="--c:#e0742a"></i>Operator (recorded only in part)</span></div><div class="table-wrap"><table><thead><tr><th>Role</th><th class="num">ETH now</th>
+<th class="num hide-sm">Validators now</th><th class="num">Peak ETH</th><th class="num hide-sm">Peak</th>
+<th class="num hide-sm">First seen</th><th class="num hide-sm">Last seen</th></tr></thead><tbody><tr><td>Operator</td><td class="num">258,208</td>
+<td class="num hide-sm">8,006</td><td class="num">270,720</td>
+<td class="num hide-sm">2024-10-01</td><td class="num hide-sm">2023-10-17</td>
+<td class="num hide-sm">now</td></tr></tbody></table></div>
+<h2>Events</h2><p class="muted">Numbered as marked on the charts.</p><ol class="events"><li><span class="n">1</span> 6 October 2023: Added to Lido's registry as operator 1/35, named "Gateway.fm AS" (<a href="https://etherscan.io/tx/0xcd406d8439cf7b635ede687ea4fbe6d3e3a7d33e1a16c78ca5ba304ac06cb415">transaction</a>)</li></ol><h2>Clients</h2><p class="muted">Blocks proposed in the last 90 days by the validators it
+allocates or operates now, and the execution and consensus clients their graffiti names (clients add a short code by
+default; operators can turn it off, so these are shares of the blocks that carry one).</p>
+<div class="table-wrap"><table><thead><tr><th>Role</th><th class="num">Blocks</th><th class="num">With codes</th>
+<th>Execution clients</th><th>Consensus clients</th></tr></thead><tbody><tr><td>Operator</td><td class="num">3,709</td>
+<td class="num">11%</td><td>Nethermind 81%, Geth 19%</td><td>Lighthouse 66%, Prysm 34%</td></tr></tbody></table></div>
+<h2>Protocol operators it runs</h2><ul><li>Gateway.fm AS <span class="mono muted">lido/1/35</span></li><li>Gateway FM - PTO <span class="mono muted">lido/4/13</span></li><li>Gateway.fm AS <span class="mono muted">lido/group/4.11</span></li></ul>
+<h2>Decisions naming it</h2><ul><li><a href="../decisions/0270-gateway-fm.html">0270</a> Defines Gateway.fm (node operator)</li><li><a href="../decisions/0287-gateway-fm-lido-operators.html">0287</a> Lido&#x27;s operator group 4.11 (&quot;Gateway.fm AS&quot;) and the operators it lists are run by Gateway.fm.</li></ul>
+</main>
+</body>
+</html>

@@ -1,0 +1,99 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Bitrue: roles in the validator set</title>
+<style>
+:root { color-scheme: light; --surface-0: #f4f3f0; --surface-1: #fcfcfb; --border: #d9d8d3; --text-primary: #0b0b0b;
+        --text-secondary: #52514e; --text-muted: #77766f; --accent: #2a78d6; --chip: #ebe9e4; }
+@media (prefers-color-scheme: dark) {
+  :root:where(:not([data-theme="light"])) { color-scheme: dark; --surface-0: #121211; --surface-1: #1a1a19;
+    --border: #3a3a37; --text-primary: #f0efec; --text-secondary: #c3c2b7; --text-muted: #96958c; --accent: #3987e5;
+    --chip: #2a2a28; }
+}
+:root[data-theme="dark"] { color-scheme: dark; --surface-0: #121211; --surface-1: #1a1a19; --border: #3a3a37;
+  --text-primary: #f0efec; --text-secondary: #c3c2b7; --text-muted: #96958c; --accent: #3987e5; --chip: #2a2a28; }
+* { box-sizing: border-box; }
+body { margin: 0; background: var(--surface-0); color: var(--text-primary);
+       font: 15px/1.55 system-ui, -apple-system, "Segoe UI", sans-serif; }
+main { max-width: 860px; margin: 0 auto; padding: 32px 16px 64px; }
+a { color: var(--accent); }
+h1 { font-size: 22px; line-height: 1.3; font-weight: 600; margin: 4px 0 12px; }
+h2 { font-size: 15px; font-weight: 600; margin: 28px 0 8px; color: var(--text-secondary);
+     text-transform: uppercase; letter-spacing: 0.04em; }
+p { margin: 0 0 12px; }
+.crumbs { font-size: 13px; color: var(--text-muted); }
+.lede { font-size: 17px; }
+.muted { color: var(--text-muted); }
+.chip { display: inline-block; padding: 1px 8px; border-radius: 10px; background: var(--chip); font-size: 12px;
+        color: var(--text-secondary); margin-right: 4px; white-space: nowrap; }
+.card { background: var(--surface-1); border: 1px solid var(--border); border-radius: 6px; padding: 14px 16px;
+        margin: 0 0 12px; }
+.stats { display: flex; flex-wrap: wrap; gap: 12px; margin: 16px 0; }
+.stat { background: var(--surface-1); border: 1px solid var(--border); border-radius: 6px; padding: 10px 14px;
+        min-width: 140px; }
+.stat b { display: block; font-size: 20px; font-variant-numeric: tabular-nums; }
+.stat span { font-size: 12px; color: var(--text-muted); }
+ul.grounds { list-style: none; padding: 0; margin: 0; }
+ul.grounds li { padding: 6px 0; border-bottom: 1px solid var(--border); }
+ul.grounds li:last-child { border-bottom: 0; }
+table { width: 100%; border-collapse: collapse; background: var(--surface-1); font-size: 14px; }
+th, td { text-align: left; padding: 7px 8px; border-bottom: 1px solid var(--border); vertical-align: top; }
+th { font-weight: 600; color: var(--text-secondary); cursor: pointer; white-space: nowrap; user-select: none; }
+td.num, th.num { text-align: right; font-variant-numeric: tabular-nums; white-space: nowrap; }
+code, .mono { font: 12.5px ui-monospace, SFMono-Regular, Menlo, monospace; word-break: break-all; }
+details summary { cursor: pointer; color: var(--accent); }
+.excerpt { border-left: 3px solid var(--border); padding: 2px 0 2px 10px; color: var(--text-secondary);
+           font-size: 14px; white-space: pre-wrap; }
+input[type=search] { width: 100%; padding: 8px 10px; font: inherit; border: 1px solid var(--border);
+                     border-radius: 6px; background: var(--surface-1); color: var(--text-primary); margin: 8px 0 12px; }
+.table-wrap { overflow-x: auto; }
+@media (max-width: 640px) { .hide-sm { display: none; } }
+</style>
+<script data-goatcounter="https://pintail.goatcounter.com/count" async src="https://gc.zgo.at/count.js"></script>
+</head>
+<body>
+<main>
+<style>
+.chart { width: 100%; height: auto; background: var(--surface-1); border: 1px solid var(--border); border-radius: 6px; }
+.chart text { fill: var(--text-muted); font: 11px system-ui, sans-serif; }
+.chart .grid { stroke: var(--border); stroke-width: 1; }
+.legend { display: flex; flex-wrap: wrap; gap: 14px; font-size: 13px; color: var(--text-secondary); margin: 6px 0 14px; }
+.legend i { display: inline-block; width: 16px; height: 3px; vertical-align: middle; margin-right: 5px; background: var(--c); }
+.legend i.dashed { background: repeating-linear-gradient(90deg, var(--c) 0 6px, transparent 6px 9px); }
+.chart .event { stroke: var(--text-muted); stroke-width: 1; stroke-dasharray: 3 3; }
+.chart .event-n { fill: var(--text-secondary); font-weight: 600; }
+ol.events { padding-left: 0; list-style: none; }
+ol.events li { margin: 4px 0; }
+ol.events .n { display: inline-block; min-width: 1.6em; font-weight: 600; color: var(--text-secondary); }
+</style><p class="crumbs"><a href="../">Dataset</a> › <a href="./">Entities</a></p>
+<h1>Bitrue</h1>
+<p><span class="chip">exchange</span> <span class="mono muted">bitrue</span></p>
+<p><strong>How much ETH Bitrue has had in each role recorded in this dataset, week by week, from
+the start of the beacon chain (1 December 2020) to 13 November 2026.</strong> Stake is the effective balance
+of active validators.</p>
+<ul><li><strong>Allocator</strong>: chose where the stake went. Counts the stake in the treemap boxes under Bitrue. <span class="muted">Recorded for 89% of active stake.</span></li><li><strong>Operator</strong>: ran the validators. <span class="muted">Recorded for 51% of active stake.</span></li><li><strong>Custodian</strong>: held the stake on behalf of a client. <span class="muted">Recorded for 5.3% of active stake.</span></li><li><strong>Principal</strong>: owned the staked ETH. <span class="muted">Recorded for 6.2% of active stake.</span></li></ul>
+<p class="muted">Allocators are recorded for most stake. Operators, custodians and principals are recorded only where
+specific evidence names them, so their figures here (dashed on the charts) are lower bounds: no figure does not mean
+no role.</p>
+<h2>Its own roles</h2><svg class="chart" viewBox="0 0 760 240" role="img" aria-label="ETH by role over time"><line class="grid" x1="52" x2="752" y1="218.0" y2="218.0"/><text x="46" y="222.0" text-anchor="end">0</text><line class="grid" x1="52" x2="752" y1="114.0" y2="114.0"/><text x="46" y="118.0" text-anchor="end">3k</text><line class="grid" x1="52" x2="752" y1="10.0" y2="10.0"/><text x="46" y="14.0" text-anchor="end">6k</text><text x="52.0" y="234" text-anchor="middle">2020</text><text x="180.3" y="234" text-anchor="middle">2022</text><text x="297.3" y="234" text-anchor="middle">2023</text><text x="414.4" y="234" text-anchor="middle">2024</text><text x="533.7" y="234" text-anchor="middle">2025</text><text x="650.7" y="234" text-anchor="middle">2026</text><polyline fill="none" stroke="#2a78d6" stroke-width="2" points="52.0,218.0 54.3,218.0 56.5,218.0 58.8,218.0 61.0,218.0 63.3,218.0 65.5,218.0 67.8,218.0 70.0,218.0 72.3,218.0 74.5,218.0 76.8,218.0 79.0,218.0 81.3,218.0 83.5,218.0 85.8,218.0 88.0,218.0 90.3,218.0 92.5,218.0 94.8,218.0 97.0,218.0 99.3,218.0 101.5,218.0 103.8,218.0 106.0,218.0 108.3,218.0 110.5,218.0 112.8,218.0 115.0,218.0 117.3,218.0 119.5,218.0 121.8,218.0 124.0,218.0 126.3,218.0 128.5,218.0 130.8,218.0 133.0,218.0 135.3,218.0 137.5,218.0 139.8,218.0 142.0,218.0 144.3,218.0 146.5,218.0 148.8,218.0 151.0,218.0 153.3,218.0 155.5,218.0 157.8,218.0 160.0,218.0 162.3,218.0 164.5,218.0 166.8,218.0 169.0,218.0 171.3,218.0 173.5,218.0 175.8,218.0 178.0,218.0 180.3,218.0 182.5,218.0 184.8,218.0 187.0,218.0 189.3,218.0 191.5,218.0 193.8,218.0 196.1,218.0 198.3,218.0 200.6,218.0 202.8,218.0 205.1,218.0 207.3,218.0 209.6,218.0 211.8,218.0 214.1,218.0 216.3,218.0 218.6,218.0 220.8,218.0 223.1,218.0 225.3,218.0 227.6,218.0 229.8,218.0 232.1,218.0 234.3,218.0 236.6,218.0 238.8,218.0 241.1,218.0 243.3,218.0 245.6,218.0 247.8,218.0 250.1,218.0 252.3,218.0 254.6,218.0 256.8,218.0 259.1,218.0 261.3,218.0 263.6,218.0 265.8,218.0 268.1,218.0 270.3,218.0 272.6,218.0 274.8,218.0 277.1,218.0 279.3,218.0 281.6,218.0 283.8,218.0 286.1,218.0 288.3,218.0 290.6,218.0 292.8,218.0 295.1,218.0 297.3,218.0 299.6,218.0 301.8,218.0 304.1,218.0 306.3,218.0 308.6,218.0 310.8,218.0 313.1,218.0 315.3,218.0 317.6,218.0 319.8,218.0 322.1,218.0 324.3,218.0 326.6,218.0 328.8,218.0 331.1,218.0 333.4,218.0 335.6,218.0 337.9,218.0 340.1,218.0 342.4,218.0 344.6,218.0 346.9,218.0 349.1,218.0 351.4,218.0 353.6,218.0 355.9,218.0 358.1,218.0 360.4,218.0 362.6,218.0 364.9,216.9 367.1,216.9 369.4,214.7 371.6,163.5 373.9,163.5 376.1,54.6 378.4,38.3 380.6,32.9 382.9,32.9 385.1,24.2 387.4,13.3 389.6,13.3 391.9,13.3 394.1,13.3 396.4,13.3 398.6,13.3 400.9,13.3 403.1,13.3 405.4,13.3 407.6,13.3 409.9,13.3 412.1,13.3 414.4,13.3 416.6,13.3 418.9,13.3 421.1,13.3 423.4,13.3 425.6,13.3 427.9,13.3 430.1,13.3 432.4,13.3 434.6,13.3 436.9,13.3 439.1,13.3 441.4,13.3 443.6,13.3 445.9,13.3 448.1,13.3 450.4,13.3 452.6,13.3 454.9,13.3 457.1,13.3 459.4,13.3 461.6,13.3 463.9,13.3 466.1,13.3 468.4,13.3 470.6,13.3 472.9,13.3 475.2,13.3 477.4,13.3 479.7,13.3 481.9,13.3 484.2,67.7 486.4,67.7 488.7,67.7 490.9,67.7 493.2,64.5 495.4,64.5 497.7,60.1 499.9,28.5 502.2,28.5 504.4,28.5 506.7,16.5 508.9,16.5 511.2,16.5 513.4,16.5 515.7,25.2 517.9,25.2 520.2,25.2 522.4,25.2 524.7,25.2 526.9,10.0 529.2,10.0 531.4,15.4 533.7,36.1 535.9,36.1 538.2,36.1 540.4,36.1 542.7,36.1 544.9,36.1 547.2,36.1 549.4,36.1 551.7,36.1 553.9,26.3 556.2,26.3 558.4,26.3 560.7,23.1 562.9,23.1 565.2,23.1 567.4,34.0 569.7,34.0 571.9,34.0 574.2,34.0 576.4,34.0 578.7,34.0 580.9,34.0 583.2,34.0 585.4,34.0 587.7,34.0 589.9,34.0 592.2,34.0 594.4,34.0 596.7,34.0 598.9,34.0 601.2,34.0 603.4,34.0 605.7,34.0 607.9,34.0 610.2,34.0 612.5,34.0 614.7,34.0 617.0,34.0 619.2,34.0 621.5,34.0 623.7,34.0 626.0,34.0 628.2,39.4 630.5,39.4 632.7,39.4 635.0,39.4 637.2,39.4 639.5,39.4 641.7,39.4 644.0,39.4 646.2,39.4 648.5,39.4 650.7,39.4 653.0,39.4 655.2,39.4 657.5,45.9 659.7,45.9 662.0,45.9 664.2,45.9 666.5,45.9 668.7,45.9 671.0,45.9 673.2,45.9 675.5,45.9 677.7,45.9 680.0,45.9 682.2,45.9 684.5,45.9 686.7,45.9 689.0,45.9 691.2,45.9 693.5,45.9 695.7,45.9 698.0,45.9 700.2,71.0 702.5,71.0 704.7,71.0 707.0,71.0 709.2,71.0 711.5,71.0 713.7,71.0 716.0,71.0 718.2,71.0 720.5,61.2 722.7,42.7 725.0,64.5 727.2,64.5 729.5,64.5 731.7,64.5 734.0,71.0 736.2,71.0 738.5,71.0 740.7,71.0 743.0,71.0 745.2,91.7 747.5,113.5 749.7,113.5 752.0,113.5"><title>Allocator</title></polyline></svg><div class="legend"><span><i class="" style="--c:#2a78d6"></i>Allocator</span></div><div class="table-wrap"><table><thead><tr><th>Role</th><th class="num">ETH now</th>
+<th class="num hide-sm">Validators now</th><th class="num">Peak ETH</th><th class="num hide-sm">Peak</th>
+<th class="num hide-sm">First seen</th><th class="num hide-sm">Last seen</th></tr></thead><tbody><tr><td>Allocator</td><td class="num">3,072</td>
+<td class="num hide-sm">96</td><td class="num">6,112</td>
+<td class="num hide-sm">2024-12-17</td><td class="num hide-sm">2023-08-01</td>
+<td class="num hide-sm">now</td></tr></tbody></table></div>
+<h2>Clients</h2><p class="muted">Blocks proposed in the last 90 days by the validators it
+allocates or operates now, and the execution and consensus clients their graffiti names (clients add a short code by
+default; operators can turn it off, so these are shares of the blocks that carry one).</p>
+<div class="table-wrap"><table><thead><tr><th>Role</th><th class="num">Blocks</th><th class="num">With codes</th>
+<th>Execution clients</th><th>Consensus clients</th></tr></thead><tbody><tr><td>Allocator</td><td class="num">41</td>
+<td class="num">100%</td><td>Geth 100%</td><td>Prysm 100%</td></tr></tbody></table></div>
+<h2>Treemap boxes</h2><div class="table-wrap"><table><thead><tr><th>Box</th>
+<th class="num">ETH now</th><th class="num hide-sm">Peak ETH</th></tr></thead><tbody><tr><td>Bitrue › Bitrue staking › Withdraws to 0x4fd7…717d</td><td class="num">3,072</td><td class="num hide-sm">6,112</td></tr></tbody></table></div>
+<h2>Decisions naming it</h2><ul><li><a href="../decisions/0097-bitrue.html">0097</a> Defines Bitrue (exchange)</li><li><a href="../decisions/0098-bitrue-staking-name.html">0098</a> Defines Bitrue staking (custodial staking)</li><li><a href="../decisions/0099-bitrue-staking.html">0099</a> Validators deposited by and withdrawing to an address funded only by Bitrue&#x27;s hot wallet, which took over from the wallet that funded Bitrue&#x27;s published insurance wallet, are Bitrue&#x27;s staking.</li></ul>
+<h2>Identified addresses</h2><div class="table-wrap"><table><thead><tr><th>Address</th><th>Role</th>
+<th class="hide-sm">Basis</th></tr></thead><tbody><tr><td><a class="mono" href="https://etherscan.io/address/0x4fd797f0cc7c87b1b48b0a0db6b66db63780717d">0x4fd797f0cc7c87b1b48b0a0db6b66db63780717d</a></td><td>withdrawal address</td><td class="hide-sm">asserted</td></tr></tbody></table></div>
+</main>
+</body>
+</html>

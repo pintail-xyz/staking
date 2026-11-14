@@ -1,0 +1,103 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Prysmatic Labs: roles in the validator set</title>
+<style>
+:root { color-scheme: light; --surface-0: #f4f3f0; --surface-1: #fcfcfb; --border: #d9d8d3; --text-primary: #0b0b0b;
+        --text-secondary: #52514e; --text-muted: #77766f; --accent: #2a78d6; --chip: #ebe9e4; }
+@media (prefers-color-scheme: dark) {
+  :root:where(:not([data-theme="light"])) { color-scheme: dark; --surface-0: #121211; --surface-1: #1a1a19;
+    --border: #3a3a37; --text-primary: #f0efec; --text-secondary: #c3c2b7; --text-muted: #96958c; --accent: #3987e5;
+    --chip: #2a2a28; }
+}
+:root[data-theme="dark"] { color-scheme: dark; --surface-0: #121211; --surface-1: #1a1a19; --border: #3a3a37;
+  --text-primary: #f0efec; --text-secondary: #c3c2b7; --text-muted: #96958c; --accent: #3987e5; --chip: #2a2a28; }
+* { box-sizing: border-box; }
+body { margin: 0; background: var(--surface-0); color: var(--text-primary);
+       font: 15px/1.55 system-ui, -apple-system, "Segoe UI", sans-serif; }
+main { max-width: 860px; margin: 0 auto; padding: 32px 16px 64px; }
+a { color: var(--accent); }
+h1 { font-size: 22px; line-height: 1.3; font-weight: 600; margin: 4px 0 12px; }
+h2 { font-size: 15px; font-weight: 600; margin: 28px 0 8px; color: var(--text-secondary);
+     text-transform: uppercase; letter-spacing: 0.04em; }
+p { margin: 0 0 12px; }
+.crumbs { font-size: 13px; color: var(--text-muted); }
+.lede { font-size: 17px; }
+.muted { color: var(--text-muted); }
+.chip { display: inline-block; padding: 1px 8px; border-radius: 10px; background: var(--chip); font-size: 12px;
+        color: var(--text-secondary); margin-right: 4px; white-space: nowrap; }
+.card { background: var(--surface-1); border: 1px solid var(--border); border-radius: 6px; padding: 14px 16px;
+        margin: 0 0 12px; }
+.stats { display: flex; flex-wrap: wrap; gap: 12px; margin: 16px 0; }
+.stat { background: var(--surface-1); border: 1px solid var(--border); border-radius: 6px; padding: 10px 14px;
+        min-width: 140px; }
+.stat b { display: block; font-size: 20px; font-variant-numeric: tabular-nums; }
+.stat span { font-size: 12px; color: var(--text-muted); }
+ul.grounds { list-style: none; padding: 0; margin: 0; }
+ul.grounds li { padding: 6px 0; border-bottom: 1px solid var(--border); }
+ul.grounds li:last-child { border-bottom: 0; }
+table { width: 100%; border-collapse: collapse; background: var(--surface-1); font-size: 14px; }
+th, td { text-align: left; padding: 7px 8px; border-bottom: 1px solid var(--border); vertical-align: top; }
+th { font-weight: 600; color: var(--text-secondary); cursor: pointer; white-space: nowrap; user-select: none; }
+td.num, th.num { text-align: right; font-variant-numeric: tabular-nums; white-space: nowrap; }
+code, .mono { font: 12.5px ui-monospace, SFMono-Regular, Menlo, monospace; word-break: break-all; }
+details summary { cursor: pointer; color: var(--accent); }
+.excerpt { border-left: 3px solid var(--border); padding: 2px 0 2px 10px; color: var(--text-secondary);
+           font-size: 14px; white-space: pre-wrap; }
+input[type=search] { width: 100%; padding: 8px 10px; font: inherit; border: 1px solid var(--border);
+                     border-radius: 6px; background: var(--surface-1); color: var(--text-primary); margin: 8px 0 12px; }
+.table-wrap { overflow-x: auto; }
+@media (max-width: 640px) { .hide-sm { display: none; } }
+</style>
+<script data-goatcounter="https://pintail.goatcounter.com/count" async src="https://gc.zgo.at/count.js"></script>
+</head>
+<body>
+<main>
+<style>
+.chart { width: 100%; height: auto; background: var(--surface-1); border: 1px solid var(--border); border-radius: 6px; }
+.chart text { fill: var(--text-muted); font: 11px system-ui, sans-serif; }
+.chart .grid { stroke: var(--border); stroke-width: 1; }
+.legend { display: flex; flex-wrap: wrap; gap: 14px; font-size: 13px; color: var(--text-secondary); margin: 6px 0 14px; }
+.legend i { display: inline-block; width: 16px; height: 3px; vertical-align: middle; margin-right: 5px; background: var(--c); }
+.legend i.dashed { background: repeating-linear-gradient(90deg, var(--c) 0 6px, transparent 6px 9px); }
+.chart .event { stroke: var(--text-muted); stroke-width: 1; stroke-dasharray: 3 3; }
+.chart .event-n { fill: var(--text-secondary); font-weight: 600; }
+ol.events { padding-left: 0; list-style: none; }
+ol.events li { margin: 4px 0; }
+ol.events .n { display: inline-block; min-width: 1.6em; font-weight: 600; color: var(--text-secondary); }
+</style><p class="crumbs"><a href="../">Dataset</a> › <a href="./">Entities</a></p>
+<h1>Prysmatic Labs</h1>
+<p><span class="chip">node operator</span> <span class="mono muted">prysmatic-labs</span></p>
+<p>Owned by <a href="offchain-labs.html">Offchain Labs</a> since 2022-10-12 (<a href="../decisions/0321-prysmatic-labs-owned-by-offchain-labs.html">decision</a>). From that date its stake also counts towards Offchain Labs's, shown on <a href="offchain-labs.html">Offchain Labs's page</a> with its subsidiaries; the figures below are its own.</p>
+<p><strong>How much ETH Prysmatic Labs has had in each role recorded in this dataset, week by week, from
+the start of the beacon chain (1 December 2020) to 13 November 2026.</strong> Stake is the effective balance
+of active validators.</p>
+<ul><li><strong>Allocator</strong>: chose where the stake went. Counts the stake in the treemap boxes under Prysmatic Labs. <span class="muted">Recorded for 89% of active stake.</span></li><li><strong>Operator</strong>: ran the validators. <span class="muted">Recorded for 51% of active stake.</span></li><li><strong>Custodian</strong>: held the stake on behalf of a client. <span class="muted">Recorded for 5.3% of active stake.</span></li><li><strong>Principal</strong>: owned the staked ETH. <span class="muted">Recorded for 6.2% of active stake.</span></li></ul>
+<p class="muted">Allocators are recorded for most stake. Operators, custodians and principals are recorded only where
+specific evidence names them, so their figures here (dashed on the charts) are lower bounds: no figure does not mean
+no role.</p>
+<h2>Its own roles</h2><svg class="chart" viewBox="0 0 760 240" role="img" aria-label="ETH by role over time"><line class="grid" x1="52" x2="752" y1="218.0" y2="218.0"/><text x="46" y="222.0" text-anchor="end">0</text><line class="grid" x1="52" x2="752" y1="114.0" y2="114.0"/><text x="46" y="118.0" text-anchor="end">162k</text><line class="grid" x1="52" x2="752" y1="10.0" y2="10.0"/><text x="46" y="14.0" text-anchor="end">325k</text><text x="52.0" y="234" text-anchor="middle">2020</text><text x="180.3" y="234" text-anchor="middle">2022</text><text x="297.3" y="234" text-anchor="middle">2023</text><text x="414.4" y="234" text-anchor="middle">2024</text><text x="533.7" y="234" text-anchor="middle">2025</text><text x="650.7" y="234" text-anchor="middle">2026</text><line class="event" x1="236.6" x2="236.6" y1="10" y2="218"/><text class="event-n" x="239.6" y="20">1</text><line class="event" x1="272.6" x2="272.6" y1="10" y2="218"/><text class="event-n" x="275.6" y="20">2</text><line class="event" x1="398.6" x2="398.6" y1="10" y2="218"/><text class="event-n" x="401.6" y="20">3</text><polyline fill="none" stroke="#2a78d6" stroke-width="2" points="52.0,215.0 54.3,215.0 56.5,215.0 58.8,215.0 61.0,215.0 63.3,215.0 65.5,215.0 67.8,215.0 70.0,215.0 72.3,215.0 74.5,215.0 76.8,215.0 79.0,215.0 81.3,215.0 83.5,215.0 85.8,215.0 88.0,215.0 90.3,215.0 92.5,215.0 94.8,215.0 97.0,215.0 99.3,215.0 101.5,215.0 103.8,215.0 106.0,215.0 108.3,215.0 110.5,215.0 112.8,215.0 115.0,215.0 117.3,215.0 119.5,215.0 121.8,215.0 124.0,215.0 126.3,215.0 128.5,215.0 130.8,215.0 133.0,215.0 135.3,215.0 137.5,215.0 139.8,215.0 142.0,215.0 144.3,215.0 146.5,215.0 148.8,215.0 151.0,215.0 153.3,215.0 155.5,215.0 157.8,215.0 160.0,215.0 162.3,215.0 164.5,215.0 166.8,215.0 169.0,215.0 171.3,215.0 173.5,215.0 175.8,215.0 178.0,215.0 180.3,215.0 182.5,215.0 184.8,215.0 187.0,215.0 189.3,215.0 191.5,215.0 193.8,215.0 196.1,215.0 198.3,215.0 200.6,215.0 202.8,215.0 205.1,215.0 207.3,215.0 209.6,215.0 211.8,215.0 214.1,215.0 216.3,215.0 218.6,215.0 220.8,215.0 223.1,215.0 225.3,215.0 227.6,215.0 229.8,215.0 232.1,215.0 234.3,215.0 236.6,215.0 238.8,215.0 241.1,215.0 243.3,215.0 245.6,215.0 247.8,215.0 250.1,215.0 252.3,215.0 254.6,215.0 256.8,215.0 259.1,215.0 261.3,215.0 263.6,215.0 265.8,215.0 268.1,215.0 270.3,215.0 272.6,215.0 274.8,215.0 277.1,215.0 279.3,215.0 281.6,215.0 283.8,215.0 286.1,215.0 288.3,215.0 290.6,215.0 292.8,215.0 295.1,215.0 297.3,215.0 299.6,215.0 301.8,215.0 304.1,215.0 306.3,215.0 308.6,215.0 310.8,215.0 313.1,215.0 315.3,215.0 317.6,215.0 319.8,215.0 322.1,215.0 324.3,215.0 326.6,215.0 328.8,215.0 331.1,215.0 333.4,215.0 335.6,215.0 337.9,215.0 340.1,215.0 342.4,215.0 344.6,215.0 346.9,215.0 349.1,215.0 351.4,215.0 353.6,215.0 355.9,215.0 358.1,215.0 360.4,215.0 362.6,215.0 364.9,215.0 367.1,215.0 369.4,215.0 371.6,215.0 373.9,215.0 376.1,215.0 378.4,215.0 380.6,215.0 382.9,215.0 385.1,215.0 387.4,215.0 389.6,215.0 391.9,215.0 394.1,215.0 396.4,215.0 398.6,215.0 400.9,215.0 403.1,215.0 405.4,215.0 407.6,215.0 409.9,215.0 412.1,215.0 414.4,215.0 416.6,215.0 418.9,215.0 421.1,215.0 423.4,215.0 425.6,215.0 427.9,215.0 430.1,215.0 432.4,215.0 434.6,215.0 436.9,215.0 439.1,215.0 441.4,215.0 443.6,215.0 445.9,215.0 448.1,215.0 450.4,215.0 452.6,215.0 454.9,215.0 457.1,215.0 459.4,215.0 461.6,215.0 463.9,215.0 466.1,215.0 468.4,215.0 470.6,215.0 472.9,215.0 475.2,215.0 477.4,215.0 479.7,215.0 481.9,215.0 484.2,215.0 486.4,215.0 488.7,215.0 490.9,215.0 493.2,215.0 495.4,215.0 497.7,215.0 499.9,215.0 502.2,215.0 504.4,215.0 506.7,215.0 508.9,215.0 511.2,215.0 513.4,215.0 515.7,215.0 517.9,215.0 520.2,215.0 522.4,215.0 524.7,215.0 526.9,215.0 529.2,215.0 531.4,215.0 533.7,215.0 535.9,215.0 538.2,215.0 540.4,215.0 542.7,215.0 544.9,215.0 547.2,215.0 549.4,215.0 551.7,215.0 553.9,215.0 556.2,215.0 558.4,215.0 560.7,215.0 562.9,215.0 565.2,215.0 567.4,215.0 569.7,215.0 571.9,215.0 574.2,215.0 576.4,215.0 578.7,215.0 580.9,215.0 583.2,215.0 585.4,215.0 587.7,215.0 589.9,215.0 592.2,215.0 594.4,215.0 596.7,215.0 598.9,215.0 601.2,215.0 603.4,215.0 605.7,215.0 607.9,215.0 610.2,215.0 612.5,215.0 614.7,215.0 617.0,215.0 619.2,215.0 621.5,215.0 623.7,215.0 626.0,215.0 628.2,215.0 630.5,215.0 632.7,215.0 635.0,215.0 637.2,215.0 639.5,215.0 641.7,215.0 644.0,215.0 646.2,215.0 648.5,215.0 650.7,215.0 653.0,215.0 655.2,215.0 657.5,215.0 659.7,215.0 662.0,215.0 664.2,215.0 666.5,215.0 668.7,215.0 671.0,215.0 673.2,215.0 675.5,215.0 677.7,215.0 680.0,215.0 682.2,215.0 684.5,215.0 686.7,215.0 689.0,215.0 691.2,215.0 693.5,215.0 695.7,215.0 698.0,215.0 700.2,215.0 702.5,215.0 704.7,215.0 707.0,215.0 709.2,215.0 711.5,215.0 713.7,215.0 716.0,215.0 718.2,215.0 720.5,215.0 722.7,215.0 725.0,215.0 727.2,215.0 729.5,215.0 731.7,215.0 734.0,215.0 736.2,215.0 738.5,215.0 740.7,215.0 743.0,215.0 745.2,215.0 747.5,215.0 749.7,215.0 752.0,215.0"><title>Allocator</title></polyline><polyline fill="none" stroke="#e0742a" stroke-width="2" stroke-dasharray="6 3" points="52.0,215.0 54.3,215.0 56.5,215.0 58.8,215.0 61.0,215.0 63.3,215.0 65.5,215.0 67.8,215.0 70.0,215.0 72.3,215.0 74.5,215.0 76.8,215.0 79.0,215.0 81.3,215.0 83.5,215.0 85.8,215.0 88.0,215.0 90.3,215.0 92.5,215.0 94.8,215.0 97.0,215.0 99.3,215.0 101.5,215.0 103.8,215.0 106.0,215.0 108.3,215.0 110.5,215.0 112.8,215.0 115.0,215.0 117.3,215.0 119.5,215.0 121.8,215.0 124.0,215.0 126.3,215.0 128.5,215.0 130.8,215.0 133.0,215.0 135.3,215.0 137.5,215.0 139.8,215.0 142.0,215.0 144.3,215.0 146.5,215.0 148.8,215.0 151.0,215.0 153.3,215.0 155.5,215.0 157.8,215.0 160.0,215.0 162.3,215.0 164.5,215.0 166.8,215.0 169.0,215.0 171.3,215.0 173.5,215.0 175.8,215.0 178.0,215.0 180.3,215.0 182.5,215.0 184.8,215.0 187.0,215.0 189.3,215.0 191.5,215.0 193.8,215.0 196.1,215.0 198.3,215.0 200.6,215.0 202.8,215.0 205.1,215.0 207.3,215.0 209.6,215.0 211.8,215.0 214.1,215.0 216.3,215.0 218.6,215.0 220.8,215.0 223.1,215.0 225.3,215.0 227.6,215.0 229.8,215.0 232.1,215.0 234.3,215.0 236.6,215.0 238.8,215.0 241.1,215.0 243.3,215.0 245.6,215.0 247.8,215.0 250.1,215.0 252.3,215.0 254.6,215.0 256.8,215.0 259.1,215.0 261.3,215.0 263.6,215.0 265.8,215.0 268.1,215.0 270.3,213.0 272.6,213.0 274.8,213.0 277.1,213.0 279.3,213.0 281.6,213.0 283.8,213.0 286.1,213.0 288.3,213.0 290.6,213.0 292.8,206.1 295.1,202.7 297.3,196.8 299.6,195.6 301.8,195.1 304.1,183.9 306.3,172.0 308.6,172.0 310.8,172.0 313.1,172.0 315.3,172.0 317.6,144.6 319.8,127.2 322.1,118.3 324.3,115.0 326.6,112.1 328.8,110.3 331.1,107.0 333.4,100.8 335.6,96.1 337.9,93.7 340.1,91.1 342.4,90.0 344.6,90.0 346.9,90.0 349.1,90.0 351.4,90.0 353.6,90.0 355.9,90.0 358.1,90.0 360.4,90.0 362.6,90.0 364.9,90.0 367.1,43.6 369.4,39.8 371.6,35.4 373.9,33.0 376.1,30.4 378.4,25.5 380.6,18.8 382.9,12.8 385.1,10.8 387.4,10.0 389.6,10.0 391.9,10.0 394.1,10.0 396.4,10.0 398.6,10.0 400.9,10.0 403.1,10.0 405.4,10.0 407.6,10.0 409.9,10.0 412.1,10.0 414.4,10.0 416.6,10.0 418.9,10.0 421.1,10.0 423.4,10.0 425.6,10.0 427.9,10.0 430.1,10.0 432.4,10.0 434.6,10.0 436.9,16.3 439.1,22.4 441.4,23.8 443.6,31.5 445.9,34.1 448.1,35.8 450.4,35.9 452.6,36.0 454.9,36.3 457.1,36.7 459.4,36.7 461.6,34.7 463.9,34.7 466.1,34.7 468.4,34.7 470.6,34.7 472.9,36.2 475.2,36.3 477.4,36.8 479.7,36.8 481.9,37.3 484.2,38.4 486.4,38.7 488.7,39.1 490.9,40.1 493.2,40.1 495.4,40.9 497.7,41.4 499.9,41.4 502.2,41.9 504.4,43.7 506.7,43.7 508.9,44.1 511.2,44.1 513.4,44.2 515.7,44.2 517.9,44.5 520.2,44.5 522.4,44.5 524.7,44.5 526.9,46.6 529.2,47.5 531.4,48.1 533.7,48.4 535.9,48.7 538.2,49.7 540.4,50.7 542.7,51.5 544.9,52.9 547.2,53.0 549.4,53.7 551.7,54.3 553.9,54.7 556.2,55.5 558.4,55.5 560.7,55.5 562.9,56.2 565.2,57.2 567.4,57.7 569.7,58.7 571.9,59.7 574.2,60.1 576.4,62.0 578.7,62.5 580.9,62.9 583.2,62.9 585.4,63.2 587.7,64.3 589.9,62.6 592.2,62.8 594.4,63.3 596.7,65.2 598.9,67.1 601.2,67.3 603.4,68.0 605.7,69.3 607.9,70.3 610.2,71.2 612.5,72.0 614.7,72.7 617.0,73.4 619.2,73.4 621.5,73.4 623.7,73.4 626.0,73.4 628.2,73.4 630.5,73.4 632.7,73.4 635.0,73.4 637.2,73.4 639.5,73.4 641.7,73.4 644.0,73.4 646.2,73.0 648.5,72.9 650.7,72.6 653.0,72.4 655.2,71.7 657.5,71.4 659.7,70.4 662.0,71.4 664.2,71.4 666.5,72.0 668.7,74.1 671.0,71.0 673.2,68.7 675.5,66.8 677.7,65.7 680.0,64.7 682.2,65.1 684.5,65.8 686.7,66.9 689.0,72.3 691.2,73.1 693.5,73.4 695.7,72.2 698.0,70.5 700.2,70.6 702.5,70.7 704.7,70.7 707.0,70.7 709.2,70.9 711.5,71.0 713.7,69.7 716.0,69.0 718.2,66.8 720.5,66.2 722.7,64.3 725.0,62.0 727.2,60.2 729.5,57.1 731.7,56.2 734.0,56.2 736.2,53.1 738.5,51.9 740.7,68.2 743.0,50.3 745.2,49.9 747.5,49.9 749.7,49.9 752.0,49.9"><title>Operator</title></polyline></svg><div class="legend"><span><i class="" style="--c:#2a78d6"></i>Allocator</span><span><i class="dashed" style="--c:#e0742a"></i>Operator (recorded only in part)</span></div><div class="table-wrap"><table><thead><tr><th>Role</th><th class="num">ETH now</th>
+<th class="num hide-sm">Validators now</th><th class="num">Peak ETH</th><th class="num hide-sm">Peak</th>
+<th class="num hide-sm">First seen</th><th class="num hide-sm">Last seen</th></tr></thead><tbody><tr><td>Allocator</td><td class="num">4,608</td>
+<td class="num hide-sm">144</td><td class="num">4,608</td>
+<td class="num hide-sm">2020-12-01</td><td class="num hide-sm">2020-12-01</td>
+<td class="num hide-sm">now</td></tr><tr><td>Operator</td><td class="num">262,347</td>
+<td class="num hide-sm">7,391</td><td class="num">324,640</td>
+<td class="num hide-sm">2023-10-10</td><td class="num hide-sm">2020-12-01</td>
+<td class="num hide-sm">now</td></tr></tbody></table></div>
+<h2>Events</h2><p class="muted">Numbered as marked on the charts.</p><ol class="events"><li><span class="n">1</span> 24 June 2022: Added to Lido's registry as operator 1/27, named "Prysmatic Labs" (<a href="https://etherscan.io/tx/0xd08aa7c37faf58cea71921c1935c4092cfc750a29d222a86149bf8c0a62cf851">transaction</a>)</li><li><span class="n">2</span> 12 October 2022: Owned by <a href="offchain-labs.html">Offchain Labs</a> from this date (<a href="../decisions/0321-prysmatic-labs-owned-by-offchain-labs.html">decision</a>)</li><li><span class="n">3</span> 10 November 2023: Lido operator 1/27 renamed from "Prysmatic Labs" to "Prysm Team at Offchain Labs" in Lido's registry (<a href="https://etherscan.io/tx/0x9c72c967a05268406a34f45d25538b7a0e7f7fed2ea8857ad1f3db7a3c9de146">transaction</a>)</li></ol><h2>Clients</h2><p class="muted">Blocks proposed in the last 90 days by the validators it
+allocates or operates now, and the execution and consensus clients their graffiti names (clients add a short code by
+default; operators can turn it off, so these are shares of the blocks that carry one).</p>
+<div class="table-wrap"><table><thead><tr><th>Role</th><th class="num">Blocks</th><th class="num">With codes</th>
+<th>Execution clients</th><th>Consensus clients</th></tr></thead><tbody><tr><td>Allocator</td><td class="num">63</td>
+<td class="num">94%</td><td>Geth 100%</td><td>Prysm 100%</td></tr><tr><td>Operator</td><td class="num">3,481</td>
+<td class="num">100%</td><td>Geth 100%</td><td>Prysm 100%</td></tr></tbody></table></div>
+<h2>Treemap boxes</h2><div class="table-wrap"><table><thead><tr><th>Box</th>
+<th class="num">ETH now</th><th class="num hide-sm">Peak ETH</th></tr></thead><tbody><tr><td>Prysmatic Labs › Prysmatic Labs-run validators (by graffiti) › Graffiti names Prysmatic Labs</td><td class="num">4,608</td><td class="num hide-sm">4,608</td></tr></tbody></table></div>
+<h2>Protocol operators it runs</h2><ul><li>Prysm Team at Offchain Labs <span class="mono muted">lido/1/27</span></li><li>Prysm by Offchain - PGO <span class="mono muted">lido/4/45</span></li><li>Prysm by Offchain Labs <span class="mono muted">lido/group/4.34</span></li></ul>
+<h2>Decisions naming it</h2><ul><li><a href="../decisions/0297-prysmatic-labs-lido-operators.html">0297</a> Lido&#x27;s operator group 4.34 (&quot;Prysm by Offchain Labs&quot;) and the operators it lists are run by Prysmatic Labs.</li><li><a href="../decisions/0321-prysmatic-labs-owned-by-offchain-labs.html">0321</a> Offchain Labs owns Prysmatic Labs from 12 October 2022.</li></ul>
+</main>
+</body>
+</html>

@@ -1,0 +1,99 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Stakin: roles in the validator set</title>
+<style>
+:root { color-scheme: light; --surface-0: #f4f3f0; --surface-1: #fcfcfb; --border: #d9d8d3; --text-primary: #0b0b0b;
+        --text-secondary: #52514e; --text-muted: #77766f; --accent: #2a78d6; --chip: #ebe9e4; }
+@media (prefers-color-scheme: dark) {
+  :root:where(:not([data-theme="light"])) { color-scheme: dark; --surface-0: #121211; --surface-1: #1a1a19;
+    --border: #3a3a37; --text-primary: #f0efec; --text-secondary: #c3c2b7; --text-muted: #96958c; --accent: #3987e5;
+    --chip: #2a2a28; }
+}
+:root[data-theme="dark"] { color-scheme: dark; --surface-0: #121211; --surface-1: #1a1a19; --border: #3a3a37;
+  --text-primary: #f0efec; --text-secondary: #c3c2b7; --text-muted: #96958c; --accent: #3987e5; --chip: #2a2a28; }
+* { box-sizing: border-box; }
+body { margin: 0; background: var(--surface-0); color: var(--text-primary);
+       font: 15px/1.55 system-ui, -apple-system, "Segoe UI", sans-serif; }
+main { max-width: 860px; margin: 0 auto; padding: 32px 16px 64px; }
+a { color: var(--accent); }
+h1 { font-size: 22px; line-height: 1.3; font-weight: 600; margin: 4px 0 12px; }
+h2 { font-size: 15px; font-weight: 600; margin: 28px 0 8px; color: var(--text-secondary);
+     text-transform: uppercase; letter-spacing: 0.04em; }
+p { margin: 0 0 12px; }
+.crumbs { font-size: 13px; color: var(--text-muted); }
+.lede { font-size: 17px; }
+.muted { color: var(--text-muted); }
+.chip { display: inline-block; padding: 1px 8px; border-radius: 10px; background: var(--chip); font-size: 12px;
+        color: var(--text-secondary); margin-right: 4px; white-space: nowrap; }
+.card { background: var(--surface-1); border: 1px solid var(--border); border-radius: 6px; padding: 14px 16px;
+        margin: 0 0 12px; }
+.stats { display: flex; flex-wrap: wrap; gap: 12px; margin: 16px 0; }
+.stat { background: var(--surface-1); border: 1px solid var(--border); border-radius: 6px; padding: 10px 14px;
+        min-width: 140px; }
+.stat b { display: block; font-size: 20px; font-variant-numeric: tabular-nums; }
+.stat span { font-size: 12px; color: var(--text-muted); }
+ul.grounds { list-style: none; padding: 0; margin: 0; }
+ul.grounds li { padding: 6px 0; border-bottom: 1px solid var(--border); }
+ul.grounds li:last-child { border-bottom: 0; }
+table { width: 100%; border-collapse: collapse; background: var(--surface-1); font-size: 14px; }
+th, td { text-align: left; padding: 7px 8px; border-bottom: 1px solid var(--border); vertical-align: top; }
+th { font-weight: 600; color: var(--text-secondary); cursor: pointer; white-space: nowrap; user-select: none; }
+td.num, th.num { text-align: right; font-variant-numeric: tabular-nums; white-space: nowrap; }
+code, .mono { font: 12.5px ui-monospace, SFMono-Regular, Menlo, monospace; word-break: break-all; }
+details summary { cursor: pointer; color: var(--accent); }
+.excerpt { border-left: 3px solid var(--border); padding: 2px 0 2px 10px; color: var(--text-secondary);
+           font-size: 14px; white-space: pre-wrap; }
+input[type=search] { width: 100%; padding: 8px 10px; font: inherit; border: 1px solid var(--border);
+                     border-radius: 6px; background: var(--surface-1); color: var(--text-primary); margin: 8px 0 12px; }
+.table-wrap { overflow-x: auto; }
+@media (max-width: 640px) { .hide-sm { display: none; } }
+</style>
+<script data-goatcounter="https://pintail.goatcounter.com/count" async src="https://gc.zgo.at/count.js"></script>
+</head>
+<body>
+<main>
+<style>
+.chart { width: 100%; height: auto; background: var(--surface-1); border: 1px solid var(--border); border-radius: 6px; }
+.chart text { fill: var(--text-muted); font: 11px system-ui, sans-serif; }
+.chart .grid { stroke: var(--border); stroke-width: 1; }
+.legend { display: flex; flex-wrap: wrap; gap: 14px; font-size: 13px; color: var(--text-secondary); margin: 6px 0 14px; }
+.legend i { display: inline-block; width: 16px; height: 3px; vertical-align: middle; margin-right: 5px; background: var(--c); }
+.legend i.dashed { background: repeating-linear-gradient(90deg, var(--c) 0 6px, transparent 6px 9px); }
+.chart .event { stroke: var(--text-muted); stroke-width: 1; stroke-dasharray: 3 3; }
+.chart .event-n { fill: var(--text-secondary); font-weight: 600; }
+ol.events { padding-left: 0; list-style: none; }
+ol.events li { margin: 4px 0; }
+ol.events .n { display: inline-block; min-width: 1.6em; font-weight: 600; color: var(--text-secondary); }
+</style><p class="crumbs"><a href="../">Dataset</a> › <a href="./">Entities</a></p>
+<h1>Stakin</h1>
+<p><span class="chip">node operator</span> <span class="mono muted">stakin</span></p>
+<p>Owned by <a href="the-tie.html">The Tie</a> since 2026-01-12 (<a href="../decisions/0319-stakin-owned-by-the-tie.html">decision</a>). From that date its stake also counts towards The Tie's, shown on <a href="the-tie.html">The Tie's page</a> with its subsidiaries; the figures below are its own.</p>
+<p><strong>How much ETH Stakin has had in each role recorded in this dataset, week by week, from
+the start of the beacon chain (1 December 2020) to 13 November 2026.</strong> Stake is the effective balance
+of active validators.</p>
+<ul><li><strong>Allocator</strong>: chose where the stake went. Counts the stake in the treemap boxes under Stakin. <span class="muted">Recorded for 89% of active stake.</span></li><li><strong>Operator</strong>: ran the validators. <span class="muted">Recorded for 51% of active stake.</span></li><li><strong>Custodian</strong>: held the stake on behalf of a client. <span class="muted">Recorded for 5.3% of active stake.</span></li><li><strong>Principal</strong>: owned the staked ETH. <span class="muted">Recorded for 6.2% of active stake.</span></li></ul>
+<p class="muted">Allocators are recorded for most stake. Operators, custodians and principals are recorded only where
+specific evidence names them, so their figures here (dashed on the charts) are lower bounds: no figure does not mean
+no role.</p>
+<h2>Its own roles</h2><svg class="chart" viewBox="0 0 760 240" role="img" aria-label="ETH by role over time"><line class="grid" x1="52" x2="752" y1="218.0" y2="218.0"/><text x="46" y="222.0" text-anchor="end">0</text><line class="grid" x1="52" x2="752" y1="114.0" y2="114.0"/><text x="46" y="118.0" text-anchor="end">172k</text><line class="grid" x1="52" x2="752" y1="10.0" y2="10.0"/><text x="46" y="14.0" text-anchor="end">343k</text><text x="52.0" y="234" text-anchor="middle">2020</text><text x="180.3" y="234" text-anchor="middle">2022</text><text x="297.3" y="234" text-anchor="middle">2023</text><text x="414.4" y="234" text-anchor="middle">2024</text><text x="533.7" y="234" text-anchor="middle">2025</text><text x="650.7" y="234" text-anchor="middle">2026</text><line class="event" x1="184.8" x2="184.8" y1="10" y2="218"/><text class="event-n" x="187.8" y="20">1</text><line class="event" x1="653.0" x2="653.0" y1="10" y2="218"/><text class="event-n" x="656.0" y="20">2</text><line class="event" x1="684.5" x2="684.5" y1="10" y2="218"/><text class="event-n" x="687.5" y="20">3</text><polyline fill="none" stroke="#e0742a" stroke-width="2" stroke-dasharray="6 3" points="52.0,218.0 54.3,218.0 56.5,218.0 58.8,218.0 61.0,218.0 63.3,218.0 65.5,218.0 67.8,218.0 70.0,218.0 72.3,218.0 74.5,218.0 76.8,218.0 79.0,218.0 81.3,218.0 83.5,218.0 85.8,218.0 88.0,218.0 90.3,218.0 92.5,218.0 94.8,218.0 97.0,218.0 99.3,218.0 101.5,218.0 103.8,218.0 106.0,218.0 108.3,218.0 110.5,218.0 112.8,218.0 115.0,218.0 117.3,218.0 119.5,218.0 121.8,218.0 124.0,218.0 126.3,218.0 128.5,218.0 130.8,218.0 133.0,218.0 135.3,218.0 137.5,218.0 139.8,218.0 142.0,218.0 144.3,218.0 146.5,218.0 148.8,218.0 151.0,218.0 153.3,218.0 155.5,218.0 157.8,218.0 160.0,218.0 162.3,218.0 164.5,218.0 166.8,218.0 169.0,218.0 171.3,218.0 173.5,218.0 175.8,218.0 178.0,218.0 180.3,218.0 182.5,218.0 184.8,218.0 187.0,217.0 189.3,217.0 191.5,216.1 193.8,216.1 196.1,212.2 198.3,204.4 200.6,200.6 202.8,198.6 205.1,198.6 207.3,198.6 209.6,198.6 211.8,188.9 214.1,188.9 216.3,179.2 218.6,159.8 220.8,159.8 223.1,121.1 225.3,121.1 227.6,108.2 229.8,108.2 232.1,108.2 234.3,108.2 236.6,108.2 238.8,108.2 241.1,108.2 243.3,108.2 245.6,108.2 247.8,108.2 250.1,108.2 252.3,108.2 254.6,108.2 256.8,108.2 259.1,108.2 261.3,108.2 263.6,108.2 265.8,108.2 268.1,108.2 270.3,108.2 272.6,108.2 274.8,108.2 277.1,108.2 279.3,108.2 281.6,108.2 283.8,108.2 286.1,108.2 288.3,108.2 290.6,108.2 292.8,108.2 295.1,108.2 297.3,108.2 299.6,108.2 301.8,108.2 304.1,108.2 306.3,108.2 308.6,108.2 310.8,108.2 313.1,108.2 315.3,108.2 317.6,83.5 319.8,83.5 322.1,83.5 324.3,83.5 326.6,83.5 328.8,83.5 331.1,83.5 333.4,83.5 335.6,83.5 337.9,83.5 340.1,83.5 342.4,83.5 344.6,83.5 346.9,83.5 349.1,83.5 351.4,79.1 353.6,73.7 355.9,69.9 358.1,65.1 360.4,62.9 362.6,60.1 364.9,57.2 367.1,55.8 369.4,52.2 371.6,48.1 373.9,45.8 376.1,43.4 378.4,38.8 380.6,32.4 382.9,26.7 385.1,24.8 387.4,24.1 389.6,24.1 391.9,24.1 394.1,24.1 396.4,24.1 398.6,24.1 400.9,24.1 403.1,24.1 405.4,24.1 407.6,24.1 409.9,24.1 412.1,24.1 414.4,23.9 416.6,23.9 418.9,24.0 421.1,27.7 423.4,27.7 425.6,38.2 427.9,38.2 430.1,38.2 432.4,38.2 434.6,38.2 436.9,38.2 439.1,38.3 441.4,38.3 443.6,44.3 445.9,46.7 448.1,48.4 450.4,48.4 452.6,48.5 454.9,48.7 457.1,49.2 459.4,49.2 461.6,49.2 463.9,49.2 466.1,49.2 468.4,49.2 470.6,49.2 472.9,49.2 475.2,49.2 477.4,49.2 479.7,49.2 481.9,49.7 484.2,50.8 486.4,51.1 488.7,51.5 490.9,52.3 493.2,52.3 495.4,53.1 497.7,53.5 499.9,53.5 502.2,54.0 504.4,55.7 506.7,55.7 508.9,56.1 511.2,56.1 513.4,56.1 515.7,56.1 517.9,56.4 520.2,56.4 522.4,56.4 524.7,56.4 526.9,58.4 529.2,59.3 531.4,59.8 533.7,60.1 535.9,60.4 538.2,61.4 540.4,62.4 542.7,63.1 544.9,64.4 547.2,64.5 549.4,65.1 551.7,65.8 553.9,66.1 556.2,66.9 558.4,66.9 560.7,66.9 562.9,67.5 565.2,68.5 567.4,68.9 569.7,69.8 571.9,70.7 574.2,71.1 576.4,72.9 578.7,73.3 580.9,73.7 583.2,73.7 585.4,74.1 587.7,75.1 589.9,73.5 592.2,73.6 594.4,74.1 596.7,75.9 598.9,77.6 601.2,77.9 603.4,78.5 605.7,79.8 607.9,80.7 610.2,81.5 612.5,82.3 614.7,83.0 617.0,83.6 619.2,83.6 621.5,83.6 623.7,83.6 626.0,83.6 628.2,83.6 630.5,83.6 632.7,82.4 635.0,80.6 637.2,80.6 639.5,80.6 641.7,80.6 644.0,80.6 646.2,80.3 648.5,80.1 650.7,79.9 653.0,79.7 655.2,79.0 657.5,78.7 659.7,77.8 662.0,78.7 664.2,78.7 666.5,79.3 668.7,81.3 671.0,78.3 673.2,76.0 675.5,74.4 677.7,73.2 680.0,72.4 682.2,72.8 684.5,73.4 686.7,74.5 689.0,80.0 691.2,79.2 693.5,79.5 695.7,78.3 698.0,76.4 700.2,76.1 702.5,75.3 704.7,74.8 707.0,74.1 709.2,73.8 711.5,73.4 713.7,72.4 716.0,69.9 718.2,67.4 720.5,66.5 722.7,64.7 725.0,62.5 727.2,60.3 729.5,57.3 731.7,56.1 734.0,54.5 736.2,52.5 738.5,50.9 740.7,61.9 743.0,49.6 745.2,47.4 747.5,18.3 749.7,10.0 752.0,11.2"><title>Operator</title></polyline></svg><div class="legend"><span><i class="dashed" style="--c:#e0742a"></i>Operator (recorded only in part)</span></div><div class="table-wrap"><table><thead><tr><th>Role</th><th class="num">ETH now</th>
+<th class="num hide-sm">Validators now</th><th class="num">Peak ETH</th><th class="num hide-sm">Peak</th>
+<th class="num hide-sm">First seen</th><th class="num hide-sm">Last seen</th></tr></thead><tbody><tr><td>Operator</td><td class="num">341,389</td>
+<td class="num hide-sm">6,318</td><td class="num">343,303</td>
+<td class="num hide-sm">2026-11-10</td><td class="num hide-sm">2022-01-25</td>
+<td class="num hide-sm">now</td></tr></tbody></table></div>
+<h2>Events</h2><p class="muted">Numbered as marked on the charts.</p><ol class="events"><li><span class="n">1</span> 14 January 2022: Added to Lido's registry as operator 1/14, named "Stakin" (<a href="https://etherscan.io/tx/0xd7b6f290f6f7447e12ba4a3781ea08ad7cb699924e7bf75cf808c79533f88969">transaction</a>)</li><li><span class="n">2</span> 12 January 2026: Owned by <a href="the-tie.html">The Tie</a> from this date (<a href="../decisions/0319-stakin-owned-by-the-tie.html">decision</a>)</li><li><span class="n">3</span> 17 April 2026: Lido operator 1/14 renamed from "Stakin" to "Stakin by The Tie" in Lido's registry (<a href="https://etherscan.io/tx/0xf43f6fe63edc60ae6eb0bc919b3c682ac0c068df7eb1cb44aa514302539f19cb">transaction</a>)</li></ol><h2>Clients</h2><p class="muted">Blocks proposed in the last 90 days by the validators it
+allocates or operates now, and the execution and consensus clients their graffiti names (clients add a short code by
+default; operators can turn it off, so these are shares of the blocks that carry one).</p>
+<div class="table-wrap"><table><thead><tr><th>Role</th><th class="num">Blocks</th><th class="num">With codes</th>
+<th>Execution clients</th><th>Consensus clients</th></tr></thead><tbody><tr><td>Operator</td><td class="num">3,584</td>
+<td class="num">98%</td><td>Besu 100%</td><td>Teku 100%</td></tr></tbody></table></div>
+<h2>Protocol operators it runs</h2><ul><li>Stakin by The Tie <span class="mono muted">lido/1/14</span></li><li>Stakin by The Tie - PTO <span class="mono muted">lido/4/18</span></li><li>Stakin by The Tie <span class="mono muted">lido/group/4.14</span></li></ul>
+<h2>Decisions naming it</h2><ul><li><a href="../decisions/0307-stakin-lido-operators.html">0307</a> Lido&#x27;s operator group 4.14 (&quot;Stakin by The Tie&quot;) and the operators it lists are run by Stakin.</li><li><a href="../decisions/0319-stakin-owned-by-the-tie.html">0319</a> The Tie owns Stakin from 12 January 2026.</li></ul>
+<h2>Identified addresses</h2><div class="table-wrap"><table><thead><tr><th>Address</th><th>Role</th>
+<th class="hide-sm">Basis</th></tr></thead><tbody><tr><td><a class="mono" href="https://etherscan.io/address/0x177bda7243f8b2b641245158f01b5afdf4a67caa">0x177bda7243f8b2b641245158f01b5afdf4a67caa</a></td><td>node operator</td><td class="hide-sm">first_party</td></tr><tr><td><a class="mono" href="https://etherscan.io/address/0xa8304775e435146650a7ae65aa39b2a38f0152ae">0xa8304775e435146650a7ae65aa39b2a38f0152ae</a></td><td>node operator</td><td class="hide-sm">inferred</td></tr></tbody></table></div>
+</main>
+</body>
+</html>

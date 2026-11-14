@@ -1,0 +1,76 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>0093-kucoin-staking: KuCoin&#x27;s own wallet list names two of the accounts that deposited these validators, and the stake KuCoin said it had then matches</title>
+<style>
+:root { color-scheme: light; --surface-0: #f4f3f0; --surface-1: #fcfcfb; --border: #d9d8d3; --text-primary: #0b0b0b;
+        --text-secondary: #52514e; --text-muted: #77766f; --accent: #2a78d6; --chip: #ebe9e4; }
+@media (prefers-color-scheme: dark) {
+  :root:where(:not([data-theme="light"])) { color-scheme: dark; --surface-0: #121211; --surface-1: #1a1a19;
+    --border: #3a3a37; --text-primary: #f0efec; --text-secondary: #c3c2b7; --text-muted: #96958c; --accent: #3987e5;
+    --chip: #2a2a28; }
+}
+:root[data-theme="dark"] { color-scheme: dark; --surface-0: #121211; --surface-1: #1a1a19; --border: #3a3a37;
+  --text-primary: #f0efec; --text-secondary: #c3c2b7; --text-muted: #96958c; --accent: #3987e5; --chip: #2a2a28; }
+* { box-sizing: border-box; }
+body { margin: 0; background: var(--surface-0); color: var(--text-primary);
+       font: 15px/1.55 system-ui, -apple-system, "Segoe UI", sans-serif; }
+main { max-width: 860px; margin: 0 auto; padding: 32px 16px 64px; }
+a { color: var(--accent); }
+h1 { font-size: 22px; line-height: 1.3; font-weight: 600; margin: 4px 0 12px; }
+h2 { font-size: 15px; font-weight: 600; margin: 28px 0 8px; color: var(--text-secondary);
+     text-transform: uppercase; letter-spacing: 0.04em; }
+p { margin: 0 0 12px; }
+.crumbs { font-size: 13px; color: var(--text-muted); }
+.lede { font-size: 17px; }
+.muted { color: var(--text-muted); }
+.chip { display: inline-block; padding: 1px 8px; border-radius: 10px; background: var(--chip); font-size: 12px;
+        color: var(--text-secondary); margin-right: 4px; white-space: nowrap; }
+.card { background: var(--surface-1); border: 1px solid var(--border); border-radius: 6px; padding: 14px 16px;
+        margin: 0 0 12px; }
+.stats { display: flex; flex-wrap: wrap; gap: 12px; margin: 16px 0; }
+.stat { background: var(--surface-1); border: 1px solid var(--border); border-radius: 6px; padding: 10px 14px;
+        min-width: 140px; }
+.stat b { display: block; font-size: 20px; font-variant-numeric: tabular-nums; }
+.stat span { font-size: 12px; color: var(--text-muted); }
+ul.grounds { list-style: none; padding: 0; margin: 0; }
+ul.grounds li { padding: 6px 0; border-bottom: 1px solid var(--border); }
+ul.grounds li:last-child { border-bottom: 0; }
+table { width: 100%; border-collapse: collapse; background: var(--surface-1); font-size: 14px; }
+th, td { text-align: left; padding: 7px 8px; border-bottom: 1px solid var(--border); vertical-align: top; }
+th { font-weight: 600; color: var(--text-secondary); cursor: pointer; white-space: nowrap; user-select: none; }
+td.num, th.num { text-align: right; font-variant-numeric: tabular-nums; white-space: nowrap; }
+code, .mono { font: 12.5px ui-monospace, SFMono-Regular, Menlo, monospace; word-break: break-all; }
+details summary { cursor: pointer; color: var(--accent); }
+.excerpt { border-left: 3px solid var(--border); padding: 2px 0 2px 10px; color: var(--text-secondary);
+           font-size: 14px; white-space: pre-wrap; }
+input[type=search] { width: 100%; padding: 8px 10px; font: inherit; border: 1px solid var(--border);
+                     border-radius: 6px; background: var(--surface-1); color: var(--text-primary); margin: 8px 0 12px; }
+.table-wrap { overflow-x: auto; }
+@media (max-width: 640px) { .hide-sm { display: none; } }
+</style>
+<script data-goatcounter="https://pintail.goatcounter.com/count" async src="https://gc.zgo.at/count.js"></script>
+</head>
+<body>
+<main>
+<p class="crumbs"><a href="../">Dataset</a> › <a href="./">Decisions</a> › 0093-kucoin-staking</p>
+<h1>KuCoin&#x27;s own wallet list names two of the accounts that deposited these validators, and the stake KuCoin said it had then matches them to one validator.</h1>
+<p><span class="chip">Attribution</span><span class="chip">Allocator</span> <a href="../entities/kucoin.html">KuCoin staking</a> <span class="muted">· decided 2026-10-17</span></p>
+<p class="lede">Validators withdrawing to, or deposited by, these addresses are KuCoin&#x27;s staking.</p>
+<div class="stats"><div class="stat"><b>625</b><span>validators resting on it now</span></div><div class="stat"><b>20,000</b><span>ETH now</span></div><div class="stat"><b>29,664</b><span>ETH at its peak</span></div></div>
+<h2>Grounds</h2><div class="card"><ul class="grounds"><li><span class="chip">First party</span>KuCoin&#x27;s November 2022 wallet list names two of the four depositing accounts as its own wallets</li><li><span class="chip">On chain</span>The other two were first funded by wallets on that list</li><li><span class="chip">First party</span>KuCoin said it then staked 29,696 ETH; these accounts had deposited 29,664 ETH (927 validators)</li></ul></div>
+<h2>Explanation</h2><p>Validators withdrawing to 0x9f4c…2a2a, and those deposited by four accounts linked to KuCoin&#x27;s wallets, are KuCoin&#x27;s staking, with the exchange as allocator. 927 validators withdraw to that address; 625 were active in October 2026 with 20,000 ETH. The stake is KuCoin&#x27;s customers&#x27;.</p>
+<p><strong>KuCoin&#x27;s own list.</strong> <a href="https://www.kucoin.com/blog/9152-34">KuCoin&#x27;s post &quot;Transparency and Trust&quot;</a> of 11 November 2022 lists its hot and cold wallets at a snapshot of that day and says KuCoin was then staking 29,696 ETH, without listing the validators. It names two of the four accounts that deposited these validators. The other two were first funded by wallets on the list.</p>
+<p><strong>The match.</strong> The four accounts deposited all 927 validators between November 2020 and October 2022, before the snapshot: 29,664 ETH, one validator short of the figure KuCoin gave. No other listed address sent deposits or is a withdrawal address.</p>
+<p><strong>No operator is recorded.</strong> A community-compiled reserve list and explorer labels are recorded as leads. The decision would change with evidence that KuCoin holds these validators for a client, or a KuCoin statement contradicting its list.</p>
+<h2>What would change it</h2><p>Evidence that KuCoin holds these validators for a client, or a KuCoin statement contradicting the list.</p>
+<h2>Evidence</h2><p class="muted">Transactions and contract calls anyone can repeat on their own node.</p><div class="card"><ul class="grounds"><li><a class="mono" href="https://etherscan.io/tx/0x7987afc6d9199d90ca74088fc4bcb386dc4b000983d113586c06b768104b1b8e">0x7987afc6…104b1b8e</a> — 0xd621…9a2c first funds depositor 0x7b91…a1b3 (200 ETH)</li><li><a class="mono" href="https://etherscan.io/tx/0x1d038d196b560032987ab69d8e31be4d754420190c317669eaa3178e11719d9c">0x1d038d19…11719d9c</a> — 0xcad6…8fdd first funds depositor 0xf8da…1dc2 (0.1 ETH)</li></ul></div>
+<h2>Sources</h2><div class="card"><a href="https://www.kucoin.com/blog/9152-34">Transparency and Trust (KuCoin blog, 11 November 2022)</a><div class="muted" style="font-size:13px">KuCoin · the entity&#x27;s own · retrieved 2026-10-21</div><p class="excerpt">In addition, we are staking 29,696 ETH as the Ethereum PoS node, and each node has 32 ETH on the address. [...] ETH 0xd6216fc19db775df9774a6e33526131da7d19a2c 149,305.00 15944930</p><div class="muted mono">sha256 152edcbb4a11b62798635585b6413d31dce0df6ae135cd6bf23cdabfde55cccd</div></div>
+<h2>Leads</h2><p class="muted">Third-party pages, such as explorer labels, that pointed the research but are not relied on.</p><ul><li><a href="https://github.com/DefiLlama/DefiLlama-Adapters/blob/c25980b9679d586ba5e37eb6d257fd4a3fef7b82/projects/kucoin/index.js">projects/kucoin/index.js (commit c25980b): KuCoin&#x27;s reserve addresses</a></li></ul>
+<h2>Treemap boxes resting on it</h2><div class="table-wrap"><table><thead><tr><th>Box</th><th class="num">ETH now</th><th class="num">Peak ETH</th></tr></thead><tbody><tr><td>KuCoin › KuCoin staking › 5 named keys (from Dec 2020)</td><td class="num">20,000</td><td class="num">29,664</td></tr></tbody></table></div>
+<h2>Targets (5)</h2><details open><summary>The addresses or validators this decision covers</summary><ul style="list-style:none;padding:0"><li><span class="chip">withdrawal address</span><a class="mono" href="https://etherscan.io/address/0x9f4cf329f4cf376b7aded854d6054859dd102a2a">0x9f4cf329f4cf376b7aded854d6054859dd102a2a</a></li><li><span class="chip">deposit account</span><a class="mono" href="https://etherscan.io/address/0xd6216fc19db775df9774a6e33526131da7d19a2c">0xd6216fc19db775df9774a6e33526131da7d19a2c</a></li><li><span class="chip">deposit account</span><a class="mono" href="https://etherscan.io/address/0x1692e170361cefd1eb7240ec13d048fd9af6d667">0x1692e170361cefd1eb7240ec13d048fd9af6d667</a></li><li><span class="chip">deposit account</span><a class="mono" href="https://etherscan.io/address/0x7b915c27a0ed48e2ce726ee40f20b2bf8a88a1b3">0x7b915c27a0ed48e2ce726ee40f20b2bf8a88a1b3</a></li><li><span class="chip">deposit account</span><a class="mono" href="https://etherscan.io/address/0xf8da05c625a6e601281110cba52b156e714e1dc2">0xf8da05c625a6e601281110cba52b156e714e1dc2</a></li></ul></details>
+</main>
+</body>
+</html>

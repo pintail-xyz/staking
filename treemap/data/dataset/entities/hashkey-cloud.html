@@ -1,0 +1,98 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>HashKey Cloud: roles in the validator set</title>
+<style>
+:root { color-scheme: light; --surface-0: #f4f3f0; --surface-1: #fcfcfb; --border: #d9d8d3; --text-primary: #0b0b0b;
+        --text-secondary: #52514e; --text-muted: #77766f; --accent: #2a78d6; --chip: #ebe9e4; }
+@media (prefers-color-scheme: dark) {
+  :root:where(:not([data-theme="light"])) { color-scheme: dark; --surface-0: #121211; --surface-1: #1a1a19;
+    --border: #3a3a37; --text-primary: #f0efec; --text-secondary: #c3c2b7; --text-muted: #96958c; --accent: #3987e5;
+    --chip: #2a2a28; }
+}
+:root[data-theme="dark"] { color-scheme: dark; --surface-0: #121211; --surface-1: #1a1a19; --border: #3a3a37;
+  --text-primary: #f0efec; --text-secondary: #c3c2b7; --text-muted: #96958c; --accent: #3987e5; --chip: #2a2a28; }
+* { box-sizing: border-box; }
+body { margin: 0; background: var(--surface-0); color: var(--text-primary);
+       font: 15px/1.55 system-ui, -apple-system, "Segoe UI", sans-serif; }
+main { max-width: 860px; margin: 0 auto; padding: 32px 16px 64px; }
+a { color: var(--accent); }
+h1 { font-size: 22px; line-height: 1.3; font-weight: 600; margin: 4px 0 12px; }
+h2 { font-size: 15px; font-weight: 600; margin: 28px 0 8px; color: var(--text-secondary);
+     text-transform: uppercase; letter-spacing: 0.04em; }
+p { margin: 0 0 12px; }
+.crumbs { font-size: 13px; color: var(--text-muted); }
+.lede { font-size: 17px; }
+.muted { color: var(--text-muted); }
+.chip { display: inline-block; padding: 1px 8px; border-radius: 10px; background: var(--chip); font-size: 12px;
+        color: var(--text-secondary); margin-right: 4px; white-space: nowrap; }
+.card { background: var(--surface-1); border: 1px solid var(--border); border-radius: 6px; padding: 14px 16px;
+        margin: 0 0 12px; }
+.stats { display: flex; flex-wrap: wrap; gap: 12px; margin: 16px 0; }
+.stat { background: var(--surface-1); border: 1px solid var(--border); border-radius: 6px; padding: 10px 14px;
+        min-width: 140px; }
+.stat b { display: block; font-size: 20px; font-variant-numeric: tabular-nums; }
+.stat span { font-size: 12px; color: var(--text-muted); }
+ul.grounds { list-style: none; padding: 0; margin: 0; }
+ul.grounds li { padding: 6px 0; border-bottom: 1px solid var(--border); }
+ul.grounds li:last-child { border-bottom: 0; }
+table { width: 100%; border-collapse: collapse; background: var(--surface-1); font-size: 14px; }
+th, td { text-align: left; padding: 7px 8px; border-bottom: 1px solid var(--border); vertical-align: top; }
+th { font-weight: 600; color: var(--text-secondary); cursor: pointer; white-space: nowrap; user-select: none; }
+td.num, th.num { text-align: right; font-variant-numeric: tabular-nums; white-space: nowrap; }
+code, .mono { font: 12.5px ui-monospace, SFMono-Regular, Menlo, monospace; word-break: break-all; }
+details summary { cursor: pointer; color: var(--accent); }
+.excerpt { border-left: 3px solid var(--border); padding: 2px 0 2px 10px; color: var(--text-secondary);
+           font-size: 14px; white-space: pre-wrap; }
+input[type=search] { width: 100%; padding: 8px 10px; font: inherit; border: 1px solid var(--border);
+                     border-radius: 6px; background: var(--surface-1); color: var(--text-primary); margin: 8px 0 12px; }
+.table-wrap { overflow-x: auto; }
+@media (max-width: 640px) { .hide-sm { display: none; } }
+</style>
+<script data-goatcounter="https://pintail.goatcounter.com/count" async src="https://gc.zgo.at/count.js"></script>
+</head>
+<body>
+<main>
+<style>
+.chart { width: 100%; height: auto; background: var(--surface-1); border: 1px solid var(--border); border-radius: 6px; }
+.chart text { fill: var(--text-muted); font: 11px system-ui, sans-serif; }
+.chart .grid { stroke: var(--border); stroke-width: 1; }
+.legend { display: flex; flex-wrap: wrap; gap: 14px; font-size: 13px; color: var(--text-secondary); margin: 6px 0 14px; }
+.legend i { display: inline-block; width: 16px; height: 3px; vertical-align: middle; margin-right: 5px; background: var(--c); }
+.legend i.dashed { background: repeating-linear-gradient(90deg, var(--c) 0 6px, transparent 6px 9px); }
+.chart .event { stroke: var(--text-muted); stroke-width: 1; stroke-dasharray: 3 3; }
+.chart .event-n { fill: var(--text-secondary); font-weight: 600; }
+ol.events { padding-left: 0; list-style: none; }
+ol.events li { margin: 4px 0; }
+ol.events .n { display: inline-block; min-width: 1.6em; font-weight: 600; color: var(--text-secondary); }
+</style><p class="crumbs"><a href="../">Dataset</a> › <a href="./">Entities</a></p>
+<h1>HashKey Cloud</h1>
+<p><span class="chip">node operator</span> <span class="mono muted">hashkey-cloud</span></p>
+<p><strong>How much ETH HashKey Cloud has had in each role recorded in this dataset, week by week, from
+the start of the beacon chain (1 December 2020) to 13 November 2026.</strong> Stake is the effective balance
+of active validators.</p>
+<ul><li><strong>Allocator</strong>: chose where the stake went. Counts the stake in the treemap boxes under HashKey Cloud. <span class="muted">Recorded for 89% of active stake.</span></li><li><strong>Operator</strong>: ran the validators. <span class="muted">Recorded for 51% of active stake.</span></li><li><strong>Custodian</strong>: held the stake on behalf of a client. <span class="muted">Recorded for 5.3% of active stake.</span></li><li><strong>Principal</strong>: owned the staked ETH. <span class="muted">Recorded for 6.2% of active stake.</span></li></ul>
+<p class="muted">Allocators are recorded for most stake. Operators, custodians and principals are recorded only where
+specific evidence names them, so their figures here (dashed on the charts) are lower bounds: no figure does not mean
+no role.</p>
+<h2>Its own roles</h2><svg class="chart" viewBox="0 0 760 240" role="img" aria-label="ETH by role over time"><line class="grid" x1="52" x2="752" y1="218.0" y2="218.0"/><text x="46" y="222.0" text-anchor="end">0</text><line class="grid" x1="52" x2="752" y1="114.0" y2="114.0"/><text x="46" y="118.0" text-anchor="end">210k</text><line class="grid" x1="52" x2="752" y1="10.0" y2="10.0"/><text x="46" y="14.0" text-anchor="end">420k</text><text x="52.0" y="234" text-anchor="middle">2020</text><text x="180.3" y="234" text-anchor="middle">2022</text><text x="297.3" y="234" text-anchor="middle">2023</text><text x="414.4" y="234" text-anchor="middle">2024</text><text x="533.7" y="234" text-anchor="middle">2025</text><text x="650.7" y="234" text-anchor="middle">2026</text><line class="event" x1="184.8" x2="184.8" y1="10" y2="218"/><text class="event-n" x="187.8" y="20">1</text><line class="event" x1="423.4" x2="423.4" y1="10" y2="218"/><text class="event-n" x="426.4" y="20">2</text><polyline fill="none" stroke="#e0742a" stroke-width="2" stroke-dasharray="6 3" points="52.0,218.0 54.3,218.0 56.5,218.0 58.8,218.0 61.0,218.0 63.3,218.0 65.5,218.0 67.8,218.0 70.0,218.0 72.3,218.0 74.5,218.0 76.8,218.0 79.0,218.0 81.3,218.0 83.5,218.0 85.8,218.0 88.0,218.0 90.3,218.0 92.5,218.0 94.8,218.0 97.0,218.0 99.3,218.0 101.5,218.0 103.8,218.0 106.0,218.0 108.3,218.0 110.5,218.0 112.8,218.0 115.0,218.0 117.3,218.0 119.5,218.0 121.8,218.0 124.0,218.0 126.3,218.0 128.5,218.0 130.8,218.0 133.0,218.0 135.3,218.0 137.5,218.0 139.8,218.0 142.0,218.0 144.3,218.0 146.5,218.0 148.8,218.0 151.0,218.0 153.3,218.0 155.5,218.0 157.8,218.0 160.0,218.0 162.3,218.0 164.5,218.0 166.8,218.0 169.0,218.0 171.3,218.0 173.5,218.0 175.8,218.0 178.0,218.0 180.3,218.0 182.5,218.0 184.8,218.0 187.0,218.0 189.3,216.4 191.5,216.4 193.8,216.3 196.1,214.8 198.3,214.8 200.6,214.8 202.8,210.1 205.1,210.1 207.3,210.1 209.6,202.1 211.8,202.1 214.1,202.1 216.3,202.1 218.6,194.2 220.8,186.3 223.1,178.4 225.3,170.4 227.6,158.2 229.8,158.2 232.1,158.2 234.3,158.2 236.6,158.2 238.8,158.2 241.1,158.2 243.3,158.2 245.6,158.2 247.8,158.2 250.1,158.2 252.3,158.2 254.6,158.2 256.8,158.2 259.1,158.2 261.3,158.2 263.6,158.2 265.8,158.2 268.1,158.2 270.3,158.2 272.6,158.2 274.8,158.2 277.1,158.2 279.3,158.2 281.6,158.2 283.8,158.2 286.1,158.2 288.3,158.2 290.6,158.2 292.8,158.2 295.1,158.2 297.3,158.2 299.6,158.2 301.8,158.2 304.1,158.2 306.3,158.2 308.6,158.2 310.8,158.2 313.1,158.2 315.3,157.8 317.6,138.7 319.8,138.7 322.1,138.7 324.3,138.7 326.6,138.4 328.8,137.0 331.1,134.4 333.4,129.6 335.6,126.0 337.9,124.1 340.1,122.1 342.4,120.1 344.6,113.9 346.9,108.0 349.1,108.0 351.4,104.4 353.6,99.9 355.9,96.9 358.1,92.9 360.4,91.1 362.6,88.8 364.9,86.5 367.1,85.4 369.4,82.4 371.6,79.0 373.9,77.2 376.1,75.2 378.4,71.4 380.6,66.2 382.9,61.6 385.1,60.0 387.4,59.4 389.6,59.4 391.9,59.4 394.1,59.4 396.4,59.4 398.6,59.4 400.9,59.4 403.1,59.4 405.4,59.0 407.6,59.0 409.9,59.0 412.1,59.0 414.4,59.0 416.6,59.0 418.9,59.0 421.1,58.2 423.4,58.2 425.6,58.2 427.9,58.2 430.1,61.3 432.4,62.0 434.6,62.5 436.9,64.0 439.1,68.8 441.4,69.8 443.6,75.8 445.9,76.5 448.1,77.9 450.4,77.9 452.6,78.0 454.9,78.2 457.1,78.6 459.4,78.6 461.6,76.0 463.9,75.3 466.1,76.0 468.4,76.8 470.6,76.8 472.9,78.1 475.2,78.2 477.4,78.4 479.7,74.0 481.9,74.4 484.2,71.9 486.4,72.1 488.7,72.5 490.9,73.2 493.2,73.2 495.4,73.9 497.7,74.2 499.9,74.2 502.2,74.4 504.4,76.0 506.7,75.5 508.9,76.3 511.2,76.3 513.4,76.3 515.7,76.2 517.9,76.6 520.2,76.7 522.4,67.6 524.7,60.6 526.9,62.3 529.2,61.7 531.4,62.1 533.7,62.4 535.9,57.9 538.2,47.4 540.4,48.2 542.7,48.8 544.9,48.9 547.2,49.0 549.4,49.5 551.7,50.0 553.9,50.3 556.2,47.2 558.4,45.3 560.7,38.7 562.9,35.4 565.2,36.2 567.4,36.6 569.7,37.3 571.9,38.1 574.2,36.5 576.4,34.0 578.7,31.4 580.9,29.9 583.2,26.7 585.4,27.0 587.7,27.3 589.9,26.6 592.2,30.5 594.4,31.3 596.7,32.3 598.9,31.0 601.2,31.2 603.4,31.7 605.7,32.8 607.9,33.5 610.2,34.2 612.5,34.8 614.7,35.4 617.0,35.9 619.2,34.3 621.5,34.3 623.7,34.3 626.0,34.3 628.2,34.3 630.5,34.3 632.7,34.3 635.0,34.3 637.2,34.3 639.5,34.3 641.7,34.3 644.0,34.3 646.2,34.2 648.5,34.1 650.7,33.9 653.0,33.8 655.2,33.2 657.5,33.0 659.7,32.3 662.0,33.0 664.2,33.0 666.5,33.5 668.7,35.2 671.0,53.5 673.2,30.9 675.5,29.6 677.7,28.6 680.0,27.9 682.2,36.4 684.5,28.8 686.7,29.7 689.0,34.1 691.2,34.5 693.5,34.8 695.7,33.8 698.0,32.4 700.2,32.6 702.5,32.7 704.7,32.6 707.0,32.6 709.2,32.8 711.5,32.8 713.7,31.9 716.0,31.3 718.2,29.6 720.5,29.1 722.7,28.1 725.0,27.7 727.2,26.3 729.5,24.7 731.7,23.8 734.0,23.2 736.2,20.4 738.5,18.3 740.7,18.6 743.0,15.7 745.2,10.5 747.5,10.0 749.7,10.0 752.0,10.0"><title>Operator</title></polyline></svg><div class="legend"><span><i class="dashed" style="--c:#e0742a"></i>Operator (recorded only in part)</span></div><div class="table-wrap"><table><thead><tr><th>Role</th><th class="num">ETH now</th>
+<th class="num hide-sm">Validators now</th><th class="num">Peak ETH</th><th class="num hide-sm">Peak</th>
+<th class="num hide-sm">First seen</th><th class="num hide-sm">Last seen</th></tr></thead><tbody><tr><td>Operator</td><td class="num">419,704</td>
+<td class="num hide-sm">6,461</td><td class="num">419,707</td>
+<td class="num hide-sm">2026-11-10</td><td class="num hide-sm">2022-02-01</td>
+<td class="num hide-sm">now</td></tr></tbody></table></div>
+<h2>Events</h2><p class="muted">Numbered as marked on the charts.</p><ol class="events"><li><span class="n">1</span> 14 January 2022: Added to Lido's registry as operator 1/20, named "HashQuark" (<a href="https://etherscan.io/tx/0xd7b6f290f6f7447e12ba4a3781ea08ad7cb699924e7bf75cf808c79533f88969">transaction</a>)</li><li><span class="n">2</span> 26 January 2024: Lido operator 1/20 renamed from "HashQuark" to "HashKey Cloud" in Lido's registry (<a href="https://etherscan.io/tx/0x3ac00633d92351d7f34e25854b14a9c88cdb1cc6b776aa7bb1046eff4b4da48d">transaction</a>)</li></ol><h2>Clients</h2><p class="muted">Blocks proposed in the last 90 days by the validators it
+allocates or operates now, and the execution and consensus clients their graffiti names (clients add a short code by
+default; operators can turn it off, so these are shares of the blocks that carry one).</p>
+<div class="table-wrap"><table><thead><tr><th>Role</th><th class="num">Blocks</th><th class="num">With codes</th>
+<th>Execution clients</th><th>Consensus clients</th></tr></thead><tbody><tr><td>Operator</td><td class="num">4,972</td>
+<td class="num">84%</td><td>Geth 63%, Nethermind 37%</td><td>Prysm 59%, Lighthouse 41%</td></tr></tbody></table></div>
+<h2>Protocol operators it runs</h2><ul><li>HashKey Cloud <span class="mono muted">lido/1/20</span></li><li>HashKey Cloud-PTO <span class="mono muted">lido/4/29</span></li><li>HashKey Cloud <span class="mono muted">lido/group/4.22</span></li></ul>
+<h2>Decisions naming it</h2><ul><li><a href="../decisions/0247-hashkey-cloud.html">0247</a> Defines HashKey Cloud (node operator)</li><li><a href="../decisions/0288-hashkey-cloud-lido-operators.html">0288</a> Lido&#x27;s operator group 4.22 (&quot;HashKey Cloud&quot;) and the operators it lists are run by HashKey Cloud.</li></ul>
+<h2>Identified addresses</h2><div class="table-wrap"><table><thead><tr><th>Address</th><th>Role</th>
+<th class="hide-sm">Basis</th></tr></thead><tbody><tr><td><a class="mono" href="https://etherscan.io/address/0x6a54cf0befd629a8f74348bb622a84a63f944532">0x6a54cf0befd629a8f74348bb622a84a63f944532</a></td><td>node operator</td><td class="hide-sm">inferred</td></tr><tr><td><a class="mono" href="https://etherscan.io/address/0xf2659cc196829c6676b1e0e1a71a8797cec6778a">0xf2659cc196829c6676b1e0e1a71a8797cec6778a</a></td><td>node operator</td><td class="hide-sm">first_party</td></tr></tbody></table></div>
+</main>
+</body>
+</html>
