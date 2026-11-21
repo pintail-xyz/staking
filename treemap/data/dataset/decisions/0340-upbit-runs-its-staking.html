@@ -1,0 +1,72 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>0340-upbit-runs-its-staking: Upbit runs the validators of its ETH staking itself, as its operator Dunamu reports, and they run as one fleet.</title>
+<style>
+:root { color-scheme: light; --surface-0: #f4f3f0; --surface-1: #fcfcfb; --border: #d9d8d3; --text-primary: #0b0b0b;
+        --text-secondary: #52514e; --text-muted: #77766f; --accent: #2a78d6; --chip: #ebe9e4; }
+@media (prefers-color-scheme: dark) {
+  :root:where(:not([data-theme="light"])) { color-scheme: dark; --surface-0: #121211; --surface-1: #1a1a19;
+    --border: #3a3a37; --text-primary: #f0efec; --text-secondary: #c3c2b7; --text-muted: #96958c; --accent: #3987e5;
+    --chip: #2a2a28; }
+}
+:root[data-theme="dark"] { color-scheme: dark; --surface-0: #121211; --surface-1: #1a1a19; --border: #3a3a37;
+  --text-primary: #f0efec; --text-secondary: #c3c2b7; --text-muted: #96958c; --accent: #3987e5; --chip: #2a2a28; }
+* { box-sizing: border-box; }
+body { margin: 0; background: var(--surface-0); color: var(--text-primary);
+       font: 15px/1.55 system-ui, -apple-system, "Segoe UI", sans-serif; }
+main { max-width: 860px; margin: 0 auto; padding: 32px 16px 64px; }
+a { color: var(--accent); }
+h1 { font-size: 22px; line-height: 1.3; font-weight: 600; margin: 4px 0 12px; }
+h2 { font-size: 15px; font-weight: 600; margin: 28px 0 8px; color: var(--text-secondary);
+     text-transform: uppercase; letter-spacing: 0.04em; }
+p { margin: 0 0 12px; }
+.crumbs { font-size: 13px; color: var(--text-muted); }
+.lede { font-size: 17px; }
+.muted { color: var(--text-muted); }
+.chip { display: inline-block; padding: 1px 8px; border-radius: 10px; background: var(--chip); font-size: 12px;
+        color: var(--text-secondary); margin-right: 4px; white-space: nowrap; }
+.card { background: var(--surface-1); border: 1px solid var(--border); border-radius: 6px; padding: 14px 16px;
+        margin: 0 0 12px; }
+.stats { display: flex; flex-wrap: wrap; gap: 12px; margin: 16px 0; }
+.stat { background: var(--surface-1); border: 1px solid var(--border); border-radius: 6px; padding: 10px 14px;
+        min-width: 140px; }
+.stat b { display: block; font-size: 20px; font-variant-numeric: tabular-nums; }
+.stat span { font-size: 12px; color: var(--text-muted); }
+ul.grounds { list-style: none; padding: 0; margin: 0; }
+ul.grounds li { padding: 6px 0; border-bottom: 1px solid var(--border); }
+ul.grounds li:last-child { border-bottom: 0; }
+table { width: 100%; border-collapse: collapse; background: var(--surface-1); font-size: 14px; }
+th, td { text-align: left; padding: 7px 8px; border-bottom: 1px solid var(--border); vertical-align: top; }
+th { font-weight: 600; color: var(--text-secondary); cursor: pointer; white-space: nowrap; user-select: none; }
+td.num, th.num { text-align: right; font-variant-numeric: tabular-nums; white-space: nowrap; }
+code, .mono { font: 12.5px ui-monospace, SFMono-Regular, Menlo, monospace; word-break: break-all; }
+details summary { cursor: pointer; color: var(--accent); }
+.excerpt { border-left: 3px solid var(--border); padding: 2px 0 2px 10px; color: var(--text-secondary);
+           font-size: 14px; white-space: pre-wrap; }
+input[type=search] { width: 100%; padding: 8px 10px; font: inherit; border: 1px solid var(--border);
+                     border-radius: 6px; background: var(--surface-1); color: var(--text-primary); margin: 8px 0 12px; }
+.table-wrap { overflow-x: auto; }
+@media (max-width: 640px) { .hide-sm { display: none; } }
+</style>
+<script data-goatcounter="https://pintail.goatcounter.com/count" async src="https://gc.zgo.at/count.js"></script>
+</head>
+<body>
+<main>
+<p class="crumbs"><a href="../">Dataset</a> › <a href="./">Decisions</a> › 0340-upbit-runs-its-staking</p>
+<h1>Upbit runs the validators of its ETH staking itself, as its operator Dunamu reports, and they run as one fleet.</h1>
+<p><span class="chip">Operator or owner</span><span class="chip">Service run by</span> <a href="../entities/upbit.html">Upbit</a> <span class="muted">from 2022-01-03, for <a href="../entities/upbit.html">Upbit staking</a></span> <span class="muted">· decided 2026-11-19</span></p>
+<p class="lede">Validators that Upbit&#x27;s staking allocates are run by Upbit, from its first ETH staking deposit (3 January 2022).</p>
+<h2>Grounds</h2><div class="card"><ul class="grounds"><li><span class="chip">First party</span>Dunamu reports that Upbit Staking runs its own validators and nodes, starting with ETH staking in 2022</li><li><span class="chip">First party</span>Dunamu says Upbit stakes through validators it runs itself and entrusts its members&#x27; assets to no outside company</li><li><span class="chip">On chain</span>98.7% of Upbit&#x27;s blocks over 51 weeks ran the client build the rest of the fleet ran that week</li><li><span class="chip">On chain</span>No block of Upbit&#x27;s validators names another operator in its graffiti</li></ul></div>
+<h2>Explanation</h2><p><strong>Upbit runs the validators of its ETH staking.</strong> Every validator the treemap places in Upbit&#x27;s staking (decision 0069: those withdrawing to 0x7e2a…2d05, about 20,350 active validators with 0.65M ETH in November 2026) is recorded as run by Upbit, unless other evidence names a different operator.</p>
+<p><strong>What Upbit says.</strong> Dunamu, which operates Upbit, states in its <a href="https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20260814003803">half-year report for 2026</a>, filed with Korea&#x27;s Financial Supervisory Service, that Upbit Staking runs its own validators and blockchain nodes, and that it began with Ethereum staking in 2022; its 2025 annual report says the same. In <a href="https://www.dunamu.com/news/1731">a release of 24 June 2026</a> Dunamu adds that Upbit Staking is entirely run by Upbit: it does not entrust its members&#x27; delegated assets to outside companies, but stakes them through validators it operates itself. The release is about Polygon, but makes the statement of Upbit Staking as a whole, and also gives Upbit&#x27;s rank in Ethereum staking.</p>
+<p><strong>What the chain shows.</strong> The validators run as one fleet. In the blocks recorded here (from August 2024), their graffiti is empty until December 2025 and from then on carries only the execution and consensus client versions, which the whole fleet changes together: Reth with Lighthouse briefly, then Geth with Lighthouse through four successive builds. Over the 51 weeks with such graffiti, 98.7% of Upbit&#x27;s blocks ran the build that most of the fleet ran that week; the weeks below that are changeovers from one build to the next. No block names another operator. Their blocks pay their fees either to Upbit&#x27;s own withdrawal address or directly to block builders.</p>
+<p><strong>From when.</strong> From Upbit&#x27;s first ETH staking deposit, on 3 January 2022: Dunamu says Upbit has run its own validators since it began staking ETH that year.</p>
+<h2>What would change it</h2><p>Upbit or Dunamu naming another company as running these validators, or a part of this stake running a fleet distinct from the rest.</p>
+<h2>Evidence</h2><p class="muted">Transactions and contract calls anyone can repeat on their own node.</p><div class="card"><ul class="grounds"><li><a class="mono" href="https://etherscan.io/tx/0xe81dfdc68f9ed10fe6e5dea1cb2b60a9a768e5bb69bbc8872a339fec9e270197">0xe81dfdc6…9e270197</a> — Upbit&#x27;s first staking deposit (2022-01-03)</li></ul></div>
+<h2>Sources</h2><div class="card"><a href="https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20260814003803">Dunamu half-year report for 2026 (반기보고서, filed 14 August 2026)</a><div class="muted" style="font-size:13px">Dunamu Inc. (filed with the Financial Supervisory Service, DART) · the entity&#x27;s own · retrieved 2026-10-21</div><p class="excerpt">업비트 스테이킹은 스테이킹된 자산을 콜드월렛에 안전하게 보관하며, 직접 검증자(Validator)와 블록체인 노드를 운영하며 보안 업무를 대행합니다. 2022년 이더리움 스테이킹을 시작으로 솔라나, 코스모스, 에이다, 폴리곤에코시스템토큰, 크로노스 스테이킹을 지원하였습니다.</p><div class="muted mono">sha256 d8e1303c200c0da64b6a6863e81c47730ef5141023309c5eb3a3e5a98f37cb4b</div></div><div class="card"><a href="https://www.dunamu.com/news/1731">[뉴스]업비트, 폴리곤 스테이킹 글로벌 1위… 바이낸스·코인베이스 앞섰다 (24 June 2026)</a><div class="muted" style="font-size:13px">Dunamu · the entity&#x27;s own · retrieved 2026-11-19</div><p class="excerpt">100% 직접 운영 및 콜드월렛 보관 방식으로 외부 위탁 없는 투명성·안전성 입증 [...] 업비트는 회원이 위임한 디지털자산을 외부 업체에 위탁하지 않고, 자체적으로 운영하는 검증인을 통해 블록체인 네트워크에 직접 스테이킹한다. [...] 6월 23일 기준 코스모스(2위), 이더리움(10위), 솔라나(14위) 등을 기록하며</p><div class="muted mono">sha256 b237651480d8d01966b0aa0a86b889a21bd62e94489c8c884f65bcf56b5848a1</div></div>
+</main>
+</body>
+</html>

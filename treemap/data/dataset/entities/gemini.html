@@ -1,0 +1,103 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Gemini: roles in the validator set</title>
+<style>
+:root { color-scheme: light; --surface-0: #f4f3f0; --surface-1: #fcfcfb; --border: #d9d8d3; --text-primary: #0b0b0b;
+        --text-secondary: #52514e; --text-muted: #77766f; --accent: #2a78d6; --chip: #ebe9e4; }
+@media (prefers-color-scheme: dark) {
+  :root:where(:not([data-theme="light"])) { color-scheme: dark; --surface-0: #121211; --surface-1: #1a1a19;
+    --border: #3a3a37; --text-primary: #f0efec; --text-secondary: #c3c2b7; --text-muted: #96958c; --accent: #3987e5;
+    --chip: #2a2a28; }
+}
+:root[data-theme="dark"] { color-scheme: dark; --surface-0: #121211; --surface-1: #1a1a19; --border: #3a3a37;
+  --text-primary: #f0efec; --text-secondary: #c3c2b7; --text-muted: #96958c; --accent: #3987e5; --chip: #2a2a28; }
+* { box-sizing: border-box; }
+body { margin: 0; background: var(--surface-0); color: var(--text-primary);
+       font: 15px/1.55 system-ui, -apple-system, "Segoe UI", sans-serif; }
+main { max-width: 860px; margin: 0 auto; padding: 32px 16px 64px; }
+a { color: var(--accent); }
+h1 { font-size: 22px; line-height: 1.3; font-weight: 600; margin: 4px 0 12px; }
+h2 { font-size: 15px; font-weight: 600; margin: 28px 0 8px; color: var(--text-secondary);
+     text-transform: uppercase; letter-spacing: 0.04em; }
+p { margin: 0 0 12px; }
+.crumbs { font-size: 13px; color: var(--text-muted); }
+.lede { font-size: 17px; }
+.muted { color: var(--text-muted); }
+.chip { display: inline-block; padding: 1px 8px; border-radius: 10px; background: var(--chip); font-size: 12px;
+        color: var(--text-secondary); margin-right: 4px; white-space: nowrap; }
+.card { background: var(--surface-1); border: 1px solid var(--border); border-radius: 6px; padding: 14px 16px;
+        margin: 0 0 12px; }
+.stats { display: flex; flex-wrap: wrap; gap: 12px; margin: 16px 0; }
+.stat { background: var(--surface-1); border: 1px solid var(--border); border-radius: 6px; padding: 10px 14px;
+        min-width: 140px; }
+.stat b { display: block; font-size: 20px; font-variant-numeric: tabular-nums; }
+.stat span { font-size: 12px; color: var(--text-muted); }
+ul.grounds { list-style: none; padding: 0; margin: 0; }
+ul.grounds li { padding: 6px 0; border-bottom: 1px solid var(--border); }
+ul.grounds li:last-child { border-bottom: 0; }
+table { width: 100%; border-collapse: collapse; background: var(--surface-1); font-size: 14px; }
+th, td { text-align: left; padding: 7px 8px; border-bottom: 1px solid var(--border); vertical-align: top; }
+th { font-weight: 600; color: var(--text-secondary); cursor: pointer; white-space: nowrap; user-select: none; }
+td.num, th.num { text-align: right; font-variant-numeric: tabular-nums; white-space: nowrap; }
+code, .mono { font: 12.5px ui-monospace, SFMono-Regular, Menlo, monospace; word-break: break-all; }
+details summary { cursor: pointer; color: var(--accent); }
+.excerpt { border-left: 3px solid var(--border); padding: 2px 0 2px 10px; color: var(--text-secondary);
+           font-size: 14px; white-space: pre-wrap; }
+input[type=search] { width: 100%; padding: 8px 10px; font: inherit; border: 1px solid var(--border);
+                     border-radius: 6px; background: var(--surface-1); color: var(--text-primary); margin: 8px 0 12px; }
+.table-wrap { overflow-x: auto; }
+@media (max-width: 640px) { .hide-sm { display: none; } }
+</style>
+<script data-goatcounter="https://pintail.goatcounter.com/count" async src="https://gc.zgo.at/count.js"></script>
+</head>
+<body>
+<main>
+<style>
+.chart { width: 100%; height: auto; background: var(--surface-1); border: 1px solid var(--border); border-radius: 6px; }
+.chart text { fill: var(--text-muted); font: 11px system-ui, sans-serif; }
+.chart .grid { stroke: var(--border); stroke-width: 1; }
+.legend { display: flex; flex-wrap: wrap; gap: 14px; font-size: 13px; color: var(--text-secondary); margin: 6px 0 14px; }
+.legend i { display: inline-block; width: 16px; height: 3px; vertical-align: middle; margin-right: 5px; background: var(--c); }
+.legend i.dashed { background: repeating-linear-gradient(90deg, var(--c) 0 6px, transparent 6px 9px); }
+.chart .event { stroke: var(--text-muted); stroke-width: 1; stroke-dasharray: 3 3; }
+.chart .event-n { fill: var(--text-secondary); font-weight: 600; }
+ol.events { padding-left: 0; list-style: none; }
+ol.events li { margin: 4px 0; }
+ol.events .n { display: inline-block; min-width: 1.6em; font-weight: 600; color: var(--text-secondary); }
+</style><p class="crumbs"><a href="../">Dataset</a> › <a href="./">Entities</a></p>
+<h1>Gemini</h1>
+<p><span class="chip">exchange</span> <span class="mono muted">gemini</span></p>
+<p><strong>How much ETH Gemini has had in each role recorded in this dataset, week by week, from
+the start of the beacon chain (1 December 2020) to 20 November 2026.</strong> Stake is the effective balance
+of active validators.</p>
+<ul><li><strong>Allocator</strong>: chose where the stake went. Counts the stake in the treemap boxes under Gemini. <span class="muted">Recorded for 89% of active stake.</span></li><li><strong>Operator</strong>: ran the validators. <span class="muted">Recorded for 80% of active stake.</span></li><li><strong>Custodian</strong>: held the stake on behalf of a client. <span class="muted">Recorded for 5.3% of active stake.</span></li><li><strong>Principal</strong>: owned the staked ETH. <span class="muted">Recorded for 6.2% of active stake.</span></li></ul>
+<p class="muted">Allocators are recorded for most stake. Operators, custodians and principals are recorded only where
+specific evidence names them, so their figures here (dashed on the charts) are lower bounds: no figure does not mean
+no role.</p>
+<h2>Its own roles</h2><svg class="chart" viewBox="0 0 760 240" role="img" aria-label="ETH by role over time"><line class="grid" x1="52" x2="752" y1="218.0" y2="218.0"/><text x="46" y="222.0" text-anchor="end">0</text><line class="grid" x1="52" x2="752" y1="114.0" y2="114.0"/><text x="46" y="118.0" text-anchor="end">118k</text><line class="grid" x1="52" x2="752" y1="10.0" y2="10.0"/><text x="46" y="14.0" text-anchor="end">236k</text><text x="52.0" y="234" text-anchor="middle">2020</text><text x="179.9" y="234" text-anchor="middle">2022</text><text x="296.6" y="234" text-anchor="middle">2023</text><text x="413.2" y="234" text-anchor="middle">2024</text><text x="532.1" y="234" text-anchor="middle">2025</text><text x="648.8" y="234" text-anchor="middle">2026</text><polyline fill="none" stroke="#2a78d6" stroke-width="2" points="52.0,218.0 54.2,218.0 56.5,218.0 58.7,218.0 61.0,218.0 63.2,218.0 65.5,218.0 67.7,218.0 69.9,218.0 72.2,218.0 74.4,218.0 76.7,218.0 78.9,218.0 81.2,218.0 83.4,218.0 85.7,218.0 87.9,218.0 90.1,218.0 92.4,218.0 94.6,218.0 96.9,218.0 99.1,218.0 101.4,218.0 103.6,218.0 105.8,218.0 108.1,218.0 110.3,218.0 112.6,218.0 114.8,218.0 117.1,218.0 119.3,218.0 121.6,218.0 123.8,218.0 126.0,218.0 128.3,218.0 130.5,218.0 132.8,218.0 135.0,218.0 137.3,218.0 139.5,218.0 141.7,218.0 144.0,218.0 146.2,218.0 148.5,218.0 150.7,217.9 153.0,217.9 155.2,217.7 157.4,217.7 159.7,206.9 161.9,206.9 164.2,206.9 166.4,206.9 168.7,206.9 170.9,197.6 173.2,197.6 175.4,197.6 177.6,197.6 179.9,197.6 182.1,197.6 184.4,197.6 186.6,197.6 188.9,197.6 191.1,197.6 193.3,197.6 195.6,197.6 197.8,197.6 200.1,197.6 202.3,197.6 204.6,197.6 206.8,197.6 209.1,197.6 211.3,197.6 213.5,197.3 215.8,197.3 218.0,197.3 220.3,197.3 222.5,197.3 224.8,197.3 227.0,196.4 229.2,195.5 231.5,195.5 233.7,195.5 236.0,195.5 238.2,195.5 240.5,195.5 242.7,195.5 244.9,195.5 247.2,195.5 249.4,195.5 251.7,195.5 253.9,195.5 256.2,195.5 258.4,195.5 260.7,195.5 262.9,195.5 265.1,195.5 267.4,182.2 269.6,175.8 271.9,167.4 274.1,163.6 276.4,160.6 278.6,159.1 280.8,158.6 283.1,156.0 285.3,155.8 287.6,155.3 289.8,155.3 292.1,155.1 294.3,154.8 296.6,154.6 298.8,154.3 301.0,154.1 303.3,154.0 305.5,153.8 307.8,153.7 310.0,153.3 312.3,153.2 314.5,153.1 316.7,153.0 319.0,152.9 321.2,152.0 323.5,151.7 325.7,151.0 328.0,150.7 330.2,150.5 332.4,175.3 334.7,175.5 336.9,173.5 339.2,170.4 341.4,171.2 343.7,171.2 345.9,170.7 348.2,168.3 350.4,166.8 352.6,163.3 354.9,162.7 357.1,162.1 359.4,162.0 361.6,159.3 363.9,158.5 366.1,158.0 368.3,156.7 370.6,155.9 372.8,153.8 375.1,152.5 377.3,152.1 379.6,152.2 381.8,151.6 384.1,150.0 386.3,150.9 388.5,151.2 390.8,152.0 393.0,152.9 395.3,152.6 397.5,150.8 399.8,152.2 402.0,151.8 404.2,151.5 406.5,151.4 408.7,151.2 411.0,151.7 413.2,149.9 415.5,149.7 417.7,148.5 419.9,147.9 422.2,147.4 424.4,147.4 426.7,146.4 428.9,146.4 431.2,145.3 433.4,144.2 435.7,143.5 437.9,143.7 440.1,144.7 442.4,144.2 444.6,143.2 446.9,142.9 449.1,140.1 451.4,140.2 453.6,138.8 455.8,138.3 458.1,137.9 460.3,138.1 462.6,134.3 464.8,128.8 467.1,127.0 469.3,120.3 471.6,111.0 473.8,108.5 476.0,107.6 478.3,108.0 480.5,107.2 482.8,106.7 485.0,103.8 487.3,102.8 489.5,102.2 491.7,101.1 494.0,100.5 496.2,100.7 498.5,100.4 500.7,99.9 503.0,99.5 505.2,98.1 507.4,98.1 509.7,98.1 511.9,98.4 514.2,97.2 516.4,97.5 518.7,99.3 520.9,101.1 523.2,102.2 525.4,97.7 527.6,95.5 529.9,95.4 532.1,96.1 534.4,96.9 536.6,97.4 538.9,97.5 541.1,98.0 543.3,95.7 545.6,95.4 547.8,95.6 550.1,95.6 552.3,95.2 554.6,94.6 556.8,96.3 559.1,96.3 561.3,95.6 563.5,95.2 565.8,95.8 568.0,95.4 570.3,95.5 572.5,95.3 574.8,93.8 577.0,93.7 579.2,92.9 581.5,85.4 583.7,85.6 586.0,84.9 588.2,79.7 590.5,79.0 592.7,79.2 594.9,78.7 597.2,77.2 599.4,75.9 601.7,75.2 603.9,76.4 606.2,76.0 608.4,77.6 610.7,77.9 612.9,77.9 615.1,78.4 617.4,76.2 619.6,75.8 621.9,75.4 624.1,75.4 626.4,75.8 628.6,89.0 630.8,89.1 633.1,89.3 635.3,91.4 637.6,91.4 639.8,90.5 642.1,89.5 644.3,91.2 646.6,91.8 648.8,93.6 651.0,93.3 653.3,94.6 655.5,96.0 657.8,96.0 660.0,96.7 662.3,101.2 664.5,103.3 666.7,110.3 669.0,115.2 671.2,118.0 673.5,118.0 675.7,116.0 678.0,118.3 680.2,117.6 682.4,115.5 684.7,111.8 686.9,107.7 689.2,103.5 691.4,102.9 693.7,102.8 695.9,97.8 698.2,97.2 700.4,99.4 702.6,99.3 704.9,99.3 707.1,100.0 709.4,99.9 711.6,98.9 713.9,94.4 716.1,93.0 718.3,92.8 720.6,93.1 722.8,86.6 725.1,54.1 727.3,18.2 729.6,47.1 731.8,26.7 734.1,26.5 736.3,25.7 738.5,25.1 740.8,25.2 743.0,17.8 745.3,10.5 747.5,10.4 749.8,10.0 752.0,10.0"><title>Allocator</title></polyline><polyline fill="none" stroke="#e0742a" stroke-width="2" stroke-dasharray="6 3" points="52.0,218.0 54.2,218.0 56.5,218.0 58.7,218.0 61.0,218.0 63.2,218.0 65.5,218.0 67.7,218.0 69.9,218.0 72.2,218.0 74.4,218.0 76.7,218.0 78.9,218.0 81.2,218.0 83.4,218.0 85.7,218.0 87.9,218.0 90.1,218.0 92.4,218.0 94.6,218.0 96.9,218.0 99.1,218.0 101.4,218.0 103.6,218.0 105.8,218.0 108.1,218.0 110.3,218.0 112.6,218.0 114.8,218.0 117.1,218.0 119.3,218.0 121.6,218.0 123.8,218.0 126.0,218.0 128.3,218.0 130.5,218.0 132.8,218.0 135.0,218.0 137.3,218.0 139.5,218.0 141.7,218.0 144.0,218.0 146.2,218.0 148.5,218.0 150.7,218.0 153.0,218.0 155.2,218.0 157.4,218.0 159.7,218.0 161.9,218.0 164.2,218.0 166.4,218.0 168.7,218.0 170.9,218.0 173.2,218.0 175.4,218.0 177.6,218.0 179.9,218.0 182.1,218.0 184.4,218.0 186.6,218.0 188.9,218.0 191.1,218.0 193.3,218.0 195.6,218.0 197.8,218.0 200.1,218.0 202.3,218.0 204.6,218.0 206.8,218.0 209.1,218.0 211.3,218.0 213.5,218.0 215.8,218.0 218.0,218.0 220.3,218.0 222.5,218.0 224.8,218.0 227.0,218.0 229.2,218.0 231.5,218.0 233.7,218.0 236.0,218.0 238.2,218.0 240.5,218.0 242.7,218.0 244.9,218.0 247.2,218.0 249.4,218.0 251.7,218.0 253.9,218.0 256.2,218.0 258.4,218.0 260.7,218.0 262.9,218.0 265.1,218.0 267.4,218.0 269.6,218.0 271.9,218.0 274.1,218.0 276.4,218.0 278.6,218.0 280.8,218.0 283.1,218.0 285.3,218.0 287.6,218.0 289.8,218.0 292.1,218.0 294.3,218.0 296.6,218.0 298.8,218.0 301.0,218.0 303.3,218.0 305.5,218.0 307.8,218.0 310.0,218.0 312.3,218.0 314.5,218.0 316.7,218.0 319.0,218.0 321.2,218.0 323.5,218.0 325.7,218.0 328.0,218.0 330.2,218.0 332.4,218.0 334.7,218.0 336.9,218.0 339.2,218.0 341.4,218.0 343.7,218.0 345.9,218.0 348.2,218.0 350.4,218.0 352.6,218.0 354.9,218.0 357.1,218.0 359.4,218.0 361.6,218.0 363.9,218.0 366.1,218.0 368.3,218.0 370.6,218.0 372.8,218.0 375.1,218.0 377.3,218.0 379.6,218.0 381.8,218.0 384.1,218.0 386.3,218.0 388.5,218.0 390.8,218.0 393.0,218.0 395.3,218.0 397.5,218.0 399.8,218.0 402.0,218.0 404.2,218.0 406.5,218.0 408.7,218.0 411.0,218.0 413.2,218.0 415.5,218.0 417.7,218.0 419.9,218.0 422.2,218.0 424.4,218.0 426.7,218.0 428.9,218.0 431.2,218.0 433.4,218.0 435.7,218.0 437.9,218.0 440.1,218.0 442.4,218.0 444.6,218.0 446.9,218.0 449.1,218.0 451.4,218.0 453.6,218.0 455.8,218.0 458.1,218.0 460.3,218.0 462.6,218.0 464.8,218.0 467.1,218.0 469.3,218.0 471.6,218.0 473.8,218.0 476.0,218.0 478.3,218.0 480.5,218.0 482.8,218.0 485.0,218.0 487.3,218.0 489.5,218.0 491.7,218.0 494.0,218.0 496.2,218.0 498.5,218.0 500.7,218.0 503.0,218.0 505.2,218.0 507.4,218.0 509.7,218.0 511.9,218.0 514.2,218.0 516.4,218.0 518.7,218.0 520.9,218.0 523.2,218.0 525.4,218.0 527.6,218.0 529.9,218.0 532.1,218.0 534.4,218.0 536.6,218.0 538.9,218.0 541.1,218.0 543.3,218.0 545.6,218.0 547.8,218.0 550.1,218.0 552.3,218.0 554.6,218.0 556.8,218.0 559.1,218.0 561.3,218.0 563.5,218.0 565.8,218.0 568.0,218.0 570.3,218.0 572.5,218.0 574.8,218.0 577.0,218.0 579.2,218.0 581.5,218.0 583.7,218.0 586.0,218.0 588.2,218.0 590.5,218.0 592.7,218.0 594.9,218.0 597.2,218.0 599.4,218.0 601.7,218.0 603.9,218.0 606.2,218.0 608.4,218.0 610.7,218.0 612.9,218.0 615.1,218.0 617.4,218.0 619.6,218.0 621.9,218.0 624.1,218.0 626.4,218.0 628.6,218.0 630.8,218.0 633.1,218.0 635.3,218.0 637.6,218.0 639.8,218.0 642.1,218.0 644.3,218.0 646.6,218.0 648.8,218.0 651.0,218.0 653.3,218.0 655.5,218.0 657.8,218.0 660.0,218.0 662.3,218.0 664.5,218.0 666.7,218.0 669.0,218.0 671.2,218.0 673.5,218.0 675.7,218.0 678.0,218.0 680.2,218.0 682.4,218.0 684.7,218.0 686.9,218.0 689.2,218.0 691.4,218.0 693.7,218.0 695.9,218.0 698.2,97.2 700.4,99.4 702.6,99.3 704.9,99.3 707.1,100.0 709.4,99.9 711.6,98.9 713.9,94.4 716.1,93.0 718.3,92.8 720.6,93.1 722.8,86.6 725.1,54.1 727.3,18.2 729.6,47.1 731.8,26.7 734.1,26.5 736.3,25.7 738.5,25.1 740.8,25.2 743.0,17.8 745.3,10.5 747.5,10.4 749.8,10.0 752.0,10.0"><title>Operator</title></polyline></svg><div class="legend"><span><i class="" style="--c:#2a78d6"></i>Allocator</span><span><i class="dashed" style="--c:#e0742a"></i>Operator (recorded only in part)</span></div><div class="table-wrap"><table><thead><tr><th>Role</th><th class="num">ETH now</th>
+<th class="num hide-sm">Validators now</th><th class="num">Peak ETH</th><th class="num hide-sm">Peak</th>
+<th class="num hide-sm">First seen</th><th class="num hide-sm">Last seen</th></tr></thead><tbody><tr><td>Allocator</td><td class="num">235,622</td>
+<td class="num hide-sm">3,238</td><td class="num">235,622</td>
+<td class="num hide-sm">2026-11-20</td><td class="num hide-sm">2021-10-05</td>
+<td class="num hide-sm">now</td></tr><tr><td>Operator</td><td class="num">235,622</td>
+<td class="num hide-sm">3,238</td><td class="num">235,622</td>
+<td class="num hide-sm">2026-11-20</td><td class="num hide-sm">2026-06-09</td>
+<td class="num hide-sm">now</td></tr></tbody></table></div>
+<h2>Clients</h2><p class="muted">Blocks proposed in the last 90 days by the validators it
+allocates or operates now, and the execution and consensus clients their graffiti names (clients add a short code by
+default; operators can turn it off, so these are shares of the blocks that carry one).</p>
+<div class="table-wrap"><table><thead><tr><th>Role</th><th class="num">Blocks</th><th class="num">With codes</th>
+<th>Execution clients</th><th>Consensus clients</th></tr></thead><tbody><tr><td>Allocator</td><td class="num">3,194</td>
+<td class="num">100%</td><td>Geth 100%</td><td>Prysm 100%</td></tr><tr><td>Operator</td><td class="num">3,194</td>
+<td class="num">100%</td><td>Geth 100%</td><td>Prysm 100%</td></tr></tbody></table></div>
+<h2>Treemap boxes</h2><div class="table-wrap"><table><thead><tr><th>Box</th>
+<th class="num">ETH now</th><th class="num hide-sm">Peak ETH</th></tr></thead><tbody><tr><td>Gemini › Gemini staking › 9 named withdrawal addresses (from Oct 2021)</td><td class="num">235,622</td><td class="num hide-sm">235,622</td></tr></tbody></table></div>
+<h2>Decisions naming it</h2><ul><li><a href="../decisions/0178-gemini.html">0178</a> Defines Gemini (exchange)</li><li><a href="../decisions/0179-gemini-staking-name.html">0179</a> Defines Gemini staking (custodial staking)</li><li><a href="../decisions/0180-gemini-staking.html">0180</a> Gemini&#x27;s ETH staking: the key that administers Gemini&#x27;s own GUSD token operates these withdrawal wallets, and Gemini&#x27;s printer funds them.</li><li><a href="../decisions/0342-gemini-runs-its-staking.html">0342</a> Gemini runs the validators of its ETH staking on its own platform, from its in-house validators&#x27; first block in June 2026.</li></ul>
+<h2>Identified addresses</h2><div class="table-wrap"><table><thead><tr><th>Address</th><th>Role</th>
+<th class="hide-sm">Basis</th></tr></thead><tbody><tr><td><a class="mono" href="https://etherscan.io/address/0x0c0391a07710e106de0f7f4574d4cfddea7ab795">0x0c0391a07710e106de0f7f4574d4cfddea7ab795</a></td><td>withdrawal address</td><td class="hide-sm">asserted</td></tr><tr><td><a class="mono" href="https://etherscan.io/address/0x2e80b3832922041296d5fb1b31b2864c7c06f5f4">0x2e80b3832922041296d5fb1b31b2864c7c06f5f4</a></td><td>withdrawal address</td><td class="hide-sm">asserted</td></tr><tr><td><a class="mono" href="https://etherscan.io/address/0x30e647b572e055515122e3c32f27380ef25d4484">0x30e647b572e055515122e3c32f27380ef25d4484</a></td><td>withdrawal address</td><td class="hide-sm">asserted</td></tr><tr><td><a class="mono" href="https://etherscan.io/address/0x7c1fed52ef2b45443e674ae782f51586aa29c384">0x7c1fed52ef2b45443e674ae782f51586aa29c384</a></td><td>withdrawal address</td><td class="hide-sm">asserted</td></tr><tr><td><a class="mono" href="https://etherscan.io/address/0xa1e9f15baec5aa21ddb40ff0234d54c434810fa5">0xa1e9f15baec5aa21ddb40ff0234d54c434810fa5</a></td><td>withdrawal address</td><td class="hide-sm">asserted</td></tr><tr><td><a class="mono" href="https://etherscan.io/address/0xd3855475e57647f9e36fb748686e6887adf4768f">0xd3855475e57647f9e36fb748686e6887adf4768f</a></td><td>withdrawal address</td><td class="hide-sm">asserted</td></tr><tr><td><a class="mono" href="https://etherscan.io/address/0xd7c612e7b9ed0260b80ab1ab76d63d57390de46e">0xd7c612e7b9ed0260b80ab1ab76d63d57390de46e</a></td><td>withdrawal address</td><td class="hide-sm">asserted</td></tr><tr><td><a class="mono" href="https://etherscan.io/address/0xf0b0d3ef9a0a8162abe874b126ee63319384c5f5">0xf0b0d3ef9a0a8162abe874b126ee63319384c5f5</a></td><td>withdrawal address</td><td class="hide-sm">asserted</td></tr><tr><td><a class="mono" href="https://etherscan.io/address/0xf65a8df098aecae5864ec8e2fab02c3558a4f2e3">0xf65a8df098aecae5864ec8e2fab02c3558a4f2e3</a></td><td>withdrawal address</td><td class="hide-sm">asserted</td></tr></tbody></table></div>
+</main>
+</body>
+</html>

@@ -1,0 +1,102 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Stakely: roles in the validator set</title>
+<style>
+:root { color-scheme: light; --surface-0: #f4f3f0; --surface-1: #fcfcfb; --border: #d9d8d3; --text-primary: #0b0b0b;
+        --text-secondary: #52514e; --text-muted: #77766f; --accent: #2a78d6; --chip: #ebe9e4; }
+@media (prefers-color-scheme: dark) {
+  :root:where(:not([data-theme="light"])) { color-scheme: dark; --surface-0: #121211; --surface-1: #1a1a19;
+    --border: #3a3a37; --text-primary: #f0efec; --text-secondary: #c3c2b7; --text-muted: #96958c; --accent: #3987e5;
+    --chip: #2a2a28; }
+}
+:root[data-theme="dark"] { color-scheme: dark; --surface-0: #121211; --surface-1: #1a1a19; --border: #3a3a37;
+  --text-primary: #f0efec; --text-secondary: #c3c2b7; --text-muted: #96958c; --accent: #3987e5; --chip: #2a2a28; }
+* { box-sizing: border-box; }
+body { margin: 0; background: var(--surface-0); color: var(--text-primary);
+       font: 15px/1.55 system-ui, -apple-system, "Segoe UI", sans-serif; }
+main { max-width: 860px; margin: 0 auto; padding: 32px 16px 64px; }
+a { color: var(--accent); }
+h1 { font-size: 22px; line-height: 1.3; font-weight: 600; margin: 4px 0 12px; }
+h2 { font-size: 15px; font-weight: 600; margin: 28px 0 8px; color: var(--text-secondary);
+     text-transform: uppercase; letter-spacing: 0.04em; }
+p { margin: 0 0 12px; }
+.crumbs { font-size: 13px; color: var(--text-muted); }
+.lede { font-size: 17px; }
+.muted { color: var(--text-muted); }
+.chip { display: inline-block; padding: 1px 8px; border-radius: 10px; background: var(--chip); font-size: 12px;
+        color: var(--text-secondary); margin-right: 4px; white-space: nowrap; }
+.card { background: var(--surface-1); border: 1px solid var(--border); border-radius: 6px; padding: 14px 16px;
+        margin: 0 0 12px; }
+.stats { display: flex; flex-wrap: wrap; gap: 12px; margin: 16px 0; }
+.stat { background: var(--surface-1); border: 1px solid var(--border); border-radius: 6px; padding: 10px 14px;
+        min-width: 140px; }
+.stat b { display: block; font-size: 20px; font-variant-numeric: tabular-nums; }
+.stat span { font-size: 12px; color: var(--text-muted); }
+ul.grounds { list-style: none; padding: 0; margin: 0; }
+ul.grounds li { padding: 6px 0; border-bottom: 1px solid var(--border); }
+ul.grounds li:last-child { border-bottom: 0; }
+table { width: 100%; border-collapse: collapse; background: var(--surface-1); font-size: 14px; }
+th, td { text-align: left; padding: 7px 8px; border-bottom: 1px solid var(--border); vertical-align: top; }
+th { font-weight: 600; color: var(--text-secondary); cursor: pointer; white-space: nowrap; user-select: none; }
+td.num, th.num { text-align: right; font-variant-numeric: tabular-nums; white-space: nowrap; }
+code, .mono { font: 12.5px ui-monospace, SFMono-Regular, Menlo, monospace; word-break: break-all; }
+details summary { cursor: pointer; color: var(--accent); }
+.excerpt { border-left: 3px solid var(--border); padding: 2px 0 2px 10px; color: var(--text-secondary);
+           font-size: 14px; white-space: pre-wrap; }
+input[type=search] { width: 100%; padding: 8px 10px; font: inherit; border: 1px solid var(--border);
+                     border-radius: 6px; background: var(--surface-1); color: var(--text-primary); margin: 8px 0 12px; }
+.table-wrap { overflow-x: auto; }
+@media (max-width: 640px) { .hide-sm { display: none; } }
+</style>
+<script data-goatcounter="https://pintail.goatcounter.com/count" async src="https://gc.zgo.at/count.js"></script>
+</head>
+<body>
+<main>
+<style>
+.chart { width: 100%; height: auto; background: var(--surface-1); border: 1px solid var(--border); border-radius: 6px; }
+.chart text { fill: var(--text-muted); font: 11px system-ui, sans-serif; }
+.chart .grid { stroke: var(--border); stroke-width: 1; }
+.legend { display: flex; flex-wrap: wrap; gap: 14px; font-size: 13px; color: var(--text-secondary); margin: 6px 0 14px; }
+.legend i { display: inline-block; width: 16px; height: 3px; vertical-align: middle; margin-right: 5px; background: var(--c); }
+.legend i.dashed { background: repeating-linear-gradient(90deg, var(--c) 0 6px, transparent 6px 9px); }
+.chart .event { stroke: var(--text-muted); stroke-width: 1; stroke-dasharray: 3 3; }
+.chart .event-n { fill: var(--text-secondary); font-weight: 600; }
+ol.events { padding-left: 0; list-style: none; }
+ol.events li { margin: 4px 0; }
+ol.events .n { display: inline-block; min-width: 1.6em; font-weight: 600; color: var(--text-secondary); }
+</style><p class="crumbs"><a href="../">Dataset</a> › <a href="./">Entities</a></p>
+<h1>Stakely</h1>
+<p><span class="chip">node operator</span> <span class="mono muted">stakely</span></p>
+<p><strong>How much ETH Stakely has had in each role recorded in this dataset, week by week, from
+the start of the beacon chain (1 December 2020) to 20 November 2026.</strong> Stake is the effective balance
+of active validators.</p>
+<ul><li><strong>Allocator</strong>: chose where the stake went. Counts the stake in the treemap boxes under Stakely. <span class="muted">Recorded for 89% of active stake.</span></li><li><strong>Operator</strong>: ran the validators. <span class="muted">Recorded for 80% of active stake.</span></li><li><strong>Custodian</strong>: held the stake on behalf of a client. <span class="muted">Recorded for 5.3% of active stake.</span></li><li><strong>Principal</strong>: owned the staked ETH. <span class="muted">Recorded for 6.2% of active stake.</span></li></ul>
+<p class="muted">Allocators are recorded for most stake. Operators, custodians and principals are recorded only where
+specific evidence names them, so their figures here (dashed on the charts) are lower bounds: no figure does not mean
+no role.</p>
+<h2>Its own roles</h2><svg class="chart" viewBox="0 0 760 240" role="img" aria-label="ETH by role over time"><line class="grid" x1="52" x2="752" y1="218.0" y2="218.0"/><text x="46" y="222.0" text-anchor="end">0</text><line class="grid" x1="52" x2="752" y1="114.0" y2="114.0"/><text x="46" y="118.0" text-anchor="end">173k</text><line class="grid" x1="52" x2="752" y1="10.0" y2="10.0"/><text x="46" y="14.0" text-anchor="end">347k</text><text x="52.0" y="234" text-anchor="middle">2020</text><text x="179.9" y="234" text-anchor="middle">2022</text><text x="296.6" y="234" text-anchor="middle">2023</text><text x="413.2" y="234" text-anchor="middle">2024</text><text x="532.1" y="234" text-anchor="middle">2025</text><text x="648.8" y="234" text-anchor="middle">2026</text><line class="event" x1="184.4" x2="184.4" y1="10" y2="218"/><text class="event-n" x="187.4" y="20">1</text><polyline fill="none" stroke="#2a78d6" stroke-width="2" points="52.0,218.0 54.2,218.0 56.5,218.0 58.7,218.0 61.0,218.0 63.2,218.0 65.5,218.0 67.7,218.0 69.9,218.0 72.2,218.0 74.4,218.0 76.7,218.0 78.9,218.0 81.2,218.0 83.4,218.0 85.7,218.0 87.9,218.0 90.1,218.0 92.4,218.0 94.6,218.0 96.9,218.0 99.1,218.0 101.4,218.0 103.6,218.0 105.8,218.0 108.1,218.0 110.3,218.0 112.6,218.0 114.8,218.0 117.1,218.0 119.3,218.0 121.6,218.0 123.8,218.0 126.0,218.0 128.3,218.0 130.5,218.0 132.8,218.0 135.0,218.0 137.3,218.0 139.5,218.0 141.7,218.0 144.0,218.0 146.2,218.0 148.5,218.0 150.7,218.0 153.0,218.0 155.2,218.0 157.4,218.0 159.7,218.0 161.9,218.0 164.2,218.0 166.4,218.0 168.7,218.0 170.9,218.0 173.2,218.0 175.4,218.0 177.6,218.0 179.9,218.0 182.1,218.0 184.4,218.0 186.6,218.0 188.9,218.0 191.1,218.0 193.3,218.0 195.6,218.0 197.8,218.0 200.1,218.0 202.3,218.0 204.6,218.0 206.8,218.0 209.1,218.0 211.3,218.0 213.5,218.0 215.8,218.0 218.0,218.0 220.3,218.0 222.5,218.0 224.8,218.0 227.0,218.0 229.2,218.0 231.5,218.0 233.7,218.0 236.0,218.0 238.2,218.0 240.5,218.0 242.7,218.0 244.9,218.0 247.2,218.0 249.4,218.0 251.7,218.0 253.9,218.0 256.2,218.0 258.4,218.0 260.7,218.0 262.9,218.0 265.1,218.0 267.4,218.0 269.6,218.0 271.9,218.0 274.1,218.0 276.4,218.0 278.6,218.0 280.8,218.0 283.1,218.0 285.3,218.0 287.6,218.0 289.8,218.0 292.1,218.0 294.3,218.0 296.6,218.0 298.8,218.0 301.0,218.0 303.3,218.0 305.5,218.0 307.8,218.0 310.0,218.0 312.3,218.0 314.5,218.0 316.7,218.0 319.0,218.0 321.2,218.0 323.5,218.0 325.7,218.0 328.0,218.0 330.2,218.0 332.4,218.0 334.7,218.0 336.9,218.0 339.2,218.0 341.4,218.0 343.7,217.9 345.9,217.9 348.2,217.9 350.4,217.9 352.6,217.9 354.9,217.9 357.1,217.9 359.4,217.9 361.6,217.9 363.9,217.9 366.1,217.9 368.3,217.9 370.6,217.9 372.8,217.9 375.1,217.9 377.3,217.9 379.6,217.9 381.8,217.9 384.1,217.9 386.3,217.8 388.5,217.8 390.8,217.8 393.0,217.8 395.3,217.8 397.5,217.8 399.8,217.8 402.0,217.8 404.2,217.8 406.5,217.8 408.7,217.8 411.0,217.8 413.2,217.8 415.5,217.8 417.7,217.8 419.9,217.9 422.2,217.9 424.4,217.9 426.7,217.9 428.9,217.9 431.2,217.9 433.4,217.9 435.7,217.9 437.9,217.9 440.1,217.9 442.4,217.9 444.6,217.9 446.9,217.9 449.1,217.9 451.4,217.9 453.6,217.9 455.8,217.9 458.1,217.9 460.3,217.9 462.6,217.9 464.8,217.9 467.1,217.9 469.3,217.9 471.6,217.9 473.8,217.9 476.0,217.9 478.3,217.9 480.5,217.9 482.8,217.9 485.0,217.9 487.3,217.9 489.5,217.9 491.7,217.9 494.0,217.9 496.2,217.9 498.5,217.9 500.7,217.9 503.0,217.9 505.2,217.9 507.4,217.9 509.7,217.9 511.9,217.9 514.2,217.9 516.4,217.9 518.7,217.9 520.9,217.9 523.2,217.9 525.4,217.9 527.6,217.9 529.9,217.9 532.1,217.9 534.4,217.9 536.6,217.9 538.9,217.9 541.1,217.9 543.3,217.9 545.6,217.9 547.8,217.9 550.1,217.9 552.3,217.9 554.6,217.9 556.8,217.9 559.1,217.9 561.3,217.9 563.5,217.9 565.8,217.9 568.0,217.9 570.3,217.9 572.5,217.9 574.8,217.9 577.0,217.9 579.2,217.9 581.5,217.9 583.7,217.9 586.0,217.9 588.2,217.9 590.5,217.9 592.7,217.9 594.9,217.9 597.2,217.9 599.4,217.9 601.7,217.9 603.9,217.9 606.2,217.9 608.4,217.9 610.7,217.9 612.9,217.9 615.1,217.9 617.4,217.9 619.6,217.9 621.9,217.9 624.1,217.9 626.4,217.9 628.6,217.9 630.8,217.9 633.1,217.9 635.3,217.9 637.6,217.9 639.8,217.9 642.1,217.9 644.3,217.9 646.6,217.9 648.8,217.9 651.0,217.9 653.3,217.9 655.5,217.9 657.8,217.9 660.0,217.9 662.3,217.9 664.5,217.9 666.7,217.9 669.0,217.9 671.2,217.9 673.5,217.9 675.7,217.9 678.0,217.9 680.2,217.9 682.4,217.9 684.7,217.9 686.9,217.9 689.2,217.9 691.4,217.9 693.7,217.9 695.9,217.9 698.2,217.9 700.4,217.9 702.6,217.9 704.9,217.9 707.1,217.9 709.4,217.9 711.6,217.9 713.9,217.9 716.1,217.9 718.3,217.9 720.6,217.9 722.8,217.9 725.1,217.9 727.3,217.9 729.6,217.9 731.8,217.9 734.1,217.9 736.3,217.9 738.5,217.9 740.8,217.9 743.0,217.9 745.3,217.9 747.5,217.9 749.8,217.9 752.0,217.9"><title>Allocator</title></polyline><polyline fill="none" stroke="#e0742a" stroke-width="2" stroke-dasharray="6 3" points="52.0,218.0 54.2,218.0 56.5,218.0 58.7,218.0 61.0,218.0 63.2,218.0 65.5,218.0 67.7,218.0 69.9,218.0 72.2,218.0 74.4,218.0 76.7,218.0 78.9,218.0 81.2,218.0 83.4,218.0 85.7,218.0 87.9,218.0 90.1,218.0 92.4,218.0 94.6,218.0 96.9,218.0 99.1,218.0 101.4,218.0 103.6,218.0 105.8,218.0 108.1,218.0 110.3,218.0 112.6,218.0 114.8,218.0 117.1,218.0 119.3,218.0 121.6,218.0 123.8,218.0 126.0,218.0 128.3,218.0 130.5,218.0 132.8,218.0 135.0,218.0 137.3,218.0 139.5,218.0 141.7,218.0 144.0,218.0 146.2,218.0 148.5,218.0 150.7,218.0 153.0,218.0 155.2,218.0 157.4,218.0 159.7,218.0 161.9,218.0 164.2,218.0 166.4,218.0 168.7,218.0 170.9,218.0 173.2,218.0 175.4,218.0 177.6,218.0 179.9,218.0 182.1,218.0 184.4,218.0 186.6,216.1 188.9,216.1 191.1,210.7 193.3,208.4 195.6,208.4 197.8,198.8 200.1,198.8 202.3,198.8 204.6,198.8 206.8,183.0 209.1,179.6 211.3,150.8 213.5,150.8 215.8,150.8 218.0,142.0 220.3,122.0 222.5,122.0 224.8,122.0 227.0,122.0 229.2,122.0 231.5,122.0 233.7,122.0 236.0,122.0 238.2,122.0 240.5,122.0 242.7,122.0 244.9,122.0 247.2,122.0 249.4,122.0 251.7,122.0 253.9,122.0 256.2,122.0 258.4,122.0 260.7,122.0 262.9,122.0 265.1,122.0 267.4,122.0 269.6,122.0 271.9,122.0 274.1,122.0 276.4,122.0 278.6,122.0 280.8,122.0 283.1,122.0 285.3,122.0 287.6,122.0 289.8,122.0 292.1,122.0 294.3,122.0 296.6,122.0 298.8,122.0 301.0,122.0 303.3,122.0 305.5,122.0 307.8,122.0 310.0,122.0 312.3,122.0 314.5,122.0 316.7,102.8 319.0,102.8 321.2,102.8 323.5,102.8 325.7,102.8 328.0,102.8 330.2,102.8 332.4,102.8 334.7,102.8 336.9,102.6 339.2,101.7 341.4,99.1 343.7,91.4 345.9,84.3 348.2,84.1 350.4,79.6 352.6,74.1 354.9,70.1 357.1,65.2 359.4,63.0 361.6,60.2 363.9,56.9 366.1,55.4 368.3,51.3 370.6,47.0 372.8,44.6 375.1,41.9 377.3,37.2 379.6,30.8 381.8,25.2 384.1,23.2 386.3,22.3 388.5,22.3 390.8,22.3 393.0,22.3 395.3,21.0 397.5,20.8 399.8,20.8 402.0,20.8 404.2,20.8 406.5,20.9 408.7,20.5 411.0,17.1 413.2,14.5 415.5,12.9 417.7,12.7 419.9,11.0 422.2,10.0 424.4,20.3 426.7,17.3 428.9,16.5 431.2,16.5 433.4,16.5 435.7,17.0 437.9,17.5 440.1,18.6 442.4,26.3 444.6,28.9 446.9,30.7 449.1,30.7 451.4,30.7 453.6,30.9 455.8,31.5 458.1,32.8 460.3,29.4 462.6,28.7 464.8,29.5 467.1,30.5 469.3,30.7 471.6,32.3 473.8,32.4 476.0,32.9 478.3,33.2 480.5,33.7 482.8,35.0 485.0,35.1 487.3,36.1 489.5,36.5 491.7,36.4 494.0,37.2 496.2,38.0 498.5,38.3 500.7,38.7 503.0,40.7 505.2,40.5 507.4,42.1 509.7,42.3 511.9,42.3 514.2,42.9 516.4,43.6 518.7,43.5 520.9,43.1 523.2,43.7 525.4,45.9 527.6,46.8 529.9,47.3 532.1,48.4 534.4,48.9 536.6,50.0 538.9,51.0 541.1,51.9 543.3,53.3 545.6,53.1 547.8,53.7 550.1,54.4 552.3,54.7 554.6,55.6 556.8,54.5 559.1,54.5 561.3,55.2 563.5,56.4 565.8,56.8 568.0,57.8 570.3,58.7 572.5,59.1 574.8,60.9 577.0,61.4 579.2,61.8 581.5,61.8 583.7,62.2 586.0,62.5 588.2,61.7 590.5,61.8 592.7,62.3 594.9,64.1 597.2,65.9 599.4,66.2 601.7,67.0 603.9,68.3 606.2,69.3 608.4,70.1 610.7,70.9 612.9,71.6 615.1,72.3 617.4,72.3 619.6,72.3 621.9,72.3 624.1,72.2 626.4,72.2 628.6,72.2 630.8,72.2 633.1,72.2 635.3,72.2 637.6,72.2 639.8,72.2 642.1,72.6 644.3,72.8 646.6,74.2 648.8,74.0 651.0,73.8 653.3,73.1 655.5,72.8 657.8,71.9 660.0,72.9 662.3,72.9 664.5,73.5 666.7,75.5 669.0,72.5 671.2,70.3 673.5,68.7 675.7,67.5 678.0,66.7 680.2,67.2 682.4,67.8 684.7,68.8 686.9,74.2 689.2,74.7 691.4,74.9 693.7,73.8 695.9,72.2 698.2,72.4 700.4,72.6 702.6,72.5 704.9,72.6 707.1,72.9 709.4,73.0 711.6,73.5 713.9,72.7 716.1,70.6 718.3,69.9 720.6,68.3 722.8,68.0 725.1,66.2 727.3,64.4 729.6,63.2 731.8,84.9 734.1,61.1 736.3,58.3 738.5,60.5 740.8,58.1 743.0,53.0 745.3,50.6 747.5,49.1 749.8,52.4 752.0,49.6"><title>Operator</title></polyline></svg><div class="legend"><span><i class="" style="--c:#2a78d6"></i>Allocator</span><span><i class="dashed" style="--c:#e0742a"></i>Operator (recorded only in part)</span></div><div class="table-wrap"><table><thead><tr><th>Role</th><th class="num">ETH now</th>
+<th class="num hide-sm">Validators now</th><th class="num">Peak ETH</th><th class="num hide-sm">Peak</th>
+<th class="num hide-sm">First seen</th><th class="num hide-sm">Last seen</th></tr></thead><tbody><tr><td>Allocator</td><td class="num">132</td>
+<td class="num hide-sm">1</td><td class="num">384</td>
+<td class="num hide-sm">2024-01-02</td><td class="num hide-sm">2022-08-30</td>
+<td class="num hide-sm">now</td></tr><tr><td>Operator</td><td class="num">280,890</td>
+<td class="num hide-sm">959</td><td class="num">346,880</td>
+<td class="num hide-sm">2024-01-30</td><td class="num hide-sm">2021-02-23</td>
+<td class="num hide-sm">now</td></tr></tbody></table></div>
+<h2>Events</h2><p class="muted">Numbered as marked on the charts.</p><ol class="events"><li><span class="n">1</span> 14 January 2022: Added to Lido's registry as operator 1/18, named "Stakely" (<a href="https://etherscan.io/tx/0xd7b6f290f6f7447e12ba4a3781ea08ad7cb699924e7bf75cf808c79533f88969">transaction</a>)</li></ol><h2>Clients</h2><p class="muted">Blocks proposed in the last 90 days by the validators it
+allocates or operates now, and the execution and consensus clients their graffiti names (clients add a short code by
+default; operators can turn it off, so these are shares of the blocks that carry one).</p>
+<div class="table-wrap"><table><thead><tr><th>Role</th><th class="num">Blocks</th><th class="num">With codes</th>
+<th>Execution clients</th><th>Consensus clients</th></tr></thead><tbody><tr><td>Allocator</td><td class="num">4</td>
+<td class="num">0%</td><td>–</td><td>–</td></tr><tr><td>Operator</td><td class="num">2,160</td>
+<td class="num">29%</td><td>Besu 71%, Reth 19%, Nethermind 11%</td><td>Teku 68%, Prysm 29%, Grandine 2%</td></tr></tbody></table></div>
+<h2>Treemap boxes</h2><div class="table-wrap"><table><thead><tr><th>Box</th>
+<th class="num">ETH now</th><th class="num hide-sm">Peak ETH</th></tr></thead><tbody><tr><td>Stakely › Stakely-run validators (by graffiti) › Graffiti names Stakely</td><td class="num">132</td><td class="num hide-sm">384</td></tr></tbody></table></div>
+<h2>Protocol operators it runs</h2><ul><li>Stakely <span class="mono muted">lido/1/18</span></li><li>Stakely - PTO <span class="mono muted">lido/4/12</span></li><li>Stakely <span class="mono muted">lido/group/4.10</span></li></ul>
+<h2>Decisions naming it</h2><ul><li><a href="../decisions/0306-stakely-lido-operators.html">0306</a> Lido&#x27;s operator group 4.10 (&quot;Stakely&quot;) and the operators it lists are run by Stakely.</li></ul>
+</main>
+</body>
+</html>

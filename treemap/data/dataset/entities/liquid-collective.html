@@ -1,0 +1,98 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Liquid Collective: roles in the validator set</title>
+<style>
+:root { color-scheme: light; --surface-0: #f4f3f0; --surface-1: #fcfcfb; --border: #d9d8d3; --text-primary: #0b0b0b;
+        --text-secondary: #52514e; --text-muted: #77766f; --accent: #2a78d6; --chip: #ebe9e4; }
+@media (prefers-color-scheme: dark) {
+  :root:where(:not([data-theme="light"])) { color-scheme: dark; --surface-0: #121211; --surface-1: #1a1a19;
+    --border: #3a3a37; --text-primary: #f0efec; --text-secondary: #c3c2b7; --text-muted: #96958c; --accent: #3987e5;
+    --chip: #2a2a28; }
+}
+:root[data-theme="dark"] { color-scheme: dark; --surface-0: #121211; --surface-1: #1a1a19; --border: #3a3a37;
+  --text-primary: #f0efec; --text-secondary: #c3c2b7; --text-muted: #96958c; --accent: #3987e5; --chip: #2a2a28; }
+* { box-sizing: border-box; }
+body { margin: 0; background: var(--surface-0); color: var(--text-primary);
+       font: 15px/1.55 system-ui, -apple-system, "Segoe UI", sans-serif; }
+main { max-width: 860px; margin: 0 auto; padding: 32px 16px 64px; }
+a { color: var(--accent); }
+h1 { font-size: 22px; line-height: 1.3; font-weight: 600; margin: 4px 0 12px; }
+h2 { font-size: 15px; font-weight: 600; margin: 28px 0 8px; color: var(--text-secondary);
+     text-transform: uppercase; letter-spacing: 0.04em; }
+p { margin: 0 0 12px; }
+.crumbs { font-size: 13px; color: var(--text-muted); }
+.lede { font-size: 17px; }
+.muted { color: var(--text-muted); }
+.chip { display: inline-block; padding: 1px 8px; border-radius: 10px; background: var(--chip); font-size: 12px;
+        color: var(--text-secondary); margin-right: 4px; white-space: nowrap; }
+.card { background: var(--surface-1); border: 1px solid var(--border); border-radius: 6px; padding: 14px 16px;
+        margin: 0 0 12px; }
+.stats { display: flex; flex-wrap: wrap; gap: 12px; margin: 16px 0; }
+.stat { background: var(--surface-1); border: 1px solid var(--border); border-radius: 6px; padding: 10px 14px;
+        min-width: 140px; }
+.stat b { display: block; font-size: 20px; font-variant-numeric: tabular-nums; }
+.stat span { font-size: 12px; color: var(--text-muted); }
+ul.grounds { list-style: none; padding: 0; margin: 0; }
+ul.grounds li { padding: 6px 0; border-bottom: 1px solid var(--border); }
+ul.grounds li:last-child { border-bottom: 0; }
+table { width: 100%; border-collapse: collapse; background: var(--surface-1); font-size: 14px; }
+th, td { text-align: left; padding: 7px 8px; border-bottom: 1px solid var(--border); vertical-align: top; }
+th { font-weight: 600; color: var(--text-secondary); cursor: pointer; white-space: nowrap; user-select: none; }
+td.num, th.num { text-align: right; font-variant-numeric: tabular-nums; white-space: nowrap; }
+code, .mono { font: 12.5px ui-monospace, SFMono-Regular, Menlo, monospace; word-break: break-all; }
+details summary { cursor: pointer; color: var(--accent); }
+.excerpt { border-left: 3px solid var(--border); padding: 2px 0 2px 10px; color: var(--text-secondary);
+           font-size: 14px; white-space: pre-wrap; }
+input[type=search] { width: 100%; padding: 8px 10px; font: inherit; border: 1px solid var(--border);
+                     border-radius: 6px; background: var(--surface-1); color: var(--text-primary); margin: 8px 0 12px; }
+.table-wrap { overflow-x: auto; }
+@media (max-width: 640px) { .hide-sm { display: none; } }
+</style>
+<script data-goatcounter="https://pintail.goatcounter.com/count" async src="https://gc.zgo.at/count.js"></script>
+</head>
+<body>
+<main>
+<style>
+.chart { width: 100%; height: auto; background: var(--surface-1); border: 1px solid var(--border); border-radius: 6px; }
+.chart text { fill: var(--text-muted); font: 11px system-ui, sans-serif; }
+.chart .grid { stroke: var(--border); stroke-width: 1; }
+.legend { display: flex; flex-wrap: wrap; gap: 14px; font-size: 13px; color: var(--text-secondary); margin: 6px 0 14px; }
+.legend i { display: inline-block; width: 16px; height: 3px; vertical-align: middle; margin-right: 5px; background: var(--c); }
+.legend i.dashed { background: repeating-linear-gradient(90deg, var(--c) 0 6px, transparent 6px 9px); }
+.chart .event { stroke: var(--text-muted); stroke-width: 1; stroke-dasharray: 3 3; }
+.chart .event-n { fill: var(--text-secondary); font-weight: 600; }
+ol.events { padding-left: 0; list-style: none; }
+ol.events li { margin: 4px 0; }
+ol.events .n { display: inline-block; min-width: 1.6em; font-weight: 600; color: var(--text-secondary); }
+</style><p class="crumbs"><a href="../">Dataset</a> › <a href="./">Entities</a></p>
+<h1>Liquid Collective</h1>
+<p><span class="chip">liquid staking protocol</span> <span class="mono muted">liquid-collective</span></p>
+<p><strong>How much ETH Liquid Collective has had in each role recorded in this dataset, week by week, from
+the start of the beacon chain (1 December 2020) to 20 November 2026.</strong> Stake is the effective balance
+of active validators.</p>
+<ul><li><strong>Allocator</strong>: chose where the stake went. Counts the stake in the treemap boxes under Liquid Collective. <span class="muted">Recorded for 89% of active stake.</span></li><li><strong>Operator</strong>: ran the validators. <span class="muted">Recorded for 80% of active stake.</span></li><li><strong>Custodian</strong>: held the stake on behalf of a client. <span class="muted">Recorded for 5.3% of active stake.</span></li><li><strong>Principal</strong>: owned the staked ETH. <span class="muted">Recorded for 6.2% of active stake.</span></li></ul>
+<p class="muted">Allocators are recorded for most stake. Operators, custodians and principals are recorded only where
+specific evidence names them, so their figures here (dashed on the charts) are lower bounds: no figure does not mean
+no role.</p>
+<h2>Its own roles</h2><svg class="chart" viewBox="0 0 760 240" role="img" aria-label="ETH by role over time"><line class="grid" x1="52" x2="752" y1="218.0" y2="218.0"/><text x="46" y="222.0" text-anchor="end">0</text><line class="grid" x1="52" x2="752" y1="114.0" y2="114.0"/><text x="46" y="118.0" text-anchor="end">183k</text><line class="grid" x1="52" x2="752" y1="10.0" y2="10.0"/><text x="46" y="14.0" text-anchor="end">366k</text><text x="52.0" y="234" text-anchor="middle">2020</text><text x="179.9" y="234" text-anchor="middle">2022</text><text x="296.6" y="234" text-anchor="middle">2023</text><text x="413.2" y="234" text-anchor="middle">2024</text><text x="532.1" y="234" text-anchor="middle">2025</text><text x="648.8" y="234" text-anchor="middle">2026</text><polyline fill="none" stroke="#2a78d6" stroke-width="2" points="52.0,218.0 54.2,218.0 56.5,218.0 58.7,218.0 61.0,218.0 63.2,218.0 65.5,218.0 67.7,218.0 69.9,218.0 72.2,218.0 74.4,218.0 76.7,218.0 78.9,218.0 81.2,218.0 83.4,218.0 85.7,218.0 87.9,218.0 90.1,218.0 92.4,218.0 94.6,218.0 96.9,218.0 99.1,218.0 101.4,218.0 103.6,218.0 105.8,218.0 108.1,218.0 110.3,218.0 112.6,218.0 114.8,218.0 117.1,218.0 119.3,218.0 121.6,218.0 123.8,218.0 126.0,218.0 128.3,218.0 130.5,218.0 132.8,218.0 135.0,218.0 137.3,218.0 139.5,218.0 141.7,218.0 144.0,218.0 146.2,218.0 148.5,218.0 150.7,218.0 153.0,218.0 155.2,218.0 157.4,218.0 159.7,218.0 161.9,218.0 164.2,218.0 166.4,218.0 168.7,218.0 170.9,218.0 173.2,218.0 175.4,218.0 177.6,218.0 179.9,218.0 182.1,218.0 184.4,218.0 186.6,218.0 188.9,218.0 191.1,218.0 193.3,218.0 195.6,218.0 197.8,218.0 200.1,218.0 202.3,218.0 204.6,218.0 206.8,218.0 209.1,218.0 211.3,218.0 213.5,218.0 215.8,218.0 218.0,218.0 220.3,218.0 222.5,218.0 224.8,218.0 227.0,218.0 229.2,218.0 231.5,218.0 233.7,218.0 236.0,218.0 238.2,218.0 240.5,218.0 242.7,218.0 244.9,218.0 247.2,218.0 249.4,218.0 251.7,218.0 253.9,218.0 256.2,218.0 258.4,218.0 260.7,218.0 262.9,218.0 265.1,218.0 267.4,218.0 269.6,218.0 271.9,218.0 274.1,218.0 276.4,218.0 278.6,218.0 280.8,218.0 283.1,218.0 285.3,218.0 287.6,218.0 289.8,218.0 292.1,218.0 294.3,218.0 296.6,218.0 298.8,218.0 301.0,218.0 303.3,218.0 305.5,218.0 307.8,218.0 310.0,218.0 312.3,218.0 314.5,218.0 316.7,218.0 319.0,217.1 321.2,216.7 323.5,216.7 325.7,216.7 328.0,216.7 330.2,216.7 332.4,216.7 334.7,216.7 336.9,216.7 339.2,216.7 341.4,216.7 343.7,216.7 345.9,216.7 348.2,216.7 350.4,216.7 352.6,216.7 354.9,216.7 357.1,216.7 359.4,216.7 361.6,216.8 363.9,216.8 366.1,216.9 368.3,216.8 370.6,216.8 372.8,216.8 375.1,216.5 377.3,213.7 379.6,211.8 381.8,207.2 384.1,204.1 386.3,203.9 388.5,203.9 390.8,198.0 393.0,197.9 395.3,197.8 397.5,197.9 399.8,197.8 402.0,197.8 404.2,197.8 406.5,197.8 408.7,197.8 411.0,197.8 413.2,197.8 415.5,197.8 417.7,197.8 419.9,197.8 422.2,206.3 424.4,205.5 426.7,194.3 428.9,180.8 431.2,180.7 433.4,180.4 435.7,180.4 437.9,180.3 440.1,180.1 442.4,178.5 444.6,178.5 446.9,178.5 449.1,178.5 451.4,175.6 453.6,168.8 455.8,168.8 458.1,168.8 460.3,168.3 462.6,168.3 464.8,168.2 467.1,168.2 469.3,168.2 471.6,168.1 473.8,168.0 476.0,167.5 478.3,167.5 480.5,167.5 482.8,167.5 485.0,167.4 487.3,167.4 489.5,167.4 491.7,167.3 494.0,167.2 496.2,167.2 498.5,166.9 500.7,166.9 503.0,164.5 505.2,160.0 507.4,155.3 509.7,155.2 511.9,155.6 514.2,155.6 516.4,155.6 518.7,155.6 520.9,157.1 523.2,158.3 525.4,158.3 527.6,158.3 529.9,158.2 532.1,156.3 534.4,156.3 536.6,155.3 538.9,155.1 541.1,155.0 543.3,157.5 545.6,156.5 547.8,156.2 550.1,155.8 552.3,157.3 554.6,157.0 556.8,157.6 559.1,157.6 561.3,154.9 563.5,153.1 565.8,150.3 568.0,148.2 570.3,147.9 572.5,150.5 574.8,150.4 577.0,150.1 579.2,136.5 581.5,130.0 583.7,111.1 586.0,61.0 588.2,58.8 590.5,53.0 592.7,53.9 594.9,44.5 597.2,13.2 599.4,10.0 601.7,10.8 603.9,10.8 606.2,11.8 608.4,11.8 610.7,12.1 612.9,12.0 615.1,11.8 617.4,11.6 619.6,11.5 621.9,11.3 624.1,11.3 626.4,12.0 628.6,22.8 630.8,22.7 633.1,22.5 635.3,24.9 637.6,25.0 639.8,24.7 642.1,31.1 644.3,53.7 646.6,57.8 648.8,57.8 651.0,57.8 653.3,57.7 655.5,57.7 657.8,57.8 660.0,57.6 662.3,57.6 664.5,67.1 666.7,67.1 669.0,67.0 671.2,67.0 673.5,66.9 675.7,66.9 678.0,66.9 680.2,66.9 682.4,66.8 684.7,66.6 686.9,66.4 689.2,60.5 691.4,60.4 693.7,60.3 695.9,35.9 698.2,21.4 700.4,21.4 702.6,21.4 704.9,38.1 707.1,38.2 709.4,38.1 711.6,37.7 713.9,37.3 716.1,37.1 718.3,37.0 720.6,37.0 722.8,36.8 725.1,36.7 727.3,36.6 729.6,36.5 731.8,63.0 734.1,62.9 736.3,62.8 738.5,62.6 740.8,62.5 743.0,62.5 745.3,62.4 747.5,62.3 749.8,62.3 752.0,62.2"><title>Allocator</title></polyline></svg><div class="legend"><span><i class="" style="--c:#2a78d6"></i>Allocator</span></div><div class="table-wrap"><table><thead><tr><th>Role</th><th class="num">ETH now</th>
+<th class="num hide-sm">Validators now</th><th class="num">Peak ETH</th><th class="num hide-sm">Peak</th>
+<th class="num hide-sm">First seen</th><th class="num hide-sm">Last seen</th></tr></thead><tbody><tr><td>Allocator</td><td class="num">274,080</td>
+<td class="num hide-sm">8,565</td><td class="num">365,888</td>
+<td class="num hide-sm">2025-08-05</td><td class="num hide-sm">2022-11-22</td>
+<td class="num hide-sm">now</td></tr></tbody></table></div>
+<h2>Clients</h2><p class="muted">Blocks proposed in the last 90 days by the validators it
+allocates or operates now, and the execution and consensus clients their graffiti names (clients add a short code by
+default; operators can turn it off, so these are shares of the blocks that carry one).</p>
+<div class="table-wrap"><table><thead><tr><th>Role</th><th class="num">Blocks</th><th class="num">With codes</th>
+<th>Execution clients</th><th>Consensus clients</th></tr></thead><tbody><tr><td>Allocator</td><td class="num">4,027</td>
+<td class="num">92%</td><td>Nethermind 45%, Geth 33%, Besu 22%</td><td>Teku 49%, Prysm 41%, Lighthouse 5%, Lodestar 5%</td></tr></tbody></table></div>
+<h2>Treemap boxes</h2><div class="table-wrap"><table><thead><tr><th>Box</th>
+<th class="num">ETH now</th><th class="num hide-sm">Peak ETH</th></tr></thead><tbody><tr><td>Liquid Collective › Liquid Collective (LsETH) › Withdraws to 0x0afd…5154</td><td class="num">274,080</td><td class="num hide-sm">365,888</td></tr></tbody></table></div>
+<h2>Identified addresses</h2><div class="table-wrap"><table><thead><tr><th>Address</th><th>Role</th>
+<th class="hide-sm">Basis</th></tr></thead><tbody><tr><td><a class="mono" href="https://etherscan.io/address/0x8c1bed5b9a0928467c9b1341da1d7bd5e10b6549">0x8c1bed5b9a0928467c9b1341da1d7bd5e10b6549</a></td><td>anchor</td><td class="hide-sm">asserted</td></tr></tbody></table></div>
+</main>
+</body>
+</html>

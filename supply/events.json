@@ -1,0 +1,92 @@
+[
+ {
+  "date": "2020-12-01",
+  "label": "Beacon chain genesis",
+  "desc": "The beacon chain launched. It ran alongside the original proof-of-work chain and did not secure execution or allow withdrawals. It gave early stakers rewards in the expectation that Ethereum would in future complete its migration to proof of stake."
+ },
+ {
+  "date": "2021-04-23",
+  "label": "Paradigm on Staking Derivatives",
+  "desc": "In their article, Hasu and Georgios Konstantopoulos argued that, because of the existance of staking derivatives, the staking participation rate could reach 80-100%."
+ },
+ {
+  "date": "2022-02-28",
+  "label": "stETH allowed as collateral on AAVE",
+  "desc": "The availability of Lido staked Ether (stETH) as lending collateral on AAVE allowed for a \"looping\" strategy, using stETH to borrow Ether to be staked for more stETH (etc)."
+ },
+ {
+  "date": "2022-05-20",
+  "label": "Danny Ryan: \"The Risks of LSD\"",
+  "desc": "Danny Ryan published an article highlighting concerns that liquid staking services, such as Lido (which held almost 33% of all staked ETH at the time), would pose a threat to Ethereum's consensus model if they grew too large."
+ },
+ {
+  "date": "2022-09-15",
+  "label": "The Merge",
+  "desc": "Ethereum's proof-of-work era came to an end as the execution layer and proof-of-stake consensus layer were merged."
+ },
+ {
+  "date": "2023-02-09",
+  "label": "SEC vs Kraken",
+  "desc": "The SEC settled with Kraken, after complaining Kraken's staking service entailed sales of unregistered securities. Kraken was to end the service and pay $30m. Kraken's stake constituted most of the ETH withdrawn immediately after the Shapella upgrade."
+ },
+ {
+  "date": "2023-04-12",
+  "label": "Shapella upgrade",
+  "desc": "Ethereum's Shapella upgrade allowed stakers to withdraw their funds from the Consensus Layer back to the Execution Layer. The possibility of withdrawal significantly derisked Ethereum staking, leading to large inflows of new stake."
+ },
+ {
+  "date": "2023-06-14",
+  "label": "Eigenlayer points",
+  "desc": "Eigenlayer announced a points system for restakers which was widely (and correctly) assumed to be a precursor to an airdrop, driving increased staking demand by stakers hoping to be rewarded with future tokens."
+ },
+ {
+  "date": "2023-11-21",
+  "label": "Blast bridge",
+  "desc": "The Blast L2 promised \"native yield\" to its users by staking all ETH deposits, as well as \"Blast points\" for depositors."
+ },
+ {
+  "date": "2024-02-22",
+  "label": "Issuance debate",
+  "desc": "Ansgar Dietrichs and Caspar Schwarz-Schilling published articles arguing that Ethereum's issuance policy would lead to an excessive staking ratio, highlighting negative consequences and arguing for a swift issuance reduction."
+ },
+ {
+  "date": "2024-03-13",
+  "label": "Dencun upgrade",
+  "desc": "The Dencun upgrade introduced blobs, promoting a move to L2 blockchains and a reduction in contention for L1 blockspace (resulting in much lower fee burn). Meanwhile, the reduction in churn limit reduced the rate at which the active stake could grow."
+ },
+ {
+  "date": "2024-06-26",
+  "label": "BLAST airdrop",
+  "desc": "Depositors into Blast received the an airdrop which became tradeable immediately, removing the enhanced incentive for staking participation."
+ },
+ {
+  "date": "2024-10-01",
+  "label": "EIGEN unlock",
+  "desc": "The EIGEN token unlock brought an end to airdrop farming, which had stimulated increased staking participation. Some stakers began withdrawing and the staking ratio peaked just afterwards, stagnating until the SEC's revised stance 8 months later."
+ },
+ {
+  "date": "2025-05-29",
+  "label": "SEC staking guidance",
+  "desc": "Reversing its position under the previous administration, the SEC issued guidance that, under certain criteria, staking services did not constitute securities offerings. New stake flooded in. The entry queue has not cleared since this announcement."
+ },
+ {
+  "date": "2025-07-18",
+  "label": "AAVE rate shock",
+  "desc": "A large AAVE withdrawal triggered an ETH lending rate spike, which in turn caused an unwind of looped staking positions."
+ },
+ {
+  "date": "2025-09-10",
+  "label": "Kiln Security Exit",
+  "desc": "A security incident led to the Kiln staking provider withdrawing their entire stake."
+ },
+ {
+  "date": "2025-12-27",
+  "label": "BitMine Begins Staking",
+  "desc": "Major ETH treasury BitMine started staking its Ether leading to further large consensus layer inflows and staking ratios above 30% for the first time."
+ },
+ {
+  "date": "2026-09-30",
+  "label": "MetaMask security incident",
+  "desc": "After a security incident in part of its infrastructure, MetaMask exited its staking validators (about 17,000, holding roughly 550k ETH), producing the largest exit queue of 2026."
+ }
+]

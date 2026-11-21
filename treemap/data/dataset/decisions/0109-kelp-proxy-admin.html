@@ -1,0 +1,74 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>0109-kelp-proxy-admin: Kelp DAO&#x27;s own repository lists this contract as the administrator of its contracts; validators withdrawing to EigenLayer pods </title>
+<style>
+:root { color-scheme: light; --surface-0: #f4f3f0; --surface-1: #fcfcfb; --border: #d9d8d3; --text-primary: #0b0b0b;
+        --text-secondary: #52514e; --text-muted: #77766f; --accent: #2a78d6; --chip: #ebe9e4; }
+@media (prefers-color-scheme: dark) {
+  :root:where(:not([data-theme="light"])) { color-scheme: dark; --surface-0: #121211; --surface-1: #1a1a19;
+    --border: #3a3a37; --text-primary: #f0efec; --text-secondary: #c3c2b7; --text-muted: #96958c; --accent: #3987e5;
+    --chip: #2a2a28; }
+}
+:root[data-theme="dark"] { color-scheme: dark; --surface-0: #121211; --surface-1: #1a1a19; --border: #3a3a37;
+  --text-primary: #f0efec; --text-secondary: #c3c2b7; --text-muted: #96958c; --accent: #3987e5; --chip: #2a2a28; }
+* { box-sizing: border-box; }
+body { margin: 0; background: var(--surface-0); color: var(--text-primary);
+       font: 15px/1.55 system-ui, -apple-system, "Segoe UI", sans-serif; }
+main { max-width: 860px; margin: 0 auto; padding: 32px 16px 64px; }
+a { color: var(--accent); }
+h1 { font-size: 22px; line-height: 1.3; font-weight: 600; margin: 4px 0 12px; }
+h2 { font-size: 15px; font-weight: 600; margin: 28px 0 8px; color: var(--text-secondary);
+     text-transform: uppercase; letter-spacing: 0.04em; }
+p { margin: 0 0 12px; }
+.crumbs { font-size: 13px; color: var(--text-muted); }
+.lede { font-size: 17px; }
+.muted { color: var(--text-muted); }
+.chip { display: inline-block; padding: 1px 8px; border-radius: 10px; background: var(--chip); font-size: 12px;
+        color: var(--text-secondary); margin-right: 4px; white-space: nowrap; }
+.card { background: var(--surface-1); border: 1px solid var(--border); border-radius: 6px; padding: 14px 16px;
+        margin: 0 0 12px; }
+.stats { display: flex; flex-wrap: wrap; gap: 12px; margin: 16px 0; }
+.stat { background: var(--surface-1); border: 1px solid var(--border); border-radius: 6px; padding: 10px 14px;
+        min-width: 140px; }
+.stat b { display: block; font-size: 20px; font-variant-numeric: tabular-nums; }
+.stat span { font-size: 12px; color: var(--text-muted); }
+ul.grounds { list-style: none; padding: 0; margin: 0; }
+ul.grounds li { padding: 6px 0; border-bottom: 1px solid var(--border); }
+ul.grounds li:last-child { border-bottom: 0; }
+table { width: 100%; border-collapse: collapse; background: var(--surface-1); font-size: 14px; }
+th, td { text-align: left; padding: 7px 8px; border-bottom: 1px solid var(--border); vertical-align: top; }
+th { font-weight: 600; color: var(--text-secondary); cursor: pointer; white-space: nowrap; user-select: none; }
+td.num, th.num { text-align: right; font-variant-numeric: tabular-nums; white-space: nowrap; }
+code, .mono { font: 12.5px ui-monospace, SFMono-Regular, Menlo, monospace; word-break: break-all; }
+details summary { cursor: pointer; color: var(--accent); }
+.excerpt { border-left: 3px solid var(--border); padding: 2px 0 2px 10px; color: var(--text-secondary);
+           font-size: 14px; white-space: pre-wrap; }
+input[type=search] { width: 100%; padding: 8px 10px; font: inherit; border: 1px solid var(--border);
+                     border-radius: 6px; background: var(--surface-1); color: var(--text-primary); margin: 8px 0 12px; }
+.table-wrap { overflow-x: auto; }
+@media (max-width: 640px) { .hide-sm { display: none; } }
+</style>
+<script data-goatcounter="https://pintail.goatcounter.com/count" async src="https://gc.zgo.at/count.js"></script>
+</head>
+<body>
+<main>
+<p class="crumbs"><a href="../">Dataset</a> › <a href="./">Decisions</a> › 0109-kelp-proxy-admin</p>
+<h1>Kelp DAO&#x27;s own repository lists this contract as the administrator of its contracts; validators withdrawing to EigenLayer pods its NodeDelegators own are Kelp&#x27;s (rsETH).</h1>
+<p><span class="chip">Anchor</span> <span class="muted">· decided 2026-10-18</span></p>
+<p class="lede">This contract administers Kelp DAO&#x27;s contracts; validators withdrawing to EigenLayer pods those contracts own are allocated by Kelp (rsETH).</p>
+<div class="stats"><div class="stat"><b>4,479</b><span>validators resting on it now</span></div><div class="stat"><b>143,328</b><span>ETH now</span></div><div class="stat"><b>164,128</b><span>ETH at its peak</span></div></div>
+<h2>Grounds</h2><div class="card"><ul class="grounds"><li><span class="chip">First party</span>Kelp DAO&#x27;s repository lists this contract as the administrator of its contracts</li><li><span class="chip">First party</span>It administers five contracts that own EigenLayer pods, four listed by Kelp as its NodeDelegators</li><li><span class="chip">On chain</span>Those validators&#x27; blocks pay Kelp&#x27;s fee receiver or deposit pool</li></ul></div>
+<h2>Explanation</h2><p>The contract 0xb61e…dc78 administers Kelp DAO&#x27;s contracts. Validators withdrawing to an EigenLayer pod owned by one of the contracts it administers are attributed to Kelp&#x27;s restaking token rsETH, with Kelp as allocator. 10,096 deposits, about 323k ETH, went to those pods between February 2024 and December 2025; about 4,500 validators were active in October 2026 with some 0.14M ETH.</p>
+<p><strong>Identification.</strong> <a href="https://github.com/Kelp-DAO/LRT-rsETH/blob/3dded885f6f797f5959aff449c3a30c5cbb6ce23/README.md">Kelp DAO&#x27;s repository</a> lists this contract as the administrator of its contracts, owned by Kelp&#x27;s timelock, together with its proxy factory, deposit pool, fee receiver and NodeDelegator contracts. On chain, five contracts administered by it own EigenLayer pods, all created by Kelp&#x27;s proxy factory; four of them are NodeDelegators listed in the repository, and the fifth, built on another implementation, holds no stake now. Almost all deposits to the pods were sent through the delegators themselves, and the validators&#x27; blocks pay Kelp&#x27;s fee receiver or deposit pool.</p>
+<p><strong>Why Kelp is the allocator.</strong> Kelp chooses the node operators for each delegator; its repository&#x27;s notes name them, several running SSV clusters. No operator is recorded here. Before this decision these validators had been taken to be their operators&#x27; own, on the strength of an occasional block signed with an operator&#x27;s name; the withdrawal side now identifies Kelp directly.</p>
+<p>The decision would change with a Kelp statement contradicting it, or a pod owner under this administrator that is not Kelp&#x27;s.</p>
+<h2>What would change it</h2><p>A Kelp statement contradicting it, or a pod owner under this ProxyAdmin that is not Kelp&#x27;s.</p>
+<h2>Evidence</h2><p class="muted">Transactions and contract calls anyone can repeat on their own node.</p><div class="card"><ul class="grounds"><li><a class="mono" href="https://etherscan.io/tx/0xc3f6c1d92bd8cc143318665ce362d82f930cf936068af7e7168a9ae2017776eb">0xc3f6c1d9…017776eb</a> — Creation of NodeDelegator 2, 0x79f1</li><li><a class="mono" href="https://etherscan.io/tx/0x0f77d9b6fd1545bd1a3e8b82e10cf105ae7b130dc60b77f858505ae9e4c71449">0x0f77d9b6…e4c71449</a> — Creation of its EigenPod 0xda3a</li><li><a class="mono" href="https://etherscan.io/tx/0x353c61957b05e76d8dd9ac17f38d2c35f7ae3ee685bb23d97702f4c5524f6e44">0x353c6195…524f6e44</a> — A deposit through it</li></ul></div>
+<h2>Sources</h2><div class="card"><a href="https://github.com/Kelp-DAO/LRT-rsETH/blob/3dded885f6f797f5959aff449c3a30c5cbb6ce23/README.md">README.md (commit 3dded88)</a><div class="muted" style="font-size:13px">Kelp DAO, Kelp-DAO/LRT-rsETH on GitHub · the entity&#x27;s own · retrieved 2026-10-18</div><p class="excerpt">| ProxyAdmin (owner: TimelockController) | 0xb61e0E39b6d4030C36A176f576aaBE44BF59Dc78     |</p><div class="muted mono">sha256 a64f44a6b7f7a019abb7ce32c3c4b9d24fd478b73243c00d42e1620141e729a8</div></div>
+<h2>Treemap boxes resting on it</h2><div class="table-wrap"><table><thead><tr><th>Box</th><th class="num">ETH now</th><th class="num">Peak ETH</th></tr></thead><tbody><tr><td>Kelp DAO › Kelp DAO restaking (rsETH) › Withdraws to 0xda3a…f50d</td><td class="num">95,200</td><td class="num">100,000</td></tr><tr><td>Kelp DAO › Kelp DAO restaking (rsETH) › Withdraws to 0xa91d…13ac</td><td class="num">11,008</td><td class="num">79,520</td></tr><tr><td>Kelp DAO › Kelp DAO restaking (rsETH) › Withdraws to 0xb25f…0bbe</td><td class="num">17,920</td><td class="num">77,920</td></tr><tr><td>Kelp DAO › Kelp DAO restaking (rsETH) › Withdraws to 0xf02d…3c58</td><td class="num">19,200</td><td class="num">19,200</td></tr><tr><td>Kelp DAO › Kelp DAO restaking (rsETH) › Withdraws to 0x4e48…db80</td><td class="num">0</td><td class="num">32</td></tr></tbody></table></div>
+</main>
+</body>
+</html>
