@@ -1,0 +1,96 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Sigma Prime: roles in the validator set</title>
+<style>
+:root { color-scheme: light; --surface-0: #f4f3f0; --surface-1: #fcfcfb; --border: #d9d8d3; --text-primary: #0b0b0b;
+        --text-secondary: #52514e; --text-muted: #77766f; --accent: #2a78d6; --chip: #ebe9e4; }
+@media (prefers-color-scheme: dark) {
+  :root:where(:not([data-theme="light"])) { color-scheme: dark; --surface-0: #121211; --surface-1: #1a1a19;
+    --border: #3a3a37; --text-primary: #f0efec; --text-secondary: #c3c2b7; --text-muted: #96958c; --accent: #3987e5;
+    --chip: #2a2a28; }
+}
+:root[data-theme="dark"] { color-scheme: dark; --surface-0: #121211; --surface-1: #1a1a19; --border: #3a3a37;
+  --text-primary: #f0efec; --text-secondary: #c3c2b7; --text-muted: #96958c; --accent: #3987e5; --chip: #2a2a28; }
+* { box-sizing: border-box; }
+body { margin: 0; background: var(--surface-0); color: var(--text-primary);
+       font: 15px/1.55 system-ui, -apple-system, "Segoe UI", sans-serif; }
+main { max-width: 860px; margin: 0 auto; padding: 32px 16px 64px; }
+a { color: var(--accent); }
+h1 { font-size: 22px; line-height: 1.3; font-weight: 600; margin: 4px 0 12px; }
+h2 { font-size: 15px; font-weight: 600; margin: 28px 0 8px; color: var(--text-secondary);
+     text-transform: uppercase; letter-spacing: 0.04em; }
+p { margin: 0 0 12px; }
+.crumbs { font-size: 13px; color: var(--text-muted); }
+.lede { font-size: 17px; }
+.muted { color: var(--text-muted); }
+.chip { display: inline-block; padding: 1px 8px; border-radius: 10px; background: var(--chip); font-size: 12px;
+        color: var(--text-secondary); margin-right: 4px; white-space: nowrap; }
+.card { background: var(--surface-1); border: 1px solid var(--border); border-radius: 6px; padding: 14px 16px;
+        margin: 0 0 12px; }
+.stats { display: flex; flex-wrap: wrap; gap: 12px; margin: 16px 0; }
+.stat { background: var(--surface-1); border: 1px solid var(--border); border-radius: 6px; padding: 10px 14px;
+        min-width: 140px; }
+.stat b { display: block; font-size: 20px; font-variant-numeric: tabular-nums; }
+.stat span { font-size: 12px; color: var(--text-muted); }
+ul.grounds { list-style: none; padding: 0; margin: 0; }
+ul.grounds li { padding: 6px 0; border-bottom: 1px solid var(--border); }
+ul.grounds li:last-child { border-bottom: 0; }
+table { width: 100%; border-collapse: collapse; background: var(--surface-1); font-size: 14px; }
+th, td { text-align: left; padding: 7px 8px; border-bottom: 1px solid var(--border); vertical-align: top; }
+th { font-weight: 600; color: var(--text-secondary); cursor: pointer; white-space: nowrap; user-select: none; }
+td.num, th.num { text-align: right; font-variant-numeric: tabular-nums; white-space: nowrap; }
+code, .mono { font: 12.5px ui-monospace, SFMono-Regular, Menlo, monospace; word-break: break-all; }
+details summary { cursor: pointer; color: var(--accent); }
+.excerpt { border-left: 3px solid var(--border); padding: 2px 0 2px 10px; color: var(--text-secondary);
+           font-size: 14px; white-space: pre-wrap; }
+input[type=search] { width: 100%; padding: 8px 10px; font: inherit; border: 1px solid var(--border);
+                     border-radius: 6px; background: var(--surface-1); color: var(--text-primary); margin: 8px 0 12px; }
+.table-wrap { overflow-x: auto; }
+@media (max-width: 640px) { .hide-sm { display: none; } }
+</style>
+<script data-goatcounter="https://pintail.goatcounter.com/count" async src="https://gc.zgo.at/count.js"></script>
+</head>
+<body>
+<main>
+<style>
+.chart { width: 100%; height: auto; background: var(--surface-1); border: 1px solid var(--border); border-radius: 6px; }
+.chart text { fill: var(--text-muted); font: 11px system-ui, sans-serif; }
+.chart .grid { stroke: var(--border); stroke-width: 1; }
+.legend { display: flex; flex-wrap: wrap; gap: 14px; font-size: 13px; color: var(--text-secondary); margin: 6px 0 14px; }
+.legend i { display: inline-block; width: 16px; height: 3px; vertical-align: middle; margin-right: 5px; background: var(--c); }
+.legend i.dashed { background: repeating-linear-gradient(90deg, var(--c) 0 6px, transparent 6px 9px); }
+.chart .event { stroke: var(--text-muted); stroke-width: 1; stroke-dasharray: 3 3; }
+.chart .event-n { fill: var(--text-secondary); font-weight: 600; }
+ol.events { padding-left: 0; list-style: none; }
+ol.events li { margin: 4px 0; }
+ol.events .n { display: inline-block; min-width: 1.6em; font-weight: 600; color: var(--text-secondary); }
+</style><p class="crumbs"><a href="../">Dataset</a> › <a href="./">Entities</a></p>
+<h1>Sigma Prime</h1>
+<p><span class="chip">node operator</span> <span class="mono muted">sigma-prime</span></p>
+<p><strong>How much ETH Sigma Prime has had in each role recorded in this dataset, week by week, from
+the start of the beacon chain (1 December 2020) to 27 November 2026.</strong> Stake is the effective balance
+of active validators.</p>
+<ul><li><strong>Allocator</strong>: chose where the stake went. Counts the stake in the treemap boxes under Sigma Prime. <span class="muted">Recorded for 89% of active stake.</span></li><li><strong>Operator</strong>: ran the validators. <span class="muted">Recorded for 80% of active stake.</span></li><li><strong>Custodian</strong>: held the stake on behalf of a client. <span class="muted">Recorded for 5.1% of active stake.</span></li><li><strong>Principal</strong>: owned the staked ETH. <span class="muted">Recorded for 6.0% of active stake.</span></li></ul>
+<p class="muted">Allocators are recorded for most stake. Operators, custodians and principals are recorded only where
+specific evidence names them, so their figures here (dashed on the charts) are lower bounds: no figure does not mean
+no role.</p>
+<h2>Its own roles</h2><svg class="chart" viewBox="0 0 760 240" role="img" aria-label="ETH by role over time"><line class="grid" x1="52" x2="752" y1="218.0" y2="218.0"/><text x="46" y="222.0" text-anchor="end">0</text><line class="grid" x1="52" x2="752" y1="114.0" y2="114.0"/><text x="46" y="118.0" text-anchor="end">160k</text><line class="grid" x1="52" x2="752" y1="10.0" y2="10.0"/><text x="46" y="14.0" text-anchor="end">320k</text><text x="52.0" y="234" text-anchor="middle">2020</text><text x="179.5" y="234" text-anchor="middle">2022</text><text x="295.8" y="234" text-anchor="middle">2023</text><text x="412.1" y="234" text-anchor="middle">2024</text><text x="530.6" y="234" text-anchor="middle">2025</text><text x="646.9" y="234" text-anchor="middle">2026</text><line class="event" x1="235.4" x2="235.4" y1="10" y2="218"/><text class="event-n" x="238.4" y="20">1</text><polyline fill="none" stroke="#e0742a" stroke-width="2" stroke-dasharray="6 3" points="52.0,218.0 54.2,218.0 56.5,218.0 58.7,218.0 60.9,218.0 63.2,218.0 65.4,218.0 67.7,218.0 69.9,218.0 72.1,218.0 74.4,218.0 76.6,218.0 78.8,218.0 81.1,218.0 83.3,218.0 85.5,218.0 87.8,218.0 90.0,218.0 92.3,218.0 94.5,218.0 96.7,218.0 99.0,218.0 101.2,218.0 103.4,218.0 105.7,218.0 107.9,218.0 110.1,218.0 112.4,218.0 114.6,218.0 116.9,218.0 119.1,218.0 121.3,218.0 123.6,218.0 125.8,218.0 128.0,218.0 130.3,218.0 132.5,218.0 134.7,218.0 137.0,218.0 139.2,218.0 141.5,218.0 143.7,218.0 145.9,218.0 148.2,218.0 150.4,218.0 152.6,218.0 154.9,218.0 157.1,218.0 159.3,218.0 161.6,218.0 163.8,218.0 166.1,218.0 168.3,218.0 170.5,218.0 172.8,218.0 175.0,218.0 177.2,218.0 179.5,218.0 181.7,218.0 183.9,218.0 186.2,218.0 188.4,218.0 190.7,218.0 192.9,218.0 195.1,218.0 197.4,218.0 199.6,218.0 201.8,218.0 204.1,218.0 206.3,218.0 208.5,218.0 210.8,218.0 213.0,218.0 215.3,218.0 217.5,218.0 219.7,218.0 222.0,218.0 224.2,218.0 226.4,218.0 228.7,218.0 230.9,218.0 233.2,218.0 235.4,218.0 237.6,218.0 239.9,218.0 242.1,218.0 244.3,216.3 246.6,216.0 248.8,216.0 251.0,215.9 253.3,215.9 255.5,215.9 257.8,215.9 260.0,215.4 262.2,212.7 264.5,207.2 266.7,204.0 268.9,203.4 271.2,202.1 273.4,198.5 275.6,180.6 277.9,176.5 280.1,171.3 282.4,168.4 284.6,167.0 286.8,166.0 289.1,165.2 291.3,164.4 293.5,164.4 295.8,164.4 298.0,164.4 300.2,164.4 302.5,164.4 304.7,160.5 307.0,159.9 309.2,156.6 311.4,155.6 313.7,147.3 315.9,147.1 318.1,124.0 320.4,119.9 322.6,116.5 324.8,113.6 327.1,111.8 329.3,108.4 331.6,102.1 333.8,97.3 336.0,94.9 338.3,92.3 340.5,89.6 342.7,81.5 345.0,73.8 347.2,73.8 349.4,69.1 351.7,63.2 353.9,59.1 356.2,54.0 358.4,51.6 360.6,48.6 362.9,45.5 365.1,44.1 367.3,40.3 369.6,35.8 371.8,33.3 374.0,30.7 376.3,25.7 378.5,18.9 380.8,12.9 383.0,10.8 385.2,10.0 387.5,10.0 389.7,10.0 391.9,10.0 394.2,10.0 396.4,10.0 398.6,10.0 400.9,10.0 403.1,10.0 405.4,10.0 407.6,10.0 409.8,10.0 412.1,10.0 414.3,10.0 416.5,10.0 418.8,10.0 421.0,10.0 423.2,10.0 425.5,10.0 427.7,10.0 430.0,10.0 432.2,10.0 434.4,16.4 436.7,22.6 438.9,24.0 441.1,31.8 443.4,34.4 445.6,36.2 447.8,36.3 450.1,36.4 452.3,36.6 454.6,37.1 456.8,37.1 459.0,33.9 461.3,32.9 463.5,33.8 465.7,34.9 468.0,34.9 470.2,36.5 472.4,36.7 474.7,37.1 476.9,37.1 479.2,37.7 481.4,38.8 483.6,39.1 485.9,39.6 488.1,40.5 490.3,40.5 492.6,41.4 494.8,41.8 497.0,41.8 499.3,42.0 501.5,44.2 503.8,43.5 506.0,44.6 508.2,44.6 510.5,44.6 512.7,44.5 514.9,45.0 517.2,45.0 519.4,44.6 521.6,44.9 523.9,47.1 526.1,48.0 528.4,48.6 530.6,48.9 532.8,49.2 535.1,50.3 537.3,51.3 539.5,52.1 541.8,53.6 544.0,53.6 546.2,54.3 548.5,55.0 550.7,55.3 553.0,56.2 555.2,56.2 557.4,56.2 559.7,56.9 561.9,57.9 564.1,58.4 566.4,59.4 568.6,60.4 570.8,60.8 573.1,62.7 575.3,63.2 577.6,63.6 579.8,63.6 582.0,64.0 584.3,64.3 586.5,63.4 588.7,63.6 591.0,64.0 593.2,66.0 595.5,67.9 597.7,68.2 599.9,68.8 602.2,70.2 604.4,71.1 606.6,72.0 608.9,72.9 611.1,73.6 613.3,74.3 615.6,74.3 617.8,74.3 620.1,74.3 622.3,74.3 624.5,74.3 626.8,74.3 629.0,74.3 631.2,74.3 633.5,74.3 635.7,74.3 637.9,74.3 640.2,74.3 642.4,74.0 644.7,73.8 646.9,73.5 649.1,73.3 651.4,72.6 653.6,72.3 655.8,71.3 658.1,72.3 660.3,72.3 662.5,73.0 664.8,75.1 667.0,71.9 669.3,70.2 671.5,67.7 673.7,66.5 676.0,65.5 678.2,65.9 680.4,66.6 682.7,67.8 684.9,73.2 687.1,74.0 689.4,74.3 691.6,73.1 693.9,71.4 696.1,71.5 698.3,71.6 700.6,71.6 702.8,71.6 705.0,71.8 707.3,71.9 709.5,70.6 711.7,69.9 714.0,67.6 716.2,67.2 718.5,65.5 720.7,63.5 722.9,61.7 725.2,58.8 727.4,57.9 729.6,56.3 731.9,54.3 734.1,52.6 736.3,52.3 738.6,50.6 740.8,50.5 743.1,50.4 745.3,50.3 747.5,55.8 749.8,48.3 752.0,50.8"><title>Operator</title></polyline></svg><div class="legend"><span><i class="dashed" style="--c:#e0742a"></i>Operator (recorded only in part)</span></div><div class="table-wrap"><table><thead><tr><th>Role</th><th class="num">ETH now</th>
+<th class="num hide-sm">Validators now</th><th class="num">Peak ETH</th><th class="num hide-sm">Peak</th>
+<th class="num hide-sm">First seen</th><th class="num hide-sm">Last seen</th></tr></thead><tbody><tr><td>Operator</td><td class="num">257,222</td>
+<td class="num hide-sm">4,960</td><td class="num">320,032</td>
+<td class="num hide-sm">2023-10-10</td><td class="num hide-sm">2022-07-26</td>
+<td class="num hide-sm">now</td></tr></tbody></table></div>
+<h2>Events</h2><p class="muted">Numbered as marked on the charts.</p><ol class="events"><li><span class="n">1</span> 24 June 2022: Added to Lido's registry as operator 1/28, named "Sigma Prime" (<a href="https://etherscan.io/tx/0xd08aa7c37faf58cea71921c1935c4092cfc750a29d222a86149bf8c0a62cf851">transaction</a>)</li></ol><h2>Clients</h2><p class="muted">Blocks proposed in the last 90 days by the validators it
+allocates or operates now, and the execution and consensus clients their graffiti names (clients add a short code by
+default; operators can turn it off, so these are shares of the blocks that carry one).</p>
+<div class="table-wrap"><table><thead><tr><th>Role</th><th class="num">Blocks</th><th class="num">With codes</th>
+<th>Execution clients</th><th>Consensus clients</th></tr></thead><tbody><tr><td>Operator</td><td class="num">2,523</td>
+<td class="num">67%</td><td>Besu 43%, Reth 36%, Nethermind 21%</td><td>Lighthouse 100%</td></tr></tbody></table></div>
+<h2>Protocol operators it runs</h2><ul><li>Sigma Prime <span class="mono muted">lido/1/28</span></li><li>Sigma Prime - PGO <span class="mono muted">lido/4/24</span></li><li>Sigma Prime <span class="mono muted">lido/group/4.18</span></li></ul>
+<h2>Decisions naming it</h2><ul><li><a href="../decisions/0265-sigma-prime.html">0265</a> Defines Sigma Prime (node operator)</li><li><a href="../decisions/0302-sigma-prime-lido-operators.html">0302</a> Lido&#x27;s operator group 4.18 (&quot;Sigma Prime&quot;) and the operators it lists are run by Sigma Prime.</li></ul>
+</main>
+</body>
+</html>

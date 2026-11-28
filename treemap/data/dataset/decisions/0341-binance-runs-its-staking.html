@@ -1,0 +1,72 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>0341-binance-runs-its-staking: Binance runs the validators of its ETH staking itself, as its staking FAQ says, and they run as one fleet.</title>
+<style>
+:root { color-scheme: light; --surface-0: #f4f3f0; --surface-1: #fcfcfb; --border: #d9d8d3; --text-primary: #0b0b0b;
+        --text-secondary: #52514e; --text-muted: #77766f; --accent: #2a78d6; --chip: #ebe9e4; }
+@media (prefers-color-scheme: dark) {
+  :root:where(:not([data-theme="light"])) { color-scheme: dark; --surface-0: #121211; --surface-1: #1a1a19;
+    --border: #3a3a37; --text-primary: #f0efec; --text-secondary: #c3c2b7; --text-muted: #96958c; --accent: #3987e5;
+    --chip: #2a2a28; }
+}
+:root[data-theme="dark"] { color-scheme: dark; --surface-0: #121211; --surface-1: #1a1a19; --border: #3a3a37;
+  --text-primary: #f0efec; --text-secondary: #c3c2b7; --text-muted: #96958c; --accent: #3987e5; --chip: #2a2a28; }
+* { box-sizing: border-box; }
+body { margin: 0; background: var(--surface-0); color: var(--text-primary);
+       font: 15px/1.55 system-ui, -apple-system, "Segoe UI", sans-serif; }
+main { max-width: 860px; margin: 0 auto; padding: 32px 16px 64px; }
+a { color: var(--accent); }
+h1 { font-size: 22px; line-height: 1.3; font-weight: 600; margin: 4px 0 12px; }
+h2 { font-size: 15px; font-weight: 600; margin: 28px 0 8px; color: var(--text-secondary);
+     text-transform: uppercase; letter-spacing: 0.04em; }
+p { margin: 0 0 12px; }
+.crumbs { font-size: 13px; color: var(--text-muted); }
+.lede { font-size: 17px; }
+.muted { color: var(--text-muted); }
+.chip { display: inline-block; padding: 1px 8px; border-radius: 10px; background: var(--chip); font-size: 12px;
+        color: var(--text-secondary); margin-right: 4px; white-space: nowrap; }
+.card { background: var(--surface-1); border: 1px solid var(--border); border-radius: 6px; padding: 14px 16px;
+        margin: 0 0 12px; }
+.stats { display: flex; flex-wrap: wrap; gap: 12px; margin: 16px 0; }
+.stat { background: var(--surface-1); border: 1px solid var(--border); border-radius: 6px; padding: 10px 14px;
+        min-width: 140px; }
+.stat b { display: block; font-size: 20px; font-variant-numeric: tabular-nums; }
+.stat span { font-size: 12px; color: var(--text-muted); }
+ul.grounds { list-style: none; padding: 0; margin: 0; }
+ul.grounds li { padding: 6px 0; border-bottom: 1px solid var(--border); }
+ul.grounds li:last-child { border-bottom: 0; }
+table { width: 100%; border-collapse: collapse; background: var(--surface-1); font-size: 14px; }
+th, td { text-align: left; padding: 7px 8px; border-bottom: 1px solid var(--border); vertical-align: top; }
+th { font-weight: 600; color: var(--text-secondary); cursor: pointer; white-space: nowrap; user-select: none; }
+td.num, th.num { text-align: right; font-variant-numeric: tabular-nums; white-space: nowrap; }
+code, .mono { font: 12.5px ui-monospace, SFMono-Regular, Menlo, monospace; word-break: break-all; }
+details summary { cursor: pointer; color: var(--accent); }
+.excerpt { border-left: 3px solid var(--border); padding: 2px 0 2px 10px; color: var(--text-secondary);
+           font-size: 14px; white-space: pre-wrap; }
+input[type=search] { width: 100%; padding: 8px 10px; font: inherit; border: 1px solid var(--border);
+                     border-radius: 6px; background: var(--surface-1); color: var(--text-primary); margin: 8px 0 12px; }
+.table-wrap { overflow-x: auto; }
+@media (max-width: 640px) { .hide-sm { display: none; } }
+</style>
+<script data-goatcounter="https://pintail.goatcounter.com/count" async src="https://gc.zgo.at/count.js"></script>
+</head>
+<body>
+<main>
+<p class="crumbs"><a href="../">Dataset</a> › <a href="./">Decisions</a> › 0341-binance-runs-its-staking</p>
+<h1>Binance runs the validators of its ETH staking itself, as its staking FAQ says, and they run as one fleet.</h1>
+<p><span class="chip">Operator or owner</span><span class="chip">Service run by</span> <a href="../entities/binance.html">Binance</a> <span class="muted">from 2021-10-15, for <a href="../entities/binance.html">Binance staking</a></span> <span class="muted">· decided 2026-11-19</span></p>
+<p class="lede">Validators that Binance&#x27;s staking allocates are run by Binance, from its deposit account&#x27;s first deposit (15 October 2021).</p>
+<h2>Grounds</h2><div class="card"><ul class="grounds"><li><span class="chip">First party</span>Binance&#x27;s FAQ says it handles all validator operations of its ETH Staking, setting up the validator nodes</li><li><span class="chip">On chain</span>93% of Binance&#x27;s blocks with build-only graffiti ran the build most of the fleet ran that week</li><li><span class="chip">On chain</span>Its SSV clusters were run by their own owners, the first funded by a wallet in Binance&#x27;s reserve list</li><li><span class="chip">On chain</span>No block of Binance&#x27;s validators names another operator in its graffiti</li></ul></div>
+<h2>Explanation</h2><p><strong>Binance runs the validators of its ETH staking.</strong> Every validator the treemap places in Binance&#x27;s staking (decisions 0006 and 0323: those withdrawing to 0x8e60…8224, about 73,600 active validators with 3.52M ETH in November 2026) is recorded as run by Binance, unless other evidence names a different operator.</p>
+<p><strong>What Binance says.</strong> Binance&#x27;s <a href="https://www.binance.com/en/support/faq/binance-eth-staking-eecd04618b5042c79f2a5b07f895c498">ETH Staking FAQ</a> says that Binance handles all validator operations of its ETH Staking and bears the on-chain penalty risks, and that its 10% fee on staking rewards covers operating costs such as the hardware and network maintenance of setting up validator nodes. The text is taken from the Internet Archive&#x27;s copy of 29 January 2025; the copy of November 2024 says the same, and later copies hold no text.</p>
+<p><strong>What the chain shows.</strong> The validators run as one fleet, with a single withdrawal address. In the blocks recorded here (from May 2023), their graffiti never names an operator. Until September 2024 it is Lighthouse&#x27;s default version string, one version at a time in sequence; from then on it carries only the execution and consensus client versions. Over the 128 weeks with such graffiti, 93% of Binance&#x27;s blocks ran the build that most of the fleet ran that week; the three weeks below 60% are changeovers from one build to the next. From November 2025 to June 2026 about 26,400 of the validators also ran on SSV, a network on which a validator&#x27;s key is split among several node operators. Each of these clusters was registered by an account that also owned all four of its operators, so no outside operator held a share. The first of the three accounts was funded by 0x21a3…5549, a wallet in Binance&#x27;s proof-of-reserves list of 1 October 2026, and it funded the other two. All the validators had left SSV by 21 June 2026. Earlier, all 32,319 validators deposited with BLS credentials changed them to 0x8e60…8224 in April 2023, which only the holder of all their keys could do (decision 0006).</p>
+<p><strong>From when.</strong> From the first deposit by Binance&#x27;s deposit account, on 15 October 2021. The FAQ describes Binance&#x27;s ETH staking as a whole, not a period of it.</p>
+<h2>What would change it</h2><p>Binance naming another company as running these validators, or a part of this stake running a fleet distinct from the rest.</p>
+<h2>Evidence</h2><p class="muted">Transactions and contract calls anyone can repeat on their own node.</p><div class="card"><ul class="grounds"><li><a class="mono" href="https://etherscan.io/tx/0xa48ce3404297715af09ecdd44f32f01b5391f1abcd615ef839ba31871ab7e80c">0xa48ce340…1ab7e80c</a> — First deposit by Binance&#x27;s deposit account 0xbdd7…32a8 (2021-10-15)</li><li><span class="mono">0x541c6270a088773eebf2cfe53d17f90d73d4995d</span> — Owner of SSV clusters of Binance&#x27;s validators and of all their operators; first funded by Binance reserve wallet 0x21a3…5549</li><li><span class="mono">0xd452dee3f9e43b41c2e67194520b83d93509c3b5</span> — Owner of SSV clusters of Binance&#x27;s validators and of all their operators; funded by 0x541c…995d</li><li><span class="mono">0xbbe85531acfa9e1a10c5872bd556d06d2a4691cf</span> — Owner of SSV clusters of Binance&#x27;s validators and of all their operators; funded by 0xd452…c3b5</li></ul></div>
+<h2>Sources</h2><div class="card"><a href="https://www.binance.com/en/support/faq/binance-eth-staking-eecd04618b5042c79f2a5b07f895c498">Binance ETH Staking (FAQ), as captured by the Internet Archive on 29 January 2025</a><div class="muted" style="font-size:13px">Binance · the entity&#x27;s own · retrieved 2026-11-19</div><p class="excerpt">Binance launched the ETH Staking service to offer a more accessible way for everyone to participate in Ethereum staking. [...] Moreover, Binance handles all validator operations associated with ETH Staking and assumes on-chain penalty risks [...] This fee will help to offset operating costs, such as hardware and network maintenance costs related to setting up validator nodes.</p><div class="muted mono">sha256 3e06595c841e816f5090646dc8078414c0551a57ac85149172c46731291f8f3e</div></div><div class="card"><a href="https://www.binance.com/en/proof-of-reserves">Binance proof-of-reserves wallet addresses, report of 1 October 2026 (PR01OCT26)</a><div class="muted" style="font-size:13px">Binance (proof-of-reserves page, &quot;Download All Address&quot;) · the entity&#x27;s own · retrieved 2026-10-30</div><p class="excerpt">ETH,ETH,0x32e11a20337ebc79abd0eeab2d91bafbd9591149,80000.017040000000000000,26093737,</p><div class="muted mono">sha256 656c334685e45635daabde9f2f446ba01b9d8b2f7a2ba03396327218f43ae685</div></div>
+</main>
+</body>
+</html>

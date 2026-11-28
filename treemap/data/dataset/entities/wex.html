@@ -1,0 +1,98 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>WEX (former funds; holder unknown): roles in the validator set</title>
+<style>
+:root { color-scheme: light; --surface-0: #f4f3f0; --surface-1: #fcfcfb; --border: #d9d8d3; --text-primary: #0b0b0b;
+        --text-secondary: #52514e; --text-muted: #77766f; --accent: #2a78d6; --chip: #ebe9e4; }
+@media (prefers-color-scheme: dark) {
+  :root:where(:not([data-theme="light"])) { color-scheme: dark; --surface-0: #121211; --surface-1: #1a1a19;
+    --border: #3a3a37; --text-primary: #f0efec; --text-secondary: #c3c2b7; --text-muted: #96958c; --accent: #3987e5;
+    --chip: #2a2a28; }
+}
+:root[data-theme="dark"] { color-scheme: dark; --surface-0: #121211; --surface-1: #1a1a19; --border: #3a3a37;
+  --text-primary: #f0efec; --text-secondary: #c3c2b7; --text-muted: #96958c; --accent: #3987e5; --chip: #2a2a28; }
+* { box-sizing: border-box; }
+body { margin: 0; background: var(--surface-0); color: var(--text-primary);
+       font: 15px/1.55 system-ui, -apple-system, "Segoe UI", sans-serif; }
+main { max-width: 860px; margin: 0 auto; padding: 32px 16px 64px; }
+a { color: var(--accent); }
+h1 { font-size: 22px; line-height: 1.3; font-weight: 600; margin: 4px 0 12px; }
+h2 { font-size: 15px; font-weight: 600; margin: 28px 0 8px; color: var(--text-secondary);
+     text-transform: uppercase; letter-spacing: 0.04em; }
+p { margin: 0 0 12px; }
+.crumbs { font-size: 13px; color: var(--text-muted); }
+.lede { font-size: 17px; }
+.muted { color: var(--text-muted); }
+.chip { display: inline-block; padding: 1px 8px; border-radius: 10px; background: var(--chip); font-size: 12px;
+        color: var(--text-secondary); margin-right: 4px; white-space: nowrap; }
+.card { background: var(--surface-1); border: 1px solid var(--border); border-radius: 6px; padding: 14px 16px;
+        margin: 0 0 12px; }
+.stats { display: flex; flex-wrap: wrap; gap: 12px; margin: 16px 0; }
+.stat { background: var(--surface-1); border: 1px solid var(--border); border-radius: 6px; padding: 10px 14px;
+        min-width: 140px; }
+.stat b { display: block; font-size: 20px; font-variant-numeric: tabular-nums; }
+.stat span { font-size: 12px; color: var(--text-muted); }
+ul.grounds { list-style: none; padding: 0; margin: 0; }
+ul.grounds li { padding: 6px 0; border-bottom: 1px solid var(--border); }
+ul.grounds li:last-child { border-bottom: 0; }
+table { width: 100%; border-collapse: collapse; background: var(--surface-1); font-size: 14px; }
+th, td { text-align: left; padding: 7px 8px; border-bottom: 1px solid var(--border); vertical-align: top; }
+th { font-weight: 600; color: var(--text-secondary); cursor: pointer; white-space: nowrap; user-select: none; }
+td.num, th.num { text-align: right; font-variant-numeric: tabular-nums; white-space: nowrap; }
+code, .mono { font: 12.5px ui-monospace, SFMono-Regular, Menlo, monospace; word-break: break-all; }
+details summary { cursor: pointer; color: var(--accent); }
+.excerpt { border-left: 3px solid var(--border); padding: 2px 0 2px 10px; color: var(--text-secondary);
+           font-size: 14px; white-space: pre-wrap; }
+input[type=search] { width: 100%; padding: 8px 10px; font: inherit; border: 1px solid var(--border);
+                     border-radius: 6px; background: var(--surface-1); color: var(--text-primary); margin: 8px 0 12px; }
+.table-wrap { overflow-x: auto; }
+@media (max-width: 640px) { .hide-sm { display: none; } }
+</style>
+<script data-goatcounter="https://pintail.goatcounter.com/count" async src="https://gc.zgo.at/count.js"></script>
+</head>
+<body>
+<main>
+<style>
+.chart { width: 100%; height: auto; background: var(--surface-1); border: 1px solid var(--border); border-radius: 6px; }
+.chart text { fill: var(--text-muted); font: 11px system-ui, sans-serif; }
+.chart .grid { stroke: var(--border); stroke-width: 1; }
+.legend { display: flex; flex-wrap: wrap; gap: 14px; font-size: 13px; color: var(--text-secondary); margin: 6px 0 14px; }
+.legend i { display: inline-block; width: 16px; height: 3px; vertical-align: middle; margin-right: 5px; background: var(--c); }
+.legend i.dashed { background: repeating-linear-gradient(90deg, var(--c) 0 6px, transparent 6px 9px); }
+.chart .event { stroke: var(--text-muted); stroke-width: 1; stroke-dasharray: 3 3; }
+.chart .event-n { fill: var(--text-secondary); font-weight: 600; }
+ol.events { padding-left: 0; list-style: none; }
+ol.events li { margin: 4px 0; }
+ol.events .n { display: inline-block; min-width: 1.6em; font-weight: 600; color: var(--text-secondary); }
+</style><p class="crumbs"><a href="../">Dataset</a> › <a href="./">Entities</a></p>
+<h1>WEX (former funds; holder unknown)</h1>
+<p><span class="chip">exchange</span> <span class="mono muted">wex</span></p>
+<p><strong>How much ETH WEX (former funds; holder unknown) has had in each role recorded in this dataset, week by week, from
+the start of the beacon chain (1 December 2020) to 27 November 2026.</strong> Stake is the effective balance
+of active validators.</p>
+<ul><li><strong>Allocator</strong>: chose where the stake went. Counts the stake in the treemap boxes under WEX (former funds; holder unknown). <span class="muted">Recorded for 89% of active stake.</span></li><li><strong>Operator</strong>: ran the validators. <span class="muted">Recorded for 80% of active stake.</span></li><li><strong>Custodian</strong>: held the stake on behalf of a client. <span class="muted">Recorded for 5.1% of active stake.</span></li><li><strong>Principal</strong>: owned the staked ETH. <span class="muted">Recorded for 6.0% of active stake.</span></li></ul>
+<p class="muted">Allocators are recorded for most stake. Operators, custodians and principals are recorded only where
+specific evidence names them, so their figures here (dashed on the charts) are lower bounds: no figure does not mean
+no role.</p>
+<h2>Its own roles</h2><svg class="chart" viewBox="0 0 760 240" role="img" aria-label="ETH by role over time"><line class="grid" x1="52" x2="752" y1="218.0" y2="218.0"/><text x="46" y="222.0" text-anchor="end">0</text><line class="grid" x1="52" x2="752" y1="114.0" y2="114.0"/><text x="46" y="118.0" text-anchor="end">10k</text><line class="grid" x1="52" x2="752" y1="10.0" y2="10.0"/><text x="46" y="14.0" text-anchor="end">21k</text><text x="52.0" y="234" text-anchor="middle">2020</text><text x="179.5" y="234" text-anchor="middle">2022</text><text x="295.8" y="234" text-anchor="middle">2023</text><text x="412.1" y="234" text-anchor="middle">2024</text><text x="530.6" y="234" text-anchor="middle">2025</text><text x="646.9" y="234" text-anchor="middle">2026</text><polyline fill="none" stroke="#2a78d6" stroke-width="2" points="52.0,58.0 54.2,58.0 56.5,58.0 58.7,58.0 60.9,58.0 63.2,58.0 65.4,58.0 67.7,58.0 69.9,58.0 72.1,58.0 74.4,58.0 76.6,58.0 78.8,58.0 81.1,58.0 83.3,58.0 85.5,58.0 87.8,58.0 90.0,58.0 92.3,58.0 94.5,58.0 96.7,58.0 99.0,58.0 101.2,58.0 103.4,58.0 105.7,58.0 107.9,58.0 110.1,58.0 112.4,58.0 114.6,58.0 116.9,58.0 119.1,58.0 121.3,58.0 123.6,58.0 125.8,58.0 128.0,58.0 130.3,58.0 132.5,58.0 134.7,58.0 137.0,58.0 139.2,58.0 141.5,58.0 143.7,58.0 145.9,58.0 148.2,58.0 150.4,58.0 152.6,58.0 154.9,58.0 157.1,58.0 159.3,58.0 161.6,58.0 163.8,58.0 166.1,58.0 168.3,58.0 170.5,58.0 172.8,58.0 175.0,58.0 177.2,58.0 179.5,58.0 181.7,58.0 183.9,58.0 186.2,58.0 188.4,58.0 190.7,58.0 192.9,58.0 195.1,58.0 197.4,58.0 199.6,58.0 201.8,58.0 204.1,58.0 206.3,58.0 208.5,58.0 210.8,58.0 213.0,58.0 215.3,58.0 217.5,58.0 219.7,58.0 222.0,58.0 224.2,58.0 226.4,58.0 228.7,58.0 230.9,58.0 233.2,58.0 235.4,58.0 237.6,58.0 239.9,58.0 242.1,58.0 244.3,58.0 246.6,58.0 248.8,58.0 251.0,58.0 253.3,58.0 255.5,58.0 257.8,58.0 260.0,58.0 262.2,58.0 264.5,58.0 266.7,58.0 268.9,58.0 271.2,58.0 273.4,58.0 275.6,58.0 277.9,58.0 280.1,58.0 282.4,58.0 284.6,58.0 286.8,58.0 289.1,58.0 291.3,58.0 293.5,58.0 295.8,58.0 298.0,58.0 300.2,58.0 302.5,58.0 304.7,58.0 307.0,58.0 309.2,58.0 311.4,58.0 313.7,58.0 315.9,58.0 318.1,58.0 320.4,58.0 322.6,58.0 324.8,58.0 327.1,58.0 329.3,58.0 331.6,33.4 333.8,33.4 336.0,33.4 338.3,33.4 340.5,33.4 342.7,33.4 345.0,33.4 347.2,32.4 349.4,32.4 351.7,32.4 353.9,32.4 356.2,32.4 358.4,32.4 360.6,32.4 362.9,32.4 365.1,32.4 367.3,32.4 369.6,32.4 371.8,32.4 374.0,32.4 376.3,32.4 378.5,32.4 380.8,32.4 383.0,32.4 385.2,29.2 387.5,29.2 389.7,29.2 391.9,29.2 394.2,29.2 396.4,29.2 398.6,29.2 400.9,29.2 403.1,29.2 405.4,29.2 407.6,29.2 409.8,29.2 412.1,29.2 414.3,29.2 416.5,29.2 418.8,29.2 421.0,29.2 423.2,29.2 425.5,29.2 427.7,29.2 430.0,29.2 432.2,26.0 434.4,26.0 436.7,26.0 438.9,26.0 441.1,26.0 443.4,26.0 445.6,26.0 447.8,26.0 450.1,26.0 452.3,26.0 454.6,26.0 456.8,26.0 459.0,26.0 461.3,26.0 463.5,26.0 465.7,26.0 468.0,26.0 470.2,26.0 472.4,26.0 474.7,26.0 476.9,26.0 479.2,26.0 481.4,26.0 483.6,26.0 485.9,26.0 488.1,26.0 490.3,26.0 492.6,26.0 494.8,22.8 497.0,22.8 499.3,22.8 501.5,22.8 503.8,22.8 506.0,22.8 508.2,22.8 510.5,22.8 512.7,22.8 514.9,22.8 517.2,22.8 519.4,22.8 521.6,22.8 523.9,22.8 526.1,22.8 528.4,22.8 530.6,22.8 532.8,22.8 535.1,22.8 537.3,22.8 539.5,22.8 541.8,22.8 544.0,19.6 546.2,19.6 548.5,19.6 550.7,19.6 553.0,19.6 555.2,19.6 557.4,19.6 559.7,19.6 561.9,19.6 564.1,19.6 566.4,19.6 568.6,19.6 570.8,19.6 573.1,19.6 575.3,19.6 577.6,19.6 579.8,19.6 582.0,19.6 584.3,19.6 586.5,19.6 588.7,16.4 591.0,16.4 593.2,16.4 595.5,16.4 597.7,16.4 599.9,16.4 602.2,16.4 604.4,16.4 606.6,16.4 608.9,16.4 611.1,16.4 613.3,16.4 615.6,16.4 617.8,16.4 620.1,16.4 622.3,16.4 624.5,16.4 626.8,16.4 629.0,16.4 631.2,16.4 633.5,16.4 635.7,16.4 637.9,16.4 640.2,16.4 642.4,16.4 644.7,16.4 646.9,16.4 649.1,16.4 651.4,16.4 653.6,16.4 655.8,16.4 658.1,16.4 660.3,16.4 662.5,16.4 664.8,16.4 667.0,16.4 669.3,16.4 671.5,16.4 673.7,16.4 676.0,16.4 678.2,16.4 680.4,16.4 682.7,16.4 684.9,16.4 687.1,16.4 689.4,16.4 691.6,16.4 693.9,16.4 696.1,16.4 698.3,16.4 700.6,16.4 702.8,16.4 705.0,16.4 707.3,16.4 709.5,16.4 711.7,16.4 714.0,16.4 716.2,16.4 718.5,16.4 720.7,16.4 722.9,10.0 725.2,10.0 727.4,10.0 729.6,10.0 731.9,10.0 734.1,10.0 736.3,10.0 738.6,10.0 740.8,10.0 743.1,10.0 745.3,10.0 747.5,10.0 749.8,10.0 752.0,10.0"><title>Allocator</title></polyline></svg><div class="legend"><span><i class="" style="--c:#2a78d6"></i>Allocator</span></div><div class="table-wrap"><table><thead><tr><th>Role</th><th class="num">ETH now</th>
+<th class="num hide-sm">Validators now</th><th class="num">Peak ETH</th><th class="num hide-sm">Peak</th>
+<th class="num hide-sm">First seen</th><th class="num hide-sm">Last seen</th></tr></thead><tbody><tr><td>Allocator</td><td class="num">20,800</td>
+<td class="num hide-sm">650</td><td class="num">20,800</td>
+<td class="num hide-sm">2026-09-01</td><td class="num hide-sm">2020-12-01</td>
+<td class="num hide-sm">now</td></tr></tbody></table></div>
+<h2>Clients</h2><p class="muted">Blocks proposed in the last 90 days by the validators it
+allocates or operates now, and the execution and consensus clients their graffiti names (clients add a short code by
+default; operators can turn it off, so these are shares of the blocks that carry one).</p>
+<div class="table-wrap"><table><thead><tr><th>Role</th><th class="num">Blocks</th><th class="num">With codes</th>
+<th>Execution clients</th><th>Consensus clients</th></tr></thead><tbody><tr><td>Allocator</td><td class="num">301</td>
+<td class="num">100%</td><td>Geth 100%</td><td>Prysm 100%</td></tr></tbody></table></div>
+<h2>Treemap boxes</h2><div class="table-wrap"><table><thead><tr><th>Box</th>
+<th class="num">ETH now</th><th class="num hide-sm">Peak ETH</th></tr></thead><tbody><tr><td>WEX (former funds; holder unknown) › Staking of former WEX funds › Withdraws to 0xf4d1…63c5</td><td class="num">20,800</td><td class="num hide-sm">20,800</td></tr></tbody></table></div>
+<h2>Identified addresses</h2><div class="table-wrap"><table><thead><tr><th>Address</th><th>Role</th>
+<th class="hide-sm">Basis</th></tr></thead><tbody><tr><td><a class="mono" href="https://etherscan.io/address/0xbb84d966c09264ce9a2104a4a20bb378369986db">0xbb84d966c09264ce9a2104a4a20bb378369986db</a></td><td>anchor</td><td class="hide-sm">asserted</td></tr></tbody></table></div>
+</main>
+</body>
+</html>

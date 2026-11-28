@@ -1,0 +1,71 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>0338-coinbase-runs-its-staking-services: Coinbase runs the validators of its retail staking, of the Prime custody stake run on its own fleet, and of t</title>
+<style>
+:root { color-scheme: light; --surface-0: #f4f3f0; --surface-1: #fcfcfb; --border: #d9d8d3; --text-primary: #0b0b0b;
+        --text-secondary: #52514e; --text-muted: #77766f; --accent: #2a78d6; --chip: #ebe9e4; }
+@media (prefers-color-scheme: dark) {
+  :root:where(:not([data-theme="light"])) { color-scheme: dark; --surface-0: #121211; --surface-1: #1a1a19;
+    --border: #3a3a37; --text-primary: #f0efec; --text-secondary: #c3c2b7; --text-muted: #96958c; --accent: #3987e5;
+    --chip: #2a2a28; }
+}
+:root[data-theme="dark"] { color-scheme: dark; --surface-0: #121211; --surface-1: #1a1a19; --border: #3a3a37;
+  --text-primary: #f0efec; --text-secondary: #c3c2b7; --text-muted: #96958c; --accent: #3987e5; --chip: #2a2a28; }
+* { box-sizing: border-box; }
+body { margin: 0; background: var(--surface-0); color: var(--text-primary);
+       font: 15px/1.55 system-ui, -apple-system, "Segoe UI", sans-serif; }
+main { max-width: 860px; margin: 0 auto; padding: 32px 16px 64px; }
+a { color: var(--accent); }
+h1 { font-size: 22px; line-height: 1.3; font-weight: 600; margin: 4px 0 12px; }
+h2 { font-size: 15px; font-weight: 600; margin: 28px 0 8px; color: var(--text-secondary);
+     text-transform: uppercase; letter-spacing: 0.04em; }
+p { margin: 0 0 12px; }
+.crumbs { font-size: 13px; color: var(--text-muted); }
+.lede { font-size: 17px; }
+.muted { color: var(--text-muted); }
+.chip { display: inline-block; padding: 1px 8px; border-radius: 10px; background: var(--chip); font-size: 12px;
+        color: var(--text-secondary); margin-right: 4px; white-space: nowrap; }
+.card { background: var(--surface-1); border: 1px solid var(--border); border-radius: 6px; padding: 14px 16px;
+        margin: 0 0 12px; }
+.stats { display: flex; flex-wrap: wrap; gap: 12px; margin: 16px 0; }
+.stat { background: var(--surface-1); border: 1px solid var(--border); border-radius: 6px; padding: 10px 14px;
+        min-width: 140px; }
+.stat b { display: block; font-size: 20px; font-variant-numeric: tabular-nums; }
+.stat span { font-size: 12px; color: var(--text-muted); }
+ul.grounds { list-style: none; padding: 0; margin: 0; }
+ul.grounds li { padding: 6px 0; border-bottom: 1px solid var(--border); }
+ul.grounds li:last-child { border-bottom: 0; }
+table { width: 100%; border-collapse: collapse; background: var(--surface-1); font-size: 14px; }
+th, td { text-align: left; padding: 7px 8px; border-bottom: 1px solid var(--border); vertical-align: top; }
+th { font-weight: 600; color: var(--text-secondary); cursor: pointer; white-space: nowrap; user-select: none; }
+td.num, th.num { text-align: right; font-variant-numeric: tabular-nums; white-space: nowrap; }
+code, .mono { font: 12.5px ui-monospace, SFMono-Regular, Menlo, monospace; word-break: break-all; }
+details summary { cursor: pointer; color: var(--accent); }
+.excerpt { border-left: 3px solid var(--border); padding: 2px 0 2px 10px; color: var(--text-secondary);
+           font-size: 14px; white-space: pre-wrap; }
+input[type=search] { width: 100%; padding: 8px 10px; font: inherit; border: 1px solid var(--border);
+                     border-radius: 6px; background: var(--surface-1); color: var(--text-primary); margin: 8px 0 12px; }
+.table-wrap { overflow-x: auto; }
+@media (max-width: 640px) { .hide-sm { display: none; } }
+</style>
+<script data-goatcounter="https://pintail.goatcounter.com/count" async src="https://gc.zgo.at/count.js"></script>
+</head>
+<body>
+<main>
+<p class="crumbs"><a href="../">Dataset</a> › <a href="./">Decisions</a> › 0338-coinbase-runs-its-staking-services</p>
+<h1>Coinbase runs the validators of its retail staking, of the Prime custody stake run on its own fleet, and of those paying its own fee recipient, as it reports.</h1>
+<p><span class="chip">Operator or owner</span><span class="chip">Service run by</span> <a href="../entities/coinbase.html">Coinbase</a> <span class="muted">from 2022-09-15, for <a href="../entities/coinbase.html">Coinbase staking</a>, <a href="../entities/coinbase.html">Coinbase Prime (custody clients)</a>, <a href="../entities/coinbase.html">Coinbase-run validators (by Coinbase fee recipient)</a></span> <span class="muted">· decided 2026-11-18</span></p>
+<p class="lede">Validators that Coinbase&#x27;s retail staking, its Prime custody staking run by Coinbase, or its fee recipient attribute to Coinbase are run by Coinbase, from the Merge (15 September 2022).</p>
+<h2>Grounds</h2><div class="card"><ul class="grounds"><li><span class="chip">First party</span>Coinbase reports 4.5M ETH on &quot;Coinbase validators&quot; (Q1 2026), excluding stake routed to partner providers</li><li><span class="chip">On chain</span>Coinbase&#x27;s retail validators run as one fleet: 97% of their stake runs only client builds the rest of the fleet runs (decision 0134)</li><li><span class="chip">On chain</span>The Prime custody validators in this service run the retail fleet&#x27;s client builds week by week (decisions 0134, 0226, 0242 and 0243)</li><li><span class="chip">On chain</span>Coinbase&#x27;s retail validators pay their fees to Coinbase&#x27;s own fee recipient, which passes them to Coinbase&#x27;s wallets (decision 0104)</li></ul></div>
+<h2>Explanation</h2><p>Coinbase runs the validators of three of its staking services: its retail staking (customers&#x27; ETH it stakes for them), the stake of Coinbase Prime custody clients that runs on Coinbase&#x27;s own fleet, and otherwise unattributed validators that pay Coinbase&#x27;s own fee recipient. Every validator the treemap places in one of these services is recorded as run by Coinbase, unless other evidence (an operator&#x27;s name in its graffiti, or a decision about that validator) names a different operator.</p>
+<p><strong>Coinbase&#x27;s own account.</strong> Coinbase&#x27;s <a href="https://www.coinbase.com/blog/ethereum-validator-performance-report-q1-2026">validator performance report for Q1 2026</a> gives the stake &quot;staked to Coinbase validators&quot; as 4.5M ETH on average over the quarter, and says that it covers Coinbase&#x27;s validators only, not the stake of customers who choose Coinbase&#x27;s partner staking providers. In November 2026 these three services held about 3.9M ETH between them.</p>
+<p><strong>Which services that covers.</strong> The services were each defined on the chain&#x27;s evidence that Coinbase runs them. Coinbase&#x27;s retail validators form one fleet: 97% of their stake runs only client builds that the rest of the fleet runs (decision 0134). The Prime custody stake in coinbase/prime was admitted only where its validators run the retail fleet&#x27;s builds week by week, or pay the same fee recipients as validators that do (decisions 0134, 0226, 0242 and 0243). Stake Coinbase&#x27;s custody clients have placed with partners is not in it: Figment&#x27;s (decisions 0136, 0137 and 0166), and the custody stake whose provider is not identified (coinbase/custody), which this decision does not cover. Coinbase&#x27;s fee recipient receives the fees of Coinbase&#x27;s retail validators and passes them to Coinbase&#x27;s wallets (decision 0104). Coinbase Cloud&#x27;s pooled staking (coinbase/cloud) is not covered either.</p>
+<p><strong>From when.</strong> From the Merge on 15 September 2022, the first date from which fee recipients and client builds in graffiti show who runs these validators. Before it, the stake is still Coinbase&#x27;s to allocate, but no operator is recorded.</p>
+<h2>What would change it</h2><p>Coinbase naming another company as running these validators, or a part of this stake running a fleet distinct from Coinbase&#x27;s own.</p>
+<h2>Sources</h2><div class="card"><a href="https://www.coinbase.com/blog/ethereum-validator-performance-report-q1-2026">Ethereum Validator Performance Report Q1 2026 (13 May 2026)</a><div class="muted" style="font-size:13px">Coinbase · the entity&#x27;s own · retrieved 2026-10-18</div><p class="excerpt">while some Coinbase staking customers choose to delegate to our partner staking providers, the data in this report applies solely to Coinbase validators. [...] Staked to Coinbase validators: 4.5M ETH → 12.17% of total staked ETH (both figures are averaged over Q1) [...] Consensus clients: Lighthouse, Prysm [...] Execution clients: Geth, Nethermind, Reth</p><div class="muted mono">sha256 a8c9e77dc30797fd7491bf3371f17dcb2619e34671b6e46d1c5154df6ff1736c</div></div>
+</main>
+</body>
+</html>

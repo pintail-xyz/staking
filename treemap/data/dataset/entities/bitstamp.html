@@ -1,0 +1,99 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Bitstamp: roles in the validator set</title>
+<style>
+:root { color-scheme: light; --surface-0: #f4f3f0; --surface-1: #fcfcfb; --border: #d9d8d3; --text-primary: #0b0b0b;
+        --text-secondary: #52514e; --text-muted: #77766f; --accent: #2a78d6; --chip: #ebe9e4; }
+@media (prefers-color-scheme: dark) {
+  :root:where(:not([data-theme="light"])) { color-scheme: dark; --surface-0: #121211; --surface-1: #1a1a19;
+    --border: #3a3a37; --text-primary: #f0efec; --text-secondary: #c3c2b7; --text-muted: #96958c; --accent: #3987e5;
+    --chip: #2a2a28; }
+}
+:root[data-theme="dark"] { color-scheme: dark; --surface-0: #121211; --surface-1: #1a1a19; --border: #3a3a37;
+  --text-primary: #f0efec; --text-secondary: #c3c2b7; --text-muted: #96958c; --accent: #3987e5; --chip: #2a2a28; }
+* { box-sizing: border-box; }
+body { margin: 0; background: var(--surface-0); color: var(--text-primary);
+       font: 15px/1.55 system-ui, -apple-system, "Segoe UI", sans-serif; }
+main { max-width: 860px; margin: 0 auto; padding: 32px 16px 64px; }
+a { color: var(--accent); }
+h1 { font-size: 22px; line-height: 1.3; font-weight: 600; margin: 4px 0 12px; }
+h2 { font-size: 15px; font-weight: 600; margin: 28px 0 8px; color: var(--text-secondary);
+     text-transform: uppercase; letter-spacing: 0.04em; }
+p { margin: 0 0 12px; }
+.crumbs { font-size: 13px; color: var(--text-muted); }
+.lede { font-size: 17px; }
+.muted { color: var(--text-muted); }
+.chip { display: inline-block; padding: 1px 8px; border-radius: 10px; background: var(--chip); font-size: 12px;
+        color: var(--text-secondary); margin-right: 4px; white-space: nowrap; }
+.card { background: var(--surface-1); border: 1px solid var(--border); border-radius: 6px; padding: 14px 16px;
+        margin: 0 0 12px; }
+.stats { display: flex; flex-wrap: wrap; gap: 12px; margin: 16px 0; }
+.stat { background: var(--surface-1); border: 1px solid var(--border); border-radius: 6px; padding: 10px 14px;
+        min-width: 140px; }
+.stat b { display: block; font-size: 20px; font-variant-numeric: tabular-nums; }
+.stat span { font-size: 12px; color: var(--text-muted); }
+ul.grounds { list-style: none; padding: 0; margin: 0; }
+ul.grounds li { padding: 6px 0; border-bottom: 1px solid var(--border); }
+ul.grounds li:last-child { border-bottom: 0; }
+table { width: 100%; border-collapse: collapse; background: var(--surface-1); font-size: 14px; }
+th, td { text-align: left; padding: 7px 8px; border-bottom: 1px solid var(--border); vertical-align: top; }
+th { font-weight: 600; color: var(--text-secondary); cursor: pointer; white-space: nowrap; user-select: none; }
+td.num, th.num { text-align: right; font-variant-numeric: tabular-nums; white-space: nowrap; }
+code, .mono { font: 12.5px ui-monospace, SFMono-Regular, Menlo, monospace; word-break: break-all; }
+details summary { cursor: pointer; color: var(--accent); }
+.excerpt { border-left: 3px solid var(--border); padding: 2px 0 2px 10px; color: var(--text-secondary);
+           font-size: 14px; white-space: pre-wrap; }
+input[type=search] { width: 100%; padding: 8px 10px; font: inherit; border: 1px solid var(--border);
+                     border-radius: 6px; background: var(--surface-1); color: var(--text-primary); margin: 8px 0 12px; }
+.table-wrap { overflow-x: auto; }
+@media (max-width: 640px) { .hide-sm { display: none; } }
+</style>
+<script data-goatcounter="https://pintail.goatcounter.com/count" async src="https://gc.zgo.at/count.js"></script>
+</head>
+<body>
+<main>
+<style>
+.chart { width: 100%; height: auto; background: var(--surface-1); border: 1px solid var(--border); border-radius: 6px; }
+.chart text { fill: var(--text-muted); font: 11px system-ui, sans-serif; }
+.chart .grid { stroke: var(--border); stroke-width: 1; }
+.legend { display: flex; flex-wrap: wrap; gap: 14px; font-size: 13px; color: var(--text-secondary); margin: 6px 0 14px; }
+.legend i { display: inline-block; width: 16px; height: 3px; vertical-align: middle; margin-right: 5px; background: var(--c); }
+.legend i.dashed { background: repeating-linear-gradient(90deg, var(--c) 0 6px, transparent 6px 9px); }
+.chart .event { stroke: var(--text-muted); stroke-width: 1; stroke-dasharray: 3 3; }
+.chart .event-n { fill: var(--text-secondary); font-weight: 600; }
+ol.events { padding-left: 0; list-style: none; }
+ol.events li { margin: 4px 0; }
+ol.events .n { display: inline-block; min-width: 1.6em; font-weight: 600; color: var(--text-secondary); }
+</style><p class="crumbs"><a href="../">Dataset</a> › <a href="./">Entities</a></p>
+<h1>Bitstamp</h1>
+<p><span class="chip">exchange</span> <span class="mono muted">bitstamp</span></p>
+<p><strong>How much ETH Bitstamp has had in each role recorded in this dataset, week by week, from
+the start of the beacon chain (1 December 2020) to 27 November 2026.</strong> Stake is the effective balance
+of active validators.</p>
+<ul><li><strong>Allocator</strong>: chose where the stake went. Counts the stake in the treemap boxes under Bitstamp. <span class="muted">Recorded for 89% of active stake.</span></li><li><strong>Operator</strong>: ran the validators. <span class="muted">Recorded for 80% of active stake.</span></li><li><strong>Custodian</strong>: held the stake on behalf of a client. <span class="muted">Recorded for 5.1% of active stake.</span></li><li><strong>Principal</strong>: owned the staked ETH. <span class="muted">Recorded for 6.0% of active stake.</span></li></ul>
+<p class="muted">Allocators are recorded for most stake. Operators, custodians and principals are recorded only where
+specific evidence names them, so their figures here (dashed on the charts) are lower bounds: no figure does not mean
+no role.</p>
+<h2>Its own roles</h2><svg class="chart" viewBox="0 0 760 240" role="img" aria-label="ETH by role over time"><line class="grid" x1="52" x2="752" y1="218.0" y2="218.0"/><text x="46" y="222.0" text-anchor="end">0</text><line class="grid" x1="52" x2="752" y1="114.0" y2="114.0"/><text x="46" y="118.0" text-anchor="end">36k</text><line class="grid" x1="52" x2="752" y1="10.0" y2="10.0"/><text x="46" y="14.0" text-anchor="end">71k</text><text x="52.0" y="234" text-anchor="middle">2020</text><text x="179.5" y="234" text-anchor="middle">2022</text><text x="295.8" y="234" text-anchor="middle">2023</text><text x="412.1" y="234" text-anchor="middle">2024</text><text x="530.6" y="234" text-anchor="middle">2025</text><text x="646.9" y="234" text-anchor="middle">2026</text><polyline fill="none" stroke="#2a78d6" stroke-width="2" points="52.0,218.0 54.2,218.0 56.5,218.0 58.7,218.0 60.9,218.0 63.2,218.0 65.4,218.0 67.7,218.0 69.9,218.0 72.1,218.0 74.4,218.0 76.6,218.0 78.8,217.9 81.1,217.8 83.3,217.8 85.5,217.8 87.8,217.7 90.0,217.7 92.3,217.7 94.5,217.7 96.7,216.8 99.0,215.5 101.2,214.7 103.4,211.8 105.7,208.3 107.9,206.2 110.1,203.9 112.4,203.4 114.6,201.2 116.9,197.2 119.1,195.5 121.3,195.3 123.6,194.1 125.8,182.8 128.0,176.1 130.3,172.6 132.5,142.3 134.7,135.8 137.0,135.4 139.2,133.9 141.5,128.9 143.7,126.8 145.9,124.1 148.2,121.6 150.4,117.3 152.6,112.5 154.9,110.5 157.1,109.7 159.3,108.1 161.6,106.5 163.8,105.2 166.1,104.6 168.3,103.7 170.5,103.1 172.8,102.7 175.0,102.0 177.2,101.5 179.5,100.0 181.7,98.5 183.9,97.5 186.2,97.0 188.4,95.3 190.7,93.9 192.9,93.5 195.1,92.6 197.4,92.3 199.6,92.2 201.8,91.9 204.1,90.7 206.3,90.6 208.5,90.1 210.8,88.5 213.0,87.1 215.3,86.6 217.5,86.0 219.7,85.8 222.0,82.8 224.2,71.8 226.4,70.6 228.7,69.6 230.9,68.9 233.2,68.2 235.4,67.9 237.6,67.6 239.9,57.9 242.1,57.7 244.3,57.0 246.6,56.6 248.8,56.5 251.0,55.2 253.3,54.9 255.5,32.6 257.8,32.2 260.0,31.7 262.2,28.2 264.5,26.6 266.7,26.1 268.9,25.5 271.2,25.1 273.4,24.9 275.6,24.6 277.9,24.1 280.1,23.3 282.4,23.0 284.6,22.8 286.8,22.7 289.1,22.6 291.3,22.3 293.5,21.3 295.8,21.0 298.0,20.9 300.2,18.8 302.5,18.3 304.7,18.0 307.0,17.8 309.2,17.1 311.4,16.4 313.7,16.2 315.9,15.9 318.1,15.4 320.4,15.2 322.6,15.1 324.8,14.7 327.1,13.4 329.3,12.3 331.6,11.7 333.8,11.5 336.0,10.3 338.3,10.2 340.5,10.1 342.7,10.0 345.0,10.0 347.2,53.9 349.4,55.3 351.7,57.2 353.9,58.8 356.2,58.8 358.4,58.9 360.6,58.7 362.9,58.5 365.1,58.4 367.3,37.7 369.6,37.1 371.8,36.2 374.0,50.4 376.3,49.8 378.5,48.7 380.8,47.9 383.0,78.1 385.2,79.2 387.5,78.6 389.7,76.0 391.9,75.5 394.2,74.7 396.4,75.7 398.6,75.1 400.9,74.3 403.1,73.9 405.4,72.0 407.6,71.3 409.8,70.8 412.1,69.7 414.3,68.5 416.5,68.8 418.8,66.2 421.0,65.5 423.2,65.0 425.5,64.2 427.7,63.4 430.0,61.2 432.2,63.9 434.4,66.1 436.7,66.9 438.9,67.2 441.1,67.9 443.4,68.7 445.6,70.5 447.8,70.6 450.1,70.4 452.3,69.6 454.6,69.1 456.8,69.2 459.0,69.1 461.3,69.1 463.5,67.6 465.7,67.6 468.0,66.5 470.2,64.3 472.4,65.0 474.7,64.0 476.9,64.0 479.2,64.0 481.4,63.9 483.6,63.9 485.9,63.6 488.1,63.1 490.3,61.4 492.6,61.0 494.8,58.6 497.0,58.5 499.3,58.1 501.5,53.9 503.8,53.6 506.0,53.0 508.2,52.8 510.5,53.2 512.7,54.5 514.9,55.0 517.2,56.5 519.4,56.9 521.6,57.9 523.9,59.9 526.1,60.1 528.4,30.7 530.6,30.6 532.8,30.6 535.1,29.4 537.3,31.5 539.5,31.0 541.8,30.4 544.0,30.5 546.2,30.7 548.5,35.1 550.7,34.6 553.0,33.7 555.2,33.3 557.4,33.5 559.7,33.0 561.9,33.6 564.1,32.1 566.4,32.5 568.6,32.6 570.8,32.9 573.1,33.2 575.3,30.7 577.6,31.9 579.8,33.5 582.0,33.7 584.3,34.2 586.5,34.3 588.7,33.6 591.0,33.3 593.2,33.3 595.5,32.4 597.7,30.5 599.9,33.4 602.2,34.1 604.4,37.8 606.6,40.2 608.9,40.9 611.1,41.0 613.3,42.5 615.6,40.8 617.8,40.6 620.1,40.6 622.3,40.6 624.5,40.6 626.8,41.2 629.0,34.9 631.2,34.0 633.5,34.5 635.7,34.7 637.9,34.6 640.2,33.0 642.4,33.3 644.7,29.5 646.9,83.6 649.1,83.2 651.4,82.7 653.6,83.0 655.8,82.8 658.1,83.0 660.3,83.5 662.5,83.6 664.8,83.7 667.0,83.3 669.3,87.4 671.5,87.4 673.7,87.1 676.0,87.1 678.2,85.7 680.4,84.1 682.7,83.8 684.9,82.2 687.1,81.8 689.4,82.2 691.6,81.6 693.9,77.3 696.1,76.2 698.3,76.2 700.6,75.8 702.8,75.9 705.0,76.4 707.3,76.1 709.5,76.6 711.7,76.4 714.0,76.0 716.2,76.1 718.5,75.9 720.7,75.9 722.9,74.8 725.2,73.4 727.4,73.6 729.6,73.7 731.9,73.7 734.1,74.7 736.3,74.9 738.6,73.5 740.8,73.5 743.1,73.8 745.3,74.4 747.5,74.3 749.8,72.8 752.0,72.6"><title>Allocator</title></polyline></svg><div class="legend"><span><i class="" style="--c:#2a78d6"></i>Allocator</span></div><div class="table-wrap"><table><thead><tr><th>Role</th><th class="num">ETH now</th>
+<th class="num hide-sm">Validators now</th><th class="num">Peak ETH</th><th class="num hide-sm">Peak</th>
+<th class="num hide-sm">First seen</th><th class="num hide-sm">Last seen</th></tr></thead><tbody><tr><td>Allocator</td><td class="num">49,632</td>
+<td class="num hide-sm">1,551</td><td class="num">71,008</td>
+<td class="num hide-sm">2023-05-30</td><td class="num hide-sm">2021-02-23</td>
+<td class="num hide-sm">now</td></tr></tbody></table></div>
+<h2>Clients</h2><p class="muted">Blocks proposed in the last 90 days by the validators it
+allocates or operates now, and the execution and consensus clients their graffiti names (clients add a short code by
+default; operators can turn it off, so these are shares of the blocks that carry one).</p>
+<div class="table-wrap"><table><thead><tr><th>Role</th><th class="num">Blocks</th><th class="num">With codes</th>
+<th>Execution clients</th><th>Consensus clients</th></tr></thead><tbody><tr><td>Allocator</td><td class="num">724</td>
+<td class="num">75%</td><td>Geth 100%</td><td>Teku 36%, Prysm 33%, Lodestar 31%</td></tr></tbody></table></div>
+<h2>Treemap boxes</h2><div class="table-wrap"><table><thead><tr><th>Box</th>
+<th class="num">ETH now</th><th class="num hide-sm">Peak ETH</th></tr></thead><tbody><tr><td>Bitstamp › Bitstamp staking › 2 named withdrawal addresses (from Feb 2021)</td><td class="num">49,632</td><td class="num hide-sm">71,008</td></tr></tbody></table></div>
+<h2>Decisions naming it</h2><ul><li><a href="../decisions/0185-bitstamp.html">0185</a> Defines Bitstamp (exchange)</li><li><a href="../decisions/0186-bitstamp-staking-name.html">0186</a> Defines Bitstamp staking (custodial staking)</li><li><a href="../decisions/0187-bitstamp-staking.html">0187</a> Bitstamp&#x27;s ETH staking: two BitGo multisig wallets whose deposits were made, and whose gas was paid, by keys that Bitstamp&#x27;s own wallet operator funded.</li></ul>
+<h2>Identified addresses</h2><div class="table-wrap"><table><thead><tr><th>Address</th><th>Role</th>
+<th class="hide-sm">Basis</th></tr></thead><tbody><tr><td><a class="mono" href="https://etherscan.io/address/0x88a4df73aac310484c60c4c0ac4904cab938c20b">0x88a4df73aac310484c60c4c0ac4904cab938c20b</a></td><td>withdrawal address</td><td class="hide-sm">asserted</td></tr><tr><td><a class="mono" href="https://etherscan.io/address/0xf666814c2ae92ca0e06667f80dac1eb8a97e48ae">0xf666814c2ae92ca0e06667f80dac1eb8a97e48ae</a></td><td>withdrawal address</td><td class="hide-sm">asserted</td></tr></tbody></table></div>
+</main>
+</body>
+</html>

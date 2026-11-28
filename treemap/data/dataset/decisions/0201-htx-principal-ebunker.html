@@ -1,0 +1,72 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>0201-htx-principal-ebunker: HTX&#x27;s withdrawal wallet 0xc15c handed 380 of its validators to Ebunker, whose own accounts registered them on SSV; HTX is </title>
+<style>
+:root { color-scheme: light; --surface-0: #f4f3f0; --surface-1: #fcfcfb; --border: #d9d8d3; --text-primary: #0b0b0b;
+        --text-secondary: #52514e; --text-muted: #77766f; --accent: #2a78d6; --chip: #ebe9e4; }
+@media (prefers-color-scheme: dark) {
+  :root:where(:not([data-theme="light"])) { color-scheme: dark; --surface-0: #121211; --surface-1: #1a1a19;
+    --border: #3a3a37; --text-primary: #f0efec; --text-secondary: #c3c2b7; --text-muted: #96958c; --accent: #3987e5;
+    --chip: #2a2a28; }
+}
+:root[data-theme="dark"] { color-scheme: dark; --surface-0: #121211; --surface-1: #1a1a19; --border: #3a3a37;
+  --text-primary: #f0efec; --text-secondary: #c3c2b7; --text-muted: #96958c; --accent: #3987e5; --chip: #2a2a28; }
+* { box-sizing: border-box; }
+body { margin: 0; background: var(--surface-0); color: var(--text-primary);
+       font: 15px/1.55 system-ui, -apple-system, "Segoe UI", sans-serif; }
+main { max-width: 860px; margin: 0 auto; padding: 32px 16px 64px; }
+a { color: var(--accent); }
+h1 { font-size: 22px; line-height: 1.3; font-weight: 600; margin: 4px 0 12px; }
+h2 { font-size: 15px; font-weight: 600; margin: 28px 0 8px; color: var(--text-secondary);
+     text-transform: uppercase; letter-spacing: 0.04em; }
+p { margin: 0 0 12px; }
+.crumbs { font-size: 13px; color: var(--text-muted); }
+.lede { font-size: 17px; }
+.muted { color: var(--text-muted); }
+.chip { display: inline-block; padding: 1px 8px; border-radius: 10px; background: var(--chip); font-size: 12px;
+        color: var(--text-secondary); margin-right: 4px; white-space: nowrap; }
+.card { background: var(--surface-1); border: 1px solid var(--border); border-radius: 6px; padding: 14px 16px;
+        margin: 0 0 12px; }
+.stats { display: flex; flex-wrap: wrap; gap: 12px; margin: 16px 0; }
+.stat { background: var(--surface-1); border: 1px solid var(--border); border-radius: 6px; padding: 10px 14px;
+        min-width: 140px; }
+.stat b { display: block; font-size: 20px; font-variant-numeric: tabular-nums; }
+.stat span { font-size: 12px; color: var(--text-muted); }
+ul.grounds { list-style: none; padding: 0; margin: 0; }
+ul.grounds li { padding: 6px 0; border-bottom: 1px solid var(--border); }
+ul.grounds li:last-child { border-bottom: 0; }
+table { width: 100%; border-collapse: collapse; background: var(--surface-1); font-size: 14px; }
+th, td { text-align: left; padding: 7px 8px; border-bottom: 1px solid var(--border); vertical-align: top; }
+th { font-weight: 600; color: var(--text-secondary); cursor: pointer; white-space: nowrap; user-select: none; }
+td.num, th.num { text-align: right; font-variant-numeric: tabular-nums; white-space: nowrap; }
+code, .mono { font: 12.5px ui-monospace, SFMono-Regular, Menlo, monospace; word-break: break-all; }
+details summary { cursor: pointer; color: var(--accent); }
+.excerpt { border-left: 3px solid var(--border); padding: 2px 0 2px 10px; color: var(--text-secondary);
+           font-size: 14px; white-space: pre-wrap; }
+input[type=search] { width: 100%; padding: 8px 10px; font: inherit; border: 1px solid var(--border);
+                     border-radius: 6px; background: var(--surface-1); color: var(--text-primary); margin: 8px 0 12px; }
+.table-wrap { overflow-x: auto; }
+@media (max-width: 640px) { .hide-sm { display: none; } }
+</style>
+<script data-goatcounter="https://pintail.goatcounter.com/count" async src="https://gc.zgo.at/count.js"></script>
+</head>
+<body>
+<main>
+<p class="crumbs"><a href="../">Dataset</a> › <a href="./">Decisions</a> › 0201-htx-principal-ebunker</p>
+<h1>HTX&#x27;s withdrawal wallet 0xc15c handed 380 of its validators to Ebunker, whose own accounts registered them on SSV; HTX is their principal.</h1>
+<p><span class="chip">Attribution</span><span class="chip">Principal</span> <a href="../entities/htx.html">HTX</a> <span class="muted">· decided 2026-10-25</span></p>
+<p class="lede">HTX is the principal of the validators withdrawing to 0xc15c…8b8b; Ebunker is the allocator of those it registered on SSV (0205).</p>
+<h2>Grounds</h2><div class="card"><ul class="grounds"><li><span class="chip">First party</span>HTX&#x27;s deposit account 0xd57d (0200) made all of 0xc15c&#x27;s deposits, and they withdraw to it</li><li><span class="chip">On chain</span>Ebunker&#x27;s own accounts registered 380 of them on SSV with Ebunker&#x27;s operators (0205)</li></ul></div>
+<h2>Explanation</h2><p>HTX (formerly Huobi) is the principal of the validators withdrawing to the multisig wallet 0xc15c…8b8b: the ETH was HTX&#x27;s customers&#x27;, and HTX chose how it was staked. All 470 of these validators were deposited on 21 August 2023 by HTX&#x27;s deposit account (decision 0200), and all have since exited.</p>
+<p><strong>Who allocated them.</strong> Ebunker&#x27;s own accounts registered 380 of the validators on the SSV network, on clusters of operators Ebunker had registered under its own name (decision 0205), so HTX handed those validators to Ebunker, which is their allocator. The other 90 remain HTX&#x27;s as allocator.</p>
+<p><strong>The wallet.</strong> 0xc15c…8b8b is a multisig wallet created through the same wallet factory, by the same key, as HTX&#x27;s other withdrawal wallets, and that key was first funded by reserve wallets that HTX&#x27;s proof of reserves signs for (<a href="https://github.com/huobiapi/Tool-Node.js-VerifyAddress/blob/9c076d8b56423de666100a481566e0a30a8db0fc/snapshot/huobi_por_20221201_part.csv">December 2022</a>, <a href="https://github.com/huobiapi/Tool-Node.js-VerifyAddress/blob/a3b042159258e58f6b10198788367a3ebf6d0dfa/snapshot/huobi_por_20230501.csv">May 2023</a>).</p>
+<p>The decision would change with evidence that Ebunker ran these validators for someone other than HTX, or that the wallet is not HTX&#x27;s.</p>
+<h2>What would change it</h2><p>Evidence that Ebunker ran these validators for someone other than HTX, or that 0xc15c isn&#x27;t HTX&#x27;s.</p>
+<h2>Sources</h2><div class="card"><a href="https://github.com/huobiapi/Tool-Node.js-VerifyAddress/blob/9c076d8b56423de666100a481566e0a30a8db0fc/snapshot/huobi_por_20221201_part.csv">Huobi proof of reserves, 1 December 2022 snapshot: reserve addresses with signatures</a><div class="muted" style="font-size:13px">Huobi (now HTX), huobiapi on GitHub · the entity&#x27;s own · retrieved 2026-10-22</div><p class="excerpt">ETH,0xcac725bef4f114f728cbcfd744a731c2a463c3fc,16083851,6213.354806,King will be back!,0x6ec9074bbac7a827d09fb9b88abfbbb5f918948afa7af03771e259f92d4942be5dff0749d5842b7079011548a5ad02c0db67cd177743a615833b8291daac40a301</p><div class="muted mono">sha256 ce4fb5e0719504a97bd9adc235f4035400cdf9b1439019a1873da1929a1fdce1</div></div><div class="card"><a href="https://github.com/huobiapi/Tool-Node.js-VerifyAddress/blob/a3b042159258e58f6b10198788367a3ebf6d0dfa/snapshot/huobi_por_20230501.csv">Huobi proof of reserves, 1 May 2023 snapshot: reserve addresses with signatures</a><div class="muted" style="font-size:13px">Huobi (now HTX), huobiapi on GitHub · the entity&#x27;s own · retrieved 2026-10-22</div><p class="excerpt">ETH,0x2abc22eb9a09ebbe7b41737ccde147f586efeb6a,17159913,6503.860051,King will be back!,0x6e23…6100 [...] ETH,0xa5d7f0f7027fa8f4d1be8042e1e43bbdec36951e,17159913,10411.3649,King will be back!,0xd330…ae01</p><div class="muted mono">sha256 eb535a13c9bf5f61e002e97125c99827cc6e795633eee4ca7b435e39d21cf4ef</div></div>
+<h2>Targets (1)</h2><details open><summary>The addresses or validators this decision covers</summary><ul style="list-style:none;padding:0"><li><span class="chip">withdrawal address</span><a class="mono" href="https://etherscan.io/address/0xc15c998c1dbe580ea6b67d2247a8352129b94b8b">0xc15c998c1dbe580ea6b67d2247a8352129b94b8b</a></li></ul></details>
+</main>
+</body>
+</html>

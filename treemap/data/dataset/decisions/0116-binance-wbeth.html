@@ -1,0 +1,73 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>0116-binance-wbeth: BNB Chain&#x27;s announcement names this as wBETH on Ethereum, and the ETH paid in to mint it goes to a Binance wallet.</title>
+<style>
+:root { color-scheme: light; --surface-0: #f4f3f0; --surface-1: #fcfcfb; --border: #d9d8d3; --text-primary: #0b0b0b;
+        --text-secondary: #52514e; --text-muted: #77766f; --accent: #2a78d6; --chip: #ebe9e4; }
+@media (prefers-color-scheme: dark) {
+  :root:where(:not([data-theme="light"])) { color-scheme: dark; --surface-0: #121211; --surface-1: #1a1a19;
+    --border: #3a3a37; --text-primary: #f0efec; --text-secondary: #c3c2b7; --text-muted: #96958c; --accent: #3987e5;
+    --chip: #2a2a28; }
+}
+:root[data-theme="dark"] { color-scheme: dark; --surface-0: #121211; --surface-1: #1a1a19; --border: #3a3a37;
+  --text-primary: #f0efec; --text-secondary: #c3c2b7; --text-muted: #96958c; --accent: #3987e5; --chip: #2a2a28; }
+* { box-sizing: border-box; }
+body { margin: 0; background: var(--surface-0); color: var(--text-primary);
+       font: 15px/1.55 system-ui, -apple-system, "Segoe UI", sans-serif; }
+main { max-width: 860px; margin: 0 auto; padding: 32px 16px 64px; }
+a { color: var(--accent); }
+h1 { font-size: 22px; line-height: 1.3; font-weight: 600; margin: 4px 0 12px; }
+h2 { font-size: 15px; font-weight: 600; margin: 28px 0 8px; color: var(--text-secondary);
+     text-transform: uppercase; letter-spacing: 0.04em; }
+p { margin: 0 0 12px; }
+.crumbs { font-size: 13px; color: var(--text-muted); }
+.lede { font-size: 17px; }
+.muted { color: var(--text-muted); }
+.chip { display: inline-block; padding: 1px 8px; border-radius: 10px; background: var(--chip); font-size: 12px;
+        color: var(--text-secondary); margin-right: 4px; white-space: nowrap; }
+.card { background: var(--surface-1); border: 1px solid var(--border); border-radius: 6px; padding: 14px 16px;
+        margin: 0 0 12px; }
+.stats { display: flex; flex-wrap: wrap; gap: 12px; margin: 16px 0; }
+.stat { background: var(--surface-1); border: 1px solid var(--border); border-radius: 6px; padding: 10px 14px;
+        min-width: 140px; }
+.stat b { display: block; font-size: 20px; font-variant-numeric: tabular-nums; }
+.stat span { font-size: 12px; color: var(--text-muted); }
+ul.grounds { list-style: none; padding: 0; margin: 0; }
+ul.grounds li { padding: 6px 0; border-bottom: 1px solid var(--border); }
+ul.grounds li:last-child { border-bottom: 0; }
+table { width: 100%; border-collapse: collapse; background: var(--surface-1); font-size: 14px; }
+th, td { text-align: left; padding: 7px 8px; border-bottom: 1px solid var(--border); vertical-align: top; }
+th { font-weight: 600; color: var(--text-secondary); cursor: pointer; white-space: nowrap; user-select: none; }
+td.num, th.num { text-align: right; font-variant-numeric: tabular-nums; white-space: nowrap; }
+code, .mono { font: 12.5px ui-monospace, SFMono-Regular, Menlo, monospace; word-break: break-all; }
+details summary { cursor: pointer; color: var(--accent); }
+.excerpt { border-left: 3px solid var(--border); padding: 2px 0 2px 10px; color: var(--text-secondary);
+           font-size: 14px; white-space: pre-wrap; }
+input[type=search] { width: 100%; padding: 8px 10px; font: inherit; border: 1px solid var(--border);
+                     border-radius: 6px; background: var(--surface-1); color: var(--text-primary); margin: 8px 0 12px; }
+.table-wrap { overflow-x: auto; }
+@media (max-width: 640px) { .hide-sm { display: none; } }
+</style>
+<script data-goatcounter="https://pintail.goatcounter.com/count" async src="https://gc.zgo.at/count.js"></script>
+</head>
+<body>
+<main>
+<p class="crumbs"><a href="../">Dataset</a> › <a href="./">Decisions</a> › 0116-binance-wbeth</p>
+<h1>BNB Chain&#x27;s announcement names this as wBETH on Ethereum, and the ETH paid in to mint it goes to a Binance wallet.</h1>
+<p><span class="chip">Anchor</span> <span class="muted">· decided 2026-10-19</span></p>
+<p class="lede">This contract is Binance&#x27;s wBETH on Ethereum: a token for ETH staked with Binance, valued at the rate it publishes.</p>
+<h2>Grounds</h2><div class="card"><ul class="grounds"><li><span class="chip">Third party</span>BNB Chain&#x27;s wBETH announcement lists this as wBETH&#x27;s Ethereum contract</li><li><span class="chip">On chain</span>All 1.86M ETH paid in to mint it went on to one address</li><li><span class="chip">On chain</span>That same address first funded the account holding its operator role</li></ul></div>
+<h2>Explanation</h2><p>The contract 0xa2e3…2e1 is Binance&#x27;s wBETH (Wrapped Binance Beacon ETH) on Ethereum: a token for ETH staked with Binance, valued at an exchange rate Binance publishes. The decision is used by the &quot;Forms of ETH&quot; page, which counts wBETH&#x27;s supply at its exchange rate as Binance&#x27;s issue; it also links Binance&#x27;s staking to Binance (decision 0006).</p>
+<p><strong>Identification.</strong> <a href="https://www.bnbchain.org/en/blog/new-wrapped-beth-is-now-available-on-bnb-chain">BNB Chain&#x27;s announcement of wBETH</a> lists this as wBETH&#x27;s Ethereum contract. Binance&#x27;s own pages could not be retrieved.</p>
+<p><strong>On chain.</strong> The contract names a receiving account, 0x26ad…6b86, for the ETH paid in to mint wBETH. All 67 of that account&#x27;s transactions sent ETH to a single address, 1,857,295 ETH in all, and nowhere else. The account holding the contract&#x27;s operator role was first funded by that same address. In October 2026 the exchange rate was about 1.11 ETH per wBETH, and the supply on Ethereum was 3.18M wBETH.</p>
+<p>ETH waiting in the receiving account is counted under wBETH rather than as plain ETH, since it is already in wBETH&#x27;s supply. An explorer label naming the destination address as Binance&#x27;s is recorded as a lead. The decision would change with Binance naming another contract as its Ethereum wBETH, or the ETH paid in going somewhere other than Binance.</p>
+<h2>What would change it</h2><p>Binance naming another contract as its Ethereum wBETH, or the ETH paid in going somewhere other than Binance.</p>
+<h2>Evidence</h2><p class="muted">Transactions and contract calls anyone can repeat on their own node.</p><div class="card"><ul class="grounds"><li><a class="mono" href="https://etherscan.io/tx/0x8a995aa75af309ac31380a52afc0d9db284e39b28d9d88747225e2509a900203">0x8a995aa7…9a900203</a></li><li><a class="mono" href="https://etherscan.io/tx/0x3e0a8c8fe6bdc2038306be162ffd7acab075b92a53592a245b5c81b584d3f157">0x3e0a8c8f…84d3f157</a></li></ul></div>
+<h2>Sources</h2><div class="card"><a href="https://www.bnbchain.org/en/blog/new-wrapped-beth-is-now-available-on-bnb-chain">New Wrapped BETH is Now Available on BNB Chain</a><div class="muted" style="font-size:13px">BNB Chain · third party · retrieved 2026-10-19</div><p class="excerpt">Ethereum: 0xa2E3356610840701BDf5611a53974510Ae27E2e1</p><div class="muted mono">sha256 787b32a9a259f99759fb33c0571515797dfdb0c21eca5fbf2dcf6b20522cc7b1</div></div>
+<h2>Leads</h2><p class="muted">Third-party pages, such as explorer labels, that pointed the research but are not relied on.</p><ul><li><a href="https://etherscan.io/token/0xa2e3356610840701bdf5611a53974510ae27e2e1">Etherscan address page</a></li><li><a href="https://etherscan.io/address/0x28c6c06298d514db089934071355e5743bf21d60">Etherscan address page</a></li></ul>
+</main>
+</body>
+</html>

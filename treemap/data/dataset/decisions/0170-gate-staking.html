@@ -1,0 +1,76 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>0170-gate-staking: A self-run fleet, compounding its own rewards, whose deposits Gate&#x27;s hot wallet funded; Gate named the cold wallet behind it as its</title>
+<style>
+:root { color-scheme: light; --surface-0: #f4f3f0; --surface-1: #fcfcfb; --border: #d9d8d3; --text-primary: #0b0b0b;
+        --text-secondary: #52514e; --text-muted: #77766f; --accent: #2a78d6; --chip: #ebe9e4; }
+@media (prefers-color-scheme: dark) {
+  :root:where(:not([data-theme="light"])) { color-scheme: dark; --surface-0: #121211; --surface-1: #1a1a19;
+    --border: #3a3a37; --text-primary: #f0efec; --text-secondary: #c3c2b7; --text-muted: #96958c; --accent: #3987e5;
+    --chip: #2a2a28; }
+}
+:root[data-theme="dark"] { color-scheme: dark; --surface-0: #121211; --surface-1: #1a1a19; --border: #3a3a37;
+  --text-primary: #f0efec; --text-secondary: #c3c2b7; --text-muted: #96958c; --accent: #3987e5; --chip: #2a2a28; }
+* { box-sizing: border-box; }
+body { margin: 0; background: var(--surface-0); color: var(--text-primary);
+       font: 15px/1.55 system-ui, -apple-system, "Segoe UI", sans-serif; }
+main { max-width: 860px; margin: 0 auto; padding: 32px 16px 64px; }
+a { color: var(--accent); }
+h1 { font-size: 22px; line-height: 1.3; font-weight: 600; margin: 4px 0 12px; }
+h2 { font-size: 15px; font-weight: 600; margin: 28px 0 8px; color: var(--text-secondary);
+     text-transform: uppercase; letter-spacing: 0.04em; }
+p { margin: 0 0 12px; }
+.crumbs { font-size: 13px; color: var(--text-muted); }
+.lede { font-size: 17px; }
+.muted { color: var(--text-muted); }
+.chip { display: inline-block; padding: 1px 8px; border-radius: 10px; background: var(--chip); font-size: 12px;
+        color: var(--text-secondary); margin-right: 4px; white-space: nowrap; }
+.card { background: var(--surface-1); border: 1px solid var(--border); border-radius: 6px; padding: 14px 16px;
+        margin: 0 0 12px; }
+.stats { display: flex; flex-wrap: wrap; gap: 12px; margin: 16px 0; }
+.stat { background: var(--surface-1); border: 1px solid var(--border); border-radius: 6px; padding: 10px 14px;
+        min-width: 140px; }
+.stat b { display: block; font-size: 20px; font-variant-numeric: tabular-nums; }
+.stat span { font-size: 12px; color: var(--text-muted); }
+ul.grounds { list-style: none; padding: 0; margin: 0; }
+ul.grounds li { padding: 6px 0; border-bottom: 1px solid var(--border); }
+ul.grounds li:last-child { border-bottom: 0; }
+table { width: 100%; border-collapse: collapse; background: var(--surface-1); font-size: 14px; }
+th, td { text-align: left; padding: 7px 8px; border-bottom: 1px solid var(--border); vertical-align: top; }
+th { font-weight: 600; color: var(--text-secondary); cursor: pointer; white-space: nowrap; user-select: none; }
+td.num, th.num { text-align: right; font-variant-numeric: tabular-nums; white-space: nowrap; }
+code, .mono { font: 12.5px ui-monospace, SFMono-Regular, Menlo, monospace; word-break: break-all; }
+details summary { cursor: pointer; color: var(--accent); }
+.excerpt { border-left: 3px solid var(--border); padding: 2px 0 2px 10px; color: var(--text-secondary);
+           font-size: 14px; white-space: pre-wrap; }
+input[type=search] { width: 100%; padding: 8px 10px; font: inherit; border: 1px solid var(--border);
+                     border-radius: 6px; background: var(--surface-1); color: var(--text-primary); margin: 8px 0 12px; }
+.table-wrap { overflow-x: auto; }
+@media (max-width: 640px) { .hide-sm { display: none; } }
+</style>
+<script data-goatcounter="https://pintail.goatcounter.com/count" async src="https://gc.zgo.at/count.js"></script>
+</head>
+<body>
+<main>
+<p class="crumbs"><a href="../">Dataset</a> › <a href="./">Decisions</a> › 0170-gate-staking</p>
+<h1>A self-run fleet, compounding its own rewards, whose deposits Gate&#x27;s hot wallet funded; Gate named the cold wallet behind it as its own.</h1>
+<p><span class="chip">Attribution</span><span class="chip">Allocator</span> <a href="../entities/gate.html">Gate staking</a> <span class="muted">· decided 2026-10-23</span></p>
+<p class="lede">Validators sharing the fee recipient 0xcda9…7062, withdrawing to these seven addresses, are Gate&#x27;s staking.</p>
+<div class="stats"><div class="stat"><b>5,716</b><span>validators resting on it now</span></div><div class="stat"><b>182,912</b><span>ETH now</span></div><div class="stat"><b>182,912</b><span>ETH at its peak</span></div></div>
+<h2>Grounds</h2><div class="card"><ul class="grounds"><li><span class="chip">Third party</span>Gate named 0xc882…f071 as one of its cold wallets in November 2022; it then held 140,860 ETH, as Gate said</li><li><span class="chip">On chain</span>0xc882 and 0x0d07…92fe have sent each other 1.6M ETH each way; 0x0d07 funded three of the five depositors</li><li><span class="chip">On chain</span>All these validators pay block fees to one address, which pays every depositor ETH to restake</li><li><span class="chip">On chain</span>Each withdrawal address sends its ETH only back to its depositor, to be restaked</li></ul></div>
+<h2>Explanation</h2><p>Validators that pay their block fees to 0xcda9…7062 and withdraw to these addresses are Gate&#x27;s ETH staking, with Gate, the exchange, as allocator. In October 2026 there were about 5,700 active validators with some 0.18M ETH. Gate offers ETH staking to its customers, whose stake this is.</p>
+<p><strong>The fleet.</strong> Since 2025 every block these validators proposed through a relay names the same fee recipient, 0xcda9…7062, and their graffiti is blank or a client version string. That fee recipient pays ETH to each of the five deposit accounts and to the withdrawal addresses. Each withdrawal address sends its ETH only back to its own deposit account, which deposits it again: one operator compounding its rewards by hand. Each deposit account has its own withdrawal address, and they deposited between May 2023 and July 2025. A further 1,000 validators deposited in November 2020 and since exited belong to the same staker (decision 0075): their principal was sent to one of these deposit accounts and restaked.</p>
+<p><strong>The link to Gate.</strong> In November 2022 Gate published one of its cold wallets, 0xc882…f071, as holding 140,000 ETH (<a href="https://tokeninsight.com/en/news/gate.io-says-assets-analyzed-on-web-only-portion-of-its-assets">as reported by TokenInsight</a>); on chain it then held 140,860 ETH. That wallet and 0x0d07…92fe have sent each other about 1.5M ETH in each direction since 2022, and 0x0d07…92fe, which has sent ten million transactions to 1.45 million addresses, is an exchange&#x27;s hot wallet. It funded three of the five deposit accounts, directly or through one intermediary. The other two were funded mostly from another exchange&#x27;s hot wallets, as an exchange moving funds between venues would be; they are tied to the fleet by the shared fee recipient and its payments.</p>
+<p><strong>Limits.</strong> Gate&#x27;s statement survives only as reported by a third party, and it names the cold wallet rather than the staking addresses. A community-maintained tracker lists five of the withdrawal addresses as Gate&#x27;s staked ETH; that and explorer labels are recorded as leads. The decision would change with evidence that 0xc882…f071 or 0x0d07…92fe is not Gate&#x27;s, or that Gate holds this stake for a single client.</p>
+<h2>What would change it</h2><p>Evidence that 0xc882 or 0x0d07 is not Gate&#x27;s, or that Gate holds this stake for a single client.</p>
+<h2>Evidence</h2><p class="muted">Transactions and contract calls anyone can repeat on their own node.</p><div class="card"><ul class="grounds"><li><a href="0075-merge-defi-whale-0x234e.html">0075-merge-defi-whale-0x234e</a></li><li><a class="mono" href="https://etherscan.io/tx/0xefd3637578854cb03ddc5639c9d0dfc1571bf1d3ba7edf4e54e1f9188331b62d">0xefd36375…8331b62d</a> — 0xc882 (Gate&#x27;s cold wallet) sends 0x0d07 2,141 ETH, block 15,495,750</li><li><a class="mono" href="https://etherscan.io/tx/0x92c2b0569daff1b4eb4b3515a6a4a3fcba9f922a8eaaffea34b86cf0007de1fe">0x92c2b056…007de1fe</a> — 0x0d07 first funds depositor 0x6061, block 17,512,588</li><li><a class="mono" href="https://etherscan.io/tx/0x088d30c581195594f75f26e449e35b91a23068e3494ea9d0231ce1993e434f9f">0x088d30c5…3e434f9f</a> — 0x0d07 sends depositor 0xd87c 5,000 ETH, block 18,861,667</li><li><a class="mono" href="https://etherscan.io/tx/0x319a59837f5ee6589faad34836433b73dd302f76923e6f6f59636c38de0ef720">0x319a5983…de0ef720</a> — 0x0d07 funds 0x21f0 (1,950 ETH), block 12,061,074</li><li><a class="mono" href="https://etherscan.io/tx/0xcc9a04a6ff3732cd71c5c852ae4c1ee8fcc84237f60a6896c2e40ac7f75122a4">0xcc9a04a6…f75122a4</a> — 0x21f0 first funds depositor 0x66bb, block 17,191,951</li><li><a class="mono" href="https://etherscan.io/tx/0xcf733216ac338f38aaa4de9d36a500be210c41fa02c3ffd5969c36b9591c1fba">0xcf733216…591c1fba</a> — Fee recipient 0xcda9 pays depositor 0x9f1d 73 ETH, block 21,321,824</li><li><a class="mono" href="https://etherscan.io/tx/0xc71006eedffc121325877ff3945aa89670e88dacd06613916ce2d60c41c712cc">0xc71006ee…41c712cc</a> — Fee recipient 0xcda9 pays depositor 0x9881, block 21,321,780</li></ul></div>
+<h2>Sources</h2><div class="card"><a href="https://tokeninsight.com/en/news/gate.io-says-assets-analyzed-on-web-only-portion-of-its-assets">Gate.io Says Assets &#x27;Analyzed&#x27; on Web Only Portion of Its Assets (15 November 2022)</a><div class="muted" style="font-size:13px">TokenInsight · third party · retrieved 2026-10-23</div><p class="excerpt">The exchange also provided a wallet address, 0xC882b111A75C0c657fC507C04FbFcD2cC984F071. &quot;This is one of our cold wallets, which alone has 140,000 $ETH, and $200m worth of tokens.&quot; Gate.io added.</p><div class="muted mono">sha256 40dc034d0890600dcea17c39aa3c0130183a5de9c236727b0e741bcf7d70f2e4</div></div>
+<h2>Leads</h2><p class="muted">Third-party pages, such as explorer labels, that pointed the research but are not relied on.</p><ul><li><a href="https://github.com/DefiLlama/DefiLlama-Adapters/blob/c25980b9679d586ba5e37eb6d257fd4a3fef7b82/projects/gate-io/index.js">projects/gate-io/index.js (commit c25980b): Gate&#x27;s reserve addresses and staked ETH withdrawal addresses</a></li></ul>
+<h2>Treemap boxes resting on it</h2><div class="table-wrap"><table><thead><tr><th>Box</th><th class="num">ETH now</th><th class="num">Peak ETH</th></tr></thead><tbody><tr><td>Gate › Gate staking › 8 named keys (from Dec 2020)</td><td class="num">182,912</td><td class="num">182,912</td></tr></tbody></table></div>
+<h2>Targets (8)</h2><details open><summary>The addresses or validators this decision covers</summary><ul style="list-style:none;padding:0"><li><span class="chip">fee recipient</span><a class="mono" href="https://etherscan.io/address/0xcda9d71bdfae59b89cee131ed3079f8ac4c77062">0xcda9d71bdfae59b89cee131ed3079f8ac4c77062</a></li><li><span class="chip">withdrawal address</span><a class="mono" href="https://etherscan.io/address/0xbcf03ce48091e6b820a7c33e166e5d0109d8e712">0xbcf03ce48091e6b820a7c33e166e5d0109d8e712</a></li><li><span class="chip">withdrawal address</span><a class="mono" href="https://etherscan.io/address/0x287a66c7d9cba7504e90fa638911d74c4dc6a147">0x287a66c7d9cba7504e90fa638911d74c4dc6a147</a></li><li><span class="chip">withdrawal address</span><a class="mono" href="https://etherscan.io/address/0x7a3f9b7120386249528c93e5eb373b78e54d5ba9">0x7a3f9b7120386249528c93e5eb373b78e54d5ba9</a></li><li><span class="chip">withdrawal address</span><a class="mono" href="https://etherscan.io/address/0xd6a8047940a1f71df5f809919c10d9ba0a88786e">0xd6a8047940a1f71df5f809919c10d9ba0a88786e</a></li><li><span class="chip">withdrawal address</span><a class="mono" href="https://etherscan.io/address/0x794c60af4541a30e6c7e9684c96331b1d55e282f">0x794c60af4541a30e6c7e9684c96331b1d55e282f</a></li><li><span class="chip">withdrawal address</span><a class="mono" href="https://etherscan.io/address/0xb04b2b81f65bacc8f29f411a1344f78bff7a36a2">0xb04b2b81f65bacc8f29f411a1344f78bff7a36a2</a></li><li><span class="chip">withdrawal address</span><a class="mono" href="https://etherscan.io/address/0xf604d331d9109253ff63a00ea93de5c0264314ef">0xf604d331d9109253ff63a00ea93de5c0264314ef</a></li></ul></details>
+</main>
+</body>
+</html>

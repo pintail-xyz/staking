@@ -1,0 +1,90 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>CryptoManufaktur: roles in the validator set</title>
+<style>
+:root { color-scheme: light; --surface-0: #f4f3f0; --surface-1: #fcfcfb; --border: #d9d8d3; --text-primary: #0b0b0b;
+        --text-secondary: #52514e; --text-muted: #77766f; --accent: #2a78d6; --chip: #ebe9e4; }
+@media (prefers-color-scheme: dark) {
+  :root:where(:not([data-theme="light"])) { color-scheme: dark; --surface-0: #121211; --surface-1: #1a1a19;
+    --border: #3a3a37; --text-primary: #f0efec; --text-secondary: #c3c2b7; --text-muted: #96958c; --accent: #3987e5;
+    --chip: #2a2a28; }
+}
+:root[data-theme="dark"] { color-scheme: dark; --surface-0: #121211; --surface-1: #1a1a19; --border: #3a3a37;
+  --text-primary: #f0efec; --text-secondary: #c3c2b7; --text-muted: #96958c; --accent: #3987e5; --chip: #2a2a28; }
+* { box-sizing: border-box; }
+body { margin: 0; background: var(--surface-0); color: var(--text-primary);
+       font: 15px/1.55 system-ui, -apple-system, "Segoe UI", sans-serif; }
+main { max-width: 860px; margin: 0 auto; padding: 32px 16px 64px; }
+a { color: var(--accent); }
+h1 { font-size: 22px; line-height: 1.3; font-weight: 600; margin: 4px 0 12px; }
+h2 { font-size: 15px; font-weight: 600; margin: 28px 0 8px; color: var(--text-secondary);
+     text-transform: uppercase; letter-spacing: 0.04em; }
+p { margin: 0 0 12px; }
+.crumbs { font-size: 13px; color: var(--text-muted); }
+.lede { font-size: 17px; }
+.muted { color: var(--text-muted); }
+.chip { display: inline-block; padding: 1px 8px; border-radius: 10px; background: var(--chip); font-size: 12px;
+        color: var(--text-secondary); margin-right: 4px; white-space: nowrap; }
+.card { background: var(--surface-1); border: 1px solid var(--border); border-radius: 6px; padding: 14px 16px;
+        margin: 0 0 12px; }
+.stats { display: flex; flex-wrap: wrap; gap: 12px; margin: 16px 0; }
+.stat { background: var(--surface-1); border: 1px solid var(--border); border-radius: 6px; padding: 10px 14px;
+        min-width: 140px; }
+.stat b { display: block; font-size: 20px; font-variant-numeric: tabular-nums; }
+.stat span { font-size: 12px; color: var(--text-muted); }
+ul.grounds { list-style: none; padding: 0; margin: 0; }
+ul.grounds li { padding: 6px 0; border-bottom: 1px solid var(--border); }
+ul.grounds li:last-child { border-bottom: 0; }
+table { width: 100%; border-collapse: collapse; background: var(--surface-1); font-size: 14px; }
+th, td { text-align: left; padding: 7px 8px; border-bottom: 1px solid var(--border); vertical-align: top; }
+th { font-weight: 600; color: var(--text-secondary); cursor: pointer; white-space: nowrap; user-select: none; }
+td.num, th.num { text-align: right; font-variant-numeric: tabular-nums; white-space: nowrap; }
+code, .mono { font: 12.5px ui-monospace, SFMono-Regular, Menlo, monospace; word-break: break-all; }
+details summary { cursor: pointer; color: var(--accent); }
+.excerpt { border-left: 3px solid var(--border); padding: 2px 0 2px 10px; color: var(--text-secondary);
+           font-size: 14px; white-space: pre-wrap; }
+input[type=search] { width: 100%; padding: 8px 10px; font: inherit; border: 1px solid var(--border);
+                     border-radius: 6px; background: var(--surface-1); color: var(--text-primary); margin: 8px 0 12px; }
+.table-wrap { overflow-x: auto; }
+@media (max-width: 640px) { .hide-sm { display: none; } }
+</style>
+<script data-goatcounter="https://pintail.goatcounter.com/count" async src="https://gc.zgo.at/count.js"></script>
+</head>
+<body>
+<main>
+<style>
+.chart { width: 100%; height: auto; background: var(--surface-1); border: 1px solid var(--border); border-radius: 6px; }
+.chart text { fill: var(--text-muted); font: 11px system-ui, sans-serif; }
+.chart .grid { stroke: var(--border); stroke-width: 1; }
+.legend { display: flex; flex-wrap: wrap; gap: 14px; font-size: 13px; color: var(--text-secondary); margin: 6px 0 14px; }
+.legend i { display: inline-block; width: 16px; height: 3px; vertical-align: middle; margin-right: 5px; background: var(--c); }
+.legend i.dashed { background: repeating-linear-gradient(90deg, var(--c) 0 6px, transparent 6px 9px); }
+.chart .event { stroke: var(--text-muted); stroke-width: 1; stroke-dasharray: 3 3; }
+.chart .event-n { fill: var(--text-secondary); font-weight: 600; }
+ol.events { padding-left: 0; list-style: none; }
+ol.events li { margin: 4px 0; }
+ol.events .n { display: inline-block; min-width: 1.6em; font-weight: 600; color: var(--text-secondary); }
+</style><p class="crumbs"><a href="../">Dataset</a> › <a href="./">Entities</a></p>
+<h1>CryptoManufaktur</h1>
+<p><span class="chip">node operator</span> <span class="mono muted">cryptomanufaktur</span></p>
+<p><strong>How much ETH CryptoManufaktur has had in each role recorded in this dataset, week by week, from
+the start of the beacon chain (1 December 2020) to 27 November 2026.</strong> Stake is the effective balance
+of active validators.</p>
+<ul><li><strong>Allocator</strong>: chose where the stake went. Counts the stake in the treemap boxes under CryptoManufaktur. <span class="muted">Recorded for 89% of active stake.</span></li><li><strong>Operator</strong>: ran the validators. <span class="muted">Recorded for 80% of active stake.</span></li><li><strong>Custodian</strong>: held the stake on behalf of a client. <span class="muted">Recorded for 5.1% of active stake.</span></li><li><strong>Principal</strong>: owned the staked ETH. <span class="muted">Recorded for 6.0% of active stake.</span></li></ul>
+<p class="muted">Allocators are recorded for most stake. Operators, custodians and principals are recorded only where
+specific evidence names them, so their figures here (dashed on the charts) are lower bounds: no figure does not mean
+no role.</p>
+<h2>Its own roles</h2><svg class="chart" viewBox="0 0 760 240" role="img" aria-label="ETH by role over time"><line class="grid" x1="52" x2="752" y1="218.0" y2="218.0"/><text x="46" y="222.0" text-anchor="end">0</text><line class="grid" x1="52" x2="752" y1="114.0" y2="114.0"/><text x="46" y="118.0" text-anchor="end">175k</text><line class="grid" x1="52" x2="752" y1="10.0" y2="10.0"/><text x="46" y="14.0" text-anchor="end">351k</text><text x="52.0" y="234" text-anchor="middle">2020</text><text x="179.5" y="234" text-anchor="middle">2022</text><text x="295.8" y="234" text-anchor="middle">2023</text><text x="412.1" y="234" text-anchor="middle">2024</text><text x="530.6" y="234" text-anchor="middle">2025</text><text x="646.9" y="234" text-anchor="middle">2026</text><line class="event" x1="235.4" x2="235.4" y1="10" y2="218"/><text class="event-n" x="238.4" y="20">1</text><line class="event" x1="476.9" x2="476.9" y1="10" y2="218"/><text class="event-n" x="479.9" y="20">2</text><polyline fill="none" stroke="#e0742a" stroke-width="2" stroke-dasharray="6 3" points="52.0,218.0 54.2,218.0 56.5,218.0 58.7,218.0 60.9,218.0 63.2,218.0 65.4,218.0 67.7,218.0 69.9,218.0 72.1,218.0 74.4,218.0 76.6,218.0 78.8,218.0 81.1,218.0 83.3,218.0 85.5,218.0 87.8,218.0 90.0,218.0 92.3,218.0 94.5,218.0 96.7,218.0 99.0,218.0 101.2,218.0 103.4,218.0 105.7,218.0 107.9,218.0 110.1,218.0 112.4,218.0 114.6,218.0 116.9,218.0 119.1,218.0 121.3,218.0 123.6,218.0 125.8,218.0 128.0,218.0 130.3,218.0 132.5,218.0 134.7,218.0 137.0,218.0 139.2,218.0 141.5,218.0 143.7,218.0 145.9,218.0 148.2,218.0 150.4,218.0 152.6,218.0 154.9,218.0 157.1,218.0 159.3,218.0 161.6,218.0 163.8,218.0 166.1,218.0 168.3,218.0 170.5,218.0 172.8,218.0 175.0,218.0 177.2,218.0 179.5,218.0 181.7,218.0 183.9,218.0 186.2,218.0 188.4,218.0 190.7,218.0 192.9,218.0 195.1,218.0 197.4,218.0 199.6,218.0 201.8,218.0 204.1,218.0 206.3,218.0 208.5,218.0 210.8,218.0 213.0,218.0 215.3,214.5 217.5,214.5 219.7,214.4 222.0,214.3 224.2,214.2 226.4,214.1 228.7,214.1 230.9,214.1 233.2,214.1 235.4,214.1 237.6,214.1 239.9,214.1 242.1,213.8 244.3,212.5 246.6,212.2 248.8,212.2 251.0,211.8 253.3,211.4 255.5,210.8 257.8,210.3 260.0,210.1 262.2,209.2 264.5,204.2 266.7,201.3 268.9,200.7 271.2,199.5 273.4,196.2 275.6,177.8 277.9,173.2 280.1,171.1 282.4,168.3 284.6,167.0 286.8,165.7 289.1,164.9 291.3,164.2 293.5,164.1 295.8,164.0 298.0,163.8 300.2,163.6 302.5,163.5 304.7,159.8 307.0,159.2 309.2,156.1 311.4,155.1 313.7,140.3 315.9,136.0 318.1,126.0 320.4,122.1 322.6,119.0 324.8,116.3 327.1,114.6 329.3,111.5 331.6,105.7 333.8,101.3 336.0,98.9 338.3,96.4 340.5,94.0 342.7,86.5 345.0,79.5 347.2,78.9 349.4,74.4 351.7,69.0 353.9,65.2 356.2,60.4 358.4,58.2 360.6,55.4 362.9,52.3 365.1,50.9 367.3,47.0 369.6,42.6 371.8,39.9 374.0,36.7 376.3,31.6 378.5,24.4 380.8,18.9 383.0,16.9 385.2,15.9 387.5,15.9 389.7,15.7 391.9,15.6 394.2,14.4 396.4,14.3 398.6,14.1 400.9,14.0 403.1,14.0 405.4,14.1 407.6,14.1 409.8,14.1 412.1,13.6 414.3,13.3 416.5,13.1 418.8,13.1 421.0,12.6 423.2,12.0 425.5,11.3 427.7,10.1 430.0,10.0 432.2,10.0 434.4,15.8 436.7,21.7 438.9,23.0 441.1,30.1 443.4,32.5 445.6,34.1 447.8,34.1 450.1,34.3 452.3,34.5 454.6,34.8 456.8,34.8 459.0,31.8 461.3,31.0 463.5,31.8 465.7,32.7 468.0,32.7 470.2,34.2 472.4,34.4 474.7,34.8 476.9,35.2 479.2,35.7 481.4,36.9 483.6,37.1 485.9,37.5 488.1,38.4 490.3,38.4 492.6,39.2 494.8,39.6 497.0,39.6 499.3,39.8 501.5,41.9 503.8,41.4 506.0,42.4 508.2,42.4 510.5,42.4 512.7,47.0 514.9,47.8 517.2,47.8 519.4,47.5 521.6,47.8 523.9,49.8 526.1,63.4 528.4,64.0 530.6,64.3 532.8,64.6 535.1,65.5 537.3,66.5 539.5,67.2 541.8,68.5 544.0,68.5 546.2,69.2 548.5,69.8 550.7,70.1 553.0,70.9 555.2,70.9 557.4,70.9 559.7,71.5 561.9,72.5 564.1,72.9 566.4,73.8 568.6,74.7 570.8,75.1 573.1,76.8 575.3,77.3 577.6,77.7 579.8,77.7 582.0,78.0 584.3,78.5 586.5,77.9 588.7,78.1 591.0,78.5 593.2,80.3 595.5,82.0 597.7,82.3 599.9,82.9 602.2,84.1 604.4,85.0 606.6,85.8 608.9,86.6 611.1,87.3 613.3,87.9 615.6,87.9 617.8,87.9 620.1,87.9 622.3,87.9 624.5,87.9 626.8,87.9 629.0,87.9 631.2,87.9 633.5,87.9 635.7,87.9 637.9,92.4 640.2,98.2 642.4,103.5 644.7,108.7 646.9,113.6 649.1,118.1 651.4,122.1 653.6,126.4 655.8,130.5 658.1,135.7 660.3,139.4 662.5,143.5 664.8,148.3 667.0,152.1 669.3,154.8 671.5,157.5 673.7,159.8 676.0,162.4 678.2,165.0 680.4,167.2 682.7,169.7 684.9,173.7 687.1,175.9 689.4,177.7 691.6,179.4 693.9,181.2 696.1,182.7 698.3,184.2 700.6,185.8 702.8,187.2 705.0,188.3 707.3,189.8 709.5,190.9 711.7,191.7 714.0,192.6 716.2,193.5 718.5,194.4 720.7,195.1 722.9,196.0 725.2,196.8 727.4,197.4 729.6,198.1 731.9,198.7 734.1,199.5 736.3,200.3 738.6,200.9 740.8,201.5 743.1,202.2 745.3,202.7 747.5,205.8 749.8,209.1 752.0,210.9"><title>Operator</title></polyline></svg><div class="legend"><span><i class="dashed" style="--c:#e0742a"></i>Operator (recorded only in part)</span></div><div class="table-wrap"><table><thead><tr><th>Role</th><th class="num">ETH now</th>
+<th class="num hide-sm">Validators now</th><th class="num">Peak ETH</th><th class="num hide-sm">Peak</th>
+<th class="num hide-sm">First seen</th><th class="num hide-sm">Last seen</th></tr></thead><tbody><tr><td>Operator</td><td class="num">12,032</td>
+<td class="num hide-sm">376</td><td class="num">350,624</td>
+<td class="num hide-sm">2024-02-27</td><td class="num hide-sm">2022-04-26</td>
+<td class="num hide-sm">now</td></tr></tbody></table></div>
+<h2>Events</h2><p class="muted">Numbered as marked on the charts.</p><ol class="events"><li><span class="n">1</span> 24 June 2022: Added to Lido's registry as operator 1/23, named "CryptoManufaktur" (<a href="https://etherscan.io/tx/0xd08aa7c37faf58cea71921c1935c4092cfc750a29d222a86149bf8c0a62cf851">transaction</a>)</li><li><span class="n">2</span> 19 July 2024: Lido operator 1/23 passed to <a href="galaxy.html">Galaxy</a> (<a href="../decisions/0286-galaxy-lido-operators.html">decision</a>)</li></ol>
+<h2>Decisions naming it</h2><ul><li><a href="../decisions/0286-galaxy-lido-operators.html">0286</a> Lido&#x27;s operator group 4.31 (&quot;Galaxy&quot;) and the operators it lists are run by Galaxy, from Galaxy&#x27;s acquisition of CryptoManufaktur&#x27;s assets.</li><li><a href="../decisions/0313-cryptomanufaktur.html">0313</a> Defines CryptoManufaktur (node operator)</li><li><a href="../decisions/0314-cryptomanufaktur-lido-operator.html">0314</a> Lido operator 1/23 was CryptoManufaktur&#x27;s until Galaxy acquired its assets in July 2024.</li></ul>
+</main>
+</body>
+</html>
